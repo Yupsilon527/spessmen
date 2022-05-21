@@ -7,6 +7,7 @@ TagManager:
   - Terrain
   - Creature
   - Item
+  - Building
   layers:
   - Default
   - TransparentFX

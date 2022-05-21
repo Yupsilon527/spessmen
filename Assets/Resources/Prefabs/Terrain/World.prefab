@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8e3484e27def24e8d1d6efd0317073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChunkPrefab: {fileID: 2170918382098514343, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}

@@ -9,6 +9,11 @@ public abstract class Mob : MonoBehaviour
     protected int eid = 0;
     public Rigidbody2D rigidbody;
     protected bool underwater = false;
+    protected virtual void Awake()
+    {
+        if (rigidbody == null)
+            rigidbody = GetComponent<Rigidbody2D>();
+    }
     protected virtual void Start()
     {
         Register(); 

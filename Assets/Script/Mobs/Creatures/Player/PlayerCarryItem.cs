@@ -28,10 +28,14 @@ public class PlayerCarryItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Backpack.GetActiveItem()!=null)
+            ItemMob item = Backpack.GetActiveItem();
+            if (item != null)
             {
-                Debug.Log("[PlayerCarryItem] Try activate item " + Backpack.name);
-                Backpack.GetActiveItem().OnActivate();
+                if (!item.RequiresGround || parent.movement.IsGrounded())
+                {
+                    Debug.Log("[PlayerCarryItem] Try activate item " + item.name);
+                    item.OnActivate(parent.movement);
+                }
             }
             else
             {

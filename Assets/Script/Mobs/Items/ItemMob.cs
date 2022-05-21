@@ -12,9 +12,10 @@ public class ItemMob : Mob
     }
     public Category category;
     public InventoryComponent container;
-    public virtual void OnActivate()
+    public bool RequiresGround = false;
+    public virtual void OnActivate(PlayerMob user)
     {
-        Vector2 throwVel = container.Owner.GetForwardVector() * 5 + Vector2.up * 3;
+        Vector2 throwVel = user.GetForwardVector() * 5 + Vector2.up * 3;
         container.UnloadItem(this);
         rigidbody.velocity = throwVel;
     }
@@ -28,10 +29,16 @@ public class ItemMob : Mob
     }
     public void DropFromContainer()
     {
+        if (container!=null)
         container.UnloadItem(this);
     }
     public virtual void OnDrop()
     {
         gameObject.SetActive(true);
+    }
+    public override void Kill()
+    {
+        DropFromContainer();
+        base.Kill();
     }
 }
