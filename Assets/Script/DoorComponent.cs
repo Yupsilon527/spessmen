@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorComponent : MonoBehaviour
+{
+    Animator animator;
+    CompartimentComponent House;
+    private void Awake()
+    {
+        if (animator == null)
+            animator = GetComponent<Animator>();
+        if (House == null)
+            House = GetComponentInParent<CompartimentComponent>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.parent.TryGetComponent(out DoorAccesser player))
+        {
+            player.OnEnterInRange(House);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.parent.TryGetComponent(out DoorAccesser player))
+        {
+            player.OnExitInRange(House);
+        }
+    }
+    public virtual void OnUsed()
+    {
+        animator.CrossFade("DoorOpen", .5f);
+    }
+}

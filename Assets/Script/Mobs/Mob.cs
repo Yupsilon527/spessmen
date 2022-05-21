@@ -85,6 +85,10 @@ public abstract class Mob : MonoBehaviour
         underwater = true;
     }
 
+    public virtual bool IsInside()
+    {
+        return false;
+    }
     public virtual void Kill()
     {
         Debug.Log("[Mob] Kill " + name);

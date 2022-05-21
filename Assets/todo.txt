@@ -1,7 +1,8 @@
 
-house
-	enter house
-	exit
+-house
+	-enter house
+	-exit
+	door animations
 building kit
 build house
 

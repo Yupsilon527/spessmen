@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InventoryComponent))]
 public class PlayerCarryItem : MonoBehaviour
 {
     public float PickUpRange = 1;
     public Player parent;
-    ItemMob CarriedItem;
+    public InventoryComponent Backpack;
     ItemMob WieldedTool;
     ItemMob HauledItem;
 
+    private void Awake()
+    {
+        Backpack = GetComponent<InventoryComponent>();
+    }
     void Update()
     {
         HandleItemHauling();
@@ -23,10 +28,10 @@ public class PlayerCarryItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (CarriedItem != null)
+            if (Backpack.GetActiveItem()!=null)
             {
-                Debug.Log("[PlayerCarryItem] Try activate item " + CarriedItem.name);
-                CarriedItem.OnActivate();
+                Debug.Log("[PlayerCarryItem] Try activate item " + Backpack.name);
+                Backpack.GetActiveItem().OnActivate();
             }
             else
             {
@@ -35,7 +40,7 @@ public class PlayerCarryItem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (CarriedItem != null)
+            if (Backpack.GetActiveItem() != null)
             {
                 DropItem();
             }
@@ -58,16 +63,15 @@ public class PlayerCarryItem : MonoBehaviour
         if (item.category == ItemMob.Category.small)
         {
             Debug.Log("[PlayerCarryItem] Pick up " + item.name);
-            CarriedItem = item;
-            CarriedItem.OnPickupByCreature(this);
+            Backpack.LoadItem( item);
             return true;
         }
         return false;
     }
     public void DropItem()
     {
-        Debug.Log("[PlayerCarryItem] Drop held item " + CarriedItem.name);
-        CarriedItem.OnDroppedByCreature();
-        CarriedItem = null;
+        Debug.Log("[PlayerCarryItem] Drop held item " + Backpack.name);
+            Backpack.UnloadItem(Backpack.GetActiveItem());
+        
     }
 }

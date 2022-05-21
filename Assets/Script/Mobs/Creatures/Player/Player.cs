@@ -10,7 +10,7 @@ public class Player
     public CapsuleCollider2D collider;
 
     public PlayerDigging digging;
-    public PlayerMovement movement;
+    public PlayerMob movement;
     public PlayerCarryItem hauler;
 
     public Player(GameObject parent, int id)
@@ -19,7 +19,7 @@ public class Player
         collider = parent.GetComponent<CapsuleCollider2D>();
         rigidbody = parent.GetComponent<Rigidbody2D>();
 
-        movement = parent.GetComponent<PlayerMovement>();
+        movement = parent.GetComponent<PlayerMob>();
         movement.parent = this;
         digging = parent.GetComponent<PlayerDigging>();
         digging.parent = this;

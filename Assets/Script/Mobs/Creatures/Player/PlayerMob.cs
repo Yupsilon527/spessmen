@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-public class PlayerMovement : Mob
+public class PlayerMob : Mob
 {
     bool FacesRight = false;
     public float WalkSpeed = 10;
@@ -129,5 +129,23 @@ public class PlayerMovement : Mob
     public override Vector2 GetForwardVector()
     {
         return Vector2.right * (FacesRight ? 1 : -1);
+    }
+
+    public CompartimentComponent indoor;
+    public override bool IsInside()
+    {
+        return indoor!=null;
+    }
+    public virtual void OnEnterBuilding()
+    {
+        gameObject.SetActive(false);
+    }
+    public void ExitBuilding()
+    {
+        indoor.UnloadMob(this);
+    }
+    public virtual void OnExitBuilding()
+    {
+        gameObject.SetActive(true);
     }
 }

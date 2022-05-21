@@ -11,22 +11,27 @@ public class ItemMob : Mob
         large
     }
     public Category category;
-    PlayerCarryItem carrier;
-    public virtual void OnPickupByCreature(PlayerCarryItem actor)
-    {
-        carrier = actor;
-        gameObject.SetActive(false);
-    }
-    public virtual void OnDroppedByCreature()
-    {
-        transform.position = carrier.transform.position;
-        carrier = null;
-        gameObject.SetActive(true);
-    }
+    public InventoryComponent container;
     public virtual void OnActivate()
     {
-        Vector2 throwVel = carrier.parent.movement.GetForwardVector() * 5 + Vector2.up * 3;
-        carrier.DropItem();
+        Vector2 throwVel = container.Owner.GetForwardVector() * 5 + Vector2.up * 3;
+        container.UnloadItem(this);
         rigidbody.velocity = throwVel;
+    }
+    public override bool IsInside()
+    {
+        return container!=null;
+    }
+    public virtual void OnPickup()
+    {
+        gameObject.SetActive(false);
+    }
+    public void DropFromContainer()
+    {
+        container.UnloadItem(this);
+    }
+    public virtual void OnDrop()
+    {
+        gameObject.SetActive(true);
     }
 }
