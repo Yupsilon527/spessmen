@@ -1,14 +1,25 @@
 
-building kit
-build house
-	building coroutine
 
 menus
-	house inventory
-	inhouse menu
 	buy menu
+		building material
+		building kit
+		explosive
+		T explosive
+		O2 seeds
+		tree seeds
+	house inventory
 
+	store item as mob
+	retrieve item as mob
 
+player input
+
+UI
+	gold
+	building material
+	oxygen
+	health
 
 load map
 grass
@@ -17,8 +28,16 @@ prebuilt entities
 	start point
 entities
 	human
+		jetpack
 	object
 	building
+		unloadposition
+
+Minerals
+	dirt
+	stone
+	gold
+	potassium
 
 Building
 	house

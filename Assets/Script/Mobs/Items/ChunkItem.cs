@@ -18,6 +18,10 @@ public class ChunkItem : ItemMob
         GetComponent<SpriteRenderer>().color = TerrainDefines.ElementColors[(int)Element];
         Quantity = nQuantity;
     }
+    public virtual bool OnStoredInBuilding()
+    {
+        return true;
+    }
 
     public void IncreaseQuantity(int q)
     {

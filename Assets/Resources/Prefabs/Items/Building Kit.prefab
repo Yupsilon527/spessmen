@@ -95,4 +95,5 @@ MonoBehaviour:
   category: 0
   container: {fileID: 0}
   RequiresGround: 1
-  BuildingPrefab: {fileID: 0}
+  AllowedBuildings:
+  - {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}

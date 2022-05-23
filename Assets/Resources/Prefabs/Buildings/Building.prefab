@@ -53,6 +53,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   ConstructionCollider: {fileID: 1967993309}
   BuildingTexture: {fileID: 3437930402308740186}
+  BuildTime: 10
 --- !u!114 &3437930400982524367
 MonoBehaviour:
   m_ObjectHideFlags: 0

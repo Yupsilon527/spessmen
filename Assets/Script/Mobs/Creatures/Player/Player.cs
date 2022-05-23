@@ -12,6 +12,8 @@ public class Player
     public PlayerDigging digging;
     public PlayerMob movement;
     public PlayerCarryItem hauler;
+    public BuilderComponent builder;
+    public PlayerMenu menu;
 
     public Player(GameObject parent, int id)
     {
@@ -25,6 +27,10 @@ public class Player
         digging.parent = this;
         hauler = parent.GetComponent<PlayerCarryItem>();
         hauler.parent = this;
+        builder = parent.GetComponent<BuilderComponent>();
+        builder.parent = this;
+        menu = parent.GetComponent<PlayerMenu>();
+        menu.parent = this;
     }
 
     public Vector2 moveInput;

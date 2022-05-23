@@ -57,3 +57,6 @@ TagManager:
   - name: Effects
     uniqueID: 4233822683
     locked: 0
+  - name: Ingame Overlay
+    uniqueID: 112585611
+    locked: 0

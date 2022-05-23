@@ -6,6 +6,7 @@ public class BuildingMob : Mob
 {
     public BoxCollider2D ConstructionCollider;
     public SpriteRenderer BuildingTexture;
+    public float BuildTime = 10;
 
     public bool CanBeBuildThere(Vector2 center)
     {
@@ -24,7 +25,7 @@ public class BuildingMob : Mob
         }
         return true;
     }
-    public void BuildCopy(Vector2 center,float percent)
+    public GameObject BuildCopy(Vector2 center,float percent)
     {
             GameObject bui = GameObject.Instantiate(gameObject);
             bui.transform.position = center;
@@ -32,6 +33,7 @@ public class BuildingMob : Mob
         {
             building.SetBuildPercentage(percent);
         }
+        return bui;
     }
     float buildPercentage = 100f;
     public void IncreaseBuildPercentage(float percentage)
@@ -42,7 +44,30 @@ public class BuildingMob : Mob
     {
         if (BuildingTexture!=null)
         {
-            BuildingTexture.size = new Vector2(1, percent);
+            BuildingTexture.size = new Vector2(1, percent*.01f);
+        }
+        buildPercentage = Mathf.Clamp(percent, 0, 100);
+    }
+    public float GetBuildingPercentage()
+
+    {
+        return buildPercentage;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out BuilderComponent builder))
+        {
+            builder.activeBuilding = this;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out BuilderComponent builder))
+        {
+            if (builder.activeBuilding == this)
+            {
+                builder.activeBuilding = null;
+            }
         }
     }
 }

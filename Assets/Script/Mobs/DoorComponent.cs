@@ -17,14 +17,17 @@ public class DoorComponent : MonoBehaviour
     {
         if (collision.transform.parent != null && collision.transform.parent.TryGetComponent(out DoorAccesser player))
         {
-            player.OnEnterInRange(House);
+            player.HouseInRange = House;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.transform.parent!=null && collision.transform.parent.TryGetComponent(out DoorAccesser player))
         {
-            player.OnExitInRange(House);
+            if (player.HouseInRange == House)
+            {
+                player.HouseInRange = null;
+            }
         }
     }
     public virtual void OnUsed()
