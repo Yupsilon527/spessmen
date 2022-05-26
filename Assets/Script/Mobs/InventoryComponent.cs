@@ -16,13 +16,17 @@ public class InventoryComponent : MonoBehaviour
 
     public bool CanLoadItem()
     {
-        return Inventory.Count < CarryLimit;
+        return CarryLimit>0 && Inventory.Count < CarryLimit;
     }
-    public void LoadItem(ItemMob item)
+    public bool LoadItem(ItemMob item)
     {
-        Inventory.Add(item);
-        item.container = this;
-        item.OnPickup();
+        if (CanLoadItem())
+        {
+            Inventory.Add(item);
+            item.OnMoveToContainer(this);
+            return true;
+        }
+        return false;
     }
     public void UnloadItem(ItemMob item)
     {
@@ -35,10 +39,83 @@ public class InventoryComponent : MonoBehaviour
         item.container = null;
         item.OnDrop();
     }
+    public void TransferItem(InventoryComponent otherInventory)
+    {
+        TransferItem(GetActiveItem(), otherInventory);
+    }
+    public ItemMob GetFirstItemByName(string itemName)
+    {
+        foreach (ItemMob i in Inventory)
+        {
+            if (i.name == itemName)
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+    public void TransferItem(string itemName, InventoryComponent otherInventory)
+    {
+        TransferItem(GetFirstItemByName(itemName), otherInventory);
+    }
+    public void TransferItem(ItemMob item, InventoryComponent otherInventory)
+    {
+        if (item == null)
+            return;
+
+            if (!otherInventory.LoadItem(item))
+        {
+            UnloadItem(item);
+        }
+        
+    }
     public ItemMob GetActiveItem()
     {
         if (Inventory.Count == 0)
             return null;
         return Inventory[ActiveItem];
+    }
+    public InventoryEntry[] GetInventoryList()
+    {
+        List<InventoryEntry> entries = new List<InventoryEntry>();
+        foreach (ItemMob i in Inventory)
+        {
+            bool accounted = false;
+            foreach (InventoryEntry e in entries)
+            {
+                if (e.itemName == i.name)
+                {
+                    accounted = true;
+                    e.itemCount++;
+                    break;
+                }
+            }
+            if (!accounted)
+            {
+                entries.Add(new InventoryEntry( i.name, 1));
+            }
+        }
+        return entries.ToArray();
+    }
+    public class InventoryEntry
+    {
+        public string itemName;
+        public int itemCount;
+
+        public InventoryEntry(string itemName, int itemCount)
+        {
+            this.itemName = itemName;
+            this.itemCount = itemCount;
+        }
+    }
+    public bool IsShop = false;
+    public void SellItem(Player sellingPlayer, ItemMob item)
+    {
+        if (Inventory.Contains(item))
+        {
+            Inventory.Remove(item);
+            item.OnSold(sellingPlayer);
+            item.Kill();
+        }
     }
 }

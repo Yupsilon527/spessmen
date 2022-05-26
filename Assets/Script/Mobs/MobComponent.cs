@@ -5,7 +5,7 @@ using UnityEngine;
 public class MobComponent : MonoBehaviour
 {
     public Mob Owner;
-    private void Awake()
+    protected virtual void Awake()
     {
         if (Owner==null)
         Owner = GetComponent<Mob>();

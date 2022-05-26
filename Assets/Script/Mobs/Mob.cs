@@ -99,4 +99,8 @@ public abstract class Mob : MonoBehaviour
         Debug.Log("[Mob] Kill " + name);
         gameObject.SetActive(false);
     }
+    public virtual bool WasKilled()
+    {
+        return false;
+    }
 }

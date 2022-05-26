@@ -12,7 +12,8 @@ public class ItemMob : Mob
     }
     public Category category;
     public InventoryComponent container;
-    public bool RequiresGround = false;
+    public bool RequiresGroundToUse = false;
+    public float GoldValue = 0;
     public virtual void OnActivate(PlayerMob user)
     {
         Vector2 throwVel = user.GetForwardVector() * 5 + Vector2.up * 3;
@@ -23,8 +24,11 @@ public class ItemMob : Mob
     {
         return container!=null;
     }
-    public virtual void OnPickup()
+    public virtual void OnMoveToContainer(InventoryComponent ncontainer)
     {
+        if (container!= null && container != ncontainer)
+            container.UnloadItem(this);
+        container = ncontainer;
         gameObject.SetActive(false);
     }
     public void DropFromContainer()
@@ -40,5 +44,9 @@ public class ItemMob : Mob
     {
         DropFromContainer();
         base.Kill();
+    }
+    public virtual void OnSold(Player sellingPlayer)
+    {
+        sellingPlayer.resources.GiveResource( ResourceController.Resources.gold ,GoldValue);
     }
 }

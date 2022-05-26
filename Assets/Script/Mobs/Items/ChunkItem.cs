@@ -15,12 +15,48 @@ public class ChunkItem : ItemMob
             return;
         }
         Element = nElement;
-        GetComponent<SpriteRenderer>().color = TerrainDefines.ElementColors[(int)Element];
         Quantity = nQuantity;
+        UpdateVisual();
     }
     public virtual bool OnStoredInBuilding()
     {
         return true;
+    }
+    private void OnValidate()
+    {
+        UpdateVisual();
+    }
+    void UpdateVisual()
+    {
+        GetComponent<SpriteRenderer>().color = TerrainDefines.ElementColors[(int)Element];
+        transform.localScale = Vector3.one *( .1f + Quantity * 0.001f);
+    }
+    public override void OnMoveToContainer(InventoryComponent ncontainer)
+    {
+        if (Element == TerrainDefines.Element.gold || Element == TerrainDefines.Element.rock)
+        {
+            if (ncontainer.IsShop)
+            {
+                PlayerMob playerOwner = (PlayerMob)container.Owner;
+                if (playerOwner != null)
+                {
+                    ResourceController res = playerOwner.parent.resources;
+
+                    switch (Element)
+                    {
+                        case TerrainDefines.Element.gold:
+                            res.GiveResource(ResourceController.Resources.gold,Quantity);
+                            break;
+                        case TerrainDefines.Element.rock:
+                            res.GiveResource(ResourceController.Resources.wood, Quantity);
+                            break;
+                    }
+                    ncontainer.SellItem(playerOwner.parent,this);
+                    return;
+                }
+            }
+        }
+        base.OnMoveToContainer(ncontainer);
     }
 
     public void IncreaseQuantity(int q)

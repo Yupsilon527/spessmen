@@ -6,6 +6,7 @@ public class BuildingMob : Mob
 {
     public BoxCollider2D ConstructionCollider;
     public SpriteRenderer BuildingTexture;
+    public float BuildCost = 100;
     public float BuildTime = 10;
 
     public bool CanBeBuildThere(Vector2 center)

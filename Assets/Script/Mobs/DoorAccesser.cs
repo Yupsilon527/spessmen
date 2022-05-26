@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAccesser : MobComponent
+public class DoorAccesser : MonoBehaviour
 {
+    public Player parent;
     public CompartimentComponent HouseInRange;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Owner.IsInside())
+            if (parent.movement.IsInside())
             {
                 ExitHouse();
             }
@@ -18,17 +19,22 @@ public class DoorAccesser : MobComponent
                 EnterHouse();
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (parent.movement.IsInside())
+            {
+                parent.backpack.TransferItem( parent.movement.indoor.GetComponent<InventoryComponent>());
+            }
+        }
     }
     void EnterHouse()
     {
-        PlayerMob player = (PlayerMob)Owner;
-        player.parent.menu.OpenIndoorsMenu((HouseMob)HouseInRange.Owner);
-        HouseInRange.LoadMob(player);
+        parent.menu.OpenIndoorsMenu((HouseMob)HouseInRange.Owner);
+        HouseInRange.LoadMob(parent.movement);
     }
     void ExitHouse()
     {
-        PlayerMob player = (PlayerMob)Owner;
-        player.parent.menu.CloseMenu();
-        player.ExitBuilding();
+        parent.menu.CloseMenu();
+        parent.movement.ExitBuilding();
     }
 }

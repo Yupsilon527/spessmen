@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BuildingKitItem : ItemMob
 {
-
-
     public GameObject[] AllowedBuildings;
     public override void OnActivate(PlayerMob user)
     {

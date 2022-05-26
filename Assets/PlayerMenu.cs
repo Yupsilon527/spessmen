@@ -54,22 +54,61 @@ public class PlayerMenu : MobComponent
         {
             lNames.Add("Buy");
             lActions.Add(() => { OpenBuildingShopMenu(store); return false; });
+
         }
 
         if (indoorHouse.TryGetComponent(out InventoryComponent inventory))
         {
+            if (inventory.IsShop)
+            {
+                lNames.Add("Sell");
+                lActions.Add(() => { OpenSellMenu(inventory); return false; });
+            }
+
             lNames.Add("Store");
-            lActions.Add(() => { OpenBuildingInventoryMenu(inventory); return false; });
+            lActions.Add(() => { OpenWithdrawMenu(inventory); return false; });
         }
+
+        lNames.Add("Store Item");
+        lActions.Add(() => {
+            if (parent.backpack.GetActiveItem()!= null && parent.movement.IsInside() && parent.backpack.GetActiveItem() != null && parent.movement.indoor.TryGetComponent(out InventoryComponent inventory))
+            {
+                inventory.LoadItem(parent.backpack.GetActiveItem());
+            }
+            return false;
+        });
 
         lNames.Add("Exit");
         lActions.Add(() => { parent.movement.ExitBuilding(); return true; });
         menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
     }
-    public void OpenBuildingInventoryMenu(InventoryComponent inventory)
+    public void OpenWithdrawMenu(InventoryComponent inventory)
     {
         List<string> lNames = new List<string>();
         List<PlayerMenuController.PlayerMenuAction> lActions = new List<PlayerMenuController.PlayerMenuAction>();
+
+        foreach (InventoryComponent.InventoryEntry item in inventory.GetInventoryList())
+        {
+            lNames.Add(item.itemName + " (" + item.itemCount + ")");
+            lActions.Add(() => { inventory.TransferItem(item.itemName, parent.backpack); OpenWithdrawMenu(inventory); return false; });
+        }
+
+
+        lNames.Add("Back");
+        lActions.Add(() => { OpenGeneralMenu(); return false; });
+        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+    }
+    public void OpenSellMenu(InventoryComponent inventory)
+    {
+        List<string> lNames = new List<string>();
+        List<PlayerMenuController.PlayerMenuAction> lActions = new List<PlayerMenuController.PlayerMenuAction>();
+
+        foreach (InventoryComponent.InventoryEntry item in inventory.GetInventoryList())
+        {
+            lNames.Add(item.itemName + " (" + item.itemCount + ")");
+            lActions.Add(() => { inventory.SellItem(parent, inventory.GetFirstItemByName(item.itemName)); OpenSellMenu(inventory); return false; });
+        }
+
 
         lNames.Add("Back");
         lActions.Add(() => { OpenGeneralMenu(); return false; });
@@ -80,10 +119,10 @@ public class PlayerMenu : MobComponent
         List<string> lNames = new List<string>();
         List<PlayerMenuController.PlayerMenuAction> lActions = new List<PlayerMenuController.PlayerMenuAction>();
 
-        foreach (var entry in store.Shop)
+        foreach (ShopComponent.ShopEntry entry in store.Shop)
         {
-            lNames.Add(entry.Item.name + " ("+ entry.ItemCost + ")");
-            lActions.Add(() => { return false; });
+            lNames.Add(entry.Item.name + " ("+ entry.Cost + "g)");
+            lActions.Add(() => { if (store.CanPlayerBuyItem(parent,entry)) { store.BuyItemForPlayer(parent, entry); } return false; });
         }
 
         lNames.Add("Back");

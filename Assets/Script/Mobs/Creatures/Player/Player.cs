@@ -11,9 +11,14 @@ public class Player
 
     public PlayerDigging digging;
     public PlayerMob movement;
+    public DoorAccesser accesser;
     public PlayerCarryItem hauler;
+    public InventoryComponent backpack;
     public BuilderComponent builder;
     public PlayerMenu menu;
+    public HealthController health;
+    public OxygenController oxygen;
+    public ResourceController resources;
 
     public Player(GameObject parent, int id)
     {
@@ -25,12 +30,18 @@ public class Player
         movement.parent = this;
         digging = parent.GetComponent<PlayerDigging>();
         digging.parent = this;
+        accesser = parent.GetComponentInParent<DoorAccesser>();
+        accesser.parent = this;
+        backpack = parent.GetComponent<InventoryComponent>();
         hauler = parent.GetComponent<PlayerCarryItem>();
         hauler.parent = this;
         builder = parent.GetComponent<BuilderComponent>();
         builder.parent = this;
         menu = parent.GetComponent<PlayerMenu>();
         menu.parent = this;
+        health = parent.GetComponent<HealthController>();
+        oxygen = parent.GetComponent<OxygenController>();
+        resources = parent.GetComponent<ResourceController>();
     }
 
     public Vector2 moveInput;

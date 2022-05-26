@@ -7,14 +7,9 @@ public class PlayerCarryItem : MonoBehaviour
 {
     public float PickUpRange = 1;
     public Player parent;
-    public InventoryComponent Backpack;
     ItemMob WieldedTool;
     ItemMob HauledItem;
 
-    private void Awake()
-    {
-        Backpack = GetComponent<InventoryComponent>();
-    }
     void Update()
     {
         HandleItemHauling();
@@ -28,10 +23,10 @@ public class PlayerCarryItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ItemMob item = Backpack.GetActiveItem();
+            ItemMob item = parent.backpack.GetActiveItem();
             if (item != null)
             {
-                if (!item.RequiresGround || parent.movement.IsGrounded())
+                if (!item.RequiresGroundToUse || parent.movement.IsGrounded())
                 {
                     Debug.Log("[PlayerCarryItem] Try activate item " + item.name);
                     item.OnActivate(parent.movement);
@@ -44,7 +39,7 @@ public class PlayerCarryItem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (Backpack.GetActiveItem() != null)
+            if (parent.backpack.GetActiveItem() != null)
             {
                 DropItem();
             }
@@ -67,15 +62,15 @@ public class PlayerCarryItem : MonoBehaviour
         if (item.category == ItemMob.Category.small)
         {
             Debug.Log("[PlayerCarryItem] Pick up " + item.name);
-            Backpack.LoadItem( item);
-            return true;
+            
+            return parent.backpack.LoadItem(item);
         }
         return false;
     }
     public void DropItem()
     {
-        Debug.Log("[PlayerCarryItem] Drop held item " + Backpack.name);
-            Backpack.UnloadItem(Backpack.GetActiveItem());
+        Debug.Log("[PlayerCarryItem] Drop held item " + parent.backpack.name);
+        parent.backpack.UnloadItem(parent.backpack.GetActiveItem());
         
     }
 }
