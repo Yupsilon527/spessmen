@@ -174,8 +174,8 @@ public class PlixelMapMob : Mob
     public void setComplete(bool value)
     {
         completed = value;
-        rigidbody.mass = (float)nTiles * TerrainDefines.terrain_mass_multiplier;
-        rigidbody.simulated = value;
+        rbody.mass = (float)nTiles * TerrainDefines.terrain_mass_multiplier;
+        rbody.simulated = value;
     }
 
     public bool isComplete()
@@ -198,14 +198,6 @@ public class PlixelMapMob : Mob
         Debug.Log("[entityTerrain] Make " + referenceTexture.width + "x" + referenceTexture.height + " chunk " + gameObject.name);
         GetComponent<SpriteRenderer>().sprite = Sprite.Create(referenceTexture, new Rect(0, 0, referenceTexture.width, referenceTexture.height), Vector2.one / 2f, TerrainDefines.terrain_PPU);
         StartCoroutine(DrawChunks());
-    }
-    public override bool IsBelowWaterLevel()
-    {
-        return completed && !solid && base.IsBelowWaterLevel();
-    }
-    public override bool IsBelowDeathLevel()
-    {
-        return completed && !solid && base.IsBelowDeathLevel();
     }
 
 
@@ -587,7 +579,7 @@ public class PlixelMapMob : Mob
     }
     public override void ApplyForce(Vector2 force, Vector2 center)
     {
-         rigidbody.AddForceAtPosition(force, center);
+         rbody.AddForceAtPosition(force, center);
         WorldController.active.MobsInMotion.Add(this);
         Debug.Log("[PlixelMapMob] Apply " + force + " force to " + name + " at point " + center);
 
@@ -744,7 +736,7 @@ public class PlixelMapMob : Mob
             else
             {
                 yield return new WaitForEndOfFrame();
-                rigidbody.bodyType = solid ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+                rbody.bodyType = solid ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
                 if (chunk_updated.Count > 0)
                 {
                     Debug.Log("[entityTerrain] Revise Chunk Colliders");
@@ -767,7 +759,7 @@ public class PlixelMapMob : Mob
 
     public override void HandleShockwave(Vector2 center, float explosion_inradius, float explosion_outradius, float explosion_force)
     {
-        consideredforce = new Vector4(rigidbody.centerOfMass.x, rigidbody.centerOfMass.y, explosion_force, explosion_outradius);
+        consideredforce = new Vector4(rbody.centerOfMass.x, rbody.centerOfMass.y, explosion_force, explosion_outradius);
         base.HandleShockwave(center, explosion_inradius, explosion_outradius, explosion_force);
     }
 

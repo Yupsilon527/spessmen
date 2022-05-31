@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerMob : Mob
 {
@@ -31,9 +30,9 @@ public class PlayerMob : Mob
 
     protected override void Update()
     {
+        base.Update();
         if (CanMove)
             HandleControls();
-        base.Update();
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -48,10 +47,10 @@ public class PlayerMob : Mob
     Vector2 modifiedVelocity;
     void HandleControls()
     {
-        modifiedVelocity = parent.rigidbody.velocity;
+        modifiedVelocity = Vector2.zero;
         Move(Input.GetAxis("Horizontal"));
         HandleFall();
-        parent.rigidbody.velocity = modifiedVelocity;
+        parent.rigidbody.velocity += (Vector2)( modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up);
     }
     void Move(float dir)
     {

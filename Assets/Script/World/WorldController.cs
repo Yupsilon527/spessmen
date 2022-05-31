@@ -17,7 +17,6 @@ public class WorldController : MonoBehaviour
     public GamePhase currentPhase = GamePhase.Loading;
 
     public static WorldController active;
-    public int nEntitites = 0;
     public Vector2 worldSize;
     public float waterLevel;
     public float bottomLevel;

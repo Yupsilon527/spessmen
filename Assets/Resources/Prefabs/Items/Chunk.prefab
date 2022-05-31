@@ -86,11 +86,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7659768135546024899, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
---- !u!50 &2170918382098514337 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 7659768135546024900, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
-  m_PrefabInstance: {fileID: 8389168497599099493}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2170918382098514343 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7659768135546024898, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
@@ -108,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b21975811d73744b21c1f7490b40b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 2170918382098514337}
+  rbody: {fileID: 0}
+  Planet: {fileID: 0}
   category: 0
   container: {fileID: 0}
   RequiresGroundToUse: 0

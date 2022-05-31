@@ -18,7 +18,7 @@ public class ItemMob : Mob
     {
         Vector2 throwVel = user.GetForwardVector() * 5 + Vector2.up * 3;
         container.UnloadItem(this);
-        rigidbody.velocity = throwVel;
+        rbody.velocity = throwVel;
     }
     public override bool IsInside()
     {

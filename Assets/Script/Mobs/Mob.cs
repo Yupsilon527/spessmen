@@ -7,12 +7,11 @@ using UnityEngine;
 public abstract class Mob : MonoBehaviour
 {
     protected int eid = 0;
-    public Rigidbody2D rigidbody;
-    protected bool underwater = false;
+    public Rigidbody2D rbody;
     protected virtual void Awake()
     {
-        if (rigidbody == null)
-            rigidbody = GetComponent<Rigidbody2D>();
+        if (rbody == null)
+            rbody = GetComponent<Rigidbody2D>();
     }
     protected virtual void Start()
     {
@@ -20,21 +19,19 @@ public abstract class Mob : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (IsBelowWaterLevel())
+        if (Planet ==null)
         {
-            TouchWater();
+            TieToPlanet(PlanetoidController.mainPlanet);
         }
-        if (IsBelowDeathLevel())
+        else
         {
-            Kill();
+            HandlePlayerOrbit();
         }
     }
     public virtual void Register()
     {
-        eid = WorldController.active.nEntitites;
-        gameObject.name = gameObject.name.Substring(0, gameObject.name.Length-7) +"-"+ eid;
-        WorldController.active.nEntitites++;
         Debug.Log("[Mob] Register "+name);
+        TieToPlanet(PlanetoidController.mainPlanet);
     }
     public virtual Vector2 GetForwardVector()
     {
@@ -42,7 +39,7 @@ public abstract class Mob : MonoBehaviour
     }
     public virtual bool IsInMotion()
     {
-        return gameObject.activeInHierarchy && rigidbody.IsAwake();
+        return gameObject.activeInHierarchy && rbody.IsAwake();
     }
     public virtual void HandleShockwave(Vector2 center, float explosion_inradius, float explosion_outradius, float explosion_force)
     {
@@ -71,23 +68,10 @@ public abstract class Mob : MonoBehaviour
     public virtual void ApplyForce(Vector2 force, Vector2 center)
     {
         // rigidbody.AddForceAtPosition(force, center);
-        rigidbody.AddForce (force);
+        rbody.AddForce (force);
         WorldController.active.MobsInMotion.Add(this);
         Debug.Log("[Mob] Apply " + force + " force to " + name + " at point " + center);
        
-    }
-    public virtual bool IsBelowWaterLevel()
-    {
-        return underwater || transform.position.y < -WorldController.active.waterLevel;
-    }
-    public virtual bool IsBelowDeathLevel()
-    {
-        return transform.position.y < -WorldController.active.bottomLevel * 2;
-    }
-
-    public virtual void TouchWater()
-    {
-        underwater = true;
     }
 
     public virtual bool IsInside()
@@ -102,5 +86,26 @@ public abstract class Mob : MonoBehaviour
     public virtual bool WasKilled()
     {
         return false;
+    }
+    public PlanetoidController Planet;
+    float GravityScale = 1;
+    protected void TieToPlanet(PlanetoidController p)
+    {
+        Planet = p;
+        if (rbody.gravityScale != 0)
+        {
+            GravityScale = rbody.gravityScale;
+            rbody.gravityScale = 0;
+        }
+        HandlePlayerOrbit();
+    }
+    protected void HandlePlayerOrbit()
+    {
+        if (Planet != null)
+        {
+            Vector2 vectorUp = (transform.position - Planet.transform.position);
+            transform.up = vectorUp;
+            rbody.velocity += vectorUp.normalized * GravityScale * rbody.mass * Physics2D.gravity.y;
+        }
     }
 }
