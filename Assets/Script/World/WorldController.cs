@@ -26,20 +26,10 @@ public class WorldController : MonoBehaviour
     public List<Mob> MobsInMotion = new List<Mob>();
     public List<PlixelMapMob> terrainmobs = new List<PlixelMapMob>();
 
-    Texture2D mapTexture = null;
-    Texture2D mskTexture = null;
-
-    public string MapName = "test_mask";
-    public class GameData
-    {
-        public string mapName = "test-med";
-    }
+    public Texture2D mapTexture;
 
     private void Start() {
         active = this;
-
-        mapTexture = GameResource.active.LoadTexture(GameDirectory.MapFolder, MapName);
-        mskTexture = GameResource.active.LoadTexture(GameDirectory.MapFolder, MapName + "_mask");
         StartCoroutine(PrepareWorld());
     }
 
@@ -167,35 +157,11 @@ public class WorldController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Debug.Log("[entityWorld] Draw the world.");
         PlixelMapMob tileset;
-        if (mskTexture == null) { 
-            tileset = PlixelMapMob.LoadFromTexture(mapTexture);
-        }
-        else
-        {
-            tileset = PlixelMapMob.LoadFromTexture(mskTexture);
-        }
+        tileset = PlixelMapMob.LoadFromTexture(mapTexture);
 
         boundlock[0] = tileset.GetEBounds();
         boundlock[1] = tileset.GetWBounds();
         boundlock[2] = tileset.GetNBounds();
-        /*bool hasWater = false;
-       
-            if (tileset.GetNBounds() || tileset.GetEBounds() || tileset.GetWBounds())
-            {
-                lockedBounds = true;
-                SetBounds(mapTexture.width, mapTexture.height);
-            }
-            else if (tileset.GetSBounds())
-            {
-                hasWater = true;
-            }*/
-
-        //draw water
-
-        /*if (hasWater)
-        {
-            //TBD
-        }*/
 
         ChangePhase(GamePhase.Loading);//prepating landscape
         yield return new WaitUntil(() => { return tileset.isComplete(); });
