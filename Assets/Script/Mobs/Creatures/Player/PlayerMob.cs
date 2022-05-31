@@ -10,6 +10,7 @@ public class PlayerMob : Mob
     public float JumpTime = .33f;
     public float MaxJumpSpeed = 2;
     public float JumpSpeed = 1;
+    public float FallDeceleration = .33f;
     public float MaxFallSpeed = 1;
     public float MaxGlideSpeed = 1;
     public float GroundTime = .1f;
@@ -33,12 +34,13 @@ public class PlayerMob : Mob
         base.Update();
         if (CanMove)
             HandleControls();
+        SidewaysCamera.active.FollowMob(this);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         foreach (ContactPoint2D point in collision.contacts)
         {
-            if (IsAbove(point.point.y))
+            if (IsAbove(point.point))
             {
                 LastGroundTime = Time.time + GroundTime;
             }
@@ -47,10 +49,10 @@ public class PlayerMob : Mob
     Vector2 modifiedVelocity;
     void HandleControls()
     {
-        modifiedVelocity = Vector2.zero;
+            modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration) ;
         Move(Input.GetAxis("Horizontal"));
         HandleFall();
-        parent.rigidbody.velocity += (Vector2)( modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up);
+        parent.rigidbody.velocity +=(Vector2)(modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up) ;
     }
     void Move(float dir)
     {
@@ -92,11 +94,10 @@ public class PlayerMob : Mob
 
         while (jumpEndTime >= Time.time && Input.GetKey(KeyCode.Space))
         {
-            parent.rigidbody.velocity = parent.rigidbody.velocity * Vector2.right + Vector2.up * JumpSpeed;
+            modifiedVelocity.y = JumpSpeed;
             yield return new WaitForFixedUpdate();
         }
-
-        parent.rigidbody.velocity = parent.rigidbody.velocity * Vector2.right + Vector2.up * MaxJumpSpeed;
+        modifiedVelocity.y = MaxJumpSpeed;
         JumpCoroutine = null;
     }
 
@@ -121,9 +122,14 @@ public class PlayerMob : Mob
         transform.localScale = new Vector3(right ? transform.localScale.x : -transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
-    public bool IsAbove(float y)
+    public bool IsAbove(Vector2 point)
     {
-        return transform.position.y + (parent.collider.size.y + parent.collider.size.x * .66f) * .5f > y;
+        Vector2 delta = point - (Vector2)transform.position;
+
+        float angleDiff = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+        float deltaAng = Mathf.DeltaAngle(angleDiff,transform.rotation.eulerAngles.z-90);
+        deltaAng += 1;
+        return Mathf.Abs(deltaAng) < 30f;
     }
     public override Vector2 GetForwardVector()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(ConstantForce2D))] 
 public abstract class Mob : MonoBehaviour
 {
     protected int eid = 0;
@@ -12,6 +13,8 @@ public abstract class Mob : MonoBehaviour
     {
         if (rbody == null)
             rbody = GetComponent<Rigidbody2D>();
+        if (gravity == null)
+            gravity = GetComponent<ConstantForce2D>();
     }
     protected virtual void Start()
     {
@@ -87,14 +90,13 @@ public abstract class Mob : MonoBehaviour
     {
         return false;
     }
+    public ConstantForce2D gravity;
     public PlanetoidController Planet;
-    float GravityScale = 1;
     protected void TieToPlanet(PlanetoidController p)
     {
         Planet = p;
         if (rbody.gravityScale != 0)
         {
-            GravityScale = rbody.gravityScale;
             rbody.gravityScale = 0;
         }
         HandlePlayerOrbit();
@@ -105,7 +107,7 @@ public abstract class Mob : MonoBehaviour
         {
             Vector2 vectorUp = (transform.position - Planet.transform.position);
             transform.up = vectorUp;
-            rbody.velocity += vectorUp.normalized * GravityScale * rbody.mass * Physics2D.gravity.y;
+            rbody.velocity = -vectorUp.normalized * 2 ;
         }
     }
 }
