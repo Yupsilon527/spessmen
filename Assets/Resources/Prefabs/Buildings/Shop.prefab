@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -37,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_Name
-      value: Building
+      value: Shop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}

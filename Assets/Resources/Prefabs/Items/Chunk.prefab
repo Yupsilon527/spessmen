@@ -109,6 +109,7 @@ MonoBehaviour:
   category: 0
   container: {fileID: 0}
   RequiresGroundToUse: 0
+  ThrowSpeed: 10
   GoldValue: 0
   Quantity: 0
   Element: 0

@@ -20,6 +20,10 @@ public abstract class Mob : MonoBehaviour
     {
         Register(); 
     }
+    private void OnValidate()
+    {
+            OrbitPoint(Vector3.zero);
+    }
     protected virtual void Update()
     {
         if (Planet ==null)
@@ -28,7 +32,7 @@ public abstract class Mob : MonoBehaviour
         }
         else
         {
-            HandlePlayerOrbit();
+            HandleOrbit();
         }
     }
     public virtual void Register()
@@ -36,7 +40,7 @@ public abstract class Mob : MonoBehaviour
         Debug.Log("[Mob] Register "+name);
         TieToPlanet(PlanetoidController.mainPlanet);
     }
-    public virtual Vector2 GetForwardVector()
+    public virtual Vector2 GetForwardVector(bool absolute)
     {
         return Vector2.zero;
     }
@@ -99,15 +103,20 @@ public abstract class Mob : MonoBehaviour
         {
             rbody.gravityScale = 0;
         }
-        HandlePlayerOrbit();
+        HandleOrbit();
     }
-    protected void HandlePlayerOrbit()
+    protected void HandleOrbit()
     {
         if (Planet != null)
         {
-            Vector2 vectorUp = (transform.position - Planet.transform.position);
-            transform.up = vectorUp;
-            rbody.velocity = -vectorUp.normalized * 2 ;
+            OrbitPoint(Planet.transform.position);
+            //rbody.velocity = -vectorUp.normalized * 2 ;
+            gravity.force = -transform.up * 10;
         }
+    }
+    protected void OrbitPoint(Vector3 point)
+    {
+        Vector2 vectorUp = (transform.position - point);
+        transform.up = vectorUp;
     }
 }

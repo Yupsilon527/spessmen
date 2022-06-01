@@ -1,4 +1,7 @@
 
+fallspeed
+loading screen
+proper exit building
 
 menus
 	buy menu
@@ -7,7 +10,10 @@ menus
 		explosive
 		T explosive
 		O2 seeds
-		tree seeds
+		explosive tree seeds
+		flower seeds
+		pickaxe upgrade
+	
 
 Resources
 	oxygen
@@ -26,8 +32,6 @@ UI
 
 GET RID OF
 	entityworld phases
-	mob list
-	register mobs
 	
 load map
 grass
@@ -40,12 +44,6 @@ entities
 	object
 	building
 		unloadposition
-
-Minerals
-	dirt
-	stone
-	gold
-	potassium
 
 Building
 	house

@@ -26,7 +26,16 @@ public class PlayerMenuController : MonoBehaviour
         //MoveToPosition(((Vector2)Input.mousePosition - new Vector2(Screen.width, Screen.height) / 2f));
         MoveToPosition(Position);
     }
+    public void OpenAtTarget(string[] Names, PlayerMenuAction[] ButtonAction, Transform Target)
+    {
+        Open();
+        LoadEntries(Names, ButtonAction);
+        //MoveToPosition(((Vector2)Input.mousePosition - new Vector2(Screen.width, Screen.height) / 2f));
+        MoveToPosition(Target.position);
+        RotateToPosition(Target.rotation);
+    }
 
+    float rectHeight = 0;
     public void LoadEntries(string[] Names, PlayerMenuAction[] ButtonAction)
     {
         ClearList();
@@ -40,7 +49,7 @@ public class PlayerMenuController : MonoBehaviour
         {
             Rect posRect = new Rect(transform.position.x, transform.position.y, rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
 
-            float rectHeight = 0;
+            rectHeight = 0;
             for (int i = 0; i < Names.Length; i++)
             {
                 if (Names[i] == "-")
@@ -84,6 +93,7 @@ public class PlayerMenuController : MonoBehaviour
                     RectTransform tRect = listle.GetComponent<RectTransform>();
                     tRect.anchoredPosition = Vector2.down * (rectHeight + tRect.rect.height * .5f);
                     tRect.localScale = Vector3.one;
+                    tRect.localRotation = Quaternion.identity;
                     tRect.sizeDelta = entries[0].GetComponent<RectTransform>().sizeDelta;
 
                     listle.GetComponentInChildren<TextMeshProUGUI>().text = Zim;
@@ -122,6 +132,11 @@ public class PlayerMenuController : MonoBehaviour
                 Mathf.Clamp(position.x / rT.parent.localScale.x + rT.rect.width*.5f, -dims.x, dims.x) ,
                 Mathf.Clamp(position.y / rT.parent.localScale.y - rT.rect.height * .5f, -dims.y, dims.y)
                 );*/
+    }
+    public void RotateToPosition(Quaternion rotation)
+    {
+        transform.rotation = rotation;
+        transform.position += transform.up * Entries.Length * .5f * rectHeight;
     }
     public void Open()
     {

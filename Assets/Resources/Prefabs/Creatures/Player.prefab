@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 5226539002580152131}
   - component: {fileID: 3136417603818321130}
   - component: {fileID: 9075029900562901718}
+  - component: {fileID: 3946223513248005029}
   m_Layer: 0
   m_Name: Mob
   m_TagString: Player
@@ -407,7 +408,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217918130673713261}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.35465428, w: 0.93499756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -479,11 +480,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3d938e66349f240b5db7e79f9c0fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1217918130673713267}
+  rbody: {fileID: 0}
+  gravity: {fileID: 0}
+  Planet: {fileID: 0}
   WalkSpeed: 1
   JumpTime: 0.33
   MaxJumpSpeed: 2
   JumpSpeed: 2.5
+  FallDeceleration: 0.33
   MaxFallSpeed: 2
   MaxGlideSpeed: 1
   GroundTime: 0.1
@@ -555,7 +559,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickUpRange: 1
-  Backpack: {fileID: 0}
 --- !u!114 &3979345771078049694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +574,7 @@ MonoBehaviour:
   CarryLimit: 1
   Owner: {fileID: 0}
   Inventory: []
+  IsShop: 0
 --- !u!114 &293465269553188535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34fbe94f4fbc8d4fb2f48bd0669062a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  canNegative: 0
+  current: 100
+  maximum: 100
 --- !u!114 &3136417603818321130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e05d578d99d4648a0f737847c70d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  canNegative: 0
+  current: 100
+  maximum: 100
 --- !u!114 &9075029900562901718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +648,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd881f51df53884cae7bd9fc72e4353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  storage:
+  - 0
+  - 0
+--- !u!247 &3946223513248005029
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217918130673713261}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &1217918131570412961
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,5 +709,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d637e5b2a0f0d4eb2943bc37ed59d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Owner: {fileID: 1217918130673713263}
   HouseInRange: {fileID: 0}

@@ -7,8 +7,8 @@ public class SidewaysCamera : MonoBehaviour
     public static float CameraSpeed = .15f;
     public static float DefaultCameraZoom = 7f;
     public static float CameraBorders = 33f;
-    public static float CameraSlide = .3f;
-    public static float CameraSlideShort = .2f;
+    public static float CameraSlide = .1f;
+    public static float CameraSlideShort = .15f;
     public static SidewaysCamera active;
 
     Camera cam { get => gameObject.GetComponent<Camera>(); }
@@ -33,12 +33,17 @@ public class SidewaysCamera : MonoBehaviour
         CameraOrder = new Vector2(-1, -1);
         CameraTime = Vector2.zero;
     }
+    bool IsIdle()
+    {
+        return CameraOrder.x <= 0;
+    }
 
+    Mob followMob;
     public void FollowMob(Mob mob)
     {
-        if (mob != null && mob.gameObject.activeInHierarchy )
+        if ( mob != null && mob.gameObject.activeInHierarchy )
         {
-            IssueOrder(mob.transform.position, mob.transform.rotation.eulerAngles.z);
+            followMob = mob;
         }
     }
 
@@ -67,16 +72,25 @@ public class SidewaysCamera : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if (CameraTime.x + CameraTime.y > Time.time)
+        if (followMob != null )
         {
-            float delta = 1f / (CameraTime.x) * Time.deltaTime;
+            cam.transform.position = new Vector3(
+                followMob.transform.position.x,
+                followMob.transform.position.y,
+                    cam.transform.position.z
+                );
+            cam.transform.rotation = followMob.transform.rotation;
+        }
+        else if (CameraTime.x + CameraTime.y > Time.time)
+        {
+            float delta = (Time.time - CameraTime.y) / CameraTime.x; //1f / (CameraTime.x) * Time.fixedDeltaTime;
             if (CameraOrder.x != -1 && CameraOrder.y != 1)
             {
                 cam.transform.position = new Vector3(
-                    cam.transform.position.x + (CameraOrder.x - CameraOrigin.x) * delta,
-                    cam.transform.position.y + (CameraOrder.y - CameraOrigin.y) * delta,
+                    CameraOrigin.x + (CameraOrder.x - CameraOrigin.x) * delta,
+                    CameraOrigin.y + (CameraOrder.y - CameraOrigin.y) * delta,
                     cam.transform.position.z);
             }
             if (CameraRotation.x != CameraRotation.y)
@@ -98,7 +112,7 @@ public class SidewaysCamera : MonoBehaviour
         }
         if (CameraRotation.x != CameraRotation.y)
         {
-            cam.transform.rotation = Quaternion.Euler(0, 0, CameraRotation.y);
+            cam.transform.rotation = Quaternion.Euler(0, 0, CameraRotation.x);
         }
         ClearOrder();
     }

@@ -24,11 +24,11 @@ public class BuilderComponent : MobComponent
             BuildBuilding(activeBuilding);
 
     }
-    public bool TryBuildBuilding(GameObject BuildingPrefab, Vector3 buildPos)
+    public bool TryBuildBuilding(GameObject BuildingPrefab, Vector3 buildPos, float orientation)
     {
         if (BuildingPrefab.TryGetComponent(out BuildingMob bmob))
         {
-            if (!bmob.CanBeBuildThere(buildPos))
+            if (!bmob.CanBeBuildThere(buildPos, orientation))
             {
                 Debug.Log("InvalidPosition");
                 return false;

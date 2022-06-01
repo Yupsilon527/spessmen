@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.82933134
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.x
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.5587571
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -91,9 +91,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3684b30f7fded4f9f3055fce791fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
+  rbody: {fileID: 0}
+  gravity: {fileID: 0}
+  Planet: {fileID: 0}
   category: 0
   container: {fileID: 0}
-  RequiresGround: 1
+  RequiresGroundToUse: 0
+  ThrowSpeed: 10
+  GoldValue: 0
   AllowedBuildings:
   - {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}

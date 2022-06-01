@@ -53,49 +53,34 @@ public class Plixel
     }
     public void ChangeElement(Color col)
     {
-        if (col.a < 1)
+        if (col.a < .5f)
         {
             ChangeElement(TerrainDefines.Element.nothing);
         }
         else if (col == Color.red)
         {
-            ChangeElement(TerrainDefines.Element.rock);
+            ChangeElement(TerrainDefines.Element.core);
         }
         else if (col == Color.black)
         {
             ChangeElement(TerrainDefines.Element.rock);
         }
+        else if (col == Color.white)
+        {
+            ChangeElement(TerrainDefines.Element.fertilizer);
+        }
+        else if (col == Color.yellow)
+        {
+            ChangeElement(TerrainDefines.Element.gold);
+        }
         else
         {
             ChangeElement(TerrainDefines.Element.dirt);
         }
-        /*
-                    if (colorsolid == Color.white)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground;
-                    }
-                    else if (colorsolid == Color.black)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background;
-                    }
-                    else if (colorsolid == Color.red)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
-                    }
-                    else if (colorsolid == Color.blue)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Indestructable;
-                    }
-                    else if (colorsolid == Color.green)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Frozen;
-                    }
-                    else
-                    if (colorsolid == Color.magenta)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Frozen;
-                    }
-     */
+        if (col.a < 1f)
+        {
+            Kill(false);
+        }
     }
     public void ChangeElement(TerrainDefines.Element nelement)
     {
@@ -115,7 +100,22 @@ public class Plixel
             case TerrainDefines.Element.rock:
                 tcollision = (int)TerrainDefines.Behavior.Foreground;
                 element = TerrainDefines.Element.rock;
+                thoughness = 3;
+                break;
+            case TerrainDefines.Element.gold:
+                tcollision = (int)TerrainDefines.Behavior.Foreground;
+                element = TerrainDefines.Element.rock;
                 thoughness = 2;
+                break;
+            case TerrainDefines.Element.fertilizer:
+                tcollision = (int)TerrainDefines.Behavior.Foreground;
+                element = TerrainDefines.Element.fertilizer;
+                thoughness = 2;
+                break;
+            case TerrainDefines.Element.core:
+                tcollision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
+                element = TerrainDefines.Element.core;
+                thoughness = 999;
                 break;
         }
     }

@@ -22,6 +22,7 @@ public class PlayerMob : Mob
     {
         parent = new Player(gameObject,0);
         base.Start();
+        SidewaysCamera.active.FollowMob(this);
     }
     float LastGroundTime = 0;
     public bool IsGrounded()
@@ -34,7 +35,6 @@ public class PlayerMob : Mob
         base.Update();
         if (CanMove)
             HandleControls();
-        SidewaysCamera.active.FollowMob(this);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -52,7 +52,8 @@ public class PlayerMob : Mob
             modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration) ;
         Move(Input.GetAxis("Horizontal"));
         HandleFall();
-        parent.rigidbody.velocity +=(Vector2)(modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up) ;
+        // parent.rigidbody.velocity +=(Vector2)(modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up) ;
+        parent.movement.gravity.relativeForce = modifiedVelocity;
     }
     void Move(float dir)
     {
@@ -131,9 +132,9 @@ public class PlayerMob : Mob
         deltaAng += 1;
         return Mathf.Abs(deltaAng) < 30f;
     }
-    public override Vector2 GetForwardVector()
+    public override Vector2 GetForwardVector(bool absolute)
     {
-        return Vector2.right * (FacesRight ? 1 : -1);
+        return (absolute ? Vector2.right : (Vector2)transform.right) * (FacesRight ? 1 : -1);
     }
 
     public CompartimentComponent indoor;

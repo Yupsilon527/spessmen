@@ -13,12 +13,13 @@ public class ItemMob : Mob
     public Category category;
     public InventoryComponent container;
     public bool RequiresGroundToUse = false;
+    public float ThrowSpeed = 10;
     public float GoldValue = 0;
     public virtual void OnActivate(PlayerMob user)
     {
-        Vector2 throwVel = user.GetForwardVector() * 5 + Vector2.up * 3;
+        Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed;
         container.UnloadItem(this);
-        rbody.velocity = throwVel;
+        rbody.velocity = throwVel.x* user.transform.right + throwVel.y * user.transform.up;
     }
     public override bool IsInside()
     {
@@ -39,6 +40,7 @@ public class ItemMob : Mob
     public virtual void OnDrop()
     {
         gameObject.SetActive(true);
+        HandleOrbit();
     }
     public override void Kill()
     {

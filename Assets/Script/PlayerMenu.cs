@@ -24,14 +24,14 @@ public class PlayerMenu : MobComponent
             lNames.Add(bPrefab.name);
             lActions.Add(() =>
             {
-                if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position + parent.movement.transform.lossyScale.y * Vector3.down))
+                if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position + parent.movement.transform.lossyScale.y * Vector3.down,transform.rotation.eulerAngles.z))
                 source.Kill();
                 return true;
             });
         }
         lNames.Add("Close");
         lActions.Add(() => { return true; });
-        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+        menuController.OpenAtTarget(lNames.ToArray(), lActions.ToArray(), transform);
     }
     public void CloseMenu()
     {
@@ -80,7 +80,7 @@ public class PlayerMenu : MobComponent
 
         lNames.Add("Exit");
         lActions.Add(() => { parent.movement.ExitBuilding(); return true; });
-        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+        menuController.OpenAtTarget(lNames.ToArray(), lActions.ToArray(), indoorHouse.transform);
     }
     public void OpenWithdrawMenu(InventoryComponent inventory)
     {
@@ -96,7 +96,7 @@ public class PlayerMenu : MobComponent
 
         lNames.Add("Back");
         lActions.Add(() => { OpenGeneralMenu(); return false; });
-        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+        menuController.OpenAtTarget(lNames.ToArray(), lActions.ToArray(), inventory.transform);
     }
     public void OpenSellMenu(InventoryComponent inventory)
     {
@@ -112,7 +112,7 @@ public class PlayerMenu : MobComponent
 
         lNames.Add("Back");
         lActions.Add(() => { OpenGeneralMenu(); return false; });
-        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+        menuController.OpenAtTarget(lNames.ToArray(), lActions.ToArray(), inventory.transform);
     }
     public void OpenBuildingShopMenu(ShopComponent store)
     {
@@ -127,6 +127,6 @@ public class PlayerMenu : MobComponent
 
         lNames.Add("Back");
         lActions.Add(() => { OpenGeneralMenu(); return false; });
-        menuController.OpenAtPosition(lNames.ToArray(), lActions.ToArray(), transform.position);
+        menuController.OpenAtTarget(lNames.ToArray(), lActions.ToArray(), store.transform);
     }
 }

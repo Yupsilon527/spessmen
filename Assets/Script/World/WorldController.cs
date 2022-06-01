@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [DisallowMultipleComponent]
+[RequireComponent(typeof(SpriteRenderer))]
 public class WorldController : MonoBehaviour
 {
     public enum GamePhase
@@ -13,43 +14,40 @@ public class WorldController : MonoBehaviour
         GamePaused = 2,
     }
     public GamePhase upcommingPhase = GamePhase.Loading;
-    public float phaseTime = 0f;
     public GamePhase currentPhase = GamePhase.Loading;
+    float phaseTime;
 
     public static WorldController active;
     public Vector2 worldSize;
-    public float waterLevel;
-    public float bottomLevel;
-    public bool[] boundlock = new bool [3];
 
     public List<Mob> MobsInMotion = new List<Mob>();
     public List<PlixelMapMob> terrainmobs = new List<PlixelMapMob>();
 
     public Texture2D mapTexture;
+    public SpriteRenderer renderComp;
 
     private void Start() {
         active = this;
         StartCoroutine(PrepareWorld());
     }
-
+    private void OnValidate()
+    {
+        if (renderComp != null)
+            renderComp.sprite = Sprite.Create(mapTexture, new Rect(0, 0, mapTexture.width, mapTexture.height), Vector2.one / 2, TerrainDefines.terrain_PPU);
+    }
 
     public IEnumerator PrepareWorld()
     {
-        yield return new WaitForEndOfFrame();
+        if (renderComp != null)
+            renderComp.enabled = false;
+            yield return new WaitForEndOfFrame();
         Debug.Log("[entityWorld] Draw the world.");
         PlixelMapMob tileset;
         tileset = PlixelMapMob.LoadFromTexture(mapTexture);
 
-        boundlock[0] = tileset.GetEBounds();
-        boundlock[1] = tileset.GetWBounds();
-        boundlock[2] = tileset.GetNBounds();
-
         ChangePhase(GamePhase.Loading);//prepating landscape
         yield return new WaitUntil(() => { return tileset.isComplete(); });
-
-        
-        while (!tileset.isComplete()) { yield return new WaitForEndOfFrame(); }
-        yield return new WaitForEndOfFrame();
+        yield return PauseForTerrainToLoad();
         //complete
         Debug.Log("[entityWorld] Drawing complete!");
         ChangePhase(GamePhase.GameRunning);
@@ -70,7 +68,7 @@ public class WorldController : MonoBehaviour
         switch (phase)
         {
             case GamePhase.Loading:
-                StartCoroutine(PauseForTerrainToLoad());
+                Time.timeScale = 0;
                 break;
             case GamePhase.GameRunning:
                 Time.timeScale = 1;

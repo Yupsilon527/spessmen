@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3437930400982524367}
   - component: {fileID: 3437930400982524360}
   - component: {fileID: 1967993309}
+  - component: {fileID: 7358066442552512161}
+  - component: {fileID: 750219587859309742}
   m_Layer: 6
   m_Name: Building
   m_TagString: Building
@@ -27,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3437930400982524363}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.6582998, w: 0.75275594}
   m_LocalPosition: {x: 2.9, y: 0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -50,10 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68f017110b7d6449cd8fdf29f767a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
+  rbody: {fileID: 0}
+  gravity: {fileID: 0}
+  Planet: {fileID: 0}
   ConstructionCollider: {fileID: 1967993309}
   BuildingTexture: {fileID: 3437930402308740186}
+  BuildCost: 100
   BuildTime: 10
+  indoors: {fileID: 0}
+  storage: {fileID: 0}
 --- !u!114 &3437930400982524367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +124,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.8}
   m_EdgeRadius: 0
+--- !u!114 &7358066442552512161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437930400982524363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91b90f954cf646478a078df0996d82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarryLimit: 1
+  Owner: {fileID: 0}
+  Inventory: []
+  IsShop: 0
+--- !u!247 &750219587859309742
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437930400982524363}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &3437930401704793816
 GameObject:
   m_ObjectHideFlags: 0

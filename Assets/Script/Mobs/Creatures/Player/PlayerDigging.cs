@@ -27,22 +27,23 @@ public class PlayerDigging : MonoBehaviour
     float lastDigTime = 0;
     IEnumerator DiggingTask()
     {
-        parent.movement.enabled = false;
+        parent.movement.CanMove = false;
         while (Input.GetKey(KeyCode.Q))
         {
             digVector.x = Input.GetAxis("Horizontal");
             digVector.y = Input.GetAxis("Vertical");
             digVector = digVector.normalized;
+            digVector = digVector.y * transform.up + digVector.x * transform.right;
             if (digVector.sqrMagnitude > 0 && lastDigTime < Time.time)
             {
                 lastDigTime = Time.time + DigCooldown;
                 new ExplosionData((Vector2)transform.position + digVector * DigRange,DigRadius,0,0,1,0).Explode();
-                if (!parent.movement.IsGrounded())
+                /*if (!parent.movement.IsGrounded())
                 {
                     break;
-                }
+                }*/
             }
-            parent.rigidbody.velocity = digVector * MoveSpeed;
+            parent.movement.gravity.relativeForce = parent.movement.WalkSpeed * digVector * MoveSpeed;
             yield return new WaitForEndOfFrame();
         }
         StopDigging();
@@ -52,7 +53,7 @@ public class PlayerDigging : MonoBehaviour
         if (DiggingCoroutine != null)
             StopCoroutine(DiggingCoroutine);
         DiggingCoroutine = null;
-        parent.movement.enabled = true;
+        parent.movement.CanMove = true;
     }
     private void OnDisable()
     {
