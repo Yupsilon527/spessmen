@@ -69,7 +69,7 @@ public class Plixel
         {
             ChangeElement(TerrainDefines.Element.fertilizer);
         }
-        else if (col == Color.yellow)
+        else if (col.r == 1 && col.g == 1 && col.b == 0)
         {
             ChangeElement(TerrainDefines.Element.gold);
         }
@@ -85,36 +85,31 @@ public class Plixel
     public void ChangeElement(TerrainDefines.Element nelement)
     {
         tcolor = TerrainDefines.ElementColors[(int)nelement];
+        element = nelement;
         switch (nelement)
         {
             case TerrainDefines.Element.nothing:
                 thoughness = 0;
                 tcollision = 0;
-                element = TerrainDefines.Element.nothing;
                 break;
             case TerrainDefines.Element.dirt:
                 tcollision = (int)TerrainDefines.Behavior.Foreground;
-                element = TerrainDefines.Element.dirt;
                 thoughness = 1;
                 break;
             case TerrainDefines.Element.rock:
                 tcollision = (int)TerrainDefines.Behavior.Foreground;
-                element = TerrainDefines.Element.rock;
                 thoughness = 3;
                 break;
             case TerrainDefines.Element.gold:
                 tcollision = (int)TerrainDefines.Behavior.Foreground;
-                element = TerrainDefines.Element.rock;
                 thoughness = 2;
                 break;
             case TerrainDefines.Element.fertilizer:
                 tcollision = (int)TerrainDefines.Behavior.Foreground;
-                element = TerrainDefines.Element.fertilizer;
                 thoughness = 2;
                 break;
             case TerrainDefines.Element.core:
                 tcollision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
-                element = TerrainDefines.Element.core;
                 thoughness = 999;
                 break;
         }
@@ -254,6 +249,10 @@ public class Plixel
     {
         if (!getIndestructable())
         {
+            if (!IsBackGround())
+            {
+                ResourceHarvestController.active.OnTileHarvested(this);
+            }
             if (permanent )
             {
                tcollision = 0;
@@ -261,10 +260,6 @@ public class Plixel
             }
             else
             {
-                if (!IsBackGround())
-                {
-                    ResourceHarvestController.active.OnTileHarvested(this);
-                }
                 tcollision = (int) TerrainDefines.Behavior.Background | (getFrozen() ? (int)TerrainDefines.Behavior.Frozen : 0); 
             }            
             has_changed = true;

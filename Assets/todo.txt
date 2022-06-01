@@ -1,26 +1,24 @@
 
-fallspeed
-loading screen
-proper exit building
-
 menus
 	buy menu
 		building material
-		building kit
 		explosive
 		T explosive
 		O2 seeds
 		explosive tree seeds
 		flower seeds
 		pickaxe upgrade
+		jetpack upgrade
+
+
 	
+Gardens
+	seeds
+	plant seeds
+	grow
+	fertilizer
+	generate global oxygen level
 
-Resources
-	oxygen
-	health
-
-mob pool
-	kill mobs
 player input
 
 UI
@@ -29,19 +27,16 @@ UI
 	oxygen
 	health
 	fail errors
+	loading screen
 
-GET RID OF
-	entityworld phases
-	
-load map
 grass
+roundstart break tiles
 prebuilt entities
 	trees
 	start point
 entities
 	human
 		jetpack
-	object
 	building
 		unloadposition
 
@@ -52,7 +47,9 @@ Building
 Pooling
 	humans
 	items
+	mob pool
+		kill mobs
 
-Gardens
-	seeds
-	plant seeds
+
+
+Fix FPS

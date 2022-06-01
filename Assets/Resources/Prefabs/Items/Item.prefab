@@ -127,7 +127,7 @@ MonoBehaviour:
   category: 0
   container: {fileID: 0}
   RequiresGroundToUse: 0
-  ThrowSpeed: 200
+  ThrowSpeed: 5
   GoldValue: 0
 --- !u!58 &7659768135546024903
 CircleCollider2D:

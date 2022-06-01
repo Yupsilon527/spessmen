@@ -48,7 +48,11 @@ public abstract class Mob : MonoBehaviour
     {
         return gameObject.activeInHierarchy && rbody.IsAwake();
     }
-    public virtual void HandleShockwave(Vector2 center, float explosion_inradius, float explosion_outradius, float explosion_force)
+    public  void HandleShockwave(ExplosionData eData)
+    {
+        HandleShockwave(eData.center, eData.shockwave_radius * .5f, eData.shockwave_radius, eData.knockback_force, eData.creature_damage);
+    }
+    public void HandleShockwave(Vector2 center, float explosion_inradius, float explosion_outradius, float explosion_force, float explosion_damage)
     {
         Debug.Log("[Mob] "+name+" Handle explosion at  " + center);
         Vector2 force_position = transform.position;
@@ -63,13 +67,13 @@ public abstract class Mob : MonoBehaviour
         {
             force_delta = (vector_position.magnitude - explosion_inradius) / (explosion_outradius - explosion_inradius);
         }
+        HandleShockwave(center, vector_position.normalized, force_delta, explosion_force, explosion_damage);
+    }
+    public virtual void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
+    {
         if (force_delta > 0)
         {
-            ApplyForce(vector_position.normalized * explosion_force * force_delta, force_position);
-        }
-        else
-        {
-            Debug.Log("[Mob] " + name + " is outside explosion range "+ force_position+"~"+ center);
+            ApplyForce(dir * force_delta * force, center);
         }
     }
     public virtual void ApplyForce(Vector2 force, Vector2 center)
@@ -105,7 +109,7 @@ public abstract class Mob : MonoBehaviour
         }
         HandleOrbit();
     }
-    protected void HandleOrbit()
+    protected virtual void HandleOrbit()
     {
         if (Planet != null)
         {

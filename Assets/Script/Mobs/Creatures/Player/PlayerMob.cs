@@ -154,4 +154,9 @@ public class PlayerMob : Mob
     {
         gameObject.SetActive(true);
     }
+    public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
+    {
+        base.HandleShockwave(center, dir, force_delta, force, damage);
+        parent.health.SubstractValue(force_delta * damage);
+    }
 }

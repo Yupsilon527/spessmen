@@ -143,7 +143,7 @@ public class WorldController : MonoBehaviour
             {
                 if (Zim != null)
                 {
-                    Zim.HandleShockwave(center, inner_radius,shockwave_radius, knockback_force);
+                    Zim.HandleShockwave(center, inner_radius,shockwave_radius, knockback_force, 0);
                 }
             }
         }

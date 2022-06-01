@@ -47,6 +47,13 @@ public class ExplosionData
     {
         Debug.Log("[ExplosionData] Explode at position " + center);
         WorldController.active.StartCoroutine(WorldController.active.MakePhysicsExplosion(this));
-      
+        if (shockwave_radius>0)
+      foreach (RaycastHit2D check in Physics2D.CircleCastAll(center,shockwave_radius, Vector2.zero))
+        {
+            if (check.collider.TryGetComponent(out Mob hit))
+            {
+                hit.HandleShockwave(this);
+            }
+        }
     }
 }

@@ -65,57 +65,62 @@ public class PlixelMapMob : Mob
 
         return newChunk.GetComponent<PlixelMapMob>();
     }
-   /* public static PlixelMapMob LoadFromTexture(Texture2D terrain, Texture2D mask)
+    protected override void HandleOrbit()
     {
-        Debug.Log("[entityTerrain] Generate Terrain From Texture And Mask");
-        GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
-        newChunk.transform.position = TerrainDefines.terrain_zlayer * Vector3.forward;
-        PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
-        newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height, terrain.width];
+        if (Planet.gameObject != gameObject)
+            base.HandleOrbit();
+    }
+    /* public static PlixelMapMob LoadFromTexture(Texture2D terrain, Texture2D mask)
+     {
+         Debug.Log("[entityTerrain] Generate Terrain From Texture And Mask");
+         GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
+         newChunk.transform.position = TerrainDefines.terrain_zlayer * Vector3.forward;
+         PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
+         newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height, terrain.width];
 
-        for (int iY = 0; iY < terrain.height; iY++)
-        {
-            for (int iX = 0; iX < terrain.width; iX++)
-            {
-                Color colorsolid = mask.GetPixel(iX, iY);
-                int collision = 0;
+         for (int iY = 0; iY < terrain.height; iY++)
+         {
+             for (int iX = 0; iX < terrain.width; iX++)
+             {
+                 Color colorsolid = mask.GetPixel(iX, iY);
+                 int collision = 0;
 
-                if (colorsolid.a > .5f)
-                {
+                 if (colorsolid.a > .5f)
+                 {
 
-                    if (colorsolid == Color.white)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground;
-                    }
-                    else if (colorsolid == Color.black)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background;
-                    }
-                    else if (colorsolid == Color.red)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
-                    }
-                    else if (colorsolid == Color.blue)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Indestructable;
-                    }
-                    else if (colorsolid == Color.green)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Frozen;
-                    }
-                    else
-                    if (colorsolid == Color.magenta)
-                    {
-                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Frozen;
-                    }
-                }
-                terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), collision));
-            }
-        }
-        terr.enabled = true;
+                     if (colorsolid == Color.white)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Foreground;
+                     }
+                     else if (colorsolid == Color.black)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Background;
+                     }
+                     else if (colorsolid == Color.red)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
+                     }
+                     else if (colorsolid == Color.blue)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Indestructable;
+                     }
+                     else if (colorsolid == Color.green)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Frozen;
+                     }
+                     else
+                     if (colorsolid == Color.magenta)
+                     {
+                         collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Frozen;
+                     }
+                 }
+                 terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), collision));
+             }
+         }
+         terr.enabled = true;
 
-        return newChunk.GetComponent<PlixelMapMob>();
-    }*/
+         return newChunk.GetComponent<PlixelMapMob>();
+     }*/
 
     public PlixelMapMob BreakChunk(Plixel[] chunk)
     {
@@ -133,7 +138,7 @@ public class PlixelMapMob : Mob
         GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
         PlixelMapMob eChink = newChunk.GetComponent<PlixelMapMob>();
         eChink.terrain = new Plixel[(int)bounds.height + 1, (int)bounds.width + 1];
-        eChink.HandleShockwave(new Vector2(consideredforce.x, consideredforce.y), 0, consideredforce.z, consideredforce.w);//TODO
+        eChink.HandleShockwave(new Vector2(consideredforce.x, consideredforce.y), 0, consideredforce.z, consideredforce.w,0);//TODO
 
         for (int iY = 0; iY < bounds.height + 1; iY++)
         {
@@ -757,10 +762,10 @@ public class PlixelMapMob : Mob
         Debug.Log("[entityTerrain] " + name + " required " + (Time.realtimeSinceStartup - starttime) + " to complete coroutine");
     }
 
-    public override void HandleShockwave(Vector2 center, float explosion_inradius, float explosion_outradius, float explosion_force)
+    public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
     {
-        consideredforce = new Vector4(rbody.centerOfMass.x, rbody.centerOfMass.y, explosion_force, explosion_outradius);
-        base.HandleShockwave(center, explosion_inradius, explosion_outradius, explosion_force);
+        consideredforce = new Vector4(rbody.centerOfMass.x, rbody.centerOfMass.y, force, damage);
+        base.HandleShockwave(center, dir, force_delta, force, damage);
     }
 
     public List<Vector2> GetValidSpawnLocations(Vector2 playerSize)

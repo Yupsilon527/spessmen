@@ -61,6 +61,6 @@ public class PropertyController : MobComponent
 
     public void SubstractValue(float value)
     {
-        GiveValue(-Mathf.Max(GetValue(), value));
+        GiveValue(-Mathf.Min(GetValue(), value));
     }
 }

@@ -16,10 +16,14 @@ public class ResourceHarvestController : MonoBehaviour
 
     public void OnTileHarvested(Plixel tile)
     {
+        if (WorldController.active.currentPhase
+            == WorldController.GamePhase.Loading)
+            return;
+
         TerrainDefines.Element tileElement = tile.GetElement();
         if (tileElement > TerrainDefines.Element.nothing)
         {
-            if ((tileElement == TerrainDefines.Element.dirt || tileElement == TerrainDefines.Element.rock) && Random.value * 100 < TerrainDefines.MatterLossChance)
+            if ((tileElement != TerrainDefines.Element.dirt && tileElement != TerrainDefines.Element.rock) || Random.value * 100 < TerrainDefines.MatterLossChance)
                 MaterialsHarvested[(int)tileElement]++;
             if (MaterialsHarvested[(int)tileElement]>TerrainDefines.MatterInChunk)
             {

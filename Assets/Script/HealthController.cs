@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthController : PropertyController
 {
+    public float RegenerationPercent = 10;
     public override void SetValue(float value)
     {
         base.SetValue(value);
@@ -11,5 +12,10 @@ public class HealthController : PropertyController
         {
             Owner.Kill();
         }    
+    }
+    private void Update()
+    {
+        if (Owner.IsInside())
+            GiveValue(RegenerationPercent * Time.deltaTime);
     }
 }
