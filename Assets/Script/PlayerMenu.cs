@@ -24,8 +24,8 @@ public class PlayerMenu : MobComponent
             lNames.Add(bPrefab.name);
             lActions.Add(() =>
             {
-                if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position + parent.movement.transform.lossyScale.y * Vector3.down,transform.rotation.eulerAngles.z))
-                source.Kill();
+                if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position,transform.rotation.eulerAngles.z))
+                    source.Kill();
                 return true;
             });
         }

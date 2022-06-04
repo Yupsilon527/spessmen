@@ -16,7 +16,7 @@ public class BuildingMob : Mob
             Mathf.Sin(angle)
             );
 
-        foreach (RaycastHit2D collision in Physics2D.BoxCastAll(center+ vectorUp * ConstructionCollider.offset.y, ConstructionCollider.size, angle, Vector2.zero,0, LayerMask.GetMask(new string[] { "Foreground" }) ))
+        foreach (RaycastHit2D collision in Physics2D.BoxCastAll(center + vectorUp * ConstructionCollider.offset.y, ConstructionCollider.size*.5f, angle, Vector2.zero,0, LayerMask.GetMask(new string[] { "Foreground" }) ))
         {
             if (collision.transform.tag == "Building")
             {

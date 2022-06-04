@@ -16,7 +16,36 @@ public class ChunkItem : ItemMob
         }
         Element = nElement;
         Quantity = nQuantity;
+        OnCreate();
+    }
+    public override void OnCreate()
+    {
         UpdateVisual();
+    }
+    public void SetQuantity(int nQ)
+    {
+        if (nQ == 0)
+        {
+            Kill();
+            return;
+        }
+        Quantity = nQ;
+        UpdateVisual();
+    }
+    public override void OnActivate(PlayerMob user)
+    {
+        if (GetNutritionalValue()>0 && user.parent.farmer.FarmingSpot !=null)
+        {
+            if (user.parent.farmer.FarmingSpot.FeedItem(this))
+                return;
+        }
+        base.OnActivate(user);
+    }
+    public override float GetNutritionalValue()
+    {
+        if (Element == TerrainDefines.Element.fertilizer)
+            return Quantity;
+        return 0;
     }
     public virtual bool OnStoredInBuilding()
     {
@@ -48,7 +77,7 @@ public class ChunkItem : ItemMob
                             res.GiveResource(ResourceController.Resources.gold,Quantity);
                             break;
                         case TerrainDefines.Element.rock:
-                            res.GiveResource(ResourceController.Resources.wood, Quantity);
+                            res.GiveResource(ResourceController.Resources.stone, Quantity);
                             break;
                     }
                     ncontainer.SellItem(playerOwner.parent,this);

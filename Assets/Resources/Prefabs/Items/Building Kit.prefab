@@ -96,8 +96,10 @@ MonoBehaviour:
   Planet: {fileID: 0}
   category: 0
   container: {fileID: 0}
-  RequiresGroundToUse: 0
+  RequiresGroundToUse: 1
   ThrowSpeed: 10
   GoldValue: 0
   AllowedBuildings:
   - {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+  - {fileID: 5350753102010905279, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
+  - {fileID: 8184542918885735660, guid: 03aa1293861613b41a88ef806ff9e244, type: 3}

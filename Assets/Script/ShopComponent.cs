@@ -44,6 +44,11 @@ public class ShopComponent : MonoBehaviour
                     inventory.LoadItem(itemComp);
                 }
             }
-        }
+
+            if (realObject.TryGetComponent(out PowerupComponent PowerUp) && PowerUp.OnBuy(buyer))
+            {
+                realObject.SetActive(false);
+            }
+            }
     }
 }

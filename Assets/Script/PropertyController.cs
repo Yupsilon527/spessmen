@@ -39,6 +39,12 @@ public class PropertyController : MobComponent
         }
     }
 
+    public void ResetLimit(float value)
+    {
+        maximum = value;
+        SetValue(value);
+    }
+
     public void SetLimit(float value)
     {
         maximum = value;

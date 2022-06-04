@@ -122,9 +122,3 @@ MonoBehaviour:
   CameraRotation: {x: 0, y: 0}
   CameraOrigin: {x: 0, y: 0}
   CameraTime: {x: 0, y: 0}
-  CameraBounds:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0

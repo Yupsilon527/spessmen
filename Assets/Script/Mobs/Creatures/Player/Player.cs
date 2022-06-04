@@ -11,8 +11,9 @@ public class Player
 
     public PlayerDigging digging;
     public PlayerMob movement;
+    public PlayerFarmingComponent farmer;
     public DoorAccesser accesser;
-    public PlayerCarryItem hauler;
+    public PlayerItemHolding hauler;
     public InventoryComponent backpack;
     public BuilderComponent builder;
     public PlayerMenu menu;
@@ -33,12 +34,14 @@ public class Player
         accesser = parent.GetComponentInParent<DoorAccesser>();
         accesser.parent = this;
         backpack = parent.GetComponent<InventoryComponent>();
-        hauler = parent.GetComponent<PlayerCarryItem>();
+        hauler = parent.GetComponent<PlayerItemHolding>();
         hauler.parent = this;
         builder = parent.GetComponent<BuilderComponent>();
         builder.parent = this;
         menu = parent.GetComponent<PlayerMenu>();
         menu.parent = this;
+        farmer = parent.GetComponentInParent<PlayerFarmingComponent>();
+        farmer.parent = this;
         health = parent.GetComponent<HealthController>();
         oxygen = parent.GetComponent<OxygenController>();
         resources = parent.GetComponent<ResourceController>();

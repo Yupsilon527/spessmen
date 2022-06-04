@@ -28,18 +28,30 @@ public class BuilderComponent : MobComponent
     {
         if (BuildingPrefab.TryGetComponent(out BuildingMob bmob))
         {
+            Ray2D GroundRay = new Ray2D(buildPos + transform.up, -transform.up);
+            RaycastHit2D rhit = Physics2D.Raycast(GroundRay.origin, GroundRay.direction, 10, LayerMask.GetMask("Foreground"));
+            if (rhit.collider!=null)
+            {
+                buildPos = rhit.point;
+            }
+            else
+            {
+                buildPos = GroundRay.direction * 3 + GroundRay.origin;
+            }
+
             if (!bmob.CanBeBuildThere(buildPos, orientation))
             {
                 Debug.Log("InvalidPosition");
                 return false;
             }
 
-            if (parent.resources.ChargeValue(ResourceController.Resources.wood, bmob.BuildCost * .15f))
+            if (!parent.resources.ChargeValue(ResourceController.Resources.stone, bmob.BuildCost * .15f))
             {
-                GameObject deploy = bmob.BuildCopy(buildPos, 15f);
+                return false;
+            }
+            GameObject deploy = bmob.BuildCopy(buildPos, 15f);
                 if (deploy.TryGetComponent(out BuildingMob buildingmobdata))
                     BuildBuilding(buildingmobdata);
-            }
         }
         return true;
     }
@@ -51,7 +63,7 @@ public class BuilderComponent : MobComponent
     loopstart:
         yield return new WaitForEndOfFrame();
         buildPercent = Mathf.Min(buildPercent, 100 - building.GetBuildingPercentage());
-        if (parent.resources.ChargeValue(ResourceController.Resources.wood, buildPercent * building.BuildCost * .01f))
+        if (parent.resources.ChargeValue(ResourceController.Resources.stone, buildPercent * building.BuildCost * .01f))
         {
             building.IncreaseBuildPercentage(buildPercent);
             if (building == null || building.GetBuildingPercentage() >= 100 || Input.GetAxis("Horizontal") != 0 || Input.GetKeyDown(KeyCode.Space))

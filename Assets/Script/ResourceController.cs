@@ -7,7 +7,7 @@ public class ResourceController : MobComponent
     public enum Resources
     {
         gold = 0,
-        wood = 1,
+        stone = 1,
         max = 2
     }
 

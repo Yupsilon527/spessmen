@@ -22,6 +22,7 @@ public class PlayerMob : Mob
     {
         parent = new Player(gameObject,0);
         base.Start();
+        if (SidewaysCamera.active!=null)
         SidewaysCamera.active.FollowMob(this);
     }
     float LastGroundTime = 0;
@@ -120,7 +121,7 @@ public class PlayerMob : Mob
     public void SetFacing(bool right)
     {
         FacesRight = right;
-        transform.localScale = new Vector3(right ? transform.localScale.x : -transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        //transform.localScale = new Vector3(right ? transform.localScale.x : -transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     public bool IsAbove(Vector2 point)

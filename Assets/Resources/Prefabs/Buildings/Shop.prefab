@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -37,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -88,4 +88,10 @@ MonoBehaviour:
   inventory: {fileID: 888556267524251566}
   Shop:
   - Item: {fileID: 836016670052375698, guid: 93d2c476dbcd3154f82cee16644c015b, type: 3}
-    Cost: 15
+    Cost: 25
+  - Item: {fileID: 6365192511643780952, guid: 470975fcc3cb72d4c9eb59b39f168f7e, type: 3}
+    Cost: 5
+  - Item: {fileID: 5446169928913621129, guid: a7fca94b90dea1742831639aad66480d, type: 3}
+    Cost: 4
+  - Item: {fileID: 8233449647150354695, guid: 00a34070c3098874caf8f6b47348429f, type: 3}
+    Cost: 25

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(InventoryComponent))]
-public class PlayerCarryItem : MonoBehaviour
+public class PlayerItemHolding : MonoBehaviour
 {
     public float PickUpRange = 1;
     public Player parent;

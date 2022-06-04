@@ -15,6 +15,10 @@ public class ItemMob : Mob
     public bool RequiresGroundToUse = false;
     public float ThrowSpeed = 10;
     public float GoldValue = 0;
+    public virtual void OnCreate()
+    {
+
+    }
     public virtual void OnActivate(PlayerMob user)
     {
         Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed;
@@ -50,5 +54,9 @@ public class ItemMob : Mob
     public virtual void OnSold(Player sellingPlayer)
     {
         sellingPlayer.resources.GiveResource( ResourceController.Resources.gold ,GoldValue);
+    }
+    public virtual float GetNutritionalValue()
+    {
+        return 0;
     }
 }

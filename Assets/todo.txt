@@ -13,10 +13,12 @@ menus
 
 	
 Gardens
-	seeds
-	plant seeds
-	grow
-	fertilizer
+	test
+		seeds
+		plant seeds
+		grow
+	plantsprites
+
 	generate global oxygen level
 
 player input
