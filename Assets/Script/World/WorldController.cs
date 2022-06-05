@@ -43,9 +43,9 @@ public class WorldController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         Debug.Log("[entityWorld] Draw the world.");
         PlixelMapMob tileset;
+        ChangePhase(GamePhase.Loading);//prepating landscape
         tileset = PlixelMapMob.LoadFromTexture(mapTexture);
 
-        ChangePhase(GamePhase.Loading);//prepating landscape
         yield return new WaitUntil(() => { return tileset.isComplete(); });
         yield return PauseForTerrainToLoad();
         //complete
@@ -68,13 +68,11 @@ public class WorldController : MonoBehaviour
         switch (phase)
         {
             case GamePhase.Loading:
+            case GamePhase.GamePaused:
                 Time.timeScale = 0;
                 break;
             case GamePhase.GameRunning:
                 Time.timeScale = 1;
-                break;
-            case GamePhase.GamePaused:
-                Time.timeScale = 0;
                 break;
         }
         currentPhase = phase;
@@ -165,7 +163,8 @@ public class WorldController : MonoBehaviour
 
     public IEnumerator PauseForTerrainToLoad()
     {
-        Time.timeScale = 0f;
+        if (currentPhase != GamePhase.Loading)
+            Time.timeScale = 0f;
 
         bool keepwait = true;
         while (keepwait)
@@ -182,7 +181,8 @@ public class WorldController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Time.timeScale = 1f;
+        if (currentPhase != GamePhase.Loading)
+            Time.timeScale = 1f;
     }
 
     public PlixelMapMob[] GetActiveTerrainMobs()

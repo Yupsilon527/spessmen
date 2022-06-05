@@ -192,6 +192,8 @@ public class FarmingSpotController : MonoBehaviour
                 }
                     PlantHealth.SubstractValue(10f);
             }
+            if (currentPlant.OxygenProduction>0)
+                AtmosphereController.oxygen.GiveValue(currentPlant.OxygenProduction);
         }
         else
         {

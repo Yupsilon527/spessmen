@@ -21,6 +21,7 @@ public class ItemMob : Mob
     }
     public virtual void OnActivate(PlayerMob user)
     {
+        rbody.bodyType = RigidbodyType2D.Dynamic;
         Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed;
         container.UnloadItem(this);
         rbody.velocity = throwVel.x* user.transform.right + throwVel.y * user.transform.up;

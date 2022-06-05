@@ -6,7 +6,7 @@ using UnityEngine;
 public class OxygenController : PropertyController
 {
     public float DamageAtEmpty = 5;
-    HealthController health;
+    public PropertyController health;
     protected override void Awake()
     {
         base.Awake();

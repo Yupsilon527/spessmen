@@ -17,24 +17,24 @@ Gardens
 		seeds
 		plant seeds
 		grow
+		generate global oxygen level
 	plantsprites
 
-	generate global oxygen level
 
 player input
 
 UI
+	loading screen
 	gold
 	building material
 	oxygen
 	health
 	fail errors
-	loading screen
+	help
 
 grass
-roundstart break tiles
 prebuilt entities
-	trees
+	spawn entities
 	start point
 entities
 	human

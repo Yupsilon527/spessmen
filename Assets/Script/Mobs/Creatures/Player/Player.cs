@@ -18,7 +18,6 @@ public class Player
     public BuilderComponent builder;
     public PlayerMenu menu;
     public HealthController health;
-    public OxygenController oxygen;
     public ResourceController resources;
 
     public Player(GameObject parent, int id)
@@ -43,7 +42,6 @@ public class Player
         farmer = parent.GetComponentInParent<PlayerFarmingComponent>();
         farmer.parent = this;
         health = parent.GetComponent<HealthController>();
-        oxygen = parent.GetComponent<OxygenController>();
         resources = parent.GetComponent<ResourceController>();
     }
 

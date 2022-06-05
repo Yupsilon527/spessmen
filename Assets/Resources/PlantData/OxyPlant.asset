@@ -16,7 +16,7 @@ MonoBehaviour:
   PlantHunger: 10
   PlantHealth: 100
   PlantAdultCycles: 5
-  OxygenProduction: 0
+  OxygenProduction: 3
   FruitChance: 0
   FruitPrefab: {fileID: 0}
   SpriteSeedling: {fileID: 0}

@@ -70,57 +70,6 @@ public class PlixelMapMob : Mob
         if (Planet.gameObject != gameObject)
             base.HandleOrbit();
     }
-    /* public static PlixelMapMob LoadFromTexture(Texture2D terrain, Texture2D mask)
-     {
-         Debug.Log("[entityTerrain] Generate Terrain From Texture And Mask");
-         GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
-         newChunk.transform.position = TerrainDefines.terrain_zlayer * Vector3.forward;
-         PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
-         newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height, terrain.width];
-
-         for (int iY = 0; iY < terrain.height; iY++)
-         {
-             for (int iX = 0; iX < terrain.width; iX++)
-             {
-                 Color colorsolid = mask.GetPixel(iX, iY);
-                 int collision = 0;
-
-                 if (colorsolid.a > .5f)
-                 {
-
-                     if (colorsolid == Color.white)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Foreground;
-                     }
-                     else if (colorsolid == Color.black)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Background;
-                     }
-                     else if (colorsolid == Color.red)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
-                     }
-                     else if (colorsolid == Color.blue)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Indestructable;
-                     }
-                     else if (colorsolid == Color.green)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Frozen;
-                     }
-                     else
-                     if (colorsolid == Color.magenta)
-                     {
-                         collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Frozen;
-                     }
-                 }
-                 terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), collision));
-             }
-         }
-         terr.enabled = true;
-
-         return newChunk.GetComponent<PlixelMapMob>();
-     }*/
 
     public PlixelMapMob BreakChunk(Plixel[] chunk)
     {
