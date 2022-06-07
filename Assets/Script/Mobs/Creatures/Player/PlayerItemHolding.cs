@@ -45,17 +45,35 @@ public class PlayerItemHolding : MonoBehaviour
             }
         }
     }
+
+    public ItemMob TouchedItem;
+    public void OnTouchItem(ItemMob item)
+    {
+
+            TouchedItem = item;
+        
+    }
+    public void OnTouchExit(ItemMob item)
+    {
+            if (TouchedItem == item)
+            {
+            TouchedItem = null;
+            }
+        
+    }
     void TryPickItem()
     {
         Debug.Log("[PlayerCarryItem] Try pick up items");
-        foreach (RaycastHit2D rch in Physics2D.CircleCastAll(transform.position,PickUpRange,Vector2.zero))
+        if (TouchedItem != null)
+            PickUpItem(TouchedItem);
+        /*foreach (RaycastHit2D rch in Physics2D.CircleCastAll(transform.position,PickUpRange,Vector2.zero))
         {
             if (rch.transform.tag == "Item" && rch.transform.TryGetComponent(out ItemMob item))
             {
                 if (PickUpItem(item))
                     break;
             }
-        }
+        }*/
     }
     bool PickUpItem(ItemMob item)
     {

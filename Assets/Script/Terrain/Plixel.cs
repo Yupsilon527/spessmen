@@ -258,7 +258,7 @@ public class Plixel
                tcollision = 0;
                 thoughness = 0;
             }
-            else
+            else if (IsSolid())
             {
                 tcollision = (int) TerrainDefines.Behavior.Background | (getFrozen() ? (int)TerrainDefines.Behavior.Frozen : 0); 
             }            

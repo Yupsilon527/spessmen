@@ -41,12 +41,13 @@ public class BuilderComponent : MobComponent
 
             if (!bmob.CanBeBuildThere(buildPos, orientation))
             {
-                Debug.Log("InvalidPosition");
+                InterfaceController.main.ShowWarning("Invalid Building Position",3);
                 return false;
             }
 
-            if (!parent.resources.ChargeValue(ResourceController.Resources.stone, bmob.BuildCost * .15f))
+            if (!parent.resources.ChargeValue(ResourceController.Resources.wood, bmob.BuildCost * .15f))
             {
+                InterfaceController.main.ShowWarning("Not Enough Resources", 3);
                 return false;
             }
             GameObject deploy = bmob.BuildCopy(buildPos, 15f);
@@ -63,7 +64,7 @@ public class BuilderComponent : MobComponent
     loopstart:
         yield return new WaitForEndOfFrame();
         buildPercent = Mathf.Min(buildPercent, 100 - building.GetBuildingPercentage());
-        if (parent.resources.ChargeValue(ResourceController.Resources.stone, buildPercent * building.BuildCost * .01f))
+        if (parent.resources.ChargeValue(ResourceController.Resources.wood, buildPercent * building.BuildCost * .01f))
         {
             building.IncreaseBuildPercentage(buildPercent);
             if (building == null || building.GetBuildingPercentage() >= 100 || Input.GetAxis("Horizontal") != 0 || Input.GetKeyDown(KeyCode.Space))

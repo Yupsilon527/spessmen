@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1346224601119541744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.6666666, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3717711451474896131}
@@ -72,16 +72,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1219024441
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: -5
+  m_Sprite: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1371876206318206429
@@ -216,6 +216,8 @@ MonoBehaviour:
   PlantHealth: {fileID: 0}
   PlantSprite: {fileID: 2247578198513965180}
   UpdateInterval: 0.5
+  PlantHeight: 0.66
+  PlantRadius: 0.33
   NutrimentDisplayColor: {r: 1, g: 1, b: 1, a: 1}
   HealthDisplayColor: {r: 0, g: 1, b: 0, a: 1}
   NutriDisplay: {fileID: 8511583094695893386}

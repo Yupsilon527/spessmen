@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad9e519b4576c74888a1b4afc7296d5, type: 3}
   m_Name: GoldPlant
   m_EditorClassIdentifier: 
-  PlantGrowthTime: 100
-  PlantHunger: 10
-  PlantHealth: 100
-  PlantAdultCycles: 5
-  OxygenProduction: 3
-  FruitChance: 0
-  FruitPrefab: {fileID: 0}
-  SpriteSeedling: {fileID: 0}
-  SpriteMiddle: {fileID: 0}
-  SpriteAdult: {fileID: 0}
-  SpriteDry: {fileID: 0}
+  PlantName: Gold Plant
+  PlantGrowthTime: 1200
+  PlantHunger: 1.2
+  PlantHealth: 50
+  PlantAdultCycles: 300
+  OxygenProduction: 0.02
+  FruitChance: 3
+  FruitPrefab: {fileID: 222666570693592656, guid: e02529076405410439c588c404b14c67, type: 3}
+  SpriteSeedling: {fileID: 1179861178, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SpriteMiddle: {fileID: 1378159248, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SpriteAdult: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SpriteDry: {fileID: 1983338742, guid: efc904250842a574ca5aff6bce217851, type: 3}

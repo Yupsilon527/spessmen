@@ -21,7 +21,7 @@ public class ResourcePowerUp : PowerupComponent
                 owningPlayer.resources.GiveResource(ResourceController.Resources.gold, ResourceAmount);
                 break;
             case Type.stone:
-                owningPlayer.resources.GiveResource(ResourceController.Resources.stone, ResourceAmount);
+                owningPlayer.resources.GiveResource(ResourceController.Resources.wood, ResourceAmount);
                 break;
             case Type.health:
                 owningPlayer.health.GiveValue(ResourceAmount);

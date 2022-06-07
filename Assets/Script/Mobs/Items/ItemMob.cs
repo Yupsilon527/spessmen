@@ -17,12 +17,13 @@ public class ItemMob : Mob
     public float GoldValue = 0;
     public virtual void OnCreate()
     {
-
+            SetSuspended(StartSuspended);
     }
     public virtual void OnActivate(PlayerMob user)
     {
-        rbody.bodyType = RigidbodyType2D.Dynamic;
+        SetSuspended(false);
         Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed;
+        if (container!=null)
         container.UnloadItem(this);
         rbody.velocity = throwVel.x* user.transform.right + throwVel.y * user.transform.up;
     }
@@ -59,5 +60,30 @@ public class ItemMob : Mob
     public virtual float GetNutritionalValue()
     {
         return 0;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.transform.TryGetComponent(out PlayerItemHolding player))
+        {
+            player.OnTouchItem(this);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.TryGetComponent(out PlayerItemHolding player))
+        {
+                player.OnTouchExit( this);
+            
+        }
+    }
+    public bool StartSuspended = false;
+public void SetSuspended(bool value)
+    {
+        rbody.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+    }
+    public bool IsSuspended()
+    {
+        return rbody.bodyType == RigidbodyType2D.Static;
     }
 }

@@ -28,7 +28,7 @@ public static class TerrainDefines
     };
     public enum Behavior
     {
-        Empty = -1,
+        Empty = 0,
         Foreground = 1,
         Background = 2,
         Frozen = 4,

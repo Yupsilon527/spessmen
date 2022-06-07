@@ -18,7 +18,7 @@ public class HealthController : PropertyController
     {
         if (Owner.IsInside())
             GiveValue(RegenerationPercent * Time.deltaTime);
-        if (AtmosphereController.oxygen.GetPercentage()==0)
+        if (AtmosphereController.oxygen.GetPercentage() == 0)
             SubstractValue(OxygenDamage * Time.deltaTime);
     }
 }

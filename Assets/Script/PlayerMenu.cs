@@ -21,13 +21,16 @@ public class PlayerMenu : MobComponent
 
         foreach (GameObject bPrefab in source.AllowedBuildings)
         {
-            lNames.Add(bPrefab.name);
-            lActions.Add(() =>
+            if (bPrefab.TryGetComponent(out Mob mob))
             {
-                if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position,transform.rotation.eulerAngles.z))
-                    source.Kill();
-                return true;
-            });
+                lNames.Add(mob.GetMobName());
+                lActions.Add(() =>
+                {
+                    if (parent.builder.TryBuildBuilding(bPrefab, parent.movement.transform.position, transform.rotation.eulerAngles.z))
+                        source.Kill();
+                    return true;
+                });
+            }
         }
         lNames.Add("Close");
         lActions.Add(() => { return true; });
@@ -121,6 +124,9 @@ public class PlayerMenu : MobComponent
 
         foreach (ShopComponent.ShopEntry entry in store.Shop)
         {
+            if (entry.Item.TryGetComponent(out Mob mobble))
+                lNames.Add(mobble.GetMobName() + " (" + entry.Cost + "g)");
+            else
             lNames.Add(entry.Item.name + " ("+ entry.Cost + "g)");
             lActions.Add(() => { if (store.CanPlayerBuyItem(parent,entry)) { store.BuyItemForPlayer(parent, entry); } return false; });
         }

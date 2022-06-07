@@ -90,11 +90,13 @@ MonoBehaviour:
   rbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  MobName: Explosive
   category: 0
   container: {fileID: 0}
   RequiresGroundToUse: 0
   ThrowSpeed: 6
   GoldValue: 0
+  StartStuck: 0
   DetonationForce: 10
   DetonationDuration: 0
   ExplosionRadius:

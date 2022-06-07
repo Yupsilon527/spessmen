@@ -566,15 +566,14 @@ GameObject:
   - component: {fileID: 1217918130673713260}
   - component: {fileID: 1217918130673713267}
   - component: {fileID: 1217918130673713264}
-  - component: {fileID: 1011898457}
-  - component: {fileID: 3979345771078049694}
   - component: {fileID: 293465269553188535}
   - component: {fileID: 2143083556}
   - component: {fileID: 5226539002580152131}
-  - component: {fileID: 3136417603818321130}
   - component: {fileID: 9075029900562901718}
   - component: {fileID: 3946223513248005029}
   - component: {fileID: 570360273}
+  - component: {fileID: 907000933}
+  - component: {fileID: 907000934}
   m_Layer: 0
   m_Name: Mob
   m_TagString: Player
@@ -688,10 +687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600e9907e3fcccc4bbf89b8236f95ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DigRange: 0.25
+  DigRange: 0.1
   DigRadius: 0.5
-  DigCooldown: 0.15
-  MoveSpeed: 0.33
+  DigCooldown: 0.1
+  MoveSpeed: 1.4
 --- !u!50 &1217918130673713267
 Rigidbody2D:
   serializedVersion: 4
@@ -729,35 +728,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &1011898457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217918130673713261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1b18ab6fb046f4b9a92b132ea5c6c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickUpRange: 1
---- !u!114 &3979345771078049694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217918130673713261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91b90f954cf646478a078df0996d82d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CarryLimit: 1
-  Owner: {fileID: 0}
-  Inventory: []
-  IsShop: 0
 --- !u!114 &293465269553188535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,23 +774,7 @@ MonoBehaviour:
   current: 100
   maximum: 100
   RegenerationPercent: 10
---- !u!114 &3136417603818321130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217918130673713261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3e05d578d99d4648a0f737847c70d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Owner: {fileID: 0}
-  canNegative: 0
-  current: 100
-  maximum: 100
-  DamageAtEmpty: 5
+  OxygenDamage: 5
 --- !u!114 &9075029900562901718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +815,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FarmingSpot: {fileID: 0}
+--- !u!114 &907000933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217918130673713261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1b18ab6fb046f4b9a92b132ea5c6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickUpRange: 1
+  TouchedItem: {fileID: 0}
+--- !u!114 &907000934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217918130673713261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91b90f954cf646478a078df0996d82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarryLimit: 1
+  Owner: {fileID: 0}
+  Inventory: []
+  IsShop: 0
 --- !u!1 &1217918131570412961
 GameObject:
   m_ObjectHideFlags: 0

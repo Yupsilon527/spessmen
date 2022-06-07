@@ -36,10 +36,13 @@ public class ChunkItem : ItemMob
     {
         if (GetNutritionalValue()>0 && user.parent.farmer.FarmingSpot !=null)
         {
-            if (user.parent.farmer.FarmingSpot.FeedItem(this))
-                return;
+            if (!user.parent.farmer.FarmingSpot.FeedItem(this))
+                base.OnActivate(user);
         }
-        base.OnActivate(user);
+        else
+        {
+            base.OnActivate(user);
+        }
     }
     public override float GetNutritionalValue()
     {
@@ -77,7 +80,7 @@ public class ChunkItem : ItemMob
                             res.GiveResource(ResourceController.Resources.gold,Quantity);
                             break;
                         case TerrainDefines.Element.rock:
-                            res.GiveResource(ResourceController.Resources.stone, Quantity);
+                            res.GiveResource(ResourceController.Resources.wood, Quantity);
                             break;
                     }
                     ncontainer.SellItem(playerOwner.parent,this);
@@ -104,5 +107,9 @@ public class ChunkItem : ItemMob
     {
         Element = TerrainDefines.Element.nothing;
         base.Kill();
+    }
+    public override string GetMobName()
+    {
+        return Element.ToString() + " " + Quantity ;
     }
 }

@@ -43,6 +43,8 @@ public class Player
         farmer.parent = this;
         health = parent.GetComponent<HealthController>();
         resources = parent.GetComponent<ResourceController>();
+
+        InterfaceController.main.TieToPlayer(this);
     }
 
     public Vector2 moveInput;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9185045864849760862}
   - component: {fileID: 6815414899105053441}
+  - component: {fileID: 2777480252907904761}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -46,3 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResourceType: 1
   ResourceAmount: 100
+--- !u!58 &2777480252907904761
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233449647150354695}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

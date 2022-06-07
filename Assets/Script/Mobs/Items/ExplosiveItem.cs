@@ -32,7 +32,7 @@ public class ExplosiveItem : ItemMob
     void Explode()
     {
         Kill();
-        ExplosionData boom = new ExplosionData(transform.position, ExplosionRadius[0], ExplosionRadius[1], ExplosionRadius[2], KnockbackForce, KnockbackRange, ExplosionDamage[0], ExplosionDamage[1], ExplosionDamage[2], CreatureDamage);
+        ExplosionData boom = new ExplosionData((Vector2)transform.position + rbody.velocity, ExplosionRadius[0], ExplosionRadius[1], ExplosionRadius[2], KnockbackForce, KnockbackRange, ExplosionDamage[0], ExplosionDamage[1], ExplosionDamage[2], CreatureDamage);
         boom.Explode();
     }
     public override void Kill()

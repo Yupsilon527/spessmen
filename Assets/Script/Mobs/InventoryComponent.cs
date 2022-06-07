@@ -83,7 +83,7 @@ public class InventoryComponent : MonoBehaviour
             bool accounted = false;
             foreach (InventoryEntry e in entries)
             {
-                if (e.itemName == i.name)
+                if (e.itemName == i.GetMobName())
                 {
                     accounted = true;
                     e.itemCount++;

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7050057778438958928
+--- !u!1001 &4271679018163816499
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,23 +9,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7659768135546024898, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Name
-      value: Building Kit
+      value: OxySeed
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-    - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.74333096
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.g
-      value: 0.5424111
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.r
-      value: 0.8396226
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_RootOrder
@@ -33,11 +29,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.467
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.82933134
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.x
@@ -57,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5587571
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -74,34 +70,31 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7659768135546024899, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
---- !u!1 &836016670052375698 stripped
+--- !u!1 &5838067984206625777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7659768135546024898, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
-  m_PrefabInstance: {fileID: 7050057778438958928}
+  m_PrefabInstance: {fileID: 4271679018163816499}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7616604207178637287
+--- !u!114 &8783875450013505576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836016670052375698}
+  m_GameObject: {fileID: 5838067984206625777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb3684b30f7fded4f9f3055fce791fd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dad045cfe41bb74aa07e92e487c8ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
-  MobName: Building Kit
+  MobName: Seed
   category: 0
   container: {fileID: 0}
-  RequiresGroundToUse: 1
+  RequiresGroundToUse: 0
   ThrowSpeed: 10
   GoldValue: 0
   StartStuck: 0
-  AllowedBuildings:
-  - {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
-  - {fileID: 5350753102010905279, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
-  - {fileID: 8184542918885735660, guid: 03aa1293861613b41a88ef806ff9e244, type: 3}
+  Plant: {fileID: 11400000, guid: 6f4d515553056914cb63e120c10e51b2, type: 2}

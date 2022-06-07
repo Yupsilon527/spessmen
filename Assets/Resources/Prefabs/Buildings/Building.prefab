@@ -55,6 +55,7 @@ MonoBehaviour:
   rbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  MobName: Building
   ConstructionCollider: {fileID: 1967993309}
   BuildingTexture: {fileID: 3437930402308740186}
   BuildCost: 100

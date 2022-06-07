@@ -12,6 +12,8 @@ public class FarmingSpotController : MonoBehaviour
 
         PlantGrowth = gameObject.AddComponent<PropertyController>();
         PlantHealth = gameObject.AddComponent<PropertyController>();
+
+        ChangePlantSprite();
     }
     private void Update()
     {
@@ -65,6 +67,7 @@ public class FarmingSpotController : MonoBehaviour
                 Nutriment.GiveValue(item.GetNutritionalValue());
                 chunk.Kill();
             }
+            return true;
         }
         return false;
     }
@@ -82,7 +85,7 @@ public class FarmingSpotController : MonoBehaviour
     }
     public bool TryPlant(PlantData plant)
     {
-        if (currentPlant != null || PlantHealth.GetValue() <= 0)
+        if (currentPlant != null && PlantHealth.GetValue() >  0)
             return false;
 
         GiveNewPlant( plant);
@@ -118,11 +121,11 @@ public class FarmingSpotController : MonoBehaviour
         }
         if (PlantHealth.GetValue() <= 0)
             return PlantPhase.dry;
-        if (PlantGrowth.GetPercentage() <= .1f)
+        else if (PlantGrowth.GetPercentage() <= .15f)
             return PlantPhase.seedling;
-        if (PlantGrowth.GetPercentage() < 1)
-            return PlantPhase.adult;
-        return PlantPhase.middle;
+        else if (PlantGrowth.GetPercentage() < 1)
+            return PlantPhase.middle;
+        return PlantPhase.adult;
     }
     void ChangePlantSprite()
     {
@@ -166,11 +169,11 @@ public class FarmingSpotController : MonoBehaviour
         {
             if (PlantGrowth.GetPercentage() < 1)
             {
-                if (Nutriment.GetValue()>0)
+                if (Nutriment.GetValue() > 0)
                 {
                     Nutriment.SubstractValue(currentPlant.PlantHunger * UpdateInterval);
                     PlantHealth.GiveValue(20f);
-                    PlantGrowth.GiveValue(10f);
+                    PlantGrowth.GiveValue(5f);
                     ChangePlantSprite();
                     if (PlantGrowth.GetPercentage() == 1)
                     {
@@ -188,21 +191,59 @@ public class FarmingSpotController : MonoBehaviour
                 if (Nutriment.GetValue() > 0)
                 {
                     Nutriment.SubstractValue(currentPlant.PlantHunger * UpdateInterval);
-                    PlantProduce();
+                    ProduceFruit();
                 }
-                    PlantHealth.SubstractValue(10f);
+                DropRandomFruit();
+                PlantHealth.SubstractValue(10f);
+                ChangePlantSprite();
             }
-            if (currentPlant.OxygenProduction>0)
-                AtmosphereController.oxygen.GiveValue(currentPlant.OxygenProduction);
+            if (currentPlant.OxygenProduction > 0)
+                AtmosphereController.oxygen.GiveValue(currentPlant.OxygenProduction * PlantGrowth.GetPercentage());
         }
         else
         {
+            DropAllFruits();
             DestroyPlant();
         }
     }
-void     PlantProduce()
+    public float PlantHeight = 2;
+    public float PlantRadius = 1;
+    List<ItemMob> Fruits = new List<ItemMob>();
+void     ProduceFruit()
     {
-
+        if (currentPlant.FruitPrefab != null && Random.value * 100 < 5)
+        {
+            GameObject seed = GameObject.Instantiate(currentPlant.FruitPrefab);
+            seed.transform.position = transform.position + transform.up * PlantHeight + new Vector3(Random.Range(-PlantRadius, PlantRadius), Random.Range(-PlantRadius, PlantRadius) * .5f, 0);
+            if (seed.TryGetComponent(out ItemMob fruit))
+            {
+                fruit.SetSuspended(true);
+                Fruits.Add(fruit);
+            }
+        }
+    }
+    void DropRandomFruit()
+    {
+        Fruits.RemoveAll((ItemMob fruit) =>
+        {
+            return fruit.container != null && fruit.IsSuspended();
+        });
+        if (Fruits.Count > 0 && Random.value * 100 < 15)
+        {
+            int iF = Mathf.RoundToInt(Random.Range(0, Fruits.Count - 1));
+            Fruits[iF].SetSuspended(false);
+            Fruits.RemoveAt(iF);
+        }
+    }
+    void DropAllFruits()
+    {
+        foreach (ItemMob item in Fruits)
+            item.SetSuspended(false);
+        Fruits.Clear();
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(transform.position + transform.up * PlantHeight, Vector3.one * PlantRadius);
     }
     #endregion
     #region Interface
@@ -214,9 +255,6 @@ void     PlantProduce()
     {
         if (NutriDisplay != null)
         {
-            if (currentPlant == null)
-                NutrimentDisplayColor.a = 0;
-            else
                 NutrimentDisplayColor.a = Nutriment.GetPercentage();
             NutriDisplay.color = NutrimentDisplayColor;
         }

@@ -14,4 +14,10 @@ public class SeedItem : ItemMob
         }
         base.OnActivate(user);
     }
+    public override string GetMobName()
+    {
+        if (Plant == null)
+            return "Dead Seed";
+        return Plant.PlantName+" Seed";
+    }
 }

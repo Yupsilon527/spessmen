@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: MobName
+      value: Shop
+      objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_RootOrder
       value: 0

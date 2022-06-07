@@ -12,12 +12,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2170918382098514336, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170918382098514336, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: m_Color.g
-      value: 0.85
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2170918382098514336, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2170918382098514339, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: m_RootOrder
@@ -77,11 +81,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2170918382098514343, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: m_Name
-      value: Gold
+      value: Stone Chunk
       objectReference: {fileID: 0}
     - target: {fileID: 8933673887833805232, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: Element
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8933673887833805232, guid: 671c33bf49b9afd4aa45e208d8fb56d4, type: 3}
       propertyPath: Quantity

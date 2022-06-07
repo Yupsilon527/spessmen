@@ -479,6 +479,7 @@ MonoBehaviour:
   rbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  MobName: Farm x1
   ConstructionCollider: {fileID: 7346579238120891049}
   BuildingTexture: {fileID: 0}
   BuildCost: 20
@@ -493,6 +494,18 @@ PrefabInstance:
     - target: {fileID: 1371876206318206429, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_Name
       value: Soil 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
+      propertyPath: m_Size.x
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
+      propertyPath: m_Size.y
+      value: 15.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3717711451474896131, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_RootOrder

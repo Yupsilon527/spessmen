@@ -123,4 +123,9 @@ public abstract class Mob : MonoBehaviour
         Vector2 vectorUp = (transform.position - point);
         transform.up = vectorUp;
     }
+    public string MobName = "";
+    public virtual string GetMobName()
+    {
+        return MobName;
+    }
 }

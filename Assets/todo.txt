@@ -6,45 +6,25 @@ menus
 		T explosive
 		O2 seeds
 		explosive tree seeds
-		flower seeds
-		pickaxe upgrade
-		jetpack upgrade
 
+fix
+	player input
+	building hitboxes
+	building unloadposition
+	farm building
 
-	
-Gardens
-	test
-		seeds
-		plant seeds
-		grow
-		generate global oxygen level
+plants
+	produce fruit
+	seeds
+
+visual
+	player
 	plantsprites
-
-
-player input
-
-UI
-	loading screen
-	gold
-	building material
-	oxygen
-	health
-	fail errors
-	help
+	building sprites
+	explosions
 
 grass
 prebuilt entities
-	spawn entities
-	start point
-entities
-	human
-		jetpack
-	building
-		unloadposition
-
-Building
-	house
-	farm
 
 Pooling
 	humans
@@ -52,6 +32,8 @@ Pooling
 	mob pool
 		kill mobs
 
-
-
-Fix FPS
+FEATURES
+	UPGRADES
+		pickaxe upgrade
+		jetpack upgrade
+		backpack upgrade

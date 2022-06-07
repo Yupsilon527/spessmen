@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4176269295935347337, guid: 470975fcc3cb72d4c9eb59b39f168f7e, type: 3}
+      propertyPath: MobName
+      value: Explosive Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176269295935347337, guid: 470975fcc3cb72d4c9eb59b39f168f7e, type: 3}
       propertyPath: DetonationDuration
       value: 3
       objectReference: {fileID: 0}

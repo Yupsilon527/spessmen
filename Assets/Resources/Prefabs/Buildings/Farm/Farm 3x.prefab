@@ -15,10 +15,6 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
-      propertyPath: m_SortingOrder
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 3717711451474896131, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -75,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 1648013907247070663, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791812468029010200, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
+      propertyPath: MobName
+      value: Farm x3
       objectReference: {fileID: 0}
     - target: {fileID: 1791812468029010200, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: BuildCost
