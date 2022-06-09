@@ -21,28 +21,35 @@ public class PlayerItemHolding : MonoBehaviour
     }
     void HandleItemPickup()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Use"))
         {
-            ItemMob item = parent.backpack.GetActiveItem();
-            if (item != null)
+            if (TryPickItem())
             {
-                if (!item.RequiresGroundToUse || parent.movement.IsGrounded())
+                ItemMob item = parent.backpack.GetActiveItem();
+                if (item != null)
                 {
-                    Debug.Log("[PlayerCarryItem] Try activate item " + item.name);
-                    item.OnActivate(parent.movement);
+                    if (!item.RequiresGroundToUse || parent.movement.IsGrounded())
+                    {
+                        Debug.Log("[PlayerCarryItem] Try activate item " + item.name);
+                        item.OnActivate(parent.movement);
+                    }
                 }
             }
-            else
-            {
-                TryPickItem();
-            }
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Dig"))
         {
             if (parent.backpack.GetActiveItem() != null)
             {
                 DropItem();
             }
+        }
+        if (Input.GetButtonDown("CycleRight"))
+        {
+            parent.backpack.CycleItemRight();
+        }
+        if (Input.GetButtonDown("CycleLeft"))
+        {
+            parent.backpack.CycleItemLeft();
         }
     }
 
@@ -61,11 +68,12 @@ public class PlayerItemHolding : MonoBehaviour
             }
         
     }
-    void TryPickItem()
+    bool TryPickItem()
     {
         Debug.Log("[PlayerCarryItem] Try pick up items");
-        if (TouchedItem != null)
-            PickUpItem(TouchedItem);
+        if (TouchedItem != null) 
+            return !PickUpItem(TouchedItem);
+
         /*foreach (RaycastHit2D rch in Physics2D.CircleCastAll(transform.position,PickUpRange,Vector2.zero))
         {
             if (rch.transform.tag == "Item" && rch.transform.TryGetComponent(out ItemMob item))
@@ -74,16 +82,16 @@ public class PlayerItemHolding : MonoBehaviour
                     break;
             }
         }*/
+        return true;
     }
     bool PickUpItem(ItemMob item)
     {
         if (item.category == ItemMob.Category.small)
         {
-            Debug.Log("[PlayerCarryItem] Pick up " + item.name);
-            
+            Debug.Log("[PlayerCarryItem] Pick up " + item.name);            
             return parent.backpack.LoadItem(item);
         }
-        return false;
+        return true;
     }
     public void DropItem()
     {

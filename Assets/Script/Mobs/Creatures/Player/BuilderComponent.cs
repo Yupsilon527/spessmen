@@ -20,7 +20,7 @@ public class BuilderComponent : MobComponent
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && activeBuilding != null)
+        if (Input.GetButtonDown("Build") && activeBuilding != null)
             BuildBuilding(activeBuilding);
 
     }
@@ -67,7 +67,7 @@ public class BuilderComponent : MobComponent
         if (parent.resources.ChargeValue(ResourceController.Resources.wood, buildPercent * building.BuildCost * .01f))
         {
             building.IncreaseBuildPercentage(buildPercent);
-            if (building == null || building.GetBuildingPercentage() >= 100 || Input.GetAxis("Horizontal") != 0 || Input.GetKeyDown(KeyCode.Space))
+            if (building == null || building.GetBuildingPercentage() >= 100 || parent.moveInput.x != 0 || Input.GetButtonDown("Jump"))
                 StopBuilding();
             else
                 goto loopstart;

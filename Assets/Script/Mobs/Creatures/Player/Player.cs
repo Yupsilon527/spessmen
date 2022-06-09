@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Player
 {
+
     public int ID = 0;
     public int selection = 0;
 
@@ -52,12 +53,10 @@ public class Player
     public Vector2 miscInput;
     public void HandleControls()
     {
-        string command = "Player " + ID;
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
 
-        /*moveInput.x = Input.GetAxis(command + " Horizontal");
-        moveInput.y = Input.GetAxis(command + " Vertical");
-
-        fireInput.x = Input.GetAxis(command + " Horizontal Fire");
+        /*fireInput.x = Input.GetAxis(command + " Horizontal Fire");
         fireInput.y = Input.GetAxis(command + " Vertical Fire");
 
         miscInput.x = Input.GetAxis(command + " Change Weapon");*/

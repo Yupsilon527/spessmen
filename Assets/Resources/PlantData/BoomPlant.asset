@@ -20,6 +20,8 @@ MonoBehaviour:
   OxygenProduction: 0.04
   FruitChance: 9
   FruitPrefab: {fileID: 5446169928913621129, guid: a7fca94b90dea1742831639aad66480d, type: 3}
+  SeedPrefab: {fileID: 5838067984206625777, guid: 0c0e4a582a0a030498652a6c19b2daf2, type: 3}
+  SeedCount: 2
   SpriteSeedling: {fileID: 1179861178, guid: efc904250842a574ca5aff6bce217851, type: 3}
   SpriteMiddle: {fileID: 1378159248, guid: efc904250842a574ca5aff6bce217851, type: 3}
   SpriteAdult: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}

@@ -28,6 +28,9 @@ public class CompartimentComponent : MonoBehaviour
     }
     public void UnloadMob(PlayerMob mob)
     {
+        if (entryDoor!=null)
+            UnloadMobAtPosition(mob, entryDoor.transform.position);
+        else
         UnloadMobAtPosition(mob, transform.position);
     }
     public void UnloadMobAtPosition(PlayerMob mob, Vector2 position)

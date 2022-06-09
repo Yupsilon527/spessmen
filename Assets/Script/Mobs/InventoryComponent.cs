@@ -35,6 +35,8 @@ public class InventoryComponent : MonoBehaviour
     public void UnloadItemAtPosition(ItemMob item, Vector2 position)
     {
         item.transform.position = position;
+        if (Inventory.IndexOf(item) < ActiveItem)
+            CycleItemLeft();
         Inventory.Remove(item);
         item.container = null;
         item.OnDrop();
@@ -113,9 +115,25 @@ public class InventoryComponent : MonoBehaviour
     {
         if (Inventory.Contains(item))
         {
+            if (Inventory.IndexOf(item) < ActiveItem)
+                CycleItemLeft();
             Inventory.Remove(item);
             item.OnSold(sellingPlayer);
             item.Kill();
         }
+    }
+    public void CycleItemLeft()
+    {
+        CycleItem(-1);
+    }
+    public void CycleItemRight()
+    {
+        CycleItem(1);
+    }
+    void CycleItem(int dir)
+    {
+        ActiveItem = Inventory.Count > 0 ? ((ActiveItem + dir) % Inventory.Count) : 0;
+        if (ActiveItem < 0)
+            ActiveItem += Inventory.Count;
     }
 }

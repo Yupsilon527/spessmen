@@ -26,6 +26,8 @@ public class WorldController : MonoBehaviour
     public Texture2D mapTexture;
     public SpriteRenderer renderComp;
 
+    public ObjectPool MobPool;
+
     private void Start() {
         active = this;
         StartCoroutine(PrepareWorld());

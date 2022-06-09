@@ -1,27 +1,15 @@
 
-menus
-	buy menu
-		building material
-		explosive
-		T explosive
-		O2 seeds
-		explosive tree seeds
-
 fix
 	player input
-	building hitboxes
-	building unloadposition
-	farm building
-
-plants
-	produce fruit
-	seeds
+	??building hitboxes
+	player camera
 
 visual
 	player
 	plantsprites
 	building sprites
 	explosions
+	oxygen colors
 
 grass
 prebuilt entities

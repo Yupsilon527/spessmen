@@ -55,6 +55,7 @@ MonoBehaviour:
   terrainmobs: []
   mapTexture: {fileID: 2800000, guid: debf2999db30e7c40a27d186b0b3599e, type: 3}
   renderComp: {fileID: 4122211004986758166}
+  MobPool: {fileID: 0}
 --- !u!61 &4736265159237272897
 BoxCollider2D:
   m_ObjectHideFlags: 0

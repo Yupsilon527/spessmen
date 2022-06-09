@@ -195,6 +195,8 @@ public class FarmingSpotController : MonoBehaviour
                 }
                 DropRandomFruit();
                 PlantHealth.SubstractValue(10f);
+                if (PlantHealth.GetPercentage() == 0)
+                    ProduceSeeds();
                 ChangePlantSprite();
             }
             if (currentPlant.OxygenProduction > 0)
@@ -240,6 +242,18 @@ void     ProduceFruit()
         foreach (ItemMob item in Fruits)
             item.SetSuspended(false);
         Fruits.Clear();
+    }
+    void ProduceSeeds()
+    {
+        if (currentPlant.SeedPrefab != null)
+        {
+            for (float I = Random.value * currentPlant.SeedCount; I>=1 ; I--)
+            {
+                GameObject seed = GameObject.Instantiate(currentPlant.SeedPrefab);
+                seed.transform.position = transform.position + transform.up * PlantHeight + new Vector3(Random.Range(-PlantRadius, PlantRadius), Random.Range(-PlantRadius, PlantRadius) * .5f, 0);
+               
+            }
+        }
     }
     private void OnDrawGizmos()
     {

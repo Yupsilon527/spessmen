@@ -99,3 +99,7 @@ MonoBehaviour:
     Cost: 4
   - Item: {fileID: 8233449647150354695, guid: 00a34070c3098874caf8f6b47348429f, type: 3}
     Cost: 25
+  - Item: {fileID: 5838067984206625777, guid: 0996901a124c1914d83f93730bbcde63, type: 3}
+    Cost: 10
+  - Item: {fileID: 5838067984206625777, guid: 0c0e4a582a0a030498652a6c19b2daf2, type: 3}
+    Cost: 200

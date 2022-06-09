@@ -50,8 +50,9 @@ public class PlayerMob : Mob
     Vector2 modifiedVelocity;
     void HandleControls()
     {
-            modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration) ;
-        Move(Input.GetAxis("Horizontal"));
+        parent.HandleControls();
+        modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration) ;
+        Move(parent.moveInput.x);
         HandleFall();
         // parent.rigidbody.velocity +=(Vector2)(modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up) ;
         parent.movement.gravity.relativeForce = modifiedVelocity;
@@ -68,7 +69,7 @@ public class PlayerMob : Mob
     {
         if (IsGrounded())
         {
-            if (Input.GetKeyDown(KeyCode.Space) && JumpCoroutine == null)
+            if (Input.GetButton("Jump") && JumpCoroutine == null)
             {
                 LastGroundTime = 0;
                 JumpCoroutine = StartCoroutine(JumpFloat());
@@ -76,7 +77,7 @@ public class PlayerMob : Mob
         }
         else
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetButton("Jump"))
             {
                 if (modifiedVelocity.y < -MaxGlideSpeed)
                 {
@@ -94,7 +95,7 @@ public class PlayerMob : Mob
     {
         float jumpEndTime = Time.time + JumpTime;
 
-        while (jumpEndTime >= Time.time && Input.GetKey(KeyCode.Space))
+        while (jumpEndTime >= Time.time && Input.GetButton("Jump"))
         {
             modifiedVelocity.y = JumpSpeed;
             yield return new WaitForFixedUpdate();

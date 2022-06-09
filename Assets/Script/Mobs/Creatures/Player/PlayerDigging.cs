@@ -13,7 +13,7 @@ public class PlayerDigging : MonoBehaviour
     public Player parent;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButtonDown("Dig") && parent.backpack.GetActiveItem() == null)
         {
             if (DiggingCoroutine==null && parent.movement.IsGrounded())
             {
@@ -28,10 +28,9 @@ public class PlayerDigging : MonoBehaviour
     IEnumerator DiggingTask()
     {
         parent.movement.CanMove = false;
-        while (Input.GetKey(KeyCode.Q))
+        while (Input.GetButton("Dig"))
         {
-            digVector.x = Input.GetAxis("Horizontal");
-            digVector.y = Input.GetAxis("Vertical");
+            digVector = parent.moveInput;
             digVector = digVector.normalized;
             digVector = digVector.y * transform.up + digVector.x * transform.right;
             if (digVector.sqrMagnitude > 0 && lastDigTime < Time.time)

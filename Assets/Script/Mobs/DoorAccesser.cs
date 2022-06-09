@@ -8,7 +8,7 @@ public class DoorAccesser : MonoBehaviour
     public CompartimentComponent HouseInRange;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Enter"))
         {
             if (parent.movement.IsInside())
             {
@@ -19,7 +19,7 @@ public class DoorAccesser : MonoBehaviour
                 EnterHouse();
             }
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Dig"))
         {
             if (parent.movement.IsInside())
             {
