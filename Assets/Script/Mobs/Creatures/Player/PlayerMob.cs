@@ -58,11 +58,11 @@ public class PlayerMob : Mob
     }
     void HandleGravity()
     {
-        modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration);
+        modifiedVelocity.y = Mathf.Max(-parent.stats.MaxFallSpeed, modifiedVelocity.y - parent.stats.FallDeceleration);
     }
     void Move(float dir)
     {
-        modifiedVelocity.x = dir * WalkSpeed;
+        modifiedVelocity.x = dir * parent.stats.WalkSpeed;
         if (dir != 0 && IsGrounded())
         {
             SetFacing(dir > 0);
@@ -82,28 +82,28 @@ public class PlayerMob : Mob
         {
             if (Input.GetButton("Jump"))
             {
-                if (modifiedVelocity.y < -MaxGlideSpeed)
+                if (modifiedVelocity.y < -parent.stats.MaxGlideSpeed)
                 {
-                    modifiedVelocity.y = -MaxGlideSpeed;
+                    modifiedVelocity.y = -parent.stats.MaxGlideSpeed;
                 }
             }
-            else if (modifiedVelocity.y < -MaxFallSpeed)
+            else if (modifiedVelocity.y < -parent.stats.MaxFallSpeed)
             {
-                modifiedVelocity.y = -MaxFallSpeed;
+                modifiedVelocity.y = -parent.stats.MaxFallSpeed;
             }
         }
     }
     Coroutine JumpCoroutine;
     IEnumerator JumpFloat()
     {
-        float jumpEndTime = Time.time + JumpTime;
+        float jumpEndTime = Time.time + parent.stats.GetJumpTime();
 
         while (jumpEndTime >= Time.time && Input.GetButton("Jump"))
         {
-            modifiedVelocity.y = JumpSpeed;
+            modifiedVelocity.y = parent.stats.JumpSpeed;
             yield return new WaitForFixedUpdate();
         }
-        modifiedVelocity.y = MaxJumpSpeed;
+        modifiedVelocity.y = parent.stats.MaxJumpSpeed;
         JumpCoroutine = null;
     }
 
@@ -127,7 +127,7 @@ public class PlayerMob : Mob
         FacesRight = right;
         //transform.localScale = new Vector3(right ? transform.localScale.x : -transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
-
+    public float BelowAngle = 75f;
     public bool IsAbove(Vector2 point)
     {
         Vector2 delta = point - (Vector2)transform.position;
@@ -135,7 +135,7 @@ public class PlayerMob : Mob
         float angleDiff = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
         float deltaAng = Mathf.DeltaAngle(angleDiff,transform.rotation.eulerAngles.z-90);
         deltaAng += 1;
-        return Mathf.Abs(deltaAng) < 30f;
+        return Mathf.Abs(deltaAng) < BelowAngle;
     }
     public override Vector2 GetForwardVector(bool absolute)
     {
@@ -162,6 +162,6 @@ public class PlayerMob : Mob
     public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
     {
         base.HandleShockwave(center, dir, force_delta, force, damage);
-        parent.health.SubstractValue(force_delta * damage);
+        parent.health.Health.ChargeValue(force_delta * damage);
     }
 }

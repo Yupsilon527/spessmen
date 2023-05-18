@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class ResourcePowerUp : PowerupComponent
 {
-    public enum Type
+    public enum ResType
     {
         gold,
         stone,
         health,
         oxygen
     }
-    public Type ResourceType ;
+    public ResType ResourceType ;
     public float ResourceAmount;
     public override bool OnBuy(Player owningPlayer)
     {
         switch (ResourceType)
         {
-            case Type.gold:
+            case ResType.gold:
                 owningPlayer.resources.GiveResource(ResourceController.Resources.gold, ResourceAmount);
                 break;
-            case Type.stone:
+            case ResType.stone:
                 owningPlayer.resources.GiveResource(ResourceController.Resources.wood, ResourceAmount);
                 break;
-            case Type.health:
-                owningPlayer.health.GiveValue(ResourceAmount);
+            case ResType.health:
+                owningPlayer.health.Health.GiveValue(ResourceAmount);
                 break;
 
         }

@@ -35,7 +35,7 @@ public class InterfaceController : MonoBehaviour
         if (myPlayer == null)
             return;
 
-        healthGauge.text = "Health: " + Mathf.Ceil(myPlayer.health.GetPercentage() * 100) + "%";
+        healthGauge.text = "Health: " + Mathf.Ceil(myPlayer.health.Health.GetPercentage() * 100) + "%";
         oxygenGauge.text = "Oxygen: " + Mathf.Ceil(AtmosphereController.oxygen.GetPercentage() * 100) + "%";
 
         goldGauge.text = "Gold: " + myPlayer.resources.GetResource(ResourceController.Resources.gold);

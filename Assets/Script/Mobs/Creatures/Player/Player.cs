@@ -18,6 +18,7 @@ public class Player
     public InventoryComponent backpack;
     public BuilderComponent builder;
     public PlayerMenu menu;
+    public PlayerStats stats;
     public HealthController health;
     public ResourceController resources;
 
@@ -44,6 +45,7 @@ public class Player
         farmer.parent = this;
         health = parent.GetComponent<HealthController>();
         resources = parent.GetComponent<ResourceController>();
+        stats = parent.GetComponent<PlayerStats>();
 
         InterfaceController.main.TieToPlayer(this);
     }

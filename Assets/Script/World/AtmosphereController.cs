@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class AtmosphereController : MonoBehaviour
 {
-    public static PropertyController oxygen;
+    public static Resource oxygen;
 
     public float TotalValue = 100;
     public float OxygenLossPerSecond = 3;
 
     private void Awake()
     {
-        oxygen = gameObject.AddComponent<PropertyController>();
-        oxygen.ResetLimit(TotalValue);
+        oxygen = new Resource(null, TotalValue, "Atmosphere",false,false );
     }
     private void Update()
     {

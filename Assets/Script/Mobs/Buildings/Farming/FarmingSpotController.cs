@@ -7,11 +7,9 @@ public class FarmingSpotController : MonoBehaviour
 
     private void Start()
     {
-        Nutriment = gameObject.AddComponent<PropertyController>();
-        Nutriment.ResetLimit(100);
-
-        PlantGrowth = gameObject.AddComponent<PropertyController>();
-        PlantHealth = gameObject.AddComponent<PropertyController>();
+        Nutriment = new Resource(null, 100, name + " nutriment", false, true);
+        PlantGrowth = new Resource(null, 100, name + " growth", false, true);
+        PlantHealth = new Resource(null, 100, name + " health", false, true);
 
         ChangePlantSprite();
     }
@@ -39,16 +37,16 @@ public class FarmingSpotController : MonoBehaviour
         }
     }
     #region Nutriment
-    public PropertyController Nutriment;
+    public Resource Nutriment;
 
     public bool FeedItem(ItemMob item)
     {
-        if (Nutriment.GetValue()< Nutriment.GetLimit() &&  item.GetNutritionalValue()>0)
+        if (Nutriment.GetValue()< Nutriment.GetLimit(false) &&  item.GetNutritionalValue()>0)
         {
             ChunkItem chunk = (ChunkItem)item;
             if (chunk != null)
             {
-                float remaining = Nutriment.GetLimit() - Nutriment.GetValue();
+                float remaining = Nutriment.GetLimit(false) - Nutriment.GetValue();
                 if (remaining> chunk.GetNutritionalValue())
                 {
                     Nutriment.GiveValue(chunk.GetNutritionalValue());
@@ -59,7 +57,7 @@ public class FarmingSpotController : MonoBehaviour
                     float percentage = 1f - remaining / chunk.GetNutritionalValue();
                     chunk.SetQuantity(Mathf.CeilToInt(percentage * chunk.Quantity));
 
-                    Nutriment.SetValue(Nutriment.GetLimit());
+                    Nutriment.SetValue(Nutriment.GetLimit(false));
                 }
             }
             else
@@ -74,8 +72,8 @@ public class FarmingSpotController : MonoBehaviour
     #endregion
     #region Plants
     PlantData currentPlant;
-    public PropertyController PlantGrowth;
-    public PropertyController PlantHealth;
+    public Resource PlantGrowth;
+    public Resource PlantHealth;
     public SpriteRenderer PlantSprite;
     public float UpdateInterval = .5f;
     float NextPlantUpdateTime;
@@ -94,9 +92,8 @@ public class FarmingSpotController : MonoBehaviour
     void GiveNewPlant(PlantData plant)
     {
         currentPlant = plant;
-        PlantGrowth.SetLimit(currentPlant.PlantGrowthTime);
-        PlantGrowth.SetValue(0);
-        PlantHealth.ResetLimit(currentPlant.PlantHealth);
+        PlantGrowth.SetLimit(currentPlant.PlantGrowthTime, Resource.LimitRule.empty_value);
+        PlantHealth.SetLimit(currentPlant.PlantHealth, Resource.LimitRule.fullheal_value);
         NextPlantUpdateTime = Time.time + 1f;
         ChangePlantSprite();
     }
@@ -177,7 +174,7 @@ public class FarmingSpotController : MonoBehaviour
                     ChangePlantSprite();
                     if (PlantGrowth.GetPercentage() == 1)
                     {
-                        PlantHealth.ResetLimit(currentPlant.PlantAdultCycles * 10);
+                        PlantHealth.SetLimit(currentPlant.PlantAdultCycles * 10, Resource.LimitRule.fullheal_value);
                     }
                 }
                 else

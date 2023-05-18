@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.74244046, b: 0.36320752, a: 1}
+  m_Color: {r: 0, g: 0.97032166, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 570360273}
   - component: {fileID: 907000933}
   - component: {fileID: 907000934}
+  - component: {fileID: 8377852523907486850}
   m_Layer: 0
   m_Name: Mob
   m_TagString: Player
@@ -590,7 +591,7 @@ Transform:
   m_GameObject: {fileID: 1217918130673713261}
   m_LocalRotation: {x: -0, y: -0, z: -0.1633241, w: 0.9865725}
   m_LocalPosition: {x: 6.06, y: 11.71, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 437023634}
@@ -666,15 +667,9 @@ MonoBehaviour:
   gravity: {fileID: 0}
   Planet: {fileID: 0}
   MobName: Player
-  WalkSpeed: 20
-  JumpTime: 0.33
-  MaxJumpSpeed: 20
-  JumpSpeed: 45
-  FallDeceleration: 0.33
-  MaxFallSpeed: 2
-  MaxGlideSpeed: 1
-  GroundTime: 0.1
   CanMove: 1
+  GroundTime: 0.1
+  BelowAngle: 75
   indoor: {fileID: 0}
 --- !u!114 &1217918130673713260
 MonoBehaviour:
@@ -688,10 +683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600e9907e3fcccc4bbf89b8236f95ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DigRange: 0.1
-  DigRadius: 0.5
-  DigCooldown: 0.1
-  MoveSpeed: 1.4
 --- !u!50 &1217918130673713267
 Rigidbody2D:
   serializedVersion: 4
@@ -771,9 +762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
-  canNegative: 0
-  current: 100
-  maximum: 100
   RegenerationPercent: 10
   OxygenDamage: 5
 --- !u!114 &9075029900562901718
@@ -846,6 +834,31 @@ MonoBehaviour:
   Owner: {fileID: 0}
   Inventory: []
   IsShop: 0
+--- !u!114 &8377852523907486850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217918130673713261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac463889b2df8994d9b07c3474552a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkSpeed: 20
+  JumpTime: 0.33
+  MaxJumpSpeed: 20
+  JumpSpeed: 20
+  JumpTimeUpgrade: 0.5
+  JumpUpgradesMax: 0
+  FallDeceleration: 0.33
+  MaxFallSpeed: 2
+  MaxGlideSpeed: 1
+  DigRange: 0.15
+  DigRadius: 0.5
+  DigCooldown: 0.1
+  MoveSpeedMultiplier: 1.4
 --- !u!1 &1217918131570412961
 GameObject:
   m_ObjectHideFlags: 0

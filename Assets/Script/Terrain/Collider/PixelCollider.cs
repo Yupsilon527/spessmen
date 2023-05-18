@@ -8,7 +8,6 @@ using System;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PixelCollider : MonoBehaviour
 {
-    [Range(0, 1)]
     public float aTreshold = 0.5f;
     PolygonCollider2D polycollider;
     SpriteRenderer spriterenderer;

@@ -5,10 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerDigging : MonoBehaviour
 {
-    public float DigRange = 3;
-    public float DigRadius = 1;
-    public float DigCooldown = 1;
-    public float MoveSpeed = 1f;
 
     public Player parent;
     void Update()
@@ -30,22 +26,25 @@ public class PlayerDigging : MonoBehaviour
         parent.movement.CanMove = false;
         while (Input.GetButton("Dig"))
         {
-            digVector = parent.moveInput;
-            digVector = digVector.normalized;
-            digVector = digVector.y * transform.up + digVector.x * transform.right;
-            if (digVector.sqrMagnitude > 0 && lastDigTime < Time.time)
-            {
-                lastDigTime = Time.time + DigCooldown;
-                new ExplosionData((Vector2)transform.position + digVector * DigRange,DigRadius,0,0,1,0).Explode();
-                /*if (!parent.movement.IsGrounded())
-                {
-                    break;
-                }*/
-            }
-            parent.movement.gravity.relativeForce = parent.movement.WalkSpeed * digVector * MoveSpeed;
+            DigDirection();
+            parent.movement.gravity.relativeForce = parent.stats.WalkSpeed * digVector * parent.stats.MoveSpeedMultiplier;
             yield return new WaitForEndOfFrame();
         }
         StopDigging();
+    }
+    void DigDirection()
+    {
+        digVector = parent.moveInput;
+        digVector = digVector.y * transform.up + digVector.x * transform.right;
+        if (digVector.sqrMagnitude > 0 && lastDigTime < Time.time)
+        {
+            lastDigTime = Time.time + parent.stats.GetDigTime();
+            new ExplosionData((Vector2)transform.position + digVector * parent.stats.DigRange, parent.stats.DigRadius, 0, 0, parent.stats.GetDigDamage(), 0).Explode();
+            /*if (!parent.movement.IsGrounded())
+            {
+                break;
+            }*/
+        }
     }
     public void StopDigging()
     {

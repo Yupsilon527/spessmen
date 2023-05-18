@@ -7,11 +7,12 @@ public class ObjectPool : MonoBehaviour
     public Transform activeObjs;
     public Transform inactiveObjs;
 
-        public GameObject PoolItem(GameObject Prefab)
+    public virtual GameObject PoolItem(GameObject Prefab)
     {
         foreach (Transform child in inactiveObjs)
         {
-            if (!child.gameObject.activeSelf && child.name == Prefab.name)
+            if (child != null && !child.gameObject.activeSelf &&
+                Prefab.name.Length <= child.name.Length && Prefab.name == child.name.Substring(0, Prefab.name.Length))
             {
                 ActivateObject(child.gameObject);
                 return child.gameObject;
@@ -20,27 +21,28 @@ public class ObjectPool : MonoBehaviour
 
         return InitFromPrefab(Prefab);
     }
-    GameObject InitFromPrefab(GameObject Prefab)
+    protected virtual GameObject InitFromPrefab(GameObject Prefab)
     {
-        GameObject nEnemy = GameObject.Instantiate(Prefab);
-        nEnemy.name = Prefab.name;
-        if (nEnemy.TryGetComponent(out PoolObject mobData))
-        {
-            mobData.activeObjectPool = this;
-        }
-        ActivateObject(nEnemy);
-        return nEnemy;
+        GameObject nObject = GameObject.Instantiate(Prefab);
+        nObject.name = Prefab.name;
+        ActivateObject(nObject);
+        return nObject;
     }
-    public void ActivateObject(GameObject gOb)
+    public virtual void ActivateObject(GameObject gOb)
     {
+        if (gOb == null) return;
         gOb.transform.SetParent(activeObjs);
         gOb.SetActive(true);
     }
-    public void DeactivateObject(GameObject gOb)
+    public virtual void DeactivateObject(GameObject gOb, bool changeActive = true)
     {
-        gOb.transform.SetParent(inactiveObjs);
-            gOb.SetActive(false);
-        
+        if (gOb == null) return;
+        if (gOb.transform.parent != inactiveObjs)
+        {
+            gOb.transform.SetParent(inactiveObjs);
+            if (changeActive)
+                gOb.SetActive(false);
+        }
     }
 
 

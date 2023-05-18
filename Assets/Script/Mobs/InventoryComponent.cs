@@ -75,7 +75,7 @@ public class InventoryComponent : MonoBehaviour
     {
         if (Inventory.Count == 0)
             return null;
-        return Inventory[ActiveItem];
+         return Inventory[ActiveItem];
     }
     public InventoryEntry[] GetInventoryList()
     {
