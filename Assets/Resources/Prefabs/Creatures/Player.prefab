@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 1217918130673713263}
   - component: {fileID: 1217918130673713260}
   - component: {fileID: 1217918130673713267}
-  - component: {fileID: 1217918130673713264}
+  - component: {fileID: 6831868632628804611}
   - component: {fileID: 293465269553188535}
   - component: {fileID: 2143083556}
   - component: {fileID: 5226539002580152131}
@@ -588,7 +588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217918130673713261}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23651472, w: 0.97162795}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1633241, w: 0.9865725}
   m_LocalPosition: {x: 6.06, y: 11.71, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 0
@@ -665,6 +665,7 @@ MonoBehaviour:
   rbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  MobName: Player
   WalkSpeed: 20
   JumpTime: 0.33
   MaxJumpSpeed: 20
@@ -712,8 +713,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &1217918130673713264
-CapsuleCollider2D:
+--- !u!58 &6831868632628804611
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -726,8 +727,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!114 &293465269553188535
 MonoBehaviour:
   m_ObjectHideFlags: 0

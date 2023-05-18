@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerMob : Mob
 {
     bool FacesRight = false;
-    public float WalkSpeed = 10;
-    public float JumpTime = .33f;
-    public float MaxJumpSpeed = 2;
-    public float JumpSpeed = 1;
-    public float FallDeceleration = .33f;
-    public float MaxFallSpeed = 1;
-    public float MaxGlideSpeed = 1;
-    public float GroundTime = .1f;
 
     public Player parent;
     public bool CanMove = true;
@@ -25,19 +17,25 @@ public class PlayerMob : Mob
         if (SidewaysCamera.active!=null)
         SidewaysCamera.active.FollowMob(this);
     }
-    float LastGroundTime = 0;
-    public bool IsGrounded()
-    {
-        return LastGroundTime > Time.time;
-    }
 
     protected override void Update()
     {
         base.Update();
         if (CanMove)
-            HandleControls();
+            HandleMovement();
     }
     private void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckGrounded(collision);
+    }
+    #region Grounded
+    public float GroundTime = .1f;
+    float LastGroundTime = 0;
+    public bool IsGrounded()
+    {
+        return LastGroundTime > Time.time;
+    }
+    void CheckGrounded(Collision2D collision)
     {
         foreach (ContactPoint2D point in collision.contacts)
         {
@@ -47,15 +45,20 @@ public class PlayerMob : Mob
             }
         }
     }
+    #endregion
     Vector2 modifiedVelocity;
-    void HandleControls()
+    void HandleMovement()
     {
         parent.HandleControls();
-        modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration) ;
+        HandleGravity();
         Move(parent.moveInput.x);
         HandleFall();
         // parent.rigidbody.velocity +=(Vector2)(modifiedVelocity.x * transform.right + modifiedVelocity.y * transform.up) ;
         parent.movement.gravity.relativeForce = modifiedVelocity;
+    }
+    void HandleGravity()
+    {
+        modifiedVelocity.y = Mathf.Max(-MaxFallSpeed, modifiedVelocity.y - FallDeceleration);
     }
     void Move(float dir)
     {
