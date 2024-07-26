@@ -27,6 +27,7 @@ public class WorldController : MonoBehaviour
     public SpriteRenderer renderComp;
 
     public ObjectPool MobPool;
+    public ObjectPool EffectPool;
 
     private void Start() {
         active = this;

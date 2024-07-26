@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7659768135546024898}
-  m_LocalRotation: {x: 0, y: 0, z: 0.089041024, w: 0.99602795}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08904102, w: 0.996028}
   m_LocalPosition: {x: -0.279, y: 1.548, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
@@ -122,14 +122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d6ef28674fd9f43b2f0130d9c436bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbody: {fileID: 0}
+  rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  FreeRotation: 1
+  posUpdateInterval: 0.33
+  MobName: 
   category: 0
+  ediblecategory: 3
   container: {fileID: 0}
   RequiresGroundToUse: 0
   ThrowSpeed: 5
   GoldValue: 0
+  StartSuspended: 0
 --- !u!58 &7659768135546024903
 CircleCollider2D:
   m_ObjectHideFlags: 0

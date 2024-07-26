@@ -25,6 +25,7 @@ public class InventoryComponent : MonoBehaviour
             Inventory.Add(item);
             item.OnMoveToContainer(this);
             return true;
+            
         }
         return false;
     }
@@ -34,12 +35,14 @@ public class InventoryComponent : MonoBehaviour
     }
     public void UnloadItemAtPosition(ItemMob item, Vector2 position)
     {
+        if (item == null) return;
         item.transform.position = position;
         if (Inventory.IndexOf(item) < ActiveItem)
             CycleItemLeft();
         Inventory.Remove(item);
         item.container = null;
         item.OnDrop();
+        AudioManager.Instance.PlaySfx("Drop Item", 10);
     }
     public void TransferItem(InventoryComponent otherInventory)
     {
@@ -49,7 +52,7 @@ public class InventoryComponent : MonoBehaviour
     {
         foreach (ItemMob i in Inventory)
         {
-            if (i.name == itemName)
+            if (i.GetMobName() == itemName)
             {
                 return i;
             }
@@ -94,7 +97,7 @@ public class InventoryComponent : MonoBehaviour
             }
             if (!accounted)
             {
-                entries.Add(new InventoryEntry( i.name, 1));
+                entries.Add(new InventoryEntry( i.GetMobName(), 1));
             }
         }
         return entries.ToArray();
@@ -104,14 +107,14 @@ public class InventoryComponent : MonoBehaviour
         public string itemName;
         public int itemCount;
 
-        public InventoryEntry(string itemName, int itemCount)
+        public InventoryEntry(string itemName,  int itemCount)
         {
             this.itemName = itemName;
             this.itemCount = itemCount;
         }
     }
     public bool IsShop = false;
-    public void SellItem(Player sellingPlayer, ItemMob item)
+    public void SellItem(PlayerMob sellingPlayer, ItemMob item)
     {
         if (Inventory.Contains(item))
         {

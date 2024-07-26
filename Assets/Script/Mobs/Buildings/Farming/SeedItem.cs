@@ -7,8 +7,9 @@ public class SeedItem : ItemMob
     public PlantData Plant;
     public override void OnActivate(PlayerMob user)
     {
-        if (user.parent.farmer.FarmingSpot != null && user.parent.farmer.FarmingSpot.TryPlant(Plant))
+        if (user.farmer.FarmingSpot != null && user.farmer.FarmingSpot.TryPlant(Plant))
         {
+            //SFX plant seed
             Kill();
             return;
         }

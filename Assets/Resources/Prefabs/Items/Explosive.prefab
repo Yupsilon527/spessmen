@@ -12,12 +12,16 @@ PrefabInstance:
       value: Explosive
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 747e9abe5af9b4217b7883e9e94aea6c, type: 3}
+    - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.15690286
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.r
@@ -87,16 +91,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c798c5182bdc9464497241f2881a6fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbody: {fileID: 0}
+  rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  posUpdateInterval: 0.1
   MobName: Explosive
   category: 0
+  ediblecategory: 3
   container: {fileID: 0}
   RequiresGroundToUse: 0
   ThrowSpeed: 6
   GoldValue: 0
-  StartStuck: 0
+  StartSuspended: 0
+  ExplosionEffect: {fileID: 1474804383275271558, guid: c872ad9f7e0471b459a0c58f935e38b4, type: 3}
   DetonationForce: 10
   DetonationDuration: 0
   ExplosionRadius:
@@ -104,6 +111,6 @@ MonoBehaviour:
   - 1.4
   - 0.8
   ExplosionDamage: 000000000300000002000000
-  CreatureDamage: 0
+  CreatureDamage: 25
   KnockbackForce: 100
   KnockbackRange: 1.6

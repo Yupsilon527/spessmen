@@ -7,7 +7,7 @@ public class BuildingKitItem : ItemMob
     public GameObject[] AllowedBuildings;
     public override void OnActivate(PlayerMob user)
     {
-        user.parent.menu.OpenConstructionMenu(this);
+        user.menu.OpenConstructionMenu(this);
         
     }
 }

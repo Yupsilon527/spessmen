@@ -10,7 +10,15 @@ public class ItemMob : Mob
         tool,
         large
     }
+    public enum Edibility
+    {
+        fruit,
+        explosive,
+        gold,
+        inedible
+    }
     public Category category;
+    public Edibility ediblecategory;
     public InventoryComponent container;
     public bool RequiresGroundToUse = false;
     public float ThrowSpeed = 10;
@@ -22,10 +30,10 @@ public class ItemMob : Mob
     public virtual void OnActivate(PlayerMob user)
     {
         SetSuspended(false);
-        Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed;
+        Vector2 throwVel = user.GetForwardVector(true) * ThrowSpeed + Vector2.up * ThrowSpeed * user.ThrowStrength;
         if (container!=null)
         container.UnloadItem(this);
-        rbody.velocity = throwVel.x* user.transform.right + throwVel.y * user.transform.up;
+        rigidbody.velocity = throwVel.x* user.transform.right + throwVel.y * user.transform.up;
     }
     public override bool IsInside()
     {
@@ -37,6 +45,7 @@ public class ItemMob : Mob
             container.UnloadItem(this);
         container = ncontainer;
         gameObject.SetActive(false);
+        AudioManager.Instance.PlaySfx("Pickup Item", 6);
     }
     public void DropFromContainer()
     {
@@ -45,15 +54,16 @@ public class ItemMob : Mob
     }
     public virtual void OnDrop()
     {
+        SetSuspended(false);
         gameObject.SetActive(true);
-        HandleOrbit();
+        HandleOrbit(true);
     }
     public override void Kill()
     {
         DropFromContainer();
         base.Kill();
     }
-    public virtual void OnSold(Player sellingPlayer)
+    public virtual void OnSold(PlayerMob sellingPlayer)
     {
         sellingPlayer.resources.GiveResource( ResourceController.Resources.gold ,GoldValue);
     }
@@ -63,27 +73,24 @@ public class ItemMob : Mob
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.transform.TryGetComponent(out PlayerItemHolding player))
+        foreach (iItemToucher col in collision.transform.GetComponents<iItemToucher>())
         {
-            player.OnTouchItem(this);
+            col.OnTouchEnter(this);
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.TryGetComponent(out PlayerItemHolding player))
+        foreach (iItemToucher col in collision.transform.GetComponents<iItemToucher>())
         {
-                player.OnTouchExit( this);
+            col.OnTouchExit( this);
             
         }
     }
     public bool StartSuspended = false;
 public void SetSuspended(bool value)
     {
-        rbody.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
-    }
-    public bool IsSuspended()
-    {
-        return rbody.bodyType == RigidbodyType2D.Static;
+        suspended = value;
+        rigidbody.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 }

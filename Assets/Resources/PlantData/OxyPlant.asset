@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad9e519b4576c74888a1b4afc7296d5, type: 3}
   m_Name: OxyPlant
   m_EditorClassIdentifier: 
-  PlantName: Oxygen Plant
-  PlantGrowthTime: 600
-  PlantHunger: 0.75
+  PlantName: Evergreen
+  PlantGrowthTime: 800
+  PlantHunger: 0.5
   PlantHealth: 120
   PlantAdultCycles: 33
-  OxygenProduction: 0.25
+  OxygenProduction: 0.5
   FruitChance: 0
+  FruitDropChance: 15
   FruitPrefab: {fileID: 0}
   SeedPrefab: {fileID: 5838067984206625777, guid: 0996901a124c1914d83f93730bbcde63, type: 3}
   SeedCount: 3
-  SpriteSeedling: {fileID: 1179861178, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteMiddle: {fileID: 1378159248, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteAdult: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteDry: {fileID: 1983338742, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SpriteSeedling: {fileID: -209022775, guid: fc40eaf7baed82247824fc454cd2c9bb, type: 3}
+  SpriteMiddle: {fileID: -1786298052, guid: fc40eaf7baed82247824fc454cd2c9bb, type: 3}
+  SpriteAdult: {fileID: -1422110185, guid: fc40eaf7baed82247824fc454cd2c9bb, type: 3}
+  SpriteDry: {fileID: -866017986, guid: fc40eaf7baed82247824fc454cd2c9bb, type: 3}

@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: BoomPlant
   m_EditorClassIdentifier: 
   PlantName: Explosive Plant
-  PlantGrowthTime: 600
-  PlantHunger: 0.75
+  PlantGrowthTime: 400
+  PlantHunger: 1
   PlantHealth: 75
-  PlantAdultCycles: 160
+  PlantAdultCycles: 480
   OxygenProduction: 0.04
-  FruitChance: 9
+  FruitChance: 8
+  FruitDropChance: 0
   FruitPrefab: {fileID: 5446169928913621129, guid: a7fca94b90dea1742831639aad66480d, type: 3}
   SeedPrefab: {fileID: 5838067984206625777, guid: 0c0e4a582a0a030498652a6c19b2daf2, type: 3}
-  SeedCount: 2
-  SpriteSeedling: {fileID: 1179861178, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteMiddle: {fileID: 1378159248, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteAdult: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteDry: {fileID: 1983338742, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SeedCount: 1
+  SpriteSeedling: {fileID: 1916338352, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteMiddle: {fileID: 778973214, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteAdult: {fileID: 1683007419, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteDry: {fileID: 1839025162, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}

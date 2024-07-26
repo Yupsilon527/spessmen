@@ -85,6 +85,18 @@ public class Plixel
     public void ChangeElement(TerrainDefines.Element nelement)
     {
         tcolor = TerrainDefines.ElementColors[(int)nelement];
+        if (element == TerrainDefines.Element.dirt) {
+            foreach (Plixel n in GetNeighbors(true, true))
+            {
+                if (!n.IsForeGround())
+                {
+                    tcolor = TerrainDefines.GrassColor;
+                    break;
+                }
+        }
+        }
+
+
         element = nelement;
         switch (nelement)
         {
@@ -119,14 +131,28 @@ public class Plixel
         return element;
     }
 
-    public Plixel[] GetNeighbors(bool relevant)
+    public Plixel[] GetNeighbors(bool relevant = false, bool diag = false)
     {
+        if (diag)
+            return new Plixel[]
+            {
+            parent.GetTileAt(position.x + 1, position.y, relevant),
+            parent.GetTileAt(position.x - 1, position.y, relevant),
+            parent.GetTileAt(position.x, position.y + 1, relevant),
+            parent.GetTileAt(position.x, position.y - 1, relevant)
+            };
+        else
+
         return new Plixel[]
         {
             parent.GetTileAt(position.x + 1, position.y, relevant),
             parent.GetTileAt(position.x - 1, position.y, relevant),
             parent.GetTileAt(position.x, position.y + 1, relevant),
-            parent.GetTileAt(position.x, position.y - 1, relevant)
+            parent.GetTileAt(position.x, position.y - 1, relevant),
+            parent.GetTileAt(position.x + 1, position.y+ 1, relevant),
+            parent.GetTileAt(position.x - 1, position.y+ 1, relevant),
+            parent.GetTileAt(position.x+ 1, position.y - 1, relevant),
+            parent.GetTileAt(position.x- 1, position.y - 1, relevant)
         };
     }
     public bool CanSpawnEntity()

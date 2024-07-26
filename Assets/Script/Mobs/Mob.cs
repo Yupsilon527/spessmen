@@ -8,11 +8,11 @@ using UnityEngine;
 public abstract class Mob : MonoBehaviour
 {
     protected int eid = 0;
-    public Rigidbody2D rbody;
+    public Rigidbody2D rigidbody;
     protected virtual void Awake()
     {
-        if (rbody == null)
-            rbody = GetComponent<Rigidbody2D>();
+        if (rigidbody == null)
+            rigidbody = GetComponent<Rigidbody2D>();
         if (gravity == null)
             gravity = GetComponent<ConstantForce2D>();
     }
@@ -24,15 +24,20 @@ public abstract class Mob : MonoBehaviour
     {
             OrbitPoint(Vector3.zero);
     }
-    protected virtual void Update()
+    protected bool suspended = false;
+    public bool IsSuspended()
+    {
+        return suspended;
+    }
+    protected virtual void FixedUpdate()
     {
         if (Planet ==null)
         {
             TieToPlanet(PlanetoidController.mainPlanet);
         }
-        else
+        else if (!suspended)
         {
-            HandleOrbit();
+            HandleOrbit(false);
         }
     }
     public virtual void Register()
@@ -46,7 +51,7 @@ public abstract class Mob : MonoBehaviour
     }
     public virtual bool IsInMotion()
     {
-        return gameObject.activeInHierarchy && rbody.IsAwake();
+        return gameObject.activeInHierarchy && rigidbody.IsAwake();
     }
     public  void HandleShockwave(ExplosionData eData)
     {
@@ -79,7 +84,7 @@ public abstract class Mob : MonoBehaviour
     public virtual void ApplyForce(Vector2 force, Vector2 center)
     {
         // rigidbody.AddForceAtPosition(force, center);
-        rbody.AddForce (force);
+        rigidbody.AddForce (force);
         WorldController.active.MobsInMotion.Add(this);
         Debug.Log("[Mob] Apply " + force + " force to " + name + " at point " + center);
        
@@ -92,7 +97,7 @@ public abstract class Mob : MonoBehaviour
     public virtual void Kill()
     {
         Debug.Log("[Mob] Kill " + name);
-        gameObject.SetActive(false);
+        WorldController.active.MobPool.DeactivateObject(gameObject);
     }
     public virtual bool WasKilled()
     {
@@ -103,25 +108,36 @@ public abstract class Mob : MonoBehaviour
     protected void TieToPlanet(PlanetoidController p)
     {
         Planet = p;
-        if (rbody.gravityScale != 0)
+        if (rigidbody.gravityScale != 0)
         {
-            rbody.gravityScale = 0;
+            rigidbody.gravityScale = 0;
         }
-        HandleOrbit();
+        HandleOrbit(true);
     }
-    protected virtual void HandleOrbit()
+
+    public bool FreeRotation = false;
+    public float Mass = 10;
+    protected virtual void HandleOrbit(bool force)
     {
         if (Planet != null)
         {
-            OrbitPoint(Planet.transform.position);
-            //rbody.velocity = -vectorUp.normalized * 2 ;
-            gravity.force = -transform.up * 10;
+            gravity.force = -vectorUp * Mass;
+            if(force ||(!FreeRotation && nextPosUpdate < Time.time))
+            {
+                OrbitPoint(Planet.transform.position);
+                nextPosUpdate = Time.time + posUpdateInterval;
+            }
         }
     }
+    float nextPosUpdate = 0f;
+    public float posUpdateInterval = .1f;
+    Vector2 vectorUp = Vector2.zero;
     protected void OrbitPoint(Vector3 point)
     {
-        Vector2 vectorUp = (transform.position - point);
-        transform.up = vectorUp;
+        vectorUp = (transform.position - point).normalized;
+        if (Mathf.Abs(vectorUp.x) > .01f)
+            transform.up = vectorUp;
+       
     }
     public string MobName = "";
     public virtual string GetMobName()

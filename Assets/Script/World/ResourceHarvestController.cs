@@ -21,20 +21,26 @@ public class ResourceHarvestController : MonoBehaviour
             return;
 
         TerrainDefines.Element tileElement = tile.GetElement();
-        if (tileElement > TerrainDefines.Element.nothing)
+        if (tileElement > TerrainDefines.Element.dirt)
         {
             if ((tileElement != TerrainDefines.Element.dirt && tileElement != TerrainDefines.Element.rock) || Random.value * 100 < TerrainDefines.MatterLossChance)
                 MaterialsHarvested[(int)tileElement]++;
             if (MaterialsHarvested[(int)tileElement]>TerrainDefines.MatterInChunk)
             {
                 MaterialsHarvested[(int)tileElement] -= TerrainDefines.MatterInChunk;
-                GameObject orechunk = GameObject.Instantiate(ChunkPrefab);
-                orechunk.transform.position = tile.parent.tiletoworldPosition(tile.position);
-                if (orechunk.TryGetComponent(out ChunkItem ore))
-                {
-                    ore.ChangeElement(tileElement, TerrainDefines.MatterInChunk);
-                }
+                TrySpawnChunk(ChunkPrefab, tile.parent.tiletoworldPosition(tile.position), tileElement, TerrainDefines.MatterInChunk);
             }
         }
+    }
+    public static GameObject TrySpawnChunk(GameObject prefab, Vector3 pos, TerrainDefines.Element element, int qty)
+    {
+        //TODO try fuse item, pool item
+        GameObject orechunk = GameObject.Instantiate(prefab);
+        orechunk.transform.position = pos;
+        if (orechunk.TryGetComponent(out ChunkItem ore))
+        {
+            ore.ChangeElement(element, qty);
+        }
+        return orechunk;
     }
 }

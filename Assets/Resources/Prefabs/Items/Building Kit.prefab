@@ -14,18 +14,18 @@ PrefabInstance:
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+      objectReference: {fileID: 21300000, guid: 631474f2c9ea048769b00d825700e0a0, type: 3}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.g
-      value: 0.5424111
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024901, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_Color.r
-      value: 0.8396226
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7659768135546024902, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
       propertyPath: m_RootOrder
@@ -91,17 +91,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3684b30f7fded4f9f3055fce791fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbody: {fileID: 0}
+  rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
   MobName: Building Kit
   category: 0
+  ediblecategory: 3
   container: {fileID: 0}
   RequiresGroundToUse: 1
   ThrowSpeed: 10
   GoldValue: 0
-  StartStuck: 0
+  StartSuspended: 0
   AllowedBuildings:
-  - {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+  - {fileID: 9047840294318542791, guid: c90e79474f7e3ac4cb4b46ff83379a2f, type: 3}
+  - {fileID: 7096855041164256914, guid: ee1379d6a26636340b63bf48d1812e85, type: 3}
   - {fileID: 5350753102010905279, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
   - {fileID: 8184542918885735660, guid: 03aa1293861613b41a88ef806ff9e244, type: 3}

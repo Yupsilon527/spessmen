@@ -9,14 +9,9 @@ public class BuildingMob : Mob
     public float BuildCost = 100;
     public float BuildTime = 10;
 
-    public bool CanBeBuildThere(Vector2 center, float angle)
+    public bool CanBeBuildThere(Vector2 center, Transform builder)
     {
-        Vector2 vectorUp = new Vector2(
-            Mathf.Cos(angle),
-            Mathf.Sin(angle)
-            );
-
-        foreach (RaycastHit2D collision in Physics2D.BoxCastAll(center + vectorUp * ConstructionCollider.offset.y, ConstructionCollider.size*.5f, angle, Vector2.zero,0, LayerMask.GetMask(new string[] { "Foreground" }) ))
+        foreach (RaycastHit2D collision in Physics2D.BoxCastAll(center + (Vector2)builder.up * ConstructionCollider.offset.y, ConstructionCollider.size*.5f, builder.rotation.eulerAngles.z, Vector2.zero,0, LayerMask.GetMask( "Foreground" ) ))
         {
             if (collision.transform.tag == "Building")
             {
@@ -53,6 +48,8 @@ public class BuildingMob : Mob
             BuildingTexture.size = new Vector2(1, percent*.01f);
         }
         buildPercentage = Mathf.Clamp(percent, 0, 100);
+
+        //SFX building complete sound, only if the buildPercentage is at 100
     }
     public float GetBuildingPercentage()
 

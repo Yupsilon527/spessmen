@@ -34,9 +34,9 @@ public class ChunkItem : ItemMob
     }
     public override void OnActivate(PlayerMob user)
     {
-        if (GetNutritionalValue()>0 && user.parent.farmer.FarmingSpot !=null)
+        if (GetNutritionalValue()>0 && user.farmer.FarmingSpot !=null)
         {
-            if (!user.parent.farmer.FarmingSpot.FeedItem(this))
+            if (!user.farmer.FarmingSpot.FeedItem(this))
                 base.OnActivate(user);
         }
         else
@@ -72,7 +72,7 @@ public class ChunkItem : ItemMob
                 PlayerMob playerOwner = (PlayerMob)container.Owner;
                 if (playerOwner != null)
                 {
-                    ResourceController res = playerOwner.parent.resources;
+                    ResourceController res = playerOwner.resources;
 
                     switch (Element)
                     {
@@ -83,7 +83,7 @@ public class ChunkItem : ItemMob
                             res.GiveResource(ResourceController.Resources.wood, Quantity);
                             break;
                     }
-                    ncontainer.SellItem(playerOwner.parent,this);
+                    ncontainer.SellItem(playerOwner,this);
                     return;
                 }
             }

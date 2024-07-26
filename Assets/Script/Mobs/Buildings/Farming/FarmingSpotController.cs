@@ -43,6 +43,8 @@ public class FarmingSpotController : MonoBehaviour
     {
         if (Nutriment.GetValue()< Nutriment.GetLimit(false) &&  item.GetNutritionalValue()>0)
         {
+            //SFX feeding nutriment to plant
+
             ChunkItem chunk = (ChunkItem)item;
             if (chunk != null)
             {
@@ -91,6 +93,8 @@ public class FarmingSpotController : MonoBehaviour
     }
     void GiveNewPlant(PlantData plant)
     {
+
+        //SFX new plant planted
         currentPlant = plant;
         PlantGrowth.SetLimit(currentPlant.PlantGrowthTime, Resource.LimitRule.empty_value);
         PlantHealth.SetLimit(currentPlant.PlantHealth, Resource.LimitRule.fullheal_value);
@@ -227,7 +231,7 @@ void     ProduceFruit()
         {
             return fruit.container != null && fruit.IsSuspended();
         });
-        if (Fruits.Count > 0 && Random.value * 100 < 15)
+        if (Fruits.Count > 0 && Random.value * 100 < currentPlant.FruitDropChance)
         {
             int iF = Mathf.RoundToInt(Random.Range(0, Fruits.Count - 1));
             Fruits[iF].SetSuspended(false);

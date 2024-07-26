@@ -65,10 +65,10 @@ public class PlixelMapMob : Mob
 
         return newChunk.GetComponent<PlixelMapMob>();
     }
-    protected override void HandleOrbit()
+    protected override void HandleOrbit(bool forced)
     {
         if (Planet.gameObject != gameObject)
-            base.HandleOrbit();
+            base.HandleOrbit(forced);
     }
 
     public PlixelMapMob BreakChunk(Plixel[] chunk)
@@ -128,8 +128,8 @@ public class PlixelMapMob : Mob
     public void setComplete(bool value)
     {
         completed = value;
-        rbody.mass = (float)nTiles * TerrainDefines.terrain_mass_multiplier;
-        rbody.simulated = value;
+        rigidbody.mass = (float)nTiles * TerrainDefines.terrain_mass_multiplier;
+        rigidbody.simulated = value;
     }
 
     public bool isComplete()
@@ -533,7 +533,7 @@ public class PlixelMapMob : Mob
     }
     public override void ApplyForce(Vector2 force, Vector2 center)
     {
-         rbody.AddForceAtPosition(force, center);
+         rigidbody.AddForceAtPosition(force, center);
         WorldController.active.MobsInMotion.Add(this);
         Debug.Log("[PlixelMapMob] Apply " + force + " force to " + name + " at point " + center);
 
@@ -690,7 +690,7 @@ public class PlixelMapMob : Mob
             else
             {
                 yield return new WaitForEndOfFrame();
-                rbody.bodyType = solid ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+                rigidbody.bodyType = solid ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
                 if (chunk_updated.Count > 0)
                 {
                     Debug.Log("[entityTerrain] Revise Chunk Colliders");
@@ -713,7 +713,7 @@ public class PlixelMapMob : Mob
 
     public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
     {
-        consideredforce = new Vector4(rbody.centerOfMass.x, rbody.centerOfMass.y, force, damage);
+        consideredforce = new Vector4(rigidbody.centerOfMass.x, rigidbody.centerOfMass.y, force, damage);
         base.HandleShockwave(center, dir, force_delta, force, damage);
     }
 

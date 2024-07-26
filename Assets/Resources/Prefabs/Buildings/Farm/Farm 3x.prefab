@@ -11,10 +11,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soil 2
       objectReference: {fileID: 0}
-    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3717711451474896131, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -69,12 +65,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1648013907247070663, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648013907247070663, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 1791812468029010200, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: MobName
-      value: Farm x3
+      value: Large Forest
       objectReference: {fileID: 0}
     - target: {fileID: 1791812468029010200, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: BuildCost
@@ -83,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 1791812468029010200, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: BuildTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936824837969438846, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5350753101288097195, guid: 7a8fe54f445a666419d6de638cb30f83, type: 3}
       propertyPath: m_LocalScale.x
@@ -161,10 +165,6 @@ PrefabInstance:
     - target: {fileID: 1371876206318206429, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_Name
       value: Soil 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247578198513965180, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3717711451474896131, guid: 915f5205d9bc8904f8c19c605899e5d7, type: 3}
       propertyPath: m_RootOrder

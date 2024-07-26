@@ -25,8 +25,8 @@ public class InterfaceController : MonoBehaviour
     public GameObject helpTooltip;
     Color errorColor = Color.clear;
 
-    Player myPlayer;
-    public void TieToPlayer(Player nPlayer)
+    PlayerMob myPlayer;
+    public void TieToPlayer(PlayerMob nPlayer)
     {
         myPlayer = nPlayer;
     }
@@ -38,16 +38,16 @@ public class InterfaceController : MonoBehaviour
         healthGauge.text = "Health: " + Mathf.Ceil(myPlayer.health.Health.GetPercentage() * 100) + "%";
         oxygenGauge.text = "Oxygen: " + Mathf.Ceil(AtmosphereController.oxygen.GetPercentage() * 100) + "%";
 
-        goldGauge.text = "Gold: " + myPlayer.resources.GetResource(ResourceController.Resources.gold);
-        woodGauge.text = "Stone: " + myPlayer.resources.GetResource(ResourceController.Resources.wood);
+        goldGauge.text = "Gold: " + Mathf.Floor(myPlayer.resources.GetResource(ResourceController.Resources.gold));
+        woodGauge.text = "Stone: " + Mathf.Floor(myPlayer.resources.GetResource(ResourceController.Resources.wood));
 
         if (myPlayer.backpack.GetActiveItem() != null)
             handTooltip.text = myPlayer.backpack.GetActiveItem().GetMobName();
         else
             handTooltip.text = "";
 
-        if (myPlayer.hauler.TouchedItem != null)
-            itemTooltip.text = myPlayer.hauler.TouchedItem.GetMobName();
+        if (myPlayer.hauler.GetTouchedItem() != null)
+            itemTooltip.text = myPlayer.hauler.GetTouchedItem().GetMobName();
         else
             itemTooltip.text = "";
         if (helpTooltip != null)

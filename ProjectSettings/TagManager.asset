@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 2819900491
+    locked: 0
   - name: Terrain
     uniqueID: 1866581795
     locked: 0

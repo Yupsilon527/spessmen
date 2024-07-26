@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad9e519b4576c74888a1b4afc7296d5, type: 3}
   m_Name: GoldPlant
   m_EditorClassIdentifier: 
-  PlantName: Gold Plant
-  PlantGrowthTime: 1200
+  PlantName: Golden Tree
+  PlantGrowthTime: 400
   PlantHunger: 1.2
   PlantHealth: 50
-  PlantAdultCycles: 300
+  PlantAdultCycles: 600
   OxygenProduction: 0.02
-  FruitChance: 3
-  FruitPrefab: {fileID: 222666570693592656, guid: e02529076405410439c588c404b14c67, type: 3}
+  FruitChance: 9
+  FruitDropChance: 1
+  FruitPrefab: {fileID: 1957195421440852976, guid: 881f6aa5a003b33428619b1b3f12b8c4, type: 3}
   SeedPrefab: {fileID: 5838067984206625777, guid: d96888d1d0e3be94881a2273486748a8, type: 3}
-  SeedCount: 1
-  SpriteSeedling: {fileID: 1179861178, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteMiddle: {fileID: 1378159248, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteAdult: {fileID: 812116845, guid: efc904250842a574ca5aff6bce217851, type: 3}
-  SpriteDry: {fileID: 1983338742, guid: efc904250842a574ca5aff6bce217851, type: 3}
+  SeedCount: 0
+  SpriteSeedling: {fileID: 1916338352, guid: 6479b867632a5194b879a5a097638bc9, type: 3}
+  SpriteMiddle: {fileID: 778973214, guid: 6479b867632a5194b879a5a097638bc9, type: 3}
+  SpriteAdult: {fileID: 1683007419, guid: 6479b867632a5194b879a5a097638bc9, type: 3}
+  SpriteDry: {fileID: 1839025162, guid: 6479b867632a5194b879a5a097638bc9, type: 3}

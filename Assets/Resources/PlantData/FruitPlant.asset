@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad9e519b4576c74888a1b4afc7296d5, type: 3}
+  m_Name: FruitPlant
+  m_EditorClassIdentifier: 
+  PlantName: Apple
+  PlantGrowthTime: 200
+  PlantHunger: 0.75
+  PlantHealth: 100
+  PlantAdultCycles: 600
+  OxygenProduction: 0.1
+  FruitChance: 7
+  FruitDropChance: 3
+  FruitPrefab: {fileID: 1957195421440852976, guid: fbbbfdfc812a0ea449016a5d3baa5374, type: 3}
+  SeedPrefab: {fileID: 5838067984206625777, guid: e5b47aac392df7a428f9c5f993af7d96, type: 3}
+  SeedCount: 2
+  SpriteSeedling: {fileID: 1916338352, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteMiddle: {fileID: 778973214, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteAdult: {fileID: 1683007419, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}
+  SpriteDry: {fileID: 1839025162, guid: 73de7b3ca08cc2b41abad229da237a15, type: 3}

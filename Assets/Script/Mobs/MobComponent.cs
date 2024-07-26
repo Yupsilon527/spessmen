@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MobComponent : MonoBehaviour
 {
-    public Mob Owner;
+    public Mob parent;
     protected virtual void Awake()
     {
-        if (Owner==null)
-        Owner = GetComponent<Mob>();
+        if (parent==null)
+        parent = GetComponent<Mob>();
     }
 }

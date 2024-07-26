@@ -10,7 +10,6 @@ public class PlayerMenuController : MonoBehaviour
     List<GameObject> entries;
 
     public delegate bool PlayerMenuAction();
-    public string[] Entries;
     RectTransform rectTransform;
 
     private void Awake()
@@ -18,6 +17,13 @@ public class PlayerMenuController : MonoBehaviour
         entries = new List<GameObject> { transform.GetChild(0).gameObject };
 
         rectTransform = entries[0].GetComponent<RectTransform>();
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ShutDownMenu();
+        }
     }
     public void OpenAtPosition(string[] Names, PlayerMenuAction[] ButtonAction, Vector3 Position)
     {
@@ -36,13 +42,19 @@ public class PlayerMenuController : MonoBehaviour
     }
 
     float rectHeight = 0;
-    public void LoadEntries(string[] Names, PlayerMenuAction[] ButtonAction)
+
+    public string[] Names;
+    public PlayerMenuAction[] Actions;
+    public void LoadEntries(string[] names, PlayerMenuAction[] buttonAction)
     {
         ClearList();
+        Names = names;
         int nEntries = Names.Length;
-        if (ButtonAction != null)
+        if (buttonAction != null)
         {
-            Mathf.Min(Names.Length, ButtonAction.Length);
+            Actions = buttonAction;
+            nEntries = Mathf.Min(Names.Length, Actions.Length);
+        
         }
 
         if (nEntries > 0)
@@ -91,7 +103,7 @@ public class PlayerMenuController : MonoBehaviour
                     listle.name = "Entry " + Value;
 
                     RectTransform tRect = listle.GetComponent<RectTransform>();
-                    tRect.anchoredPosition = Vector2.down * (rectHeight + tRect.rect.height * .5f);
+                    tRect.anchoredPosition = Vector2.down * (rectHeight - (tRect.rect.height * .5f * nEntries));
                     tRect.localScale = Vector3.one;
                     tRect.localRotation = Quaternion.identity;
                     tRect.sizeDelta = entries[0].GetComponent<RectTransform>().sizeDelta;
@@ -99,13 +111,16 @@ public class PlayerMenuController : MonoBehaviour
                     listle.GetComponentInChildren<TextMeshProUGUI>().text = Zim;
 
                     Button lBtn = listle.GetComponent<Button>();
-                    if (ButtonAction != null)
+                    
+                    if (Actions != null)
                     {
                         lBtn.enabled = true;
                         lBtn.onClick.RemoveAllListeners();
-                        lBtn.onClick.AddListener(() => { if (ButtonAction[Value]()) { Close(); } });
+                        lBtn.onClick.AddListener(() => { if (Actions[Value]()) { Close(); } });
                         if (i == 0)
                             lBtn.Select();
+                        if (i == Names.Length - 1)
+                            closeButton = lBtn;
                     }
                     else
                     {
@@ -114,6 +129,24 @@ public class PlayerMenuController : MonoBehaviour
                     rectHeight += posRect.height;
                 }
             }
+
+            /*for (int i = 0; i < entries.Count; i++)
+            {
+                GameObject btnT = entries[i < 1 ? (entries.Count - 1) : 1];
+                GameObject btnM = entries[i];
+                GameObject btnC = entries[(i + 1) % entries.Count];
+
+                if (btnM.gameObject.TryGetComponent(out Button btnComp))
+                {
+                    Navigation navigation = new Navigation();
+
+                    navigation.mode = Navigation.Mode.Explicit;
+                    navigation.selectOnUp = btnT.GetComponent<Button>();
+                    navigation.selectOnDown = btnT.GetComponent<Button>();
+
+                    btnComp.navigation = navigation;
+                }
+            }*/
             transform.position += rectHeight * .5f * Vector3.up;
         }
         else { Close(); }
@@ -136,7 +169,7 @@ public class PlayerMenuController : MonoBehaviour
     public void RotateToPosition(Quaternion rotation)
     {
         transform.rotation = rotation;
-        transform.position += transform.up * Entries.Length * .5f * rectHeight;
+        //transform.position += transform.up * Names.Length * .5f * rectHeight;
     }
     public void Open()
     {
@@ -154,5 +187,13 @@ public class PlayerMenuController : MonoBehaviour
     {
         foreach (GameObject listle in entries)
         { listle.SetActive(false); }
+    }
+    Button closeButton;
+    public void ShutDownMenu()
+    {
+        if (closeButton != null)
+        {
+            closeButton.onClick.Invoke();
+        }
     }
 }

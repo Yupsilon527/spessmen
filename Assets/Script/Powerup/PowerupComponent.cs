@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PowerupComponent : MonoBehaviour
 {
-    public virtual bool OnBuy(Player owningPlayer)
+    public virtual bool OnBuy(PlayerMob owningPlayer)
     {
         return true;
     }
