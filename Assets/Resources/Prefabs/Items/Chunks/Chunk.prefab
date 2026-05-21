@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b21975811d73744b21c1f7490b40b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}

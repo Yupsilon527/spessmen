@@ -26,9 +26,12 @@ public class PlixelDisplayManager : PlixelManager
     {
         width = parent.GetWidth();
         height = parent.GetHeight();
-        outputTexture = new Texture2D(width, height);
-        spriteRenderer.sprite = Sprite.Create(outputTexture, new Rect(0, 0, outputTexture.width, outputTexture.height), Vector2.one / 2, TerrainDefines.terrain_PPU);
-        pixels = outputTexture.GetPixels32();
+        if (width > 0 && height > 0)
+        {
+            outputTexture = new Texture2D(width, height);
+            spriteRenderer.sprite = Sprite.Create(outputTexture, new Rect(0, 0, outputTexture.width, outputTexture.height), Vector2.one / 2, TerrainDefines.terrain_PPU);
+            pixels = outputTexture.GetPixels32();
+        }
     }
     public void SetPixel(int x, int y, Color32 color)
     {
