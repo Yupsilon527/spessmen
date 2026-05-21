@@ -50,7 +50,7 @@ public class PlixelManager : Initializable
     Coroutine work;
     public bool IsReady()
     {
-        return work == null;
+        return work == null || !isActiveAndEnabled;
     }
     protected virtual IEnumerator ModifyCoroutine()
     {

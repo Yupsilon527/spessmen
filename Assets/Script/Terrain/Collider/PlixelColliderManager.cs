@@ -39,6 +39,7 @@ public class PlixelCollisionManager : PlixelManager
         transform.localPosition = new Vector3(offsetX, offsetY, 0.0f);
 
         UpdateSolidState();
+        base.OnCreated();
     }
     private void FixedUpdate()
     {

@@ -45,10 +45,10 @@ public class WorldController : MonoBehaviour
             renderComp.enabled = false;
             yield return new WaitForEndOfFrame();
         Debug.Log("[entityWorld] Draw the world.");
-        PlixelMapMob tileset;
         ChangePhase(GamePhase.Loading);//prepating landscape
-        tileset = PlixelMapMob.LoadFromTexture(mapTexture);
+        PlixelMapMob tileset = PlixelMapMob.LoadFromTexture(mapTexture);
 
+        yield return new WaitForSecondsRealtime(1);
         yield return new WaitUntil(() => { return tileset.isComplete(); });
         yield return PauseForTerrainToLoad();
         //complete
@@ -166,7 +166,6 @@ public class WorldController : MonoBehaviour
 
     public IEnumerator PauseForTerrainToLoad()
     {
-        if (currentPhase != GamePhase.Loading)
             Time.timeScale = 0f;
 
         bool keepwait = true;
@@ -177,11 +176,10 @@ public class WorldController : MonoBehaviour
             {
                 if (!chunk.isComplete())
                 {
+                    yield return new WaitForEndOfFrame();
                     keepwait = true;
-                    break;
                 }
             }
-            yield return new WaitForEndOfFrame();
         }
 
         if (currentPhase != GamePhase.Loading)

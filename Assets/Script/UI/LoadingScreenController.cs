@@ -11,7 +11,7 @@ public class LoadingScreenController : MonoBehaviour
     {
         if (WorldController.active != null)
         {
-            bool isLoading = WorldController.active.currentPhase == WorldController.GamePhase.Loading;
+            bool isLoading = WorldController.active.currentPhase == WorldController.GamePhase.Loading ;
             SetEnabled(isLoading);
 
             if (isLoading)
@@ -36,8 +36,6 @@ public class LoadingScreenController : MonoBehaviour
 
     float CalculateLoadingProgress()
     {
-        // Can edit here. Add custom logic.
-        // It only cuts half.
         return 0.5f;
     }
 

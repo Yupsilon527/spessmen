@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6363244582110604971}
   - component: {fileID: 1548940062920441258}
-  m_Layer: 0
+  - component: {fileID: 9008403782487927178}
+  m_Layer: 6
   m_Name: FG Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,11 +59,23 @@ MonoBehaviour:
     height: 0
   dirty: 0
   background: 0
-  comp: {fileID: 4417840883500472357}
+  comp: {fileID: 9008403782487927178}
   cellSize: 16
   quality: 0
   cellCol: 1
   cellRow: 1
+--- !u!114 &9008403782487927178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651177012159071031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cc096d7c022924d9481840d401be9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2576261080481620107
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +199,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2294549978543533449}
   - component: {fileID: 2730475750049263609}
-  m_Layer: 0
+  - component: {fileID: 525890643750079959}
+  m_Layer: 7
   m_Name: BG Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,11 +248,23 @@ MonoBehaviour:
     height: 0
   dirty: 0
   background: 1
-  comp: {fileID: 4417840883500472357}
+  comp: {fileID: 525890643750079959}
   cellSize: 16
   quality: 0
   cellCol: 1
   cellRow: 1
+--- !u!114 &525890643750079959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994703186425495360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cc096d7c022924d9481840d401be9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7630899101065159206
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +278,6 @@ GameObject:
   - component: {fileID: 8158047405925267877}
   - component: {fileID: 7406692173756704263}
   - component: {fileID: 3795153399687710256}
-  - component: {fileID: 4417840883500472357}
   m_Layer: 0
   m_Name: Land Prefab
   m_TagString: Terrain
@@ -360,18 +385,6 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
---- !u!114 &4417840883500472357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7630899101065159206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68cc096d7c022924d9481840d401be9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7877266437343012992
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +443,7 @@ MonoBehaviour:
     width: 0
     height: 0
   dirty: 0
-  IsBackground: 0
+  IsBackground: 1
   spriteRenderer: {fileID: 8184460703934132628}
   outputTexture: {fileID: 0}
 --- !u!212 &8184460703934132628
