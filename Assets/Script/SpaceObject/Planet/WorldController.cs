@@ -96,62 +96,6 @@ public class WorldController : MonoBehaviour
         }
     }
 
-    public IEnumerator MakePhysicsExplosion(ExplosionData data)
-    {
-        yield return MakePhysicsExplosion(data.center, data.inner_radius, data.inner_damage, data.middle_radius, data.middle_damage, data.outer_radius, data.outer_damage, data.shockwave_radius, data.knockback_force);
-    }
-        public IEnumerator MakePhysicsExplosion(Vector2 center, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage, float shockwave_radius, float knockback_force)
-    {
-        Debug.Log("[entityWorld] Start Explosion at " + center + " of size " + inner_radius +":"+ middle_radius + ":"+ outer_radius);
-        int explosion_radius = Mathf.CeilToInt(Mathf.Max(inner_radius, middle_radius) * TerrainDefines.terrain_PPU);
-
-        if (inner_radius == 0 && outer_radius == 0) { yield break; }
-
-        terrainmobs.RemoveAll((PlixelMapMob chunk) => { return chunk == null; });
-        List<PlixelMapMob> current_chunks = new List<PlixelMapMob>();
-        current_chunks.AddRange(terrainmobs);
-
-        foreach (PlixelMapMob Zim in current_chunks)
-        {
-            print("Resolve " + Zim.name);
-            Zim.HandleExplosion(center, inner_radius, inner_damage, middle_radius, middle_damage, outer_radius, outer_damage);
-        }
-        Debug.Log("[entityWorld] Explosion handled the chunks");
-        yield return new WaitForEndOfFrame();
-
-        PlixelMapMob[] terrchunks = GetActiveTerrainMobs();
-        bool waiting = true;
-        while (waiting)
-        {
-            waiting = false;
-            foreach (PlixelMapMob Zim in terrchunks)
-            {
-                if (!Zim.isComplete())
-                {
-                    Debug.Log("Waiting for "+ Zim.gameObject.name + " to complete coroutines");
-                    yield return new WaitForEndOfFrame();
-                    waiting = true;
-                    break;
-                }
-            }
-
-        }
-
-        if (knockback_force > 0)
-        {
-            Debug.Log("[entityWorld] Apply " + knockback_force + " force in a " + shockwave_radius + " aoe");
-            foreach (PlixelMapMob Zim in terrchunks)
-            {
-                if (Zim != null)
-                {
-                    Zim.HandleShockwave(center, inner_radius,shockwave_radius, knockback_force, 0);
-                }
-            }
-        }
-
-        Debug.Log("[entityWorld] Explosion complete!");
-    }
-
     float lastclicktime = 1f;
     public void Update()
     {

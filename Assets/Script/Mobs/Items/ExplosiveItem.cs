@@ -6,6 +6,7 @@ public class ExplosiveItem : ItemMob
 {
     public GameObject ExplosionEffect;
     public float DetonationDelay;
+    public float DetonationForce;
     public ExplosionTable explosionData;
     public override void OnCreate()
     {
@@ -14,14 +15,17 @@ public class ExplosiveItem : ItemMob
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass > explosionData.knockback_force)
+        if (collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass > DetonationForce)
         {
             Detonate();
         }
     }
     public void Detonate()
     {
+        if (DetonationDelay > 0)
         detonationCoroutine = StartCoroutine(DelayedDetonate(DetonationDelay));
+        else
+            Explode();
     }
     Coroutine detonationCoroutine;
     public IEnumerator DelayedDetonate(float Duration)

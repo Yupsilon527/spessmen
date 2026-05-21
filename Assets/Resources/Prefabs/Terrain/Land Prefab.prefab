@@ -60,7 +60,7 @@ MonoBehaviour:
   dirty: 0
   background: 0
   comp: {fileID: 9008403782487927178}
-  cellSize: 16
+  cellSize: 50
   quality: 0
   cellCol: 1
   cellRow: 1
@@ -206,7 +206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2294549978543533449
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7659768135546024898, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
@@ -73,6 +74,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7659768135546024899, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7659768135546024898, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4176269295935347337}
   m_SourcePrefab: {fileID: 100100000, guid: 3f978ee508eef1f4a82e5395e54b1fde, type: 3}
 --- !u!1 &6365192511643780952 stripped
 GameObject:
@@ -91,9 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c798c5182bdc9464497241f2881a6fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   Planet: {fileID: 0}
+  FreeRotation: 0
+  Mass: 10
   posUpdateInterval: 0.1
   MobName: Explosive
   category: 0
@@ -101,16 +111,18 @@ MonoBehaviour:
   container: {fileID: 0}
   RequiresGroundToUse: 0
   ThrowSpeed: 6
-  GoldValue: 0
+  GoldValue: 1
   StartSuspended: 0
   ExplosionEffect: {fileID: 1474804383275271558, guid: c872ad9f7e0471b459a0c58f935e38b4, type: 3}
+  DetonationDelay: 1
   DetonationForce: 10
-  DetonationDuration: 0
-  ExplosionRadius:
-  - 0
-  - 1.4
-  - 0.8
-  ExplosionDamage: 000000000300000002000000
-  CreatureDamage: 25
-  KnockbackForce: 100
-  KnockbackRange: 1.6
+  explosionData:
+    inner_radius: 0.8
+    inner_damage: 3
+    middle_radius: 1.4
+    middle_damage: 2
+    outer_radius: 0
+    outer_damage: 0
+    shockwave_radius: 0
+    knockback_force: 100
+    creature_damage: 25
