@@ -1,133 +1,63 @@
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Resource
+public abstract class Resource
 {
-    protected bool canNegative;
-    protected string debugName;
-    float[] values;
-    protected bool hasHardLimit = false;
-    public UnityEvent OnValueChanged;
-    protected Mob owner;
-
-    public Resource(Mob obj, float limit, string name, bool negative, bool limited)
-    {
-        debugName = name;
-        owner = obj;
-        hasHardLimit = limited;
-        values = new float[] { limit, limit, limit };
-        canNegative = negative;
-        OnValueChanged = new UnityEvent();
-        Debug.Log("[" + debugName + "] Initialized");
-    }
-    public float GetValue()
-    {
-        return values[0];
-    }
-    public float GetPercentage()
-    {
-        float value = values[0] / values[1];
-        if (float.IsNaN(value))
-            return 0;
-        return value;
-    }
-
-    public float GetLimit(bool baseLimit)
-    {
-        return values[baseLimit ? 2 : 1];
-    }
-    public void ResetLimit(LimitRule rule)
-    {
-        SetLimit(values[2], rule);
-    }
-    public float GetDifference()
-    {
-        return values[1] - values[0];
-    }
-
-    public void GiveValue(float value)
-    {
-        Debug.Log("[" + debugName + "] Give " + value);
-        if (value != 0)
-        {
-            SetValue(values[0] + value);
-        }
-    }
-
-    public virtual void SetValue(float value)
-    {
-        float oldlife = values[0];
-        if (hasHardLimit)
-            values[0] = Mathf.Min(value, values[1]);
-        else
-            values[0] = value;
-
-        if (!canNegative)
-        {
-            values[0] = Mathf.Max(0, values[0]);
-        }
-        Debug.Log("[" + debugName + "] Change " + oldlife + " to " + values[0]);
-        OnValueChanged.Invoke();
-
-    }
-
-    public void SetPercentage(float value)
-    {
-        SetValue(value * GetLimit(false));
-    }
-
     public enum LimitRule
     {
         leave_value,
-        heal_difference,
+        give_difference,
         percent_value,
         substract_total,
         fullheal_value,
         empty_value
     }
+    public LimitRule LimitUnder = LimitRule.leave_value;
+    public LimitRule LimitOver = LimitRule.give_difference;
+    protected static bool resourceDebug = false;
+    protected bool canNegative;
+    protected string name;
+    protected bool hasHardLimit = false;
+    public UnityEvent OnValueChanged;
+    public abstract float GetValue();
+    public abstract float GetPercentage();
 
-    public void SetLimit(float value, LimitRule rule, bool baseReset = true)
+    public abstract float GetLimit();
+    public abstract float GetDifference();
+
+
+    public abstract void SetValue(float value);
+    public virtual void GiveValue(float value)
     {
-        // display?.SetMaximum(values[1]);
-        switch (rule)
+        if (resourceDebug) Debug.Log($"[{name}]  Give " + value);
+        if (value != 0)
         {
-            case LimitRule.leave_value:
-                values[1] = value;
-                SetValue(values[0]);
-                break;
-            case LimitRule.heal_difference:
-                float difference = value - values[1];
-                values[1] = value;
-                SetValue(values[0] + difference);
-                break;
-            case LimitRule.percent_value:
-                float percent = GetPercentage();
-                values[1] = value;
-                SetPercentage(percent);
-                break;
-            case LimitRule.fullheal_value:
-                values[1] = value;
-                SetPercentage(1);
-                break;
-            case LimitRule.empty_value:
-                values[1] = value;
-                SetPercentage(0);
-                break;
-            case LimitRule.substract_total:
-                values[0] -= values[1];
-                values[1] = value;
-                SetPercentage(0);
-                break;
+            SetValue(GetValue() + value);
         }
-        if (baseReset)
-            values[2] = value;
-        Debug.Log("[" + debugName + "] Set Max to " + value);
     }
 
-    public bool ChargeValue(float value)
+    public void SetPercentage(float value)
     {
-        Debug.Log("[" + debugName + "] Charge " + value);
+        if (hasHardLimit)
+            SetValue(value * GetLimit());
+        else
+            SetValue(value * GetValue());
+
+    }
+    public void SetLimit(float value)
+    {
+        SetLimit(value, LimitUnder, LimitOver);
+    }
+    public void SetLimit(float value, LimitRule under, LimitRule over)
+    {
+        SetLimit(value, value < GetLimit() ? under : over, false);
+    }
+
+    public abstract void SetLimit(float value, LimitRule rule = LimitRule.leave_value, bool hard = false);
+
+    public virtual bool ChargeValue(float value)
+    {
+        if (resourceDebug) Debug.Log($"[{name}]  Charge " + value);
         if (value == 0)
         {
             return true;
@@ -139,10 +69,300 @@ public class Resource
         GiveValue(-value);
         return true;
     }
-
-    public void SubstractValue(float value)
+    public bool ChargePercentage(float value,bool total)
     {
-        Debug.Log("[" + debugName + "] Substract " + value);
-        GiveValue(-Mathf.Min(GetValue(), value));
+     return ChargeValue((total ? GetLimit() : GetValue() )* value);
+    }
+
+    public virtual float SubstractedValue(float value)
+    {
+        if (resourceDebug) Debug.Log("[" + name + "] Substract " + value);
+        value = Mathf.Abs(value);
+        if (!canNegative)  value = Mathf.Min(GetValue(), value);
+        GiveValue(-value);
+        return value;
+    }
+    public virtual float RemainingValue(float value)
+    {
+        if (resourceDebug) Debug.Log("[" + name + "] Substract " + value);
+        GiveValue(-value);
+        return GetValue();
+    }
+}
+public class ResourceFloat : Resource
+{
+    public override string ToString()
+    {
+        return $"{name} ({values.Item1},{values.Item2})";
+    }
+    (float,float) values;
+    public ResourceFloat(float limit, string name, bool negative, bool limited)
+    {
+        this.name = name;
+        hasHardLimit = limited;
+        values = (limit,limit);
+        canNegative = negative;
+        OnValueChanged = new UnityEvent();
+        if (resourceDebug) Debug.Log($"[{name}] Initialized");
+    }
+    public override float GetValue()
+    {
+        return values.Item1;
+    }
+    public override float GetPercentage()
+    {
+        float value = values.Item1 / values.Item2;
+        if (float.IsNaN(value))
+            return 1;
+        return value;
+    }
+    public override float GetLimit()
+    {
+        return values.Item2;
+    }
+    public override float GetDifference()
+    {
+        return values.Item2 - values.Item1;
+    }
+    public float GetValueRounded(int d = 1)
+    {
+        d = (int)Mathf.Max(1, Mathf.Pow(10, d));
+        return Mathf.Round(values.Item1 * d) / d;
+    }
+    public override void SetValue(float value)
+    {
+        float oldlife = values.Item1;
+        if (hasHardLimit)
+            values.Item1 = Mathf.Min(value, values.Item2);
+        else
+            values.Item1 = value;
+
+        if (!canNegative && values.Item1 < 0)
+        {
+            values.Item1 = Mathf.Max(0, values.Item1);
+        }
+        if (resourceDebug) Debug.Log($"[{name}] Change " + oldlife + " to " + values.Item1);
+        OnValueChanged.Invoke();
+
+    }
+
+    public override void SetLimit(float value, LimitRule rule = LimitRule.leave_value, bool hard = false)
+    {
+        // display?.SetMaximum(values.Item2);
+        switch (rule)
+        {
+            case LimitRule.leave_value:
+                values.Item2 = value;
+                SetValue(values.Item1);
+                break;
+            case LimitRule.give_difference:
+                float difference = value - values.Item2;
+                values.Item2 = value;
+                SetValue(values.Item1 + difference);
+                break;
+            case LimitRule.percent_value:
+                float percent = GetPercentage();
+                values.Item2 = value;
+                SetPercentage(percent);
+                break;
+            case LimitRule.fullheal_value:
+                values.Item2 = value;
+                SetPercentage(1);
+                break;
+            case LimitRule.empty_value:
+                values.Item2 = value;
+                SetPercentage(0);
+                break;
+            case LimitRule.substract_total:
+                values.Item1 -= values.Item2;
+                values.Item2 = value;
+                SetPercentage(0);
+                break;
+        }
+        if (resourceDebug) Debug.Log($"[{name}]  Set Max to " + value);
+    }
+}
+public abstract class ResourceSimple : Resource
+{
+    public override float GetPercentage()
+    {
+        float value = (float)GetValue() / GetLimit();
+        if (float.IsNaN(value))
+            return 1;
+        return value;
+    }
+    public override float GetDifference()
+    {
+        return GetLimit() - GetValue();
+    }
+    public override void GiveValue(float value)
+    {
+        base.GiveValue(Mathf.Floor(value));
+    }
+    public override float RemainingValue(float value)
+    {
+        return base.RemainingValue(Mathf.Ceil(value));
+    }
+    public override float SubstractedValue(float value)
+    {
+        return base.SubstractedValue(Mathf.Ceil(value));
+    }
+    public override bool ChargeValue(float value)
+    {
+        return base.ChargeValue(Mathf.Ceil(value));
+    }
+    public float GetValueRounded(int d = 1)
+    {
+        return GetValue();
+    }
+}
+public class ResourceInt : ResourceSimple
+{
+    (int, int) values;
+    public override string ToString()
+    {
+        return $"{name} ({values.Item1},{values.Item2})";
+    }
+    public ResourceInt(int limit, string name, bool negative, bool limited)
+    {
+        this.name = name;
+        hasHardLimit = limited;
+        values = (limit, limit);
+        canNegative = negative;
+        OnValueChanged = new UnityEvent();
+        if (resourceDebug) Debug.Log($"[{name}] Initialized");
+    }
+    public override float GetValue()
+    {
+        return values.Item1;
+    }
+    public override float GetLimit()
+    {
+        return values.Item2;
+    }
+    public override void SetValue(float value)
+    {
+        var oldlife = values.Item1;
+        if (hasHardLimit)
+            value = Mathf.Min(value, values.Item2);
+        values.Item1 = Mathf.RoundToInt(value);
+
+        if (!canNegative && values.Item1 < 0)
+        {
+            values.Item1 = Mathf.Max(0, values.Item1);
+        }
+        if (resourceDebug) Debug.Log($"[{name}] Change " + oldlife + " to " + values.Item1);
+        OnValueChanged.Invoke();
+    }
+
+    public override void SetLimit(float value, LimitRule rule = LimitRule.leave_value, bool hard = false)
+    {
+        int ivalue = Mathf.RoundToInt(value);
+        // display?.SetMaximum(values.Item2);
+        switch (rule)
+        {
+            case LimitRule.leave_value:
+                values.Item2 = ivalue;
+                SetValue(values.Item1);
+                break;
+            case LimitRule.give_difference:
+                float difference = value - values.Item2;
+                values.Item2 = ivalue;
+                SetValue(values.Item1 + difference);
+                break;
+            case LimitRule.percent_value:
+                float percent = GetPercentage();
+                values.Item2 = ivalue;
+                SetPercentage(percent);
+                break;
+            case LimitRule.fullheal_value:
+                values.Item2 = ivalue;
+                SetPercentage(1);
+                break;
+            case LimitRule.empty_value:
+                values.Item2 = ivalue;
+                SetPercentage(0);
+                break;
+            case LimitRule.substract_total:
+                values.Item1 -= values.Item2;
+                values.Item2 = ivalue;
+                SetPercentage(0);
+                break;
+        }
+        if (resourceDebug) Debug.Log($"[{name}]  Set Max to " + value);
+    }
+}
+public class ResourceUint : ResourceSimple
+{
+    public override string ToString()
+    {
+        return $"{name} ({values.Item1},{values.Item2})";
+    }
+    (uint, uint) values;
+    public ResourceUint(uint limit, string name, bool limited)
+    {
+        this.name = name;
+        hasHardLimit = limited;
+        values = (limit, limit);
+        canNegative = false;
+        OnValueChanged = new UnityEvent();
+        if (resourceDebug) Debug.Log($"[{name}] Initialized");
+    }
+    public override float GetValue()
+    {
+        return values.Item1;
+    }
+    public override float GetLimit()
+    {
+        return values.Item2;
+    }
+    public override void SetValue(float value)
+    {
+        var oldlife = values.Item1;
+        float clamped = Mathf.Max(0, value);
+        if (hasHardLimit)
+            clamped = Mathf.Min((float)value, values.Item2);
+        values.Item1 = (uint)Mathf.RoundToInt(clamped);
+
+        if (resourceDebug) Debug.Log($"[{name}] Change " + oldlife + " to " + values.Item1);
+        OnValueChanged.Invoke();
+
+    }
+
+    public override void SetLimit(float value, LimitRule rule = LimitRule.leave_value, bool hard = false)
+    {
+        uint ivalue = (uint) Mathf.RoundToInt(value);
+        // display?.SetMaximum(values.Item2);
+        switch (rule)
+        {
+            case LimitRule.leave_value:
+                values.Item2 = ivalue;
+                SetValue(values.Item1);
+                break;
+            case LimitRule.give_difference:
+                float difference = value - values.Item2;
+                values.Item2 = ivalue;
+                SetValue(values.Item1 + difference);
+                break;
+            case LimitRule.percent_value:
+                float percent = GetPercentage();
+                values.Item2 = ivalue;
+                SetPercentage(percent);
+                break;
+            case LimitRule.fullheal_value:
+                values.Item2 = ivalue;
+                SetPercentage(1);
+                break;
+            case LimitRule.empty_value:
+                values.Item2 = ivalue;
+                SetPercentage(0);
+                break;
+            case LimitRule.substract_total:
+                values.Item1 -= values.Item2;
+                values.Item2 = ivalue;
+                SetPercentage(0);
+                break;
+        }
+        if (resourceDebug) Debug.Log($"[{name}]  Set Max to " + value);
     }
 }

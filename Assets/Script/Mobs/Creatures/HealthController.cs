@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthController : CreatureComponent
 {
-    public Resource Health;
+    public ResourceFloat Health;
     public float MaxHealth = 100;
     public float RegenerationPercent = 10;
     public float OxygenRequired = 0;
@@ -14,7 +14,7 @@ public class HealthController : CreatureComponent
     public override void Awake()
     {
         base.Awake();
-        Health = new Resource(parent, MaxHealth, "Health", false, true);
+        Health = new ResourceFloat(MaxHealth, "Health", false, true);
         Health.OnValueChanged.AddListener(() =>
         {
             CheckAliveState();
@@ -38,9 +38,9 @@ public class HealthController : CreatureComponent
         if (parent.IsInside())
             Health.GiveValue(RegenerationPercent * Time.deltaTime);
         if (AtmosphereController.oxygen.GetValue() <= OxygenRequired)
-            Health.SubstractValue(OxygenDamage * Time.deltaTime);
+            Health.SubstractedValue(OxygenDamage * Time.deltaTime);
         else
-            AtmosphereController.oxygen.SubstractValue(OxygenUpkeep * Time.deltaTime);
+            AtmosphereController.oxygen.SubstractedValue(OxygenUpkeep * Time.deltaTime);
             
     }
 }

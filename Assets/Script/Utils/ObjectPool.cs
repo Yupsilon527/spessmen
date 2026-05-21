@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    [Header("Components")]
     public Transform activeObjs;
     public Transform inactiveObjs;
 
-    public virtual GameObject PoolItem(GameObject Prefab)
+    public virtual GameObject PoolItem(GameObject Prefab, bool fresh = false)
     {
-        foreach (Transform child in inactiveObjs)
+        if (!fresh)
         {
-            if (child != null && !child.gameObject.activeSelf &&
-                Prefab.name.Length <= child.name.Length && Prefab.name == child.name.Substring(0, Prefab.name.Length))
+            foreach (Transform child in inactiveObjs)
             {
-                ActivateObject(child.gameObject);
-                return child.gameObject;
+                if (child != null && !child.gameObject.activeSelf
+                    && Prefab.name.Length <= child.name.Length
+                        && Prefab.name == child.name.Substring(0, Prefab.name.Length))
+                {
+                    ActivateObject(child.gameObject);
+                    return child.gameObject;
+                }
             }
         }
-
         return InitFromPrefab(Prefab);
     }
     protected virtual GameObject InitFromPrefab(GameObject Prefab)
@@ -40,14 +44,41 @@ public class ObjectPool : MonoBehaviour
         if (gOb.transform.parent != inactiveObjs)
         {
             gOb.transform.SetParent(inactiveObjs);
-            if (changeActive)
-                gOb.SetActive(false);
         }
+        if (changeActive)
+            gOb.SetActive(false);
     }
 
 
     public int GetNActiveObjects()
     {
         return activeObjs.childCount;
+    }
+    [Header("Precache")]
+    public CacheData[] precacheData;
+    [System.Serializable]
+    public class CacheData
+    {
+        public GameObject cachePrefab;
+        public int cacheAmount;
+    }
+    private void Awake()
+    {
+        Precache(precacheData);
+    }
+    void Precache(CacheData[] stuff)
+    {
+        List<GameObject> items = new List<GameObject>();
+        foreach (var item in stuff)
+        {
+            for (int i = 0; i < item.cacheAmount; i++)
+            {
+                items.Add(PoolItem(item.cachePrefab));
+            }
+        }
+        foreach (var erase in items)
+        {
+            DeactivateObject(erase);
+        }
     }
 }

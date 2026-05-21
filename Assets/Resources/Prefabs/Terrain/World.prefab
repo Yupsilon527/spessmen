@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeObjs: {fileID: 7161949}
   inactiveObjs: {fileID: 130043558}
+  precacheData: []
 --- !u!1 &2382821201761051973
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeObjs: {fileID: 5132410438801777821}
   inactiveObjs: {fileID: 3636006686128686990}
+  precacheData: []
 --- !u!1 &6017829078426733224
 GameObject:
   m_ObjectHideFlags: 0

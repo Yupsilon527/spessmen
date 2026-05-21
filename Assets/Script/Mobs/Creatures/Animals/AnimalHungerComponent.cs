@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AnimalHungerComponent : AnimalComponent, iItemToucher
 {
-    public Resource Hunger;
+    public ResourceFloat Hunger;
     public float HungerDecay = 5;
     public override void Awake()
     {
         base.Awake();
-        Hunger = new Resource(parent, 100, name + " hunger", false, false);
+        Hunger = new ResourceFloat( 100, name + " hunger", false, false);
     }
     private void Update()
     {
@@ -20,7 +20,7 @@ public class AnimalHungerComponent : AnimalComponent, iItemToucher
     }
     void HandleMetabolism()
     {
-        Hunger.SubstractValue(HungerDecay * Time.deltaTime);
+        Hunger.SubstractedValue(HungerDecay * Time.deltaTime);
     }
     [System.Serializable]
     public class DigestResult

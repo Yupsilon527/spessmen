@@ -11,7 +11,7 @@ public class AtmosphereController : MonoBehaviour
 
     private void Awake()
     {
-        oxygen = new Resource(null, TotalValue, "Atmosphere",false,false );
+        oxygen = new ResourceFloat( TotalValue, "Atmosphere",false,false );
     }
     private void Update()
     {

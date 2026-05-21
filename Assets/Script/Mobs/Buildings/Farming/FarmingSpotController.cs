@@ -7,9 +7,9 @@ public class FarmingSpotController : MonoBehaviour
 
     private void Start()
     {
-        Nutriment = new Resource(null, 100, name + " nutriment", false, true);
-        PlantGrowth = new Resource(null, 100, name + " growth", false, true);
-        PlantHealth = new Resource(null, 100, name + " health", false, true);
+        Nutriment = new ResourceFloat( 100, name + " nutriment", false, true);
+        PlantGrowth = new ResourceFloat( 100, name + " growth", false, true);
+        PlantHealth = new ResourceFloat( 100, name + " health", false, true);
 
         ChangePlantSprite();
     }
@@ -41,14 +41,14 @@ public class FarmingSpotController : MonoBehaviour
 
     public bool FeedItem(ItemMob item)
     {
-        if (Nutriment.GetValue()< Nutriment.GetLimit(false) &&  item.GetNutritionalValue()>0)
+        if (Nutriment.GetValue()< Nutriment.GetLimit() &&  item.GetNutritionalValue()>0)
         {
             //SFX feeding nutriment to plant
 
             ChunkItem chunk = (ChunkItem)item;
             if (chunk != null)
             {
-                float remaining = Nutriment.GetLimit(false) - Nutriment.GetValue();
+                float remaining = Nutriment.GetLimit() - Nutriment.GetValue();
                 if (remaining> chunk.GetNutritionalValue())
                 {
                     Nutriment.GiveValue(chunk.GetNutritionalValue());
@@ -59,7 +59,7 @@ public class FarmingSpotController : MonoBehaviour
                     float percentage = 1f - remaining / chunk.GetNutritionalValue();
                     chunk.SetQuantity(Mathf.CeilToInt(percentage * chunk.Quantity));
 
-                    Nutriment.SetValue(Nutriment.GetLimit(false));
+                    Nutriment.SetValue(Nutriment.GetLimit());
                 }
             }
             else
@@ -172,7 +172,7 @@ public class FarmingSpotController : MonoBehaviour
             {
                 if (Nutriment.GetValue() > 0)
                 {
-                    Nutriment.SubstractValue(currentPlant.PlantHunger * UpdateInterval);
+                    Nutriment.SubstractedValue(currentPlant.PlantHunger * UpdateInterval);
                     PlantHealth.GiveValue(20f);
                     PlantGrowth.GiveValue(5f);
                     ChangePlantSprite();
@@ -183,7 +183,7 @@ public class FarmingSpotController : MonoBehaviour
                 }
                 else
                 {
-                    PlantHealth.SubstractValue(10f);
+                    PlantHealth.SubstractedValue(10f);
                     ChangePlantSprite();
                 }
             }
@@ -191,11 +191,11 @@ public class FarmingSpotController : MonoBehaviour
             {
                 if (Nutriment.GetValue() > 0)
                 {
-                    Nutriment.SubstractValue(currentPlant.PlantHunger * UpdateInterval);
+                    Nutriment.SubstractedValue(currentPlant.PlantHunger * UpdateInterval);
                     ProduceFruit();
                 }
                 DropRandomFruit();
-                PlantHealth.SubstractValue(10f);
+                PlantHealth.SubstractedValue(10f);
                 if (PlantHealth.GetPercentage() == 0)
                     ProduceSeeds();
                 ChangePlantSprite();
