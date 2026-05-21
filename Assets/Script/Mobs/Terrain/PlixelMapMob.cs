@@ -1,77 +1,228 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class PlixelMapMob : Mob
 {
+    public static int nChunks = 0;
     public int search_index = 0;
-    bool solid = false;
     bool completed = false;
-    Coroutine RevisionCoroutine;
-    Texture2D referenceTexture;
 
-    public PlixelChunk[,] chunk_data;
 
-    Plixel[,] terrain;
-    public List<PlixelChunk> chunk_updated = new List<PlixelChunk>();
-    List<Plixel> tile_revision = new List<Plixel>();
-    Vector4 consideredforce = Vector4.zero;
+    public Vector2 AlphaScale = Vector2.one;
+    public PlixelDisplayManager fg, bg;
+    public PlixelCollisionManager colFg, colBg;
 
+    public Texture2D referenceTexture;
+    public int tilesTotal, tilesSolid = 0;
+
+    public int _width, _height;
+    [NonSerialized] public Plixel[] terrain;
+    HashSet<ForcePending> consideredforce = new();
+
+    public class ForcePending
+    {
+        public Vector2 center;
+        public Vector2 force;
+
+        public ForcePending(Vector2 center, Vector2 force)
+        {
+            this.center = center;
+            this.force = force;
+        }
+    }
+    #region Initialization
+    protected override void Initialize()
+    {
+        base.Initialize();
+        Inspect("[entityTerrain] Enable chunk " + name);
+        WorldController.active.terrainmobs.Add(this);
+        setComplete(false);
+        if (referenceTexture != null)
+            Debug.Log("[entityTerrain] Make from tex " + referenceTexture.width + "x" + referenceTexture.height + " chunk " + gameObject.name);
+
+        StartCoroutine(DrawChunks(true));
+    }
+    public void RepositionAboveWater()
+    {
+        if (transform.position.y == 0)
+        {
+            transform.position = Vector3.up * GetHeight() / TerrainDefines.terrain_PPU * 0.5f;
+        }
+    }
+    #endregion
+    #region Generation
     public static PlixelMapMob LoadFromTexture(Texture2D terrain)
     {
         Debug.Log("[entityTerrain] Generate Terrain From Texture");
         GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
-        newChunk.transform.position = TerrainDefines.terrain_zlayer * Vector3.forward;
+        newChunk.name = "Terra " + nChunks++;
+        newChunk.transform.position = Vector3.zero;
         PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
-        newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height, terrain.width];
+        newChunk.GetComponent<PlixelMapMob>().referenceTexture = terrain;
+        newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height * terrain.width];
+        newChunk.GetComponent<PlixelMapMob>()._width = terrain.width;
+        newChunk.GetComponent<PlixelMapMob>()._height = terrain.height;
 
         for (int iY = 0; iY < terrain.height; iY++)
         {
             for (int iX = 0; iX < terrain.width; iX++)
             {
                 Color colorsolid = terrain.GetPixel(iX, iY);
+                int collision = 0;
 
-                terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), colorsolid.a > .75f));
+                if (colorsolid.a > .75f)
+                {
+                    collision = (int)TerrainDefines.Behavior.Foreground;
+
+                }
+
+                terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), collision));
             }
         }
 
         bool borders = false;
         if (terr.GetNBounds())
         {
-            terr.FreezeTiles(terr.GetTilesInRect(0, 0, terrain.width - 1, 1, false));
+            terr.FreezeTiles(terr.GetTilesInRect(0, 0, terrain.width - 1, 1, RetrievePlixelMode.clamped));
             borders = true;
         }
         if (terr.GetSBounds())
         {
-            terr.FreezeTiles(terr.GetTilesInRect(0, terrain.height - 1, terrain.width - 1, 1, false));
+            terr.FreezeTiles(terr.GetTilesInRect(0, terrain.height - 1, terrain.width - 1, 1, RetrievePlixelMode.clamped));
             borders = true;
         }
         if (terr.GetEBounds())
         {
-            terr.FreezeTiles(terr.GetTilesInRect(terrain.width - 1 - 1, 0, 1, terrain.height - 1, false));
+            terr.FreezeTiles(terr.GetTilesInRect(terrain.width - 1 - 1, 0, 1, terrain.height - 1, RetrievePlixelMode.clamped));
             borders = true;
         }
         if (terr.GetWBounds())
         {
-            terr.FreezeTiles(terr.GetTilesInRect(0, 0, 1, terrain.height - 1, false));
+            terr.FreezeTiles(terr.GetTilesInRect(0, 0, 1, terrain.height - 1, RetrievePlixelMode.clamped));
             borders = true;
         }
         if (!borders)
         {
-            terr.FreezeTiles(terr.GetTilesInRect(0, 0, terrain.width, terrain.height, false));
+            terr.FreezeTiles(terr.GetTilesInRect(0, 0, terrain.width, terrain.height, RetrievePlixelMode.clamped));
         }
-        terr.enabled = true;
+        terr.Initialize();
 
         return newChunk.GetComponent<PlixelMapMob>();
     }
-    protected override void HandleOrbit(bool forced)
+    public static PlixelMapMob LoadFromTexture(Texture2D terrain, Texture2D mask)
     {
-        if (Planet.gameObject != gameObject)
-            base.HandleOrbit(forced);
+        Debug.Log("[entityTerrain] Generate Terrain From Texture And Mask");
+        GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
+        newChunk.name = "Chunk " + nChunks++;
+        newChunk.transform.position = TerrainDefines.terrain_zlayer * Vector3.forward;
+        PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
+        newChunk.GetComponent<PlixelMapMob>().referenceTexture = terrain;
+        newChunk.GetComponent<PlixelMapMob>().terrain = new Plixel[terrain.height * terrain.width];
+        newChunk.GetComponent<PlixelMapMob>()._width = terrain.width;
+        newChunk.GetComponent<PlixelMapMob>()._height = terrain.height;
+
+        for (int iY = 0; iY < terrain.height; iY++)
+        {
+            for (int iX = 0; iX < terrain.width; iX++)
+            {
+                Color colorsolid = mask.GetPixel(iX, iY);
+                int collision = 0;
+
+                if (colorsolid.a > .5f)
+                {
+
+                    if (colorsolid == Color.white)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Foreground;
+                    }
+                    else if (colorsolid == Color.black)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Background;
+                    }
+                    else if (colorsolid == Color.red)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
+                    }
+                    else if (colorsolid == Color.blue)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Indestructable;
+                    }
+                    else if (colorsolid == Color.green)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Frozen;
+                    }
+                    else
+                    if (colorsolid == Color.magenta)
+                    {
+                        collision = (int)TerrainDefines.Behavior.Background | (int)TerrainDefines.Behavior.Frozen;
+                    }
+                }
+                terr.AddTile(new Plixel(terr, iX, iY, terrain.GetPixel(iX, iY), collision));
+            }
+        }
+        terr.Initialize();
+
+        return newChunk.GetComponent<PlixelMapMob>();
+    }
+    public void setComplete(bool value)
+    {
+        completed = value;
+        rigidbody.mass = (float)tilesTotal * TerrainDefines.terrain_mass_multiplier;
+        rigidbody.simulated = value;
     }
 
-    public PlixelMapMob BreakChunk(Plixel[] chunk)
+    public bool isComplete()
+    {
+        return !inRevision && completed
+            && fg.IsReady()
+            && bg.IsReady()
+            && colFg.IsReady()
+            && colBg.IsReady();
+    }
+    public List<Vector2> GetValidSpawnLocations(Vector2 playerSize)
+    {
+        List<Plixel> possible = new List<Plixel>();
+
+        List<Vector2> SpawnLocs = new List<Vector2>();
+        Vector2Int SearchSize = Vector2Int.CeilToInt(playerSize * TerrainDefines.terrain_PPU);
+
+        foreach (Plixel Zim in terrain)
+        {
+            if (Zim != null && Zim.CanSpawnEntity())
+            { possible.Add(Zim); }
+        }
+
+        foreach (Plixel Zim in possible)
+        {
+            bool valid = true;
+
+            for (Vector2 vRect = Vector2.zero; valid && (vRect.y <= SearchSize.y);)
+            {
+                Vector2Int center = Vector2Int.RoundToInt(Zim.position + Vector2.up + vRect - Vector2.right * SearchSize.x / 2f);
+
+                Plixel Gir = GetTileAt(center.x, center.y, RetrievePlixelMode.clamped);
+                if (Gir != null && Gir.IsForeGround())
+                { valid = false; }
+                if (vRect.x <= SearchSize.x)
+                {
+                    vRect.x++;
+                }
+                else { vRect.x = 0; vRect.y++; }
+            }
+            if (valid)
+            {
+                SpawnLocs.Add(tiletoworldPosition(Zim.position) + (Vector2.up + Vector2.right / 2) / TerrainDefines.terrain_PPU);
+            }
+        }
+        return SpawnLocs;
+    }
+    #endregion
+    #region Destroy Tiles
+    public PlixelMapMob FromPlixels(Plixel[] chunk)
     {
         Debug.Log("[entityTerrain] Generate Terrain From Chunk Data");
         Rect bounds = new Rect(chunk[0].position.x, chunk[0].position.y, 0, 0);
@@ -84,37 +235,56 @@ public class PlixelMapMob : Mob
             bounds.yMax = Mathf.Max(Zim.position.y, bounds.yMax);
         }
 
-        GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
-        PlixelMapMob eChink = newChunk.GetComponent<PlixelMapMob>();
-        eChink.terrain = new Plixel[(int)bounds.height + 1, (int)bounds.width + 1];
-        eChink.HandleShockwave(new Vector2(consideredforce.x, consideredforce.y), 0, consideredforce.z, consideredforce.w,0);//TODO
+        Plixel[,] terrainArray = new Plixel[(int)bounds.width + 1, (int)bounds.height + 1];
 
-        for (int iY = 0; iY < bounds.height + 1; iY++)
+        foreach (Plixel zim in chunk)
         {
-            for (int iX = 0; iX < bounds.width + 1; iX++)
-            {
-                eChink.AddTile(new Plixel(eChink, iX, iY, Color.clear, false));
-            }
+            int x = Mathf.FloorToInt(zim.position.x - bounds.xMin);
+            int y = Mathf.FloorToInt(zim.position.y - bounds.yMin);
+
+            terrainArray[x, y] = zim;
         }
-        foreach (Plixel Gir in chunk)
+
+        GameObject newChunk = Instantiate(TerrainDefines.TerrainPrefab);
+        newChunk.name = "Terra " + nChunks++;
+
+        PlixelMapMob eChink = newChunk.GetComponent<PlixelMapMob>();
+        eChink._width = (int)bounds.width + 1;
+        eChink._height = (int)bounds.height + 1;
+        eChink.terrain = new Plixel[eChink._height * eChink._width];
+
+        for (int iY = 0; iY < terrainArray.GetLength(1); iY++)
         {
-            Vector2Int newpos = Gir.position - Vector2Int.RoundToInt(new Vector2(bounds.xMin, bounds.yMin));
-            eChink.terrain[newpos.y, newpos.x].CloneTile(Gir);
+            for (int iX = 0; iX < terrainArray.GetLength(0); iX++)
+            {
+                if (terrainArray[iX, iY] != null)
+                    eChink.AddTile(terrainArray[iX, iY].Duplicate(eChink, iX, iY));
+            }
         }
 
         Vector2 center = new Vector2(bounds.center.x + .5f, bounds.center.y + .5f) - GetWorldSize() / 2f;
         newChunk.transform.position = transform.position + (transform.right * center.x + transform.up * center.y) / TerrainDefines.terrain_PPU;
         newChunk.transform.rotation = transform.rotation;
 
-        newChunk.GetComponent<Rigidbody2D>().angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
-        newChunk.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
-
-        //eChink.setComplete(false);
-        eChink.enabled = true;
+        TransferForce(eChink);
+        eChink.Initialize();
 
         return eChink;
     }
+    void TransferForce(Mob other)
+    {
 
+        var newRigidBody = other.GetComponent<Rigidbody2D>();
+        newRigidBody.isKinematic = true;
+        newRigidBody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
+        newRigidBody.velocity = GetComponent<Rigidbody2D>().velocity;
+
+        if (consideredforce.Count > 0)
+            foreach (var f in consideredforce)
+                other.ApplyForce(f.force, f.center);
+    }
+    #endregion
+    #region Alter Tile
     public void AddTile(Plixel tile)
     {
         AddTile(tile.position.x, tile.position.y, tile);
@@ -122,198 +292,221 @@ public class PlixelMapMob : Mob
 
     public void AddTile(int iX, int iY, Plixel tile)
     {
-        terrain[iY, iX] = tile;
-    }
-
-    public void setComplete(bool value)
-    {
-        completed = value;
-        rigidbody.mass = (float)nTiles * TerrainDefines.terrain_mass_multiplier;
-        rigidbody.simulated = value;
-    }
-
-    public bool isComplete()
-    {
-        return RevisionCoroutine == null && completed;
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        Debug.Log("[entityTerrain] Enable chunk " + name);
-        WorldController.active.terrainmobs.Add(this);
-        setComplete(false);
-    }
-
-    private void OnEnable()
-    {
-
-        DrawTexture();
-        Debug.Log("[entityTerrain] Make " + referenceTexture.width + "x" + referenceTexture.height + " chunk " + gameObject.name);
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(referenceTexture, new Rect(0, 0, referenceTexture.width, referenceTexture.height), Vector2.one / 2f, TerrainDefines.terrain_PPU);
-        StartCoroutine(DrawChunks());
-    }
-
-
-    public IEnumerator DrawChunks()
-    {
-        setComplete(false);
-
-        Debug.Log("[entityTerrain] Begin couroutine DrawChunks for " + name);
-        for (int iY = 0; iY < terrain.GetLength(0); iY++)
+        terrain[iY * _width + iX] = tile;
+        if (tile != null && tile.IsSolid())
         {
-            for (int iX = 0; iX < terrain.GetLength(1); iX++)
+            tilesTotal++;
+            if (tile.getFrozen())
             {
-                if (terrain[iY, iX] != null && terrain[iY, iX].IsSolid())
-                {
-                    tile_revision.Add(terrain[iY, iX]);
-                }
+                tilesSolid++;
             }
         }
-        StartUpdateTiles(true);
-        while (RevisionCoroutine != null)
+    }
+    public void FreezeTiles(Plixel[] Tiles)
+    {
+        foreach (Plixel t in Tiles)
         {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForEndOfFrame();
-        Debug.Log("[entityTerrain] Initialize colliders for " + name);
-        float StartTime = Time.realtimeSinceStartup;
-
-        GameObject[] colliders = new GameObject[] {
-            transform.GetChild(0).gameObject,
-            transform.GetChild(1).gameObject
-    };
-
-        int wX = Mathf.CeilToInt((float)terrain.GetLength(1) / (float)TerrainDefines.terrain_chunk_size);
-        int wY = Mathf.CeilToInt((float)terrain.GetLength(0) / (float)TerrainDefines.terrain_chunk_size);
-        int count = 0;
-        chunk_data = new PlixelChunk[wY, wX];
-
-        for (int iY = 0; iY < wY; iY++)
-        {
-            for (int iX = 0; iX < wX; iX++)
+            if (!t.getFrozen())
             {
-                if (count > TerrainDefines.terrain_ram_size)
-                {
-                    count = 0;
-                    Debug.Log(gameObject.name + " drawing...");
-                    yield return new WaitForEndOfFrame();
-                }
-                count += TerrainDefines.terrain_chunk_size * TerrainDefines.terrain_chunk_size;
-                PlixelChunk box = new PlixelChunk(this, new Vector2Int(iX, iY), TerrainDefines.terrain_chunk_size, colliders);
-                box.Revise();
-                chunk_data[iY, iX] = (box);
+                t.SetFrozen();
+                tilesSolid++;
             }
-
         }
-
-        yield return new WaitForEndOfFrame();
-        Debug.Log("[entityTerrain] " + (Time.realtimeSinceStartup - StartTime) + " total needed to draw " + gameObject.name);
-
-        setComplete(true);
     }
+    public Vector2 GetWorldSize()
+    { return new Vector2(_width, _height); }
 
-    protected int nTiles = 0;
-
-    public Plixel GetTileAt(int ix, int iy, bool imaginary)
+    public bool GetNBounds()
     {
-        if (ix < 0 || iy < 0 || ix >= terrain.GetLength(1) || iy >= terrain.GetLength(0) || terrain[iy, ix] == null)
+        foreach (Plixel tile in GetTilesInRect(0, 0, _width, 1, RetrievePlixelMode.clamped))
         {
-            if (!imaginary)
-            { return null; }
-            return new Plixel(this);
+            if (tile.IsSolid())
+            {
+                return true;
+            }
         }
-        return terrain[iy, ix];
+        return false;
+    }
+    public bool GetSBounds()
+    {
+        foreach (Plixel tile in GetTilesInRect(0, _height - 1, _width, 1, RetrievePlixelMode.clamped))
+        {
+            if (tile.IsSolid())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool GetEBounds()
+    {
+        foreach (Plixel tile in GetTilesInRect(_width - 1, 0, 1, _height, RetrievePlixelMode.clamped))
+        {
+            if (tile.IsSolid())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool GetWBounds()
+    {
+        foreach (Plixel tile in GetTilesInRect(0, 0, 1, _height, RetrievePlixelMode.clamped))
+        {
+            if (tile.IsSolid())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int GetWidth()
+    {
+        return _width;
+    }
+    public int GetHeight()
+    {
+        return _height;
+    }
+    public bool isSolid()
+    {
+        return tilesSolid > 0;
     }
 
-    public Color GetColorAt(int ix, int iy)
-    {
-        return referenceTexture.GetPixel(ix, iy);
-    }
 
-    public List<List<Vector2>> ReviseCollision(Rect segment, bool foregroundlayer)
+    #endregion
+
+
+
+    #region Collision
+    public List<List<Vector2>> ReviseCollisionShape(Vector2 center, bool[,] segment)
     {
-        EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
-        Vector2 center = new Vector2(terrain.GetLength(1), terrain.GetLength(0)) / 2;
+        Vector2 origin = new Vector2(_width, _height) / 2;
 
         List<PixelColliderSegment> collider_points = new List<PixelColliderSegment>();
         List<List<PixelColliderSegment>> collider_points_final = new List<List<PixelColliderSegment>>();
 
-        for (int height = (int)segment.yMin; height <= segment.yMax; height++)
+        int w = segment.GetLength(1);
+        int height = segment.GetLength(0);
+
+        List<Vector2> solidCoords = new List<Vector2>();
+        for (int x = 1; x < height - 1; x++)
         {
-            for (int width = (int)segment.xMin; width <= segment.xMax; width++)
+            for (int y = 1; y < w - 1; y++)
             {
-                Plixel tile = GetTileAt(width, height, true);
-                if (tile.IsRelevant(foregroundlayer) || (tile.IsSolid(foregroundlayer) && (
-
-                    tile.position.x <= segment.xMin ||
-                    tile.position.x >= segment.xMax ||
-                    tile.position.y <= segment.yMin ||
-                    tile.position.y >= segment.yMax
-
-                    )))
+                bool solid = segment[x, y];
+                if (solid)
                 {
-                    collider_points.AddRange(tile.getCollision(segment, center, foregroundlayer));
-                }
+                    //bool hBorder = x == width - 1 || x == 0;
+                    //bool vBorder = y == height - 1 || y == 0;
+                    var points = new List<PixelColliderSegment>();
+                    Vector2 pos = new Vector2(y, x) + center - origin + new Vector2(.5f, .5f);
+                    if (y == height - 2 || !segment[x, y + 1])//r
+                    {
+                        points.Add(new PixelColliderSegment(pos + (Vector2.right + Vector2.up) / 2, pos + (Vector2.right + Vector2.down) / 2));
+                    }
+                    if (y == 1 || !segment[x, y - 1])//l
+                    {
+                        points.Add(new PixelColliderSegment(pos + (Vector2.left + Vector2.up) / 2, pos + (Vector2.left + Vector2.down) / 2));
+                    }
+                    if (!segment[x + 1, y])//u
+                    {
+                        points.Add(new PixelColliderSegment(pos + (Vector2.up + Vector2.left) / 2, pos + (Vector2.up + Vector2.right) / 2));
+                    }
+                    if (!segment[x - 1, y])
+                    {
+                        points.Add(new PixelColliderSegment(pos + (Vector2.down + Vector2.left) / 2, pos + (Vector2.down + Vector2.right) / 2));
+                    }
 
+
+                    //    if (hBorder || !segment[x, y + 1] || !segment[x, y - 1] || vBorder || !segment[x + 1, y] || !segment[x - 1, y])
+                    // {
+                    //     solidCoords.Add(new Vector2(y, x) + center - origin);x
+                    //  }
+                    collider_points.AddRange(points);
+                }
             }
         }
+
+
+        /*// Iterate through all the coordinates in solidCoords
+        for (int i = 0; i < solidCoords.Count; i++)
+        {
+            Vector2 start = solidCoords[i];
+
+            // Compare with the rest of the coordinates
+            for (int j = i + 1; j < solidCoords.Count; j++)
+            {
+                Vector2 end = solidCoords[j];
+                Vector2 delta = start - end;
+                // Check if the distance between two points is less than or equal to 1 unit
+                if (delta .sqrMagnitude > 0 && Mathf.Abs(delta.x)<=1 && Mathf.Abs(delta.y) <= 1)
+                {
+                    // Create a new PixelColliderSegment between start and end points
+                    PixelColliderSegment pcs = new PixelColliderSegment(start, end);
+
+                    // Add it to the vectorlist
+                    collider_points.Add(pcs);
+                }
+            }
+        }*/
 
         List<PixelColliderSegment> vectorlist = new List<PixelColliderSegment>();
         while (collider_points.Count > 0)
         {
+            // Declare start and add to the vectorlist
+            PixelColliderSegment current = collider_points[0];
+            vectorlist.Add(current);
 
-            //start
-            vectorlist.Add(collider_points[0]);
+            // Remove the first element (current segment)
             collider_points.RemoveAt(0);
 
-            //declare start and next
-            PixelColliderSegment current = vectorlist[vectorlist.Count - 1];
+            bool foundNeighbor;
 
-        loop_start:
-            bool concluded = true;
-
-            for (int integ = 0; integ < collider_points.Count; integ++)
+            // Loop until no more neighbors are found
+            do
             {
-                PixelColliderSegment next = collider_points[integ];
-                int neigh_id = current.isNeighboring(next);
-                if (neigh_id != 0)
+                foundNeighbor = false;
+
+                for (int i = 0; i < collider_points.Count; i++)
                 {
-                    if (!current.Merge(next))
-                    {
-                        if (Mathf.Abs(neigh_id) > 1)
-                        {
-                            next.FlipDirection();
-                        }
-                        if (neigh_id > 0)
-                        {
-                            vectorlist.Add(next);
-                            current = next;
-                        }
-                        else
-                        {
-                            vectorlist.Insert(vectorlist.IndexOf(current), next);
-                            current = next;
-                        }
-                        collider_points.Remove(current);
-                    }
-                    else
-                    {
-                        collider_points.Remove(next);
-                    }
+                    PixelColliderSegment next = collider_points[i];
+                    int neigh_id = current.isNeighboring(next);
 
-                    concluded = false;
-                    break;
+                    if (neigh_id != 0)
+                    {
+
+                        // If segments can't be merged, add the next one to the correct position
+                        if (!current.Merge(next))
+                        {
+                            if (neigh_id > 0)
+                            {
+                                vectorlist.Add(next);  // Add to the end of the list
+                            }
+                            else
+                            {
+                                vectorlist.Insert(0, next);  // Insert at the beginning
+                            }
+                            // Update the current segment
+                            current = next;
+                        }
+
+
+                        // Remove the processed segment
+                        collider_points.RemoveAt(i);
+                        foundNeighbor = true;
+                        break; // Exit the loop and restart the neighbor search
+                    }
                 }
-            }
-            if (!concluded)
-            { goto loop_start; }
-            else
-            {
-                collider_points_final.Add(vectorlist);
-                vectorlist = new List<PixelColliderSegment>();
-            }
+
+            } while (foundNeighbor);
+            CloseShape(ref vectorlist);
+
+            // Once finished with this chain, add it to the final list
+            collider_points_final.Add(vectorlist);
+            vectorlist = new List<PixelColliderSegment>();  // Reset for the next segment group
         }
+
 
         List<List<Vector2>> final_polygons = new List<List<Vector2>>();
         foreach (List<PixelColliderSegment> Gir in collider_points_final)
@@ -340,11 +533,67 @@ public class PlixelMapMob : Mob
 
         return final_polygons;
     }
+    public void CloseShape(ref List<PixelColliderSegment> segments)
+    {
+        if (segments == null || segments.Count == 0) return; // Handle empty list
+
+        List<PixelColliderSegment> sortedList = new List<PixelColliderSegment> { segments[0] };
+        segments.RemoveAt(0);
+
+        while (segments.Count > 0)
+        {
+            PixelColliderSegment lastSegment = sortedList[sortedList.Count - 1];
+            Vector2 lastEnd = lastSegment.end;
+
+            // Variable to track the closest segment
+            PixelColliderSegment closestSegment = null;
+            float closestDistance = float.MaxValue;
+            bool flipDirection = false;
+            int closestIndex = -1;
+
+            // Find the closest segment
+            for (int i = 0; i < segments.Count; i++)
+            {
+                PixelColliderSegment currentSegment = segments[i];
+
+                // Calculate distances for both directions (start vs end)
+                float distanceToStart = Vector2.Distance(lastEnd, currentSegment.start);
+                float distanceToEnd = Vector2.Distance(lastEnd, currentSegment.end);
+
+                if (distanceToStart < closestDistance)
+                {
+                    closestDistance = distanceToStart;
+                    closestSegment = currentSegment;
+                    flipDirection = false;
+                    closestIndex = i;
+                }
+
+                if (distanceToEnd < closestDistance)
+                {
+                    closestDistance = distanceToEnd;
+                    closestSegment = currentSegment;
+                    flipDirection = true;
+                    closestIndex = i;
+                }
+            }
+
+            // Flip the segment if needed
+            if (flipDirection)
+            {
+                closestSegment.FlipDirection();
+            }
+
+            // Add the closest segment to the sorted list
+            sortedList.Add(closestSegment);
+            segments.RemoveAt(closestIndex);  // Remove the segment from the unsorted list
+        }
+        segments = sortedList;
+    }
     public Vector2 tiletoworldPosition(Vector2Int pos)
     {
         float rotation = transform.eulerAngles.z * Mathf.Deg2Rad;
 
-        Vector2 center = new Vector2(terrain.GetLength(1), terrain.GetLength(0)) / 2f;
+        Vector2 center = new Vector2(_width, _height) / 2f;
         Vector2 npos = new Vector2(
             pos.x - center.x,
             pos.y - center.y
@@ -357,8 +606,8 @@ public class PlixelMapMob : Mob
 
         return npos + (Vector2)transform.position;
     }
-
-
+    #endregion
+    #region Translation
     public Vector2Int worldtotilePosition(Vector2 pos)
     {
         float rotation = transform.eulerAngles.z * Mathf.Deg2Rad;
@@ -369,7 +618,7 @@ public class PlixelMapMob : Mob
             -pos.x * Mathf.Sin(rotation) + pos.y * Mathf.Cos(rotation)
             );
 
-        Vector2 center = new Vector2(terrain.GetLength(1), terrain.GetLength(0)) / 2f;
+        Vector2 center = new Vector2(_width, _height) / 2f;
         return Vector2Int.RoundToInt(new Vector2(
             pos.x * TerrainDefines.terrain_PPU + center.x,
             pos.y * TerrainDefines.terrain_PPU + center.y
@@ -385,40 +634,61 @@ public class PlixelMapMob : Mob
 
         return worldtotilePosition(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
     }
-
-    public PlixelChunk getChunkAt(Vector2Int pos)
+    #endregion
+    #region Gets
+    public enum RetrievePlixelMode
     {
-        return getChunkAt(pos.x, pos.y);
+        normal,
+        imaginary,
+        clamped,
+        quick
     }
-
-    public PlixelChunk getChunkAt(int x, int y)
+    public Plixel GetTileAt(int ix, int iy, RetrievePlixelMode mode)
     {
-        if (completed && chunk_data == null)
+        switch (mode)
         {
-            Debug.LogError("Chunk " + gameObject.name + " has no chunk data, but tile count " + nTiles);
-            return null;
+            case RetrievePlixelMode.quick:
+                return GetTileAt(ix, iy);
+            case RetrievePlixelMode.normal:
+                if (ix >= 0 && iy >= 0 && ix < _width && iy < _height)
+                    return GetTileAt(ix, iy);
+                break;
+            case RetrievePlixelMode.imaginary:
+                if (ix >= 0 && iy >= 0 && ix < _width && iy < _height && GetTileAt(ix, iy) is Plixel pl)
+                    return pl;
+                return new Plixel(this);
+            case RetrievePlixelMode.clamped:
+                ix = Mathf.Clamp(ix, 0, GetWidth() - 1);
+                iy = Mathf.Clamp(iy, 0, GetHeight() - 1);
+                return GetTileAt(ix, iy);
         }
-        else if (chunk_data != null)
-        {
-            return chunk_data[
-                Mathf.Clamp(y, 0, chunk_data.GetLength(0) - 1)
-                ,
-                Mathf.Clamp(x, 0, chunk_data.GetLength(1) - 1)
-                ];
-        }
-
         return null;
     }
+    public Plixel GetTileAt(int ix, int iy)
+    {
+        return terrain[iy * _width + ix];
+    }
 
-    public Plixel[] GetTilesInRect(int x, int y, int w, int h, bool imaginary)
+    public Color GetColorAt(int ix, int iy)
+    {
+        return referenceTexture.GetPixel(ix, iy);
+    }
+
+
+
+    public Plixel[] GetTilesInRect(RectInt r, RetrievePlixelMode mode)
+    {
+        return GetTilesInRect(r.xMin, r.yMin, r.width, r.height, mode);
+    }
+    public Plixel[] GetTilesInRect(int x, int y, int w, int h, RetrievePlixelMode mode)
     {
         List<Plixel> value = new List<Plixel>();
 
-        for (int iX = 0; iX <= 0 + w; iX++)
+        for (int iY = 0; iY <= 0 + h; iY++)
         {
-            for (int iY = 0; iY <= 0 + h; iY++)
+            for (int iX = 0; iX <= 0 + w; iX++)
             {
-                Plixel tileAt = GetTileAt(iX + x, iY + y, imaginary);
+                Plixel tileAt = GetTileAt(iX + x, iY + y, mode);
                 if (tileAt != null)
                 {
                     value.Add(tileAt);
@@ -429,23 +699,26 @@ public class PlixelMapMob : Mob
         return value.ToArray();
     }
 
-    public Plixel[] GetTilesInCircle(int x, int y, int r, bool imaginary)
+    public Plixel[] GetTilesInCircle(int x, int y, int r, RetrievePlixelMode mode = RetrievePlixelMode.normal, bool solid = false)
     {
-        return GetTilesInCircle(new Vector2Int(x, y), r, imaginary);
+        return GetTilesInCircle(new Vector2Int(x, y), r, mode, solid);
     }
 
-    public Plixel[] GetTilesInCircle(Vector2Int c, int r, bool imaginary)
+    public Plixel[] GetTilesInCircle(Vector2Int c, int r, RetrievePlixelMode mode = RetrievePlixelMode.normal, bool solid = false)
     {
         List<Plixel> value = new List<Plixel>();
 
+        int radiusSquared = r * r;
         for (int iX = 0 - r; iX <= 0 + r; iX++)
         {
+            int xSquared = iX * iX;
             for (int iY = 0 - r; iY <= 0 + r; iY++)
             {
-                if (new Vector2(iX, iY).sqrMagnitude <= r * r)
+                int ySquared = iY * iY;
+                if (xSquared + ySquared <= radiusSquared)
                 {
-                    Plixel Zim = GetTileAt(iX + c.x, iY + c.y, imaginary);
-                    if (Zim != null)
+                    Plixel Zim = GetTileAt(iX + c.x, iY + c.y, mode);
+                    if (Zim != null && (!solid || Zim.IsSolid()))
                     {
                         value.Add(Zim);
                     }
@@ -454,358 +727,283 @@ public class PlixelMapMob : Mob
         }
         return value.ToArray();
     }
+    #endregion
+    #region Drawing
+    public IEnumerator DrawChunks(bool instant)
+    {
+        setComplete(false);
 
+        Debug.Log("[entityTerrain] Begin couroutine DrawChunks for " + name);
+        fg?.OnCreated();
+        bg?.OnCreated();
+        yield return null;
+
+
+
+        Debug.Log("[entityTerrain] Initialize colliders for " + name);
+
+        if (colFg != null)
+            colFg.OnCreated();
+        yield return null;
+        if (colBg != null)
+            colBg.OnCreated();
+
+        yield return null;
+        ModifyTiles(GetRectBounds());
+
+    }
+    #endregion
+
+    #region Destruction
     public void HandleExplosion(ExplosionData explosion)
     {
-        HandleExplosion(explosion.center, explosion.inner_radius, explosion.inner_damage,explosion.middle_radius, explosion.middle_damage, explosion.outer_radius, explosion.outer_damage);
+        HandleExplosion(explosion.center, explosion.inner_radius, explosion.inner_damage, explosion.middle_radius, explosion.middle_damage, explosion.outer_radius, explosion.outer_damage);
 
     }
 
-        public void HandleExplosion(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
+    public void HandleExplosion(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
     {
         Vector2Int explosion_center = worldtotilePosition(world_position);
+        int iOuterRadius = Mathf.CeilToInt(outer_radius * TerrainDefines.terrain_PPU);
 
-        foreach (Plixel Zim in GetTilesInCircle(explosion_center.x, explosion_center.y, Mathf.CeilToInt(outer_radius * TerrainDefines.terrain_PPU), false))
+        HashSet<Plixel> damagedTiles = new();
+
+        foreach (Plixel tile in GetTilesInCircle(explosion_center.x, explosion_center.y, iOuterRadius, RetrievePlixelMode.normal))
         {
-            float distance = (Zim.position - explosion_center).magnitude;
+            if (tile == null) continue;
+            float distance = (tile.position - explosion_center).sqrMagnitude;
+
             int damage = 0;
 
             if (inner_radius > 0 && distance < inner_radius * TerrainDefines.terrain_PPU)
                 damage = inner_damage;
             else if (middle_radius > 0 && distance < middle_radius * TerrainDefines.terrain_PPU)
                 damage = middle_damage;
-            else if (outer_radius>0)
+            else if (outer_radius > 0)
                 damage = outer_damage;
 
-            TakeDamage(Zim, damage, true);
+            if (TakeDamage(tile, damage, Revision.everything))
+            {
+                damagedTiles.Add(tile);
+            }
         }
-        bool needUpdate = nTiles > 0 && nTiles < 1000;
-        StartUpdateTiles(needUpdate);
+        ModifyTiles(explosion_center.x, explosion_center.y, iOuterRadius);
     }
 
-    public void StainTiles(Vector2 world_position, float radius, Color32 color)
+    public void HandleExplosionCoroutine(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
     {
         Vector2Int explosion_center = worldtotilePosition(world_position);
-        foreach (Plixel Zim in GetTilesInCircle(explosion_center.x, explosion_center.y, Mathf.CeilToInt(radius * TerrainDefines.terrain_PPU), false))
+        int iOuterRadius = Mathf.CeilToInt(outer_radius * TerrainDefines.terrain_PPU);
+
+        if ((explosion_center.x + iOuterRadius >= 0 || explosion_center.x - iOuterRadius < _height) && (explosion_center.y + iOuterRadius >= 0 || explosion_center.y - iOuterRadius < _width))
         {
-            if (!Zim.stain)
+
+            int radiusSquared = iOuterRadius * iOuterRadius;
+
+
+            HashSet<Plixel> explodedTiles = new();
+            for (int iX = 0 - iOuterRadius; iX <= 0 + iOuterRadius + 1; iX++)
+            {
+                int xSquared = iX * iX;
+                for (int iY = 0 - iOuterRadius; iY <= 0 + iOuterRadius + 1; iY++)
+                {
+                    int ySquared = iY * iY;
+                    float distance = (xSquared + ySquared);
+                    if (distance <= radiusSquared)
+                    {
+                        Plixel tile = GetTileAt(iX + explosion_center.x, iY + explosion_center.y, RetrievePlixelMode.normal);
+                        if (tile != null && tile.IsSolid() && !tile.IsIndestructable())
+                        {
+                            float dirty;
+                            if (distance > middle_radius * middle_radius)
+                            {
+                                dirty = (1 - (Mathf.Sqrt(distance) - middle_radius) / (outer_radius - middle_radius)) * 99;
+                            }
+                            else
+                            {
+                                dirty = (distance < inner_radius * inner_radius) ? 200 : 100;
+                            }
+
+                            tile.Damage(dirty);
+                            explodedTiles.Add(tile);
+                        }
+                    }
+                }
+            }
+            ModifyTiles(explosion_center.x, explosion_center.y, iOuterRadius);
+        }
+    }
+    public void StainTiles(Vector2 world_position, float radius, Color32 color, bool stainFG, bool stainBG, bool apply = true)
+    {
+        Vector2Int explosion_center = worldtotilePosition(world_position);
+        int iradius = Mathf.CeilToInt(radius * TerrainDefines.terrain_PPU);
+
+        var affected = GetTilesInCircle(explosion_center.x, explosion_center.y, iradius, RetrievePlixelMode.normal, true);
+        foreach (Plixel Zim in affected)
+        {
+            if (Zim == null) continue;
+            if (stainFG || stainBG)
             {
                 Zim.ChangeColor(color);
-                referenceTexture.SetPixel(Zim.position.x, Zim.position.y, Zim.getColor());
-                Zim.stain = true;
+
+                if (stainFG && !stainBG)
+                {
+                    Zim.stain = Zim.stain == Plixel.StainState.bg ? Plixel.StainState.both : Plixel.StainState.fg;
+                }
+                else if (!stainFG && stainBG)
+                {
+                    Zim.stain = Zim.stain == Plixel.StainState.fg ? Plixel.StainState.both : Plixel.StainState.bg;
+                }
+                else if (stainFG && stainBG)
+                {
+                    Zim.stain = Plixel.StainState.both;
+                }
+                // Zim.UpdateRealColor();
             }
         }
-        referenceTexture.Apply();
+        if (apply)
+            ModifyTiles(explosion_center.x, explosion_center.y, iradius, Revision.visual);
     }
-
-    public void TakeDamage(Plixel tile, int damage, bool revise)
+    public bool TakeDamage(Plixel tile, float dirty, Revision revise)
     {
 
-        if (!tile.IsSolid() || tile.getIndestructable())
+        if (tile.IsSolid() && !tile.IsIndestructable())
         {
-            return;
-        }
-
-        if ((tile.position.x >= 0 && tile.position.y >= 0 && tile.position.x < terrain.GetLength(1) && tile.position.y < terrain.GetLength(0)))
-        {
-            tile.Damage(damage);
-            if (revise)
+            if ((tile.position.x >= 0 && tile.position.y >= 0 && tile.position.x < _width && tile.position.y < _height))
             {
-                tile_revision.Add(tile);
+                tile.Damage(dirty);
+                //DELETE TILE HERE
+                return true;
             }
         }
+        return false;
     }
-
-    public void DestroyTiles(Plixel[] tiles, bool revises)
+    public void DestroyTiles(Plixel[] tiles, Revision revises, bool final)
     {
         if (tiles.Length > 0)
         {
             foreach (Plixel tile in tiles)
             {
-                TakeDamage(tile, 200, revises);
-            }
-
-            if (revises)
-            {
-                StartUpdateTiles(true);
+                tile.Kill(true);
             }
         }
+        ModifyTiles(tiles, revises, final);
     }
+    #endregion
+    #region Force
     public override void ApplyForce(Vector2 force, Vector2 center)
     {
-         rigidbody.AddForceAtPosition(force, center);
-        WorldController.active.MobsInMotion.Add(this);
+
+        if (isComplete())
+        {
+            rigidbody.AddForceAtPosition(force, center);
+            WorldController.active.MobsInMotion.Add(this);
+        }
+        else
+        {
+            consideredforce.Add(new ForcePending(center, force));
+        }
         Debug.Log("[PlixelMapMob] Apply " + force + " force to " + name + " at point " + center);
 
     }
-    public void DrawTexture()
+    #endregion
+    #region Revision
+    bool inRevision = false;
+    RectInt dirtyRect = default;
+
+    public enum Revision
     {
-        Debug.Log("[entityTerrain] Initialize texture of " + name);
-        referenceTexture = new Texture2D(terrain.GetLength(1), terrain.GetLength(0));
-        List<Color> pixels = new List<Color>();
-        for (int iY = 0; iY < terrain.GetLength(0); iY++)
-        {
-            for (int iX = 0; iX < terrain.GetLength(1); iX++)
-            {
-                if (terrain[iY, iX] != null)
-                {
-                    pixels.Add(terrain[iY, iX].getColor());
-                }
-                else
-                {
-                    pixels.Add(Color.clear);
-                }
-            }
-        }
-        referenceTexture.SetPixels(pixels.ToArray(), referenceTexture.loadedMipmapLevel);
-        referenceTexture.filterMode = FilterMode.Point;
-        referenceTexture.Apply();
+        none,
+        visual,
+        everything
     }
-
-    public void StartUpdateTiles(bool update_physix)
+    RectInt GetRectBounds()
     {
-        if (RevisionCoroutine == null)
+        return new RectInt(0, 0, GetWidth(), GetHeight());
+    }
+    public void ModifyTiles(Plixel[] affected, Revision revisionType = Revision.everything, bool final = true)
+    {
+        if (!inRevision)
         {
-            RevisionCoroutine = StartCoroutine(HandleTileChanges(update_physix));
-            WorldController.active.StartCoroutine(WorldController.active.PauseForTerrainToLoad());
+            dirtyRect = GetRectBounds();
+
+            dirtyRect.xMin = dirtyRect.xMax;
+            dirtyRect.yMin = dirtyRect.yMax;
+            dirtyRect.xMax = 0;
+            dirtyRect.yMax = 0;
+            inRevision = true;
+        }
+
+
+        foreach (Plixel plix in affected)
+        {
+            dirtyRect.xMin = Math.Min(plix.position.x, dirtyRect.xMin);
+            dirtyRect.yMin = Math.Min(plix.position.y, dirtyRect.yMin);
+            dirtyRect.xMax = Math.Max(plix.position.x, dirtyRect.xMax);
+            dirtyRect.yMax = Math.Max(plix.position.y, dirtyRect.yMax);
+        }
+        if (final) ModifyTiles(revisionType);
+    }
+    public void ModifyTiles(int centerX, int centerY, int radius, Revision revisionType = Revision.everything)
+    {
+        ModifyTiles(new RectInt(centerX - radius, centerY - radius, centerX + radius, centerY + radius), revisionType);
+    }
+    public void ModifyTiles(RectInt rect, Revision revisionType = Revision.everything, bool final = true)
+    {
+        if (!inRevision)
+        {
+            dirtyRect = rect;
+            inRevision = true;
+        }
+        else
+        {
+            dirtyRect.xMin = Math.Min(rect.xMin, dirtyRect.xMin);
+            dirtyRect.yMin = Math.Min(rect.yMin, dirtyRect.yMin);
+            dirtyRect.xMax = Math.Max(rect.xMax, dirtyRect.xMax);
+            dirtyRect.yMax = Math.Max(rect.yMax, dirtyRect.yMax);
+        }
+        if (final) ModifyTiles(revisionType);
+    }
+    public void ModifyTiles(Revision revisionType = Revision.everything)
+    {
+        if (revisionType > Revision.none)
+        {
+            colFg?.UpdateSolidState();
+            colBg?.UpdateSolidState();
+
+            Debug.Log("Visual Revision " + name);
+
+            if (revisionType > Revision.none)
+            {
+                fg?.NotifyModified(dirtyRect);
+                bg?.NotifyModified(dirtyRect);
+            }
+            Debug.Log("Collision Revision " + name);
+            if (revisionType > Revision.visual)
+            {
+                colFg?.NotifyModified(dirtyRect);
+                colBg?.NotifyModified(dirtyRect);
+            }
+            EndRevision();
         }
     }
-    public IEnumerator HandleTileChanges(bool update_physix)
+    void EndRevision()
     {
-        float starttime = Time.realtimeSinceStartup;
-        float ram = 0;
-        int cap = TerrainDefines.terrain_ram_size;
+        inRevision = false;
 
-        Debug.Log("[entityTerrain] " + name + " revises chunks...");
-        List<PlixelMapMob> chunks = new List<PlixelMapMob>();
-        List<Plixel[]> families = new List<Plixel[]>();
-        search_index++;
-
-        if (tile_revision.Count == 0)
+        foreach (var force in consideredforce.ToArray())
         {
-            Debug.Log("[entityTerrain] " + name + " has no tiles to revise..");
-            if (RevisionCoroutine != null)
-            {
-                StopCoroutine(RevisionCoroutine);
-                RevisionCoroutine = null;
-            }
+            ApplyForce(force.force, force.center);
         }
+        consideredforce.Clear();
 
-        if (update_physix)
-        {
-            Debug.Log("[entityTerrain] " + name + " checks " + tile_revision.Count + " tiles with search i " + search_index);
-            for (int iTile = 0; iTile < tile_revision.Count; iTile++)
-            {
-                Plixel Zim = tile_revision[iTile];
-                if (Zim != null && Zim.search_index < search_index && Zim.IsSolid())
-                {
-                    Zim.search_index = search_index;
-                    families.Add(Zim.getFamily());
-
-                }
-            }
-            yield return new WaitForEndOfFrame();
-            if (families.Count < 1)
-            {
-                Debug.Log("[entityTerrain] fail chunkrevision on " + name);
-                StopCoroutine(RevisionCoroutine);
-                RevisionCoroutine = null;
-            }
-
-            families.Sort((Plixel[] A, Plixel[] B) => { return B.Length.CompareTo(A.Length); });
-
-            Debug.Log("[entityTerrain] " + name + " try break into pieces");
-            List<Plixel> temptiles = new List<Plixel>();
-            for (int i = 1; i < families.Count; i++)
-            {
-                Plixel[] family = families[i];
-                PlixelMapMob derbis = BreakChunk(family);
-                derbis.enabled = true;
-                if (derbis.nTiles > 0)
-                {
-                    chunks.Add(derbis);
-                }
-                temptiles.AddRange(family);
-                ram += 2;
-                if (ram > cap)
-                {
-                    ram = 0;
-                    yield return new WaitForEndOfFrame();
-                }
-            }
-            yield return new WaitForEndOfFrame();
-            DestroyTiles(temptiles.ToArray(), false);
-
-        }
-        yield return new WaitForEndOfFrame();
-
-        foreach (Plixel Zim in tile_revision)
-        {
-            referenceTexture.SetPixel(Zim.position.x, Zim.position.y, Zim.getColor());
-            if (Zim.has_changed)
-            {
-                foreach (PlixelChunk chunk in Zim.getRelevantChunks())
-                {
-                    if (chunk != null)
-                    {
-                        chunk.revised = false;
-                        chunk_updated.Add(chunk);
-                    }
-                }
-                Zim.has_changed = false;
-
-                ram++;
-                if (ram > cap)
-                {
-                    ram = 0;
-                    yield return new WaitForEndOfFrame();
-                }
-            }
-        }
-        tile_revision.Clear();
-        referenceTexture.Apply();
-        yield return new WaitForEndOfFrame();
-
-        //if (!visuals_only)
-        {
-            Debug.Log("[entityTerrain] " + name + " tryupdate collision state");
-            consideredforce = Vector4.zero;
-            nTiles = 0;
-            solid = false;
-            foreach (Plixel tile in terrain)
-            {
-                if (tile != null && tile.IsSolid())
-                {
-                    nTiles++;
-                    if (tile.getFrozen())
-                    {
-                        solid = true;
-                    }
-                }
-            }
-            if (nTiles == 0)
-            {
-                Kill();
-            }
-            else
-            {
-                yield return new WaitForEndOfFrame();
-                rigidbody.bodyType = solid ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
-                if (chunk_updated.Count > 0)
-                {
-                    Debug.Log("[entityTerrain] Revise Chunk Colliders");
-                    foreach (PlixelChunk Zim in chunk_updated)
-                    {
-                        if (!Zim.revised)
-                        {
-                            Zim.Revise();
-                        }
-                    }
-                    chunk_updated.Clear();
-                }
-
-            }
-        }
-        StopCoroutine(RevisionCoroutine);
-        RevisionCoroutine = null;
-        Debug.Log("[entityTerrain] " + name + " required " + (Time.realtimeSinceStartup - starttime) + " to complete coroutine");
+        if (!completed)
+            setComplete(true);
     }
-
-    public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)
+    #endregion
+    protected override void HandleOrbit(bool forced)
     {
-        consideredforce = new Vector4(rigidbody.centerOfMass.x, rigidbody.centerOfMass.y, force, damage);
-        base.HandleShockwave(center, dir, force_delta, force, damage);
-    }
-
-    public List<Vector2> GetValidSpawnLocations(Vector2 playerSize)
-    {
-        List<Plixel> possible = new List<Plixel>();
-
-        List<Vector2> SpawnLocs = new List<Vector2>();
-         Vector2Int SearchSize = Vector2Int.CeilToInt(playerSize * TerrainDefines.terrain_PPU);
-
-         foreach (Plixel Zim in terrain)
-         {
-             if (Zim!=null && Zim.CanSpawnEntity())
-             { possible.Add(Zim); }
-         }
-
-         foreach (Plixel Zim in possible)
-         {
-             bool valid = true;
-
-             for (Vector2 vRect = Vector2.zero; valid && (vRect.y <= SearchSize.y);)
-             {
-                 Vector2Int center = Vector2Int.RoundToInt(Zim.position + Vector2.up + vRect - Vector2.right * SearchSize.x / 2f);
-
-                 Plixel Gir = GetTileAt(center.x, center.y, false);
-                 if (Gir != null && Gir.IsForeGround())
-                 { valid = false; }
-                 if (vRect.x <= SearchSize.x)
-                 {
-                     vRect.x++;
-                 }
-                 else { vRect.x = 0; vRect.y++; }
-             }
-             if (valid)
-             {
-                 SpawnLocs.Add(tiletoworldPosition(Zim.position) + (Vector2.up  + Vector2.right / 2 )/ TerrainDefines.terrain_PPU);
-             }
-         }
-        return SpawnLocs;
-    }
-    public Vector2 GetWorldSize()
-    { return new Vector2(terrain.GetLength(1), terrain.GetLength(0)); }
-
-    public bool GetNBounds()
-    {
-        foreach (Plixel tile in GetTilesInRect(0, 0, terrain.GetLength(1), 1, false))
-        {
-            if (tile.IsSolid())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public bool GetSBounds()
-    {
-        foreach (Plixel tile in GetTilesInRect(0, terrain.GetLength(0) - 1, terrain.GetLength(1), 1, false))
-        {
-            if (tile.IsSolid())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public bool GetEBounds()
-    {
-        foreach (Plixel tile in GetTilesInRect(terrain.GetLength(1) - 1, 0, 1, terrain.GetLength(0), false))
-        {
-            if (tile.IsSolid())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public bool GetWBounds()
-    {
-        foreach (Plixel tile in GetTilesInRect(0, 0, 1, terrain.GetLength(0), false))
-        {
-            if (tile.IsSolid())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public void FreezeTiles(Plixel[] Tiles)
-    {
-        foreach (Plixel t in Tiles)
-        {
-            t.SetFrozen();
-        }
+        if (Planet.gameObject != gameObject)
+            base.HandleOrbit(forced);
     }
 }

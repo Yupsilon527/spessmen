@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace VikingParty
-{
     public abstract class Initializable : MonoBehaviour
     {
         bool initialized = false;
@@ -18,7 +16,7 @@ namespace VikingParty
         {
             if (!initialized) Initialize();
         }
-        public void FindComponent<T>(ref T att) where T : MonoBehaviour
+        public void FindComponent<T>(ref T att) where T : Component
         {
             if (att == null)
                 att = GetComponent<T>();
@@ -29,4 +27,3 @@ namespace VikingParty
                 Debug.Log($"[{name}] {str}");
         }
     }
-}

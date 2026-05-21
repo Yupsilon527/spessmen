@@ -7,6 +7,10 @@ public class PixelColliderSegment
     public Vector2 start;
     public Vector2 end;
 
+    public override string ToString()
+    {
+        return $"Segment {start} {end}";
+    }
     public PixelColliderSegment(Vector2 A, Vector2 B)
     {
         start = A; end = B;
@@ -33,33 +37,25 @@ public class PixelColliderSegment
     }
     public bool Merge(PixelColliderSegment other)
     {
-        int isNeighbor = isNeighboring(other);
-
-        if (isNeighbor == 0 || (GetDirection() != other.GetDirection()))
-        { return false; }
-
-
-        if (start == other.start)
+        return false;
+        if (isNeighboring(other) == 0 || GetDirection() != other.GetDirection())
         {
-            start = other.end;
-        }
-        else if (start == other.end)
-        {
-            start = other.start;
+            return false;
         }
 
-
-        if (end == other.start)
-        {
-            end = other.end;
-        }
-        else if (end == other.end)
-        {
-            end = other.start;
-        }
-
+        // Helper function to swap points if they match
+        start = SwapPoints(start, other.start, other.end);
+        end = SwapPoints(end, other.start, other.end);
 
         return true;
+    }
+
+    // Helper method to swap points
+    private Vector2 SwapPoints(Vector2 point, Vector2 otherStart, Vector2 otherEnd)
+    {
+        if (point == otherStart) return otherEnd;
+        if (point == otherEnd) return otherStart;
+        return point;
     }
     public void FlipDirection()
     {
@@ -77,5 +73,14 @@ public class PixelColliderSegment
             return 1;
         }
         return 0;
+    }
+    public override bool Equals(object obj)
+    {
+        if (obj is PixelColliderSegment segment)
+        {
+            return segment.start == start && segment.end == end
+                || segment.end == start && segment.start == end;
+        }
+        return base.Equals(obj);
     }
 }

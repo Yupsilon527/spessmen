@@ -5,16 +5,15 @@ using UnityEngine;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(ConstantForce2D))] 
-public abstract class Mob : MonoBehaviour
+public abstract class Mob : Initializable
 {
     protected int eid = 0;
     public Rigidbody2D rigidbody;
-    protected virtual void Awake()
+    protected override void Initialize()
     {
-        if (rigidbody == null)
-            rigidbody = GetComponent<Rigidbody2D>();
-        if (gravity == null)
-            gravity = GetComponent<ConstantForce2D>();
+        FindComponent(ref rigidbody);
+        FindComponent(ref gravity);
+        base.Initialize();
     }
     protected virtual void Start()
     {

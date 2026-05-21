@@ -39,7 +39,7 @@ public class PlayerDigging : PlayerComponent
             //SFX player digs 
             AudioManager.Instance.PlaySfx("Dig", 2);
             lastDigTime = Time.time + parent.GetDigTime();
-            new ExplosionData((Vector2)transform.position + digVector * parent.DigRange, parent.DigRadius, 0, 0, parent.GetDigDamage(), 0).Explode();            
+            new ExplosionData((Vector2)transform.position + digVector * parent.DigRange, parent.DigRadius, 0, 0, parent.GetDigDamage(), 0,0,0,0,0).Explode();            
         }
     }
     void MoveDigDirection()
