@@ -56,7 +56,16 @@ public class Plixel
     {
         parent = game;
         position = new Vector2Int(x, y);
-        ChangeElement(celement);
+        ElementByColor(celement);
+    }
+    public Plixel(PlixelMapMob game, int x, int y, Color color, int collision)
+    {
+        parent = game;
+        position = new Vector2Int(x, y);
+        basecolor = color;
+        ElementByColor(color);
+        this.collision = collision;
+        UpdateRealColor();
     }
 
     public Plixel(PlixelMapMob game, int x, int y)
@@ -71,7 +80,7 @@ public class Plixel
         }
         else
         {
-            ChangeElement(tcolor);
+            ElementByColor(tcolor);
         }
         UpdateRealColor();
     }
@@ -94,14 +103,6 @@ public class Plixel
         return other;
     }
 
-    public Plixel(PlixelMapMob game, int x, int y, Color color, int collision)
-    {
-        parent = game;
-        position = new Vector2Int(x, y);
-        basecolor = color;
-        this.collision = collision;
-        UpdateRealColor();
-    }
     Plixel[] neighbors;
     public Plixel[] GetNeighbors()
     {
@@ -362,7 +363,7 @@ public class Plixel
         collision |= (int)TerrainDefines.Behavior.Indestructable;
     }
     #region Element
-    public void ChangeElement(Color col)
+    public void ElementByColor(Color col)
     {
         if (col.a < .5f)
         {
