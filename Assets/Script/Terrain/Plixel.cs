@@ -254,6 +254,11 @@ public class Plixel
     }
     public virtual void Damage(float dirty)
     {
+        if (thoughness > 0 && dirty >= thoughness)
+        {
+            Kill(dirty > thoughness);
+        }
+        /*
         integrity -= (integrity > 0 ? (dirty * integrity * .01f * TerrainDefines.terrain_dirty_ratio) : 0);
         if (dirty >= 100)
         {
@@ -262,13 +267,17 @@ public class Plixel
         else
         {
             UpdateRealColor();
-        }
+        }*/
     }
 
     public virtual void Kill(bool permanent)
     {
         if (!IsIndestructable())
         {
+            if (!IsBackGround())
+            {
+                ResourceHarvestController.active.OnTileHarvested(this);
+            }
             integrity = 0;
             if (permanent)
             {
@@ -425,7 +434,7 @@ public class Plixel
                 break;
             case TerrainDefines.Element.core:
                 tcollision = (int)TerrainDefines.Behavior.Foreground | (int)TerrainDefines.Behavior.Indestructable;
-                thoughness = 999;
+                thoughness = int.MaxValue;
                 break;
         }
     }
@@ -578,34 +587,6 @@ public class Plixel
     public void ChangeColor(Color color)
     {
         tcolor = color;
-    }
-    public virtual void Damage(int damage)
-    {
-        if (thoughness>0 && damage >= thoughness)
-        {
-            Kill(damage> thoughness);
-        }
-    }
-
-    public virtual void Kill(bool permanent)
-    {
-        if (!getIndestructable())
-        {
-            if (!IsBackGround())
-            {
-                ResourceHarvestController.active.OnTileHarvested(this);
-            }
-            if (permanent )
-            {
-               tcollision = 0;
-                thoughness = 0;
-            }
-            else if (IsSolid())
-            {
-                tcollision = (int) TerrainDefines.Behavior.Background | (getFrozen() ? (int)TerrainDefines.Behavior.Frozen : 0); 
-            }            
-            has_changed = true;
-        }
     }
 
     public bool IsRelevant(bool foreground)

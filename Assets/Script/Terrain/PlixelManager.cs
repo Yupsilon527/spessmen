@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlixelManager : Initializable
 {
+  protected  bool generated = false;
     public static int process = 0;
     public PlixelMapMob parent;
     public RectInt dirtyRect;

@@ -764,7 +764,7 @@ public class PlixelMapMob : Mob
     public void HandleExplosion(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
     {
         Vector2Int explosion_center = worldtotilePosition(world_position);
-        int iOuterRadius = Mathf.CeilToInt(outer_radius * TerrainDefines.terrain_PPU);
+        int iOuterRadius = Mathf.CeilToInt(Mathf.Max(inner_radius,middle_radius,outer_radius) * TerrainDefines.terrain_PPU);
 
         HashSet<Plixel> damagedTiles = new();
 

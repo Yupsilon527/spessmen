@@ -49,10 +49,6 @@ public class ExplosiveItem : ItemMob
             }
         }
     }
-    public override void Kill()
-    {
-        base.Kill();
-    }
     void StopDetonation()
     {
         if (detonationCoroutine != null)

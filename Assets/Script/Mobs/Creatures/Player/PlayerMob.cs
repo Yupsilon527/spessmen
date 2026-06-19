@@ -15,6 +15,9 @@ public class PlayerMob : CreatureMob
     public float MoveSpeedMultiplier = 1f;
     public int DigStrengthUpgrades = 5;
 
+    public int DigStrengthWeak = 1;
+    public int DigStrengthStrong = 2;
+
     protected int DiggingUpgrades = 0;
     public void UpgradeDigging()
     {
@@ -26,7 +29,7 @@ public class PlayerMob : CreatureMob
     }
     public int GetDigDamage()
     {
-        return DiggingUpgrades >= DigStrengthUpgrades ? 2 : 1;
+        return DiggingUpgrades >= DigStrengthUpgrades ? DigStrengthStrong : DigStrengthWeak;
     }
     #endregion
 

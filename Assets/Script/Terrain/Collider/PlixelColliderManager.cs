@@ -15,6 +15,7 @@ public class PlixelCollisionManager : PlixelManager
     public int cellCol, cellRow;
     public override void OnCreated()
     {
+        if (generated) return;
         cellCol = (parent.GetWidth() + cellSize - 1) / cellSize + 1;
         cellRow = (parent.GetHeight() + cellSize - 1) / cellSize + 1;
 
@@ -40,6 +41,7 @@ public class PlixelCollisionManager : PlixelManager
 
         UpdateSolidState();
         base.OnCreated();
+        generated = true;
     }
     private void FixedUpdate()
     {

@@ -60,7 +60,7 @@ MonoBehaviour:
   dirty: 0
   background: 0
   comp: {fileID: 9008403782487927178}
-  cellSize: 50
+  cellSize: 100
   quality: 0
   cellCol: 1
   cellRow: 1
