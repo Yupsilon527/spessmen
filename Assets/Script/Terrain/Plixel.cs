@@ -252,14 +252,7 @@ public class Plixel
     {
         staincolor = color;
     }
-    public virtual void Damage(float damage)
-    {
-        if (thoughness > 0 && damage >= thoughness)
-        {
-            Kill(damage > thoughness);
-        }
-    }
-    public virtual void Dirty(float dirty)
+    public virtual void Damage(float dirty)
     {
         integrity -= (integrity > 0 ? (dirty * integrity * .01f * TerrainDefines.terrain_dirty_ratio) : 0);
         if (dirty >= 100)

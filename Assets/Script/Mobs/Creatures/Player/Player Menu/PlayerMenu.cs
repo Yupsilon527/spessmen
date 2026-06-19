@@ -1,9 +1,5 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Events;
 
 public class PlayerMenu : PlayerComponent
 {
