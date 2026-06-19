@@ -9,40 +9,51 @@ public class PlayerDigging : PlayerComponent
     {
         if (Input.GetButtonDown("Dig") && parent.backpack.GetActiveItem() == null)
         {
-            if (DiggingCoroutine==null && parent.IsGrounded())
+            if (parent.IsGrounded())
             {
-                StartCoroutine(DiggingTask());
+                StartDigging();
             }
-            
+        }
+        else if (Input.GetButtonUp("Dig"))
+        {
+            StopDigging();
         }
     }
-    Coroutine DiggingCoroutine;
-    Vector2 digVector = Vector2.zero;
-    float lastDigTime = 0;
-    IEnumerator DiggingTask()
+    float nextUpdateTime = 0;
+    public float updateTime = .1f;
+    void FixedUpdate()
     {
-        parent.CanMove = false;
-        while (Input.GetButton("Dig"))
+        if (digging)
         {
             digVector = parent.input.moveInput;
-            if (digVector.sqrMagnitude > 0)
+            parent.CanMove = false;
+            if (nextUpdateTime < Time.time)
             {
-                MoveDigDirection();
-                DigDirection();
+                if (digVector.sqrMagnitude > 0)
+                {
+                    MoveDigDirection();
+                    DigDirection();
+                }
+                nextUpdateTime = Time.time + updateTime;
             }
-            yield return new WaitForEndOfFrame();
         }
-        StopDigging();
     }
+    bool digging = false;
+    void StartDigging()
+    {
+        digging = true;
+    }
+    Vector2 digVector = Vector2.zero;
+    float lastDigTime = 0;
     void DigDirection()
     {
         digVector = digVector.y * transform.up + digVector.x * transform.right;
-        if (digVector.sqrMagnitude > 0 && Time.time > lastDigTime )
+        if (digVector.sqrMagnitude > 0 && Time.time > lastDigTime)
         {
             //SFX player digs 
             AudioManager.Instance.PlaySfx("Dig", 2);
             lastDigTime = Time.time + parent.GetDigTime();
-            var dig = new ExplosionData((Vector2)transform.position + digVector * parent.DigRange, parent.DigRadius, parent.GetDigDamage(), 0, 0, 0, 0, 0, 0, 0);
+            var dig = new ExplosionData((Vector2)transform.position + digVector * parent.DigRange, new ExplosionTable.ExplosionRadius() { radius = parent.DigRadius, damage = parent.GetDigDamage() });
             dig.Explode();
         }
     }
@@ -52,13 +63,18 @@ public class PlayerDigging : PlayerComponent
     }
     public void StopDigging()
     {
-        if (DiggingCoroutine != null)
-            StopCoroutine(DiggingCoroutine);
-        DiggingCoroutine = null;
+        digging = false;
         parent.CanMove = true;
     }
     private void OnDisable()
     {
         StopDigging();
+    }
+    private void OnDrawGizmos()
+    {
+        if (digging)
+        {
+            Gizmos.DrawWireSphere((Vector2)transform.position + digVector * parent.DigRange, parent.DigRadius);
+        }
     }
 }

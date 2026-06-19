@@ -757,37 +757,36 @@ public class PlixelMapMob : Mob
     #region Destruction
     public void HandleExplosion(ExplosionData explosion)
     {
-        HandleExplosion(explosion.center, explosion.inner_radius, explosion.inner_damage, explosion.middle_radius, explosion.middle_damage, explosion.outer_radius, explosion.outer_damage);
+        HandleExplosion(explosion.center, explosion.terrain_damage);
 
     }
 
-    public void HandleExplosion(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
+    public void HandleExplosion(Vector2 world_position, ExplosionData.ExplosionRadius[] radiuses)
     {
         Vector2Int explosion_center = worldtotilePosition(world_position);
-        int iOuterRadius = Mathf.CeilToInt(Mathf.Max(inner_radius,middle_radius,outer_radius) * TerrainDefines.terrain_PPU);
+        float iOuterRadius = radiuses.Max(r => r.radius) * TerrainDefines.terrain_PPU;
 
         HashSet<Plixel> damagedTiles = new();
 
-        foreach (Plixel tile in GetTilesInCircle(explosion_center.x, explosion_center.y, iOuterRadius, RetrievePlixelMode.normal))
+        foreach (Plixel tile in GetTilesInCircle(explosion_center.x, explosion_center.y, (int)iOuterRadius, RetrievePlixelMode.normal))
         {
             if (tile == null) continue;
-            float distance = (tile.position - explosion_center).sqrMagnitude;
+            float distance = (tile.position - explosion_center).magnitude;
 
             int damage = 0;
 
-            if (inner_radius > 0 && distance < inner_radius * TerrainDefines.terrain_PPU)
-                damage = inner_damage;
-            else if (middle_radius > 0 && distance < middle_radius * TerrainDefines.terrain_PPU)
-                damage = middle_damage;
-            else if (outer_radius > 0)
-                damage = outer_damage;
+            foreach (var r in radiuses)
+            {
+                if (distance < r.radius * TerrainDefines.terrain_PPU)
+                    damage = Mathf.Max(damage, r.damage);
+            }
 
             if (TakeDamage(tile, damage, Revision.everything))
             {
                 damagedTiles.Add(tile);
             }
         }
-        ModifyTiles(explosion_center.x, explosion_center.y, iOuterRadius);
+        ModifyTiles(explosion_center.x, explosion_center.y, (int)iOuterRadius);
     }
 
     public void HandleExplosionCoroutine(Vector2 world_position, float inner_radius, int inner_damage, float middle_radius, int middle_damage, float outer_radius, int outer_damage)
@@ -872,7 +871,6 @@ public class PlixelMapMob : Mob
             if ((tile.position.x >= 0 && tile.position.y >= 0 && tile.position.x < _width && tile.position.y < _height))
             {
                 tile.Damage(dirty);
-                //DELETE TILE HERE
                 return true;
             }
         }

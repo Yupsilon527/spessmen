@@ -117,12 +117,11 @@ MonoBehaviour:
   DetonationDelay: 1
   DetonationForce: 10
   explosionData:
-    inner_radius: 0
-    inner_damage: 0
-    middle_radius: 0.8
-    middle_damage: 300
-    outer_radius: 1.4
-    outer_damage: 200
+    terrain_damage:
+    - radius: 0.8
+      damage: 3
+    - radius: 1.4
+      damage: 2
     shockwave_radius: 0
     knockback_force: 100
     creature_damage: 25
