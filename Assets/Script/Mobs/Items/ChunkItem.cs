@@ -11,7 +11,7 @@ public class ChunkItem : ItemMob
     {
         if (nElement == TerrainDefines.Element.nothing || nQuantity == 0)
         {
-            Kill();
+            Erase();
             return;
         }
         Element = nElement;
@@ -26,7 +26,7 @@ public class ChunkItem : ItemMob
     {
         if (nQ == 0)
         {
-            Kill();
+            Erase();
             return;
         }
         Quantity = nQ;
@@ -100,13 +100,13 @@ public class ChunkItem : ItemMob
         Quantity -= q;
         if (Quantity<=0)
         {
-            Kill();
+            Erase();
         }
     }
-    public override void Kill()
+    public override void Erase()
     {
         Element = TerrainDefines.Element.nothing;
-        base.Kill();
+        base.Erase();
     }
     public override string GetMobName()
     {

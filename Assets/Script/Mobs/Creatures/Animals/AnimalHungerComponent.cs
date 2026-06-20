@@ -77,7 +77,7 @@ public class AnimalHungerComponent : AnimalComponent, iItemToucher
                 if (diet.eatRequirement == food.ediblecategory)
                 {
                 PoopItem(diet);
-                food.Kill();
+                food.Erase();
                 return true;
                 }
         }

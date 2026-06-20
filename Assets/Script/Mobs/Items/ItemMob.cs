@@ -58,10 +58,10 @@ public class ItemMob : Mob
         gameObject.SetActive(true);
         HandleOrbit(true);
     }
-    public override void Kill()
+    public override void Erase()
     {
         DropFromContainer();
-        base.Kill();
+        base.Erase();
     }
     public virtual void OnSold(PlayerMob sellingPlayer)
     {

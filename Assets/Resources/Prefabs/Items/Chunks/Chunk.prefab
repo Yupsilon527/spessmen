@@ -117,10 +117,11 @@ MonoBehaviour:
   inspect: 0
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
-  Planet: {fileID: 0}
+  planet: {fileID: 0}
   FreeRotation: 0
   Mass: 10
   posUpdateInterval: 0.33
+  vectorUp: {x: 0, y: 0}
   MobName: 
   category: 0
   ediblecategory: 3

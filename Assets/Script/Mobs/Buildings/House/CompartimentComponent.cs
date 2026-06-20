@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CompartimentComponent : MonoBehaviour
+public class CompartimentComponent : BuildingComponent
 {
     public List<PlayerMob> Inhabitants;
     public int InhabitantLimit = 1;
-    public Mob Owner;
     public DoorComponent entryDoor;
-    private void Awake()
+    protected override void Initialize()
     {
-        Owner = GetComponent<Mob>();
+        base.Initialize();
         Inhabitants = new List<PlayerMob>();
     }
 

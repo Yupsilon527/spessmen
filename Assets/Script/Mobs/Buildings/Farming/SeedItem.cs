@@ -10,7 +10,7 @@ public class SeedItem : ItemMob
         if (user.farmer.FarmingSpot != null && user.farmer.FarmingSpot.TryPlant(Plant))
         {
             //SFX plant seed
-            Kill();
+            Erase();
             return;
         }
         base.OnActivate(user);

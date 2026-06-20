@@ -8,11 +8,13 @@ public class HouseMob : BuildingMob
 {
     public CompartimentComponent indoors;
     public InventoryComponent storage;
+    public DriveComponent drive;
     protected override void Awake()
     {
         base.Awake();
         indoors = GetComponent<CompartimentComponent>();
         storage = GetComponent<InventoryComponent>();
+        drive = GetComponent<DriveComponent>();
     }
     public override void SetBuildPercentage(float percent)
     {

@@ -326,15 +326,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7bc5623757f2c428f117c944aa7ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
   upcommingPhase: 0
   currentPhase: 0
   worldSize: {x: 0, y: 0}
   MobsInMotion: []
+  planets: []
   terrainmobs: []
   mapTexture: {fileID: 2800000, guid: f85d176255587334ea68efc9360dcc93, type: 3}
   renderComp: {fileID: 4122211004986758166}
   MobPool: {fileID: 1371688059}
   EffectPool: {fileID: 3179928289180176802}
+  planetPrefab: {fileID: 7630899101065159206, guid: acb87fa981165554d81fef3225d0d9d9, type: 3}
 --- !u!61 &4736265159237272897
 BoxCollider2D:
   m_ObjectHideFlags: 0

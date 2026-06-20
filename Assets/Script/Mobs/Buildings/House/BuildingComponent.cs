@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetoidController : Initializable
+public class BuildingComponent : Initializable
 {
-    public float gravity = 3;
+    public BuildingMob parentMob;
     protected override void Initialize()
     {
         base.Initialize();
-        WorldController.active.planets.Add(this);
+        FindComponent(ref  parentMob);
     }
 }

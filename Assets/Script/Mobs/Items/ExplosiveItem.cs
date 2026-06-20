@@ -36,7 +36,7 @@ public class ExplosiveItem : ItemMob
     void Explode()
     {
         //SFX explosion audio
-        Kill();
+        Erase();
         ExplosionData boom = new ExplosionData((Vector2)transform.position + rigidbody.velocity, explosionData);
         boom.Explode();
         if (ExplosionEffect!= null &&  WorldController.active.EffectPool!=null)

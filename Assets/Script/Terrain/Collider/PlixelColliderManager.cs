@@ -118,7 +118,7 @@ public class PlixelCollisionManager : PlixelManager
 
         if (parent.tilesTotal == 0)
         {
-            parent.Kill();
+            parent.Erase();
         }
         else
         {

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorComponent : MonoBehaviour
+public class DoorComponent : BuildingComponent
 {
     Animator animator;
     CompartimentComponent House;
-    private void Awake()
+    protected override void Initialize()
     {
+        base.Initialize();
         if (animator == null)
             animator = GetComponent<Animator>();
         if (House == null)

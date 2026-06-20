@@ -26,7 +26,7 @@ public class HealthController : CreatureComponent
         {
 
             //SFX game over sound
-            parent.Kill();
+            parent.Erase();
         }
     }
     private void Update()

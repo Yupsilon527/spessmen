@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(SpriteRenderer))]
-public class WorldController : MonoBehaviour
+public class WorldController : Initializable
 {
     public enum GamePhase
     {
@@ -20,36 +20,27 @@ public class WorldController : MonoBehaviour
     public static WorldController active;
     public Vector2 worldSize;
 
-    public List<Mob> MobsInMotion = new List<Mob>();
+    public List<PlanetoidController> planets = new List<PlanetoidController>();
     public List<PlixelMapMob> terrainmobs = new List<PlixelMapMob>();
-
-    public Texture2D mapTexture;
-    public SpriteRenderer renderComp;
 
     public ObjectPool MobPool;
     public ObjectPool EffectPool;
 
-    private void Start() {
-        active = this;
-        StartCoroutine(PrepareWorld());
-    }
-    private void OnValidate()
+    protected override void Initialize()
     {
-        if (renderComp != null)
-            renderComp.sprite = Sprite.Create(mapTexture, new Rect(0, 0, mapTexture.width, mapTexture.height), Vector2.one / 2, TerrainDefines.terrain_PPU);
+        base.Initialize();
+        active = this;
+    }
+    private void Start() {
+        StartCoroutine(PrepareWorld());
     }
 
     public IEnumerator PrepareWorld()
     {
-        if (renderComp != null)
-            renderComp.enabled = false;
-            yield return new WaitForEndOfFrame();
         Debug.Log("[entityWorld] Draw the world.");
         ChangePhase(GamePhase.Loading);//prepating landscape
-        PlixelMapMob tileset = PlixelMapMob.LoadFromTexture(mapTexture);
 
         yield return new WaitForSecondsRealtime(1);
-        yield return new WaitUntil(() => { return tileset.isComplete(); });
         yield return PauseForTerrainToLoad();
         //complete
         Debug.Log("[entityWorld] Drawing complete!");
@@ -136,5 +127,21 @@ public class WorldController : MonoBehaviour
         {
             return mob.gameObject.activeInHierarchy;
         }).ToArray();
+    }
+
+    public PlanetoidController GetClosestPlanetToPoint(Vector3 center)
+    {
+        if (planets.Count == 0) return null;
+        float dist = Mathf.Infinity;
+        PlanetoidController closest = planets[0];
+        foreach (var p in planets)
+        {
+            if ((p.transform.position - center).sqrMagnitude < dist)
+            {
+                closest = p;
+                dist = (p.transform.position - center).sqrMagnitude ;
+            }
+        }
+        return closest;
     }
 }

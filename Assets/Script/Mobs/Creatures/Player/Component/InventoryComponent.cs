@@ -122,7 +122,7 @@ public class InventoryComponent : MonoBehaviour
                 CycleItemLeft();
             Inventory.Remove(item);
             item.OnSold(sellingPlayer);
-            item.Kill();
+            item.Erase();
         }
     }
     public void CycleItemLeft()

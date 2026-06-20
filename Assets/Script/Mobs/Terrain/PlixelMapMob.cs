@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class PlixelMapMob : Mob
+public class PlixelMapMob : SpaceObject
 {
     public static int nChunks = 0;
     public int search_index = 0;
@@ -55,10 +55,10 @@ public class PlixelMapMob : Mob
     }
     #endregion
     #region Generation
-    public static PlixelMapMob LoadFromTexture(Texture2D terrain)
+    public static PlixelMapMob LoadFromTexture(GameObject prefab, Texture2D terrain)
     {
         Debug.Log("[entityTerrain] Generate Terrain From Texture");
-        GameObject newChunk = GameObject.Instantiate(TerrainDefines.TerrainPrefab);
+        GameObject newChunk = GameObject.Instantiate(prefab);
         newChunk.name = "Terra " + nChunks++;
         newChunk.transform.position = Vector3.zero;
         PlixelMapMob terr = newChunk.GetComponent<PlixelMapMob>();
@@ -271,7 +271,7 @@ public class PlixelMapMob : Mob
 
         return eChink;
     }
-    void TransferForce(Mob other)
+    void TransferForce(SpaceObject other)
     {
 
         var newRigidBody = other.GetComponent<Rigidbody2D>();
@@ -895,7 +895,6 @@ public class PlixelMapMob : Mob
         if (isComplete())
         {
             rigidbody.AddForceAtPosition(force, center);
-            WorldController.active.MobsInMotion.Add(this);
         }
         else
         {
@@ -1001,7 +1000,7 @@ public class PlixelMapMob : Mob
     #endregion
     protected override void HandleOrbit(bool forced)
     {
-        if (Planet.gameObject != gameObject)
+        if (planet.gameObject != gameObject)
             base.HandleOrbit(forced);
     }
 }

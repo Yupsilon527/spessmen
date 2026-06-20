@@ -437,10 +437,11 @@ MonoBehaviour:
   inspect: 0
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
-  Planet: {fileID: 0}
+  planet: {fileID: 0}
   FreeRotation: 1
   Mass: 10
   posUpdateInterval: 9999
+  vectorUp: {x: 0, y: 1}
   MobName: Building
   ConstructionCollider: {fileID: 1967993309}
   BuildingTexture: {fileID: 3437930402308740186}
@@ -448,6 +449,7 @@ MonoBehaviour:
   BuildTime: 0
   indoors: {fileID: 0}
   storage: {fileID: 0}
+  drive: {fileID: 0}
 --- !u!114 &3437930400982524367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,9 +462,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ff478b20317774f92400f25a4d65fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
+  parentMob: {fileID: 0}
   Inhabitants: []
   InhabitantLimit: 1
-  Owner: {fileID: 0}
   entryDoor: {fileID: 3437930402190611838}
 --- !u!50 &3437930400982524360
 Rigidbody2D:
@@ -477,7 +480,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.33
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -840,6 +843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce93be2f218f44c47953caee3e76ac25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
+  parentMob: {fileID: 0}
 --- !u!95 &3437930402190611837
 Animator:
   serializedVersion: 5
@@ -873,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4666d4dc67c73934bb952198fb38aba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Press "A" to Enter
+  message: Press "S" to Enter
 --- !u!1 &3437930402308740181
 GameObject:
   m_ObjectHideFlags: 0

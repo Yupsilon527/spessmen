@@ -25,6 +25,6 @@ public class EggItem : ItemMob
     {
         GameObject creature = WorldController.active.MobPool.PoolItem(creaturePrefab);
         creature.transform.position = transform.position;
-        Kill();
+        Erase();
     }
 }

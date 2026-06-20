@@ -52,7 +52,7 @@ public class FarmingSpotController : MonoBehaviour
                 if (remaining> chunk.GetNutritionalValue())
                 {
                     Nutriment.GiveValue(chunk.GetNutritionalValue());
-                    chunk.Kill();
+                    chunk.Erase();
                 }
                 else
                 {
@@ -65,7 +65,7 @@ public class FarmingSpotController : MonoBehaviour
             else
             {
                 Nutriment.GiveValue(item.GetNutritionalValue());
-                chunk.Kill();
+                chunk.Erase();
             }
             return true;
         }

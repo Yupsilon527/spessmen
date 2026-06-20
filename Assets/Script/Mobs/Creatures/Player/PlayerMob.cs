@@ -71,8 +71,7 @@ public class PlayerMob : CreatureMob
     {
         base.Start();
         InterfaceController.main.TieToPlayer(this);
-        if (SidewaysCamera.active!=null)
-            SidewaysCamera.active.FollowMob(this);
+        OnExitBuilding();
     }
 
     protected override void FixedUpdate()
@@ -101,10 +100,13 @@ public class PlayerMob : CreatureMob
     public void ExitBuilding()
     {
         indoor.UnloadMob(this);
+        TryTieToPlanet();
     }
     public virtual void OnExitBuilding()
     {
         gameObject.SetActive(true);
+        if (SidewaysCamera.active != null)
+            SidewaysCamera.active.FollowMob(this);
     }
     #endregion
     public override void HandleShockwave(Vector2 center, Vector2 dir, float force_delta, float force, float damage)

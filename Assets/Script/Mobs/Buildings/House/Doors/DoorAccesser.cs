@@ -11,7 +11,15 @@ public class DoorAccesser : PlayerComponent
         {
             if (parent.IsInside())
             {
-                ExitHouse();
+                /*if (parent.indoor.parentMob is HouseMob house && (house.drive?.IsDriveMode() ?? false))
+                {
+                    parent.menu.OpenIndoorsMenu(house);
+                    house.drive.ExitDriveMode();
+                }
+                else*/
+                {
+                    ExitHouse();
+                }
             }
             else if (HouseInRange != null)
             {
@@ -22,7 +30,7 @@ public class DoorAccesser : PlayerComponent
         {
             if (parent.IsInside())
             {
-                parent.backpack.TransferItem( parent.indoor.GetComponent<InventoryComponent>());
+                parent.backpack.TransferItem(parent.indoor.GetComponent<InventoryComponent>());
             }
         }
     }
@@ -30,19 +38,15 @@ public class DoorAccesser : PlayerComponent
     {
 
         //SFX Door sound
-       
-        
-        parent.menu.OpenIndoorsMenu((HouseMob)HouseInRange.Owner);
+        parent.menu.OpenIndoorsMenu((HouseMob)HouseInRange.parentMob);
         HouseInRange.LoadMob(parent);
         AudioManager.Instance.PlaySfx("Door Open", 3);
     }
     void ExitHouse()
     {
-
         //SFX Door sound
         AudioManager.Instance.PlaySfx("Door Close", 4);
         parent.menu.CloseMenu();
         parent.ExitBuilding();
-       
     }
 }

@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 7406692173756704263}
   - component: {fileID: 3795153399687710256}
   m_Layer: 0
-  m_Name: Land Prefab
+  m_Name: Planet Prefab
   m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

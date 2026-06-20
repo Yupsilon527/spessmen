@@ -33,10 +33,6 @@ public class SidewaysCamera : MonoBehaviour
         CameraOrder = new Vector2(-1, -1);
         CameraTime = Vector2.zero;
     }
-    bool IsIdle()
-    {
-        return CameraOrder.x <= 0;
-    }
 
     Mob followMob;
     public void FollowMob(Mob mob)

@@ -25,7 +25,7 @@ public class PlayerMenu : PlayerComponent
                     {
                         //SFX build a new building sound
                        // AudioManager.Instance.PlaySfx("Build", 7);
-                        source.Kill();
+                        source.Erase();
                     }
                     return true;
                 });
@@ -56,6 +56,13 @@ public class PlayerMenu : PlayerComponent
         {
             lNames.Add("Buy");
             lActions.Add(() => { OpenBuildingShopMenu(store); return false; });
+
+        }
+
+        if (indoorHouse.TryGetComponent(out DriveComponent drive))
+        {
+            lNames.Add("Drive");
+            lActions.Add(() => { drive.EnterDriveMode(); CloseMenu(); return false; });
 
         }
 
