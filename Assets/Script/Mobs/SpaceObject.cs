@@ -7,6 +7,7 @@ public class SpaceObject : Initializable
     public ConstantForce2D gravity;
     public PlanetoidController planet;
 
+    public bool galaxyBound = false;
     public bool FreeRotation = false;
     public float Mass = 10;
     float nextPosUpdate = 0f;
@@ -18,6 +19,13 @@ public class SpaceObject : Initializable
     {
         base.Initialize();
         eid = geid++;
+    }
+    protected virtual void FixedUpdate()
+    {
+        if (galaxyBound && transform.position.sqrMagnitude > WorldController.active.galaxyBoundaries * WorldController.active.galaxyBoundaries)
+        {
+            transform.position = transform.position.normalized * -1 * WorldController.active.galaxyBoundaries;
+        }
     }
     public virtual void ApplyForce(Vector2 force, Vector2 center)
     {

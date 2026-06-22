@@ -44,15 +44,21 @@ public class PlixelDisplayManager : PlixelManager
         if (displayDebug)
             Debug.Log($"[entityTerrain] {name} enqueue {workRect.size} tiles to redraw..");
 
-        for (var y = workRect.yMin; y < workRect.yMax; y++)
+        workRect.xMin = Mathf.Max(0, workRect.xMin);
+        workRect.yMin = Mathf.Max(0, workRect.yMin);
+        workRect.xMax = Mathf.Min(width, workRect.xMax);
+        workRect.yMax = Mathf.Min(height, workRect.yMax);
+
+        for (var y = Mathf.Max(workRect.yMin); y < Mathf.Min(workRect.yMax,width); y++)
         {
             var o = y * width;
 
-            for (var x = workRect.xMin; x < workRect.xMax; x++)
+            for (var x = Mathf.Max(workRect.xMin); x < Mathf.Min(workRect.xMax,height); x++)
             {
-                if (o + x < pixels.Length)
+                int ox = o + x;
+                if (ox >= 0 && ox < pixels.Length)
                 {
-                    pixels[o + x] = parent.GetTileAt(x, y)?.getColor(IsBackground) ?? Color.clear;
+                    pixels[ox] = parent.GetTileAt(x, y)?.getColor(IsBackground) ?? Color.clear;
                     if (Step()) yield return null;
                 }
             }
@@ -63,13 +69,17 @@ public class PlixelDisplayManager : PlixelManager
         {
             edited = new Color32[total];
 
-            for (var y = workRect.yMin; y < workRect.yMax; y++)
+            for (var y = Mathf.Max(0,workRect.yMin); y < Mathf.Min(workRect.yMax, width); y++)
             {
                 var o = y * width;
 
-                for (var x = workRect.xMin; x < workRect.xMax; x++)
+                for (var x = Mathf.Max( workRect.xMin); x < Mathf.Min(workRect.xMax, height); x++)
                 {
-                    edited[i++] = pixels[o + x];
+                    int ox = o + x;
+                    if (ox >= 0 && ox < pixels.Length)
+                    {
+                        edited[i++] = pixels[o + x];
+                    }
                 }
             }
             yield return null;

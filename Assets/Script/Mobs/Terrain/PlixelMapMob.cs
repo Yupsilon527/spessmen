@@ -666,7 +666,10 @@ public class PlixelMapMob : SpaceObject
     }
     public Plixel GetTileAt(int ix, int iy)
     {
-        return terrain[iy * _width + ix];
+        int index = iy * _width + ix;
+        if (index >= 0 && index<terrain.Length)
+        return terrain[index];
+        return null;
     }
 
     public Color GetColorAt(int ix, int iy)

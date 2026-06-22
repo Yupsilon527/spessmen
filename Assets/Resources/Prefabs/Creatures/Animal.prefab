@@ -32,6 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434695873138036315}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.23651473, w: 0.97162795}
   m_LocalPosition: {x: 6.06, y: 11.71, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
@@ -39,7 +40,6 @@ Transform:
   m_Children:
   - {fileID: 1434695873277297648}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1434695873138036318
 SpriteRenderer:
@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: -980121073
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c95881a60ff9833448e71ae3c9ecd66f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c6d9f686795a1a45a7b0ce6adbe6699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -110,6 +110,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 0
@@ -124,12 +130,31 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.666
 --- !u!114 &1434695873138036317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,11 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f22405fd344c2468a618c065428417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
-  Planet: {fileID: 0}
+  planet: {fileID: 0}
+  galaxyBound: 0
   FreeRotation: 0
+  Mass: 10
   posUpdateInterval: 0.25
+  vectorUp: {x: 0, y: 0}
   MobName: Piglet
   renderer: {fileID: 1434695873138036318}
   CanMove: 1
@@ -236,14 +265,17 @@ MonoBehaviour:
   - eatRequirement: 1
     hungerResult: 20
     resultingItem: {fileID: 6365192511643780952, guid: 470975fcc3cb72d4c9eb59b39f168f7e, type: 3}
+    chunkElement: 0
     StackCount: 0
   - eatRequirement: 2
     hungerResult: 20
     resultingItem: {fileID: 222666570693592656, guid: e02529076405410439c588c404b14c67, type: 3}
+    chunkElement: 0
     StackCount: 100
   - eatRequirement: 0
     hungerResult: 40
     resultingItem: {fileID: 222666570693592656, guid: 292942cc75ef9ba48a4ec8c070302a44, type: 3}
+    chunkElement: 0
     StackCount: 20
   TouchedItems: []
 --- !u!114 &1434695873138036306
@@ -284,13 +316,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434695873277297649}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0.492, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1434695873138036305}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1434695873277297651
 SpriteRenderer:

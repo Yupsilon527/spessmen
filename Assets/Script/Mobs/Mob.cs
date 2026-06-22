@@ -17,17 +17,14 @@ public abstract class Mob : SpaceObject
     {
         Register(); 
     }
-    private void OnValidate()
-    {
-            OrbitPoint(Vector3.zero);
-    }
     protected bool suspended = false;
     public bool IsSuspended()
     {
         return suspended;
     }
-    protected virtual void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
          if (!suspended)
         {
             HandleOrbit(false);

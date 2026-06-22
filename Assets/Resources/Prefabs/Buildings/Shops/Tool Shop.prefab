@@ -5,11 +5,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1967993311, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: Shop.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1967993311, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: Shop.Array.data[0].Cost
@@ -45,12 +46,12 @@ PrefabInstance:
       objectReference: {fileID: 8233449647150354695, guid: 29f92c9614e6f3f4baa61c62c67a46f0, type: 3}
     - target: {fileID: 1967993311, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: Shop.Array.data[4].Cost
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1967993311, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: Shop.Array.data[4].Item
       value: 
-      objectReference: {fileID: 5838067984206625777, guid: 0c0e4a582a0a030498652a6c19b2daf2, type: 3}
+      objectReference: {fileID: 836016670052375698, guid: beb56e694807a6344b6ae488068cb512, type: 3}
     - target: {fileID: 27607887413410687, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -88,17 +89,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5042949912431068500, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949912431068500, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949912431068500, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949912431068500, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.56
+      value: 1.105
       objectReference: {fileID: 0}
     - target: {fileID: 5042949912431068500, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.56
+      value: 1.105
       objectReference: {fileID: 0}
     - target: {fileID: 5042949912431068501, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 477ff8b350e2ebd4ca49177bfd09c304, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0330682
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949912431068501, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: m_Color.g
+      value: 0.38104936
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949912431068501, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9559748
+      objectReference: {fileID: 0}
     - target: {fileID: 5042949912585307248, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -159,6 +180,14 @@ PrefabInstance:
       propertyPath: MobName
       value: Workshop
       objectReference: {fileID: 0}
+    - target: {fileID: 5042949914330280134, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: vectorUp.x
+      value: 0.44509512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042949914330280134, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
+      propertyPath: vectorUp.y
+      value: 0.89548326
+      objectReference: {fileID: 0}
     - target: {fileID: 5305654023423322579, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -168,4 +197,7 @@ PrefabInstance:
       value: 0.39607847
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e5791371e8cba54ca803bb38110a142, type: 3}

@@ -23,9 +23,13 @@ public class ItemMob : Mob
     public bool RequiresGroundToUse = false;
     public float ThrowSpeed = 10;
     public float GoldValue = 0;
+    protected override void Awake()
+    {
+        base.Awake();
+        SetSuspended(StartSuspended);
+    }
     public virtual void OnCreate()
     {
-            SetSuspended(StartSuspended);
     }
     public virtual void OnActivate(PlayerMob user)
     {

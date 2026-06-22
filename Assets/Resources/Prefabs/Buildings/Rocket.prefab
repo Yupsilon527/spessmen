@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 1913926721527326182, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a2a0bb8dee694c8e91673f14e2e6805, type: 3}
+      objectReference: {fileID: 21300000, guid: ac35c99687c26bc49899d51e7cfb20c1, type: 3}
     - target: {fileID: 3437930400982524360, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -29,12 +29,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: BuildCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: BuildTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: rigidbody
+      value: 
+      objectReference: {fileID: 3533395704061705061}
+    - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: vectorUp.x
       value: -0.2730477
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: vectorUp.y
       value: 0.9620005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: galaxyBound
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3437930400982524362, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80,6 +96,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 3437930402190611839, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ac35c99687c26bc49899d51e7cfb20c1, type: 3}
+    - target: {fileID: 3437930402308740180, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437930402308740180, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3437930402308740180, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.796
@@ -91,7 +119,11 @@ PrefabInstance:
     - target: {fileID: 3437930402308740186, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1f477e9d3137e4488bc85a3cd37049a8, type: 3}
+      objectReference: {fileID: 21300000, guid: 0088baa11a7d3e4448a1b5ea004a4895, type: 3}
+    - target: {fileID: 3437930402308740186, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3437930402308740187, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.64
@@ -126,6 +158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68f017110b7d6449cd8fdf29f767a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3533395704061705061 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3437930400982524360, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+  m_PrefabInstance: {fileID: 2214891201581636269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3533395704061705062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
@@ -185,6 +222,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: 0.14999998}
+  m_Size: {x: 2, y: 3}
   m_Direction: 0

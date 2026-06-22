@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3437930400982524361, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
@@ -64,6 +65,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3437930400982524363, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1967993311}
   m_SourcePrefab: {fileID: 100100000, guid: 918a673c2f4d63f40ad6747deba765bd, type: 3}
 --- !u!114 &888556267524251566 stripped
 MonoBehaviour:
@@ -93,5 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f7987647424fd44ab615f5bfc339d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
+  parentMob: {fileID: 0}
   inventory: {fileID: 888556267524251566}
   Shop: []

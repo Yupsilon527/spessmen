@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanetoidData : Initializable
 {
     public float planetGrav = 1;
+    public float planetRadius = 10;
     public GameObject planetPrefab;
     public Texture2D mapTexture;
     public SpriteRenderer renderComp;
@@ -15,6 +14,7 @@ public class PlanetoidData : Initializable
         if (tileset.TryGetComponent(out PlanetoidController planet))
         {
             planet.gravity = planetGrav;
+            planet.gravityRange = planetRadius;
         }
         Destroy(gameObject);
     }

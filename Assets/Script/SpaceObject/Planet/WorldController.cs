@@ -16,6 +16,7 @@ public class WorldController : Initializable
     public GamePhase upcommingPhase = GamePhase.Loading;
     public GamePhase currentPhase = GamePhase.Loading;
     float phaseTime;
+    public float galaxyBoundaries = 10;
 
     public static WorldController active;
     public Vector2 worldSize;
@@ -136,12 +137,17 @@ public class WorldController : Initializable
         PlanetoidController closest = planets[0];
         foreach (var p in planets)
         {
-            if ((p.transform.position - center).sqrMagnitude < dist)
+            var sqrDist = (p.transform.position - center).sqrMagnitude;
+            if (sqrDist < dist && sqrDist < p.gravityRange * p.gravityRange)
             {
                 closest = p;
-                dist = (p.transform.position - center).sqrMagnitude ;
+                dist = sqrDist;
             }
         }
         return closest;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, galaxyBoundaries);
     }
 }

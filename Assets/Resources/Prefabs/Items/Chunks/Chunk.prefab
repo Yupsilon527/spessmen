@@ -118,6 +118,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   gravity: {fileID: 0}
   planet: {fileID: 0}
+  galaxyBound: 0
   FreeRotation: 0
   Mass: 10
   posUpdateInterval: 0.33
