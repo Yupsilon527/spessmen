@@ -15,12 +15,12 @@ public class BoolGrid
     public bool Get(int x, int y) => cells[y * width + x];
     public void Set(int x, int y, bool value) => cells[y * width + x] = value;
 
-    public bool[,] ToOutputGrid()
+    public bool[] ToOutputGrid()
     {
-        bool[,] output = new bool[width, height];
+        bool[] output = new bool[width * height];
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
-                output[x, y] = Get(x, y);
+                output[x*height + y] = Get(x, y);
         return output;
     }
 

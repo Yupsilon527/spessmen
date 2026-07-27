@@ -5,18 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship Data")]
 public class ShipScriptable : GridScriptable
 {
-    private void OnValidate()
+    protected override void OnValidate()
     {
-        grid.width = 10;
-        grid.height = 10;
+        base.OnValidate();
+        grid.width = ShipDefines.shipSize;
+        grid.height = ShipDefines.shipSize;
         grid.ValidateAndRecreate();
     }
 
-    public bool[,] GetOutputGrid() => grid.ToOutputGrid();
-
     public override DataItemGrid Translate()
     {
-        throw new System.NotImplementedException();
+        DataItemShip output = new();
+
+        output.Encode(grid.ToOutputGrid());
+        return output;
     }
-}
 }
