@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WindowManager : Initializable
 {
+    public static WindowManager main;
     public List<Window> openWindows;
-    public GameObject clearButton;
     protected override void Initialize()
     {
         base.Initialize();
+        main = this;
         openWindows = new List<Window>();
         foreach (var Window in GetComponentsInChildren<Window>())
         {
@@ -56,14 +56,11 @@ public class WindowManager : Initializable
     }
     public void InstallWindow(GameObject gob)
     {
-        Canvas.ForceUpdateCanvases();
-        InstallWindow(gob.GetComponent<Window>());
+        openWindows.Add(gob.GetComponent<Window>());
     }
     public void InstallWindow(Window window)
     {
         openWindows.Add(window);
-        LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
-        clearButton?.SetActive(openWindows.Count > 0);
     }
     public void CloseAllWindows()
     {
@@ -72,7 +69,6 @@ public class WindowManager : Initializable
             openWindow.Close();
         }
         openWindows.RemoveAll((Window match) => { return !match.IsOpen(); });
-        clearButton?.SetActive(openWindows.Count > 0);
     }
     public void CloseWindow(string ID)
     {
@@ -81,7 +77,6 @@ public class WindowManager : Initializable
         {
             openWindow.Close();
         }
-        clearButton?.SetActive(openWindows.Count > 0);
     }
     public Window MainOpenWindow()
     {

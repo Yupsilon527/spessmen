@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Window : Initializable
+public class Window : MonoBehaviour
 {
     public bool unique = true;
     public bool IsOpen()
@@ -13,8 +12,8 @@ public class Window : Initializable
         if (!IsOpen())
         {
             if (unique)
-                InterfaceManager.main.CloseAllWindows();
-            InterfaceManager.main.OpenWindow(this);
+                WindowManager.main.CloseAllWindows();
+            WindowManager.main.OpenWindow(this);
             OnOpened();
         }
     }
@@ -33,10 +32,5 @@ public class Window : Initializable
     protected virtual void OnClosed()
     {
 
-    }
-    protected virtual void LayoutRefresh()
-    {
-        LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
-        Canvas.ForceUpdateCanvases();
     }
 }
