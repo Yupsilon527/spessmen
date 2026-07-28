@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 public class DataItemShip : DataItemGrid
 {
@@ -70,7 +71,19 @@ public class DataItemShip : DataItemGrid
     {
         if (!CanPlace(placement, oX, oY)) return false;
 
-        bool[,] shape = placement.value;
+        RegisteraPart(placement, true);
+        placement.originX = oX;
+        placement.originY = oY;
+
+        return true;
+    }
+    public void RemovePart(DataItemPart part)
+    {
+        RegisteraPart(part, false);
+    }
+    void RegisteraPart(DataItemPart part, bool value)
+    {
+        bool[,] shape = part.value;
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 
@@ -80,15 +93,11 @@ public class DataItemShip : DataItemGrid
             {
                 if (!shape[x, y]) continue;
 
-                int px = placement.originX + x;
-                int py = placement.originY + y;
-                SetOccupied(px, py, true);
+                int px = part.originX + x;
+                int py = part.originY + y;
+                SetOccupied(px, py, value);
             }
         }
-        placement.originX = oX;
-        placement.originY = oY;
-
-        return true;
     }
 
     public bool ValidateAll(List<DataItemPart> placements)

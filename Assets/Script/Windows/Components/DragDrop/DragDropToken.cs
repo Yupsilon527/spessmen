@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DragDropToken : EventTrigger
 {
+    public float cellSize = 20;
     public DataItemPart tokenPart;
     public AbilityDragDropInterface parent;
     GridPreview gridPreview;
@@ -27,11 +28,6 @@ public class DragDropToken : EventTrigger
             gridPreview = GetComponentInChildren<GridPreview>();
     }
     bool dragDropMode = false;
-    private void Update()
-    {
-        if (!dragDropMode)
-            SnapBack();
-    }
     void Redraw()
     {
         sprite.sprite = tokenPart.scriptable.icon;
@@ -101,6 +97,8 @@ public class DragDropToken : EventTrigger
         {
             dragDropMode = true;
             // InfoOverlayController.main.Close();
+            if (slot.slot == DragDropSlot.TokenSlot.build)
+                DataItemPlayer.main.ship.RemovePart(tokenPart);
         }
     }
     public override void OnDrag(PointerEventData eventData)
@@ -117,6 +115,7 @@ public class DragDropToken : EventTrigger
         RaycastSlot();
         dragDropMode = false;
         base.OnEndDrag(eventData);
+        SnapBack();
     }
     bool RaycastSlot()
     {
@@ -162,9 +161,11 @@ public class DragDropToken : EventTrigger
         if (slot.slot == DragDropSlot.TokenSlot.discard)
             return tokenPart.CanBeDiscarded();
 
-        return slot.ship.CanPlace(tokenPart, slot.slotX, slot.slotY);
+        var slotCoords = slot.GetGridPosition(transform.position);
+        return DataItemPlayer.main.ship.CanPlace(tokenPart, slotCoords.x, slotCoords.y);
 
     }
+
     public void AttachToSlot(DragDropSlot slot, bool force)
     {
         if (slot == null)
@@ -186,13 +187,21 @@ public class DragDropToken : EventTrigger
                 SwapSlots(slot.attachedToken);
             }
         }
+        SnapBack();
     }
     void ChangeSlot(DragDropSlot slot)
     {
         if (this.slot != null && this.slot != slot)
             this.slot.ClearToken();
         this.slot = slot;
+        if (slot.slot == DragDropSlot.TokenSlot.build)
+        {
+            var slotCoords = slot.GetGridPosition(transform.position );
+            DataItemPlayer.main.ship.TryPlace(tokenPart, slotCoords.x, slotCoords.y);
+        }
+        else { 
         this.slot.attachedToken = this;
+    }
     }
     void SwapSlots(DragDropToken other)
     {
@@ -216,20 +225,22 @@ public class DragDropToken : EventTrigger
     void SnapBack()
     {
         if (slot != null)
-            if (slot.slot == DragDropSlot.TokenSlot.setup)
+            if (slot.slot == DragDropSlot.TokenSlot.build)
             {
-                recttransform.position = slot.recttransform.position;
-                Vector2 attachPosition = recttransform.anchoredPosition;
+                Vector2Int slotCoords = new Vector2Int(tokenPart.originX, tokenPart.originY);
+                DataItemPlayer.main.ship.TryPlace(tokenPart, slotCoords.x, slotCoords.y);
+                Rect rect = slot.recttransform.rect;
 
-                if (tokenPart.width % 2 == 0)
-                {
-                    attachPosition.x += 20;
-                }
-                if (tokenPart.height % 2 == 0)
-                {
-                    attachPosition.y += 20;
-                }
-                recttransform.anchoredPosition = attachPosition;
+                Vector2 localPoint = new Vector2(
+                    rect.xMin + (slotCoords.x+1 )* cellSize / recttransform.lossyScale.x,
+                    rect.yMax - (slotCoords.y+1) * cellSize / recttransform.lossyScale.x
+                );
+
+              //  if (tokenPart.width % 2 == 0) localPoint.x += cellSize / 2f;
+             //   if (tokenPart.height % 2 == 0) localPoint.y -= cellSize / 2f;
+
+                Vector3 worldPoint = slot.recttransform.TransformPoint(localPoint );
+                recttransform.position = worldPoint;
             }
             else
             {
