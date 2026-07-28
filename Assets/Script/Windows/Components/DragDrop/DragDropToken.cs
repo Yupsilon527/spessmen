@@ -31,7 +31,7 @@ public class DragDropToken : EventTrigger
     void Redraw()
     {
         sprite.sprite = tokenPart.scriptable.icon;
-        gridPreview.Draw(tokenPart.value, tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
+        gridPreview.Draw(tokenPart._grid, tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
     }
     #endregion
     #region Rotate
@@ -99,6 +99,8 @@ public class DragDropToken : EventTrigger
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
                 DataItemPlayer.main.ship.RemovePart(tokenPart);
+
+            ViewManager.Instance.shop.playership.UpdateVisual();
         }
     }
     public override void OnDrag(PointerEventData eventData)
@@ -115,7 +117,7 @@ public class DragDropToken : EventTrigger
         RaycastSlot();
         dragDropMode = false;
         base.OnEndDrag(eventData);
-        SnapBack();
+        ViewManager.Instance.shop.playership.UpdateVisual();
     }
     bool RaycastSlot()
     {
@@ -139,7 +141,7 @@ public class DragDropToken : EventTrigger
                 }
             }
         }
-
+        SnapBack();
         return false;
     }
     #endregion
@@ -232,8 +234,8 @@ public class DragDropToken : EventTrigger
                 Rect rect = slot.recttransform.rect;
 
                 Vector2 localPoint = new Vector2(
-                    rect.xMin + (slotCoords.x+1 )* cellSize / recttransform.lossyScale.x,
-                    rect.yMax - (slotCoords.y+1) * cellSize / recttransform.lossyScale.x
+                    rect.xMin + (slotCoords.x+ tokenPart.width/2f) * cellSize / recttransform.lossyScale.x,
+                    rect.yMax - (slotCoords.y + tokenPart.height / 2f) * cellSize / recttransform.lossyScale.x
                 );
 
               //  if (tokenPart.width % 2 == 0) localPoint.x += cellSize / 2f;

@@ -2,10 +2,10 @@
 public abstract class DataItemGrid 
 {
     public int width, height;
-    public bool[,] value;
+    public bool[,] _grid;
     public void Encode(bool[] grid)
     {
-        value = new bool[width,height];
+        _grid = new bool[width,height];
 
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
@@ -13,13 +13,13 @@ public abstract class DataItemGrid
                 int dot = y * width + x;
                 if (dot>=0 && dot < grid.Length)
                 {
-                    value[x,y] = grid[dot];
+                    _grid[x,y] = grid[dot];
                 }
             }
     }
     public virtual bool[,] RetrieveRotated( int rotation = 0)
     {
-        return Rotate(value, rotation);
+        return Rotate(_grid, rotation);
     }
     public static bool[,] Rotate(bool[,] grid, int rotation)
     {

@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 public class DataItemShip : DataItemGrid
 {
     public ShipScriptable scriptable;
-    public HashSet<DataItemPart> parts;
+    public HashSet<DataItemPart> parts = new();
     public bool[,] occupied;
 
     public DataItemShip(ShipScriptable so)
@@ -45,7 +44,6 @@ public class DataItemShip : DataItemGrid
     public bool CanPlace(DataItemPart placement, int oX, int oY)
     {
         bool[,] shape = placement.RetrieveRotated(placement.rotation);
-        bool[,] grid = value;
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 
@@ -57,13 +55,18 @@ public class DataItemShip : DataItemGrid
 
                 int px = oX + x;
                 int py = oY + y;
-
-                if (!IsInsideBounds(px, py)) return false;
-                if (!grid[px, py]) return false;
-                if (IsOccupied(px, py)) return false;
+                if (!Valid(px, py)) return false;
             }
         }
 
+        return true;
+    }
+    public bool Valid(int px, int py)
+    {
+
+        if (!IsInsideBounds(px, py)) return false;
+        if (!_grid[px, py]) return false;
+        if (IsOccupied(px, py)) return false;
         return true;
     }
 
@@ -71,19 +74,21 @@ public class DataItemShip : DataItemGrid
     {
         if (!CanPlace(placement, oX, oY)) return false;
 
-        RegisteraPart(placement, true);
         placement.originX = oX;
         placement.originY = oY;
+        RegisteraPart(placement, true);
+        parts.Add(placement);
 
         return true;
     }
     public void RemovePart(DataItemPart part)
     {
         RegisteraPart(part, false);
+        parts.Remove(part);
     }
     void RegisteraPart(DataItemPart part, bool value)
     {
-        bool[,] shape = part.value;
+        bool[,] shape = part._grid;
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 
