@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class DataItemGrid 
 {
-    public int length;
+    public int width, height;
     public int value;
     public int Encode(bool[] grid)
     {
         int result = 0;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < width; i++)
         {
             if (grid[i])
                 result |= (1 << i);
@@ -18,7 +18,7 @@ public abstract class DataItemGrid
     }
     public virtual bool[,] Decode()
     {
-        return Decode(value, length, length);
+        return Decode(value, width, height);
     }
     public static bool[,] Decode(int value, int width, int height, int rotation = 0)
     {

@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using System.Drawing;
-using UnityEngine;
 
 public class DataItemShip : DataItemGrid
 {
     public ShipScriptable scriptable;
+    public HashSet<DataItemPart> parts;
     public bool[,] occupied;
     #region Occupation
     public void ResetOccupancy()

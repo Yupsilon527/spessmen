@@ -3,33 +3,24 @@ using UnityEngine.EventSystems;
 
 public class DragDropSlot : EventTrigger
 {
-    public DataItemBanner army;
-    public bool left;
+    public enum TokenSlot
+    {
+        setup,
+        shop,
+        discard,
+    }
+    public DataItemShip ship;
+    public TokenSlot slot;
     public int position;
     public bool Locked = false;
     public bool Interactable = true;
 
-    public int slotX => Mathf.FloorToInt(position / UnitDefines.iArmyCols);
-    public int slotY => position % UnitDefines.iArmyRows;
+    public int slotX => Mathf.FloorToInt(position / ship.width);
+    public int slotY => position % ship.width;
 
-    AbilityDefines.Event eventOverride = AbilityDefines.Event.Nothing;
     public RectTransform recttransform;
     public DragDropToken attachedToken;
    
-    #region Events
-    public void AssignEvent(AbilityDefines.Event evt)
-    {
-        eventOverride = evt;
-    }
-    public AbilityDefines.Event GetEventOverride()
-    {
-        return eventOverride;
-    }
-    public void ClearEvent()
-    {
-        eventOverride = AbilityDefines.Event.Nothing;
-    }
-    #endregion
 
     #region Components
     private void Awake()

@@ -20,19 +20,15 @@ public class ResourceCache : Initializable
         }
     }
 
-    public List<DataItemShip> ships = new();
-    public List<DataItemPart> parts = new();
+    public List<ShipScriptable> ships = new();
+    public List<PartScriptable> parts = new();
     void Precache()
     {
-        ships.AddRange(Resources.LoadAll<ItemData>("Scriptables"));
-        parts.AddRange(Resources.LoadAll<EquipmentData>("Scriptables"));
-        tasks.AddRange(Resources.LoadAll<WorkTaskSO>("Scriptables"));
-        recipes.AddRange(Resources.LoadAll<CragtingRecipeSO>("Scriptables"));
+        ships.AddRange(Resources.LoadAll<ShipScriptable>("Scriptables"));
+        parts.AddRange(Resources.LoadAll<PartScriptable>("Scriptables"));
     }
 
     public ScriptableBase LoadAny(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
-    public ItemData LoadItem(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
-    public EquipmentData LoadEquipt(string name) { return string.IsNullOrEmpty(name) ? null : parts.FirstOrDefault(items => items.InternalName == name); }
-    public WorkTaskSO LoadResource(string name) { return string.IsNullOrEmpty(name) ? null : tasks.FirstOrDefault(items => items.InternalName == name); }
-    public CragtingRecipeSO LoadRecipe(string name) { return string.IsNullOrEmpty(name) ? null : recipes.FirstOrDefault(items => items.InternalName == name); }
+    public ShipScriptable LoadResource(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
+    public PartScriptable LoadRecipe(string name) { return string.IsNullOrEmpty(name) ? null : parts.FirstOrDefault(items => items.InternalName == name); }
 }

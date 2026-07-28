@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TabWindow : PlayerWindow
+public class TabWindow : Window
 {
     [Serializable]
     public class WindowTab

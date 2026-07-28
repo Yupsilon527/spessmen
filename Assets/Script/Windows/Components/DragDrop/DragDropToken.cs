@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class DragDropToken : EventTrigger
 {
-    bool playerOwned;
-    public DataItemUnit tokenUnit;
-    public UnitContainer drawUnit;
+    public DataItemPart tokenPart;
     public AbilityDragDropInterface parent;
+    GridPreview gridPreview;
     RectTransform recttransform;
+
+    public Image sprite;
     public void ClearToken(bool draw)
     {
-        tokenUnit = null;
+        tokenPart = null;
         HasMoved = false;
         if (draw)
             Redraw();
@@ -22,6 +23,8 @@ public class DragDropToken : EventTrigger
     {
         if (recttransform == null)
             recttransform = GetComponent<RectTransform>();
+        if (gridPreview == null)
+            gridPreview = GetComponentInChildren<GridPreview>();
     }
     bool dragDropMode = false;
     private void Update()
@@ -31,7 +34,19 @@ public class DragDropToken : EventTrigger
     }
     void Redraw()
     {
-        drawUnit.ForUnit(tokenUnit);
+        sprite.sprite = tokenPart.scriptable.icon;
+        gridPreview.Draw(tokenPart.scriptable.grid.ToOutputGrid(), tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
+    }
+    #endregion
+    #region Rotate
+    public void Rotate(bool clockwise)
+    {
+        tokenPart.Rotate(clockwise);
+        AdjustRotation();
+    }
+    void AdjustRotation()
+    {
+        transform.rotation=Quaternion.Euler(0,0,90*tokenPart.rotation);
     }
     #endregion
     #region Info Overlay
@@ -77,12 +92,12 @@ public class DragDropToken : EventTrigger
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
-        parent?.desc.ForUnit(tokenUnit);
+       // parent?.desc.ForUnit(tokenUnit);
     }
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
-        if (slot.Interactable && playerOwned)
+        if (slot.Interactable)
         {
             dragDropMode = true;
            // InfoOverlayController.main.Close();
@@ -98,16 +113,13 @@ public class DragDropToken : EventTrigger
     }
     public override void OnEndDrag(PointerEventData eventData)
     {
-        if (playerOwned)
-        {
             RaycastSlot();
-        }
         dragDropMode = false;
         base.OnEndDrag(eventData);
     }
     bool RaycastSlot()
     {
-        GraphicRaycaster gr = InterfaceManager.main.GetComponent<GraphicRaycaster>();//TODO define
+        GraphicRaycaster gr = WindowManager.main.GetComponent<GraphicRaycaster>();//TODO define
         PointerEventData ped = new PointerEventData(null);
         ped.position = Input.mousePosition;
         ped.radius = recttransform.sizeDelta;
@@ -132,11 +144,10 @@ public class DragDropToken : EventTrigger
     }
     #endregion
 
-    public void FromUnit(DataItemUnit unit, bool draw)
+    public void FromPart(DataItemPart part, bool draw)
     {
         ClearToken(false);
-        tokenUnit = unit;
-        playerOwned = unit.GetAlignment(GameManager.main.playerManager.currentPlayer) ==  PlayerDefines.Alignment.playerowned;
+        tokenPart = part;
         if (draw)
             Redraw();
     }
@@ -145,10 +156,8 @@ public class DragDropToken : EventTrigger
     DragDropSlot slot;
     bool CanAttachToSlot(DragDropSlot slot)
     {
-        if (tokenUnit.isTransport())
-            return slot.position < 0;
 
-        return (slot.army.formation.CanIAccept(tokenUnit));
+        return true;
     }
     public void AttachToSlot(DragDropSlot slot, bool force)
     {

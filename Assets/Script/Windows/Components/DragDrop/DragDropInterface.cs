@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AbilityDragDropInterface : Initializable
 {
-    public DataItemBanner unitA, unitB;
-    public UnitContainerDescriptipn desc;
+    public DataItemShip ship;
+   // public UnitContainerDescriptipn desc;
     #region DD Slots
     public DragDropSlot[] UnitSlots;
     public DragDropSlot[] DiscardSlots;
@@ -21,68 +21,35 @@ public class AbilityDragDropInterface : Initializable
             TokenPool = GetComponent<ObjectPool>();
         FindSlots();
     }
-    public void InitSlots(DataItemBanner army)
+    public void InitSlots(DataItemShip s)
     {
         if (UnitSlots == null) return;
-        unitA = army;
-        unitB = null;
+        ship = s;
 
-        foreach (var slot in UnitSlots)
+        foreach (var slot in ship.parts)
         {
-            slot.army = army;
-
-            slot.gameObject.SetActive(slot.army != null);
-
-            if (slot.isActiveAndEnabled)
-            {
-                DataItemUnit unit = slot.position < 0 ? slot.army.formation.transport : slot.army.formation.Formation[slot.position];
-
-                if (unit != null)
-                {
-                    var token = GenerateToken(unit);
+         
+                    var token = GenerateToken(slot);
                     token.parent = this;
-                    token.AttachToSlot(slot, true);
-                }
-            }
+                   // token.AttachToSlot(slot, true);
         }
-        desc.Clear();
-    }
-    public void InitSlots(DataItemBanner a, DataItemBanner b)
-    {
-        if (UnitSlots == null) return;
-        unitA = a;
-        unitB = b;
-
-        foreach (var slot in UnitSlots)
-        {
-            slot.army = slot.left ? a : b;
-
-            slot.gameObject.SetActive(slot.army != null);
-
-            if (slot.isActiveAndEnabled)
-            {
-                DataItemUnit unit = slot.position < 0 ? slot.army.formation.transport : slot.army.formation.Formation[slot.position];
-
-                if (unit != null)
-                {
-                    var token = GenerateToken(unit);
-                    token.parent = this;
-                    token.AttachToSlot(slot, true);
-                }
-            }
-        }
-        desc.Clear();
+     //   desc.Clear();
     }
     #region Token Pool
     public GameObject TokenPrefab;
     public ObjectPool TokenPool;
 
-    public DragDropToken GenerateToken(DataItemUnit u)
+    public DragDropToken GenerateToken(PartScriptable u)
+    {
+        return GenerateToken(u.Translate() as DataItemPart);
+    }
+    public DragDropToken GenerateToken(DataItemPart u)
     {
         GameObject parent = TokenPool.PoolItem(TokenPrefab);
         DragDropToken token = parent.GetComponent<DragDropToken>();
         token.parent = this;
-        token.FromUnit(u, true);
+        token.transform.localScale = Vector3.one;
+        token.FromPart(u, true);
         return token;
     }
     #endregion
@@ -91,12 +58,10 @@ public class AbilityDragDropInterface : Initializable
     {
         foreach (var slot in UnitSlots)
         {
-            if (slot.attachedToken != null)
-            slot.army?.formation.SetTroopInPosition(slot.position, slot.attachedToken != null ? slot.attachedToken.tokenUnit : null);
+        //    if (slot.attachedToken != null)
+           // slot.ship?.formation.SetTroopInPosition(slot.position, slot.attachedToken != null ? slot.attachedToken.tokenUnit : null);
         }
 
-        unitA?.Revise();
-        unitB?.Revise();
     }
     public void Clear()
     {

@@ -5,14 +5,13 @@ public class ViewManager : WindowManager
     public static ViewManager Instance { get; private set; }
     public TabComponent tabComponent;
 
-    public BuildView build;
+    public RaceView build;
     public ShopView shop;
 
     public enum Views
     {
-        homeView = 0,
-        mapView = 0,
-        combatView = 1,
+        shopView = 0,
+        raceView = 1,
     }
 
 
@@ -26,19 +25,18 @@ public class ViewManager : WindowManager
     {
         switch (view)
         {
-            case Views.mapView:
+            case Views.shopView:
+                tabComponent.OpenTab(shop.gameObject);
+                shop.ResetStore(true);
                 break;
-            case Views.combatView:
+            case Views.raceView:
+                tabComponent.OpenTab(build.gameObject);
                 break;
         }
     }
 
     public void OnNewGameBegin()
     {
-        ChangeView(Views.mapView);
-    }
-    public void OpenBuildingButton()
-    {
-
+        ChangeView(Views.shopView);
     }
 }

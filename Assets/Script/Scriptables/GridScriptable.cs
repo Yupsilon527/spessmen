@@ -29,7 +29,7 @@ public class BoolGrid
         int required = width * height;
 
         if (cells != null && cells.Length == required)
-            return; // already valid, nothing to do
+            return; 
 
         bool[] oldCells = cells;
         int oldWidth = oldCells != null && width > 0 ? (oldCells.Length / Mathf.Max(1, height == 0 ? 1 : height)) : 0;
