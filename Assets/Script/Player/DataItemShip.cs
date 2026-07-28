@@ -105,11 +105,11 @@ public class DataItemShip : DataItemGrid
         }
     }
 
-    public bool ValidateAll(List<DataItemPart> placements)
+    public bool ValidateAll()
     {
         ResetOccupancy();
 
-        foreach (var placement in placements)
+        foreach (var placement in parts)
         {
             if (!TryPlace(placement, placement.originX, placement.originY))
                 return false;

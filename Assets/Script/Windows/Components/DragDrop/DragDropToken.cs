@@ -3,46 +3,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragDropToken : EventTrigger
+public class DragDropToken : PartButtonBase
 {
-    public float cellSize = 20;
-    public DataItemPart tokenPart;
     public AbilityDragDropInterface parent;
-    GridPreview gridPreview;
-    RectTransform recttransform;
-
-    public Image sprite;
-    public void ClearToken(bool draw)
-    {
-        tokenPart = null;
-        HasMoved = false;
-        if (draw)
-            Redraw();
-    }
-    #region Draw
-    private void Awake()
-    {
-        if (recttransform == null)
-            recttransform = GetComponent<RectTransform>();
-        if (gridPreview == null)
-            gridPreview = GetComponentInChildren<GridPreview>();
-    }
     bool dragDropMode = false;
-    void Redraw()
-    {
-        sprite.sprite = tokenPart.scriptable.icon;
-        gridPreview.Draw(tokenPart._grid, tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
-    }
-    #endregion
+    public EventTrigger eventTrigger;
+
     #region Rotate
     public void Rotate(bool clockwise)
     {
-        tokenPart.Rotate(clockwise);
-        AdjustRotation();
-    }
-    void AdjustRotation()
-    {
-        transform.rotation = Quaternion.Euler(0, 0, -90 * tokenPart.rotation);
+        _part.Rotate(clockwise);
+        AdjustRotation(_part.rotation);
     }
     #endregion
     #region Info Overlay
@@ -74,7 +45,7 @@ public class DragDropToken : EventTrigger
           }*/
         return "MISSINGNUM";
     }
-    public override void OnPointerEnter(PointerEventData eventData)
+   /* public override void OnPointerEnter(PointerEventData eventData)
     {
         //      RectTransform rtf = GetComponent<RectTransform>();
         //   InfoOverlayController.main.OpenAtPosition(GetTooltipString(), rtf.position);
@@ -82,41 +53,52 @@ public class DragDropToken : EventTrigger
     public override void OnPointerExit(PointerEventData eventData)
     {
         //     InfoOverlayController.main.Close();
-    }
+    }*/
     #endregion
     #region Drag Drop
-    public override void OnPointerClick(PointerEventData eventData)
+    protected override void Initialize()
     {
-        base.OnPointerClick(eventData);
-        // parent?.desc.ForUnit(tokenUnit);
+        base.Initialize();
+          FindComponent(ref eventTrigger);
+
+        EventTrigger.Entry OnBeginDrag = new EventTrigger.Entry();
+        OnBeginDrag.eventID = EventTriggerType.BeginDrag;
+        OnBeginDrag.callback.AddListener((data) => { this.OnBeginDrag((PointerEventData)data); });
+        eventTrigger.triggers.Add(OnBeginDrag);
+
+        EventTrigger.Entry OnDrag = new EventTrigger.Entry();
+        OnDrag.eventID = EventTriggerType.Drag;
+        OnDrag.callback.AddListener((data) => { this.OnDrag((PointerEventData)data); });
+        eventTrigger.triggers.Add(OnDrag);
+
+        EventTrigger.Entry OnEndDrag = new EventTrigger.Entry();
+        OnEndDrag.eventID = EventTriggerType.EndDrag;
+        OnEndDrag.callback.AddListener((data) => { this.OnEndDrag((PointerEventData)data); });
+        eventTrigger.triggers.Add(OnEndDrag);
     }
-    public override void OnBeginDrag(PointerEventData eventData)
+    public  void OnBeginDrag(PointerEventData eventData)
     {
-        base.OnBeginDrag(eventData);
         if (slot.Interactable)
         {
             dragDropMode = true;
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
-                DataItemPlayer.main.ship.RemovePart(tokenPart);
+                DataItemPlayer.main.ship.RemovePart(_part);
 
             ViewManager.Instance.shop.playership.UpdateVisual();
         }
     }
-    public override void OnDrag(PointerEventData eventData)
+    public  void OnDrag(PointerEventData eventData)
     {
         if (dragDropMode)
         {
             recttransform.position = Input.mousePosition;
-            base.OnDrag(eventData);
-            base.OnDrag(eventData);
         }
     }
-    public override void OnEndDrag(PointerEventData eventData)
+    public  void OnEndDrag(PointerEventData eventData)
     {
         RaycastSlot();
         dragDropMode = false;
-        base.OnEndDrag(eventData);
         ViewManager.Instance.shop.playership.UpdateVisual();
     }
     bool RaycastSlot()
@@ -146,29 +128,22 @@ public class DragDropToken : EventTrigger
     }
     #endregion
 
-    public void FromPart(DataItemPart part, bool draw)
-    {
-        ClearToken(false);
-        tokenPart = part;
-        if (draw)
-            Redraw();
-    }
 
     #region Attach
     DragDropSlot slot;
     Vector3 Delta()
     {
-        return new Vector3(cellSize * -tokenPart.width, cellSize * tokenPart.height) / 2;
+        return new Vector3(cellSize * -_part.width, cellSize * _part.height) / 2;
     }
     bool CanAttachToSlot(DragDropSlot slot)
     {
         if (slot.slot == DragDropSlot.TokenSlot.shop)
             return false;
         if (slot.slot == DragDropSlot.TokenSlot.discard)
-            return tokenPart.CanBeDiscarded();
+            return _part.CanBeDiscarded();
 
-        var slotCoords = slot.GetGridPosition(transform.position + Delta());
-        return DataItemPlayer.main.ship.CanPlace(tokenPart, slotCoords.x, slotCoords.y);
+        var slotCoords = slot.grid.GetGridPosition(transform.position + Delta());
+        return DataItemPlayer.main.ship.CanPlace(_part, slotCoords.x, slotCoords.y);
 
     }
 
@@ -203,8 +178,8 @@ public class DragDropToken : EventTrigger
         if (slot.slot == DragDropSlot.TokenSlot.build)
         {
             Vector2 realPos = transform.position + Delta();
-            var slotCoords = slot.GetGridPosition( realPos);
-            DataItemPlayer.main.ship.TryPlace(tokenPart, slotCoords.x, slotCoords.y);
+            var slotCoords = slot.grid.GetGridPosition( realPos);
+            DataItemPlayer.main.ship.TryPlace(_part, slotCoords.x, slotCoords.y);
         }
         else { 
         this.slot.attachedToken = this;
@@ -234,17 +209,7 @@ public class DragDropToken : EventTrigger
         if (slot != null)
             if (slot.slot == DragDropSlot.TokenSlot.build)
             {
-                Vector2Int slotCoords = new Vector2Int(tokenPart.originX, tokenPart.originY);
-                DataItemPlayer.main.ship.TryPlace(tokenPart, slotCoords.x, slotCoords.y);
-                Rect rect = slot.recttransform.rect;
-
-                Vector2 localPoint = new Vector2(
-                    rect.xMin + (slotCoords.x+ tokenPart.width/2f) * cellSize *2,
-                    rect.yMax - (slotCoords.y + tokenPart.height / 2f) * cellSize  * 2
-                );
-
-                Vector3 worldPoint = slot.recttransform.TransformPoint(localPoint );
-                recttransform.position = worldPoint;
+                SnapToGrid(slot.recttransform);
             }
             else
             {
@@ -268,10 +233,5 @@ public class DragDropToken : EventTrigger
         slot = null;
         parent.TokenPool.DeactivateObject(gameObject);
     }
-    #endregion
-    #region Has Moved
-    bool moved = false;
-
-    public bool HasMoved { get => moved; set => moved = value; }
     #endregion
 }

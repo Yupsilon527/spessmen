@@ -9,8 +9,8 @@ public partial class ShopView : ViewBase
     public TextMeshProUGUI playerGold;
     public TextMeshProUGUI resetCost;
 
-    public AbilityDragDropInterface dragdrop;
     public PlayerShipGrid playership;
+    public AbilityDragDropInterface dragdrop;
     public ItemPurchaseButton[] itemButtonSelection;
 
     public void PresentMultipleItems(PurchaseData[] items)
@@ -30,6 +30,7 @@ public partial class ShopView : ViewBase
         if (hardReset)
         {
             playership.AssignShip(DataItemPlayer.main.ship);
+            dragdrop.InitSlots(DataItemPlayer.main.ship);
             numResets = 0;
         }
         else
@@ -79,10 +80,24 @@ public partial class ShopView : ViewBase
     }
     public void InitializeShop()
     {
+        if (DataItemPlayer.main == null) return;
+        foreach (var part in DataItemPlayer.main.ship.parts)
+        {
+            var token = dragdrop.GenerateToken(part);
+            token.AttachToSlot(dragdrop.buildSlot,true);
+        }
     }
     void Conclude()
     {
         dragdrop.ApplyChanges();
         dragdrop.Clear();
+    }
+    public void BeginRace()
+    {
+        if (DataItemPlayer.main.ship.ValidateAll())
+        {
+            Conclude();
+            ViewManager.Instance.ChangeView(ViewManager.Views.raceView);
+        }
     }
 }

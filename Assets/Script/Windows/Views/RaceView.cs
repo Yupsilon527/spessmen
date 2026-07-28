@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class RaceView : ViewBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerShipGrid playership;
+    public PlayerAbilityPreview preview;
 
-    // Update is called once per frame
-    void Update()
+    public override void OnOpened()
     {
-        
+        base.OnOpened();
+        if (DataItemPlayer.main == null) return;
+        playership.AssignShip(DataItemPlayer.main.ship);
+        preview.LoadPlayerShip(DataItemPlayer.main.ship);
     }
 }

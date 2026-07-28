@@ -1,43 +1,38 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class AbilityDragDropInterface : Initializable
+public class AbilityDragDropInterface : ShipPreview
 {
-    public DataItemShip ship;
-   // public UnitContainerDescriptipn desc;
+    public HashSet<DragDropToken> tokens = new();
+    // public UnitContainerDescriptipn desc;
+    protected override void Initialize()
+    {
+        base.Initialize();
+        FindSlots();
+    }
     #region DD Slots
-    public DragDropSlot[] UnitSlots;
+    public DragDropSlot buildSlot;
     public DragDropSlot[] DiscardSlots;
 
     void FindSlots()
     {
-        UnitSlots = GetComponentsInChildren<DragDropSlot>();
+        DiscardSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.discard).ToArray() ;
     }
-    #endregion
 
-    protected override void Initialize()
-    {
-        base.Initialize();
-        if (TokenPool == null)
-            TokenPool = GetComponent<ObjectPool>();
-        FindSlots();
-    }
     public void InitSlots(DataItemShip s)
     {
-        if (UnitSlots == null) return;
         ship = s;
 
         foreach (var slot in ship.parts)
         {
          
                     var token = GenerateToken(slot);
-                    token.parent = this;
-                   // token.AttachToSlot(slot, true);
+                    token.AttachToSlot(buildSlot, true);
         }
-     //   desc.Clear();
     }
+    #endregion
     #region Token Pool
-    public GameObject TokenPrefab;
-    public ObjectPool TokenPool;
 
     public DragDropToken GenerateToken(PartScriptable u)
     {
@@ -52,23 +47,24 @@ public class AbilityDragDropInterface : Initializable
         token.FromPart(u, true);
         for (int i = 0; i < Random.value * 12; i++)
             token.Rotate(true);
+        tokens.Add(token);
         return token;
     }
     #endregion
     #region Hero Init
     public void ApplyChanges()
     {
-        foreach (var slot in UnitSlots)
+        foreach (var slot in DiscardSlots)  //REFUND 
         {
         //    if (slot.attachedToken != null)
            // slot.ship?.formation.SetTroopInPosition(slot.position, slot.attachedToken != null ? slot.attachedToken.tokenUnit : null);
         }
 
     }
-    public void Clear()
+    public override void Clear()
     {
-        foreach (DragDropSlot token in UnitSlots)
-            token.DeleteToken();
+        foreach (var token in tokens)
+            token.Delete();
     }
     #endregion
 }

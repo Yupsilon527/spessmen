@@ -138,7 +138,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2257285920878316150
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 4037950447020216619}
   - component: {fileID: 8462899122894404654}
   m_Layer: 5
-  m_Name: Player Components
+  m_Name: Player Loadout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,8 @@ MonoBehaviour:
   slot: 0
   Locked: 0
   Interactable: 1
-  recttransform: {fileID: 0}
+  grid: {fileID: 7963371819128735679}
+  recttransform: {fileID: 4133896716971523434}
   attachedToken: {fileID: 0}
 --- !u!1 &7879191367304219328
 GameObject:
