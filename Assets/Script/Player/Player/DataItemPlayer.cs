@@ -3,7 +3,7 @@ using UnityEngine;
 public class DataItemPlayer : MonoBehaviour
 {
     public static DataItemPlayer main;
-    public ShipScriptable ship;
+    public DataItemShip ship;
 
     public PlayerEconomyController econ;
     public PlayerChaosController score;
@@ -18,6 +18,6 @@ public class DataItemPlayer : MonoBehaviour
     }
     public void FromData(ShipScriptable s)
     {
-        ship = s;
+        ship = new(s);
     }
 }

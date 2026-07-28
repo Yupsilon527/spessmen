@@ -5,20 +5,33 @@ public class DataItemShip : DataItemGrid
     public ShipScriptable scriptable;
     public HashSet<DataItemPart> parts;
     public bool[,] occupied;
+
+    public DataItemShip(ShipScriptable so)
+    {
+        scriptable = so;
+        width = so.grid.width;
+        height = so.grid.height;
+         Encode(so.grid.ToOutputGrid());
+        ResetOccupancy();
+    }
+
+
     #region Occupation
     public void ResetOccupancy()
     {
-        occupied = new bool[ShipDefines.shipSize, ShipDefines.shipSize];
+        occupied = new bool[width, height];
     }
 
     public bool IsInsideBounds(int x, int y)
     {
-        return x >= 0 && y >= 0 && x < ShipDefines.shipSize && y < ShipDefines.shipSize;
+        return x >= 0 && y >= 0 && x < width && y < height;
     }
 
     public bool IsOccupied(int x, int y)
     {
-        return occupied[x, y];
+        if (IsInsideBounds(x, y))
+            return occupied[x, y];
+        return false;
     }
 
     public void SetOccupied(int x, int y, bool value)
@@ -28,9 +41,10 @@ public class DataItemShip : DataItemGrid
     #endregion
     #region Placement
 
-    public bool CanPlace(DataItemPart placement)
+    public bool CanPlace(DataItemPart placement, int oX, int oY)
     {
-        bool[,] shape = placement.Decode();
+        bool[,] shape = placement.RetrieveRotated(placement.rotation);
+        bool[,] grid = value;
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 
@@ -40,10 +54,11 @@ public class DataItemShip : DataItemGrid
             {
                 if (!shape[x, y]) continue;
 
-                int px = placement.originX + x;
-                int py = placement.originY + y;
+                int px = oX + x;
+                int py = oY + y;
 
                 if (!IsInsideBounds(px, py)) return false;
+                if (!grid[px, py]) return false;
                 if (IsOccupied(px, py)) return false;
             }
         }
@@ -51,11 +66,11 @@ public class DataItemShip : DataItemGrid
         return true;
     }
 
-    public bool TryPlace(DataItemPart placement)
+    public bool TryPlace(DataItemPart placement, int oX, int oY)
     {
-        if (!CanPlace(placement)) return false;
+        if (!CanPlace(placement, oX, oY)) return false;
 
-        bool[,] shape = placement.Decode();
+        bool[,] shape = placement.value;
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 
@@ -70,17 +85,19 @@ public class DataItemShip : DataItemGrid
                 SetOccupied(px, py, true);
             }
         }
+        placement.originX = oX;
+        placement.originY = oY;
 
         return true;
     }
 
-    public  bool ValidateAll(List<DataItemPart> placements)
+    public bool ValidateAll(List<DataItemPart> placements)
     {
         ResetOccupancy();
 
         foreach (var placement in placements)
         {
-            if (!TryPlace( placement))
+            if (!TryPlace(placement, placement.originX, placement.originY))
                 return false;
         }
 

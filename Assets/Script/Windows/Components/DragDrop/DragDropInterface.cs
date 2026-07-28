@@ -41,7 +41,7 @@ public class AbilityDragDropInterface : Initializable
 
     public DragDropToken GenerateToken(PartScriptable u)
     {
-        return GenerateToken(u.Translate() as DataItemPart);
+        return GenerateToken(new DataItemPart(u));
     }
     public DragDropToken GenerateToken(DataItemPart u)
     {

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship Data")]
 public class ShipScriptable : GridScriptable
 {
+    public Sprite blueprint;
+
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -13,11 +15,4 @@ public class ShipScriptable : GridScriptable
         grid.ValidateAndRecreate();
     }
 
-    public override DataItemGrid Translate()
-    {
-        DataItemShip output = new();
-
-        output.Encode(grid.ToOutputGrid());
-        return output;
-    }
 }

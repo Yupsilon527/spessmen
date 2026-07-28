@@ -35,7 +35,7 @@ public class DragDropToken : EventTrigger
     void Redraw()
     {
         sprite.sprite = tokenPart.scriptable.icon;
-        gridPreview.Draw(tokenPart.scriptable.grid.ToOutputGrid(), tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
+        gridPreview.Draw(tokenPart.value, tokenPart.scriptable.grid.width, tokenPart.scriptable.grid.height);
     }
     #endregion
     #region Rotate
@@ -46,53 +46,53 @@ public class DragDropToken : EventTrigger
     }
     void AdjustRotation()
     {
-        transform.rotation=Quaternion.Euler(0,0,90*tokenPart.rotation);
+        transform.rotation = Quaternion.Euler(0, 0, 90 * tokenPart.rotation);
     }
     #endregion
     #region Info Overlay
     public virtual string GetTooltipString()
     {
-      /*  switch (behavior)
-        {
-            case TokenBehavior.Ability:
-                if (attachedAbility != null)
-                {
-                    return attachedAbility.original.GetTooltip(true);
-                }
-                break;
-            case TokenBehavior.Effect:
-                if (attachedEffect)
-                {
-                    string desc = attachedEffect.name;//TODO getdesc
-                    if (slot != null && slot.GetMod() != null)
-                        desc = slot.GetMod().modCondition + "\n" + desc;//TODO get modData desc
-                    return desc;
-                }
-                break;
-            case TokenBehavior.Event:
-                if (overrideEvent != AbilityDefines.Event.Nothing)
-                {
-                    return overrideEvent.ToString();
-                }
-                break;
-        }*/
+        /*  switch (behavior)
+          {
+              case TokenBehavior.Ability:
+                  if (attachedAbility != null)
+                  {
+                      return attachedAbility.original.GetTooltip(true);
+                  }
+                  break;
+              case TokenBehavior.Effect:
+                  if (attachedEffect)
+                  {
+                      string desc = attachedEffect.name;//TODO getdesc
+                      if (slot != null && slot.GetMod() != null)
+                          desc = slot.GetMod().modCondition + "\n" + desc;//TODO get modData desc
+                      return desc;
+                  }
+                  break;
+              case TokenBehavior.Event:
+                  if (overrideEvent != AbilityDefines.Event.Nothing)
+                  {
+                      return overrideEvent.ToString();
+                  }
+                  break;
+          }*/
         return "MISSINGNUM";
     }
     public override void OnPointerEnter(PointerEventData eventData)
     {
-  //      RectTransform rtf = GetComponent<RectTransform>();
-     //   InfoOverlayController.main.OpenAtPosition(GetTooltipString(), rtf.position);
+        //      RectTransform rtf = GetComponent<RectTransform>();
+        //   InfoOverlayController.main.OpenAtPosition(GetTooltipString(), rtf.position);
     }
     public override void OnPointerExit(PointerEventData eventData)
     {
-   //     InfoOverlayController.main.Close();
+        //     InfoOverlayController.main.Close();
     }
     #endregion
     #region Drag Drop
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
-       // parent?.desc.ForUnit(tokenUnit);
+        // parent?.desc.ForUnit(tokenUnit);
     }
     public override void OnBeginDrag(PointerEventData eventData)
     {
@@ -100,20 +100,21 @@ public class DragDropToken : EventTrigger
         if (slot.Interactable)
         {
             dragDropMode = true;
-           // InfoOverlayController.main.Close();
+            // InfoOverlayController.main.Close();
         }
     }
     public override void OnDrag(PointerEventData eventData)
     {
-        if (dragDropMode) { 
-        recttransform.position = Input.mousePosition;
-        base.OnDrag(eventData);
-        base.OnDrag(eventData);
-    }
+        if (dragDropMode)
+        {
+            recttransform.position = Input.mousePosition;
+            base.OnDrag(eventData);
+            base.OnDrag(eventData);
+        }
     }
     public override void OnEndDrag(PointerEventData eventData)
     {
-            RaycastSlot();
+        RaycastSlot();
         dragDropMode = false;
         base.OnEndDrag(eventData);
     }
@@ -156,8 +157,13 @@ public class DragDropToken : EventTrigger
     DragDropSlot slot;
     bool CanAttachToSlot(DragDropSlot slot)
     {
+        if (slot.slot == DragDropSlot.TokenSlot.shop)
+            return false;
+        if (slot.slot == DragDropSlot.TokenSlot.discard)
+            return tokenPart.CanBeDiscarded();
 
-        return true;
+        return slot.ship.CanPlace(tokenPart, slot.slotX, slot.slotY);
+
     }
     public void AttachToSlot(DragDropSlot slot, bool force)
     {
@@ -171,7 +177,7 @@ public class DragDropToken : EventTrigger
         }
         else if (CanAttachToSlot(slot))
         {
-          if (slot.attachedToken == null)
+            if (slot.attachedToken == null)
             {
                 ChangeSlot(slot);
             }
@@ -210,7 +216,25 @@ public class DragDropToken : EventTrigger
     void SnapBack()
     {
         if (slot != null)
-            recttransform.position = slot.recttransform.position;
+            if (slot.slot == DragDropSlot.TokenSlot.setup)
+            {
+                recttransform.position = slot.recttransform.position;
+                Vector2 attachPosition = recttransform.anchoredPosition;
+
+                if (tokenPart.width % 2 == 0)
+                {
+                    attachPosition.x += 20;
+                }
+                if (tokenPart.height % 2 == 0)
+                {
+                    attachPosition.y += 20;
+                }
+                recttransform.anchoredPosition = attachPosition;
+            }
+            else
+            {
+                recttransform.position = slot.recttransform.position;
+            }
     }
     void DiscardToken()
     {

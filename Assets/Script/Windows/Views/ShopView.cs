@@ -10,6 +10,7 @@ public partial class ShopView : ViewBase
     public TextMeshProUGUI resetCost;
 
     public AbilityDragDropInterface dragdrop;
+    public PlayerShipGrid playership;
     public ItemPurchaseButton[] itemButtonSelection;
 
     public void PresentMultipleItems(PurchaseData[] items)
@@ -28,6 +29,7 @@ public partial class ShopView : ViewBase
     {
         if (hardReset)
         {
+            playership.AssignShip(DataItemPlayer.main.ship);
             numResets = 0;
         }
         else

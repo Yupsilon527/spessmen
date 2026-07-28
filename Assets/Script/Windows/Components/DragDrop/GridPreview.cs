@@ -5,7 +5,7 @@ public class GridPreview : MonoBehaviour
 {
     public GridLayoutGroup gridLayout;
     public Image[] tile;
-    public void Draw(bool[] shape, int width, int height)
+    public void Draw(bool[,] shape, int width, int height)
     {
         Clear();
         gridLayout.constraintCount = width;
@@ -22,7 +22,7 @@ public class GridPreview : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 tile[index].gameObject.SetActive(true);
-                tile[index].enabled = shape[y * width + x];
+                tile[index].enabled = shape[y ,x];
                 index++;
             }
         }

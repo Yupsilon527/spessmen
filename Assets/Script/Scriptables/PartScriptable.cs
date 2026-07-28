@@ -16,11 +16,6 @@ public class PartScriptable : GridScriptable
             boonValue = 20 * Mathf.Pow(2, (int)boonRarity);
         }
     }
-    public override DataItemGrid Translate()
-    {
-        DataItemPart outputPart = new DataItemPart(this);
-        return outputPart;
-    }
     public virtual bool IsUnlocked()
     {
         return !lockedForSomeReason;

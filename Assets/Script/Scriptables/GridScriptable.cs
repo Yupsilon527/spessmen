@@ -3,7 +3,6 @@
 public abstract class  GridScriptable : ScriptableBase
 {
     public BoolGrid grid ;
-    public abstract DataItemGrid Translate();
 }
 [System.Serializable]
 public class BoolGrid
@@ -20,7 +19,7 @@ public class BoolGrid
         bool[] output = new bool[width * height];
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
-                output[x*height + y] = Get(x, y);
+                output[y * width + x] = Get(x, y);
         return output;
     }
 

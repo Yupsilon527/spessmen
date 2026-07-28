@@ -1,40 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public abstract class DataItemGrid 
 {
     public int width, height;
-    public int value;
-    public int Encode(bool[] grid)
+    public bool[,] value;
+    public void Encode(bool[] grid)
     {
-        int result = 0;
-        for (int i = 0; i < width; i++)
-        {
-            if (grid[i])
-                result |= (1 << i);
-        }
-        return result;
-    }
-    public virtual bool[,] Decode()
-    {
-        return Decode(value, width, height);
-    }
-    public static bool[,] Decode(int value, int width, int height, int rotation = 0)
-    {
-        bool[,] grid = new bool[width, height];
-        int bit = 0;
+        value = new bool[width,height];
 
         for (int y = 0; y < height; y++)
-        {
             for (int x = 0; x < width; x++)
             {
-                grid[x, y] = (value & (1 << bit)) != 0;
-                bit++;
+                int dot = y * width + x;
+                if (dot>=0 && dot < grid.Length)
+                {
+                    value[x,y] = grid[dot];
+                }
             }
-        }
-
-        return Rotate(grid, rotation);
+    }
+    public virtual bool[,] RetrieveRotated( int rotation = 0)
+    {
+        return Rotate(value, rotation);
     }
     public static bool[,] Rotate(bool[,] grid, int rotation)
     {

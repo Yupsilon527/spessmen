@@ -14,14 +14,14 @@ public class DataItemPart : DataItemGrid
         scriptable = so;
         width = so.grid.width;
         height = so.grid.height;
-        value = Encode(so.grid.ToOutputGrid());
+        Encode(so.grid.ToOutputGrid());
     }
     public void Rotate(bool clockwise)
     {
         rotation = (rotation + (clockwise ? 1 : -1)) % 4;
     }
-    public override bool[,] Decode()
+    public bool CanBeDiscarded()
     {
-        return Decode(value, width, width, rotation);
+        return true;
     }
 }
