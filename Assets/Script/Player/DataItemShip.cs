@@ -88,7 +88,7 @@ public class DataItemShip : DataItemGrid
     }
     void RegisteraPart(DataItemPart part, bool value)
     {
-        bool[,] shape = part._grid;
+        bool[,] shape = part.RetrieveRotated(part.rotation);
         int shapeWidth = shape.GetLength(0);
         int shapeHeight = shape.GetLength(1);
 

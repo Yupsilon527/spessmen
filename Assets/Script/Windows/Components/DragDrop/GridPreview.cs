@@ -22,7 +22,7 @@ public class GridPreview : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 tile[index].gameObject.SetActive(true);
-                tile[index].enabled = shape[y ,x];
+                tile[index].enabled = shape[x ,y];
                 index++;
             }
         }

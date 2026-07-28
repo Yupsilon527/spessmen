@@ -42,7 +42,7 @@ public class DragDropToken : EventTrigger
     }
     void AdjustRotation()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 90 * tokenPart.rotation);
+        transform.rotation = Quaternion.Euler(0, 0, -90 * tokenPart.rotation);
     }
     #endregion
     #region Info Overlay
@@ -156,6 +156,10 @@ public class DragDropToken : EventTrigger
 
     #region Attach
     DragDropSlot slot;
+    Vector3 Delta()
+    {
+        return new Vector3(cellSize * -tokenPart.width, cellSize * tokenPart.height) / 2;
+    }
     bool CanAttachToSlot(DragDropSlot slot)
     {
         if (slot.slot == DragDropSlot.TokenSlot.shop)
@@ -163,7 +167,7 @@ public class DragDropToken : EventTrigger
         if (slot.slot == DragDropSlot.TokenSlot.discard)
             return tokenPart.CanBeDiscarded();
 
-        var slotCoords = slot.GetGridPosition(transform.position);
+        var slotCoords = slot.GetGridPosition(transform.position + Delta());
         return DataItemPlayer.main.ship.CanPlace(tokenPart, slotCoords.x, slotCoords.y);
 
     }
@@ -198,7 +202,8 @@ public class DragDropToken : EventTrigger
         this.slot = slot;
         if (slot.slot == DragDropSlot.TokenSlot.build)
         {
-            var slotCoords = slot.GetGridPosition(transform.position );
+            Vector2 realPos = transform.position + Delta();
+            var slotCoords = slot.GetGridPosition( realPos);
             DataItemPlayer.main.ship.TryPlace(tokenPart, slotCoords.x, slotCoords.y);
         }
         else { 
@@ -234,12 +239,9 @@ public class DragDropToken : EventTrigger
                 Rect rect = slot.recttransform.rect;
 
                 Vector2 localPoint = new Vector2(
-                    rect.xMin + (slotCoords.x+ tokenPart.width/2f) * cellSize / recttransform.lossyScale.x,
-                    rect.yMax - (slotCoords.y + tokenPart.height / 2f) * cellSize / recttransform.lossyScale.x
+                    rect.xMin + (slotCoords.x+ tokenPart.width/2f) * cellSize *2,
+                    rect.yMax - (slotCoords.y + tokenPart.height / 2f) * cellSize  * 2
                 );
-
-              //  if (tokenPart.width % 2 == 0) localPoint.x += cellSize / 2f;
-             //   if (tokenPart.height % 2 == 0) localPoint.y -= cellSize / 2f;
 
                 Vector3 worldPoint = slot.recttransform.TransformPoint(localPoint );
                 recttransform.position = worldPoint;
