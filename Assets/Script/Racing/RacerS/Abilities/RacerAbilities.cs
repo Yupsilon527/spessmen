@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public class RacerAbilities : RacerComponent
@@ -24,6 +23,7 @@ public class RacerAbilities : RacerComponent
                     }
                 }
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
+                ListenToEvent(ShipDefines.PartEvent.OnRaceStart);
                 break;
             case RaceDefines.RacePhase.RaceTick:
                 ListenToEvent(ShipDefines.PartEvent.OnTimePass);

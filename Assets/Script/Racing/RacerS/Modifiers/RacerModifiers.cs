@@ -24,6 +24,9 @@ public class RacerModifiers : PropertyComponent
                 }
                 Refresh(true);
                 break;
+            case RaceDefines.RacePhase.RaceTick:
+                Refresh(false);
+                break;
             case RaceDefines.RacePhase.RaceEnd:
                 modifiers.Clear();
                 break;

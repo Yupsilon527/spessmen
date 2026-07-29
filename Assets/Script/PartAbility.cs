@@ -3,6 +3,7 @@
 [Serializable]
 public class PartAbility
 {
+    public string InternalName;
     public float cooldown = 0;
     public float fuelCost = 0;
     public ShipDefines.PartEvent function;

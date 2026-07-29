@@ -18,24 +18,28 @@ public class TourneyController : Initializable
     public TourneyPhase currentPhase;
     public void ChangePhase(TourneyPhase nPhase)
     {
-        switch (nPhase) {
+        Inspect("Change Phase " + nPhase);
+        switch (nPhase)
+        {
             case TourneyPhase.beforeRace:
-                if (leaderboard == null ||leaderboard.Count == 0) 
+                if (leaderboard == null || leaderboard.Count == 0)
                     InitRacers();
                 break;
             case TourneyPhase.racing:
-                if (currentPhase == TourneyPhase.beforeRace || currentRace == null  || !currentRace.IsRunning())
+                if (currentPhase == TourneyPhase.beforeRace || currentRace == null || !currentRace.IsRunning())
                 {
                     currentRace = new Race()
                     {
                         raceID = currentRace == null ? 0 : currentRace.raceID + 1,
                         racers = leaderboard.Keys.Select(k => k).ToList(),
                     };
+                    Inspect($"Start race {currentRace.raceID} with {currentRace.racers.Count} racers!");
                     foreach (var racer in currentRace.racers)
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
-                    currentRace.Set(60 * 3);
+                    debugSet = 0;
+                    currentRace.Set(60);
                 }
                 break;
             case TourneyPhase.afterRace:
@@ -53,7 +57,7 @@ public class TourneyController : Initializable
     protected override void Initialize()
     {
         main = this;
-        
+
 
         base.Initialize();
     }
@@ -80,16 +84,33 @@ public class TourneyController : Initializable
     }
     private void FixedUpdate()
     {
-        if (currentPhase == TourneyPhase.racing) { 
-        if (currentRace.IsRunning())
+        if (currentPhase == TourneyPhase.racing)
         {
-            foreach (var racer in currentRace.racers)
-                racer.HandleRacePhase( RaceDefines.RacePhase.RaceTick);
-            currentRace.UpdateLeaderboard();
+            if (currentRace.IsRunning())
+            {
+                foreach (var racer in currentRace.racers)
+                    racer.HandleRacePhase(RaceDefines.RacePhase.RaceTick);
+                currentRace.UpdateLeaderboard();
+                DebugRace();
+            }
+            else
+                ChangePhase(TourneyPhase.afterRace);
         }
-        else
-            ChangePhase(TourneyPhase.afterRace);
     }
+    float debugSet = 0;
+    void DebugRace()
+    {
+        if (currentRace.GetTimeRemaining()<60- debugSet*5)
+        {
+            Inspect($"--- RACE UPDATE ({debugSet * 5}) ---");
+            int i = 0;
+            foreach (var racer in currentRace.racers)
+            {
+                Inspect($"Racer {racer.id} is in position {i + 1} with {racer.position.distanceTraveled} distance going fast at {racer.stats.baseSpeed} mph! Fuel: {racer.abilities.fuel.GetValue()}/{racer.abilities.fuel.GetLimit()}");
+                i++;
+            }
+            debugSet++;
+        }
     }
 }
 public class Race : Countdown
@@ -104,6 +125,6 @@ public class Race : Countdown
     }
     public void UpdateLeaderboard()
     {
-        racers.Sort((a, b) => a.position.distanceTraveled.CompareTo(b.position.distanceTraveled));
+        racers.Sort((a, b) => b.position.distanceTraveled.CompareTo(a.position.distanceTraveled));
     }
 }

@@ -17,8 +17,28 @@ MonoBehaviour:
     width: 3
     height: 2
     cells: 010101010100
+  states: []
+  properties:
+  - Property: 6
+    value: 50
+    IncreasePerLevel: 0
+  relative: []
+  ability:
+    InternalName: Gas Tank
+    cooldown: 0
+    fuelCost: 0
+    function: 0
+    condition: 0
+    conditionCheck: 0
+    abilityPower: 0
+    action:
+      behavior: 0
+      stat: 0
+      scale: 0
+      value: 0
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
+  partType: 0
   boonValue: 20
   unique: 0
   lockedForSomeReason: 0

@@ -9,6 +9,7 @@ public class RacerStatsTable : RacerComponent
     public float gasTotal;
     public float baseSpeed;
     public float boosterSpeed;
+    bool requiresUpdate = false;
     bool brokenSoundBarrier = false;
 
     public RacerStatsTable(Racer racer) : base(racer)
@@ -25,15 +26,14 @@ public class RacerStatsTable : RacerComponent
                 boosterSpeed = 0;
                 brokenSoundBarrier = false;
                 break;
+            case RaceDefines.RacePhase.RaceTick:
+                if (requiresUpdate) UpdateRealSpeed();
+                break;
         }
     }
-    public void GiveBaseSpeed(float amt)
+    public void SetDirty()
     {
-        baseSpeed += amt;
-    }
-    public void GiveBoostSpeed(float amt)
-    {
-        boosterSpeed += amt;
+        requiresUpdate = true;
     }
     public void UpdateRealSpeed()
     {
@@ -42,6 +42,7 @@ public class RacerStatsTable : RacerComponent
             racer.abilities.ListenToEvent(PartEvent.OnSoundBarrierBroken);
             brokenSoundBarrier = true;
         }
+        requiresUpdate = false;
     }
 
     public RacerStatsTable Clone()
@@ -99,9 +100,11 @@ public class PlayerStatsAlteration
         {
             case StatType.BaseSpeed:
                 ApplyToStat(ref player.stats.baseSpeed, GetEffectiveChange(player));
+                player.stats.SetDirty();
                 break;
             case StatType.BoostSpeed:
                 ApplyToStat(ref player.stats.boosterSpeed, GetEffectiveChange(player));
+                player.stats.SetDirty();
                 break;
             case StatType.FillGas:
                 player.abilities.fuel.GiveValue(GetEffectiveChange(player));
