@@ -1,5 +1,7 @@
 TODO
 	modifier states
+
+	fuel & fuel consumption
 	abilities
 		actives
 			buttons

@@ -39,7 +39,7 @@ public class TourneyController : Initializable
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
                     debugSet = 0;
-                    currentRace.Set(60);
+                    currentRace.Set(20);
                 }
                 break;
             case TourneyPhase.afterRace:
@@ -57,8 +57,6 @@ public class TourneyController : Initializable
     protected override void Initialize()
     {
         main = this;
-
-
         base.Initialize();
     }
     public void InitRacers(int opponents = 5)
@@ -100,9 +98,10 @@ public class TourneyController : Initializable
     float debugSet = 0;
     void DebugRace()
     {
-        if (currentRace.GetTimeRemaining()<60- debugSet*5)
+        int x = 2;
+        if (currentRace.GetTimeRemaining()<20- debugSet*x)
         {
-            Inspect($"--- RACE UPDATE ({debugSet * 5}) ---");
+            Inspect($"--- RACE UPDATE ({debugSet * x}) ---");
             int i = 0;
             foreach (var racer in currentRace.racers)
             {
@@ -116,7 +115,7 @@ public class TourneyController : Initializable
 public class Race : Countdown
 {
     public int raceID = 0;
-    public float lapDistance = 300;
+    public float lapDistance = 210;
     public List<Racer> racers;
 
     public int GetPositionForRacer(Racer racer)

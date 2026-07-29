@@ -24,6 +24,7 @@ public class RacerStatsTable : RacerComponent
                 realSpeed = 0;
                 baseSpeed = 0;
                 boosterSpeed = 0;
+                gasTotal = gasBase;
                 brokenSoundBarrier = false;
                 break;
             case RaceDefines.RacePhase.RaceTick:
@@ -111,27 +112,27 @@ public class PlayerStatsAlteration
                 break;
         }
     }
-    public void ApplyToStat(ref float stats, float value)
+    public void ApplyToStat(ref float stat, float value)
     {
         switch (behavior)
         {
             case AlterationType.Addition:
-                stats += value;
+                stat += value;
                 break;
             case AlterationType.Multiply:
-                stats *= Mathf.Abs(value);
+                stat *= Mathf.Abs(value);
                 break;
             case AlterationType.Divide:
-                stats /= Mathf.Abs(value);
+                stat /= Mathf.Abs(value);
                 break;
             case AlterationType.Min:
-                stats = Mathf.Min(stats, value);
+                stat = Mathf.Min(stat, value);
                 break;
             case AlterationType.Max:
-                stats = Mathf.Max(stats, value);
+                stat = Mathf.Max(stat, value);
                 break;
             case AlterationType.Random:
-                stats += UnityEngine.Random.value * value;
+                stat += UnityEngine.Random.value * value;
                 break;
 
         }

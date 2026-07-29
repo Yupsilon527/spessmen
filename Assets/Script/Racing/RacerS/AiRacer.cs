@@ -7,4 +7,5 @@ public class AiRacer : Racer
     public AiRacer(int rId) : base(rId)
     {
     }
+
 }

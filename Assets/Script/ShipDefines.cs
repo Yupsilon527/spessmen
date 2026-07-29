@@ -3,6 +3,7 @@ public static class ShipDefines
 {
     public static int shipSize = 10;
     public static float soundBarrierSpeed = 100;
+    public static float gasBase = 100;
     public enum PartEvent
     {
         OnRaceStart = 0,

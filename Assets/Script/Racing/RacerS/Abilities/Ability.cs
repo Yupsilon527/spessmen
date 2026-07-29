@@ -61,20 +61,26 @@ public class Ability : Countdown
     }
     public bool CanBeActivated(Racer racer)
     {
-        return racer.abilities.fuel.GetValue() >= GetFuelCost() && !IsRunning() && RacerMeetsCondition(racer) ;
+        return racer.abilities.fuel.GetValue() >0 && !IsRunning() && RacerMeetsCondition(racer) ;
     }
     public void ActivateOnRacer(Racer racer)
     {
         TourneyController.main.Inspect($"{racer} uses ability {part.InternalName} at {part.function}");
         part.action.GiveToPlayer(racer);
     }
-    public void Activate(Racer racer, ShipDefines.PartEvent evt)
+    public bool Activate(Racer racer, ShipDefines.PartEvent evt)
 {
         if (evt == part.function && CanBeActivated(racer))
         {
             ActivateOnRacer(racer);
             racer.abilities.fuel.SubstractedValue(GetFuelCost());
-            Set( GetPartCooldown());
+            FireCooldown();
+            return true;
         }
+        return false;
+    }
+    public void FireCooldown()
+    {
+        Set(GetPartCooldown());
     }
 }
