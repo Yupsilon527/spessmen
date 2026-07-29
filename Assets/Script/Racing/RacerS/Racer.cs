@@ -1,12 +1,12 @@
-using System;
-using UnityEngine;
 
 public class Racer 
 {
     public int id = 0;
    public float distanceRaced;
-    public ResourceFloat fuel = new ResourceFloat(1, "gas", false, true);
+
+    public RacerComponent[] components;
    public  RacerStatsTable stats;
+    public RacerPosition position ;
     public RacerAbilities abilities ;
     public RacerModifiers modifiers ;
     public Racer(int rId)
@@ -14,15 +14,19 @@ public class Racer
         id = rId;
     }
 
-    public virtual void OnRaceBegin()
+    public Racer GetRival()
     {
-        abilities.OnRaceBegin();
-        modifiers.OnRaceBegin();
+        if (id == 0)
+            return TourneyController.main.GetPlayerRival();
+        else
+            return TourneyController.main.GetPlayerRacer();
     }
-    public virtual void OnRaceEnd()
+    public virtual void HandleRacePhase(RaceDefines.RacePhase phase)
     {
-        abilities.OnRaceEnd();
-        modifiers.OnRaceEnd();
+        foreach (var component in components)
+        {
+            component.HandleRacePhase(phase);
+        }
     }
     #region States and Properties
     public virtual bool GetState(ModifierDefines.State State)

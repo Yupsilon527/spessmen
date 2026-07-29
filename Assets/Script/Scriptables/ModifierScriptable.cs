@@ -8,6 +8,6 @@ public class ModifierScriptable : GridScriptable
     public ModifierDefines.RelativeStatData[] relative;
     public bool GetState(ModifierDefines.State state)
     {
-        return states.Any(s => sx.State == state);
+        return states.Any(s => s.State == state);
     }
 }

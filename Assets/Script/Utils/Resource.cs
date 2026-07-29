@@ -10,7 +10,7 @@ public abstract class Resource
         give_difference,
         percent_value,
         substract_total,
-        fullheal_value,
+        full_value,
         empty_value
     }
     public LimitRule LimitUnder = LimitRule.leave_value;
@@ -171,7 +171,7 @@ public class ResourceFloat : Resource
                 values[1] = value;
                 SetPercentage(percent);
                 break;
-            case LimitRule.fullheal_value:
+            case LimitRule.full_value:
                 values[1] = value;
                 SetPercentage(1);
                 break;
@@ -276,7 +276,7 @@ public class ResourceInt : Resource
                 values[1] = ivalue;
                 SetPercentage(percent);
                 break;
-            case LimitRule.fullheal_value:
+            case LimitRule.full_value:
                 values[1] = ivalue;
                 SetPercentage(1);
                 break;

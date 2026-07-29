@@ -1,3 +1,18 @@
 TODO
 	begin
 	races
+
+	modifier states
+	abilities
+
+	debug (tourney inspect)
+
+	pickups
+
+CARS
+	normal
+	wheelie - faster wheels, slower boost
+	hotrod - boosts
+	clicker - starts with 0 cd, 0 fuel use engine
+	muttley - start with ability, abilities cheaper, more CD cost
+	??? - speed when in first lap, plus engine % total speed

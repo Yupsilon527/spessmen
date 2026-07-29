@@ -1,14 +1,32 @@
 using System;
 using UnityEngine;
+using static ShipDefines;
 
 [Serializable]
-public class RacerStatsTable
+public class RacerStatsTable : RacerComponent
 {
     public float realSpeed;
     public float gasTotal;
     public float baseSpeed;
     public float boosterSpeed;
+    bool brokenSoundBarrier = false;
 
+    public RacerStatsTable(Racer racer) : base(racer)
+    {
+    }
+    public override void HandleRacePhase(RaceDefines.RacePhase phase)
+    {
+        base.HandleRacePhase(phase);
+        switch (phase)
+        {
+            case RaceDefines.RacePhase.RaceBegin:
+                realSpeed = 0;
+                baseSpeed = 0;
+                boosterSpeed = 0;
+                brokenSoundBarrier = false;
+                break;
+        }
+    }
     public void GiveBaseSpeed(float amt)
     {
         baseSpeed += amt;
@@ -20,6 +38,10 @@ public class RacerStatsTable
     public void UpdateRealSpeed()
     {
         realSpeed = baseSpeed + boosterSpeed;
+        if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed) {
+            racer.abilities.ListenToEvent(PartEvent.OnSoundBarrierBroken);
+            brokenSoundBarrier = true;
+        }
     }
 
     public RacerStatsTable Clone()
@@ -44,31 +66,30 @@ public class PlayerStatsAlteration
     {
         BaseSpeed,
         BoostSpeed,
-        TotalSpeed,
-
-        DistanceTraveled,
-
-        LapsCompleted,
-        CurrentPosition,
-
-        CurrentRivalPosition,
-        RivalDistanceTraveled,
+        FillGas,
+        Total,
     }
     public AlterationType behavior = AlterationType.Addition;
-    public StatType stat = StatType.Attack;
+    public StatType stat = StatType.BaseSpeed;
+    public ScaleType scale = ScaleType.Constant;
     public float value = 0;
     public ModifierDefines.Property GetRelatedProperty()
     {
         switch (stat)
         {
-            case StatType.Attack:
-                return ModifierDefines.Property.attack_bonus_percent;
+            case StatType.BaseSpeed:
+                return ModifierDefines.Property.incoming_base_speed_percentage;
+            case StatType.BoostSpeed:
+                return ModifierDefines.Property.incoming_boost_speed_percentage;
+            case StatType.FillGas:
+                return ModifierDefines.Property.incoming_gas_percentage;
         }
-        return ModifierDefines.Property.Total;
+        return ModifierDefines.Property.total;
     }
     public float GetEffectiveChange(Racer player)
     {
-        if (GetRelatedProperty() < ModifierDefines.Property.Total)
+        value *= GetScale( player, scale);
+        if (GetRelatedProperty() < ModifierDefines.Property.total)
             return value * player.GetPropertyMultiplicative(GetRelatedProperty());
         return value;
     }
@@ -76,8 +97,14 @@ public class PlayerStatsAlteration
     {
         switch (stat)
         {
-            case StatType.Attack:
-                ApplyToStat(ref player.stats.Attack, GetEffectiveChange(player));
+            case StatType.BaseSpeed:
+                ApplyToStat(ref player.stats.baseSpeed, GetEffectiveChange(player));
+                break;
+            case StatType.BoostSpeed:
+                ApplyToStat(ref player.stats.boosterSpeed, GetEffectiveChange(player));
+                break;
+            case StatType.FillGas:
+                player.abilities.fuel.GiveValue(GetEffectiveChange(player));
                 break;
         }
     }
@@ -99,6 +126,9 @@ public class PlayerStatsAlteration
                 break;
             case AlterationType.Max:
                 stats = Mathf.Max(stats, value);
+                break;
+            case AlterationType.Random:
+                stats += UnityEngine.Random.value * value;
                 break;
 
         }

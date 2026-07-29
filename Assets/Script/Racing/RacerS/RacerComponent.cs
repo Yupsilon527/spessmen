@@ -6,6 +6,5 @@ public class RacerComponent
     {
         this.racer = racer;
     }
-    public virtual void OnRaceBegin() { }
-    public virtual void OnRaceEnd() { }
+    public virtual void HandleRacePhase(RaceDefines.RacePhase phase) { }
 }

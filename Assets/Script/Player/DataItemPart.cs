@@ -16,6 +16,10 @@ public class DataItemPart : DataItemGrid
         height = so.grid.height;
         Encode(so.grid.ToOutputGrid());
     }
+    public PartAbility GetAbility()
+    {
+        return scriptable.ability;
+    }
     public void Rotate(bool clockwise)
     {
         rotation = (rotation + (clockwise ? 1 : -1)) % 4;

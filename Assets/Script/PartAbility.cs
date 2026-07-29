@@ -3,7 +3,9 @@ public class PartAbility
 {
     public float cooldown = 0;
     public float fuelCost = 0;
-    public ShipDefines.PartFunction function;
-    public PlayerStatsAlteration actions;
+    public ShipDefines.PartEvent function;
+    public ShipDefines.PartCondition condition;
+    public float conditionCheck;
     public float abilityPower = 0;
+    public PlayerStatsAlteration action;
 }

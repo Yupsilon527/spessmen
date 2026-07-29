@@ -33,32 +33,39 @@ public static class ModifierDefines
     }
     public enum Property
     {
-       base_speed,
-       base_speed_percent,
-       bonus_speed,
-       total_speed_percent,
+        base_speed = 0,
+        base_speed_percent = 1,
+        bonus_speed = 2,
+        total_speed_percent = 3,
 
-       boost_speed,
-       boost_speed_percent,
+        boost_speed = 4,
+        boost_speed_percent = 5,
 
-       tank_capacity,
+        tank_capacity = 6,
 
-       incoming_speed_total,
-       incoming_speed_wheels,
-       incoming_speed_engines,
+        incoming_speed_total = 7,
+        incoming_speed_wheels = 8,
+        incoming_speed_engines = 9,
 
-       incoming_gas_percentage,
+        incoming_base_speed_percentage = 10,
+        incoming_boost_speed_percentage = 11,
+        incoming_gas_percentage = 12,
+        engine_cooldown = 13,
+        ability_cooldown = 14,
 
-       engine_cooldown,
+        ability_power = 22,
 
-       gold_income,
-       gold_interest,
-       
-       opponent_speed,
-       rival_speed,
+        engine_fuel_consumption=15,
+        ability_fuel_consumtion =16,
+        fuel_consumption_total = 17,
 
-       total,
+        gold_income = 18,
+        gold_interest = 19,
 
+        opponent_speed = 20,
+        rival_speed = 21,
+
+        total = 23,
     };
     public enum State   //TODO
     {
@@ -70,23 +77,18 @@ public static class ModifierDefines
     {
         switch (Property)
         {
-            case Property.vampirism_bonus:
-            case Property.health_regen_percentage:
-            case Property.health_regen_percentage_total:
-            case Property.move_speed_mult:
-            case Property.projectile_speed:
-            case Property.projectile_scale:
-            case Property.incoming_damage:
-            case Property.outgoing_damage:
-            case Property.incoming_healing:
-            case Property.incoming_healing_absolute:
-            case Property.incoming_melee:
-            case Property.incoming_range:
-            case Property.incoming_area:
-            case Property.outgoing_melee:
-            case Property.outgoing_range:
-            case Property.outgoing_area:
-            case Property.pickup_range:
+            case Property.base_speed_percent:
+            case Property.total_speed_percent:
+            case Property.boost_speed_percent:
+            case Property.incoming_base_speed_percentage:
+            case Property.incoming_boost_speed_percentage:
+            case Property.incoming_gas_percentage:
+            case Property.engine_cooldown:
+            case Property.ability_cooldown:
+            case Property.gold_income:
+            case Property.gold_interest:
+            case Property.opponent_speed:
+            case Property.rival_speed:
                 return true;
             default:
                 return false;
@@ -141,7 +143,7 @@ public static class ModifierDefines
         {
             switch (baseStat)
             {
-                case PlayerStatsAlteration.StatType.Attack:
+                case PlayerStatsAlteration.StatType.BaseSpeed:
                     return player.stats.Attack * translation;
                 default:
                     return 0;

@@ -13,17 +13,22 @@ public class RacerModifiers : PropertyComponent
     {
         return modifiers;
     }
-    public override void OnRaceBegin()
+    public override void HandleRacePhase(RaceDefines.RacePhase phase)
     {
-        base.OnRaceBegin();
-        foreach (Modifier modifier in modifiers) {
-            modifier.Restart(Time.time);
+        base.HandleRacePhase(phase);
+        switch (phase) {
+            case RaceDefines.RacePhase.RaceBegin:
+                foreach (Modifier modifier in modifiers)
+                {
+                    modifier.Restart(Time.time);
+                }
+                Refresh(true);
+                break;
+            case RaceDefines.RacePhase.RaceEnd:
+                modifiers.Clear();
+                break;
+
         }
-        Refresh(true);
-    }
-    public override void OnRaceEnd()
-    {
-        modifiers.Clear();
     }
     #region Refresh
     bool propRefresh = true;
@@ -53,7 +58,7 @@ public class RacerModifiers : PropertyComponent
         {
             modifiers.RemoveAll((Modifier mod) => mod.dead);
             if (statRefresh) states = new int[(int)ModifierDefines.State.Total];
-            if (propRefresh) properties = new float[(int)ModifierDefines.Property.Total];
+            if (propRefresh) properties = new float[(int)ModifierDefines.Property.total];
             foreach (Modifier mod in modifiers)
             {
                 if (!mod.dead && !mod.IsExpired())
@@ -222,8 +227,8 @@ public class RacerModifiers : PropertyComponent
     }
     void ResetPropertiesDefaults()
     {
-        properties = new float[(int)ModifierDefines.Property.Total];
-        for (int iProp = 0; iProp < (int)ModifierDefines.Property.Total; iProp++)
+        properties = new float[(int)ModifierDefines.Property.total];
+        for (int iProp = 0; iProp < (int)ModifierDefines.Property.total; iProp++)
         {
             if (ModifierDefines.IsPropertyMultiplicative((ModifierDefines.Property)iProp))
             {
@@ -367,7 +372,7 @@ public class PropertyComponent : RacerComponent
 
     #endregion
     #region Properties
-    [NonSerialized] protected float[] properties = new float[(int)ModifierDefines.Property.Total];
+    [NonSerialized] protected float[] properties = new float[(int)ModifierDefines.Property.total];
 
     public float GetPropertyAdditive(ModifierDefines.Property Property)
     {
@@ -384,7 +389,7 @@ public class PropertyComponent : RacerComponent
     }
     public virtual void UpdateProperty(ModifierDefines.Property Property, float value)
     {
-        if ((int)Property < 0 && (int)Property >= (int)ModifierDefines.Property.Total)
+        if ((int)Property < 0 && (int)Property >= (int)ModifierDefines.Property.total)
             return;
         if (ModifierDefines.IsPropertyMultiplicative(Property))
         {
