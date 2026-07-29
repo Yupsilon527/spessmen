@@ -19,6 +19,10 @@ public class TourneyController : Initializable
     public void ChangePhase(TourneyPhase nPhase)
     {
         switch (nPhase) {
+            case TourneyPhase.beforeRace:
+                if (leaderboard == null ||leaderboard.Count == 0) 
+                    InitRacers();
+                break;
             case TourneyPhase.racing:
                 if (currentPhase == TourneyPhase.beforeRace || currentRace == null  || !currentRace.IsRunning())
                 {
@@ -50,8 +54,6 @@ public class TourneyController : Initializable
     {
         main = this;
         
-        InitRacers();
-        ChangePhase(TourneyPhase.beforeRace);
 
         base.Initialize();
     }
@@ -78,14 +80,16 @@ public class TourneyController : Initializable
     }
     private void FixedUpdate()
     {
+        if (currentPhase == TourneyPhase.racing) { 
         if (currentRace.IsRunning())
         {
             foreach (var racer in currentRace.racers)
                 racer.HandleRacePhase( RaceDefines.RacePhase.RaceTick);
             currentRace.UpdateLeaderboard();
         }
-        else if (currentPhase == TourneyPhase.racing)
+        else
             ChangePhase(TourneyPhase.afterRace);
+    }
     }
 }
 public class Race : Countdown

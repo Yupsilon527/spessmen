@@ -1,9 +1,10 @@
 TODO
-	begin
-	races
-
 	modifier states
 	abilities
+		actives
+			buttons
+			display CD time on buttons
+			display CD fill on buttons
 
 	debug (tourney inspect)
 

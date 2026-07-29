@@ -97,6 +97,7 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main.ship.ValidateAll())
         {
             Conclude();
+            TourneyController.main.ChangePhase(TourneyController.TourneyPhase.racing);
             ViewManager.Instance.ChangeView(ViewManager.Views.raceView);
         }
     }

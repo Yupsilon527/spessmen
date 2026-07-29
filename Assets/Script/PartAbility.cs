@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+
+[Serializable]
 public class PartAbility
 {
     public float cooldown = 0;

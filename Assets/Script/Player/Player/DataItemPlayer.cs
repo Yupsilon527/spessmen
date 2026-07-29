@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class DataItemPlayer : MonoBehaviour
+public class DataItemPlayer : Initializable
 {
     public static DataItemPlayer main;
     public DataItemShip ship;
 
     public PlayerEconomyController econ;
     public PlayerChaosController score;
-    private void Awake()
+    protected override void Initialize()
     {
             main = this;
         econ=GetComponent<PlayerEconomyController>();
@@ -15,6 +15,7 @@ public class DataItemPlayer : MonoBehaviour
 
         econ.Setup();
         score.Setup();
+        base.Initialize();
     }
     public void FromData(ShipScriptable s)
     {

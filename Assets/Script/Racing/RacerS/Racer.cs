@@ -12,6 +12,15 @@ public class Racer
     public Racer(int rId)
     {
         id = rId;
+
+        stats = new (this);
+        position = new (this);
+        abilities = new (this);
+        modifiers = new (this);
+        components = new RacerComponent[]
+        {
+            stats,position,abilities,modifiers
+        };
     }
 
     public Racer GetRival()
