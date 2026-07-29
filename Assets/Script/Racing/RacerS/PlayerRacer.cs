@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerRacer : Racer
 {
-    public void FromPlayerData(DataItemShip playerShip)
+    public PlayerRacer( DataItemShip playerShip) :base(0)
     {
         foreach (var part in playerShip.parts)
         {

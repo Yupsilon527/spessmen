@@ -33,96 +33,38 @@ public static class ModifierDefines
     }
     public enum Property
     {
-        attack_bonus = 0,
-        attack_bonus_percent = 1,
-        special_bonus = 2,
-        special_bonus_percent = 3,
-        control_bonus = 4,
-        control_bonus_percent = 5,
-        attack_speed_bonus = 6,
-        attack_speed_bonus_percent = 7,
-        vampirism_bonus = 8,
-        vampirism_bonus_percent = 9,
-        cannibalism_bonus = 10,
-        cannibalism_bonus_percent = 11,
-        attack_cooldown_multiplier = 57,
+       base_speed,
+       base_speed_percent,
+       bonus_speed,
+       total_speed_percent,
 
-        health_bonus = 12,
-        health_bonus_percent = 13,
-        armor_bonus = 14,
-        armor_bonus_percent = 15,
+       boost_speed,
+       boost_speed_percent,
 
-        health_regen_bonus = 16,
-        health_regen_percentage = 17,
-        health_regen_percentage_total = 18,
+       tank_capacity,
 
-        bonus_healing_from_pickups = 19,
-        healing_start_wave = 20,
+       incoming_speed_total,
+       incoming_speed_wheels,
+       incoming_speed_engines,
 
-        move_speed = 21,
-        move_speed_mult = 22,
-        move_speed_override = 23,
+       incoming_gas_percentage,
 
-        projectile_count = 24,
-        projectile_spread = 25,
-        projectile_speed = 26,
-        projectile_duration = 27,
-        projectile_scale = 28,
-        projectile_piercing = 29,
-        projectile_bounces = 30,
-        explosion_radius = 31,
-        explosion_damage = 32,
+       engine_cooldown,
 
-        incoming_damage = 33,
-        outgoing_damage = 34,
-        outgoing_damage_percent = 56,
-        incoming_healing = 35,
-        incoming_healing_absolute = 36,
+       gold_income,
+       gold_interest,
+       
+       opponent_speed,
+       rival_speed,
 
-        incoming_melee = 37,
-        incoming_range = 38,
-        incoming_area = 39,
-        outgoing_melee = 40,
-        outgoing_range = 41,
-        outgoing_area = 42,
+       total,
 
-        money_income = 43,
-        money_interest = 44,
-        money_income_percent = 45,
-        pickup_range = 46,
-        shop_resets = 47,
-        item_price = 48,
-
-        luck_bonus = 49,
-        luck_bonus_percent = 50,
-        experience_gain_percent = 51,
-
-        crit_chance = 52,
-        crit_damage = 53,
-
-        enemies_spawned = 54,
-        enemies_health = 55,
-        enemies_speed = 56,
-        enemies_damage = 57,
-
-        curse_enemy_chance = 58,
-        curse_items_chance = 59,
-
-        powerup_projectile_multiplier = 60,
-        powerup_projspeed_multiplier = 61,
-        powerup_attack_speed_multiplier = 62,
-        powerup_attackdamage_multiplier = 63,
-        powerup_shot_multiplier = 64,
-
-        element_modifier = 65,
-        element_damage = 66,
-
-        Total = 67,
     };
     public enum State   //TODO
     {
-        Nothing = 0,
-        Total = 1,
+        Stunned = 0,
+        CanOvergas = 1,
+        Total = 2,
     }
     public static bool IsPropertyMultiplicative(Property Property)
     {
@@ -150,6 +92,21 @@ public static class ModifierDefines
                 return false;
         }
     }
+    #region States
+    [Serializable]
+    public class StateData
+    {
+        public State State;
+        public float priority;
+        public StateData() { }
+
+        public StateData(State state, float priority)
+        {
+            State = state;
+            this.priority = priority;
+        }
+    }
+    #endregion
 
     #region Properties
     [Serializable]
@@ -173,45 +130,19 @@ public static class ModifierDefines
 
         }
     }
-    #endregion
-    #region Relative
     [Serializable]
-    public class RelativeStatData
+    public class RelativeStatData   //get property relative to stat
     {
         public PlayerStatsAlteration.StatType baseStat;
         public Property Property;
         public float translation;
 
-        public float GetValueForPlayer(Racer player)
+        public float GetValueForRacer(Racer player)
         {
             switch (baseStat)
             {
                 case PlayerStatsAlteration.StatType.Attack:
                     return player.stats.Attack * translation;
-                case PlayerStatsAlteration.StatType.Special:
-                    return player.stats.Special * translation;
-                case PlayerStatsAlteration.StatType.Control:
-                    return player.stats.CrowdControl * translation;
-                case PlayerStatsAlteration.StatType.AttackSpeed:
-                    return player.stats.AttackSpeed * translation;
-                case PlayerStatsAlteration.StatType.Vampirism:
-                    return player.stats.Vampirism * translation;
-                case PlayerStatsAlteration.StatType.Cannibalism:
-                    return player.stats.Cannibalism * translation;
-                case PlayerStatsAlteration.StatType.Health:
-                    return player.stats.Health * translation;
-                case PlayerStatsAlteration.StatType.Armor:
-                    return player.stats.Armor * translation;
-                case PlayerStatsAlteration.StatType.Regeneration:
-                    return player.stats.Regeneration * translation;
-                case PlayerStatsAlteration.StatType.Nutrition:
-                    return player.stats.Nutrition * translation;
-                case PlayerStatsAlteration.StatType.MovementSpeed:
-                    return player.stats.MovementSpeed * translation;
-                case PlayerStatsAlteration.StatType.PickupRange:
-                    return player.stats.PickupRange * translation;
-                case PlayerStatsAlteration.StatType.Luck:
-                    return player.stats.Luck * translation;
                 default:
                     return 0;
             }

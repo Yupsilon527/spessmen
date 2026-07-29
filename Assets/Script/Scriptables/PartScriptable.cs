@@ -5,6 +5,7 @@ public class PartScriptable : ModifierScriptable
     public PartAbility ability;
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;
+    public ItemDefines.PartType partType;
     public float boonValue = -1;
     public bool unique = false;
     public bool lockedForSomeReason = false;

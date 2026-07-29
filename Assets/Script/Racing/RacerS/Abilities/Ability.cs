@@ -18,7 +18,7 @@ public class Ability : Countdown
     }
     public void Function(Racer racer)
     {
-        switch (part.action)
+        switch (part.actions)
         {
             case ShipDefines.PartAction.GiveBaseSpeed:
                 racer.stats.GiveBaseSpeed(part.abilityPower);
@@ -37,7 +37,7 @@ public class Ability : Countdown
         {
             Function(racer);
             racer.fuel.SubstractedValue(GetFuelCost());
-            Set(Time.time , GetPartCooldown());
+            Set( GetPartCooldown());
         }
     }
 }

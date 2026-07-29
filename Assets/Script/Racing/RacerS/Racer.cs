@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class Racer 
 {
+    public int id = 0;
    public float distanceRaced;
     public ResourceFloat fuel = new ResourceFloat(1, "gas", false, true);
    public  RacerStatsTable stats;
     public RacerAbilities abilities ;
     public RacerModifiers modifiers ;
-
+    public Racer(int rId)
+    {
+        id = rId;
+    }
 
     public virtual void OnRaceBegin()
     {

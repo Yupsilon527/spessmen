@@ -25,6 +25,12 @@ public static class ItemDefines
         epic = 2,
         legendary = 3,
     }
+    public enum PartType
+    {
+        wheel=0,
+        tank = 1,
+        engine = 2,
+    }
 
     public static float LuckNumber(DataItemPlayer player)
     {

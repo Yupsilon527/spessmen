@@ -7,20 +7,21 @@ public static class ShipDefines
         OnRaceStart = 0,
         OnTimed = 1,
         OnActivated = 2,
+        OnLapCompleted = 3,
+        OnOtherOvertaken = 4,
+        OnSoundBarrierBroken = 5,
     }
-    public enum PartAction
+    public enum PartCondition
     {
-        GiveBaseSpeed = 0,
-        GiveBoostSpeed = 1,
-        GiveFuel = 2,
-    }
-}
+        SpeedBelow = 0,
+        SpeedAbove = 1,
 
-public class PartAbility
-{
-    public float cooldown = 0;
-    public float fuelCost = 0;
-    public ShipDefines.PartFunction function;
-    public ShipDefines.PartAction action;
-    public float abilityPower = 0;
+        PositionBelow = 2,
+        PesitionAbove =3,
+
+        RelativeToRival=4,
+
+        GasAbove=5,
+        GasBelow=6,
+    }
 }
