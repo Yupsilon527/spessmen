@@ -1,7 +1,8 @@
 using UnityEngine;
 [CreateAssetMenu(fileName = "Component", menuName = "Data/Component Data")]
-public class PartScriptable : GridScriptable
+public class PartScriptable : ModifierScriptable
 {
+    public PartAbility ability;
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;
     public float boonValue = -1;
@@ -20,4 +21,5 @@ public class PartScriptable : GridScriptable
     {
         return !lockedForSomeReason;
     }
+
 }

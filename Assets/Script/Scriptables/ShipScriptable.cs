@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship Data")]
-public class ShipScriptable : GridScriptable
+public class ShipScriptable : ModifierScriptable
 {
     public Sprite blueprint;
 
