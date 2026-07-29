@@ -139,7 +139,7 @@ public class RacerModifiers : PropertyComponent
         //if (IsImmuneToModifier(newModifier)) { return false; }
         newModifier.Restart(Time.time);
     
-        switch (newModifier.data.behavior)
+        switch (newModifier.behavior)
         {
             case ModifierDefines.Behavior.Replace: //Replace 
                 if (TryFindModifierByName(newModifier.ModifierName, false, out Modifier found))

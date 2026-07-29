@@ -135,19 +135,13 @@ public static class ModifierDefines
     [Serializable]
     public class RelativeStatData   //get property relative to stat
     {
-        public PlayerStatsAlteration.StatType baseStat;
+        public ShipDefines.ScaleType baseStat;
         public Property Property;
         public float translation;
 
-        public float GetValueForRacer(Racer player)
+        public float GetValueForRacer(Racer racer)
         {
-            switch (baseStat)
-            {
-                case PlayerStatsAlteration.StatType.BaseSpeed:
-                    return player.stats.Attack * translation;
-                default:
-                    return 0;
-            }
+            return ShipDefines.GetScale(racer, baseStat);
         }
 
         /*public string ValueToString(int level, bool inclBase, float levelScale)

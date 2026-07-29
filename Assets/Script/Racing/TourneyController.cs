@@ -81,7 +81,7 @@ public class TourneyController : Initializable
         if (currentRace.IsRunning())
         {
             foreach (var racer in currentRace.racers)
-                racer.OnRaceProgress();
+                racer.HandleRacePhase( RaceDefines.RacePhase.RaceTick);
             currentRace.UpdateLeaderboard();
         }
         else if (currentPhase == TourneyPhase.racing)
