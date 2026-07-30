@@ -23,4 +23,9 @@ public class PlayerAbilityPreview : ShipPreview
         token.SnapToGrid(GetComponent<RectTransform>());
         token.AdjustRotation(part.rotation);
     }
+    public override void Clear()
+    {
+        foreach (var token in buttons)
+            TokenPool.DeactivateObject(token.gameObject);
+    }
 }

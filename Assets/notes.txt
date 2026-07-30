@@ -1,20 +1,28 @@
 TODO
 	start game
-		directly in shop, initial loadout is free?
 		8 environments?
 			3 races each
 			end shop guarantees legendary
+			"antes" give 2x score
 
 	part restrictions:
 		wheels only bottom
 		nitro on back
 		etc
 
-	part stash (for discarded parts?)
+	shop
+		lock shop parts
+		part info
+
+	difficulty
+FEA
+	parts expand slots
+		scale off occupied slots
+		scale off total slots
 
 	abilities/actives that target opponent
 
-FEA
+
 	WEATHER - Binds/finisher/boss binds
 		fuel half empty
 		less fuel
@@ -22,6 +30,7 @@ FEA
 		ability CD%
 		engine CD%
 		rival abb immune
+		race is longer
 
 		enemies get random ability
 			random engine

@@ -13,11 +13,13 @@ public class AbilityDragDropInterface : ShipPreview
     }
     #region DD Slots
     public DragDropSlot buildSlot;
-    public DragDropSlot[] DiscardSlots;
+    public DragDropSlot[] shopSlots;
+    public DragDropSlot[] stashSlots;
 
     void FindSlots()
     {
-        DiscardSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.discard).ToArray() ;
+        shopSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.shop).ToArray() ;
+        stashSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.stash).ToArray() ;
     }
 
     public void InitSlots(DataItemShip s)
@@ -30,13 +32,24 @@ public class AbilityDragDropInterface : ShipPreview
                     var token = GenerateToken(slot);
                     token.AttachToSlot(buildSlot, true);
         }
+        int i = 0;
+        foreach (var part in ship.stash)
+        {
+            var token = GenerateToken(part);
+            token.AttachToSlot(stashSlots[i], true);
+            i++;
+        }
     }
     #endregion
     #region Token Pool
 
+    public DragDropToken GenerateToken(PurchaseData p)
+    {
+        return GenerateToken(new DataItemPart(p.part, p.itemCost));
+    }
     public DragDropToken GenerateToken(PartScriptable u)
     {
-        return GenerateToken(new DataItemPart(u));
+        return GenerateToken(new DataItemPart(u, u.boonValue));
     }
     public DragDropToken GenerateToken(DataItemPart u)
     {
@@ -52,10 +65,23 @@ public class AbilityDragDropInterface : ShipPreview
     #region Hero Init
     public void ApplyChanges()
     {
-        foreach (var slot in DiscardSlots)  //REFUND 
+        ship.stash.RemoveWhere(p => ship.parts.Contains(p));
+        foreach (var slot in stashSlots)  
         {
-        //    if (slot.attachedToken != null)
-           // slot.ship?.formation.SetTroopInPosition(slot.position, slot.attachedToken != null ? slot.attachedToken.tokenUnit : null);
+            if (slot.attachedToken != null)
+            {
+                var part = slot.attachedToken.mPart;
+                ship.parts.Remove(part);
+                ship.stash.Add(part);
+            }
+        }
+        foreach (var slot in shopSlots)  
+        {
+            if (slot.attachedToken != null)
+            {
+                var part = slot.attachedToken.mPart;
+                ship.stash.Add(part);
+            }
         }
 
     }

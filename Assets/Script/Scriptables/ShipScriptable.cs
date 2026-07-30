@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship Data")]
 public class ShipScriptable : ModifierScriptable
 {
     public Sprite blueprint;
-
+    public PartScriptable[] startingParts;
     protected override void OnValidate()
     {
         base.OnValidate();

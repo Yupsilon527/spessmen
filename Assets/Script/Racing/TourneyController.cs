@@ -49,10 +49,29 @@ public class TourneyController : Initializable
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceEnd);
                     }
+                    foreach (var racer in leaderboard.Keys.ToArray())
+                    {
+                        leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
+                    }
                 }
                 break;
         }
         currentPhase = nPhase;
+    }
+    public float GetPointsForPosition(int position)
+    {
+        return leaderboard.Count - position - 1;
+    }
+    public float GetScoreForRacer(Racer racer)
+    {
+        return leaderboard[racer];
+    }
+    public Racer[] GetLeaderboardSorted()
+    {
+        return leaderboard
+            .OrderByDescending(kvp => kvp.Value)
+            .Select(kvp => kvp.Key)
+            .ToArray();
     }
     protected override void Initialize()
     {

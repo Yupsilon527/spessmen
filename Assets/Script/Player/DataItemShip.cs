@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class DataItemShip : DataItemGrid
 {
     public ShipScriptable scriptable;
+    public HashSet<DataItemPart> stash = new();
     public HashSet<DataItemPart> parts = new();
     public bool[,] occupied;
 
@@ -13,6 +14,11 @@ public class DataItemShip : DataItemGrid
         height = so.grid.height;
          Encode(so.grid.ToOutputGrid());
         ResetOccupancy();
+
+        foreach (var stashed in so.startingParts)
+        {
+            stash.Add(new DataItemPart(stashed, stashed.boonValue));
+        }
     }
 
 

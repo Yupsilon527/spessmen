@@ -11,6 +11,8 @@ public class ItemPurchaseButton : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI priceLabel;
     public Image coinImage;
+    public Toggle lockToggle;
+    bool locked = false;
 
     public virtual void Clear()
     {
@@ -19,6 +21,7 @@ public class ItemPurchaseButton : MonoBehaviour
         purchaseData = null;
         button.interactable = false;
         icon.enabled = false;
+        SetLocked(false);
     }
     public void AssignItem(DataItemPlayer purchasingPlayaer, PurchaseData purchase)
     {
@@ -47,8 +50,11 @@ public class ItemPurchaseButton : MonoBehaviour
     public PartScriptable itemAction;
     public virtual void ShowItemAction(DataItemPlayer player, PartScriptable newAction)
     {
-        Clear();
-        itemAction = newAction;
+        if (itemAction != newAction)
+        {
+            Clear();
+            itemAction = newAction;
+        }
         if (icon != null)
         {
             icon.sprite = newAction.icon;
@@ -72,6 +78,7 @@ public class ItemPurchaseButton : MonoBehaviour
     {
         if (purchaseData == null)
         {
+            SetLocked(false);
             button.interactable = false;
         }
         else
@@ -91,10 +98,31 @@ public class ItemPurchaseButton : MonoBehaviour
     {
         if (purchaseData.MakePurchase(purchasingPlayaer))
         {
-           var newToken = shop.dragdrop.GenerateToken(purchaseData.part);
+           var newToken = shop.dragdrop.GenerateToken(purchaseData);
             newToken.AttachToSlot(dropSlot,true);
             
             Clear();
         }
+    }
+    bool SanityCheck()
+    {
+        return  purchaseData != null && purchaseData.CanBePurchased(DataItemPlayer.main);
+    }
+    public bool IsLocked()
+    {
+        return locked && SanityCheck();
+    }
+    public void ToggleLocked(bool value)
+    {
+        locked = value;
+        if (value && !SanityCheck())
+        {
+            SetLocked(false);
+        }
+    }
+    public void SetLocked(bool value)
+    {
+        ToggleLocked(value);
+        lockToggle?.SetIsOnWithoutNotify(value);
     }
 }

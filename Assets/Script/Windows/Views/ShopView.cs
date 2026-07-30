@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 
 public partial class ShopView : ViewBase
@@ -20,8 +21,15 @@ public partial class ShopView : ViewBase
         {
             if (iB < itemButtonSelection.Length)
             {
+                if (itemButtonSelection[iB].IsLocked())
+                {
+                    iB++;
+                    continue;
+                }
+                else { 
                 itemButtonSelection[iB].gameObject.SetActive(items[i]!=null);
                 itemButtonSelection[iB++].AssignItem(DataItemPlayer.main, items[i]);
+            }
             }
         }
     }
@@ -40,7 +48,7 @@ public partial class ShopView : ViewBase
         }
         List<PurchaseData> itemActions = new();
 
-        for (int i = 0; i < itemButtonSelection.Length; i++)
+        for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
         {
             var ia = new PurchaseData();
             itemActions.Add(ia);
@@ -92,7 +100,7 @@ public partial class ShopView : ViewBase
         dragdrop.ApplyChanges();
         dragdrop.Clear();
     }
-    public void BeginRace()
+    public void Proceed()
     {
         if (DataItemPlayer.main.ship.ValidateAll())
         {

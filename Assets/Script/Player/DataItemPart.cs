@@ -6,13 +6,14 @@ public class DataItemPart : DataItemGrid
     public int originX;
     public int originY;
     public Ability correspondingAbility;
-
-    public DataItemPart(PartScriptable so)
+    public float purchaseCost = 0;
+    public DataItemPart(PartScriptable so, float purchaseCost)
     {
         scriptable = so;
         width = so.grid.width;
         height = so.grid.height;
         Encode(so.grid.ToOutputGrid());
+        this.purchaseCost = purchaseCost;
     }
     public PartAbility GetAbility()
     {
@@ -25,13 +26,5 @@ public class DataItemPart : DataItemGrid
     public bool CanBeDiscarded()
     {
         return true;
-    }
-    public bool HasModifier()
-    {
-        return scriptable.states.Length > 0 ||scriptable.properties.Length > 0 ||scriptable.relative.Length>0;
-    }
-    public Modifier GetInnateModifier(Racer racer)
-    {
-        return new Modifier(racer, scriptable);
     }
 }

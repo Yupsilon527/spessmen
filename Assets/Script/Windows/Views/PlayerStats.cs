@@ -4,30 +4,13 @@ using UnityEngine.UI;
 
 public class PlayerStats : Initializable
 {
-    public TextMeshProUGUI time, lap, distance, speed, position, fuelpercent, fuelvalue;
+    public TextMeshProUGUI  lap, distance, speed, position, fuelpercent, fuelvalue;
     public Image fuelFill;
 
     public void Update()
     {
-
-        UpdateTime();
         UpdatePlayerPosition();
         UpdatePlayerFuel();
-    }
-    void UpdateTime()
-    {
-        if (time != null)
-        {
-            if (TourneyController.main.ongoingRace!= null && TourneyController.main.ongoingRace.IsRunning())
-            {
-
-                time.text = (Mathf.Ceil(TourneyController.main.ongoingRace.GetTimeRemaining() * 10) / 10).ToString();
-            }
-            else
-            {
-                time.text = "";
-            }
-        }
     }
     void UpdatePlayerPosition()
     {

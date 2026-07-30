@@ -7,6 +7,7 @@ public class DragDropSlot : EventTrigger
     {
         build,
         shop,
+        stash,
         discard,
     }
     public TokenSlot slot;

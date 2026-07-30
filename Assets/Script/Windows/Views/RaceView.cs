@@ -1,9 +1,14 @@
 
+using TMPro;
+using UnityEngine;
+
 public class RaceView : ViewBase
 {
+    public TextMeshProUGUI time;
     public PlayerShipGrid playership;
     public PlayerAbilityPreview preview;
-    public Leaderboard leaderboard;
+    public GameObject interfaceParent;
+    public GameObject gameOverParent;
 
     public override void OnOpened()
     {
@@ -11,5 +16,44 @@ public class RaceView : ViewBase
         if (DataItemPlayer.main == null) return;
         playership.AssignShip(DataItemPlayer.main.ship);
         preview.LoadPlayerShip(DataItemPlayer.main.ship);
+        ToggleGameOver(false);
+    }
+    void Update()
+    {
+        UpdateTime();
+    }
+
+    void ToggleGameOver(bool value)
+    {
+        interfaceParent.SetActive(!value);
+        gameOverParent.SetActive(value);
+        if (value)
+        {
+            preview.Clear();
+        }
+    }
+
+    void UpdateTime()
+    {
+        if (time != null)
+        {
+            if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.racing)
+            {
+                time.text = (Mathf.Ceil(TourneyController.main.ongoingRace.GetTimeRemaining() * 10) / 10).ToString("F1");
+            }
+            else if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.afterRace)
+            {
+                ToggleGameOver(true);
+                time.text = "";
+            }
+        }
+    }
+    public void Proceed()
+    {
+        if (!TourneyController.main.ongoingRace.IsRunning())
+        {
+            TourneyController.main.ChangePhase(TourneyController.TourneyPhase.beforeRace);
+            ViewManager.Instance.ChangeView(ViewManager.Views.shopView);
+        }
     }
 }
