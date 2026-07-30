@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class RaceView : ViewBase
 {
     public PlayerShipGrid playership;
     public PlayerAbilityPreview preview;
+    public Leaderboard leaderboard;
 
     public override void OnOpened()
     {

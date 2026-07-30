@@ -8,7 +8,7 @@ public class TourneyController : Initializable
     Dictionary<Racer, float> leaderboard = new();
 
 
-    public Race currentRace;
+    public Race ongoingRace;
     public enum TourneyPhase
     {
         beforeRace,
@@ -26,26 +26,26 @@ public class TourneyController : Initializable
                     InitRacers();
                 break;
             case TourneyPhase.racing:
-                if (currentPhase == TourneyPhase.beforeRace || currentRace == null || !currentRace.IsRunning())
+                if (currentPhase == TourneyPhase.beforeRace || ongoingRace == null || !ongoingRace.IsRunning())
                 {
-                    currentRace = new Race()
+                    ongoingRace = new Race()
                     {
-                        raceID = currentRace == null ? 0 : currentRace.raceID + 1,
+                        raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
                         racers = leaderboard.Keys.Select(k => k).ToList(),
                     };
-                    Inspect($"Start race {currentRace.raceID} with {currentRace.racers.Count} racers!");
-                    foreach (var racer in currentRace.racers)
+                    Inspect($"Start race {ongoingRace.raceID} with {ongoingRace.racers.Count} racers!");
+                    foreach (var racer in ongoingRace.racers)
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
                     debugSet = 0;
-                    currentRace.Set(20);
+                    ongoingRace.Set(20);
                 }
                 break;
             case TourneyPhase.afterRace:
                 if (currentPhase == TourneyPhase.racing)
                 {
-                    foreach (var racer in currentRace.racers)
+                    foreach (var racer in ongoingRace.racers)
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceEnd);
                     }
@@ -73,7 +73,7 @@ public class TourneyController : Initializable
     }
     public Racer GetPlayerRival()
     {
-        if (currentRace == null || currentRace.raceID == 0) return null;
+        if (ongoingRace == null || ongoingRace.raceID == 0) return null;
         return leaderboard
             .Where(kvp => kvp.Key.id != 0)
             .OrderBy(kvp => kvp.Value)
@@ -84,11 +84,11 @@ public class TourneyController : Initializable
     {
         if (currentPhase == TourneyPhase.racing)
         {
-            if (currentRace.IsRunning())
+            if (ongoingRace.IsRunning())
             {
-                foreach (var racer in currentRace.racers)
+                foreach (var racer in ongoingRace.racers)
                     racer.HandleRacePhase(RaceDefines.RacePhase.RaceTick);
-                currentRace.UpdateLeaderboard();
+                ongoingRace.UpdateLeaderboard();
                 DebugRace();
             }
             else
@@ -99,11 +99,11 @@ public class TourneyController : Initializable
     void DebugRace()
     {
         int x = 2;
-        if (currentRace.GetTimeRemaining()<20- debugSet*x)
+        if (ongoingRace.GetTimeRemaining()<20- debugSet*x)
         {
             Inspect($"--- RACE UPDATE ({debugSet * x}) ---");
             int i = 0;
-            foreach (var racer in currentRace.racers)
+            foreach (var racer in ongoingRace.racers)
             {
                 Inspect($"Racer {racer.id} is in position {i + 1} with {racer.position.distanceTraveled} distance going fast at {racer.stats.baseSpeed} mph! Fuel: {racer.abilities.fuel.GetValue()}/{racer.abilities.fuel.GetLimit()}");
                 i++;

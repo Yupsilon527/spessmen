@@ -73,9 +73,9 @@ public static class ShipDefines
             case ScaleType.LapsCompleted:
                 return racer.position.currentLap;
             case ScaleType.CurrentPosition:
-                return TourneyController.main.currentRace.GetPositionForRacer(racer) ;
+                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) ;
             case ScaleType.CurrentRivalPosition:
-                return racer.GetRival() == null ? 0: TourneyController.main.currentRace.GetPositionForRacer(racer.GetRival());
+                return racer.GetRival() == null ? 0: TourneyController.main.ongoingRace.GetPositionForRacer(racer.GetRival());
             case ScaleType.RivalDistanceTraveled:
                 return racer.GetRival()?.position.distanceTraveled ?? 0;
             case ScaleType.CurrentFuelValue:

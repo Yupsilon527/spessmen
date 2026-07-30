@@ -38,12 +38,40 @@ public class RacerStatsTable : RacerComponent
     }
     public void UpdateRealSpeed()
     {
-        realSpeed = baseSpeed + boosterSpeed;
-        if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed) {
+        float bSpeed = baseSpeed;
+        bSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.base_speed);
+        bSpeed *= racer.GetPropertyMultiplicative(ModifierDefines.Property.base_speed_percent);
+        bSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.bonus_speed) * racer.GetPropertyMultiplicative(ModifierDefines.Property.total_speed_percent);
+
+        float tSpeed = boosterSpeed;
+        tSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.boost_speed_bonus);
+        tSpeed *= racer.GetPropertyMultiplicative(ModifierDefines.Property.boost_speed_percent);
+
+        realSpeed = bSpeed + tSpeed;
+
+        var playerRacer = TourneyController.main.GetPlayerRacer();
+        if (playerRacer!=racer)
+        {
+            realSpeed *= playerRacer.GetPropertyMultiplicative(ModifierDefines.Property.opponent_speed);
+            if (playerRacer.GetRival()==racer)
+            {
+                realSpeed *= playerRacer.GetPropertyMultiplicative(ModifierDefines.Property.rival_speed);
+            }
+        }
+
+
+        if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed)
+        {
             racer.abilities.ListenToEvent(PartEvent.OnSoundBarrierBroken);
             brokenSoundBarrier = true;
         }
+
+
         requiresUpdate = false;
+    }
+    public void UpdateGasTotal()
+    {
+        gasTotal = gasBase + racer.GetPropertyAdditive(ModifierDefines.Property.tank_capacity);
     }
 
     public RacerStatsTable Clone()
@@ -88,27 +116,27 @@ public class PlayerStatsAlteration
         }
         return ModifierDefines.Property.total;
     }
-    public float GetEffectiveChange(Racer player)
+    public float GetEffectiveChange(Racer player, float mult)
     {
-        value *= GetScale( player, scale);
+        value *= GetScale( player, scale) * mult;
         if (GetRelatedProperty() < ModifierDefines.Property.total)
             return value * player.GetPropertyMultiplicative(GetRelatedProperty());
         return value;
     }
-    public void GiveToPlayer(Racer player)
+    public void GiveToPlayer(Racer player, float mult)
     {
         switch (stat)
         {
             case StatType.BaseSpeed:
-                ApplyToStat(ref player.stats.baseSpeed, GetEffectiveChange(player));
+                ApplyToStat(ref player.stats.baseSpeed, GetEffectiveChange(player, mult));
                 player.stats.SetDirty();
                 break;
             case StatType.BoostSpeed:
-                ApplyToStat(ref player.stats.boosterSpeed, GetEffectiveChange(player));
+                ApplyToStat(ref player.stats.boosterSpeed, GetEffectiveChange(player, mult));
                 player.stats.SetDirty();
                 break;
             case StatType.FillGas:
-                player.abilities.fuel.GiveValue(GetEffectiveChange(player));
+                player.abilities.fuel.GiveValue(GetEffectiveChange(player, mult));
                 break;
         }
     }

@@ -1,21 +1,45 @@
 TODO
-	modifier states
+	start game
+		directly in shop, initial loadout is free?
+		8 environments?
+			3 races each
+			end shop guarantees legendary
 
-	fuel & fuel consumption
-	abilities
-		actives
-			buttons
-			display CD time on buttons
-			display CD fill on buttons
+	part restrictions:
+		wheels only bottom
+		nitro on back
+		etc
 
-	debug (tourney inspect)
+	part stash (for discarded parts?)
 
+	abilities/actives that target opponent
+
+FEA
+	WEATHER - Binds/finisher/boss binds
+		fuel half empty
+		less fuel
+		rival is faster
+		ability CD%
+		engine CD%
+		rival abb immune
+
+		enemies get random ability
+			random engine
 	pickups
+
+	FEA unlock slots
 
 CARS
 	normal
-	wheelie - faster wheels, slower boost
+	wheelie - faster wheels, slower boost, lots of room for 3x3 wheels
 	hotrod - boosts
-	clicker - starts with 0 cd, 0 fuel use engine
+	clicker - starts with clicker
 	muttley - start with ability, abilities cheaper, more CD cost
 	??? - speed when in first lap, plus engine % total speed
+	??? - overgas, and bonus speed overgas (legen wheel that gives you 20%), base speed reduced, gas incoming increase
+
+Items
+	legendary
+		clicker - fast CD, 0 fuel use active, grant small boost
+		overgas tank (gas has no limit)
+		overgas wheel (%speed when at or over 100% gas)

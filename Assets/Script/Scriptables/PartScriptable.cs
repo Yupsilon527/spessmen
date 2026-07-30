@@ -18,6 +18,7 @@ public class PartScriptable : ModifierScriptable
             boonValue = 20 * Mathf.Pow(2, (int)boonRarity);
         }
         ability.InternalName = name;
+        ability.classification = partType;
     }
     public virtual bool IsUnlocked()
     {

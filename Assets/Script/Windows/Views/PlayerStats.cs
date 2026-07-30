@@ -18,10 +18,10 @@ public class PlayerStats : Initializable
     {
         if (time != null)
         {
-            if (TourneyController.main.currentRace!= null && TourneyController.main.currentRace.IsRunning())
+            if (TourneyController.main.ongoingRace!= null && TourneyController.main.ongoingRace.IsRunning())
             {
 
-                time.text = (Mathf.Ceil(TourneyController.main.currentRace.GetTimeRemaining() * 10) / 10).ToString();
+                time.text = (Mathf.Ceil(TourneyController.main.ongoingRace.GetTimeRemaining() * 10) / 10).ToString();
             }
             else
             {
@@ -37,7 +37,7 @@ public class PlayerStats : Initializable
             if (lap!=null)
                 lap.text = player.position.currentLap.ToString() ;
             if (position != null)
-                position.text = (TourneyController.main.currentRace.GetPositionForRacer(player)+1).ToString();
+                position.text = (TourneyController.main.ongoingRace.GetPositionForRacer(player)+1).ToString();
             if (distance != null)
                 distance.text = (Mathf.RoundToInt(player.position.distanceTraveled * 10) / 10).ToString();
             if (speed != null)

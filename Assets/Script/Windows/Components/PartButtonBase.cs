@@ -5,20 +5,20 @@ public class PartButtonBase : Initializable
 {
     public float cellSize = 20;
 
-    public DataItemPart _part;
+    public DataItemPart mPart;
     protected RectTransform recttransform;
     protected   GridPreview gridPreview;
     public Image sprite;
     public void FromPart(DataItemPart part, bool draw)
     {
         ClearToken(false);
-        _part = part;
+        mPart = part;
         if (draw)
             Redraw();
     }
     public void ClearToken(bool draw)
     {
-        _part = null;
+        mPart = null;
         if (draw)
             Redraw();
     }
@@ -30,24 +30,24 @@ public class PartButtonBase : Initializable
         FindComponent(ref gridPreview);
 
     }
-    protected void Redraw()
+    protected virtual void Redraw()
     {
-        sprite.sprite = _part.scriptable.icon;
-        gridPreview.Draw(_part._grid, _part.scriptable.grid.width, _part.scriptable.grid.height);
+        sprite.sprite = mPart.scriptable.icon;
+        gridPreview.Draw(mPart._grid, mPart.scriptable.grid.width, mPart.scriptable.grid.height);
     }
-    public void AdjustRotation(int rotation)
+    public virtual void AdjustRotation(int rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, -90 * rotation);
     }
     public void SnapToGrid(RectTransform targetRect)
     {
-        Vector2Int slotCoords = new Vector2Int(_part.originX, _part.originY);
-        DataItemPlayer.main.ship.TryPlace(_part, slotCoords.x, slotCoords.y);
+        Vector2Int slotCoords = new Vector2Int(mPart.originX, mPart.originY);
+        DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y);
         Rect rect = targetRect.rect;
 
         Vector2 localPoint = new Vector2(
-            rect.xMin + (slotCoords.x + _part.width / 2f) * cellSize * 2,
-            rect.yMax - (slotCoords.y + _part.height / 2f) * cellSize * 2
+            rect.xMin + (slotCoords.x + mPart.width / 2f) * cellSize * 2,
+            rect.yMax - (slotCoords.y + mPart.height / 2f) * cellSize * 2
         );
 
         Vector3 worldPoint = targetRect.TransformPoint(localPoint);

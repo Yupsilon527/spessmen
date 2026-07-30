@@ -45,8 +45,6 @@ public class AbilityDragDropInterface : ShipPreview
         token.parent = this;
         token.transform.localScale = Vector3.one;
         token.FromPart(u, true);
-        for (int i = 0; i < Random.value * 12; i++)
-            token.Rotate(true);
         tokens.Add(token);
         return token;
     }

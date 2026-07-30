@@ -38,7 +38,7 @@ public static class ModifierDefines
         bonus_speed = 2,
         total_speed_percent = 3,
 
-        boost_speed = 4,
+        boost_speed_bonus = 4,
         boost_speed_percent = 5,
 
         tank_capacity = 6,
@@ -54,9 +54,10 @@ public static class ModifierDefines
         ability_cooldown = 14,
 
         ability_power = 22,
+        cooldown_total = 23,
 
-        engine_fuel_consumption=15,
-        ability_fuel_consumtion =16,
+        engine_fuel_consumption = 15,
+        ability_fuel_consumtion = 16,
         fuel_consumption_total = 17,
 
         gold_income = 18,
@@ -65,13 +66,14 @@ public static class ModifierDefines
         opponent_speed = 20,
         rival_speed = 21,
 
-        total = 23,
+        total = 24,
     };
     public enum State   //TODO
     {
         Stunned = 0,
         CanOvergas = 1,
-        Total = 2,
+        AbilityImmune = 2,
+        Total = 3,
     }
     public static bool IsPropertyMultiplicative(Property Property)
     {

@@ -27,9 +27,11 @@ public static class ItemDefines
     }
     public enum PartType
     {
-        wheel=0,
-        tank = 1,
-        engine = 2,
+        other = 0,
+        wheel=1,
+        tank = 2,
+        engine = 3,
+        active = 4,
     }
 
     public static float LuckNumber(DataItemPlayer player)

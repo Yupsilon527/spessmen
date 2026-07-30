@@ -10,10 +10,22 @@ public class DragDropToken : PartButtonBase
     public EventTrigger eventTrigger;
 
     #region Rotate
+    private void Update()
+    {
+        if (dragDropMode ){if ( Input.mouseScrollDelta.y < 0)
+        {
+            Rotate(true);
+        }
+       else if  (Input.mouseScrollDelta.y > 0)
+        {
+                Rotate(false);
+            }
+        }
+    }
     public void Rotate(bool clockwise)
     {
-        _part.Rotate(clockwise);
-        AdjustRotation(_part.rotation);
+        mPart.Rotate(clockwise);
+        AdjustRotation(mPart.rotation);
     }
     #endregion
     #region Info Overlay
@@ -83,7 +95,7 @@ public class DragDropToken : PartButtonBase
             dragDropMode = true;
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
-                DataItemPlayer.main.ship.RemovePart(_part);
+                DataItemPlayer.main.ship.RemovePart(mPart);
 
             ViewManager.Instance.shop.playership.UpdateVisual();
         }
@@ -133,17 +145,17 @@ public class DragDropToken : PartButtonBase
     DragDropSlot slot;
     Vector3 Delta()
     {
-        return new Vector3(cellSize * -_part.width, cellSize * _part.height) / 2;
+        return new Vector3(cellSize * -mPart.width, cellSize * mPart.height) / 2;
     }
     bool CanAttachToSlot(DragDropSlot slot)
     {
         if (slot.slot == DragDropSlot.TokenSlot.shop)
             return false;
         if (slot.slot == DragDropSlot.TokenSlot.discard)
-            return _part.CanBeDiscarded();
+            return mPart.CanBeDiscarded();
 
         var slotCoords = slot.grid.GetGridPosition(transform.position + Delta());
-        return DataItemPlayer.main.ship.CanPlace(_part, slotCoords.x, slotCoords.y);
+        return DataItemPlayer.main.ship.CanPlace(mPart, slotCoords.x, slotCoords.y);
 
     }
 
@@ -179,7 +191,7 @@ public class DragDropToken : PartButtonBase
         {
             Vector2 realPos = transform.position + Delta();
             var slotCoords = slot.grid.GetGridPosition( realPos);
-            DataItemPlayer.main.ship.TryPlace(_part, slotCoords.x, slotCoords.y);
+            DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y);
         }
         else { 
         this.slot.attachedToken = this;

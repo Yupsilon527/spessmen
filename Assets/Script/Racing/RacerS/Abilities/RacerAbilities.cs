@@ -19,14 +19,17 @@ public class RacerAbilities : RacerComponent
                 {
                     foreach (DataItemPart part in DataItemPlayer.main.ship.parts)
                     {
-                        abilities.Add(new Ability(part.GetAbility()));
+                        AddAbility(new Ability(part));
+                        if (part.HasModifier())
+                            racer.modifiers.Add(part.GetInnateModifier(racer));
                     }
                 }
                 else
                 {
-                    int level = TourneyController.main.currentRace.raceID;
-                    abilities.Add(new Ability(PartAbility.NpcWheel(level)));
+                    int level = TourneyController.main.ongoingRace.raceID;
+                    AddAbility(new Ability(PartAbility.NpcWheel(level)));
                 }
+                racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
                 ListenToEvent(ShipDefines.PartEvent.OnRaceStart);
                 break;
@@ -36,12 +39,16 @@ public class RacerAbilities : RacerComponent
         }
         base.HandleRacePhase(phase);
     }
+    void AddAbility(Ability ability)
+    {
+        abilities.Add(ability);
+    }
     public void ListenToEvent(ShipDefines.PartEvent evt)
     {
         foreach (var ability in abilities)
         {
             if (!ability.Activate(racer, evt) && evt == ShipDefines.PartEvent.OnRaceStart)
-                ability.FireCooldown();
+                ability.FireCooldown(racer);
         }
     }
 }

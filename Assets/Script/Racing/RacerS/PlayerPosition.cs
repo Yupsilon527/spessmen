@@ -6,7 +6,7 @@ public class RacerPosition : RacerComponent
     int racerPosition = 0;
     bool aheadOfRival = false;
     public float distanceTraveled = 0;
-    public int currentLap => Mathf.FloorToInt(distanceTraveled/ (TourneyController.main?.currentRace.lapDistance ?? 9999));
+    public int currentLap => Mathf.FloorToInt(distanceTraveled/ (TourneyController.main?.ongoingRace.lapDistance ?? 9999));
     public RacerPosition(Racer racer) : base(racer)
     {
     }
@@ -21,12 +21,13 @@ public class RacerPosition : RacerComponent
                 aheadOfRival = false;
                 break;
             case RaceDefines.RacePhase.RaceTick:
+                float dt =  (racer.GetState(ModifierDefines.State.Stunned)) ? 0 : Time.fixedDeltaTime;
                 int lastLap = currentLap;
                 bool raceStart = distanceTraveled == 0;
-                distanceTraveled += racer.stats.realSpeed * Time.fixedDeltaTime;
+                distanceTraveled += racer.stats.realSpeed * dt;
                 if (raceStart) return;
 
-                int position = TourneyController.main.currentRace.GetPositionForRacer(racer);
+                int position = TourneyController.main.ongoingRace.GetPositionForRacer(racer);
                 if (position > racerPosition)
                     racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnOtherOvertaken);
                 racerPosition = position;

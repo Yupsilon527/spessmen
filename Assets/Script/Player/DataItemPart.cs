@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class DataItemPart : DataItemGrid
 {
@@ -8,6 +5,7 @@ public class DataItemPart : DataItemGrid
     public int rotation = 0;
     public int originX;
     public int originY;
+    public Ability correspondingAbility;
 
     public DataItemPart(PartScriptable so)
     {
@@ -27,5 +25,13 @@ public class DataItemPart : DataItemGrid
     public bool CanBeDiscarded()
     {
         return true;
+    }
+    public bool HasModifier()
+    {
+        return scriptable.states.Length > 0 ||scriptable.properties.Length > 0 ||scriptable.relative.Length>0;
+    }
+    public Modifier GetInnateModifier(Racer racer)
+    {
+        return new Modifier(racer, scriptable);
     }
 }
