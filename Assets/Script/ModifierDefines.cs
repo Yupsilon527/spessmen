@@ -67,8 +67,9 @@ public static class ModifierDefines
         rival_speed = 21,
 
         shop_resets = 24,
+        luck_bonus = 25,
 
-        total = 25,
+        total = 26,
     };
     public enum State   //TODO
     {
