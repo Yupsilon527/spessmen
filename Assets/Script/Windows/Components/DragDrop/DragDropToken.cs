@@ -156,9 +156,11 @@ public class DragDropToken : PartButtonBase
     }
     public bool TryMergeAnother(DragDropToken token)
     {
-        if (CanMergeAnother(token))
+        if (token!=this && CanMergeAnother(token))
         {
-            token.FromPart(new(token.mPart.GetMergeOutcome(mPart),mPart.purchaseCost+token.mPart.purchaseCost),true);
+            token.mPart.Transform(token.mPart.GetMergeOutcome(mPart));
+            token.mPart.purchaseCost = token.mPart.purchaseCost + token.mPart.purchaseCost;
+            token.FromPart(token.mPart, true);
             Delete();
             return true;
         }
@@ -213,23 +215,23 @@ public class DragDropToken : PartButtonBase
         }
         SnapBack();
     }
-    void ChangeSlot(DragDropSlot slot, bool force = false)
+    void ChangeSlot(DragDropSlot target, bool force = false)
     {
-        if (this.slot != null && this.slot != slot && this.slot.slot != DragDropSlot.TokenSlot.build)
-            this.slot.ClearToken();
-        this.slot = slot;
-        if (slot.slot == DragDropSlot.TokenSlot.build)
+        if (slot != null && slot != target && this.slot.slot != DragDropSlot.TokenSlot.build)
+            slot.ClearToken();
+        slot = target;
+        if (target.slot == DragDropSlot.TokenSlot.build)
         {
             if (!force)
             {
                 Vector2 realPos = transform.position + Delta();
-                Vector2Int slotCoords = slot.grid.GetGridPosition(realPos);
+                Vector2Int slotCoords = target.grid.GetGridPosition(realPos);
                 DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y);
             }
         }
         else
         {
-            this.slot.attachedToken = this;
+            slot.attachedToken = this;
         }
     }
     void SwapSlots(DragDropToken other)

@@ -9,6 +9,7 @@ public class ItemPurchaseButton : MonoBehaviour
     public Button button;
     public PurchaseData purchaseData;
     public Image icon;
+    public Outline outline;
     public TextMeshProUGUI priceLabel;
     public Image coinImage;
     public Toggle lockToggle;
@@ -18,6 +19,7 @@ public class ItemPurchaseButton : MonoBehaviour
     {
         if (priceLabel != null) priceLabel.text = "";
         if (coinImage != null) coinImage.gameObject.SetActive(false);
+        if (outline != null) outline.effectColor = Color.clear;
         purchaseData = null;
         button.interactable = false;
         icon.enabled = false;
@@ -60,6 +62,7 @@ public class ItemPurchaseButton : MonoBehaviour
             icon.sprite = newAction.icon;
             icon.enabled = true;
         }
+        if (outline != null) outline.effectColor = ItemDefines.GetColorForRarity(newAction.boonRarity);
     }
     void UpdatePrice()
     {

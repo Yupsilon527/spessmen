@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Engine
+  m_Name: Engine 3
   m_EditorClassIdentifier: 
-  InternalName: Engine
+  InternalName: Engine 3
   grid:
     width: 3
     height: 3
@@ -21,9 +21,10 @@ MonoBehaviour:
   properties: []
   relative: []
   ability:
-    InternalName: Engine
+    InternalName: Engine 3
     cooldown: 2
     fuelCost: 15
+    classification: 0
     function: 1
     condition: 0
     conditionCheck: 0
@@ -31,10 +32,14 @@ MonoBehaviour:
       behavior: 0
       stat: 1
       scale: 0
-      value: 10
+      value: 15
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 7c1f530b4fc34d649a9473d092734f4a, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 2
   partType: 0
+  attach: 0
   boonValue: 20
   unique: 0
   lockedForSomeReason: 0

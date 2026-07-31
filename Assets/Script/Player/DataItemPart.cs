@@ -11,11 +11,15 @@ public class DataItemPart : DataItemGrid
     public float purchaseCost = 0;
     public DataItemPart(PartScriptable so, float purchaseCost)
     {
+        Transform(so);
+        this.purchaseCost = purchaseCost;
+    }
+    public void Transform(PartScriptable so)
+    {
         scriptable = so;
         width = so.grid.width;
         height = so.grid.height;
         Encode(so.grid.ToOutputGrid());
-        this.purchaseCost = purchaseCost;
     }
     public PartAbility GetAbility()
     {

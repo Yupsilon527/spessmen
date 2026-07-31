@@ -56,4 +56,21 @@ public static class ItemDefines
         else
             return (Random.value + Random.value * luckPlus / (luckPlus + luck)) * -.5f;
     }
+    public static Color32 GetColorForRarity(BoonRarity rarity)
+    {
+        switch (rarity)
+        {
+            default:
+                return Color.black;
+            case BoonRarity.common:
+                return new Color(82, 129, 74);
+            case BoonRarity.rare:
+                return new Color(53, 159, 209);
+            case BoonRarity.epic:
+                return new Color(175, 66, 183);
+            case BoonRarity.legendary:
+                return new Color(238, 231, 65);
+
+        }
+    }
 }

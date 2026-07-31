@@ -9,6 +9,7 @@ public class PartButtonBase : Initializable
     protected RectTransform recttransform;
     protected   GridPreview gridPreview;
     public Image sprite;
+    public Outline outline;
     public void FromPart(DataItemPart part, bool draw)
     {
         ClearToken(false);
@@ -34,6 +35,7 @@ public class PartButtonBase : Initializable
     {
         sprite.sprite = mPart.scriptable.icon;
         gridPreview.Draw(mPart._grid, mPart.scriptable.grid.width, mPart.scriptable.grid.height);
+        outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
     }
     public virtual void AdjustRotation(int rotation)
     {

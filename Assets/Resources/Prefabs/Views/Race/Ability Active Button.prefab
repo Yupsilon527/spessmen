@@ -744,6 +744,7 @@ MonoBehaviour:
   inspect: 0
   cellSize: 20
   sprite: {fileID: 8859505002997472872}
+  outline: {fileID: 7020103892418074899}
   cooldownValue: {fileID: 6587882450841968658}
   cooldownFill: {fileID: 8549072597034832055}
   button: {fileID: 5274282303889058058}
@@ -803,6 +804,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7020103892418074899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7177351858896660636, guid: 33168a86b64c30a409f5a74c56779a95, type: 3}
+  m_PrefabInstance: {fileID: 213771683875320207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8859505002997472872 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8648090968405913575, guid: 33168a86b64c30a409f5a74c56779a95, type: 3}

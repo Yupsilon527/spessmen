@@ -10,35 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Gas Tank
+  m_Name: Wheel 3
   m_EditorClassIdentifier: 
-  InternalName: Gas Tank
+  InternalName: Wheel 3
   grid:
-    width: 3
+    width: 2
     height: 2
-    cells: 010101010100
+    cells: 01010101
   states: []
-  properties:
-  - Property: 6
-    value: 50
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   ability:
-    InternalName: Gas Tank
+    InternalName: Wheel 3
     cooldown: 0
     fuelCost: 0
+    classification: 1
     function: 0
     condition: 0
     conditionCheck: 0
-    abilityPower: 0
     action:
       behavior: 0
       stat: 0
       scale: 0
-      value: 0
-  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
-  partType: 0
-  boonValue: 20
+      value: 25
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 781334659bedc6d4796f8066c1137283, type: 2}
+  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  boonRarity: 2
+  partType: 1
+  attach: 1
+  boonValue: 80
   unique: 0
   lockedForSomeReason: 0

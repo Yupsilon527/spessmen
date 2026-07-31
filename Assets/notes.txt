@@ -5,19 +5,12 @@ TODO
 			end shop guarantees legendary
 			"antes" give 2x score
 
-	part restrictions:
-		wheels only bottom
-		nitro on back
-		etc
-
 	shop
 		part info
 
 	difficulty
 
 FIX
-	duplicate parts
-	parts start
 	rotation bugs
 FEA
 	parts expand slots

@@ -121,9 +121,9 @@ public class TourneyController : Initializable
     }
     void HandlePlayerReward()
     {
-        DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace);
-
         float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, ongoingRace.raceID);
+
+        DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace * diffMult);
 
         int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
         float interest = DataItemPlayer.main.econ.gold.GetValue()* EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) ;

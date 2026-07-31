@@ -443,6 +443,7 @@ MonoBehaviour:
   dropSlot: {fileID: 8675035728581246563}
   button: {fileID: 4714646389629447956}
   icon: {fileID: 3331229239929851054}
+  outline: {fileID: 4191769996660805269}
   priceLabel: {fileID: 9132307628565064373}
   coinImage: {fileID: 0}
   lockToggle: {fileID: 6305321305831606119}
@@ -502,6 +503,7 @@ GameObject:
   - component: {fileID: 7327373045436902517}
   - component: {fileID: 2639864438158038883}
   - component: {fileID: 3331229239929851054}
+  - component: {fileID: 4191769996660805269}
   m_Layer: 5
   m_Name: Item Display
   m_TagString: Untagged
@@ -566,6 +568,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4191769996660805269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148275862795735079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &5343879784671767908
 PrefabInstance:
   m_ObjectHideFlags: 0
