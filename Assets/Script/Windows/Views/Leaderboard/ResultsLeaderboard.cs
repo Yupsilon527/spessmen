@@ -3,7 +3,7 @@
     {
         public void OnEnable()
         {
-            if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.afterRace)
+            if (TourneyController.main?.currentPhase == TourneyController.TourneyPhase.afterRace)
             {
                 UpdateLeaderboard();
             }

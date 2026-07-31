@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 public class DataItemPart : DataItemGrid
 {
     public PartScriptable scriptable;
@@ -26,5 +28,16 @@ public class DataItemPart : DataItemGrid
     public bool CanBeDiscarded()
     {
         return true;
+    }
+    public bool CanMerge(DataItemPart other)
+    {
+        return other.scriptable.combos.Any ( combo => combo.other == other.scriptable ) || scriptable.combos.Any(combo => combo.other == scriptable);
+    }
+    public PartScriptable GetMergeOutcome(DataItemPart other)
+    {
+        var found = other.scriptable.combos.FirstOrDefault(c => c.other == scriptable)
+             ?? scriptable.combos.FirstOrDefault(c => c.other == other.scriptable);
+
+        return found != null ? found.result : scriptable;
     }
 }

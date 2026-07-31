@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Component", menuName = "Data/Component Data")]
 public class PartScriptable : ModifierScriptable
 {
     public PartAbility ability;
+    public MergeOutput[] combos;
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;
     public ItemDefines.PartType partType;
@@ -25,4 +27,10 @@ public class PartScriptable : ModifierScriptable
         return !lockedForSomeReason;
     }
 
+}
+
+[Serializable]
+public class MergeOutput
+{
+    public PartScriptable other, result;
 }

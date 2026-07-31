@@ -6,7 +6,7 @@ public static class ItemDefines
     public static float baseSpawnWeight = 4;
     public static float raritySpawnWeight = -1;
 
-    public static float chaosPerWave = 20;
+    public static float chaosPerRace = 20;
     public static float chaosPerShopReset = 10;
     public static float chaosFromCommon = 10;
     public static float chaosFromRare = 20;

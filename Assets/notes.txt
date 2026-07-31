@@ -11,10 +11,14 @@ TODO
 		etc
 
 	shop
-		lock shop parts
 		part info
 
 	difficulty
+
+FIX
+	duplicate parts
+	parts start
+	rotation bugs
 FEA
 	parts expand slots
 		scale off occupied slots

@@ -12,7 +12,7 @@ public class PurchaseData
     public PurchaseData()
     {
         List<PartScriptable> valid = new();
-        foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
+        foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked())  )
             valid.Add(item);
 
         //TODO AccountLuck(valid);

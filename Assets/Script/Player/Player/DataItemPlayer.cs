@@ -1,4 +1,3 @@
-using UnityEngine;
 
 public class DataItemPlayer : Initializable
 {
@@ -20,5 +19,17 @@ public class DataItemPlayer : Initializable
     public void FromData(ShipScriptable s)
     {
         ship = new(s);
+    }
+    public float GetPropertySpeculative(ModifierDefines.Property property)
+    {
+        bool multi = ModifierDefines.IsPropertyMultiplicative(property);
+        float value = multi ? 1 : 0;
+
+        foreach (var part in ship.parts)
+        {
+            value *= part.scriptable.GetProperty(property,1);
+        }
+
+        return value;
     }
 }

@@ -89,6 +89,7 @@ public class AbilityDragDropInterface : ShipPreview
     {
         foreach (var token in tokens)
             token.Delete();
+        tokens.Clear();
     }
     #endregion
 }

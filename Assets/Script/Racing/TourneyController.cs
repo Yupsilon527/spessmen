@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using UnityEngine;
 
 public class TourneyController : Initializable
 {
@@ -53,6 +54,7 @@ public class TourneyController : Initializable
                     {
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
+                    HandlePlayerReward();
                 }
                 break;
         }
@@ -77,6 +79,9 @@ public class TourneyController : Initializable
     {
         main = this;
         base.Initialize();
+#if UNITY_EDITOR
+        Time.timeScale = 10;
+#endif
     }
     public void InitRacers(int opponents = 5)
     {
@@ -114,6 +119,30 @@ public class TourneyController : Initializable
                 ChangePhase(TourneyPhase.afterRace);
         }
     }
+    void HandlePlayerReward()
+    {
+        DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace);
+
+        float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, ongoingRace.raceID);
+
+        int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
+        float interest = DataItemPlayer.main.econ.gold.GetValue()* EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) ;
+
+        float outputGold = EconomyDefines.constantGoldForRace * diffMult
+            + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income)
+            + Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count * playerPos)) * diffMult;
+
+        float distanceGold = 0;
+        if (playerPos==0)
+        {
+            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance * diffMult);
+        }
+
+        Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
+
+        DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
+    }
+
     float debugSet = 0;
     void DebugRace()
     {

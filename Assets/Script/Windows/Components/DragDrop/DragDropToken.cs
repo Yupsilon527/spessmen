@@ -126,14 +126,22 @@ public class DragDropToken : PartButtonBase
 
         foreach (RaycastResult ob in results)
         {
-            if (ob.isValid && ob.gameObject.TryGetComponent(out DragDropSlot nslot))
+            if (ob.isValid)
             {
-                if (!nslot.Interactable)
-                    continue;
-                if (CanAttachToSlot(nslot))
+                if (ob.gameObject.TryGetComponent(out DragDropToken ntoken))
                 {
-                    AttachToSlot(nslot, false);
-                    return true;
+                    if (TryMergeAnother(ntoken))
+                        return true;
+                }
+                else if (ob.gameObject.TryGetComponent(out DragDropSlot nslot))
+                {
+                    if (!nslot.Interactable)
+                        continue;
+                    if (CanAttachToSlot(nslot))
+                    {
+                        AttachToSlot(nslot, false);
+                        return true;
+                    }
                 }
             }
         }
@@ -141,8 +149,22 @@ public class DragDropToken : PartButtonBase
         return false;
     }
     #endregion
-
-
+    #region Merging
+    public bool CanMergeAnother(DragDropToken token)
+    {
+        return token.mPart.CanMerge(mPart);
+    }
+    public bool TryMergeAnother(DragDropToken token)
+    {
+        if (CanMergeAnother(token))
+        {
+            token.FromPart(new(token.mPart.GetMergeOutcome(mPart),mPart.purchaseCost+token.mPart.purchaseCost),true);
+            Delete();
+            return true;
+        }
+        return false; 
+    }
+    #endregion
     #region Attach
     DragDropSlot slot;
     Vector3 Delta()

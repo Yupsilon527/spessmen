@@ -27,7 +27,6 @@ public class ViewManager : WindowManager
         {
             case Views.shopView:
                 tabComponent.OpenTab(shop.gameObject);
-                shop.ResetStore(true);
                 break;
             case Views.raceView:
                 tabComponent.OpenTab(build.gameObject);

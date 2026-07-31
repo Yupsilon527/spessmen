@@ -6,7 +6,7 @@ using TMPro;
 public partial class ShopView : ViewBase
 {
     int numResets = 0;
-    
+
     public TextMeshProUGUI playerGold;
     public TextMeshProUGUI resetCost;
 
@@ -26,10 +26,11 @@ public partial class ShopView : ViewBase
                     iB++;
                     continue;
                 }
-                else { 
-                itemButtonSelection[iB].gameObject.SetActive(items[i]!=null);
-                itemButtonSelection[iB++].AssignItem(DataItemPlayer.main, items[i]);
-            }
+                else
+                {
+                    itemButtonSelection[iB].gameObject.SetActive(items[i] != null);
+                    itemButtonSelection[iB++].AssignItem(DataItemPlayer.main, items[i]);
+                }
             }
         }
     }
@@ -37,8 +38,6 @@ public partial class ShopView : ViewBase
     {
         if (hardReset)
         {
-            playership.AssignShip(DataItemPlayer.main.ship);
-            dragdrop.InitSlots(DataItemPlayer.main.ship);
             numResets = 0;
         }
         else
@@ -47,21 +46,23 @@ public partial class ShopView : ViewBase
             DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerShopReset);
         }
         List<PurchaseData> itemActions = new();
-
-        for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
+        if (ResourceCache.main != null)
         {
-            var ia = new PurchaseData();
-            itemActions.Add(ia);
+            for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
+            {
+                var ia = new PurchaseData();
+                itemActions.Add(ia);
+            }
+            PresentMultipleItems(itemActions.ToArray());
+            UpdateState();
         }
-        PresentMultipleItems(itemActions.ToArray());
-        UpdateState();
     }
     public void UpdateState()
     {
         if (playerGold != null && DataItemPlayer.main != null)
             playerGold.text = "Your gold: " + DataItemPlayer.main.econ.gold.GetValue();
         if (resetCost != null)
-            resetCost.text = "Reset Cost " + GetResetCost();
+            resetCost.text = "Cost " + GetResetCost();
 
         for (int i = 0; i < itemButtonSelection.Length; i++)
         {
@@ -77,23 +78,27 @@ public partial class ShopView : ViewBase
     }
     float GetResetCost()
     {
-        //TODO if (numResets < DataItemPlayer.main.GetPropertyAdditive(ModifierDefines.Property.shop_resets))
+        if (numResets < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        //return (1 + WaveSpawner.main.currentWave) * (numResets + 1);
+        return (1 + (TourneyController.main?.ongoingRace?.raceID ?? 0)) * (numResets + 1);
     }
     public override void OnOpened()
     {
         base.OnOpened();
-        InitializeShop();
+        if (DataItemPlayer.main != null)
+        {
+            InitializeShop();
+            ResetStore(true);
+
+            DataItemPlayer.main.econ.gold.OnValueChanged.RemoveListener(UpdateState);
+            DataItemPlayer.main.econ.gold.OnValueChanged.AddListener(UpdateState);
+        }
     }
     public void InitializeShop()
     {
         if (DataItemPlayer.main == null) return;
-        foreach (var part in DataItemPlayer.main.ship.parts)
-        {
-            var token = dragdrop.GenerateToken(part);
-            token.AttachToSlot(dragdrop.buildSlot,true);
-        }
+        playership.AssignShip(DataItemPlayer.main.ship);
+        dragdrop.InitSlots(DataItemPlayer.main.ship);
     }
     void Conclude()
     {

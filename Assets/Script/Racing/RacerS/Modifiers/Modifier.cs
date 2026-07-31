@@ -88,14 +88,22 @@ public class Modifier : Countdown
     public void UpdateFromLevel()
     {
         properties.Clear();
+
+        HashSet<ModifierDefines.Property> props = new();
         foreach (ModifierDefines.PropertyData prop in data.properties)
         {
-            SetProperty(prop.Property, GetProperty(prop.Property) + prop.value + prop.IncreasePerLevel * (stacks - 1));
+            props.Add(prop.Property);
         }
         foreach (ModifierDefines.RelativeStatData prop in data.relative)
         {
-            SetProperty(prop.Property, GetProperty(prop.Property)+ prop.GetValueForRacer(racer));
+            props.Add(prop.Property);
         }
+
+        foreach (var prop in props)
+        {
+            SetProperty(prop, GetProperty(prop) + data.GetProperty(prop,stacks - 1) + data.GetPropertyForRacer(prop,racer));
+        }
+       
         if (properties.Count > 0)
             racer.modifiers.RefreshModifier(this);
     }
