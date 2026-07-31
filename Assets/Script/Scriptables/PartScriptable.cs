@@ -8,6 +8,7 @@ public class PartScriptable : ModifierScriptable
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;
     public ItemDefines.PartType partType;
+    public ItemDefines.PartCondition attach;
     public float boonValue = -1;
     public bool unique = false;
     public bool lockedForSomeReason = false;

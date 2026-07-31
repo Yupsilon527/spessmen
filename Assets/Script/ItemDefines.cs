@@ -33,6 +33,14 @@ public static class ItemDefines
         engine = 3,
         active = 4,
     }
+    public enum PartCondition
+    {
+        Anywhere,
+        Bottom,
+        Left,
+        Right,
+        Top
+    }
 
     public static float LuckNumber(DataItemPlayer player)
     {

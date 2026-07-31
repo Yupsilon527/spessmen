@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public abstract class DataItemGrid 
 {
     public int width, height;
@@ -43,6 +45,49 @@ public abstract class DataItemGrid
                 rotated[height - 1 - y, x] = source[x, y];
 
         return rotated;
+    }
+    public bool IsTopmost(int x, int y)
+    {
+        if (!_grid[x, y]) return false;
+
+        for (int checkY = 0; checkY < y; checkY++)
+        {
+            if (_grid[x, checkY]) return false;
+        }
+        return true;
+    }
+
+    public bool IsBottommost(int x, int y)
+    {
+        if (!_grid[x, y]) return false;
+
+        for (int checkY = y + 1; checkY < height; checkY++)
+        {
+            if (_grid[x, checkY]) return false;
+        }
+        return true;
+    }
+
+    public bool IsLeftmost(int x, int y)
+    {
+        if (!_grid[x, y]) return false;
+
+        for (int checkX = 0; checkX < x; checkX++)
+        {
+            if (_grid[checkX, y]) return false;
+        }
+        return true;
+    }
+
+    public bool IsRightmost(int x, int y)
+    {
+        if (!_grid[x, y]) return false;
+
+        for (int checkX = x + 1; checkX < width; checkX++)
+        {
+            if (_grid[checkX, y]) return false;
+        }
+        return true;
     }
 
 }

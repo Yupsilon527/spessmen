@@ -64,8 +64,20 @@ public class DataItemShip : DataItemGrid
                 if (!Valid(px, py)) return false;
             }
         }
+        if (placement.scriptable.attach == ItemDefines.PartCondition.Anywhere) return true; 
+        for (int x = 0; x < shapeWidth; x++)
+        {
+            for (int y = 0; y < shapeHeight; y++)
+            {
+                if (!shape[x, y]) continue;
 
-        return true;
+                int px = oX + x;
+                int py = oY + y;
+                if (MeetsCondition(px, py, placement.scriptable.attach)) return true;
+            }
+        }
+
+        return false;
     }
     public bool Valid(int px, int py)
     {
@@ -74,6 +86,22 @@ public class DataItemShip : DataItemGrid
         if (!_grid[px, py]) return false;
         if (IsOccupied(px, py)) return false;
         return true;
+    }
+    public bool MeetsCondition(int px, int py, ItemDefines.PartCondition condition)
+    {
+        switch (condition)
+        {
+            case ItemDefines.PartCondition.Top:
+                return IsTopmost(px, py);
+            case ItemDefines.PartCondition.Bottom:
+                return IsBottommost(px, py);
+            case ItemDefines.PartCondition.Left:
+                return IsLeftmost(px, py);
+            case ItemDefines.PartCondition.Right:
+                return IsRightmost(px, py);
+            default:
+                return true;
+        }
     }
 
     public bool TryPlace(DataItemPart placement, int oX, int oY)

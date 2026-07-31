@@ -24,18 +24,20 @@ MonoBehaviour:
     InternalName: Wheel
     cooldown: 0
     fuelCost: 0
+    classification: 0
     function: 0
     condition: 0
     conditionCheck: 0
-    abilityPower: 0
     action:
       behavior: 0
       stat: 0
       scale: 0
       value: 10
+  combos: []
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 0
+  attach: 1
   boonValue: 20
   unique: 0
   lockedForSomeReason: 0

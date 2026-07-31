@@ -29,6 +29,6 @@ public class ResourceCache : Initializable
     }
 
     public ScriptableBase LoadAny(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
-    public ShipScriptable LoadResource(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
-    public PartScriptable LoadRecipe(string name) { return string.IsNullOrEmpty(name) ? null : parts.FirstOrDefault(items => items.InternalName == name); }
+    public ShipScriptable LoadShip(string name) { return string.IsNullOrEmpty(name) ? null : ships.FirstOrDefault(items => items.InternalName == name); }
+    public PartScriptable LoadComponent(string name) { return string.IsNullOrEmpty(name) ? null : parts.FirstOrDefault(items => items.InternalName == name); }
 }
