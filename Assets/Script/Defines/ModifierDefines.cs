@@ -165,19 +165,14 @@ public static class ModifierDefines
             return ShipDefines.GetScale(racer, baseStat);
         }
 
-        /*public string ValueToString(int level, bool inclBase, float levelScale)
+        public string ValueToString()
         {
-            float baseValue = (inclBase ? value : 0) + IncreasePerLevel * level * levelScale;
-            return ValueToString(Property, baseValue);
+            if (IsPropertyMultiplicative(Property))
+            {
+                return $"+1% {Property} for every {Mathf.CeilToInt(1 / translation)* .01f} {baseStat}";
+            }
+            return $"+1 {Property} for every {Mathf.CeilToInt(1 / translation)} {baseStat}";
         }
-        public static string ValueToString(Property property, float value)
-        {
-            if (IsPropertyMultiplicative(property))
-                return $"{(value > 0 ? "+" : "")}{Mathf.RoundToInt(value * 10) / 10f}";
-            else
-                return $"{(value > 0 ? "+" : "")}{Mathf.Round(value * 100)}%";
-
-        }*/
     }
     #endregion
     public static string GetPropertyTable(PropertyData[] properties, int level, float levelValue)

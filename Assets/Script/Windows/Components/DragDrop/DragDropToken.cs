@@ -291,13 +291,15 @@ public class DragDropToken : PartButtonBase
     public void Delete()
     {
         ClearToken(false);
+        if (slot != null)
+            slot.ClearToken();
         slot = null;
         parent.TokenPool.DeactivateObject(gameObject);
     }
     #endregion
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (parent != null && parent.tooltip != null)
+        if (mPart != null && parent != null && parent.tooltip != null)
         {
             parent.tooltip.ShowPart(mPart.scriptable);
         }

@@ -19,6 +19,10 @@ public class PartTooltip : MonoBehaviour
         {
             subtitle.text = part.boonRarity + " " + part.partType;
         }
+        if (description != null)
+        {
+            description.text = part.GetEffectDescription() ;
+        }
     }
     public void Clear()
     {

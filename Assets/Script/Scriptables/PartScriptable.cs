@@ -9,7 +9,7 @@ public class PartScriptable : ModifierScriptable
     public ItemDefines.BoonRarity boonRarity;
     public ItemDefines.PartType partType;
     public ItemDefines.PartCondition attach;
-    public float priceMultiplier = 1;
+    public float priceMultiplier = 1,weightMultiplier = 1;
     public bool unique = false;
     public bool lockedForSomeReason = false;
     protected override void OnValidate()
@@ -29,6 +29,16 @@ public class PartScriptable : ModifierScriptable
     public virtual float GetBasePrice()
     {
 return priceMultiplier *  20 * Mathf.Pow(2, (int)boonRarity);
+    }
+    public override string GetEffectDescription()
+    {
+        string output = base.GetEffectDescription();
+        foreach (var ab in abilities)
+        {
+            if (output.Length > 0) output += "<br>";
+            output += ab.GetAbilityDescription();
+        }
+        return output;
     }
 }
 

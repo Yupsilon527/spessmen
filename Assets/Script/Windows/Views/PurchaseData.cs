@@ -44,7 +44,7 @@ public class PurchaseData
 
         foreach (var item in valid)
         {
-            item.Weight =( ItemDefines.baseSpawnWeight   + level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient;
+            item.Weight =( ItemDefines.baseSpawnWeight   + level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient * item.part.weightMultiplier;
         }
     }
 

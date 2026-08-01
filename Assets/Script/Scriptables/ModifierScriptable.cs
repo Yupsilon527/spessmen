@@ -33,4 +33,45 @@ public class ModifierScriptable : GridScriptable
         }
         return total;
     }
+    public virtual string GetEffectDescription()
+    {
+        string output = "";
+
+        foreach (var prop in properties)
+        {
+            if (output.Length > 0)
+            {
+                output += "<br>";
+            }
+            output += $"{prop.Property} {prop.ValueToString(0,true,0)}";
+        }
+
+        if (output.Length > 0 && relative.Length > 0)
+        {
+            output += "<br><br>";
+        }
+        foreach (var rel in relative)
+        {
+            if (output.Length > 0)
+            {
+                output += "<br>";
+            }
+            output += rel.ValueToString() ;
+        }
+
+        if (output.Length > 0 && states.Length > 0)
+        {
+            output += "<br><br>";
+        }
+        foreach (var state in states)
+        {
+            if (output.Length > 0)
+            {
+                output += "<br>";
+            }
+            output += state.State.ToString() ;
+        }
+
+        return output;
+    }
 }

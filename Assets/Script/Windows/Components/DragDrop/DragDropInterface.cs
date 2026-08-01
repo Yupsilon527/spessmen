@@ -66,10 +66,10 @@ public class AbilityDragDropInterface : ShipPreview
     #region Hero Init
     public void ApplyChanges()
     {
-        ship.stash.RemoveWhere(p => ship.parts.Contains(p));
+        ship.stash.RemoveWhere(p => p == null || ship.parts.Contains(p));
         foreach (var slot in stashSlots)  
         {
-            if (slot.attachedToken != null)
+            if (slot.attachedToken != null && slot.attachedToken.mPart!=null)
             {
                 var part = slot.attachedToken.mPart;
                 ship.parts.Remove(part);

@@ -49,4 +49,36 @@ public class PartAbility
             }
         };
     }
+    public string GetAbilityDescription()
+    {
+        string output = $"{function}: ";
+
+        string effects = "";
+        foreach (var a in actions)
+        {
+            if (effects.Length > 0) effects+=", ";
+            effects += $"{a.behavior} {a.stat} ";
+                if (a.scale == ShipDefines.ScaleType.Constant)
+            {
+                effects += "+"+a.value;
+            }
+                else
+            {
+                effects += $" equal to{MathF.Round(a.value*100)}% of your {a.scale}";
+            }
+        }
+
+        string costs = ". ";
+        if (fuelCost > 0)
+        {
+            costs += "Uses "+Mathf.Round(fuelCost) + " Fuel. ";
+        }
+        if (cooldown > 0)
+        {
+            costs += Mathf.Round(cooldown) + " Cooldown.";
+        }
+
+        return output + effects + costs;
+
+    }
 }

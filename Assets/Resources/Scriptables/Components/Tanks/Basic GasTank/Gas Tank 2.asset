@@ -28,9 +28,10 @@ MonoBehaviour:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: da21b5fbaa123854dab7389db1f7acfa, type: 2}
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 1
   partType: 2
   attach: 0
   priceMultiplier: 0.87
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0
