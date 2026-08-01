@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Component", menuName = "Data/Component Data")]
 public class PartScriptable : ModifierScriptable
 {
-    public PartAbility ability;
+    public PartAbility[] abilities;
     public MergeOutput[] combos;
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;
@@ -20,8 +20,11 @@ public class PartScriptable : ModifierScriptable
         {
             boonValue = 20 * Mathf.Pow(2, (int)boonRarity);
         }
-        ability.InternalName = name;
-        ability.classification = partType;
+        foreach (var ability in abilities)
+        {
+            ability.InternalName = name + " " + ((ability.condition == ShipDefines.PartCondition.Always)? "" : ability.condition) + " " + ability.function;
+            ability.classification = partType;
+        }
     }
     public virtual bool IsUnlocked()
     {

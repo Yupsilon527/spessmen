@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public static class ShipDefines 
 {
     public static int shipSize = 10;
@@ -11,8 +13,12 @@ public static class ShipDefines
         OnActivated = 2,
         OnLapCompleted = 3,
         OnOtherOvertaken = 4,
-        OnRivalOVertaken = 5,
+        OnRivalOvertaken = 5,
         OnSoundBarrierBroken = 6,
+
+        //TODO
+        OnEngineActivate = 7,
+        OnAbilityActivate = 8,
     }
     public enum PartCondition
     {
@@ -55,6 +61,10 @@ public static class ShipDefines
         CurrentFuelValue,
         CurrentFuelPercent,
 
+        //TODO
+        NumEngines,
+        NumWheels,
+
         Total,
     }
 
@@ -84,6 +94,46 @@ public static class ShipDefines
                 return racer.abilities.fuel.GetPercentage();
             default:
                 return 1;
+        }
+    }
+    public static bool RacerMeetsCondition(Racer racer, PartCondition condition, float conditionCheck)
+    {
+        switch (condition)
+        {
+            case PartCondition.Random:
+                return Random.value < conditionCheck;
+            case PartCondition.SpeedBelow:
+                return racer.stats.realSpeed < conditionCheck;
+            case PartCondition.SpeedAbove:
+                return racer.stats.realSpeed > conditionCheck;
+            case PartCondition.PositionAbove:
+                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) < conditionCheck;
+            case PartCondition.PositionBelow:
+                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) > conditionCheck;
+            case PartCondition.RelativeToRival:
+                var rival = racer.GetRival();
+                if (rival == null) return false;
+                if (conditionCheck > 0 && TourneyController.main.ongoingRace.GetPositionForRacer(racer) > TourneyController.main.ongoingRace.GetPositionForRacer(rival))
+                    return true;
+                else if (conditionCheck < 0 && TourneyController.main.ongoingRace.GetPositionForRacer(racer) < TourneyController.main.ongoingRace.GetPositionForRacer(rival))
+                    return true;
+                else if (conditionCheck == 0 && Mathf.Abs(TourneyController.main.ongoingRace.GetPositionForRacer(racer) - TourneyController.main.ongoingRace.GetPositionForRacer(rival)) <= 1)
+                    return true;
+                return false;
+            case PartCondition.GasAbove:
+                return racer.abilities.fuel.GetValue() > conditionCheck;
+            case PartCondition.GasBelow:
+                return racer.abilities.fuel.GetValue() < conditionCheck;
+            case PartCondition.GasPercentAbove:
+                return racer.abilities.fuel.GetPercentage() > conditionCheck;
+            case PartCondition.GasPercentBelow:
+                return racer.abilities.fuel.GetPercentage() < conditionCheck;
+            case PartCondition.LapAbove:
+                return racer.position.currentLap > conditionCheck;
+            case PartCondition.LapBelow:
+                return racer.position.currentLap < conditionCheck;
+            default:
+                return true;
         }
     }
 }

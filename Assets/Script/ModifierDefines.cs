@@ -69,6 +69,9 @@ public static class ModifierDefines
         shop_resets = 24,
         luck_bonus = 25,
 
+        effect_resistance = 26,
+       speed_resistance = 27,
+
         total = 26,
     };
     public enum State   //TODO

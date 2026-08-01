@@ -19,7 +19,10 @@ public class RacerAbilities : RacerComponent
                 {
                     foreach (DataItemPart part in DataItemPlayer.main.ship.parts)
                     {
-                        AddAbility(new Ability(part));
+                        foreach (var ab in part.scriptable.abilities)
+                        {
+                            AddAbility(new Ability(ab,part));
+                        }
                         if (part.scriptable.HasModifier())
                             racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
                     }

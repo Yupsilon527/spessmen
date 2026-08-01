@@ -97,6 +97,7 @@ public class PlayerStatsAlteration
         BaseSpeed,
         BoostSpeed,
         FillGas,
+        TotalSpeed,
         Total,
     }
     public AlterationType behavior = AlterationType.Addition;
@@ -123,23 +124,6 @@ public class PlayerStatsAlteration
             return value * player.GetPropertyMultiplicative(GetRelatedProperty());
         return value;
     }
-    public void GiveToPlayer(Racer player, float mult)
-    {
-        switch (stat)
-        {
-            case StatType.BaseSpeed:
-                ApplyToStat(ref player.stats.baseSpeed, GetEffectiveChange(player, mult));
-                player.stats.SetDirty();
-                break;
-            case StatType.BoostSpeed:
-                ApplyToStat(ref player.stats.boosterSpeed, GetEffectiveChange(player, mult));
-                player.stats.SetDirty();
-                break;
-            case StatType.FillGas:
-                player.abilities.fuel.GiveValue(GetEffectiveChange(player, mult));
-                break;
-        }
-    }
     public void ApplyToStat(ref float stat, float value)
     {
         switch (behavior)
@@ -165,4 +149,43 @@ public class PlayerStatsAlteration
 
         }
     }
+    public virtual bool CanAffectRacer(Racer target)
+    {
+        return target!=null;
+    }
+    public virtual void GiveToPlayer(Racer caster, Racer target, float mult)
+    {
+        switch (stat)
+        {
+            case StatType.BaseSpeed:
+                ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult));
+                target.stats.SetDirty();
+                break;
+            case StatType.BoostSpeed:
+                ApplyToStat(ref target.stats.boosterSpeed, GetEffectiveChange(caster, mult));
+                target.stats.SetDirty();
+                break;
+            case StatType.TotalSpeed:
+                ApplyToStat(ref target.stats.realSpeed, GetEffectiveChange(caster, mult));
+                target.stats.SetDirty();
+                break;
+            case StatType.FillGas:
+                target.abilities.fuel.GiveValue(GetEffectiveChange(caster, mult));
+                break;
+        }
+    }
+}
+
+[Serializable]
+public class ConditionalPartAltetration: PlayerStatsAlteration
+{
+    public RaceDefines.AbilityTarget effectSource, effectTarget;
+    public PartCondition condition;
+public float conditionCheck;
+
+    public override bool CanAffectRacer(Racer target)
+    {
+        return base.CanAffectRacer(target) && RacerMeetsCondition(target,condition,conditionCheck);
+    }
+
 }

@@ -33,6 +33,29 @@ MonoBehaviour:
       stat: 0
       scale: 0
       value: 10
+    actions:
+    - behavior: 0
+      stat: 0
+      scale: 0
+      value: 10
+  abilities:
+  - InternalName: Wheel 1
+    cooldown: 0
+    fuelCost: 0
+    classification: 1
+    function: 0
+    condition: 0
+    conditionCheck: 0
+    action:
+      behavior: 0
+      stat: 0
+      scale: 0
+      value: 10
+    actions:
+    - behavior: 0
+      stat: 0
+      scale: 0
+      value: 10
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: f13f6904790390348bf04b89b8e17e95, type: 2}

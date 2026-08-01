@@ -31,7 +31,8 @@ public static class ItemDefines
         wheel=1,
         tank = 2,
         engine = 3,
-        active = 4,
+        gadget = 4,
+        nitro = 5,
     }
     public enum PartCondition
     {

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Gas Tank 1
+  m_Name: Gas Tank 4
   m_EditorClassIdentifier: 
-  InternalName: Gas Tank
+  InternalName: Gas Tank 4
   grid:
     width: 3
     height: 2
@@ -20,25 +20,29 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 6
-    value: 50
+    value: 300
     IncreasePerLevel: 0
   relative: []
   ability:
-    InternalName: Gas Tank
+    InternalName: Gas Tank 4
     cooldown: 0
     fuelCost: 0
+    classification: 0
     function: 0
     condition: 0
     conditionCheck: 0
-    abilityPower: 0
     action:
       behavior: 0
       stat: 0
       scale: 0
       value: 0
+    actions: []
+  abilities: []
+  combos: []
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 0
+  attach: 0
   boonValue: 20
   unique: 0
   lockedForSomeReason: 0

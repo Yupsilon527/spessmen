@@ -36,7 +36,7 @@ public class RacerPosition : RacerComponent
                 if (aheadOfRival != overtakenRival)
                 {
                     if (overtakenRival)
-                        racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnRivalOVertaken);
+                        racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnRivalOvertaken);
                     aheadOfRival = overtakenRival;
                 }
 

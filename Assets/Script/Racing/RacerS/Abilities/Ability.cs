@@ -6,23 +6,23 @@ public class Ability : Countdown
 {
     public PartAbility data;
 
-    public Ability(DataItemPart part)
+    public Ability(PartAbility a, DataItemPart part)
     {
-        this.data = part.scriptable.ability;
+        data = a;
         part.correspondingAbility = this;
     }
     public Ability(PartAbility a)
     {
-        this.data = a;
+        data = a;
     }
 
     float GetFuelCost(Racer racer)
     {
         float baseCost = data.fuelCost * racer.GetPropertyMultiplicative(ModifierDefines.Property.fuel_consumption_total);
         if (data.classification == ItemDefines.PartType.wheel)
-            baseCost*= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_fuel_consumption);
-       else if (data.classification == ItemDefines.PartType.active)
-            baseCost*= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_fuel_consumtion);
+            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_fuel_consumption);
+        else if (data.classification == ItemDefines.PartType.active)
+            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_fuel_consumtion);
         return baseCost;
     }
     float GetPartCooldown(Racer racer)
@@ -34,75 +34,54 @@ public class Ability : Countdown
             cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_cooldown);
         return cooldown;
     }
-    public bool RacerMeetsCondition(Racer racer)
-    {
-        switch (data.condition)
-        {
-            case ShipDefines.PartCondition.Random:
-                return Random.value < data.conditionCheck;
-            case ShipDefines.PartCondition.SpeedBelow:
-                return racer.stats.realSpeed < data.conditionCheck;
-            case ShipDefines.PartCondition.SpeedAbove:
-                return racer.stats.realSpeed > data.conditionCheck;
-            case ShipDefines.PartCondition.PositionAbove:
-                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) < data.conditionCheck;
-            case ShipDefines.PartCondition.PositionBelow:
-                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) > data.conditionCheck;
-            case ShipDefines.PartCondition.RelativeToRival:
-                var rival = racer.GetRival();
-                if (rival == null) return false;
-                if (data.conditionCheck > 0 && TourneyController.main.ongoingRace.GetPositionForRacer(racer) > TourneyController.main.ongoingRace.GetPositionForRacer(rival))
-                    return true;
-                else if (data.conditionCheck < 0 && TourneyController.main.ongoingRace.GetPositionForRacer(racer) < TourneyController.main.ongoingRace.GetPositionForRacer(rival))
-                    return true;
-                else if (data.conditionCheck ==0 && Mathf.Abs( TourneyController.main.ongoingRace.GetPositionForRacer(racer) - TourneyController.main.ongoingRace.GetPositionForRacer(rival)) <=1)
-                    return true;
-                return false;
-            case ShipDefines.PartCondition.GasAbove:
-                return racer.abilities.fuel.GetValue() > data.conditionCheck;
-            case ShipDefines.PartCondition.GasBelow:
-                return racer.abilities.fuel.GetValue() < data.conditionCheck;
-            case ShipDefines.PartCondition.GasPercentAbove:
-                return racer.abilities.fuel.GetPercentage() > data.conditionCheck;
-            case ShipDefines.PartCondition.GasPercentBelow:
-                return racer.abilities.fuel.GetPercentage() < data.conditionCheck;
-            case ShipDefines.PartCondition.LapAbove:
-                return racer.position.currentLap > data.conditionCheck;
-            case ShipDefines.PartCondition.LapBelow:
-                return racer.position.currentLap < data.conditionCheck;
-            default:
-        return true;
-    }
-    }
     public bool CanBeActivated(Racer racer)
     {
-        return racer.abilities.fuel.GetValue() >0 && !IsRunning() && RacerMeetsCondition(racer) ;
+        return racer.abilities.fuel.GetValue() > 0 && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
     }
     public void ActivateOnRacer(Racer racer)
     {
         TourneyController.main.Inspect($"{racer} uses ability {data.InternalName} at {data.function}");
 
-        float strength = racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
 
-        if (data.action.stat ==  PlayerStatsAlteration.StatType.BaseSpeed
-            || data.action.stat == PlayerStatsAlteration.StatType.BoostSpeed)
+        foreach (ConditionalPartAltetration action in data.actions)
         {
-            strength *= racer.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
-            if (data.classification == ItemDefines.PartType.wheel)
-                strength *= racer.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
-            else if (data.classification == ItemDefines.PartType.engine)
-                strength *= racer.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
+            var caster = RaceDefines.GetRacerRelative(racer, action.effectSource);
+            var target = RaceDefines.GetRacerRelative(racer, action.effectTarget);
+
+            if (!action.CanAffectRacer(target)) continue;
+
+            float strength = racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
+
+            if (target == racer)
+            {
+                if (action.stat == PlayerStatsAlteration.StatType.BaseSpeed
+                    || action.stat == PlayerStatsAlteration.StatType.BoostSpeed
+                    || action.stat == PlayerStatsAlteration.StatType.TotalSpeed)
+                {
+                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
+                    if (data.classification == ItemDefines.PartType.wheel)
+                        strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
+                    else if (data.classification == ItemDefines.PartType.engine)
+                        strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
+                }
+                if (action.stat == PlayerStatsAlteration.StatType.BaseSpeed)
+                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
+                if (action.stat == PlayerStatsAlteration.StatType.BoostSpeed)
+                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
+            }
+            else
+            {
+                strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.effect_resistance);
+                if (action.stat == PlayerStatsAlteration.StatType.BaseSpeed || action.stat == PlayerStatsAlteration.StatType.BoostSpeed || action.stat == PlayerStatsAlteration.StatType.TotalSpeed)
+                {
+                    strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
+                }
+            }
+            action.GiveToPlayer(racer, target, strength);
         }
-        if (data.action.stat == PlayerStatsAlteration.StatType.BaseSpeed)
-            strength *= racer.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
-        if (data.action.stat == PlayerStatsAlteration.StatType.BoostSpeed)
-            strength *= racer.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
-
-
-        data.action.GiveToPlayer(racer, strength);
     }
     public bool Activate(Racer racer, ShipDefines.PartEvent evt)
-{
+    {
         if (evt == data.function && CanBeActivated(racer))
         {
             ActivateOnRacer(racer);

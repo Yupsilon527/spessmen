@@ -10,34 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Wheel 4
+  m_Name: Engine 4
   m_EditorClassIdentifier: 
-  InternalName: Wheel 4
+  InternalName: Engine 4
   grid:
-    width: 2
-    height: 2
-    cells: 01010101
+    width: 3
+    height: 3
+    cells: 010101010101010100
   states: []
   properties: []
   relative: []
-  ability:
-    InternalName: Wheel 4
-    cooldown: 0
-    fuelCost: 0
-    classification: 1
-    function: 0
+  abilities:
+  - InternalName: Engine 4  OnTimePass
+    cooldown: 1.75
+    fuelCost: 10
+    classification: 3
+    function: 1
     condition: 0
     conditionCheck: 0
-    action:
-      behavior: 0
-      stat: 0
+    actions:
+    - behavior: 0
+      stat: 1
       scale: 0
-      value: 60
+      value: 17.5
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
   combos: []
-  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 3
-  partType: 1
-  attach: 1
-  boonValue: 160
+  partType: 3
+  attach: 0
+  boonValue: 20
   unique: 0
   lockedForSomeReason: 0

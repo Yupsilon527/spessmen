@@ -10,7 +10,7 @@ public class PartAbility
     public ShipDefines.PartEvent function;
     public ShipDefines.PartCondition condition;
     public float conditionCheck;
-    public PlayerStatsAlteration action;
+    public ConditionalPartAltetration[] actions;
 
     public static PartAbility NpcWheel(int level)
     {
@@ -21,12 +21,13 @@ public class PartAbility
         {
             InternalName = "npc_wheel",
             function = ShipDefines.PartEvent.OnRaceStart,
-            action = new PlayerStatsAlteration()
+            actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
             {
                 behavior = PlayerStatsAlteration.AlterationType.Addition,
                 stat = PlayerStatsAlteration.StatType.BaseSpeed,
                 value = level * speed + UnityEngine.Random.value * speed
 
+            }
             }
         };
     }
