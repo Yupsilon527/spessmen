@@ -12,6 +12,7 @@ public class AbilityDragDropInterface : ShipPreview
         FindSlots();
     }
     #region DD Slots
+    public PartTooltip tooltip;
     public DragDropSlot buildSlot;
     public DragDropSlot[] shopSlots;
     public DragDropSlot[] stashSlots;

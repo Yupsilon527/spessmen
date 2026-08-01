@@ -89,6 +89,16 @@ public class DragDropToken : PartButtonBase
         OnEndDrag.eventID = EventTriggerType.EndDrag;
         OnEndDrag.callback.AddListener((data) => { this.OnEndDrag((PointerEventData)data); });
         eventTrigger.triggers.Add(OnEndDrag);
+
+        EventTrigger.Entry PointerEnter = new EventTrigger.Entry();
+        PointerEnter.eventID = EventTriggerType.PointerEnter;
+        PointerEnter.callback.AddListener((data) => { this.OnPointerEnter((PointerEventData)data); });
+        eventTrigger.triggers.Add(PointerEnter);
+
+        EventTrigger.Entry PointerExit = new EventTrigger.Entry();
+        PointerExit.eventID = EventTriggerType.PointerExit;
+        PointerExit.callback.AddListener((data) => { this.OnPointerExit((PointerEventData)data); });
+        eventTrigger.triggers.Add(PointerExit);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -285,4 +295,18 @@ public class DragDropToken : PartButtonBase
         parent.TokenPool.DeactivateObject(gameObject);
     }
     #endregion
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (parent != null && parent.tooltip != null)
+        {
+            parent.tooltip.ShowPart(mPart.scriptable);
+        }
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (parent != null && parent.tooltip != null)
+        {
+            parent.tooltip.Clear();
+        }
+    }
 }

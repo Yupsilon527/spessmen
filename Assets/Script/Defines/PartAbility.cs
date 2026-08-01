@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class PartAbility
@@ -14,9 +15,8 @@ public class PartAbility
 
     public static PartAbility NpcWheel(int level)
     {
-        float speed = 50;
-        if (level == 0)
-            speed = 30;
+        float speed = DifficultyDefines.enemyBaseSpeed * (1 + level);
+
         return new PartAbility()
         {
             InternalName = "npc_wheel",
@@ -25,8 +25,26 @@ public class PartAbility
             {
                 behavior = PlayerStatsAlteration.AlterationType.Addition,
                 stat = PlayerStatsAlteration.StatType.BaseSpeed,
-                value = level * speed + UnityEngine.Random.value * speed
+                value =  speed * (level + UnityEngine.Random.value )
+            }
+            }
+        };
+    }
+    public static PartAbility NpcEngine(int level)
+    {
+        float speed = DifficultyDefines.enemyEngineSpeed * (1 + level);
 
+        return new PartAbility()
+        {
+            InternalName = "npc_engine",
+            function = ShipDefines.PartEvent.OnTimePass,
+            cooldown = 2 + UnityEngine.Random.value,
+            fuelCost = 10,
+            actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
+            {
+                behavior = PlayerStatsAlteration.AlterationType.Addition,
+                stat = PlayerStatsAlteration.StatType.BoostSpeed,
+                value =  speed * (level + UnityEngine.Random.value )
             }
             }
         };

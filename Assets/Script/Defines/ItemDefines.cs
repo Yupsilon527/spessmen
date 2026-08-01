@@ -3,8 +3,8 @@ using UnityEngine;
 
 public static class ItemDefines
 {
-    public static float baseSpawnWeight = 4;
-    public static float raritySpawnWeight = -1;
+    public static float baseSpawnWeight = 0;
+    public static float raritySpawnWeight = 60;
 
     public static float chaosPerRace = 20;
     public static float chaosPerShopReset = 10;

@@ -31,8 +31,12 @@ public class RacerAbilities : RacerComponent
                 }
                 else
                 {
-                    int level = TourneyController.main.ongoingRace.raceID;
+                    int level = TourneyController.main.GetCurrentRaceIndex();
                     AddAbility(new Ability(PartAbility.NpcWheel(level)));
+                    if (level > 2 )
+                    {
+                        AddAbility(new Ability(PartAbility.NpcEngine(level-2)));
+                    }
                 }
                 racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);

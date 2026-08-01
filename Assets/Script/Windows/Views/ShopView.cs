@@ -11,6 +11,7 @@ public partial class ShopView : ViewBase
     public TextMeshProUGUI resetCost;
 
     public PlayerShipGrid playership;
+    public PartTooltip tooltip;
     public AbilityDragDropInterface dragdrop;
     public ItemPurchaseButton[] itemButtonSelection;
 
@@ -80,7 +81,7 @@ public partial class ShopView : ViewBase
     {
         if (numResets < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        return (1 + (TourneyController.main?.ongoingRace?.raceID ?? 0)) * (numResets + 1);
+        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (numResets + 1);
     }
     public override void OnOpened()
     {

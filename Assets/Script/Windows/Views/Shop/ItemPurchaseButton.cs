@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemPurchaseButton : MonoBehaviour
+public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
 {
     public ShopView shop;
     public DragDropSlot dropSlot;
@@ -127,5 +128,19 @@ public class ItemPurchaseButton : MonoBehaviour
     {
         ToggleLocked(value);
         lockToggle?.SetIsOnWithoutNotify(value);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (purchaseData!= null && shop != null && shop.tooltip!=null)
+        {
+            shop.tooltip.ShowPart(purchaseData.part);
+        }
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (shop!=null && shop.tooltip!=null)
+        {
+            shop.tooltip.Clear();
+        }
     }
 }

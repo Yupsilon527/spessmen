@@ -22,9 +22,11 @@ public class PurchaseData
         {
             part = pickedItem.part;
         }
+        SetDiscount(1);
     }
     void AccountLuck(List<WeightPart> valid)
     {
+        float level = TourneyController.main.GetCurrentRaceIndex() + 1;
         float chaosCoefficient = 1;
         float luckCoefficient = 1;
 
@@ -35,14 +37,14 @@ public class PurchaseData
             chaosCoefficient = (chaos + ItemDefines.chaosPlus) / ItemDefines.chaosPlus;
         else
             chaosCoefficient = ItemDefines.chaosMinus / (chaos + ItemDefines.chaosMinus);
-        if (luck > 0)
+        if (luck >= 0)
             luckCoefficient = ItemDefines.luckPlus / (luck + ItemDefines.luckPlus);
         else
             luckCoefficient = (Random.value + Random.value * ItemDefines.luckPlus / (ItemDefines.luckPlus + luck)) * -.5f;
 
         foreach (var item in valid)
         {
-            item.Weight = ItemDefines.baseSpawnWeight * luckCoefficient + (int)item.part.boonRarity * ItemDefines.raritySpawnWeight + item.Weight * chaosCoefficient;
+            item.Weight =( ItemDefines.baseSpawnWeight   + level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient;
         }
     }
 
@@ -56,15 +58,15 @@ public class PurchaseData
     public void SetDiscount(float price)
     {
         discount = price;
-        itemCost = part.GetBasePrice() * price;
+        itemCost = part.GetBasePrice() * discount;
     }
     public bool CanBePurchased(DataItemPlayer purchasingPlayer)
     {
-        return !wasPurchased;
+        return !wasPurchased && part != null;
     }
     public bool MakePurchase(DataItemPlayer purchasingPlayaer)
     {
-        if (!wasPurchased && part != null && purchasingPlayaer.econ.gold.GetValue() >= itemCost)
+        if (CanBePurchased(purchasingPlayaer) && purchasingPlayaer.econ.gold.GetValue() >= itemCost)
         {
             purchasingPlayaer.econ.gold.SubstractedValue(itemCost);
             wasPurchased = true;
@@ -81,5 +83,9 @@ public class WeightPart : WeightList.WeightItem<PartScriptable>
     public WeightPart(PartScriptable value, float weight) : base(value, weight)
     {
         part = value;
+    }
+    public override string ToString()
+    {
+        return part.InternalName + " " + Weight;
     }
 }

@@ -36,7 +36,7 @@ public class Ability : Countdown
     }
     public bool CanBeActivated(Racer racer)
     {
-        return racer.abilities.fuel.GetValue() > 0 && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
+        return (data.fuelCost == 0 || racer.abilities.fuel.GetValue() > 0) && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
     }
     public void ActivateOnRacer(Racer racer)
     {

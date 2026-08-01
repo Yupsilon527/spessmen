@@ -60,6 +60,10 @@ public class TourneyController : Initializable
         }
         currentPhase = nPhase;
     }
+    public int GetCurrentRaceIndex()
+    {
+        return ongoingRace?.raceID ?? 0;
+    }
     public float GetPointsForPosition(int position)
     {
         return leaderboard.Count - position - 1;
@@ -79,9 +83,6 @@ public class TourneyController : Initializable
     {
         main = this;
         base.Initialize();
-#if UNITY_EDITOR
-        Time.timeScale = 10;
-#endif
     }
     public void InitRacers(int opponents = 5)
     {
@@ -97,7 +98,7 @@ public class TourneyController : Initializable
     }
     public Racer GetPlayerRival()
     {
-        if (ongoingRace == null || ongoingRace.raceID == 0) return null;
+        if (ongoingRace == null || GetCurrentRaceIndex() == 0) return null;
         return leaderboard
             .Where(kvp => kvp.Key.id != 0)
             .OrderBy(kvp => kvp.Value)
@@ -121,7 +122,10 @@ public class TourneyController : Initializable
     }
     void HandlePlayerReward()
     {
-        float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, ongoingRace.raceID);
+        float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, GetCurrentRaceIndex());
+
+        if (ongoingRace.raceID % DifficultyDefines.eliteRaceInterval == DifficultyDefines.eliteRaceInterval-1)
+            diffMult *= DifficultyDefines.eliteRaceMultiplier;
 
         DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace * diffMult);
 
