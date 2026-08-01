@@ -57,15 +57,26 @@ public class PartAbility
         foreach (var a in actions)
         {
             if (effects.Length > 0) effects+=", ";
-            effects += $"{a.behavior} {a.stat} ";
+
+            switch (a.behavior)
+            {
+                case PlayerStatsAlteration.AlterationType.Addition:
+                    effects = "+";
+                    break;
+                case PlayerStatsAlteration.AlterationType.Multiply:
+                    effects = "x";
+                    break;
+            }
+
                 if (a.scale == ShipDefines.ScaleType.Constant)
             {
-                effects += "+"+a.value;
+                effects += a.value+" ";
             }
                 else
             {
-                effects += $" equal to{MathF.Round(a.value*100)}% of your {a.scale}";
+                effects += $"{MathF.Round(a.value*100)}% of your {a.scale} as";
             }
+            effects += a.stat;
         }
 
         string costs = ". ";
