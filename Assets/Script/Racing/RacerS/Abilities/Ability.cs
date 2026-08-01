@@ -21,8 +21,8 @@ public class Ability : Countdown
         float baseCost = data.fuelCost * racer.GetPropertyMultiplicative(ModifierDefines.Property.fuel_consumption_total);
         if (data.classification == ItemDefines.PartType.wheel)
             baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_fuel_consumption);
-        else if (data.classification == ItemDefines.PartType.active)
-            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_fuel_consumtion);
+        else if (data.classification == ItemDefines.PartType.gadget)
+            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.gadget_fuel_consumtion);
         return baseCost;
     }
     float GetPartCooldown(Racer racer)
@@ -30,7 +30,7 @@ public class Ability : Countdown
         var cooldown = data.cooldown * racer.GetPropertyMultiplicative(ModifierDefines.Property.cooldown_total);
         if (data.classification == ItemDefines.PartType.wheel)
             cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_cooldown);
-        else if (data.classification == ItemDefines.PartType.active)
+        else if (data.classification == ItemDefines.PartType.gadget)
             cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_cooldown);
         return cooldown;
     }

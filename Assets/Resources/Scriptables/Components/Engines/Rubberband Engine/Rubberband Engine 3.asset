@@ -24,7 +24,7 @@ MonoBehaviour:
   - InternalName: Rubberband Engine 3  OnTimePass
     cooldown: 1.6
     fuelCost: 15
-    classification: 0
+    classification: 3
     function: 1
     condition: 0
     conditionCheck: 0
@@ -50,8 +50,8 @@ MonoBehaviour:
     result: {fileID: 11400000, guid: 2209026d91f6ac345908883bd5b4db95, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 2
-  partType: 0
+  partType: 3
   attach: 0
-  boonValue: 96
+  priceMultiplier: 1.15
   unique: 0
   lockedForSomeReason: 0

@@ -9,17 +9,13 @@ public class PartScriptable : ModifierScriptable
     public ItemDefines.BoonRarity boonRarity;
     public ItemDefines.PartType partType;
     public ItemDefines.PartCondition attach;
-    public float boonValue = -1;
+    public float priceMultiplier = 1;
     public bool unique = false;
     public bool lockedForSomeReason = false;
     protected override void OnValidate()
     {
         base.OnValidate();
         grid.ValidateAndRecreate();
-        if (boonValue < 0)
-        {
-            boonValue = 20 * Mathf.Pow(2, (int)boonRarity);
-        }
         foreach (var ability in abilities)
         {
             ability.InternalName = name + " " + ((ability.condition == ShipDefines.PartCondition.Always)? "" : ability.condition) + " " + ability.function;
@@ -30,7 +26,10 @@ public class PartScriptable : ModifierScriptable
     {
         return !lockedForSomeReason;
     }
-
+    public virtual float GetBasePrice()
+    {
+return priceMultiplier *  20 * Mathf.Pow(2, (int)boonRarity);
+    }
 }
 
 [Serializable]

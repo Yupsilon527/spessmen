@@ -17,7 +17,7 @@ public class DataItemShip : DataItemGrid
 
         foreach (var stashed in so.startingParts)
         {
-            stash.Add(new DataItemPart(stashed, stashed.boonValue));
+            stash.Add(new DataItemPart(stashed, stashed.GetBasePrice()));
         }
     }
 

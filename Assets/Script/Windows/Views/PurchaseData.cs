@@ -56,7 +56,7 @@ public class PurchaseData
     public void SetDiscount(float price)
     {
         discount = price;
-        itemCost = part.boonValue * price;
+        itemCost = part.GetBasePrice() * price;
     }
     public bool CanBePurchased(DataItemPlayer purchasingPlayer)
     {

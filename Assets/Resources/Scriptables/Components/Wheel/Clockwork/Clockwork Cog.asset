@@ -24,7 +24,7 @@ MonoBehaviour:
   - InternalName: Clockwork Cog  OnActivated
     cooldown: 1
     fuelCost: 0
-    classification: 0
+    classification: 6
     function: 2
     condition: 0
     conditionCheck: 0
@@ -41,9 +41,9 @@ MonoBehaviour:
   - other: {fileID: 11400000, guid: 58763b454dd845844a21c1e08fb2efed, type: 2}
     result: {fileID: 11400000, guid: d476d4e0e15448549875f7472ad059e2, type: 2}
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
-  partType: 0
-  attach: 1
-  boonValue: 5
+  boonRarity: 1
+  partType: 6
+  attach: 0
+  priceMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

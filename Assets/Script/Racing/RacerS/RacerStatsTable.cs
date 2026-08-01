@@ -90,7 +90,6 @@ public class PlayerStatsAlteration
         Divide,
         Min,
         Max,
-        Random,
     }
     public enum StatType
     {
@@ -119,10 +118,10 @@ public class PlayerStatsAlteration
     }
     public float GetEffectiveChange(Racer player, float mult)
     {
-        value *= GetScale( player, scale) * mult;
+        float output = value * GetScale( player, scale) * mult;
         if (GetRelatedProperty() < ModifierDefines.Property.total)
-            return value * player.GetPropertyMultiplicative(GetRelatedProperty());
-        return value;
+            return output * player.GetPropertyMultiplicative(GetRelatedProperty());
+        return output;
     }
     public void ApplyToStat(ref float stat, float value)
     {
@@ -142,9 +141,6 @@ public class PlayerStatsAlteration
                 break;
             case AlterationType.Max:
                 stat = Mathf.Max(stat, value);
-                break;
-            case AlterationType.Random:
-                stat += UnityEngine.Random.value * value;
                 break;
 
         }

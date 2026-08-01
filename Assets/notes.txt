@@ -10,6 +10,9 @@ TODO
 
 	difficulty
 
+	modifier props
+	scaling
+
 FIX
 	rotation bugs
 FEA

@@ -44,6 +44,6 @@ MonoBehaviour:
   boonRarity: 0
   partType: 3
   attach: 0
-  boonValue: 20
+  priceMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

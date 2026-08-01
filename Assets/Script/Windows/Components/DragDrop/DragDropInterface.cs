@@ -49,7 +49,7 @@ public class AbilityDragDropInterface : ShipPreview
     }
     public DragDropToken GenerateToken(PartScriptable u)
     {
-        return GenerateToken(new DataItemPart(u, u.boonValue));
+        return GenerateToken(new DataItemPart(u, u.GetBasePrice()));
     }
     public DragDropToken GenerateToken(DataItemPart u)
     {
