@@ -15,8 +15,6 @@ public class PartAbility
 
     public static PartAbility NpcWheel(int level, float rnval)
     {
-        float speed = DifficultyDefines.enemyBaseSpeed * (1 + level);
-
         return new PartAbility()
         {
             InternalName = "npc_wheel",
@@ -25,15 +23,13 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BaseSpeed,
-                value =  speed * (level+1) *rnval
+                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * (level+1) *rnval
             }
             }
         };
     }
     public static PartAbility NpcEngine(int level, float rnval)
     {
-        float speed = DifficultyDefines.enemyEngineSpeed * (1 + level);
-
         return new PartAbility()
         {
             InternalName = "npc_engine",
@@ -44,7 +40,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BoostSpeed,
-                value =  speed * (level+1) *rnval
+                value =  DifficultyDefines.enemyEngineSpeed * (level+1) *rnval
             }
             }
         };

@@ -5,17 +5,17 @@ TODO
 			end shop guarantees legendary
 			"antes" give 2x score
 
+	Rae X/N in leaderboard/shop
+		race info
 
 	difficulty
 
+	overtake/abilities doesnt work
 
 FIX
 	discard item detaches all from build slot
 	detach token on refresh shop slot
 	interest limit
-
-	doesnt clear CD on actives
-
 
 	rotation bugs
 	part placement
