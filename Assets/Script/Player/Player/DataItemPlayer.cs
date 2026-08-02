@@ -22,12 +22,12 @@ public class DataItemPlayer : Initializable
     }
     public float GetPropertySpeculative(ModifierDefines.Property property)
     {
-        bool multi = ModifierDefines.IsPropertyMultiplicative(property);
-        float value = multi ? 1 : 0;
+        bool multiplicative = ModifierDefines.IsPropertyMultiplicative(property);
+        float value = multiplicative ? 1 : 0;
 
         foreach (var part in ship.parts)
         {
-            value *= part.scriptable.GetProperty(property,1);
+            value += part.scriptable.GetProperty(property,1);
         }
 
         return value;

@@ -66,6 +66,7 @@ public static class ModifierDefines
         fuel_consumption_total = 17,
 
         gold_income = 18,
+        gold_bonus = 47,
         gold_interest = 19,
 
         opponent_speed = 20,
@@ -85,15 +86,18 @@ public static class ModifierDefines
        active_prices = 36,
        shop_prices = 37,
 
-       engine_showup = 38,
+       engine_weight = 38,
        gadget_weight = 39,
        nitro_weight = 40,
        trinket_weight = 41,
        wheel_weight = 42,
        active_weight = 43,
        item_rarity = 44,
+       
+        expansion_rarity = 45,
+        expansion_prices = 46,
 
-        total = 45,
+        total = 48,
     };
     public enum State   //TODO
     {
@@ -118,6 +122,57 @@ public static class ModifierDefines
             case Property.gold_interest:
             case Property.opponent_speed:
             case Property.rival_speed:
+
+                incoming_speed_total = 7,
+        incoming_speed_wheels = 8,
+        incoming_speed_engines = 9,
+        incoming_speed_nitro = 30,
+
+        incoming_base_speed_percentage = 10,
+        incoming_boost_speed_percentage = 11,
+        incoming_gas_percentage = 12,
+        engine_cooldown = 13,
+        ability_cooldown = 14,
+        gadget_cooldown = 28,
+        nitro_cooldown = 29,
+                    
+        ability_power = 22,
+        cooldown_total = 23,
+
+        engine_fuel_consumption = 15,
+        gadget_fuel_consumtion = 16,
+        nitro_fuel_consumtion = 26,
+        active_fuel_consumtion = 27,
+        fuel_consumption_total = 17,
+
+        gold_income = 18,
+        gold_interest = 19,
+
+        opponent_speed = 20,
+        rival_speed = 21,
+                    
+        effect_resistance = 26,
+       speed_resistance = 27,
+
+       engine_prices = 31,
+       gadget_prices = 32,
+       nitro_prices = 33,
+       trinket_prices = 34,
+       wheel_prices = 35,
+       active_prices = 36,
+       shop_prices = 37,
+
+       engine_showup = 38,
+       gadget_weight = 39,
+       nitro_weight = 40,
+       trinket_weight = 41,
+       wheel_weight = 42,
+       active_weight = 43,
+       item_rarity = 44,
+       
+        expansion_rarity = 45,
+        expansion_prices = 46,
+
                 return true;
             default:
                 return false;
@@ -155,9 +210,9 @@ public static class ModifierDefines
         public static string ValueToString(Property property, float value)
         {
             if (IsPropertyMultiplicative(property))
-                return $"{(value > 0 ? "+" : "")}{Mathf.RoundToInt(value * 10) / 10f}";
+            return $"{(value > 0 ? "+" : "")}{Mathf.Round(value * 100)}%";
             else
-                return $"{(value > 0 ? "+" : "")}{Mathf.Round(value * 100)}%";
+                return $"{(value > 0 ? "+" : "")}{Mathf.RoundToInt(value * 10) / 10f}";
 
         }
     }

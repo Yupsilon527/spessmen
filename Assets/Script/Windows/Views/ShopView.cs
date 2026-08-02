@@ -49,9 +49,16 @@ public partial class ShopView : ViewBase
         List<PurchaseData> itemActions = new();
         if (ResourceCache.main != null)
         {
+
+            List<WeightPart> valid = new();
+            foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
+                valid.Add(new WeightPart(item, 10));
+
+            PurchaseData.AccountLuck(valid);
+
             for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
             {
-                var ia = new PurchaseData();
+                var ia = new PurchaseData(valid);
                 itemActions.Add(ia);
             }
             PresentMultipleItems(itemActions.ToArray());

@@ -1,25 +1,25 @@
 
 using UnityEngine;
 
-public abstract class DataItemGrid 
+public abstract class DataItemGrid
 {
     public int width, height;
     public bool[,] _grid;
     public void Encode(bool[] grid)
     {
-        _grid = new bool[width,height];
+        _grid = new bool[width, height];
 
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {
                 int dot = y * width + x;
-                if (dot>=0 && dot < grid.Length)
+                if (dot >= 0 && dot < grid.Length)
                 {
-                    _grid[x,y] = grid[dot];
+                    _grid[x, y] = grid[dot];
                 }
             }
     }
-    public virtual bool[,] RetrieveRotated( int rotation = 0)
+    public virtual bool[,] RetrieveRotated(int rotation = 0)
     {
         return Rotate(_grid, rotation);
     }
@@ -45,6 +45,17 @@ public abstract class DataItemGrid
                 rotated[height - 1 - y, x] = source[x, y];
 
         return rotated;
+    }
+    public int CountAvailableTiles()
+    {
+        int total = 0;
+        for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+            {
+                if (!_grid[x, y])
+                    total++;
+            }
+        return total;
     }
     public bool IsTopmost(int x, int y)
     {

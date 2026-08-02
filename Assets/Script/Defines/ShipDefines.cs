@@ -1,4 +1,5 @@
 
+using System.Linq;
 using UnityEngine;
 
 public static class ShipDefines 
@@ -6,6 +7,25 @@ public static class ShipDefines
     public static int shipSize = 10;
     public static float soundBarrierSpeed = 100;
     public static float gasBase = 100;
+    public enum AlterationType
+    {
+        Addition,
+        Multiply,
+        Divide,
+        Min,
+        Max,
+    }
+    public enum StatType
+    {
+        BaseSpeed,
+        BoostSpeed,
+        FillGas,
+        TotalSpeed,
+        RefreshEngines,
+        RefreshGadgets,
+        RefreshCooldowns,
+        Total,
+    }
     public enum PartEvent
     {
         OnRaceStart = 0,
@@ -15,8 +35,6 @@ public static class ShipDefines
         OnOtherOvertaken = 4,
         OnRivalOvertaken = 5,
         OnSoundBarrierBroken = 6,
-
-        //TODO
         OnGadgetActivate = 7,
         OnEngineActivate = 8,
         OnNitroActivate = 9,
@@ -69,7 +87,6 @@ public static class ShipDefines
         Random,
         Lucky,
 
-        //TODO
         NumEngines,
         NumWheels,
         NumNitros,
@@ -108,6 +125,20 @@ public static class ShipDefines
                 return racer.abilities.fuel.GetValue();
             case ScaleType.CurrentFuelPercent:
                 return racer.abilities.fuel.GetPercentage();
+            case ScaleType.FuelTotal:
+                return racer.abilities.fuel.GetLimit();
+            case ScaleType.NumEngines:
+                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.engine ? 1 : 0);
+            case ScaleType.NumWheels:
+                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.wheel ? 1 : 0);
+            case ScaleType.NumNitros:
+                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.nitro ? 1 : 0);
+            case ScaleType.NumTrinkets:
+                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.trinket ? 1 : 0);
+            case ScaleType.CarSlots:
+                return DataItemPlayer.main.ship.CountTotalTiles();
+            case ScaleType.TotalSlots:
+                return DataItemPlayer.main.ship.CountAvailableTiles();
             case ScaleType.Random:
                 return Random.value ;
             case ScaleType.Lucky:

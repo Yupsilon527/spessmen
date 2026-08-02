@@ -44,6 +44,17 @@ public class DataItemShip : DataItemGrid
     {
         occupied[x, y] = value;
     }
+    public int CountTotalTiles()
+    {
+        int total = 0;
+        for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+            {
+                if (!_grid[x, y] && !occupied[x, y])
+                    total++;
+            }
+        return total;
+    }
     #endregion
     #region Placement
 

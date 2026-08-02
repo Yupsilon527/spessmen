@@ -34,6 +34,7 @@ public static class ItemDefines
         gadget = 4,
         nitro = 5,
         trinket = 6,
+        expansion = 7,
     }
     public enum PartCondition
     {

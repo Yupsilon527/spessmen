@@ -23,8 +23,8 @@ public class PartAbility
             function = ShipDefines.PartEvent.OnRaceStart,
             actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
             {
-                behavior = PlayerStatsAlteration.AlterationType.Addition,
-                stat = PlayerStatsAlteration.StatType.BaseSpeed,
+                behavior = ShipDefines.AlterationType.Addition,
+                stat = ShipDefines.StatType.BaseSpeed,
                 value =  speed * (level+1) *rnval
             }
             }
@@ -42,8 +42,8 @@ public class PartAbility
             fuelCost = 10,
             actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
             {
-                behavior = PlayerStatsAlteration.AlterationType.Addition,
-                stat = PlayerStatsAlteration.StatType.BoostSpeed,
+                behavior = ShipDefines.AlterationType.Addition,
+                stat = ShipDefines.StatType.BoostSpeed,
                 value =  speed * (level+1) *rnval
             }
             }
@@ -60,10 +60,10 @@ public class PartAbility
 
             switch (a.behavior)
             {
-                case PlayerStatsAlteration.AlterationType.Addition:
+                case ShipDefines.AlterationType.Addition:
                     effects += "+";
                     break;
-                case PlayerStatsAlteration.AlterationType.Multiply:
+                case ShipDefines.AlterationType.Multiply:
                     effects += "x";
                     break;
             }

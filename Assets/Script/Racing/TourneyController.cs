@@ -101,9 +101,8 @@ public class TourneyController : Initializable
         if (ongoingRace == null || GetCurrentRaceIndex() == 0) return null;
         return leaderboard
             .Where(kvp => kvp.Key.id != 0)
-            .OrderBy(kvp => kvp.Value)
             .Select(kvp => kvp.Key)
-            .FirstOrDefault();
+            .LastOrDefault();
     }
     private void FixedUpdate()
     {
@@ -133,8 +132,8 @@ public class TourneyController : Initializable
         float interest = DataItemPlayer.main.econ.gold.GetValue()* EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) ;
 
         float outputGold = EconomyDefines.constantGoldForRace * diffMult
-            + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income)
-            + Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count * playerPos)) * diffMult;
+            + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus)
+            + Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count * playerPos)) * diffMult * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
 
         float distanceGold = 0;
         if (playerPos==0)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class RacerAbilities : RacerComponent
 {
@@ -61,5 +62,13 @@ public class RacerAbilities : RacerComponent
             if (!ability.Activate(racer, evt) && evt == ShipDefines.PartEvent.OnRaceStart)
                 ability.FireCooldown(racer);
         }
+    }
+    public Ability[] GetAbilities()
+    {
+        return abilities.ToArray();
+    }
+    public Ability[] GetAbilityByType(ItemDefines.PartType type)
+    {
+        return abilities.Where(a => a.data.classification == type).ToArray();
     }
 }
