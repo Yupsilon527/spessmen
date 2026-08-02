@@ -23,6 +23,10 @@ FIX
 	rotation bugs
 	part placement
 FEA
+	UI
+		ingame parts info
+		turbo
+
 	parts expand slots
 		scale off occupied slots
 		scale off total slots

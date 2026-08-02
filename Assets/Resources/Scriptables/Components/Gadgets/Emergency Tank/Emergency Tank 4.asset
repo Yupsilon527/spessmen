@@ -22,7 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Emergency Tank 4  OnActivated
-    cooldown: 10
+    cooldown: 5
     fuelCost: 0
     classification: 4
     function: 2

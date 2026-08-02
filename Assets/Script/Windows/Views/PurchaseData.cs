@@ -35,7 +35,7 @@ public class PurchaseData
             case ItemDefines.PartType.wheel:
                 price *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.wheel_prices);
                 break;
-            case ItemDefines.PartType.trinket:
+            case ItemDefines.PartType.decal:
                 price *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.trinket_prices);
                 break;
             case ItemDefines.PartType.expansion:
@@ -65,9 +65,9 @@ public class PurchaseData
         foreach (var item in valid)
         {
             if (item.part.boonRarity > ItemDefines.BoonRarity.common)
-                item.Weight = Mathf.Clamp( ( level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient * item.part.weightMultiplier, 0 ,  ItemDefines.raritySpawnWeight*2);
+                item.Weight *= Mathf.Clamp( ( level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient * item.part.weightMultiplier, 0 ,  ItemDefines.raritySpawnWeight*2);
             else
-                item.Weight = ItemDefines.commonSpawnWeight + ItemDefines.raritySpawnWeight;
+                item.Weight *= ItemDefines.commonSpawnWeight + ItemDefines.raritySpawnWeight;
 
             if (DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.item_rarity) != 1)
                 item.Weight *= Mathf.Pow(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus), (int)item.part.boonRarity);
@@ -89,7 +89,7 @@ public class PurchaseData
                 case ItemDefines.PartType.wheel:
                     item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.wheel_weight);
                     break;
-                case ItemDefines.PartType.trinket:
+                case ItemDefines.PartType.decal:
                     item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.trinket_weight);
                     break;
                 case ItemDefines.PartType.expansion:

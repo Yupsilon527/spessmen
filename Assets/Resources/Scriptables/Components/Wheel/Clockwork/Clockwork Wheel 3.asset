@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 20
+      value: 40
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 4
+      value: 8
       effectSource: 0
       effectTarget: 0
       condition: 0

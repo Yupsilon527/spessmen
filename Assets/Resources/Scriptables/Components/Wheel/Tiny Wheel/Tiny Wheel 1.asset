@@ -39,7 +39,7 @@ MonoBehaviour:
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: f13f6904790390348bf04b89b8e17e95, type: 2}
+    result: {fileID: 11400000, guid: 8ac26d5fc337bd74da3bacdd28bd361d, type: 2}
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 1

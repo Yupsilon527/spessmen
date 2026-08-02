@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Engine 3  OnTimePass
     cooldown: 1.8
-    fuelCost: 12
+    fuelCost: 22
     classification: 3
     function: 1
     condition: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 11
+      value: 16
       effectSource: 0
       effectTarget: 0
       condition: 0

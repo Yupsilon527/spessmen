@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Turbo Nitro
+  m_Name: Cursed Nitro 2
   m_EditorClassIdentifier: 
-  InternalName: Turbo Nitro
+  InternalName: Cursed Nitro 2
   grid:
     width: 3
     height: 3
-    cells: 010100000100000101
+    cells: 010100010101010100
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Turbo Nitro  OnActivated
-    cooldown: 30
-    fuelCost: 25
+  - InternalName: Cursed Nitro 2  OnActivated
+    cooldown: 0.15
+    fuelCost: 5
     classification: 5
     function: 2
     condition: 0
@@ -32,24 +32,27 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 33
+      value: 24
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
     - behavior: 0
-      stat: 3
-      scale: 4
-      value: 0.1
-      effectSource: 0
-      effectTarget: 0
+      stat: 1
+      scale: 0
+      value: 24
+      effectSource: 4
+      effectTarget: 4
       condition: 0
       conditionCheck: 0
-  combos: []
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 343839a5cabbb3f4b821240831aaf96f, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 3
+  boonRarity: 2
   partType: 5
   attach: 2
-  priceMultiplier: 1.2
+  priceMultiplier: 0.45
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

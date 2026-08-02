@@ -22,8 +22,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Basic Nitro 2  OnActivated
-    cooldown: 0.15
-    fuelCost: 9
+    cooldown: 1
+    fuelCost: 19
     classification: 5
     function: 2
     condition: 0

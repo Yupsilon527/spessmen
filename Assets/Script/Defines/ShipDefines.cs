@@ -134,7 +134,7 @@ public static class ShipDefines
             case ScaleType.NumNitros:
                 return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.nitro ? 1 : 0);
             case ScaleType.NumTrinkets:
-                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.trinket ? 1 : 0);
+                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.decal ? 1 : 0);
             case ScaleType.CarSlots:
                 return DataItemPlayer.main.ship.CountTilesEmpty();
             case ScaleType.TotalSlots:

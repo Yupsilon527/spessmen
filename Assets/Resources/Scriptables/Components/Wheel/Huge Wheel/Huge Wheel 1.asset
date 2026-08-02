@@ -39,11 +39,12 @@ MonoBehaviour:
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: f13f6904790390348bf04b89b8e17e95, type: 2}
+    result: {fileID: 11400000, guid: 9b4875be6f9f0164d821c5ba085fe099, type: 2}
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 1
   attach: 1
   priceMultiplier: 1
+  weightMultiplier: 0.8
   unique: 0
   lockedForSomeReason: 0

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Blue Shell 1
+  m_EditorClassIdentifier: 
+  InternalName: Blue Shell 1
+  grid:
+    width: 3
+    height: 2
+    cells: 010101010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Blue Shell 1  OnActivated
+    cooldown: 10
+    fuelCost: 0
+    classification: 4
+    function: 2
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - behavior: 0
+      stat: 3
+      scale: 3
+      value: -0.1
+      effectSource: 1
+      effectTarget: 1
+      condition: 0
+      conditionCheck: 0
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 7e99180f09fd0304fbfc20fca7a77b1c, type: 2}
+  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  boonRarity: 2
+  partType: 4
+  attach: 0
+  priceMultiplier: 1.2
+  weightMultiplier: 1
+  unique: 0
+  lockedForSomeReason: 0

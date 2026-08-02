@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Rival Wheel 1
   m_EditorClassIdentifier: 
-  InternalName: Luckball Wheel 1
+  InternalName: Rival Wheel 1
   grid:
     width: 2
     height: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Luckball Wheel 1  OnRaceStart
+  - InternalName: Rival Wheel 1  OnRaceStart
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  - InternalName: Luckball Wheel 1  OnTimePass
+  - InternalName: Rival Wheel 1  OnTimePass
     cooldown: 5
     fuelCost: 0
     classification: 1
@@ -53,11 +53,14 @@ MonoBehaviour:
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  combos: []
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 6c841fbe239be334aaa51060101e02f3, type: 2}
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 2
   partType: 1
   attach: 1
   priceMultiplier: 1.1
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

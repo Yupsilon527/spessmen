@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Lucky Engine 1  OnTimePass
     cooldown: 2.1
-    fuelCost: 12
+    fuelCost: 27
     classification: 3
     function: 1
     condition: 0

@@ -10,40 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Clockwork Cog
+  m_Name: Random Nitro 2
   m_EditorClassIdentifier: 
-  InternalName: Clockwork Cog
+  InternalName: Random Nitro 2
   grid:
-    width: 1
-    height: 1
-    cells: 01
+    width: 3
+    height: 3
+    cells: 010100010101010101
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Clockwork Cog  OnActivated
-    cooldown: 1
-    fuelCost: 0
-    classification: 6
+  - InternalName: Random Nitro 2  OnActivated
+    cooldown: 2.5
+    fuelCost: 35
+    classification: 5
     function: 2
     condition: 0
     conditionCheck: 0
     actions:
     - behavior: 0
-      stat: 0
-      scale: 0
-      value: 1
+      stat: 1
+      scale: 11
+      value: 40
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos:
-  - other: {fileID: 11400000, guid: 58763b454dd845844a21c1e08fb2efed, type: 2}
-    result: {fileID: 11400000, guid: d476d4e0e15448549875f7472ad059e2, type: 2}
-  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 69f93d07d9dd1044a8106389f07cdbe9, type: 2}
+  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 1
-  partType: 6
-  attach: 0
-  priceMultiplier: 1
+  partType: 5
+  attach: 2
+  priceMultiplier: 0.56
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

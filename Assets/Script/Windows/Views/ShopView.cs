@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 
 public partial class ShopView : ViewBase
 {
@@ -49,10 +50,21 @@ public partial class ShopView : ViewBase
         List<PurchaseData> itemActions = new();
         if (ResourceCache.main != null)
         {
+            List<PartScriptable> playerparts = new();
+            playerparts.AddRange(DataItemPlayer.main.ship.parts.Select(p => p.scriptable));
+            var playerPartsArray = playerparts.ToArray();
+            playerparts.Clear();
+            foreach (var part in playerPartsArray)
+            {
+                foreach (var c in part.combos)
+                {
+                    playerparts.Add(c.other);
+                }
+            }
 
             List<WeightPart> valid = new();
             foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
-                valid.Add(new WeightPart(item, 10));
+                valid.Add(new WeightPart(item, playerparts.Contains(item) ? 2 : 1));
 
             PurchaseData.AccountLuck(valid);
 

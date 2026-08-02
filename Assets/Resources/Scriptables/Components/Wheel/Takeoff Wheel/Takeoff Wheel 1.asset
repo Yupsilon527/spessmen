@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 2
+      value: 10
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 1
+      value: 4
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -64,18 +64,19 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 2
+      value: 12
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: f13f6904790390348bf04b89b8e17e95, type: 2}
+    result: {fileID: 11400000, guid: 0583940fd3e3b1c4685d0b103675de4d, type: 2}
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 1
   attach: 1
   priceMultiplier: 1.4
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

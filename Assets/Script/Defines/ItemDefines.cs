@@ -33,7 +33,7 @@ public static class ItemDefines
         engine = 3,
         gadget = 4,
         nitro = 5,
-        trinket = 6,
+        decal = 6,
         expansion = 7,
     }
     public enum PartCondition

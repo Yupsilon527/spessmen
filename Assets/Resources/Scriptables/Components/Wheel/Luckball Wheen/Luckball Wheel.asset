@@ -31,8 +31,24 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 0
-      scale: 0
-      value: 26
+      scale: 12
+      value: 120
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
+  - InternalName: Luckball Wheel  OnLapCompleted
+    cooldown: 0
+    fuelCost: 0
+    classification: 1
+    function: 3
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - behavior: 0
+      stat: 0
+      scale: 12
+      value: 12
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -43,5 +59,6 @@ MonoBehaviour:
   partType: 1
   attach: 1
   priceMultiplier: 0.95
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0
