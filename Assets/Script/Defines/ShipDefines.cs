@@ -136,9 +136,9 @@ public static class ShipDefines
             case ScaleType.NumTrinkets:
                 return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.trinket ? 1 : 0);
             case ScaleType.CarSlots:
-                return DataItemPlayer.main.ship.CountTotalTiles();
+                return DataItemPlayer.main.ship.CountTilesEmpty();
             case ScaleType.TotalSlots:
-                return DataItemPlayer.main.ship.CountAvailableTiles();
+                return DataItemPlayer.main.ship.CountTilesTotal();
             case ScaleType.Random:
                 return Random.value ;
             case ScaleType.Lucky:

@@ -47,13 +47,13 @@ public class Ability : Countdown
     }
     public void ActivateOnRacer(Racer racer)
     {
-        TourneyController.main.Inspect($"{racer} uses ability {data.InternalName} at {data.function}");
 
 
         foreach (ConditionalPartAltetration action in data.actions)
         {
             var caster = RaceDefines.GetRacerRelative(racer, action.effectSource);
             var target = RaceDefines.GetRacerRelative(racer, action.effectTarget);
+            TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function} on {target}");
 
             if (!action.CanAffectRacer(target)) continue;
 

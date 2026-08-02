@@ -4,10 +4,10 @@ using UnityEngine;
 public abstract class DataItemGrid
 {
     public int width, height;
-    public bool[,] _grid;
+    public bool[,] mGrid;
     public void Encode(bool[] grid)
     {
-        _grid = new bool[width, height];
+        mGrid = new bool[width, height];
 
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
@@ -15,13 +15,23 @@ public abstract class DataItemGrid
                 int dot = y * width + x;
                 if (dot >= 0 && dot < grid.Length)
                 {
-                    _grid[x, y] = grid[dot];
+                    SetValue(x, y, grid[dot]);
                 }
             }
     }
+
+    public bool IsInsideBounds(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < width && y < height;
+    }
+    public void SetValue(int x, int y, bool value)
+    {
+        if (IsInsideBounds(x, y))
+            mGrid[x, y] = value;
+    }
     public virtual bool[,] RetrieveRotated(int rotation = 0)
     {
-        return Rotate(_grid, rotation);
+        return Rotate(mGrid, rotation);
     }
     public static bool[,] Rotate(bool[,] grid, int rotation)
     {
@@ -46,59 +56,53 @@ public abstract class DataItemGrid
 
         return rotated;
     }
-    public int CountAvailableTiles()
+    public int CountTilesTotal()
     {
         int total = 0;
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {
-                if (!_grid[x, y])
+                if (!mGrid[x, y])
                     total++;
             }
         return total;
     }
-    public bool IsTopmost(int x, int y)
+    public bool ColumnUsed(int x)
     {
-        if (!_grid[x, y]) return false;
-
-        for (int checkY = 0; checkY < y; checkY++)
+        if (!IsInsideBounds(x, 0)) return true;
+        for (int checkY = 0; checkY < height; checkY++)
         {
-            if (_grid[x, checkY]) return false;
+            if (mGrid[x, checkY]) return false;
         }
         return true;
     }
-
-    public bool IsBottommost(int x, int y)
+    public bool RowUsed(int y)
     {
-        if (!_grid[x, y]) return false;
-
-        for (int checkY = y + 1; checkY < height; checkY++)
+        if (!IsInsideBounds(0,y)) return true;
+        for (int checkX = 0 + 1; checkX < width; checkX++)
         {
-            if (_grid[x, checkY]) return false;
+            if (mGrid[checkX, y]) return false;
         }
         return true;
     }
-
-    public bool IsLeftmost(int x, int y)
+    public bool IsTopmost( int y)
     {
-        if (!_grid[x, y]) return false;
-
-        for (int checkX = 0; checkX < x; checkX++)
-        {
-            if (_grid[checkX, y]) return false;
-        }
-        return true;
+        return RowUsed(y-1);
     }
 
-    public bool IsRightmost(int x, int y)
+    public bool IsBottommost(int y)
     {
-        if (!_grid[x, y]) return false;
+        return RowUsed(y + 1);
+    }
 
-        for (int checkX = x + 1; checkX < width; checkX++)
-        {
-            if (_grid[checkX, y]) return false;
-        }
-        return true;
+    public bool IsLeftmost(int x)
+    {
+        return ColumnUsed(x - 1);
+    }
+
+    public bool IsRightmost(int x)
+    {
+        return ColumnUsed(x + 1);
     }
 
 }

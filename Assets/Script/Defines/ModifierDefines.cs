@@ -75,8 +75,8 @@ public static class ModifierDefines
         shop_resets = 24,
         luck_bonus = 25,
 
-        effect_resistance = 26,
-       speed_resistance = 27,
+        effect_resistance = 48,
+       speed_resistance = 49,
 
        engine_prices = 31,
        gadget_prices = 32,
@@ -97,7 +97,7 @@ public static class ModifierDefines
         expansion_rarity = 45,
         expansion_prices = 46,
 
-        total = 48,
+        total = 50,
     };
     public enum State   //TODO
     {
@@ -123,56 +123,39 @@ public static class ModifierDefines
             case Property.opponent_speed:
             case Property.rival_speed:
 
-                incoming_speed_total = 7,
-        incoming_speed_wheels = 8,
-        incoming_speed_engines = 9,
-        incoming_speed_nitro = 30,
+            case Property.incoming_speed_total:
+            case Property.incoming_speed_wheels:
+            case Property.incoming_speed_engines:
+            case Property.incoming_speed_nitro:
+            case Property.gadget_cooldown:
+            case Property.nitro_cooldown:
+            case Property.ability_power:
+            case Property.cooldown_total:
+            case Property.engine_fuel_consumption:
+            case Property.gadget_fuel_consumtion:
+            case Property.nitro_fuel_consumtion:
+            case Property.active_fuel_consumtion:
+            case Property.fuel_consumption_total:
+            case Property.effect_resistance:
+            case Property.speed_resistance:
 
-        incoming_base_speed_percentage = 10,
-        incoming_boost_speed_percentage = 11,
-        incoming_gas_percentage = 12,
-        engine_cooldown = 13,
-        ability_cooldown = 14,
-        gadget_cooldown = 28,
-        nitro_cooldown = 29,
-                    
-        ability_power = 22,
-        cooldown_total = 23,
+            case Property.engine_prices:
+            case Property.gadget_prices:
+            case Property.nitro_prices:
+            case Property.trinket_prices:
+            case Property.wheel_prices:
+            case Property.active_prices:
+            case Property.shop_prices:
+            case Property.expansion_prices:
 
-        engine_fuel_consumption = 15,
-        gadget_fuel_consumtion = 16,
-        nitro_fuel_consumtion = 26,
-        active_fuel_consumtion = 27,
-        fuel_consumption_total = 17,
-
-        gold_income = 18,
-        gold_interest = 19,
-
-        opponent_speed = 20,
-        rival_speed = 21,
-                    
-        effect_resistance = 26,
-       speed_resistance = 27,
-
-       engine_prices = 31,
-       gadget_prices = 32,
-       nitro_prices = 33,
-       trinket_prices = 34,
-       wheel_prices = 35,
-       active_prices = 36,
-       shop_prices = 37,
-
-       engine_showup = 38,
-       gadget_weight = 39,
-       nitro_weight = 40,
-       trinket_weight = 41,
-       wheel_weight = 42,
-       active_weight = 43,
-       item_rarity = 44,
-       
-        expansion_rarity = 45,
-        expansion_prices = 46,
-
+            case Property.engine_weight:
+            case Property.gadget_weight:
+            case Property.nitro_weight:
+            case Property.trinket_weight:
+            case Property.wheel_weight:
+            case Property.active_weight:
+            case Property.item_rarity:
+            case Property.expansion_rarity:
                 return true;
             default:
                 return false;

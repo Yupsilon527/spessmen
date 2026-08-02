@@ -11,8 +11,13 @@ public class PlayerShipGrid : MonoBehaviour
     {
         myShip = ship;
         shipPreview.sprite = ship.scriptable.blueprint;
-        grid.Draw(ship._grid,ship.width,ship.height);
+        UpdateGrid();
 
+    }
+    public void UpdateGrid()
+    {
+        grid.Draw(myShip.mGrid, myShip.width, myShip.height);
+        UpdateVisual();
     }
 
     public void UpdateVisual()

@@ -23,4 +23,5 @@ MonoBehaviour:
   blueprint: {fileID: 21300000, guid: 1d24236f4779db6419bdf057c33d4d1c, type: 3}
   startingParts:
   - {fileID: 11400000, guid: 58763b454dd845844a21c1e08fb2efed, type: 2}
-  - {fileID: 11400000, guid: a8d8b448e1c72314aa20a05bb391a17b, type: 2}
+  - {fileID: 11400000, guid: 5ec62e8ec2c83b843be4bdcf7489e6f5, type: 2}
+  - {fileID: 11400000, guid: f6dd2dccff43b084599a349b9b4bf2f6, type: 2}

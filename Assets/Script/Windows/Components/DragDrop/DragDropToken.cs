@@ -236,7 +236,10 @@ public class DragDropToken : PartButtonBase
             {
                 Vector2 realPos = transform.position + Delta();
                 Vector2Int slotCoords = target.grid.GetGridPosition(realPos);
-                DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y);
+                if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y) && mPart.scriptable.partType == ItemDefines.PartType.expansion) { 
+                    Delete();
+                    ViewManager.Instance.shop.playership.UpdateGrid();
+                }
             }
         }
         else

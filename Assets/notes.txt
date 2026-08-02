@@ -8,12 +8,20 @@ TODO
 
 	difficulty
 
-	modifier props
-	scaling
-	double gas costs
+	fix parts
+	DESIGN
+		engines use more fuel
+
+		nerf onlap stuff
 
 FIX
+	discard item detaches all from build slot
+
+	doesnt clear CD on actives
+
+
 	rotation bugs
+	part placement
 FEA
 	parts expand slots
 		scale off occupied slots

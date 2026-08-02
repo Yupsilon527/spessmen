@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PurchaseData
 {
@@ -45,7 +44,7 @@ public class PurchaseData
         }
         SetDiscount(price);
     }
-   public static void AccountLuck(List<WeightPart> valid)
+    public static void AccountLuck(List<WeightPart> valid)
     {
         float level = TourneyController.main.GetCurrentRaceIndex() + 1;
         float chaosCoefficient = 1;
@@ -65,8 +64,10 @@ public class PurchaseData
 
         foreach (var item in valid)
         {
-            item.Weight =( ItemDefines.baseSpawnWeight   + level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient * item.part.weightMultiplier;
-
+            if (item.part.boonRarity > ItemDefines.BoonRarity.common)
+                item.Weight = Mathf.Clamp( ( level * ItemDefines.raritySpawnWeight / Mathf.Pow(10, (int)item.part.boonRarity)) * luckCoefficient * chaosCoefficient * item.part.weightMultiplier, 0 ,  ItemDefines.raritySpawnWeight*2);
+            else
+                item.Weight = ItemDefines.commonSpawnWeight + ItemDefines.raritySpawnWeight;
 
             if (DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.item_rarity) != 1)
                 item.Weight *= Mathf.Pow(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus), (int)item.part.boonRarity);
@@ -77,22 +78,22 @@ public class PurchaseData
             switch (item.part.partType)
             {
                 case ItemDefines.PartType.engine:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.engine_weight);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.engine_weight);
                     break;
                 case ItemDefines.PartType.gadget:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gadget_weight);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gadget_weight);
                     break;
                 case ItemDefines.PartType.nitro:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.nitro_weight);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.nitro_weight);
                     break;
                 case ItemDefines.PartType.wheel:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.wheel_weight);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.wheel_weight);
                     break;
                 case ItemDefines.PartType.trinket:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.trinket_weight);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.trinket_weight);
                     break;
                 case ItemDefines.PartType.expansion:
-                item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.expansion_rarity);
+                    item.Weight *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.expansion_rarity);
                     break;
             }
 
