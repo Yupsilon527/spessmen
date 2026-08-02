@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Gas Tank 1
+  m_Name: Large Tank 4
   m_EditorClassIdentifier: 
-  InternalName: Gas Tank 1
+  InternalName: Large Tank 4
   grid:
     width: 4
     height: 3
@@ -20,17 +20,19 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 6
-    value: 80
+    value: 300
+    IncreasePerLevel: 0
+  - Property: 12
+    value: 1.2
     IncreasePerLevel: 0
   relative: []
   abilities: []
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 0ce00eaba6dc755479cfec7a2ceb3a88, type: 2}
+  combos: []
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 3
   partType: 2
   attach: 0
   priceMultiplier: 0.75
+  weightMultiplier: 0.6
   unique: 0
   lockedForSomeReason: 0

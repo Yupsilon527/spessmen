@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Tiny Wheel 1
   m_EditorClassIdentifier: 
-  InternalName: Wheel 1
+  InternalName: Tiny Wheel 1
   grid:
     width: 1
     height: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Wheel 1  OnRaceStart
+  - InternalName: Tiny Wheel 1  OnRaceStart
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -44,6 +44,7 @@ MonoBehaviour:
   boonRarity: 0
   partType: 1
   attach: 1
-  priceMultiplier: 1
+  priceMultiplier: 0.96
+  weightMultiplier: 1.5
   unique: 0
   lockedForSomeReason: 0

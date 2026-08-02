@@ -5,13 +5,12 @@ TODO
 			end shop guarantees legendary
 			"antes" give 2x score
 
-	shop
-		part info
 
 	difficulty
 
 	modifier props
 	scaling
+	double gas costs
 
 FIX
 	rotation bugs
@@ -19,6 +18,16 @@ FEA
 	parts expand slots
 		scale off occupied slots
 		scale off total slots
+
+	refresh CD parts
+		nitros
+		boosters
+		gadgets
+		all
+
+	global/multihit abilities
+		storm (slows everyone)
+
 
 	abilities/actives that target opponent
 

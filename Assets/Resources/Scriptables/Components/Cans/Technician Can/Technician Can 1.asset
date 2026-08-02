@@ -22,7 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Technician Can 1  OnLapCompleted
-    cooldown: 5
+    cooldown: 0
     fuelCost: 0
     classification: 2
     function: 3
@@ -32,18 +32,19 @@ MonoBehaviour:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 20
+      value: 15
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 0ce00eaba6dc755479cfec7a2ceb3a88, type: 2}
+    result: {fileID: 11400000, guid: f6f5cb58e8955114eb95a2e7c21b13ec, type: 2}
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 2
   attach: 0
   priceMultiplier: 0.87
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

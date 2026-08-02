@@ -22,7 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Emergency Tank 1  OnActivated
-    cooldown: 30
+    cooldown: 10
     fuelCost: 0
     classification: 4
     function: 2
@@ -39,11 +39,12 @@ MonoBehaviour:
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 7c8eb974af09fe941a8540dfbfe572d4, type: 2}
+    result: {fileID: 11400000, guid: 4266b00e209ace84ca368d4f3b8e0edb, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 4
   attach: 0
   priceMultiplier: 0.5
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

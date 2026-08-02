@@ -85,7 +85,15 @@ public static class ModifierDefines
        active_prices = 36,
        shop_prices = 37,
 
-        total = 38,
+       engine_showup = 38,
+       gadget_weight = 39,
+       nitro_weight = 40,
+       trinket_weight = 41,
+       wheel_weight = 42,
+       active_weight = 43,
+       item_rarity = 44,
+
+        total = 45,
     };
     public enum State   //TODO
     {

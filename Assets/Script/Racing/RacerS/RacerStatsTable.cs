@@ -9,6 +9,7 @@ public class RacerStatsTable : RacerComponent
     public float gasTotal;
     public float baseSpeed;
     public float boosterSpeed;
+    public float alteredSpeed;
     bool requiresUpdate = false;
     bool brokenSoundBarrier = false;
 
@@ -24,6 +25,7 @@ public class RacerStatsTable : RacerComponent
                 realSpeed = 0;
                 baseSpeed = 0;
                 boosterSpeed = 0;
+                alteredSpeed = 0;
                 gasTotal = gasBase;
                 brokenSoundBarrier = false;
                 break;
@@ -58,7 +60,7 @@ public class RacerStatsTable : RacerComponent
                 realSpeed *= playerRacer.GetPropertyMultiplicative(ModifierDefines.Property.rival_speed);
             }
         }
-
+        realSpeed += alteredSpeed;
 
         if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed)
         {
@@ -116,10 +118,10 @@ public class PlayerStatsAlteration
         }
         return ModifierDefines.Property.total;
     }
-    public float GetEffectiveChange(Racer player, float mult)
+    public float GetEffectiveChange(Racer player, float mult, bool onSelf)
     {
         float output = value * GetScale( player, scale) * mult;
-        if (GetRelatedProperty() < ModifierDefines.Property.total)
+        if (onSelf && GetRelatedProperty() < ModifierDefines.Property.total)
             return output * player.GetPropertyMultiplicative(GetRelatedProperty());
         return output;
     }
@@ -151,22 +153,23 @@ public class PlayerStatsAlteration
     }
     public virtual void GiveToPlayer(Racer caster, Racer target, float mult)
     {
+        bool self = caster == target;
         switch (stat)
         {
             case StatType.BaseSpeed:
-                ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult));
+                ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
                 break;
             case StatType.BoostSpeed:
-                ApplyToStat(ref target.stats.boosterSpeed, GetEffectiveChange(caster, mult));
+                ApplyToStat(ref target.stats.boosterSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
                 break;
             case StatType.TotalSpeed:
-                ApplyToStat(ref target.stats.realSpeed, GetEffectiveChange(caster, mult));
+                ApplyToStat(ref target.stats.alteredSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
                 break;
             case StatType.FillGas:
-                target.abilities.fuel.GiveValue(GetEffectiveChange(caster, mult));
+                target.abilities.fuel.GiveValue(GetEffectiveChange(caster, mult, self));
                 break;
         }
     }

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Large Tank 3
+  m_EditorClassIdentifier: 
+  InternalName: Large Tank 3
+  grid:
+    width: 4
+    height: 3
+    cells: 010101010101010001010100
+  states: []
+  properties:
+  - Property: 6
+    value: 225
+    IncreasePerLevel: 0
+  - Property: 12
+    value: 1.1
+    IncreasePerLevel: 0
+  relative: []
+  abilities: []
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 8ad132cae261b064e81b3475629a2bfb, type: 2}
+  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  boonRarity: 2
+  partType: 2
+  attach: 0
+  priceMultiplier: 0.75
+  weightMultiplier: 0.6
+  unique: 0
+  lockedForSomeReason: 0

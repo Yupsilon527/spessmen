@@ -31,11 +31,13 @@ public class RacerAbilities : RacerComponent
                 }
                 else
                 {
+                    float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * .75f + .25f);
                     int level = TourneyController.main.GetCurrentRaceIndex();
-                    AddAbility(new Ability(PartAbility.NpcWheel(level)));
+                    AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal)));
                     if (level > 2 )
                     {
-                        AddAbility(new Ability(PartAbility.NpcEngine(level-2)));
+                        rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
+                        AddAbility(new Ability(PartAbility.NpcEngine(level-2, rnVal)));
                     }
                 }
                 racer.stats.UpdateGasTotal();

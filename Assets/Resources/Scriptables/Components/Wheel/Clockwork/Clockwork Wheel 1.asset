@@ -48,7 +48,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 1
+      value: 2
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   boonRarity: 1
   partType: 1
   attach: 1
-  boonValue: 44
+  priceMultiplier: 1
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

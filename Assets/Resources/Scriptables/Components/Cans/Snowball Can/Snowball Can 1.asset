@@ -16,7 +16,7 @@ MonoBehaviour:
   grid:
     width: 3
     height: 2
-    cells: 010101010100
+    cells: 000101010100
   states: []
   properties: []
   relative: []
@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 5
+      value: 4
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -47,11 +47,12 @@ MonoBehaviour:
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 0ce00eaba6dc755479cfec7a2ceb3a88, type: 2}
+    result: {fileID: 11400000, guid: b205c65e39c192c45ad6f2b9c40fe83e, type: 2}
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 2
   attach: 0
   priceMultiplier: 0.87
+  weightMultiplier: 0.66
   unique: 0
   lockedForSomeReason: 0

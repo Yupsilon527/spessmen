@@ -13,7 +13,7 @@ public class PartAbility
     public float conditionCheck;
     public ConditionalPartAltetration[] actions;
 
-    public static PartAbility NpcWheel(int level)
+    public static PartAbility NpcWheel(int level, float rnval)
     {
         float speed = DifficultyDefines.enemyBaseSpeed * (1 + level);
 
@@ -25,12 +25,12 @@ public class PartAbility
             {
                 behavior = PlayerStatsAlteration.AlterationType.Addition,
                 stat = PlayerStatsAlteration.StatType.BaseSpeed,
-                value =  speed * (level + UnityEngine.Random.value )
+                value =  speed * (level+1) *rnval
             }
             }
         };
     }
-    public static PartAbility NpcEngine(int level)
+    public static PartAbility NpcEngine(int level, float rnval)
     {
         float speed = DifficultyDefines.enemyEngineSpeed * (1 + level);
 
@@ -44,7 +44,7 @@ public class PartAbility
             {
                 behavior = PlayerStatsAlteration.AlterationType.Addition,
                 stat = PlayerStatsAlteration.StatType.BoostSpeed,
-                value =  speed * (level + UnityEngine.Random.value )
+                value =  speed * (level+1) *rnval
             }
             }
         };
@@ -56,25 +56,25 @@ public class PartAbility
         string effects = "";
         foreach (var a in actions)
         {
-            if (effects.Length > 0) effects+=", ";
+            if (effects.Length > 0) effects += ", ";
 
             switch (a.behavior)
             {
                 case PlayerStatsAlteration.AlterationType.Addition:
-                    effects = "+";
+                    effects += "+";
                     break;
                 case PlayerStatsAlteration.AlterationType.Multiply:
-                    effects = "x";
+                    effects += "x";
                     break;
             }
 
-                if (a.scale == ShipDefines.ScaleType.Constant)
+            if (a.scale == ShipDefines.ScaleType.Constant)
             {
-                effects += a.value+" ";
+                effects += a.value + " ";
             }
-                else
+            else
             {
-                effects += $"{MathF.Round(a.value*100)}% of your {a.scale} as";
+                effects += $"{MathF.Round(a.value * 100)}% of {a.effectSource} {a.scale} as ";
             }
             effects += a.stat;
         }
@@ -82,7 +82,7 @@ public class PartAbility
         string costs = ". ";
         if (fuelCost > 0)
         {
-            costs += "Uses "+Mathf.Round(fuelCost) + " Fuel. ";
+            costs += "Uses " + Mathf.Round(fuelCost) + " Fuel. ";
         }
         if (cooldown > 0)
         {

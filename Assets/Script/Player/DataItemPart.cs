@@ -31,7 +31,7 @@ public class DataItemPart : DataItemGrid
     }
     public bool CanMerge(DataItemPart other)
     {
-        return other.scriptable.combos.Any ( combo => combo.other == other.scriptable ) || scriptable.combos.Any(combo => combo.other == scriptable);
+        return other.scriptable.combos.Any ( combo => combo.other == scriptable ) || scriptable.combos.Any(combo => combo.other == other.scriptable);
     }
     public PartScriptable GetMergeOutcome(DataItemPart other)
     {

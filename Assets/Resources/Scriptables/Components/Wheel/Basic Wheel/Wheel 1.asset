@@ -20,42 +20,23 @@ MonoBehaviour:
   states: []
   properties: []
   relative: []
-  ability:
-    InternalName: Wheel 1
-    cooldown: 0
-    fuelCost: 0
-    classification: 1
-    function: 0
-    condition: 0
-    conditionCheck: 0
-    action:
-      behavior: 0
-      stat: 0
-      scale: 0
-      value: 10
-    actions:
-    - behavior: 0
-      stat: 0
-      scale: 0
-      value: 10
   abilities:
-  - InternalName: Wheel 1
+  - InternalName: Wheel 1  OnRaceStart
     cooldown: 0
     fuelCost: 0
     classification: 1
     function: 0
     condition: 0
     conditionCheck: 0
-    action:
-      behavior: 0
-      stat: 0
-      scale: 0
-      value: 10
     actions:
     - behavior: 0
       stat: 0
       scale: 0
       value: 10
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: f13f6904790390348bf04b89b8e17e95, type: 2}
@@ -63,6 +44,7 @@ MonoBehaviour:
   boonRarity: 0
   partType: 1
   attach: 1
-  boonValue: 20
+  priceMultiplier: 1
+  weightMultiplier: 2
   unique: 0
   lockedForSomeReason: 0

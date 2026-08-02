@@ -26,11 +26,12 @@ MonoBehaviour:
   abilities: []
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 0ce00eaba6dc755479cfec7a2ceb3a88, type: 2}
+    result: {fileID: 11400000, guid: 7c432c2b72a9e294bad95b298f0ce807, type: 2}
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 2
   attach: 0
   priceMultiplier: 0.75
+  weightMultiplier: 0.88
   unique: 0
   lockedForSomeReason: 0
