@@ -9,6 +9,7 @@ public class RaceView : ViewBase
     public PlayerAbilityPreview preview;
     public GameObject interfaceParent;
     public GameObject gameOverParent;
+    public PartTooltip tooltip;
 
     public override void OnOpened()
     {

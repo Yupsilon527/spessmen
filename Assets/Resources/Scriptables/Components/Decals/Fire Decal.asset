@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Fire Decal
   m_EditorClassIdentifier: 
-  InternalName: Engine Oil 1
+  InternalName: Fire Decal
   grid:
     width: 1
     height: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities: []
   combos: []
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 1
   partType: 6
   attach: 0
   priceMultiplier: 2

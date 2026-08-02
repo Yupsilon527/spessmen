@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PartTooltip : MonoBehaviour
 {
+    public bool toggleActive = false;
     public TextMeshProUGUI title, subtitle, description;
 
     private void Start()
@@ -23,20 +24,22 @@ public class PartTooltip : MonoBehaviour
         {
             description.text = part.GetEffectDescription() ;
         }
+        if (toggleActive) gameObject.SetActive(true);
     }
     public void Clear()
     {
         if (title != null)
         {
-            title.text = "";
+            title.text = "Part Info";
         }
         if (subtitle != null)
         {
-            subtitle.text = "";
+            subtitle.text = "Mouse over part to show info";
         }
         if (description != null)
         {
             description.text = "";
         }
+        if (toggleActive) gameObject.SetActive(false);
     }
 }

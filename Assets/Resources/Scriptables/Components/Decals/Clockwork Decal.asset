@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Clockwork Decal
   m_EditorClassIdentifier: 
-  InternalName: Clockwork Cog
+  InternalName: Clockwork Decal
   grid:
     width: 1
     height: 1
@@ -21,11 +21,11 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Clockwork Cog  OnActivated
+  - InternalName: Clockwork Decal  OnTimePass
     cooldown: 1
     fuelCost: 0
     classification: 6
-    function: 2
+    function: 1
     condition: 0
     conditionCheck: 0
     actions:
@@ -45,5 +45,6 @@ MonoBehaviour:
   partType: 6
   attach: 0
   priceMultiplier: 1
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

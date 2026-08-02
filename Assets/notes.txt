@@ -8,14 +8,11 @@ TODO
 
 	difficulty
 
-	fix parts
-	DESIGN
-		engines use more fuel
-
-		nerf onlap stuff
 
 FIX
 	discard item detaches all from build slot
+	detach token on refresh shop slot
+	interest limit
 
 	doesnt clear CD on actives
 

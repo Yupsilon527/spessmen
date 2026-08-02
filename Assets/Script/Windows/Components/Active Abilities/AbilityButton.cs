@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityButton : PartButtonBase
+public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI cooldownValue;
     public Image cooldownFill;
@@ -15,6 +16,7 @@ public class AbilityButton : PartButtonBase
         cooldownFill.sprite = mPart.scriptable.icon;
         
         button.enabled = mPart?.correspondingAbility?.data?.function == ShipDefines.PartEvent.OnActivated;
+        HideCooldown();
     }
     public override void AdjustRotation(int rotation)
     {
@@ -29,21 +31,14 @@ public class AbilityButton : PartButtonBase
     }
     void UpdateCooldown()
     {
+        HideCooldown();
         if (mPart.correspondingAbility!=null)
         {
-            if (mPart.correspondingAbility.data.function == ShipDefines.PartEvent.OnRaceStart)
-            {
-                HideCooldown();
-            }
-            else
+            if (mPart.correspondingAbility.data.function != ShipDefines.PartEvent.OnRaceStart)
             {
                 float cd = mPart.correspondingAbility.GetTimeRemaining();
                 if (cd > 0) {
                     ShowCooldown(cd, mPart.correspondingAbility.GetDuration());
-                }
-                else
-                {
-                    HideCooldown();
                 }
             }
             button.interactable = mPart?.correspondingAbility?.CanBeActivated(TourneyController.main.GetPlayerRacer()) ?? false;
@@ -62,5 +57,19 @@ public class AbilityButton : PartButtonBase
     public void OnClick()
     {
             mPart?.correspondingAbility?.Activate(TourneyController.main.GetPlayerRacer(), ShipDefines.PartEvent.OnActivated);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (mPart != null && ViewManager.Instance.race != null && ViewManager.Instance.race.tooltip != null)
+        {
+            ViewManager.Instance.race.tooltip.ShowPart(mPart.scriptable);
+        }
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (ViewManager.Instance.race != null && ViewManager.Instance.race.tooltip != null)
+        {
+            ViewManager.Instance.race.tooltip.Clear();
+        }
     }
 }

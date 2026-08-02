@@ -5,7 +5,7 @@ public class ViewManager : WindowManager
     public static ViewManager Instance { get; private set; }
     public TabComponent tabComponent;
 
-    public RaceView build;
+    public RaceView race;
     public ShopView shop;
 
     public enum Views
@@ -29,7 +29,7 @@ public class ViewManager : WindowManager
                 tabComponent.OpenTab(shop.gameObject);
                 break;
             case Views.raceView:
-                tabComponent.OpenTab(build.gameObject);
+                tabComponent.OpenTab(race.gameObject);
                 break;
         }
     }

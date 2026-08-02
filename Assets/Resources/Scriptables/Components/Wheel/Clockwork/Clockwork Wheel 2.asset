@@ -32,23 +32,23 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 20
+      value: 35
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  - InternalName: Clockwork Wheel 2  OnActivated
+  - InternalName: Clockwork Wheel 2  OnTimePass
     cooldown: 0.9
     fuelCost: 0
     classification: 1
-    function: 2
+    function: 1
     condition: 0
     conditionCheck: 0
     actions:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 4
+      value: 3
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -61,6 +61,6 @@ MonoBehaviour:
   partType: 1
   attach: 1
   priceMultiplier: 1
-  weightMultiplier: 1
+  weightMultiplier: 0.05
   unique: 0
   lockedForSomeReason: 0
