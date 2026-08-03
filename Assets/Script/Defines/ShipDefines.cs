@@ -2,11 +2,18 @@
 using System.Linq;
 using UnityEngine;
 
-public static class ShipDefines 
+public static class ShipDefines
 {
     public static int shipSize = 10;
     public static float soundBarrierSpeed = 100;
     public static float gasBase = 100;
+    public static Vector2Int[] deltaPos = new Vector2Int[]{
+        Vector2Int.zero,
+        Vector2Int.up,
+        Vector2Int.down,
+        Vector2Int.left,
+        Vector2Int.right
+        };
     public enum AlterationType
     {
         Addition,
@@ -101,30 +108,32 @@ public static class ShipDefines
         Total,
     }
 
-    public static float GetScale(Racer racer, ScaleType scale)
+    public static float GetScale(Racer racer, ScaleType scale,bool reverse)
     {
         switch (scale)
         {
             case ScaleType.BaseSpeed:
-                return racer.stats.baseSpeed;
+                return racer.stats.baseSpeed * (reverse ? -1 : 1);
             case ScaleType.BoostSpeed:
-                return racer.stats.boosterSpeed;
+                return racer.stats.boosterSpeed * (reverse ? -1 : 1);
             case ScaleType.TotalSpeed:
-                return racer.stats.realSpeed;
+                return racer.stats.realSpeed * (reverse ? -1 : 1);
             case ScaleType.DistanceTraveled:
-                return racer.position.distanceTraveled;
+                return racer.position.distanceTraveled * (reverse ? -1 : 1);
             case ScaleType.LapsCompleted:
-                return racer.position.currentLap;
+                return racer.position.currentLap * (reverse ? -1 : 1);
             case ScaleType.CurrentPosition:
-                return TourneyController.main.ongoingRace.GetPositionForRacer(racer) ;
+                int pos = TourneyController.main.ongoingRace.GetPositionForRacer(racer);
+                return reverse ? (TourneyController.main.ongoingRace.racers.Count - pos) : pos;
             case ScaleType.CurrentRivalPosition:
-                return racer.GetRival() == null ? 0: TourneyController.main.ongoingRace.GetPositionForRacer(racer.GetRival());
+                 pos = racer.GetRival() == null ? 0: TourneyController.main.ongoingRace.GetPositionForRacer(racer.GetRival());
+                return reverse ? (TourneyController.main.ongoingRace.racers.Count - pos) : pos;
             case ScaleType.RivalDistanceTraveled:
                 return racer.GetRival()?.position.distanceTraveled ?? 0;
             case ScaleType.CurrentFuelValue:
-                return racer.abilities.fuel.GetValue();
+                return reverse ? (racer.abilities.fuel.GetLimit() - racer.abilities.fuel.GetValue()) : racer.abilities.fuel.GetValue();
             case ScaleType.CurrentFuelPercent:
-                return racer.abilities.fuel.GetPercentage();
+                return reverse ? (1- racer.abilities.fuel.GetPercentage()) : racer.abilities.fuel.GetPercentage();
             case ScaleType.FuelTotal:
                 return racer.abilities.fuel.GetLimit();
             case ScaleType.NumEngines:
@@ -136,13 +145,14 @@ public static class ShipDefines
             case ScaleType.NumTrinkets:
                 return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.decal ? 1 : 0);
             case ScaleType.CarSlots:
-                return DataItemPlayer.main.ship.CountTilesEmpty();
+                return reverse ? (DataItemPlayer.main.ship.CountTilesTotal() - DataItemPlayer.main.ship.CountTilesEmpty()) : DataItemPlayer.main.ship.CountTilesEmpty();
             case ScaleType.TotalSlots:
                 return DataItemPlayer.main.ship.CountTilesTotal();
             case ScaleType.Random:
-                return Random.value ;
+                return reverse ? (1- Random.value) : Random.value;
             case ScaleType.Lucky:
-                return ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus)) ;
+                float ranVal = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                return reverse ? (1- ranVal) : ranVal;
             default:
                 return 1;
         }

@@ -203,12 +203,13 @@ public static class ModifierDefines
     public class RelativeStatData   //get property relative to stat
     {
         public ShipDefines.ScaleType baseStat;
+        public bool reverse = false;
         public Property Property;
         public float translation;
 
         public float GetValueForRacer(Racer racer)
         {
-            return ShipDefines.GetScale(racer, baseStat);
+            return ShipDefines.GetScale(racer, baseStat, reverse);
         }
 
         public string ValueToString()

@@ -41,6 +41,7 @@ public class RacerAbilities : RacerComponent
                         AddAbility(new Ability(PartAbility.NpcEngine(level-2, rnVal)));
                     }
                 }
+                racer.modifiers.Refresh();
                 racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
                 ListenToEvent(ShipDefines.PartEvent.OnRaceStart);

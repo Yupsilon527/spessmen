@@ -10,6 +10,7 @@ public class PartButtonBase : Initializable
     protected   GridPreview gridPreview;
     public Image sprite;
     public Outline outline;
+    public int rotation = 0;
     public void FromPart(DataItemPart part, bool draw)
     {
         ClearToken(false);
@@ -37,6 +38,18 @@ public class PartButtonBase : Initializable
         gridPreview.Draw(mPart.mGrid, mPart.scriptable.grid.width, mPart.scriptable.grid.height);
   if (outline!=null)      outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
     }
+    public void Rotate(bool clockwise)
+    {
+        // mPart.Rotate(clockwise);
+        Rotate(rotation + (clockwise ? 1 : -1));
+        AdjustRotation(rotation);
+    }
+    public void Rotate(int rot)
+    {
+        // mPart.Rotate(clockwise);
+        rotation = rot % 4;
+        AdjustRotation(rotation);
+    }
     public virtual void AdjustRotation(int rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, -90 * rotation);
@@ -44,12 +57,14 @@ public class PartButtonBase : Initializable
     public void SnapToGrid(RectTransform targetRect)
     {
         Vector2Int slotCoords = new Vector2Int(mPart.originX, mPart.originY);
-        DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y);
+        DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y,rotation);
         Rect rect = targetRect.rect;
 
+        int width = mPart.rotation % 2 == 0 ? mPart.width : mPart.height;
+        int height = mPart.rotation % 2 == 0 ? mPart.height : mPart.width;
         Vector2 localPoint = new Vector2(
-            rect.xMin + (slotCoords.x + mPart.width / 2f) * cellSize * 2,
-            rect.yMax - (slotCoords.y + mPart.height / 2f) * cellSize * 2
+            rect.xMin + (slotCoords.x + width / 2f) * cellSize * 2,
+            rect.yMax - (slotCoords.y + height / 2f) * cellSize * 2
         );
 
         Vector3 worldPoint = targetRect.TransformPoint(localPoint);

@@ -24,11 +24,6 @@ public class DragDropToken : PartButtonBase
             }
         }
     }
-    public void Rotate(bool clockwise)
-    {
-        mPart.Rotate(clockwise);
-        AdjustRotation(mPart.rotation);
-    }
     #endregion
     #region Info Overlay
     public virtual string GetTooltipString()
@@ -155,7 +150,7 @@ public class DragDropToken : PartButtonBase
                 }
             }
         }
-        SnapBack();
+        SnapBack(true);
         return false;
     }
     #endregion
@@ -166,7 +161,7 @@ public class DragDropToken : PartButtonBase
     }
     public bool TryMergeAnother(DragDropToken token)
     {
-        if (token!=this && CanMergeAnother(token))
+        if (token != this && CanMergeAnother(token))
         {
             token.mPart.Transform(token.mPart.GetMergeOutcome(mPart));
             token.mPart.purchaseCost = token.mPart.purchaseCost + token.mPart.purchaseCost;
@@ -174,14 +169,16 @@ public class DragDropToken : PartButtonBase
             Delete();
             return true;
         }
-        return false; 
+        return false;
     }
     #endregion
     #region Attach
     DragDropSlot slot;
     Vector3 Delta()
     {
-        return new Vector3(cellSize * -mPart.width, cellSize * mPart.height) / 2;
+        int width = rotation % 2 == 0 ? mPart.width : mPart.height;
+        int height = rotation % 2 == 0 ? mPart.height : mPart.width;
+        return new Vector3(cellSize * -width, cellSize * height) / 2;
     }
     bool CanAttachToSlot(DragDropSlot slot)
     {
@@ -192,9 +189,14 @@ public class DragDropToken : PartButtonBase
         if (slot.slot == DragDropSlot.TokenSlot.stash)
             return true;
 
-        var slotCoords = slot.grid.GetGridPosition(transform.position + Delta());
-        return DataItemPlayer.main.ship.CanPlace(mPart, slotCoords.x, slotCoords.y);
+        Vector2Int slotCoords = slot.grid.GetGridPosition(transform.position + Delta());
 
+        foreach (var d in ShipDefines.deltaPos)
+        {
+            if (DataItemPlayer.main.ship.CanPlace(mPart, slotCoords.x+d.x, slotCoords.y + d.y, rotation))
+                return true;
+        }
+        return false;
     }
 
     public void AttachToSlot(DragDropSlot slot, bool force)
@@ -211,7 +213,7 @@ public class DragDropToken : PartButtonBase
         {
             if (slot.slot == DragDropSlot.TokenSlot.discard)
             {
-                DataItemPlayer.main.econ.GiveGold(mPart.purchaseCost * .6f);
+                DataItemPlayer.main.econ.GiveGold(mPart.purchaseCost * EconomyDefines.partResellPrice);
                 Delete();
             }
             else if (slot.attachedToken == null)
@@ -223,7 +225,7 @@ public class DragDropToken : PartButtonBase
                 SwapSlots(slot.attachedToken);
             }
         }
-        SnapBack();
+        SnapBack(false);
     }
     void ChangeSlot(DragDropSlot target, bool force = false)
     {
@@ -236,7 +238,16 @@ public class DragDropToken : PartButtonBase
             {
                 Vector2 realPos = transform.position + Delta();
                 Vector2Int slotCoords = target.grid.GetGridPosition(realPos);
-                if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y) && mPart.scriptable.partType == ItemDefines.PartType.expansion) { 
+                if (mPart.scriptable.partType != ItemDefines.PartType.expansion)
+                    {
+                    foreach (var d in ShipDefines.deltaPos)
+                    {
+                        if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
+                            return;
+                    }
+                }
+              else   if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
+                {
                     Delete();
                     ViewManager.Instance.shop.playership.UpdateGrid();
                 }
@@ -266,13 +277,18 @@ public class DragDropToken : PartButtonBase
             other.ChangeSlot(slotA);
         }
     }
-    void SnapBack()
+    void SnapBack(bool snapback)
     {
         if (slot != null)
         {
+            Rotate(mPart.rotation);
             if (slot.slot == DragDropSlot.TokenSlot.build)
             {
                 SnapToGrid(slot.recttransform);
+            }
+            else if (snapback && slot.slot == DragDropSlot.TokenSlot.shop)
+            {
+                DiscardToken();
             }
             else
             {
@@ -287,6 +303,7 @@ public class DragDropToken : PartButtonBase
             if (trashslot.attachedToken == null)
             {
                 ChangeSlot(trashslot);
+                SnapBack(false);
                 break;
             }
         }
@@ -294,7 +311,7 @@ public class DragDropToken : PartButtonBase
     public void Delete()
     {
         ClearToken(false);
-        if (slot != null)
+        if (slot != null && slot.slot != DragDropSlot.TokenSlot.build)
             slot.ClearToken();
         slot = null;
         parent.TokenPool.DeactivateObject(gameObject);

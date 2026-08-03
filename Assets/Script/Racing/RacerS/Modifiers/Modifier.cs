@@ -52,7 +52,7 @@ public class Modifier : Countdown
     {
         if (properties.ContainsKey(prop))
         {
-            properties[prop] = value;
+            properties[prop] = (1+ properties[prop]) *(1+ value)-1;
         }
         else
         {
@@ -62,8 +62,8 @@ public class Modifier : Countdown
     public float GetProperty(ModifierDefines.Property property)
     {
         if (!properties.ContainsKey(property))
-            return 0;
-        return properties[property];
+            return ModifierDefines.IsPropertyMultiplicative(property) ? 1 : 0;
+        return (ModifierDefines.IsPropertyMultiplicative(property) ? 1 : 0) + properties[property];
     }
 
     #endregion
@@ -101,6 +101,9 @@ public class Modifier : Countdown
 
         foreach (var prop in props)
         {
+            if (ModifierDefines.IsPropertyMultiplicative(prop))
+            SetProperty(prop, GetProperty(prop) * data.GetProperty(prop,stacks - 1) * data.GetPropertyForRacer(prop,racer) - 1);
+            else
             SetProperty(prop, GetProperty(prop) + data.GetProperty(prop,stacks - 1) + data.GetPropertyForRacer(prop,racer));
         }
        

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Clockwork Decal
   grid:
-    width: 1
-    height: 1
-    cells: 01
+    width: 2
+    height: 2
+    cells: 01010101
   states: []
   properties: []
   relative: []
@@ -33,6 +33,7 @@ MonoBehaviour:
       stat: 0
       scale: 0
       value: 1
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0

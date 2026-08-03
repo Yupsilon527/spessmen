@@ -1,6 +1,7 @@
 
 
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 
 public class ModifierScriptable : GridScriptable
 {
@@ -17,19 +18,27 @@ public class ModifierScriptable : GridScriptable
     }
     public float GetProperty(ModifierDefines.Property property, int level)
     {
-        float total = 0;
+        bool multiplicative = ModifierDefines.IsPropertyMultiplicative(property);
+        float total = multiplicative ? 1 : 0;
         foreach (var prop in properties.Where(p => p.Property == property))
         {
-            total += prop.value + prop.IncreasePerLevel * level;
+            if (multiplicative)
+                total *= 1+prop.value + prop.IncreasePerLevel * level;
+            else
+                total += prop.value + prop.IncreasePerLevel * level;
         }
         return total;
     }
     public float GetPropertyForRacer(ModifierDefines.Property property, Racer racer)
     {
-        float total = 0;
+        bool multiplicative = ModifierDefines.IsPropertyMultiplicative(property);
+        float total = multiplicative ? 1 : 0;
         foreach (var prop in relative.Where(p => p.Property == property))
         {
-            total += prop.GetValueForRacer(racer);
+            if (multiplicative)
+                total *= 1+prop.GetValueForRacer(racer);
+            else
+                total += prop.GetValueForRacer(racer);
         }
         return total;
     }

@@ -6,4 +6,6 @@ public static class EconomyDefines
     public static float constantGoldPerDistance = .03f;
     public static float constantGoldInterest = .2f;
     public static float goldPerRaceIncrease = 1.2f;
+
+    public static float partResellPrice = 0.6f;
 }

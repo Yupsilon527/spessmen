@@ -53,11 +53,11 @@ public class DataItemShip : DataItemGrid
     #endregion
     #region Placement
 
-    public bool CanPlace(DataItemPart placement, int oX, int oY)
+    public bool CanPlace(DataItemPart placement, int oX, int oY, int rotation)
     {
-        bool[,] shape = placement.RetrieveRotated(placement.rotation);
+        bool[,] shape = placement.RetrieveRotated(rotation);
         int shapeWidth = shape.GetLength(0);
-        int shapeHeight = shape.GetLength(1);
+        int shapeHeight = shape.GetLength(1);   
 
         if (placement.scriptable.partType == ItemDefines.PartType.expansion)
         {
@@ -127,12 +127,13 @@ public class DataItemShip : DataItemGrid
         }
     }
 
-    public bool TryPlace(DataItemPart placement, int oX, int oY)
+    public bool TryPlace(DataItemPart placement, int oX, int oY, int rotation)
     {
-        if (!CanPlace(placement, oX, oY)) return false;
+        if (!CanPlace(placement, oX, oY, rotation)) return false;
 
         placement.originX = oX;
         placement.originY = oY;
+        placement.rotation = rotation;
         if (placement.scriptable.partType == ItemDefines.PartType.expansion)
         {
             ExpandGrid(placement);
@@ -192,7 +193,7 @@ public class DataItemShip : DataItemGrid
 
         foreach (var placement in parts)
         {
-            if (!TryPlace(placement, placement.originX, placement.originY))
+            if (!TryPlace(placement, placement.originX, placement.originY,placement.rotation))
             {
                 return false;
             }

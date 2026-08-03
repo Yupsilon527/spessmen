@@ -1,6 +1,9 @@
 
 public static class RaceDefines
 {
+    public static int SeasonRaces = 3;
+    public static int TournamentSeasons = 3;
+
     public enum RacePhase
     {
         RaceBegin = 0,

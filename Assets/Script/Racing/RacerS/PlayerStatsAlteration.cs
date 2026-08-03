@@ -9,6 +9,7 @@ public class PlayerStatsAlteration
     public StatType stat = StatType.BaseSpeed;
     public ScaleType scale = ScaleType.Constant;
     public float value = 0;
+    public bool reverse = false;
     public ModifierDefines.Property GetRelatedProperty()
     {
         switch (stat)
@@ -24,7 +25,7 @@ public class PlayerStatsAlteration
     }
     public float GetEffectiveChange(Racer player, float mult, bool onSelf)
     {
-        float output = value * GetScale( player, scale) * mult;
+        float output = value * GetScale( player, scale, reverse) * mult;
         if (onSelf && GetRelatedProperty() < ModifierDefines.Property.total)
             return output * player.GetPropertyMultiplicative(GetRelatedProperty());
         return output;

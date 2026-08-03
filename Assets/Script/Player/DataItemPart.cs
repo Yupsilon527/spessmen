@@ -23,7 +23,11 @@ public class DataItemPart : DataItemGrid
     }
     public void Rotate(bool clockwise)
     {
-        rotation = (rotation + (clockwise ? 1 : -1)) % 4;
+        Rotate(rotation + (clockwise ? 1 : -1));
+    }
+    public void Rotate(int rot)
+    {
+        rotation = rot % 4;
     }
     public bool CanBeDiscarded()
     {

@@ -1,46 +1,20 @@
 TODO
-	start game
-		8 environments?
-			3 races each
-			end shop guarantees legendary
-			"antes" give 2x score
+	visual
+		racer character
+		opponent character
 
-	Rae X/N in leaderboard/shop
-		race info
-
-	difficulty
-
+	characters
+		race display
+		portraits
+		side displays
+FIX
+	interest limit
 	overtake/abilities doesnt work
 
-FIX
-	discard item detaches all from build slot
-	detach token on refresh shop slot
-	interest limit
+QoL
+	part highlight position
 
-	rotation bugs
-	part placement
 FEA
-	UI
-		ingame parts info
-		turbo
-
-	parts expand slots
-		scale off occupied slots
-		scale off total slots
-
-	refresh CD parts
-		nitros
-		boosters
-		gadgets
-		all
-
-	global/multihit abilities
-		storm (slows everyone)
-
-
-	abilities/actives that target opponent
-
-
 	WEATHER - Binds/finisher/boss binds
 		fuel half empty
 		less fuel
@@ -49,15 +23,19 @@ FEA
 		engine CD%
 		rival abb immune
 		race is longer
+		player stunne for 1s
 
 		enemies get random ability
 			random engine
+
+
+	global/multihit abilities
+		storm (slows everyone)
 	pickups
 
-	FEA unlock slots
-
 CARS
-	normal
+	starter - enemies slower, rival slower, free reroll
+	speedy - accelerates
 	wheelie - faster wheels, slower boost, lots of room for 3x3 wheels
 	hotrod - boosts
 	clicker - starts with clicker

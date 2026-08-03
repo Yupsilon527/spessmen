@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Cool Decal
   grid:
-    width: 1
-    height: 1
-    cells: 01
+    width: 2
+    height: 2
+    cells: 01010101
   states: []
   properties:
   - Property: 21

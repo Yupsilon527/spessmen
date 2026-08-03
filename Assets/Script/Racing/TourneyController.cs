@@ -25,15 +25,15 @@ public class TourneyController : Initializable
             case TourneyPhase.beforeRace:
                 if (leaderboard == null || leaderboard.Count == 0)
                     InitRacers();
+                ongoingRace = new Race()
+                {
+                    raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
+                    racers = leaderboard.Keys.Select(k => k).ToList(),
+                };
                 break;
             case TourneyPhase.racing:
                 if (currentPhase == TourneyPhase.beforeRace || ongoingRace == null || !ongoingRace.IsRunning())
                 {
-                    ongoingRace = new Race()
-                    {
-                        raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
-                        racers = leaderboard.Keys.Select(k => k).ToList(),
-                    };
                     Inspect($"Start race {ongoingRace.raceID} with {ongoingRace.racers.Count} racers!");
                     foreach (var racer in ongoingRace.racers)
                     {

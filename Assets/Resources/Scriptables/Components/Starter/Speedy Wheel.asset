@@ -10,26 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Clover Decal
+  m_Name: Speedy Wheel
   m_EditorClassIdentifier: 
-  InternalName: Clover Decal
+  InternalName: Speedy Wheel
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 25
-    value: 3
-    IncreasePerLevel: 0
+  properties: []
   relative: []
-  abilities: []
+  abilities:
+  - InternalName: Speedy Wheel  OnRaceStart
+    cooldown: 0
+    fuelCost: 0
+    classification: 1
+    function: 0
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - behavior: 0
+      stat: 0
+      scale: 0
+      value: 8
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
   combos: []
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 2
-  partType: 6
-  attach: 0
-  priceMultiplier: 2
-  weightMultiplier: 1
+  boonRarity: 0
+  partType: 1
+  attach: 1
+  priceMultiplier: 0.25
+  weightMultiplier: 0.001
   unique: 0
-  lockedForSomeReason: 0
+  lockedForSomeReason: 1

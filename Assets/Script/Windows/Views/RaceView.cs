@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class RaceView : ViewBase
 {
-    public TextMeshProUGUI time;
+    public TextMeshProUGUI time,playerPosition;
     public PlayerShipGrid playership;
     public PlayerAbilityPreview preview;
     public GameObject interfaceParent;
     public GameObject gameOverParent;
     public PartTooltip tooltip;
+    public RaceTooltip raceTooltip;
 
     public override void OnOpened()
     {
@@ -31,6 +32,11 @@ public class RaceView : ViewBase
         if (value)
         {
             preview.Clear();
+            if (playerPosition != null) {
+                int position =  TourneyController.main.ongoingRace.GetPositionForRacer( TourneyController.main.GetPlayerRacer());
+                playerPosition.text = "You placed "+ (position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th") ;
+            }
+            raceTooltip?.ShowCurrentRace();
         }
     }
 

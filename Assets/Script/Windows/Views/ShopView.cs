@@ -13,6 +13,7 @@ public partial class ShopView : ViewBase
 
     public PlayerShipGrid playership;
     public PartTooltip tooltip;
+    public RaceTooltip raceTooltip;
     public AbilityDragDropInterface dragdrop;
     public ItemPurchaseButton[] itemButtonSelection;
 
@@ -109,6 +110,7 @@ public partial class ShopView : ViewBase
         {
             InitializeShop();
             ResetStore(true);
+            raceTooltip?.ShowCurrentRace();
 
             DataItemPlayer.main.econ.gold.OnValueChanged.RemoveListener(UpdateState);
             DataItemPlayer.main.econ.gold.OnValueChanged.AddListener(UpdateState);

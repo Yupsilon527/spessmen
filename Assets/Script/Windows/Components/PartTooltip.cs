@@ -4,7 +4,7 @@ using UnityEngine;
 public class PartTooltip : MonoBehaviour
 {
     public bool toggleActive = false;
-    public TextMeshProUGUI title, subtitle, description;
+    public TextMeshProUGUI title, subtitle, description, value;
 
     private void Start()
     {
@@ -24,6 +24,10 @@ public class PartTooltip : MonoBehaviour
         {
             description.text = part.GetEffectDescription() ;
         }
+        if (value != null)
+        {
+            value.text = (part.GetBasePrice() * EconomyDefines.partResellPrice)+"g";
+        }
         if (toggleActive) gameObject.SetActive(true);
     }
     public void Clear()
@@ -39,6 +43,10 @@ public class PartTooltip : MonoBehaviour
         if (description != null)
         {
             description.text = "";
+        }
+        if (value != null)
+        {
+            value.text = "";
         }
         if (toggleActive) gameObject.SetActive(false);
     }

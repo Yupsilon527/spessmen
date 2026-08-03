@@ -1,4 +1,5 @@
 
+
 public class DataItemPlayer : Initializable
 {
     public static DataItemPlayer main;
@@ -25,8 +26,16 @@ public class DataItemPlayer : Initializable
         bool multiplicative = ModifierDefines.IsPropertyMultiplicative(property);
         float value = multiplicative ? 1 : 0;
 
+        if (multiplicative)
+            value *= ship.scriptable.GetProperty(property, 1);
+        else
+            value += ship.scriptable.GetProperty(property, 1);
+
         foreach (var part in ship.parts)
         {
+            if (multiplicative)
+                value *= part.scriptable.GetProperty(property, 1);
+            else
             value += part.scriptable.GetProperty(property,1);
         }
 
