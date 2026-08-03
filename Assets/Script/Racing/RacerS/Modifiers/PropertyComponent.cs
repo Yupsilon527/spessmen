@@ -48,7 +48,7 @@ public class PropertyComponent : RacerComponent
             return;
         if (ModifierDefines.IsPropertyMultiplicative(Property))
         {
-            properties[(int)Property] = (1+ properties[(int)Property]) * value - 1;
+            properties[(int)Property] = (1+ properties[(int)Property]) * (1+value) - 1;
         }
         else
         {

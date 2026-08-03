@@ -137,17 +137,17 @@ public static class ShipDefines
             case ScaleType.FuelTotal:
                 return racer.abilities.fuel.GetLimit();
             case ScaleType.NumEngines:
-                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.engine ? 1 : 0);
+                return DataItemPlayer.main.car.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.engine ? 1 : 0);
             case ScaleType.NumWheels:
-                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.wheel ? 1 : 0);
+                return DataItemPlayer.main.car.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.wheel ? 1 : 0);
             case ScaleType.NumNitros:
-                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.nitro ? 1 : 0);
+                return DataItemPlayer.main.car.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.nitro ? 1 : 0);
             case ScaleType.NumTrinkets:
-                return DataItemPlayer.main.ship.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.decal ? 1 : 0);
+                return DataItemPlayer.main.car.parts.Sum(part => part.scriptable.partType == ItemDefines.PartType.decal ? 1 : 0);
             case ScaleType.CarSlots:
-                return reverse ? (DataItemPlayer.main.ship.CountTilesTotal() - DataItemPlayer.main.ship.CountTilesEmpty()) : DataItemPlayer.main.ship.CountTilesEmpty();
+                return reverse ? (DataItemPlayer.main.car.CountTilesTotal() - DataItemPlayer.main.car.CountTilesEmpty()) : DataItemPlayer.main.car.CountTilesEmpty();
             case ScaleType.TotalSlots:
-                return DataItemPlayer.main.ship.CountTilesTotal();
+                return DataItemPlayer.main.car.CountTilesTotal();
             case ScaleType.Random:
                 return reverse ? (1- Random.value) : Random.value;
             case ScaleType.Lucky:

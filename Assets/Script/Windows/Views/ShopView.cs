@@ -39,6 +39,7 @@ public partial class ShopView : ViewBase
     }
     public void ResetStore(bool hardReset)
     {
+        if (DataItemPlayer.main?.car == null) return;
         if (hardReset)
         {
             numResets = 0;
@@ -52,7 +53,7 @@ public partial class ShopView : ViewBase
         if (ResourceCache.main != null)
         {
             List<PartScriptable> playerparts = new();
-            playerparts.AddRange(DataItemPlayer.main.ship.parts.Select(p => p.scriptable));
+            playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
             var playerPartsArray = playerparts.ToArray();
             playerparts.Clear();
             foreach (var part in playerPartsArray)
@@ -119,8 +120,8 @@ public partial class ShopView : ViewBase
     public void InitializeShop()
     {
         if (DataItemPlayer.main == null) return;
-        playership.AssignShip(DataItemPlayer.main.ship);
-        dragdrop.InitSlots(DataItemPlayer.main.ship);
+        playership.AssignShip(DataItemPlayer.main.car);
+        dragdrop.InitSlots(DataItemPlayer.main.car);
     }
     void Conclude()
     {
@@ -129,7 +130,7 @@ public partial class ShopView : ViewBase
     }
     public void Proceed()
     {
-        if (DataItemPlayer.main.ship.ValidateAll())
+        if (DataItemPlayer.main.car.ValidateAll())
         {
             Conclude();
             TourneyController.main.ChangePhase(TourneyController.TourneyPhase.racing);

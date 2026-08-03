@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class RaceView : ViewBase
 {
-    public TextMeshProUGUI time,playerPosition;
+    public TextMeshProUGUI time;
     public PlayerShipGrid playership;
     public PlayerAbilityPreview preview;
     public GameObject interfaceParent;
     public GameObject gameOverParent;
+    public GameObject seasonResultsParent;
     public PartTooltip tooltip;
-    public RaceTooltip raceTooltip;
 
     public override void OnOpened()
     {
         base.OnOpened();
         if (DataItemPlayer.main == null) return;
-        playership.AssignShip(DataItemPlayer.main.ship);
-        preview.LoadPlayerShip(DataItemPlayer.main.ship);
+        playership.AssignShip(DataItemPlayer.main.car);
+        preview.LoadPlayerShip(DataItemPlayer.main.car);
         ToggleGameOver(false);
     }
     void Update()
@@ -28,15 +28,11 @@ public class RaceView : ViewBase
     void ToggleGameOver(bool value)
     {
         interfaceParent.SetActive(!value);
-        gameOverParent.SetActive(value);
+        gameOverParent.SetActive(value && !TourneyController.main.IsLastRaceInSeason());
+        seasonResultsParent.SetActive(value && TourneyController.main.IsLastRaceInSeason());
         if (value)
         {
             preview.Clear();
-            if (playerPosition != null) {
-                int position =  TourneyController.main.ongoingRace.GetPositionForRacer( TourneyController.main.GetPlayerRacer());
-                playerPosition.text = "You placed "+ (position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th") ;
-            }
-            raceTooltip?.ShowCurrentRace();
         }
     }
 

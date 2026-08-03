@@ -25,6 +25,11 @@ public class TourneyController : Initializable
             case TourneyPhase.beforeRace:
                 if (leaderboard == null || leaderboard.Count == 0)
                     InitRacers();
+                if ( GetCurrentRaceIndex() % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == 0)
+                {
+                    foreach (var racer in leaderboard.Keys.ToArray())
+                        leaderboard[racer] = 0;
+                }
                 ongoingRace = new Race()
                 {
                     raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
@@ -55,6 +60,7 @@ public class TourneyController : Initializable
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
                     HandlePlayerReward();
+                    UpdateVariables();
                 }
                 break;
         }
@@ -63,6 +69,11 @@ public class TourneyController : Initializable
     public int GetCurrentRaceIndex()
     {
         return ongoingRace?.raceID ?? 0;
+    }
+    public bool IsLastRaceInSeason()
+    {
+        int total = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+        return GetCurrentRaceIndex() % total == total - 1;
     }
     public float GetPointsForPosition(int position)
     {
@@ -86,7 +97,7 @@ public class TourneyController : Initializable
     }
     public void InitRacers(int opponents = 5)
     {
-        leaderboard.Add(new PlayerRacer(DataItemPlayer.main.ship), 0);
+        leaderboard.Add(new PlayerRacer(DataItemPlayer.main.car), 0);
         for (int i = 0; i < opponents; i++)
         {
             leaderboard.Add(new AiRacer(i + 1), 0);
@@ -119,6 +130,10 @@ public class TourneyController : Initializable
                 ChangePhase(TourneyPhase.afterRace);
         }
     }
+    public bool CanPlayerProceed()
+    {
+        return !IsLastRaceInSeason() || GetLeaderboardSorted()[0].id == 0 ; 
+    }
     void HandlePlayerReward()
     {
         float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, GetCurrentRaceIndex());
@@ -138,12 +153,21 @@ public class TourneyController : Initializable
         float distanceGold = 0;
         if (playerPos==0)
         {
-            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance * diffMult);
+            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance );
         }
 
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
 
         DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
+    }
+
+    void UpdateVariables()
+    {
+        var playerRacer = GetPlayerRacer();
+
+        DataItemPlayer.main.scope.SetVariable("race_position_"+ongoingRace.raceID, ongoingRace.GetPositionForRacer(GetPlayerRacer()));
+        DataItemPlayer.main.scope.SetVariable("race_distance_"+ongoingRace.raceID, playerRacer.position.distanceTraveled);
+        DataItemPlayer.main.scope.SetVariable("race_topspeed_"+ongoingRace.raceID, playerRacer.stats.realSpeed);
     }
 
     float debugSet = 0;

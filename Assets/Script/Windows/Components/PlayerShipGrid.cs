@@ -10,12 +10,13 @@ public class PlayerShipGrid : MonoBehaviour
     public void AssignShip(DataItemShip ship)
     {
         myShip = ship;
-        shipPreview.sprite = ship.scriptable.blueprint;
+        shipPreview.sprite = ship?.scriptable?.blueprint;
         UpdateGrid();
 
     }
     public void UpdateGrid()
     {
+        if (myShip == null) return;
         grid.Draw(myShip.mGrid, myShip.width, myShip.height);
         UpdateVisual();
     }

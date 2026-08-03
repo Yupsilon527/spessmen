@@ -1,17 +1,21 @@
 
 
+using Variables;
+
 public class DataItemPlayer : Initializable
 {
     public static DataItemPlayer main;
-    public DataItemShip ship;
+    public DataItemShip car;
 
     public PlayerEconomyController econ;
     public PlayerChaosController score;
+    public VariableScope scope;
     protected override void Initialize()
     {
             main = this;
         econ=GetComponent<PlayerEconomyController>();
         score = GetComponent<PlayerChaosController>();
+        scope = new VariableScope();
 
         econ.Setup();
         score.Setup();
@@ -19,7 +23,7 @@ public class DataItemPlayer : Initializable
     }
     public void FromData(ShipScriptable s)
     {
-        ship = new(s);
+        car = new(s);
     }
     public float GetPropertySpeculative(ModifierDefines.Property property)
     {
@@ -27,11 +31,11 @@ public class DataItemPlayer : Initializable
         float value = multiplicative ? 1 : 0;
 
         if (multiplicative)
-            value *= ship.scriptable.GetProperty(property, 1);
+            value *= car.scriptable.GetProperty(property, 1);
         else
-            value += ship.scriptable.GetProperty(property, 1);
+            value += car.scriptable.GetProperty(property, 1);
 
-        foreach (var part in ship.parts)
+        foreach (var part in car.parts)
         {
             if (multiplicative)
                 value *= part.scriptable.GetProperty(property, 1);

@@ -11,7 +11,7 @@ public class RaceTooltip : MonoBehaviour
     {
         if (raceNumber != null)
         {
-            int cRace = TourneyController.main.GetCurrentRaceIndex() + 1;
+            int cRace = (TourneyController.main?.GetCurrentRaceIndex()??0) + 1;
             int raceTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
             raceNumber.text = $"Race {cRace}/{Mathf.Ceil(cRace / raceTotal+1)* raceTotal}";
         }

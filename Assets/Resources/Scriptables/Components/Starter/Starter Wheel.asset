@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Starter Wheel
   m_EditorClassIdentifier: 
-  InternalName: Coolio Wheel
+  InternalName: Starter Wheel
   grid:
     width: 1
     height: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Coolio Wheel  OnRaceStart
+  - InternalName: Starter Wheel  OnRaceStart
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 6
+      value: 6.5
       reverse: 0
       effectSource: 0
       effectTarget: 0

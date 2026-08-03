@@ -7,6 +7,7 @@ public class PositionLeaderboard : Leaderboard
     }
     public override void UpdateLeaderboard()
     {
+        if (TourneyController.main?.ongoingRace == null) return;
         var racers = TourneyController.main.ongoingRace.racers;
 
         for (int i = 0; i < entries.Count; i++)

@@ -56,7 +56,7 @@ public class DragDropSlot : EventTrigger
     {
         attachedToken = null;
         if (slot == TokenSlot.build)
-            DataItemPlayer.main.ship.ResetOccupancy();
+            DataItemPlayer.main.car.ResetOccupancy();
     }
     public void DeleteToken()
     {

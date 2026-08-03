@@ -7,12 +7,21 @@ TODO
 		race display
 		portraits
 		side displays
+
+	test
+		events
+		scaling
+
+	rarities
 FIX
 	interest limit
 	overtake/abilities doesnt work
 
+	too much money
+
 QoL
 	part highlight position
+	parts cant rotate (decals, square)
 
 FEA
 	WEATHER - Binds/finisher/boss binds
@@ -48,3 +57,7 @@ Items
 		clicker - fast CD, 0 fuel use active, grant small boost
 		overgas tank (gas has no limit)
 		overgas wheel (%speed when at or over 100% gas)
+
+multiple item classifications
+
+classification relative properties (price, effectiveness, CD, etc) one property class

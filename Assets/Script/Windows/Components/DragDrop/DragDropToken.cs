@@ -102,7 +102,7 @@ public class DragDropToken : PartButtonBase
             dragDropMode = true;
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
-                DataItemPlayer.main.ship.RemovePart(mPart);
+                DataItemPlayer.main.car.RemovePart(mPart);
 
             ViewManager.Instance.shop.playership.UpdateVisual();
         }
@@ -193,7 +193,7 @@ public class DragDropToken : PartButtonBase
 
         foreach (var d in ShipDefines.deltaPos)
         {
-            if (DataItemPlayer.main.ship.CanPlace(mPart, slotCoords.x+d.x, slotCoords.y + d.y, rotation))
+            if (DataItemPlayer.main.car.CanPlace(mPart, slotCoords.x+d.x, slotCoords.y + d.y, rotation))
                 return true;
         }
         return false;
@@ -242,11 +242,11 @@ public class DragDropToken : PartButtonBase
                     {
                     foreach (var d in ShipDefines.deltaPos)
                     {
-                        if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
+                        if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
                             return;
                     }
                 }
-              else   if (DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
+              else   if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
                 {
                     Delete();
                     ViewManager.Instance.shop.playership.UpdateGrid();

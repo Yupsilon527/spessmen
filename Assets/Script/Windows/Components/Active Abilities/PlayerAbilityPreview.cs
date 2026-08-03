@@ -7,6 +7,7 @@ public class PlayerAbilityPreview : ShipPreview
     public HashSet<AbilityButton> buttons = new();
     public void LoadPlayerShip(DataItemShip ship)
     {
+        if (ship == null) return;
         foreach (var slot in ship.parts)
         {
             GenerateButton(slot);

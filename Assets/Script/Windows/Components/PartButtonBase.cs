@@ -57,7 +57,7 @@ public class PartButtonBase : Initializable
     public void SnapToGrid(RectTransform targetRect)
     {
         Vector2Int slotCoords = new Vector2Int(mPart.originX, mPart.originY);
-        DataItemPlayer.main.ship.TryPlace(mPart, slotCoords.x, slotCoords.y,rotation);
+        DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y,rotation);
         Rect rect = targetRect.rect;
 
         int width = mPart.rotation % 2 == 0 ? mPart.width : mPart.height;

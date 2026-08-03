@@ -25,6 +25,7 @@ public class AbilityDragDropInterface : ShipPreview
 
     public void InitSlots(DataItemShip s)
     {
+        if (s == null) return;
         ship = s;
 
         foreach (var slot in ship.parts)

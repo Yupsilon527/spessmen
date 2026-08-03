@@ -38,7 +38,7 @@ public class GridPreview : MonoBehaviour
     public Vector2Int GetGridPosition(Vector2 screenPos)
     {
         RectTransform recttransform = GetComponent<RectTransform>();
-        var grid = DataItemPlayer.main.ship;
+        var grid = DataItemPlayer.main.car;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             recttransform, screenPos, GetCanvasCamera(), out Vector2 localPoint);

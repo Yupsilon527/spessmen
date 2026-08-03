@@ -18,7 +18,7 @@ public class RacerAbilities : RacerComponent
                 abilities.Clear();
                 if (racer is PlayerRacer player)
                 {
-                    foreach (DataItemPart part in DataItemPlayer.main.ship.parts)
+                    foreach (DataItemPart part in DataItemPlayer.main.car.parts)
                     {
                         foreach (var ab in part.scriptable.abilities)
                         {
@@ -27,8 +27,8 @@ public class RacerAbilities : RacerComponent
                         if (part.scriptable.HasModifier())
                             racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
                     }
-                    if (DataItemPlayer.main.ship.scriptable.HasModifier())
-                        racer.modifiers.Add(DataItemPlayer.main.ship.scriptable.GetInnateModifier(racer));
+                    if (DataItemPlayer.main.car.scriptable.HasModifier())
+                        racer.modifiers.Add(DataItemPlayer.main.car.scriptable.GetInnateModifier(racer));
                 }
                 else
                 {
@@ -58,6 +58,7 @@ public class RacerAbilities : RacerComponent
     }
     public void ListenToEvent(ShipDefines.PartEvent evt)
     {
+        DataItemPlayer.main.Inspect($"{racer} activate ability {evt}");
         foreach (var ability in abilities)
         {
             if (!ability.Activate(racer, evt) && evt == ShipDefines.PartEvent.OnRaceStart)

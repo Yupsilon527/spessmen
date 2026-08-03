@@ -24,4 +24,19 @@ public class LeaderboardEntry : MonoBehaviour
         racerDescription.text = position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th";
         racerPosition.text = TourneyController.main.GetScoreForRacer(racer).ToString() ;
     }
+    public void ShowPlayerResults( int raceID)
+    {
+        var positionVar = DataItemPlayer.main.scope.GetVariable("race_position_"+raceID);
+        var distanceVar = DataItemPlayer.main.scope.GetVariable("race_distance_" + raceID);
+        var topspeedvar = DataItemPlayer.main.scope.GetVariable("race_topspeed_" + raceID);
+
+        racerName.text = "Race " + (raceID + 1);
+
+        float distance = Mathf.Round(distanceVar.GetFloatValue() * 10) / 10;
+        float topspeed = Mathf.Round(topspeedvar.GetFloatValue() * 10) / 10;
+        racerDescription.text = $"{distance}m ({topspeed})";
+
+        int position =Mathf.RoundToInt( positionVar.GetFloatValue());
+        racerPosition.text = position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th";
+    }
 }
