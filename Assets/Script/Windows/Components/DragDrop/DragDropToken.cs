@@ -296,7 +296,7 @@ public class DragDropToken : PartButtonBase
             }
         }
     }
-    void DiscardToken()
+    public void DiscardToken()
     {
         foreach (DragDropSlot trashslot in parent.stashSlots)
         {

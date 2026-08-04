@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Xweight Sticker
+  m_Name: Eweight Sticker
   m_EditorClassIdentifier: 
-  InternalName: Xweight Sticker
+  InternalName: Eweight Sticker
   grid:
     width: 1
     height: 1
     cells: 01
   states: []
   properties:
-  - Property: 45
+  - Property: 38
     value: 1
     IncreasePerLevel: 0
   relative: []
@@ -30,6 +30,6 @@ MonoBehaviour:
   partType: 6
   attach: 0
   priceMultiplier: 0.25
-  weightMultiplier: 3
+  weightMultiplier: 0.8
   unique: 0
   lockedForSomeReason: 0

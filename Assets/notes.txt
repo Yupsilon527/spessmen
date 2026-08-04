@@ -7,24 +7,10 @@ TODO
 		race display
 		portraits
 		side displays
-
-	test
-		events
-		scaling
 		
-	can merge/can only be placed tooltips
-	slots
-
-	interest limit
-	rarities
+	ballance gadgets
 FIX
 	part abilities CD display
-
-	rerolls with locked/missing slots
-
-	overtake/abilities doesnt work
-
-	rarities
 QoL
 	part highlight position
 	parts cant rotate (decals, square)

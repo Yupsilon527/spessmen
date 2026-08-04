@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 
 public partial class ShopView : ViewBase
 {
@@ -20,21 +19,27 @@ public partial class ShopView : ViewBase
     public void PresentMultipleItems(PurchaseData[] items)
     {
         int iB = 0;
-        for (int i = 0; i < items.Length; i++)
+        int ii = 0;
+
+        while (ii < items.Length)
         {
-            if (iB < itemButtonSelection.Length)
+            if (iB >= itemButtonSelection.Length)
+                return;
+
+            var button = itemButtonSelection[iB];
+            button?.dropSlot?.attachedToken?.DiscardToken();
+
+            if (button.IsLocked())
             {
-                if (itemButtonSelection[iB].IsLocked())
-                {
-                    iB++;
-                    continue;
-                }
-                else
-                {
-                    itemButtonSelection[iB].gameObject.SetActive(items[i] != null);
-                    itemButtonSelection[iB++].AssignItem(DataItemPlayer.main, items[i]);
-                }
+                iB++;
+                continue;
             }
+
+            button.gameObject.SetActive(ii<items.Length && items[ii] != null);
+            button.AssignItem(DataItemPlayer.main, items[ii]);
+
+            iB++;
+            ii++;
         }
     }
     public void ResetStore(bool hardReset)
@@ -75,7 +80,7 @@ public partial class ShopView : ViewBase
                 {
                     continue;
                 }
-                valid.Add(new WeightPart(item, playerparts.Contains(item) ? (10 - (int)item.boonRarity) : 3));
+                valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (15 - (int)item.boonRarity) : 10)));
 
             }
 

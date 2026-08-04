@@ -152,7 +152,8 @@ public static class ShipDefines
             case ScaleType.Random:
                 return reverse ? (1- Random.value) : Random.value;
             case ScaleType.Lucky:
-                float ranVal = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
                 return reverse ? (1- ranVal) : ranVal;
             default:
                 return 1;
@@ -165,7 +166,9 @@ public static class ShipDefines
             case PartCondition.Random:
                 return Random.value < conditionCheck;
             case PartCondition.Lucky:
-                return ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus)) < conditionCheck;
+                float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
+                return ranVal < conditionCheck;
             case PartCondition.SpeedBelow:
                 return racer.stats.realSpeed < conditionCheck;
             case PartCondition.SpeedAbove:

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Horse Sticker
+  m_Name: Gweight Sticker
   m_EditorClassIdentifier: 
-  InternalName: Horse Sticker
+  InternalName: Gweight Sticker
   grid:
     width: 1
     height: 1
     cells: 01
   states: []
   properties:
-  - Property: 8
-    value: 0.05
+  - Property: 39
+    value: 1
     IncreasePerLevel: 0
   relative: []
   abilities: []
@@ -29,7 +29,7 @@ MonoBehaviour:
   boonRarity: 1
   partType: 6
   attach: 0
-  priceMultiplier: 0.4
-  weightMultiplier: 0.66
+  priceMultiplier: 0.25
+  weightMultiplier: 0.8
   unique: 0
   lockedForSomeReason: 0

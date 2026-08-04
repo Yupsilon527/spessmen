@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Horse Decal
+  m_Name: Booster Decal
   m_EditorClassIdentifier: 
-  InternalName: Horse Decal
+  InternalName: Booster Decal
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 8
-    value: 0.6
+  - Property: 1
+    value: -0.33
     IncreasePerLevel: 0
-  - Property: 13
-    value: 0.2
-    IncreasePerLevel: 0
-  - Property: 29
-    value: 0.2
+  - Property: 5
+    value: 0.33
     IncreasePerLevel: 0
   relative: []
   abilities: []

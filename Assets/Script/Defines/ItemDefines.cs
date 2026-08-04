@@ -15,9 +15,8 @@ public static class ItemDefines
 
     public static float chaosPlus = 50;
     public static float chaosMinus = 30;
-    public static float luckPlus = 25;
+    public static float luckPlus = 7;
 
-    public static int RerollTriesAmount = 15;
     public enum BoonRarity
     {
         common = 0,
@@ -48,16 +47,16 @@ public static class ItemDefines
     public static float LuckNumber(float luck)
     {
         if (luck >= 0)
-            return 1 + luckPlus / (luck + luckPlus);
+            return   (luck + luckPlus) / luckPlus;
         else
-            return 1 - luckPlus / (luck + luckPlus);
+            return  - luckPlus / (luck - luckPlus);
     }
     public static float ChaosNumber(float chaos)
     {
         if (chaos >= 0)
-            return 1 + (chaos + chaosPlus) / chaosPlus;
+            return  (chaos + chaosPlus) / chaosPlus;
         else
-            return 1 - chaosMinus / (chaos + chaosMinus);
+            return  - chaosMinus / (chaos - chaosMinus);
     }
     public static Color GetColorForRarity(BoonRarity rarity)
     {

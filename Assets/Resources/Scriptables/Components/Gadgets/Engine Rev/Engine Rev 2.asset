@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Engine Rev 2  OnActivated
     cooldown: 2.75
-    fuelCost: 0
+    fuelCost: 8
     classification: 4
     function: 2
     condition: 0

@@ -24,6 +24,7 @@ public class DataItemPlayer : Initializable
     public void FromData(ShipScriptable s)
     {
         car = new(s);
+        econ.GiveGold(s.startingGold);
     }
     public float GetPropertySpeculative(ModifierDefines.Property property)
     {
