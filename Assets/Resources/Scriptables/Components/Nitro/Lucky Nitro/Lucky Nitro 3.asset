@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Lucky Nitro 3  OnActivated
     cooldown: 0.15
-    fuelCost: 10
+    fuelCost: 35
     classification: 5
     function: 2
     condition: 0

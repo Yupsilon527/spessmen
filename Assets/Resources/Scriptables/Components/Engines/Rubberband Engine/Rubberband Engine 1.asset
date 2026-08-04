@@ -32,7 +32,8 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 3
+      value: 2
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -41,10 +42,11 @@ MonoBehaviour:
       stat: 1
       scale: 0
       value: 4
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 2
-      conditionCheck: 240
+      conditionCheck: 50
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 5ead71c948f0c5c43851de25bb362318, type: 2}

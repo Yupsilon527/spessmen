@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Large Engine 1  OnTimePass
     cooldown: 4
-    fuelCost: 35
+    fuelCost: 75
     classification: 3
     function: 1
     condition: 0

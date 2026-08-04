@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Rubberband Engine 2  OnTimePass
     cooldown: 1.8
-    fuelCost: 21
+    fuelCost: 32
     classification: 3
     function: 1
     condition: 0
@@ -32,7 +32,8 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 6
+      value: 4
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -41,10 +42,11 @@ MonoBehaviour:
       stat: 1
       scale: 0
       value: 8
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 2
-      conditionCheck: 240
+      conditionCheck: 100
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: fb8dd38ff100642469196dabced38e29, type: 2}

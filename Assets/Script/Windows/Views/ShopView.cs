@@ -75,7 +75,7 @@ public partial class ShopView : ViewBase
                 {
                     continue;
                 }
-                valid.Add(new WeightPart(item, playerparts.Contains(item) ? 2 : 1));
+                valid.Add(new WeightPart(item, playerparts.Contains(item) ? (10 - (int)item.boonRarity) : 3));
 
             }
 

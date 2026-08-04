@@ -22,8 +22,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Engine 2  OnTimePass
-    cooldown: 4
-    fuelCost: 24
+    cooldown: 3.8
+    fuelCost: 35
     classification: 3
     function: 1
     condition: 0
@@ -32,7 +32,8 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 12
+      value: 6
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
       stat: 1
       scale: 6
       value: 3
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0

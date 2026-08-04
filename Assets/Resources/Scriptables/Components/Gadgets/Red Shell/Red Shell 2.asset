@@ -22,7 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Red Shell 2  OnActivated
-    cooldown: 8
+    cooldown: 5
     fuelCost: 0
     classification: 4
     function: 2
@@ -32,7 +32,8 @@ MonoBehaviour:
     - behavior: 0
       stat: 3
       scale: 0
-      value: -80
+      value: -8
+      reverse: 0
       effectSource: 2
       effectTarget: 2
       condition: 0

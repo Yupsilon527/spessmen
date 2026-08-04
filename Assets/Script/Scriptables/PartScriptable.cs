@@ -28,7 +28,7 @@ public class PartScriptable : ModifierScriptable
     }
     public virtual float GetBasePrice()
     {
-        return priceMultiplier * 20 * Mathf.Pow(2, (int)boonRarity);
+        return priceMultiplier * EconomyDefines.PartPriceBase * Mathf.Pow(2, (int)boonRarity);
     }
     public override string GetEffectDescription()
     {

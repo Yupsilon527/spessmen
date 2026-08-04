@@ -50,29 +50,39 @@ public class PartAbility
         string output = $"{function}: ";
 
         string effects = "";
-        foreach (var a in actions)
+        foreach (ConditionalPartAltetration a in actions)
         {
-            if (effects.Length > 0) effects += ", ";
 
-            switch (a.behavior)
+
+            string label = "";
+            if (a.condition != ShipDefines.PartCondition.Always)
             {
-                case ShipDefines.AlterationType.Addition:
-                    effects += "+";
-                    break;
-                case ShipDefines.AlterationType.Multiply:
-                    effects += "x";
-                    break;
+                label +=$"if {a.condition} {a.conditionCheck}: ";
             }
 
             if (a.scale == ShipDefines.ScaleType.Constant)
             {
-                effects += a.value + " ";
+                label += a.value + " ";
             }
             else
             {
-                effects += $"{MathF.Round(a.value * 100)}% of {a.effectSource} {a.scale} as ";
+                label += $"{MathF.Round(a.value * 100)}% of {a.effectSource} {a.scale} as ";
             }
-            effects += a.stat;
+            if (a.behavior == ShipDefines.AlterationType.Multiply)
+            {
+                if (effects[0] == '+')
+                    label = "x" + label.Substring(1);
+                else
+                    label = "x" + label;
+            }
+            label += a.stat;
+            if (a.effectTarget != RaceDefines.AbilityTarget.Self)
+            {
+                label = a.effectTarget + " gets " + label;
+            }
+
+            if (effects.Length > 0) effects += ", ";
+            effects += label;
         }
 
         string costs = ". ";

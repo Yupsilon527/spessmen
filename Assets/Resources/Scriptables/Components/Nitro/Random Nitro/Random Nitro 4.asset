@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Random Nitro 4  OnActivated
     cooldown: 1.5
-    fuelCost: 35
+    fuelCost: 60
     classification: 5
     function: 2
     condition: 0
@@ -33,6 +33,7 @@ MonoBehaviour:
       stat: 1
       scale: 11
       value: 120
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
