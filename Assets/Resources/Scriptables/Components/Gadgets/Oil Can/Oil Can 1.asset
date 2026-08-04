@@ -33,6 +33,7 @@ MonoBehaviour:
       stat: 3
       scale: 3
       value: -0.15
+      reverse: 0
       effectSource: 3
       effectTarget: 3
       condition: 0
@@ -41,7 +42,7 @@ MonoBehaviour:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 545ebb08dab58af47a71ea61922ccba0, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 2
   partType: 4
   attach: 0
   priceMultiplier: 1.2

@@ -17,7 +17,7 @@ public class RacerPosition : RacerComponent
         {
             case RaceDefines.RacePhase.RaceBegin:
                 distanceTraveled = 0;
-                racerPosition = 0;
+                racerPosition = TourneyController.main.ongoingRace.racers.Count;
                 aheadOfRival = false;
                 break;
             case RaceDefines.RacePhase.RaceTick:

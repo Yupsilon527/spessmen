@@ -17,7 +17,7 @@ public class PlayerShipGrid : MonoBehaviour
     public void UpdateGrid()
     {
         if (myShip == null) return;
-        grid.Draw(myShip.mGrid, myShip.width, myShip.height);
+        grid.Draw(myShip);
         UpdateVisual();
     }
 

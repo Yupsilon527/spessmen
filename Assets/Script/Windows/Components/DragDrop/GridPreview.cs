@@ -5,6 +5,14 @@ public class GridPreview : MonoBehaviour
 {
     public GridLayoutGroup gridLayout;
     public Image[] tile;
+    public void Draw(BoolGrid grid)
+    {
+        Draw(DataItemGrid.Translate(grid), grid.width, grid.height);
+    }
+    public void Draw(DataItemGrid grid)
+    {
+        Draw(grid.mGrid, grid.width, grid.height);
+    }
     public void Draw(bool[,] shape, int width, int height)
     {
         Clear();
@@ -22,7 +30,7 @@ public class GridPreview : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 tile[index].gameObject.SetActive(true);
-                tile[index].enabled = shape[x ,y];
+                tile[index].enabled = shape[x, y];
                 index++;
             }
         }

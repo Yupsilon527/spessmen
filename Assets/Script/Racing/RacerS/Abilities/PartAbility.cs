@@ -23,7 +23,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BaseSpeed,
-                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * (level+1) *rnval
+                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * (level+1) *rnval * (level == 0 ? .9f : 1f)
             }
             }
         };

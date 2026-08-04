@@ -31,16 +31,9 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 0
-      scale: 0
-      value: 1
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 0
       scale: 12
-      value: 159
+      value: 160
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0

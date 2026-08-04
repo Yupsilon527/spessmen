@@ -35,7 +35,7 @@ public class PartButtonBase : Initializable
     protected virtual void Redraw()
     {
         sprite.sprite = mPart.scriptable.icon;
-        gridPreview.Draw(mPart.mGrid, mPart.scriptable.grid.width, mPart.scriptable.grid.height);
+        gridPreview.Draw(mPart);
   if (outline!=null)      outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
     }
     public void Rotate(bool clockwise)

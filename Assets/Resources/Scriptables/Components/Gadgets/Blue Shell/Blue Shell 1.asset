@@ -22,7 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Blue Shell 1  OnActivated
-    cooldown: 10
+    cooldown: 16
     fuelCost: 0
     classification: 4
     function: 2
@@ -32,7 +32,8 @@ MonoBehaviour:
     - behavior: 0
       stat: 3
       scale: 3
-      value: -0.1
+      value: -0.25
+      reverse: 0
       effectSource: 1
       effectTarget: 1
       condition: 0

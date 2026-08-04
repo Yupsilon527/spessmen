@@ -1,6 +1,3 @@
-
-
-
 public class Ability : Countdown
 {
     public PartAbility data;
@@ -47,13 +44,12 @@ public class Ability : Countdown
     }
     public void ActivateOnRacer(Racer racer)
     {
-
-
+        TourneyController.main.Inspect($"{racer} uses ability {data.InternalName} at {data.function}");
         foreach (ConditionalPartAltetration action in data.actions)
         {
             var caster = RaceDefines.GetRacerRelative(racer, action.effectSource);
             var target = RaceDefines.GetRacerRelative(racer, action.effectTarget);
-            TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function} on {target}");
+            TourneyController.main.Inspect($"{caster} uses ability {action.behavior} at {data.function} on {target}");
 
             if (!action.CanAffectRacer(target)) continue;
 
@@ -105,7 +101,7 @@ public class Ability : Countdown
                 racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
 
             if (data.function == ShipDefines.PartEvent.OnActivated)
-                if (data.cooldown > 1)
+                if (data.cooldown > 1 || data.fuelCost > 20)
                     racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
                 else
                     racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);

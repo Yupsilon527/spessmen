@@ -321,7 +321,7 @@ public class DragDropToken : PartButtonBase
     {
         if (mPart != null && parent != null && parent.tooltip != null)
         {
-            parent.tooltip.ShowPart(mPart.scriptable);
+            parent.tooltip.ShowPart(mPart.scriptable,true);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

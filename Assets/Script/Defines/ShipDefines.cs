@@ -30,6 +30,7 @@ public static class ShipDefines
         TotalSpeed,
         RefreshEngines,
         RefreshGadgets,
+        RefreshNitros,
         RefreshCooldowns,
         Total,
     }

@@ -1,13 +1,18 @@
-
-using UnityEngine;
-
 public abstract class DataItemGrid
 {
     public int width, height;
     public bool[,] mGrid;
     public void Encode(bool[] grid)
     {
-        mGrid = new bool[width, height];
+        mGrid = Translate(grid, width, height);
+    }
+    public static bool[,] Translate(BoolGrid grid)
+    {
+        return Translate(grid.ToOutputGrid(), grid.width, grid.height);
+    }
+    public static bool[,] Translate(bool[] grid, int width, int height)
+    {
+        bool[,] output = new bool[width, height];
 
         for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
@@ -15,9 +20,10 @@ public abstract class DataItemGrid
                 int dot = y * width + x;
                 if (dot >= 0 && dot < grid.Length)
                 {
-                    SetValue(x, y, grid[dot]);
+                    output[x, y] = grid[dot];
                 }
             }
+        return output;
     }
 
     public bool IsInsideBounds(int x, int y)
@@ -78,16 +84,16 @@ public abstract class DataItemGrid
     }
     public bool RowUsed(int y)
     {
-        if (!IsInsideBounds(0,y)) return true;
+        if (!IsInsideBounds(0, y)) return true;
         for (int checkX = 0 + 1; checkX < width; checkX++)
         {
             if (mGrid[checkX, y]) return false;
         }
         return true;
     }
-    public bool IsTopmost( int y)
+    public bool IsTopmost(int y)
     {
-        return RowUsed(y-1);
+        return RowUsed(y - 1);
     }
 
     public bool IsBottommost(int y)

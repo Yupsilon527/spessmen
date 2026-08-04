@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Nitro Decal
+  m_EditorClassIdentifier: 
+  InternalName: Nitro Decal
+  grid:
+    width: 2
+    height: 2
+    cells: 01010101
+  states: []
+  properties:
+  - Property: 30
+    value: 0.33
+    IncreasePerLevel: 0
+  - Property: 26
+    value: 0.25
+    IncreasePerLevel: 0
+  relative: []
+  abilities: []
+  combos: []
+  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  boonRarity: 2
+  partType: 6
+  attach: 0
+  priceMultiplier: 1
+  weightMultiplier: 1
+  unique: 0
+  lockedForSomeReason: 0

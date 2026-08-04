@@ -77,10 +77,11 @@ public class PlayerStatsAlteration
                 target.stats.SetDirty();
                 break;
             case StatType.RefreshCooldowns:
+            case StatType.RefreshNitros:
             case StatType.RefreshEngines:
             case StatType.RefreshGadgets:
                 float CD = GetEffectiveChange(caster, mult, self);
-                foreach (var ab in stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : target.abilities.GetAbilityByType(stat== StatType.RefreshGadgets ? ItemDefines.PartType.gadget: ItemDefines.PartType.engine))
+                foreach (var ab in stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine))
                 {
                     ab.Shorten(CD);
                 }

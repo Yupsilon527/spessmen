@@ -57,4 +57,8 @@ public class Racer
         return value;
     }
     #endregion
+    public override string ToString()
+    {
+        return "Racer "+id;
+    }
 }

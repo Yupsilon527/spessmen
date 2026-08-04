@@ -11,14 +11,20 @@ TODO
 	test
 		events
 		scaling
+		
+	can merge/can only be placed tooltips
+	slots
 
+	interest limit
 	rarities
 FIX
-	interest limit
+	part abilities CD display
+
+	rerolls with locked/missing slots
+
 	overtake/abilities doesnt work
 
-	too much money
-
+	rarities
 QoL
 	part highlight position
 	parts cant rotate (decals, square)
@@ -33,6 +39,7 @@ FEA
 		rival abb immune
 		race is longer
 		player stunne for 1s
+		jammed - all CDs slower
 
 		enemies get random ability
 			random engine

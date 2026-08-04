@@ -1,16 +1,19 @@
+using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PartTooltip : MonoBehaviour
 {
     public bool toggleActive = false;
     public TextMeshProUGUI title, subtitle, description, value;
+    public GridPreview grid;
 
     private void Start()
     {
         Clear();
     }
-    public void ShowPart(PartScriptable part)
+    public void ShowPart(PartScriptable part, bool build)
     {
         if (title!=null)
         {
@@ -23,6 +26,17 @@ public class PartTooltip : MonoBehaviour
         if (description != null)
         {
             description.text = part.GetEffectDescription() ;
+            if (build)
+            {
+                if (part.combos.Length >0)
+                description.text += "<br>Can merge with "+string.Join(',', part.combos.Select(combo =>combo.other.InternalName));
+                if (part.attach != ItemDefines.PartCondition.Anywhere)
+                description.text += "<br>"+part.attach ;
+            }
+        }
+        if (grid!=null)
+        {
+            grid.Draw(part.grid);
         }
         if (value != null)
         {
@@ -43,6 +57,10 @@ public class PartTooltip : MonoBehaviour
         if (description != null)
         {
             description.text = "";
+        }
+        if (grid != null)
+        {
+            grid.Clear();
         }
         if (value != null)
         {

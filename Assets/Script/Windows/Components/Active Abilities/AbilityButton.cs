@@ -62,7 +62,7 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     {
         if (mPart != null && ViewManager.Instance.race != null && ViewManager.Instance.race.tooltip != null)
         {
-            ViewManager.Instance.race.tooltip.ShowPart(mPart.scriptable);
+            ViewManager.Instance.race.tooltip.ShowPart(mPart.scriptable,false);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

@@ -66,7 +66,20 @@ public partial class ShopView : ViewBase
 
             List<WeightPart> valid = new();
             foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
+            {
+                if (item.boonRarity >= ItemDefines.BoonRarity.rare && TourneyController.main.GetCurrentRaceIndex() == 0)
+                {
+                    continue;
+                } 
+                else if (item.boonRarity >= ItemDefines.BoonRarity.epic && TourneyController.main.GetCurrentRaceIndex() < RaceDefines.SeasonRaces)
+                {
+                    continue;
+                }
                 valid.Add(new WeightPart(item, playerparts.Contains(item) ? 2 : 1));
+
+            }
+
+            
 
             PurchaseData.AccountLuck(valid);
 

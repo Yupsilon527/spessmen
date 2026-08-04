@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class ItemDefines
 {
-    public static float commonSpawnWeight = 40;
+    public static float commonSpawnWeight = 100;
     public static float raritySpawnWeight = 60;
 
     public static float chaosPerRace = 20;
@@ -45,19 +45,19 @@ public static class ItemDefines
         Top
     }
 
-    public static float LuckNumber(DataItemPlayer player)
-    {
-        if (player != null)
-            return LuckNumber(player.score.playerChaos);
-        return Random.value;
-    }
-
     public static float LuckNumber(float luck)
     {
-        if (luck > 0)
-            return Random.value * (luckPlus + luck) / luckPlus;
+        if (luck >= 0)
+            return 1 + luckPlus / (luck + luckPlus);
         else
-            return (Random.value + Random.value * luckPlus / (luckPlus + luck)) * -.5f;
+            return 1 - luckPlus / (luck + luckPlus);
+    }
+    public static float ChaosNumber(float chaos)
+    {
+        if (chaos >= 0)
+            return 1 + (chaos + chaosPlus) / chaosPlus;
+        else
+            return 1 - chaosMinus / (chaos + chaosMinus);
     }
     public static Color GetColorForRarity(BoonRarity rarity)
     {

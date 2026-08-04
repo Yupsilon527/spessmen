@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 6.5
+      value: 6
       reverse: 0
       effectSource: 0
       effectTarget: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   boonRarity: 0
   partType: 1
   attach: 1
-  priceMultiplier: 0.2
+  priceMultiplier: 0.125
   weightMultiplier: 0.001
   unique: 0
   lockedForSomeReason: 1

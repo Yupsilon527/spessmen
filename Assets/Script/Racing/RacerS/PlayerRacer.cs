@@ -8,4 +8,8 @@ public class PlayerRacer : Racer
             modifiers.Add(new Modifier(this,part.scriptable));
         }
     }
+    public override string ToString()
+    {
+        return "Player Racer";
+    }
 }

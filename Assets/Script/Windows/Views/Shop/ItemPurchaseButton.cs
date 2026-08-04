@@ -133,7 +133,7 @@ public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
     {
         if (purchaseData!= null && shop != null && shop.tooltip!=null)
         {
-            shop.tooltip.ShowPart(purchaseData.part);
+            shop.tooltip.ShowPart(purchaseData.part,true);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

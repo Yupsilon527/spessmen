@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Large Engine 2
+  m_EditorClassIdentifier: 
+  InternalName: Large Engine 2
+  grid:
+    width: 4
+    height: 3
+    cells: 000101010101010101010100
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Large Engine 2  OnTimePass
+    cooldown: 2
+    fuelCost: 20
+    classification: 3
+    function: 1
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - behavior: 0
+      stat: 1
+      scale: 0
+      value: 10
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: -1
+    - behavior: 0
+      stat: 1
+      scale: 19
+      value: 1
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: -1
+  combos: []
+  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  boonRarity: 3
+  partType: 3
+  attach: 0
+  priceMultiplier: 1.8
+  weightMultiplier: 1
+  unique: 0
+  lockedForSomeReason: 0

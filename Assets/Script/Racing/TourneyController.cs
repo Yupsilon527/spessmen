@@ -25,7 +25,8 @@ public class TourneyController : Initializable
             case TourneyPhase.beforeRace:
                 if (leaderboard == null || leaderboard.Count == 0)
                     InitRacers();
-                if ( GetCurrentRaceIndex() % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == 0)
+                int season = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+                if ( GetCurrentRaceIndex() % season == season - 1)
                 {
                     foreach (var racer in leaderboard.Keys.ToArray())
                         leaderboard[racer] = 0;
@@ -144,17 +145,27 @@ public class TourneyController : Initializable
         DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace * diffMult);
 
         int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
-        float interest = DataItemPlayer.main.econ.gold.GetValue()* EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) ;
+        float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue()* (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest)-1),0, EconomyDefines.interestGoldCap);
 
-        float outputGold = EconomyDefines.constantGoldForRace * diffMult
-            + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus)
-            + Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count * playerPos)) * diffMult * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
+
+        float finishGold = Mathf.Max(0,EconomyDefines.constantGoldForRace * diffMult + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus));
+        float positionGold = Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count - playerPos)) * diffMult * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
+
+        float outputGold = finishGold + positionGold;
 
         float distanceGold = 0;
         if (playerPos==0)
         {
             distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance );
         }
+
+        DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);
+        DataItemPlayer.main.scope.SetVariable("gold_position", positionGold);
+        DataItemPlayer.main.scope.SetVariable("gold_interest", interest);
+        DataItemPlayer.main.scope.SetVariable("gold_performance", distanceGold);
+
+        var GE = DataItemPlayer.main.scope.GetVariable("gold_earned");
+        GE.SetFloatValue(GE.GetFloatValue() + interest + outputGold + distanceGold);
 
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
 

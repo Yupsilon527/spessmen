@@ -47,20 +47,8 @@ public class PurchaseData
     public static void AccountLuck(List<WeightPart> valid)
     {
         float level = TourneyController.main.GetCurrentRaceIndex() + 1;
-        float chaosCoefficient = 1;
-        float luckCoefficient = 1;
-
-        float luck = DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus);
-        float chaos = DataItemPlayer.main.score.playerChaos;
-
-        if (chaos > 0)
-            chaosCoefficient = (chaos + ItemDefines.chaosPlus) / ItemDefines.chaosPlus;
-        else
-            chaosCoefficient = ItemDefines.chaosMinus / (chaos + ItemDefines.chaosMinus);
-        if (luck >= 0)
-            luckCoefficient = ItemDefines.luckPlus / (luck + ItemDefines.luckPlus);
-        else
-            luckCoefficient = (Random.value + Random.value * ItemDefines.luckPlus / (ItemDefines.luckPlus + luck)) * -.5f;
+        float chaosCoefficient = ItemDefines.ChaosNumber(DataItemPlayer.main.score.playerChaos);
+        float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
 
         foreach (var item in valid)
         {
