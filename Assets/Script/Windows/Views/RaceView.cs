@@ -11,6 +11,7 @@ public class RaceView : ViewBase
     public GameObject gameOverParent;
     public GameObject seasonResultsParent;
     public PartTooltip tooltip;
+    public PlayerStats playerOverlay;
 
     public override void OnOpened()
     {
@@ -18,6 +19,7 @@ public class RaceView : ViewBase
         if (DataItemPlayer.main == null) return;
         playership.AssignShip(DataItemPlayer.main.car);
         preview.LoadPlayerShip(DataItemPlayer.main.car);
+        playerOverlay.AssignRacer(TourneyController.main.GetPlayerRacer());
         ToggleGameOver(false);
     }
     void Update()

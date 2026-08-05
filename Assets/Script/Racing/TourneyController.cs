@@ -103,6 +103,8 @@ public class TourneyController : Initializable
         {
             leaderboard.Add(new AiRacer(i + 1), 0);
         }
+        ArenaController.main?.Clear();
+        ArenaController.main?.LoadRacers(leaderboard.Keys.ToArray());
     }
     public Racer GetPlayerRacer()
     {

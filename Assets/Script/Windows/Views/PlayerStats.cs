@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : Initializable
 {
+    public Racer player;
     public TextMeshProUGUI  lap, distance, speed, position, fuelpercent, fuelvalue;
     public Image fuelFill;
 
@@ -12,9 +13,12 @@ public class PlayerStats : Initializable
         UpdatePlayerPosition();
         UpdatePlayerFuel();
     }
+    public void AssignRacer(Racer racer)
+    {
+        player = racer;
+    }
     void UpdatePlayerPosition()
     {
-        var player = TourneyController.main.GetPlayerRacer();
         if(player!=null)
         {
             if (lap!=null)
@@ -29,7 +33,6 @@ public class PlayerStats : Initializable
     }
     void UpdatePlayerFuel()
     {
-        var player = TourneyController.main.GetPlayerRacer();
         if(player!=null)
         {
             if (fuelvalue != null)

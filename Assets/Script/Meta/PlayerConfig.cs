@@ -22,8 +22,7 @@ public class PlayerConfig : MonoBehaviour
     private void Start()
     {
         DataItemPlayer.main.FromData(playerCharacter);
-        TourneyController.main.
-        ChangePhase(TourneyController.TourneyPhase.beforeRace);
+        TourneyController.main.  ChangePhase(TourneyController.TourneyPhase.beforeRace);
         ViewManager.Instance.OnNewGameBegin();
     }
 }
