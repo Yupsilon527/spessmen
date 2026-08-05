@@ -1,63 +1,65 @@
 public class Ability : Countdown
 {
     int useCount = 0;
+    public Racer caster;
     public PartAbility data;
 
-    public Ability(PartAbility a, DataItemPart part)
+    public Ability(PartAbility a, DataItemPart part, Racer caster)
     {
         data = a;
-        part.correspondingAbility = this;
+        this.caster = caster;
     }
-    public Ability(PartAbility a)
+    public Ability(PartAbility a, Racer caster)
     {
         data = a;
+        this.caster = caster;
     }
 
-    float GetFuelCost(Racer racer)
+    float GetFuelCost()
     {
-        float baseCost = data.fuelCost * racer.GetPropertyMultiplicative(ModifierDefines.Property.fuel_consumption_total);
+        float baseCost = data.fuelCost * caster.GetPropertyMultiplicative(ModifierDefines.Property.fuel_consumption_total);
         if (data.function == ShipDefines.PartEvent.OnActivated)
-            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.active_fuel_consumtion);
+            baseCost *= caster.GetPropertyMultiplicative(ModifierDefines.Property.active_fuel_consumtion);
         if (data.classification == ItemDefines.PartType.wheel)
-            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_fuel_consumption);
+            baseCost *= caster.GetPropertyMultiplicative(ModifierDefines.Property.engine_fuel_consumption);
         else if (data.classification == ItemDefines.PartType.gadget)
-            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.gadget_fuel_consumtion);
+            baseCost *= caster.GetPropertyMultiplicative(ModifierDefines.Property.gadget_fuel_consumtion);
         else if (data.classification == ItemDefines.PartType.nitro)
-            baseCost *= racer.GetPropertyMultiplicative(ModifierDefines.Property.nitro_fuel_consumtion);
+            baseCost *= caster.GetPropertyMultiplicative(ModifierDefines.Property.nitro_fuel_consumtion);
         return baseCost;
     }
-    float GetPartCooldown(Racer racer)
+    float GetPartCooldown()
     {
-        var cooldown = data.cooldown * racer.GetPropertyMultiplicative(ModifierDefines.Property.cooldown_total);
+        var cooldown = data.cooldown * caster.GetPropertyMultiplicative(ModifierDefines.Property.cooldown_total);
         if (data.function == ShipDefines.PartEvent.OnActivated)
-            cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_cooldown);
+            cooldown *= caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_cooldown);
         if (data.classification == ItemDefines.PartType.wheel)
-            cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.engine_cooldown);
+            cooldown *= caster.GetPropertyMultiplicative(ModifierDefines.Property.engine_cooldown);
         else if (data.classification == ItemDefines.PartType.nitro)
-            cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.nitro_cooldown);
+            cooldown *= caster.GetPropertyMultiplicative(ModifierDefines.Property.nitro_cooldown);
         else if (data.classification == ItemDefines.PartType.gadget)
-            cooldown *= racer.GetPropertyMultiplicative(ModifierDefines.Property.gadget_cooldown);
+            cooldown *= caster.GetPropertyMultiplicative(ModifierDefines.Property.gadget_cooldown);
         return cooldown;
     }
-    public bool CanBeActivated(Racer racer)
+    public bool CanBeActivated()
     {
-        return (data.fuelCost == 0 || racer.abilities.fuel.GetValue() > 0) && (data.maxUses == 0 ||useCount < data.maxUses) && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
+        return (data.fuelCost == 0 || caster.abilities.fuel.GetValue() > 0) && (data.maxUses == 0 || useCount < data.maxUses) && !IsRunning() && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }
-    public void ActivateOnRacer(Racer racer)
+    public void ActivateOnRacer()
     {
         useCount++;
-        TourneyController.main.Inspect($"{racer} uses ability {data.InternalName} at {data.function}");
+        TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
         foreach (ConditionalPartAltetration action in data.actions)
         {
-            var caster = RaceDefines.GetRacerRelative(racer, action.effectSource);
-            var target = RaceDefines.GetRacerRelative(racer, action.effectTarget);
+            var caster = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
+            var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
             TourneyController.main.Inspect($"{caster} uses ability {action.behavior} at {data.function} on {target}");
 
             if (!action.CanAffectRacer(target)) continue;
 
-            float strength = racer.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
+            float strength = this.caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
 
-            if (target == racer)
+            if (target == this.caster)
             {
                 if (action.stat == ShipDefines.StatType.BaseSpeed
                     || action.stat == ShipDefines.StatType.BoostSpeed
@@ -84,43 +86,43 @@ public class Ability : Countdown
                     strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
                 }
             }
-            action.GiveToPlayer(racer, target, strength);
+            action.GiveToPlayer(this.caster, target, strength);
         }
     }
-    public bool Activate(Racer racer, ShipDefines.PartEvent evt)
+    public bool Activate(ShipDefines.PartEvent evt)
     {
-        if (evt == data.function && CanBeActivated(racer))
+        if (evt == data.function && CanBeActivated())
         {
-            TourneyController.main.Inspect($"{racer} activates ability {data.InternalName}");
+            TourneyController.main.Inspect($"{caster} activates ability {data.InternalName}");
 
-            ActivateOnRacer(racer);
+            ActivateOnRacer();
 
             if (data.classification == ItemDefines.PartType.gadget)
-                racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
+                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
             else if (data.classification == ItemDefines.PartType.engine)
-                racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
+                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
             else if (data.classification == ItemDefines.PartType.nitro)
-                racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
+                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
 
             if (data.function == ShipDefines.PartEvent.OnActivated)
                 if (data.cooldown > 1 || data.fuelCost > 20)
-                    racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
+                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
                 else
-                    racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
+                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
 
-            racer.abilities.fuel.SubstractedValue(GetFuelCost(racer));
-            FireCooldown(racer);
+            caster.abilities.fuel.SubstractedValue(GetFuelCost());
+            FireCooldown();
             return true;
         }
         return false;
     }
-    public void FireCooldown(Racer racer)
+    public void FireCooldown()
     {
-        Set(GetPartCooldown(racer));
+        Set(GetPartCooldown());
     }
 
     public override string ToString()
     {
-        return data.InternalName+" AbilityData";
+        return data.InternalName + " AbilityData";
     }
 }

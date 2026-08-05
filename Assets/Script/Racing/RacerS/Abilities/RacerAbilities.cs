@@ -22,7 +22,7 @@ public class RacerAbilities : RacerComponent
                     {
                         foreach (var ab in part.scriptable.abilities)
                         {
-                            AddAbility(new Ability(ab,part));
+                            AddAbility(new Ability(ab,part, racer));
                         }
                         if (part.scriptable.HasModifier())
                             racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
@@ -34,11 +34,11 @@ public class RacerAbilities : RacerComponent
                 {
                     float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * .75f + .25f);
                     int level = TourneyController.main.GetCurrentRaceIndex();
-                    AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal)));
+                    AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal), racer));
                     if (level > 2 )
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
-                        AddAbility(new Ability(PartAbility.NpcEngine(level-2, rnVal)));
+                        AddAbility(new Ability(PartAbility.NpcEngine(level-2, rnVal), racer));
                     }
                 }
                 racer.modifiers.Refresh();
@@ -61,8 +61,8 @@ public class RacerAbilities : RacerComponent
         DataItemPlayer.main.Inspect($"{racer} activate ability {evt}");
         foreach (var ability in abilities)
         {
-            if (!ability.Activate(racer, evt) && evt == ShipDefines.PartEvent.OnRaceStart)
-                ability.FireCooldown(racer);
+            if (!ability.Activate( evt) && evt == ShipDefines.PartEvent.OnRaceStart)
+                ability.FireCooldown();
         }
     }
     public Ability[] GetAbilities()
@@ -72,5 +72,10 @@ public class RacerAbilities : RacerComponent
     public Ability[] GetAbilityByType(ItemDefines.PartType type)
     {
         return abilities.Where(a => a.data.classification == type).ToArray();
+    }
+    public Ability[] GetAbilitiesCorrespondingToPart(PartScriptable part)
+    {
+        var valid = part.abilities.Select(p => p.InternalName);
+        return abilities.Where(a => valid.Contains(a.data.InternalName)).ToArray();
     }
 }

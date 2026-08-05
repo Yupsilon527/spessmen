@@ -11,7 +11,7 @@ public class PartButtonBase : Initializable
     public Image sprite;
     public Outline outline;
     public int rotation = 0;
-    public void FromPart(DataItemPart part, bool draw)
+    public virtual void FromPart(DataItemPart part, bool draw)
     {
         ClearToken(false);
         mPart = part;

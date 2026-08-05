@@ -30,6 +30,6 @@ MonoBehaviour:
   partType: 6
   attach: 0
   priceMultiplier: 0.4
-  weightMultiplier: 1
+  weightMultiplier: 0.75
   unique: 0
   lockedForSomeReason: 0

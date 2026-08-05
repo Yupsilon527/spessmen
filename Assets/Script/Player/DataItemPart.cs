@@ -7,7 +7,6 @@ public class DataItemPart : DataItemGrid
     public int rotation = 0;
     public int originX;
     public int originY;
-    public Ability correspondingAbility;
     public float purchaseCost = 0;
     public DataItemPart(PartScriptable so, float purchaseCost)
     {

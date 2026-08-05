@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,14 +9,23 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI cooldownValue;
     public Image cooldownFill;
     public Button button;
-
+    Ability[] corresponding = new Ability[0];
+    public override void FromPart(DataItemPart part, bool draw)
+    {
+        base.FromPart(part, draw);
+        corresponding = TourneyController.main.GetPlayerRacer().abilities.GetAbilitiesCorrespondingToPart(part.scriptable);
+    }
+    public Ability[] GetCorrespondingAbilities()
+    {
+        return TourneyController.main.GetPlayerRacer().abilities.GetAbilitiesCorrespondingToPart(mPart.scriptable);
+    }
     protected override void Redraw()
     {
         base.Redraw();
         
         cooldownFill.sprite = mPart.scriptable.icon;
         
-        button.enabled = mPart?.correspondingAbility?.data?.function == ShipDefines.PartEvent.OnActivated;
+        button.enabled = corresponding.Any(a => a.data.function == ShipDefines.PartEvent.OnActivated);
         HideCooldown();
     }
     public override void AdjustRotation(int rotation)
@@ -32,17 +42,23 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     void UpdateCooldown()
     {
         HideCooldown();
-        if (mPart.correspondingAbility!=null)
+        float longestCD = 0;
+        float longestExhaust = 0;
+        foreach (var ability in corresponding)
         {
-            if (mPart.correspondingAbility.data.function != ShipDefines.PartEvent.OnRaceStart)
+            if (ability.data.function != ShipDefines.PartEvent.OnRaceStart)
             {
-                float cd = mPart.correspondingAbility.GetTimeRemaining();
-                if (cd > 0) {
-                    ShowCooldown(cd, mPart.correspondingAbility.GetDuration());
+                float cd = ability.GetTimeRemaining();
+                if (cd > longestCD)
+                {
+                    longestCD = cd;
                 }
             }
-            button.interactable = mPart?.correspondingAbility?.CanBeActivated(TourneyController.main.GetPlayerRacer()) ?? false;
+            if (!button.interactable)
+            button.interactable = ability.CanBeActivated();
         }
+        if (longestCD>0)
+            ShowCooldown(longestCD, longestExhaust);
     }
     void ShowCooldown(float cd, float total)
     {
@@ -56,7 +72,8 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     }
     public void OnClick()
     {
-            mPart?.correspondingAbility?.Activate(TourneyController.main.GetPlayerRacer(), ShipDefines.PartEvent.OnActivated);
+        foreach (var ability in corresponding)
+            ability.Activate( ShipDefines.PartEvent.OnActivated);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
