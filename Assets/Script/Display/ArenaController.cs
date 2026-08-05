@@ -5,7 +5,7 @@ public class RacerToon
 {
     public Racer racer;
     public Toon toon;
-
+    public float displaySpeed;
     public void PlayAnimation(string animName, int priority = 0, float fadeTime = .1f, float delay = 0, bool forced = true)
     {
         toon.PlayAnimation(animName, priority, fadeTime, delay, forced);
@@ -38,16 +38,28 @@ public class ArenaController : MonoBehaviour
     private void Update()
     {
         UpdateRacerPositions();
+        HandleFloatingText();
     }
     public void UpdateRacerPositions()
     {
         var playerRacer = GetPlayerRacer();
         foreach (var racer in racers)
         {
-            float relativePosition = 1-racer.racer.position.distanceTraveled / Mathf.Min(1,playerRacer.racer.position.distanceTraveled);
+            float relativePosition = racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled;
             if (relativePosition == 0) continue;
             racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), distanceFarAway) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - distanceFarAway, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id * zDelta);
                 }
+    }
+    void HandleFloatingText()
+    {
+        foreach (var racer in racers)
+        {
+            if (racer.racer.stats.realSpeed!= racer.displaySpeed)
+            {
+                float delta = racer.racer.stats.realSpeed - racer.displaySpeed;
+                racer.toon.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
+            }
+        }
     }
     public void LoadRacers(Racer[] racers)
     {

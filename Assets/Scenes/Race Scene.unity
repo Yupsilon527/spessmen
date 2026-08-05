@@ -3835,7 +3835,7 @@ MonoBehaviour:
   activeObjs: {fileID: 5828019722981977528}
   inactiveObjs: {fileID: 5404182523821627920}
   precacheData: []
-  textEffectPrefab: {fileID: 0}
+  textEffectPrefab: {fileID: 8456703094628506633, guid: 861416d542d79724b9c15459d58a9ad0, type: 3}
 --- !u!224 &3675350594610483938
 RectTransform:
   m_ObjectHideFlags: 0
