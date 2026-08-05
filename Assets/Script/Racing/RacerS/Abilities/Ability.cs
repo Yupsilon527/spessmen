@@ -1,5 +1,6 @@
 public class Ability : Countdown
 {
+    int useCount = 0;
     public PartAbility data;
 
     public Ability(PartAbility a, DataItemPart part)
@@ -40,10 +41,11 @@ public class Ability : Countdown
     }
     public bool CanBeActivated(Racer racer)
     {
-        return (data.fuelCost == 0 || racer.abilities.fuel.GetValue() > 0) && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
+        return (data.fuelCost == 0 || racer.abilities.fuel.GetValue() > 0) && (data.maxUses == 0 ||useCount < data.maxUses) && !IsRunning() && ShipDefines.RacerMeetsCondition(racer, data.condition, data.conditionCheck);
     }
     public void ActivateOnRacer(Racer racer)
     {
+        useCount++;
         TourneyController.main.Inspect($"{racer} uses ability {data.InternalName} at {data.function}");
         foreach (ConditionalPartAltetration action in data.actions)
         {

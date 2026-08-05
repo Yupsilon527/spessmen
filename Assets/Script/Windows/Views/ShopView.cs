@@ -128,11 +128,6 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main != null)
         {
             InitializeShop();
-            ResetStore(true);
-            raceTooltip?.ShowCurrentRace();
-
-            DataItemPlayer.main.econ.gold.OnValueChanged.RemoveListener(UpdateState);
-            DataItemPlayer.main.econ.gold.OnValueChanged.AddListener(UpdateState);
         }
     }
     public void InitializeShop()
@@ -140,6 +135,12 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main == null) return;
         playership.AssignShip(DataItemPlayer.main.car);
         dragdrop.InitSlots(DataItemPlayer.main.car);
+
+        ResetStore(true);
+        raceTooltip?.ShowCurrentRace();
+
+        DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(UpdateState);
+        DataItemPlayer.main?.econ?.gold?.OnValueChanged.AddListener(UpdateState);
     }
     void Conclude()
     {

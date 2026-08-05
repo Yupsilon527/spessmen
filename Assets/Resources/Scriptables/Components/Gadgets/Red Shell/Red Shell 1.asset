@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Red Shell 1  OnActivated
+    maxUses: 0
     cooldown: 6
     fuelCost: 0
     classification: 4
@@ -55,6 +56,6 @@ MonoBehaviour:
   partType: 4
   attach: 0
   priceMultiplier: 1.2
-  weightMultiplier: 1
+  weightMultiplier: 0.6
   unique: 0
   lockedForSomeReason: 0

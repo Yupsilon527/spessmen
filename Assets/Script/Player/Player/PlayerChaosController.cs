@@ -4,6 +4,11 @@ public class PlayerChaosController : PlayerComponent
 {
     public float playerChaos = 0;
 
+    public override void Setup()
+    {
+        base.Setup();
+        playerChaos = 0;
+    }
 
     public void GiveLuck(ItemDefines.BoonRarity rarity)
     {

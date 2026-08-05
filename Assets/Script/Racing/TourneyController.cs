@@ -17,14 +17,17 @@ public class TourneyController : Initializable
         afterRace,
     }
     public TourneyPhase currentPhase;
+    public void FreshStart()
+    {
+        InitRacers();
+        ChangePhase(TourneyController.TourneyPhase.beforeRace);
+    }
     public void ChangePhase(TourneyPhase nPhase)
     {
         Inspect("Change Phase " + nPhase);
         switch (nPhase)
         {
             case TourneyPhase.beforeRace:
-                if (leaderboard == null || leaderboard.Count == 0)
-                    InitRacers();
                 int season = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
                 if ( GetCurrentRaceIndex() % season == season - 1)
                 {
@@ -99,6 +102,7 @@ public class TourneyController : Initializable
     }
     public void InitRacers(int opponents = 5)
     {
+        leaderboard.Clear();
         leaderboard.Add(new PlayerRacer(DataItemPlayer.main.car), 0);
         for (int i = 0; i < opponents; i++)
         {
@@ -179,9 +183,23 @@ public class TourneyController : Initializable
     {
         var playerRacer = GetPlayerRacer();
 
-        DataItemPlayer.main.scope.SetVariable("race_position_"+ongoingRace.raceID, ongoingRace.GetPositionForRacer(GetPlayerRacer()));
+        DataItemPlayer.main.scope.SetVariable("race_position_"+ongoingRace.raceID, ongoingRace.GetPositionForRacer(playerRacer));
         DataItemPlayer.main.scope.SetVariable("race_distance_"+ongoingRace.raceID, playerRacer.position.distanceTraveled);
         DataItemPlayer.main.scope.SetVariable("race_topspeed_"+ongoingRace.raceID, playerRacer.stats.realSpeed);
+
+        if (IsLastRaceInSeason())
+        {
+            var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
+            tournamentsCompleted.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+            if (ongoingRace.GetPositionForRacer(playerRacer) == 0)
+            {
+                var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
+                tournamentsWon.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+
+                var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_"+DataItemPlayer.main.car.scriptable.InternalName);
+                characterWins.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+            }
+        }
     }
 
     float debugSet = 0;

@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Clockwork Decal  OnTimePass
+    maxUses: 0
     cooldown: 1
     fuelCost: 0
     classification: 6
@@ -50,6 +51,6 @@ MonoBehaviour:
   partType: 6
   attach: 0
   priceMultiplier: 1
-  weightMultiplier: 1
+  weightMultiplier: 3
   unique: 0
   lockedForSomeReason: 0

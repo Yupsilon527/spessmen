@@ -66,7 +66,7 @@ using UnityEngine;
             {
                 float fireTime = Mathf.Max( delay, nextAlertTime .GetTimeRemaining());
                var ef =  ArenaController.main.epool.TextEffect(value, character.FindAttachPoint(attach).position, color: color, delay: fireTime, animation: animation, scale:scale*.1f);
-            ef.transform.rotation = Quaternion.Inverse(ArenaController.main.camera.transform.rotation);    
+            ef.transform.rotation = (ArenaController.main.camera.transform.rotation);    
             nextAlertTime.Set(.2f);
             }
         }

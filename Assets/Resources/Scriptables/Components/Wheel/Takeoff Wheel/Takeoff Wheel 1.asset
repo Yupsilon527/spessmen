@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Takeoff Wheel 1  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -39,6 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   - InternalName: Takeoff Wheel 1  OnOtherOvertaken
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -49,13 +51,14 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 4
+      value: 2
       reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   - InternalName: Takeoff Wheel 1  OnRivalOvertaken
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -66,7 +69,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 0
-      value: 12
+      value: 4
       reverse: 0
       effectSource: 0
       effectTarget: 0

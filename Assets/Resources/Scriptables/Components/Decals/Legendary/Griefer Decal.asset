@@ -31,6 +31,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Griefer Decal  OnOtherOvertaken
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 6
@@ -52,7 +53,7 @@ MonoBehaviour:
   boonRarity: 3
   partType: 6
   attach: 0
-  priceMultiplier: 0.666
-  weightMultiplier: 1
+  priceMultiplier: 0.66
+  weightMultiplier: 5
   unique: 0
   lockedForSomeReason: 0

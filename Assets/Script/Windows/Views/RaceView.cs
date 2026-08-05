@@ -61,4 +61,8 @@ public class RaceView : ViewBase
             ViewManager.Instance.ChangeView(ViewManager.Views.shopView);
         }
     }
+    public void RestartGame()
+    {
+        PlayerConfig.main.StartNewGame();   
+    }
 }

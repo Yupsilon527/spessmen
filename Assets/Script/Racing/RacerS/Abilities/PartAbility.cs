@@ -5,6 +5,7 @@ using UnityEngine;
 public class PartAbility
 {
     public string InternalName;
+    public int maxUses = 0;
     public float cooldown = 0;
     public float fuelCost = 0;
     public ItemDefines.PartType classification;

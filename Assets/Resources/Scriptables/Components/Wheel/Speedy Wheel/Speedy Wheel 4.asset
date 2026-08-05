@@ -22,7 +22,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Speedy Wheel 4  OnTimePass
-    cooldown: 0.5
+    maxUses: 0
+    cooldown: 0.6
     fuelCost: 0
     classification: 1
     function: 1
@@ -44,6 +45,6 @@ MonoBehaviour:
   partType: 1
   attach: 1
   priceMultiplier: 1
-  weightMultiplier: 2
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

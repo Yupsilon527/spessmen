@@ -10,49 +10,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Emergency Tank 4
+  m_Name: Vampire Decal
   m_EditorClassIdentifier: 
-  InternalName: Emergency Tank 4
+  InternalName: Vampire Decal
   grid:
     width: 2
     height: 2
-    cells: 01010100
+    cells: 01010101
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Emergency Tank 4  OnActivated
-    cooldown: 5
+  - InternalName: Vampire Decal  OnOtherOvertaken
+    maxUses: 0
+    cooldown: 0
     fuelCost: 0
-    classification: 4
-    function: 2
+    classification: 6
+    function: 4
     condition: 0
     conditionCheck: 0
     actions:
     - behavior: 0
-      stat: 2
-      scale: 0
-      value: 120
+      stat: 3
+      scale: 3
+      value: -0.1
       reverse: 0
-      effectSource: 0
-      effectTarget: 0
+      effectSource: 3
+      effectTarget: 3
       condition: 0
       conditionCheck: 0
     - behavior: 0
       stat: 3
-      scale: 0
-      value: -10
+      scale: 3
+      value: 0.1
       reverse: 0
-      effectSource: 0
+      effectSource: 3
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 3
-  partType: 4
+  partType: 6
   attach: 0
-  priceMultiplier: 0.5
-  weightMultiplier: 1
+  priceMultiplier: 0.66
+  weightMultiplier: 5
   unique: 0
   lockedForSomeReason: 0

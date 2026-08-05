@@ -34,7 +34,7 @@ MonoBehaviour:
       scale: 12
       value: -120
       reverse: 0
-      effectSource: 3
+      effectSource: 0
       effectTarget: 3
       condition: 0
       conditionCheck: 0

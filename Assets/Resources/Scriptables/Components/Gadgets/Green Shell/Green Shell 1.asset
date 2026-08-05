@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Green Shell 1  OnActivated
+    maxUses: 0
     cooldown: 6
     fuelCost: 0
     classification: 4
@@ -40,12 +41,12 @@ MonoBehaviour:
       conditionCheck: 0.75
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 53df9ab08632c5b49b9a25d4caffc0de, type: 2}
+    result: {fileID: 11400000, guid: 86a0bb90deb19ef42b889e54062b38b6, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 0
   partType: 4
   attach: 0
   priceMultiplier: 1.2
-  weightMultiplier: 1
+  weightMultiplier: 0.6
   unique: 0
   lockedForSomeReason: 0

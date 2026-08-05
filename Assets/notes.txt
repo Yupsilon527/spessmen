@@ -1,5 +1,6 @@
 TODO
 	redo correspondingabilities
+	remove common gadgets
 
 	visual
 		racer character
@@ -11,8 +12,6 @@ TODO
 		side displays
 
 	character selection
-		
-	ballance gadgets
 FIX
 	part abilities CD display
 QoL

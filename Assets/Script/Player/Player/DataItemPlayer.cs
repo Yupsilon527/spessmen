@@ -17,13 +17,14 @@ public class DataItemPlayer : Initializable
         score = GetComponent<PlayerChaosController>();
         scope = new VariableScope();
 
-        econ.Setup();
-        score.Setup();
         base.Initialize();
     }
     public void FromData(ShipScriptable s)
     {
         car = new(s);
+        econ.Setup();
+        score.Setup();
+
         econ.GiveGold(s.startingGold);
     }
     public float GetPropertySpeculative(ModifierDefines.Property property)
