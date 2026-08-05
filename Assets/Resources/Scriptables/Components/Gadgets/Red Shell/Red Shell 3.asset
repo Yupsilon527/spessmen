@@ -38,6 +38,15 @@ MonoBehaviour:
       effectTarget: 2
       condition: 0
       conditionCheck: 0
+    - behavior: 0
+      stat: 3
+      scale: 3
+      value: -0.1
+      reverse: 0
+      effectSource: 2
+      effectTarget: 2
+      condition: 0
+      conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 650c7fd120b6cf041babd28ca7e7cfbb, type: 2}

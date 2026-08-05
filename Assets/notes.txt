@@ -1,4 +1,6 @@
 TODO
+	redo correspondingabilities
+
 	visual
 		racer character
 		opponent character
@@ -7,6 +9,8 @@ TODO
 		race display
 		portraits
 		side displays
+
+	character selection
 		
 	ballance gadgets
 FIX

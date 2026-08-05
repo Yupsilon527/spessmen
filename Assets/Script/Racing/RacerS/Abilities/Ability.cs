@@ -116,4 +116,9 @@ public class Ability : Countdown
     {
         Set(GetPartCooldown(racer));
     }
+
+    public override string ToString()
+    {
+        return data.InternalName+" AbilityData";
+    }
 }

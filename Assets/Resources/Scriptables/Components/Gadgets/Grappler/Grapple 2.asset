@@ -22,8 +22,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Grapple 2  OnActivated
-    cooldown: 8
-    fuelCost: 0
+    cooldown: 5
+    fuelCost: 35
     classification: 4
     function: 2
     condition: 0
@@ -33,6 +33,7 @@ MonoBehaviour:
       stat: 1
       scale: 3
       value: 0.15
+      reverse: 0
       effectSource: 1
       effectTarget: 0
       condition: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
       stat: 3
       scale: 3
       value: -0.25
+      reverse: 0
       effectSource: 1
       effectTarget: 1
       condition: 0

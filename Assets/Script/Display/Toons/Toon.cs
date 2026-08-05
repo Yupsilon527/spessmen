@@ -7,7 +7,7 @@ using UnityEngine;
         public Animator animator;
         public CharacterResolver character;
     public PlayerStats overlay;
-        float nextAlertTime = 0;
+    public Countdown nextAlertTime = new();
         public enum AlertImportance
         {
             Always,
@@ -64,11 +64,16 @@ using UnityEngine;
         {
             if (ArenaController.main.gameObject.activeSelf )
             {
-                float fireTime = Mathf.Max( delay, nextAlertTime - Time.time);
-                ArenaController.main.epool.TextEffect(value, character.FindAttachPoint(attach).position, color: color, delay: fireTime, animation: animation, scale:scale*.1f);
-                nextAlertTime = fireTime + .2f;
+                float fireTime = Mathf.Max( delay, nextAlertTime .GetTimeRemaining());
+               var ef =  ArenaController.main.epool.TextEffect(value, character.FindAttachPoint(attach).position, color: color, delay: fireTime, animation: animation, scale:scale*.1f);
+            ef.transform.rotation = Quaternion.Inverse(ArenaController.main.camera.transform.rotation);    
+            nextAlertTime.Set(.2f);
             }
         }
+    public void ResetAlertTimes()
+    {
+        nextAlertTime.Stop();
+    }
         public void OverlayColor(Color color)
         {
             foreach (var kvp in character.SpriteRenderers)

@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a9f44f1e2acfcc54da7a301c2056df66, type: 3}
+    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.686
+      objectReference: {fileID: 0}
+    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
+      propertyPath: m_FillClockwise
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362110113028744623, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 731345773401440334, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
       propertyPath: m_fontSize
       value: 1.75
@@ -94,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731243856935369540, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
       propertyPath: m_AnchorMax.x

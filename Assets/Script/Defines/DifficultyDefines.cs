@@ -7,4 +7,7 @@ public static class DifficultyDefines
     public static float enemyBaseSpeed = 8;
     public static float enemyWheelSpeed = 9;
     public static float enemyEngineSpeed = 8;
+
+    public static float lapDistanceBase = 200;
+    public static float lapDistanceAdd = 20;
 }

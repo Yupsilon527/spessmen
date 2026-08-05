@@ -35,6 +35,7 @@ public class TourneyController : Initializable
                 {
                     raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
                     racers = leaderboard.Keys.Select(k => k).ToList(),
+                    lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * GetCurrentRaceIndex() //TODO define
                 };
                 break;
             case TourneyPhase.racing:

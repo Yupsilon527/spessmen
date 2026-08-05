@@ -32,7 +32,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 9
-      value: 0.75
+      value: 0.12
       reverse: 0
       effectSource: 0
       effectTarget: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 2
   partType: 1
-  attach: 1
+  attach: 0
   priceMultiplier: 0.967
   weightMultiplier: 1
   unique: 0

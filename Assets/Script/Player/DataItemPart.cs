@@ -44,4 +44,8 @@ public class DataItemPart : DataItemGrid
 
         return found != null ? found.result : scriptable;
     }
+    public override string ToString()
+    {
+        return scriptable.InternalName + "Data" ;
+    }
 }

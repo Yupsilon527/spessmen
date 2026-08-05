@@ -31,10 +31,10 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 3
-      scale: 3
-      value: -0.25
+      scale: 5
+      value: 10
       reverse: 0
-      effectSource: 1
+      effectSource: 0
       effectTarget: 1
       condition: 0
       conditionCheck: 0

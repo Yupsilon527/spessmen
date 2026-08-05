@@ -38,6 +38,15 @@ MonoBehaviour:
       effectTarget: 2
       condition: 0
       conditionCheck: 0
+    - behavior: 0
+      stat: 3
+      scale: 3
+      value: -0.1
+      reverse: 0
+      effectSource: 2
+      effectTarget: 2
+      condition: 0
+      conditionCheck: 0
   combos: []
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 3

@@ -23,7 +23,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Oil Can 2  OnActivated
     cooldown: 0.2
-    fuelCost: 20
+    fuelCost: 15
     classification: 4
     function: 2
     condition: 0
@@ -33,6 +33,7 @@ MonoBehaviour:
       stat: 3
       scale: 3
       value: -0.15
+      reverse: 0
       effectSource: 3
       effectTarget: 3
       condition: 0

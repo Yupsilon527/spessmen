@@ -19,11 +19,11 @@ public class ArenaController : MonoBehaviour
     public Camera camera;
     public SpecialEffectPool epool;
     public GameObject racerPrefab, opponentPrefab;
-    public HashSet<RacerToon> racers=new();
+    public HashSet<RacerToon> racers = new();
     [Header("Toon Distance Delta")]
     public float zDelta = 5;
-    public float distanceDelta = 100;
     public float distanceFarAway = 300;
+    public float distanceDelta = 100;
     public float distanceFarAwayDelta = 30;
 
     public static ArenaController main;
@@ -35,6 +35,14 @@ public class ArenaController : MonoBehaviour
         if (epool == null)
             epool = GetComponentInChildren<SpecialEffectPool>();
     }
+    private void OnEnable()
+    {
+        foreach (var racer in racers)
+        {
+            racer.displaySpeed = racer.racer.stats.realSpeed;
+            racer.toon.ResetAlertTimes();
+        }
+        }
     private void Update()
     {
         UpdateRacerPositions();
@@ -42,22 +50,24 @@ public class ArenaController : MonoBehaviour
     }
     public void UpdateRacerPositions()
     {
+        float posDelta = distanceFarAway * (TourneyController.main?.ongoingRace?.lapDistance ?? 200);
         var playerRacer = GetPlayerRacer();
         foreach (var racer in racers)
         {
             float relativePosition = racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled;
             if (relativePosition == 0) continue;
-            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), distanceFarAway) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - distanceFarAway, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id * zDelta);
-                }
+            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id * zDelta);
+        }
     }
     void HandleFloatingText()
     {
         foreach (var racer in racers)
         {
-            if (racer.racer.stats.realSpeed!= racer.displaySpeed)
+            if (!racer.toon.nextAlertTime.IsRunning() &&  racer.racer.stats.realSpeed != racer.displaySpeed)
             {
                 float delta = racer.racer.stats.realSpeed - racer.displaySpeed;
                 racer.toon.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
+                racer.displaySpeed = racer.racer.stats.realSpeed;
             }
         }
     }
@@ -109,8 +119,8 @@ public class ArenaController : MonoBehaviour
 
             var toon = gob.GetComponent<Toon>();
 
-           // toon.character.ChangeLayer("Combatant");
-          //  toon.character.ChangeSortingLayer("Players");
+            // toon.character.ChangeLayer("Combatant");
+            //  toon.character.ChangeSortingLayer("Players");
             toon.character.ChangeMaskInteraction(SpriteMaskInteraction.None);
 
             return toon;
