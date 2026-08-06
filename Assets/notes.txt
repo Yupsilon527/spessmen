@@ -1,5 +1,4 @@
 TODO
-	redo correspondingabilities
 	remove common gadgets
 
 	visual
@@ -11,29 +10,14 @@ TODO
 		portraits
 		side displays
 
+	enemy use abilities
 	character selection
 FIX
-	part abilities CD display
 QoL
 	part highlight position
 	parts cant rotate (decals, square)
 
 FEA
-	WEATHER - Binds/finisher/boss binds
-		fuel half empty
-		less fuel
-		rival is faster
-		ability CD%
-		engine CD%
-		rival abb immune
-		race is longer
-		player stunne for 1s
-		jammed - all CDs slower
-
-		enemies get random ability
-			random engine
-
-
 	global/multihit abilities
 		storm (slows everyone)
 	pickups

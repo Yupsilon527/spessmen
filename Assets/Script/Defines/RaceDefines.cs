@@ -19,6 +19,26 @@ public static class RaceDefines
         BackRacer,
         RivalRacer,
     }
+    public enum RaceModifiers
+    {
+        Nothing = 0,
+        FasterRival=1,
+        FuelCosnumption=2,
+        ActiveCooldown=3,
+        EngineCooldown=4,
+        LapsLonger=5,
+        LongerRace=6,
+
+        //FEA PlayerStunned,
+        //FEA RivalImmune,
+
+        Elite = 7,
+
+        AllCooldownsOff=7,
+        RandomEngine=8,
+        RandomGadget=9,
+        Total=10,
+    }
 
     public static Racer GetRacerRelative(Racer original, AbilityTarget target)
     {

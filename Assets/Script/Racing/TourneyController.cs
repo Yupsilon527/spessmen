@@ -7,7 +7,7 @@ public class TourneyController : Initializable
 {
     public static TourneyController main;
     Dictionary<Racer, float> leaderboard = new();
-
+    public EnvironmentScriptable tournamentEnvironment;
 
     public Race ongoingRace;
     public enum TourneyPhase
@@ -20,7 +20,7 @@ public class TourneyController : Initializable
     public void FreshStart()
     {
         InitRacers();
-        ChangePhase(TourneyController.TourneyPhase.beforeRace);
+        ChangePhase(TourneyPhase.beforeRace);
     }
     public void ChangePhase(TourneyPhase nPhase)
     {
@@ -40,6 +40,18 @@ public class TourneyController : Initializable
                     racers = leaderboard.Keys.Select(k => k).ToList(),
                     lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * GetCurrentRaceIndex() //TODO define
                 };
+                if (GetCurrentRaceIndex() % RaceDefines.SeasonRaces == 0)
+                {
+                    PickRandomEnvironment();
+                }
+                if (ongoingRace.raceID % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons - 1)
+                {
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
+                }
+                else if (ongoingRace.raceID % (RaceDefines.SeasonRaces ) == RaceDefines.SeasonRaces - 1)
+                {
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
+                }
                 break;
             case TourneyPhase.racing:
                 if (currentPhase == TourneyPhase.beforeRace || ongoingRace == null || !ongoingRace.IsRunning())
@@ -49,8 +61,69 @@ public class TourneyController : Initializable
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
+                    float raceTime = 20;//TODO define
                     debugSet = 0;
-                    ongoingRace.Set(20);
+
+                    var player = GetPlayerRacer();
+                    switch (ongoingRace.modifier)
+                    {
+                        case RaceDefines.RaceModifiers.FasterRival:
+                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            {
+                                {  ModifierDefines.Property.rival_speed, 2 }
+                            }));
+                            break;
+                        case RaceDefines.RaceModifiers.FuelCosnumption:
+                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            {
+                                {  ModifierDefines.Property.fuel_consumption_total,1.25f }
+                            }));
+                            break;
+                        case RaceDefines.RaceModifiers.ActiveCooldown:
+                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            {
+                                {  ModifierDefines.Property.ability_cooldown,1.5f }
+                            }));
+                            break;
+                        case RaceDefines.RaceModifiers.EngineCooldown:
+                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            {
+                                {  ModifierDefines.Property.engine_cooldown,1.5f }
+                            }));
+                            break;
+                        case RaceDefines.RaceModifiers.LapsLonger:
+                            ongoingRace.lapDistance *= 1.25f;
+                            break;
+                        case RaceDefines.RaceModifiers.LongerRace:
+                            raceTime *= 1.5f;
+                            break;
+                        case RaceDefines.RaceModifiers.AllCooldownsOff:
+                            foreach (var ability in player.abilities.GetAbilities())
+                            {
+                                if (ability.data.function != ShipDefines.PartEvent.OnRaceStart)
+                                    ability.FireCooldown();
+                            }
+                            break;
+                        case RaceDefines.RaceModifiers.RandomEngine:
+                        case RaceDefines.RaceModifiers.RandomGadget:
+                            var validparts = ResourceCache.main.parts.Where(
+                                p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons))
+                                && p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget)
+                                ).ToArray() ;
+
+                            if (validparts.Length > 0) { 
+                            foreach (var racer in ongoingRace.racers)
+                            {
+                                if (racer.id != 0)
+                                {
+                                        var rSelected = validparts[Mathf.FloorToInt(Random.value * validparts.Length)];
+                                        racer.abilities.AddPart(rSelected);
+                                }
+                            }
+                            }
+                            break;
+                    }
+                    ongoingRace.Set(raceTime);
                 }
                 break;
             case TourneyPhase.afterRace:
@@ -201,6 +274,12 @@ public class TourneyController : Initializable
             }
         }
     }
+    void PickRandomEnvironment()
+    {
+        var environments = ResourceCache.main.environments.Where(e => e != tournamentEnvironment).ToArray();
+        if (environments.Length >0)
+            tournamentEnvironment =  ResourceCache.main.environments[Mathf.FloorToInt(Random.value * environments.Length)];
+    }
 
     float debugSet = 0;
     void DebugRace()
@@ -224,7 +303,7 @@ public class Race : Countdown
     public int raceID = 0;
     public float lapDistance = 210;
     public List<Racer> racers;
-
+    public RaceDefines.RaceModifiers modifier =  RaceDefines.RaceModifiers.Nothing;
     public int GetPositionForRacer(Racer racer)
     {
         return racers.IndexOf(racer);

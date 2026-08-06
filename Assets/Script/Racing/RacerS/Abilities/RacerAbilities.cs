@@ -20,10 +20,7 @@ public class RacerAbilities : RacerComponent
                 {
                     foreach (DataItemPart part in DataItemPlayer.main.car.parts)
                     {
-                        foreach (var ab in part.scriptable.abilities)
-                        {
-                            AddAbility(new Ability(ab,part, racer));
-                        }
+                        AddPart(part);
                         if (part.scriptable.HasModifier())
                             racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
                     }
@@ -52,7 +49,19 @@ public class RacerAbilities : RacerComponent
         }
         base.HandleRacePhase(phase);
     }
-    void AddAbility(Ability ability)
+
+    public void AddPart(DataItemPart part)
+    {
+        AddPart(part.scriptable, part);
+    }
+    public void AddPart(PartScriptable scriptable, DataItemPart part = null)
+    {
+        foreach (var ab in scriptable.abilities)
+        {
+            AddAbility(new Ability(ab, part, racer));
+        }
+    }
+    public void AddAbility(Ability ability)
     {
         abilities.Add(ability);
     }

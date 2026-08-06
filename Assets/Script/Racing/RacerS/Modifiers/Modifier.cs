@@ -2,28 +2,37 @@ using System.Collections.Generic;
 
 public class Modifier : Countdown
 {
-    Racer racer;
-    public ModifierScriptable data;
+   protected Racer racer;
     public string ModifierName;
     public bool dead = false;
     public int stacks = 1;
+    public List<ModifierDefines.State> states = new List<ModifierDefines.State>();
+    public Dictionary<ModifierDefines.Property, float> properties = new Dictionary<ModifierDefines.Property, float>();
 
     public ModifierDefines.Priority priority;
     public ModifierDefines.Flag flag;
     public ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique;
+    public Modifier(Racer owner, int level = 0)
+    {
+        this.racer = owner;
+        this.stacks = level;
+    }
+
+    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Nothing, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique, List<ModifierDefines.State> states = new(), Dictionary<ModifierDefines.Property, float> properties = new())
+    {
+        this.racer = owner;
+        this.states = states;
+        this.properties = properties;
+        this.priority = priority;
+        this.flag = flag;
+        this.behavior = behavior;
+    }
+
     public bool IsExpired()
     {
-        return false;
-    }
-    public Modifier(Racer racer,ModifierScriptable data, int stacks=1)
-    {
-        this.racer = racer;
-        this.data = data;
-        ModifierName = data.InternalName;
-        SetStackCount( stacks);
+        return !IsRunning();
     }
     #region States
-    public List<ModifierDefines.State> states = new List<ModifierDefines.State>();
     public void SetState(ModifierDefines.State state, bool value)
     {
         if (value)
@@ -47,7 +56,6 @@ public class Modifier : Countdown
     }
     #endregion
     #region Properties
-    public Dictionary<ModifierDefines.Property, float> properties = new Dictionary<ModifierDefines.Property, float>();
     public void SetProperty(ModifierDefines.Property prop, float value)
     {
         if (properties.ContainsKey(prop))
@@ -85,31 +93,7 @@ public class Modifier : Countdown
     {
         SetStackCount(stacks - 1);
     }
-    public void UpdateFromLevel()
-    {
-        properties.Clear();
-
-        HashSet<ModifierDefines.Property> props = new();
-        foreach (ModifierDefines.PropertyData prop in data.properties)
-        {
-            props.Add(prop.Property);
-        }
-        foreach (ModifierDefines.RelativeStatData prop in data.relative)
-        {
-            props.Add(prop.Property);
-        }
-
-        foreach (var prop in props)
-        {
-            if (ModifierDefines.IsPropertyMultiplicative(prop))
-            SetProperty(prop, GetProperty(prop) * data.GetProperty(prop,stacks - 1) * data.GetPropertyForRacer(prop,racer) - 1);
-            else
-            SetProperty(prop, GetProperty(prop) + data.GetProperty(prop,stacks - 1) + data.GetPropertyForRacer(prop,racer));
-        }
-       
-        if (properties.Count > 0)
-            racer.modifiers.RefreshModifier(this);
-    }
+    public virtual void UpdateFromLevel() { }
     #endregion
 
     public virtual void Die(bool expire)
