@@ -44,6 +44,7 @@ public class TourneyController : Initializable
                 {
                     PickRandomEnvironment();
                 }
+                ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
                 if (ongoingRace.raceID % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));

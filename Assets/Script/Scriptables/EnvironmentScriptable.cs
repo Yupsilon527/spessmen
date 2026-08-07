@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Component", menuName = "Data/Enviroment Data")]
 public class EnvironmentScriptable : ScriptableBase
 {
-    public Sprite icon;
-    public Sprite[] weatherIcons;
+    public Sprite icon, background;
+    public Sprite[] weatherIcons, groundSprites, frontSprites, backSprites, farSprites;
 
     protected override void OnValidate()
     {

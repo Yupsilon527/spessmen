@@ -345,6 +345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042f8217974ece2409679e7d537e0bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 0}
+  groundLayer: {fileID: 0}
+  frontLayer: {fileID: 0}
+  backLayer: {fileID: 0}
+  farLayer: {fileID: 0}
   layers:
   - {fileID: 1984700164}
   scrollSpeed: 5
@@ -418,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
   epool: {fileID: 3505455681630156504}
-  parallax: {fileID: 0}
+  parallax: {fileID: 709772055}
   racerPrefab: {fileID: 4315715481392536687, guid: a3e9facf9903ff54290a7fa0585a8246, type: 3}
   opponentPrefab: {fileID: 5111156778673111021, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
   distanceFarAway: 0.8
@@ -594,6 +599,10 @@ PrefabInstance:
       value: 0.00066666666
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
+      propertyPath: spacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: extraCopies
       value: 5
       objectReference: {fileID: 0}
@@ -607,7 +616,7 @@ PrefabInstance:
       objectReference: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
     - target: {fileID: 2569127775168000990, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: m_Name
-      value: Layer
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 5772697318803940438, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: m_LocalScale.x
