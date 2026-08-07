@@ -1,5 +1,6 @@
 using System.Linq;
 using TMPro;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,8 +13,10 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     Ability[] corresponding = new Ability[0];
     public override void FromPart(DataItemPart part, bool draw)
     {
-        base.FromPart(part, draw);
-        corresponding = TourneyController.main.GetPlayerRacer().abilities.GetAbilitiesCorrespondingToPart(part.scriptable);
+        base.FromPart(part, false);
+        corresponding = GetCorrespondingAbilities();
+        if (draw)
+            Redraw();
     }
     public Ability[] GetCorrespondingAbilities()
     {
@@ -54,9 +57,8 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
                     longestCD = cd;
                 }
             }
-            if (!button.interactable)
-            button.interactable = ability.CanBeActivated();
         }
+            button.interactable = corresponding.Any(a=>a.CanBeActivated());
         if (longestCD>0)
             ShowCooldown(longestCD, longestExhaust);
     }

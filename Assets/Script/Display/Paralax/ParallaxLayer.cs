@@ -2,55 +2,55 @@ using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
-    public Transform cameraTransform;
-    public Vector2 parallaxFactor = new Vector2(0.5f, 0.5f);
-    public bool loopHorizontal;
-    public bool loopVertical;
+    public SpriteRenderer spriteTemplate;
+    public float speed = 1f;
+    public float desiredWidth = 1f;
+    int extraCopies = 2;
 
-    private Vector3 lastCameraPosition;
-    private float textureUnitSizeX;
-    private float textureUnitSizeY;
+    private SpriteRenderer[] copies;
+    private float width;
 
-    void Start()
+    void Awake()
     {
-        if (cameraTransform == null)
-            cameraTransform = Camera.main.transform;
+        width = GetSpriteWidth(spriteTemplate);
+        extraCopies = Mathf.CeilToInt(desiredWidth / width);
+        copies = new SpriteRenderer[extraCopies ];
+        copies[0] = spriteTemplate;
 
-        lastCameraPosition = cameraTransform.position;
-
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
+        for (int i = 1; i < copies.Length; i++)
         {
-            textureUnitSizeX = sr.sprite.bounds.size.x * transform.lossyScale.x;
-            textureUnitSizeY = sr.sprite.bounds.size.y * transform.lossyScale.y;
+            SpriteRenderer copy = Instantiate(spriteTemplate, transform);
+            copy.transform.localPosition = Vector3.right * width * i;
+            copies[i] = copy;
         }
     }
 
-    void LateUpdate()
+    public void Scroll(float worldDelta)
     {
-        Vector3 delta = cameraTransform.position - lastCameraPosition;
-        Vector3 movement = new Vector3(delta.x * parallaxFactor.x, delta.y * parallaxFactor.y, 0f);
-        transform.position += movement;
-        lastCameraPosition = cameraTransform.position;
+        float delta = worldDelta * speed;
 
-        if (loopHorizontal && textureUnitSizeX > 0f)
+        for (int i = 0; i < copies.Length; i++)
         {
-            float distanceX = cameraTransform.position.x - transform.position.x;
-            if (Mathf.Abs(distanceX) >= textureUnitSizeX)
+            float width = GetSpriteWidth(copies[i]);
+            copies[i].transform.localPosition += Vector3.right * delta;
+            if (copies[i].transform.localPosition.x> width * extraCopies/2)
             {
-                float offsetX = distanceX % textureUnitSizeX;
-                transform.position = new Vector3(cameraTransform.position.x + offsetX, transform.position.y, transform.position.z);
+                CycleSprite(copies[i]);
             }
         }
 
-        if (loopVertical && textureUnitSizeY > 0f)
+    }
+
+    void CycleSprite(SpriteRenderer renderer)
+    {
+        float width = GetSpriteWidth(renderer);
+        while (renderer.transform.localPosition.x > width * extraCopies / 2)
         {
-            float distanceY = cameraTransform.position.y - transform.position.y;
-            if (Mathf.Abs(distanceY) >= textureUnitSizeY)
-            {
-                float offsetY = distanceY % textureUnitSizeY;
-                transform.position = new Vector3(transform.position.x, cameraTransform.position.y + offsetY, transform.position.z);
-            }
+            renderer.transform.localPosition += Vector3.left * extraCopies * width ;
         }
+    }
+    float GetSpriteWidth(SpriteRenderer renderer)
+    {
+        return renderer.sprite.rect.width / renderer.sprite.pixelsPerUnit * renderer.transform.localScale.x;
     }
 }

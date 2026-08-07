@@ -1,7 +1,6 @@
 
 
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 
 public class ModifierScriptable : GridScriptable
 {
@@ -14,7 +13,7 @@ public class ModifierScriptable : GridScriptable
     }
     public Modifier GetInnateModifier(Racer racer)
     {
-        return new Modifier(racer, this);
+        return new ModifierData(racer, this);
     }
     public float GetProperty(ModifierDefines.Property property, int level)
     {

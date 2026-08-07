@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class Modifier : Countdown
 {
-   protected Racer racer;
+    protected Racer racer;
     public string ModifierName;
     public bool dead = false;
     public int stacks = 1;
@@ -18,11 +18,11 @@ public class Modifier : Countdown
         this.stacks = level;
     }
 
-    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Nothing, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique, List<ModifierDefines.State> states = new(), Dictionary<ModifierDefines.Property, float> properties = new())
+    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Nothing, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
     {
         this.racer = owner;
-        this.states = states;
-        this.properties = properties;
+        this.states = states == null ? new() : states;
+        this.properties = properties == null ? new() : properties;
         this.priority = priority;
         this.flag = flag;
         this.behavior = behavior;
@@ -30,7 +30,7 @@ public class Modifier : Countdown
 
     public bool IsExpired()
     {
-        return !IsRunning();
+        return false;
     }
     #region States
     public void SetState(ModifierDefines.State state, bool value)

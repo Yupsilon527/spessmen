@@ -23,7 +23,7 @@ MonoBehaviour:
     value: 0.5
     IncreasePerLevel: 0
   - Property: 23
-    value: 0.4
+    value: 0.2
     IncreasePerLevel: 0
   relative: []
   abilities: []

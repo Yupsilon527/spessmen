@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 public class RacerToon
 {
@@ -18,6 +19,7 @@ public class ArenaController : MonoBehaviour
     [Header("Components")]
     public Camera camera;
     public SpecialEffectPool epool;
+    public ParallaxController parallax;
     public GameObject racerPrefab, opponentPrefab;
     public HashSet<RacerToon> racers = new();
     [Header("Toon Distance Delta")]
@@ -33,6 +35,8 @@ public class ArenaController : MonoBehaviour
             camera = GetComponentInChildren<Camera>();
         if (epool == null)
             epool = GetComponentInChildren<SpecialEffectPool>();
+        if (parallax == null)
+            parallax = GetComponentInChildren<ParallaxController>();
     }
     private void OnEnable()
     {
@@ -57,6 +61,7 @@ public class ArenaController : MonoBehaviour
             if (relativePosition == 0) continue;
             racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id );
         }
+        parallax?.SetWorldDelta(playerRacer.racer.position.distanceTraveled);
     }
     void HandleFloatingText()
     {

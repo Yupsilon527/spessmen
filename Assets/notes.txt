@@ -1,4 +1,7 @@
 TODO
+ai abilities
+
+	localization
 	remove common gadgets
 
 	visual

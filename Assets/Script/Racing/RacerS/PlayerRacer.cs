@@ -5,7 +5,7 @@ public class PlayerRacer : Racer
     {
         foreach (var part in playerShip.parts)
         {
-            modifiers.Add(new Modifier(this,part.scriptable));
+            modifiers.Add(new ModifierData(this,part.scriptable));
         }
     }
     public override string ToString()
