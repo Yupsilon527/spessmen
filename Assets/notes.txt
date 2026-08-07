@@ -1,8 +1,5 @@
 TODO
-ai abilities
-
 	localization
-	remove common gadgets
 
 	visual
 		racer character
@@ -13,7 +10,6 @@ ai abilities
 		portraits
 		side displays
 
-	enemy use abilities
 	character selection
 FIX
 QoL

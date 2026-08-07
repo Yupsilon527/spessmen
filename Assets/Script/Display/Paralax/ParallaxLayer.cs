@@ -8,13 +8,14 @@ public class ParallaxLayer : MonoBehaviour
     public float speed = 1f;
     public float desiredWidth = 1f;
     public float spacing = 0f;
+    public float deltaPosition = 0f;
     int extraCopies = 2;
     private SpriteRenderer[] copies;
     private float step;
     void Awake()
     {
         step = GetSpriteWidth(spriteTemplate) + spacing;
-        extraCopies = Mathf.CeilToInt(desiredWidth / step);
+        extraCopies = Mathf.CeilToInt(desiredWidth / step)+1;
         copies = new SpriteRenderer[extraCopies];
         copies[0] = spriteTemplate;
         for (int i = 1; i < copies.Length; i++)
@@ -35,10 +36,14 @@ public class ParallaxLayer : MonoBehaviour
         {
             sprite.sprite = spriteVariants[Mathf.FloorToInt(Random.value * spriteVariants.Length)]; 
         }
+        ScrolRawl(deltaPosition);
     }
     public void Scroll(float worldDelta)
     {
-        float delta = worldDelta * speed;
+        ScrolRawl(worldDelta * speed);
+    }
+    public void ScrolRawl(float delta)
+    {
         for (int i = 0; i < copies.Length; i++)
         {
             copies[i].transform.localPosition += Vector3.left * delta;
@@ -53,7 +58,7 @@ public class ParallaxLayer : MonoBehaviour
         renderer.sprite = spriteVariants[Mathf.FloorToInt(Random.value * spriteVariants.Length)];
         while (renderer.transform.localPosition.x < -step * extraCopies / 2)
         {
-            renderer.transform.localPosition += Vector3.right * extraCopies * step;
+            renderer.transform.localPosition += Vector3.right * (extraCopies -1)* step;
         }
     }
     float GetSpriteWidth(SpriteRenderer renderer)

@@ -17,7 +17,7 @@ public class RacerModifiers : PropertyComponent
     {
         base.HandleRacePhase(phase);
         switch (phase) {
-            case RaceDefines.RacePhase.RaceBegin:
+            case RaceDefines.RacePhase.RaceSetup:
                 foreach (Modifier modifier in modifiers)
                 {
                     modifier.Restart(Time.time);

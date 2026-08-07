@@ -42,9 +42,13 @@ public class RaceView : ViewBase
     {
         if (time != null)
         {
-            if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.racing)
+            if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.setup)
             {
-                time.text = (Mathf.Ceil(TourneyController.main.ongoingRace.GetTimeRemaining() * 10) / 10).ToString("F1");
+                time.text = TourneyController.main.raceCountdown.GetTimeRemaining().ToString("F1");
+            }
+            else if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.racing)
+            {
+                time.text = TourneyController.main.ongoingRace.GetTimeRemaining().ToString("F1");
             }
             else if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.afterRace)
             {

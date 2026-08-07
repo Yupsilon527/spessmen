@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,11 +9,13 @@ public class TourneyController : Initializable
     public static TourneyController main;
     Dictionary<Racer, float> leaderboard = new();
     public EnvironmentScriptable tournamentEnvironment;
+    public Countdown raceCountdown = new();
 
     public Race ongoingRace;
     public enum TourneyPhase
     {
         beforeRace,
+        setup,
         racing,
         afterRace,
     }
@@ -29,7 +32,7 @@ public class TourneyController : Initializable
         {
             case TourneyPhase.beforeRace:
                 int season = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
-                if ( GetCurrentRaceIndex() % season == season - 1)
+                if (GetCurrentRaceIndex() % season == season - 1)
                 {
                     foreach (var racer in leaderboard.Keys.ToArray())
                         leaderboard[racer] = 0;
@@ -49,19 +52,32 @@ public class TourneyController : Initializable
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
                 }
-                else if (ongoingRace.raceID % (RaceDefines.SeasonRaces ) == RaceDefines.SeasonRaces - 1)
+                else if (ongoingRace.raceID % (RaceDefines.SeasonRaces) == RaceDefines.SeasonRaces - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
                 }
                 break;
+            case TourneyPhase.setup:
+                if (currentPhase == TourneyPhase.beforeRace || !ongoingRace.IsRunning())
+                {
+                    raceCountdown.Set(3);
+                    foreach (var racer in ongoingRace.racers)
+                    {
+                        racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
+                    }
+                }
+                break;
             case TourneyPhase.racing:
-                if (currentPhase == TourneyPhase.beforeRace || ongoingRace == null || !ongoingRace.IsRunning())
+                if (currentPhase == TourneyPhase.setup || !ongoingRace.IsRunning())
                 {
                     Inspect($"Start race {ongoingRace.raceID} with {ongoingRace.racers.Count} racers!");
                     foreach (var racer in ongoingRace.racers)
                     {
+                        if (currentPhase == TourneyPhase.beforeRace)
+                            racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
+                    StopAllCoroutines();
                     float raceTime = 20;//TODO define
                     debugSet = 0;
 
@@ -110,17 +126,18 @@ public class TourneyController : Initializable
                             var validparts = ResourceCache.main.parts.Where(
                                 p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons))
                                 && p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget)
-                                ).ToArray() ;
+                                ).ToArray();
 
-                            if (validparts.Length > 0) { 
-                            foreach (var racer in ongoingRace.racers)
+                            if (validparts.Length > 0)
                             {
-                                if (racer.id != 0)
+                                foreach (var racer in ongoingRace.racers)
                                 {
+                                    if (racer.id != 0)
+                                    {
                                         var rSelected = validparts[Mathf.FloorToInt(Random.value * validparts.Length)];
                                         racer.abilities.AddPart(rSelected);
+                                    }
                                 }
-                            }
                             }
                             break;
                     }
@@ -199,6 +216,12 @@ public class TourneyController : Initializable
     }
     private void FixedUpdate()
     {
+        if (currentPhase == TourneyPhase.setup)
+        {
+            if (!raceCountdown.IsRunning())
+                ChangePhase(TourneyPhase.racing);
+
+        }
         if (currentPhase == TourneyPhase.racing)
         {
             if (ongoingRace.IsRunning())
@@ -214,30 +237,30 @@ public class TourneyController : Initializable
     }
     public bool CanPlayerProceed()
     {
-        return !IsLastRaceInSeason() || GetLeaderboardSorted()[0].id == 0 ; 
+        return !IsLastRaceInSeason() || GetLeaderboardSorted()[0].id == 0;
     }
     void HandlePlayerReward()
     {
         float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, GetCurrentRaceIndex());
 
-        if (ongoingRace.raceID % DifficultyDefines.eliteRaceInterval == DifficultyDefines.eliteRaceInterval-1)
+        if (ongoingRace.raceID % DifficultyDefines.eliteRaceInterval == DifficultyDefines.eliteRaceInterval - 1)
             diffMult *= DifficultyDefines.eliteRaceMultiplier;
 
         DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace * diffMult);
 
         int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
-        float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue()* (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest)-1),0, EconomyDefines.interestGoldCap);
+        float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue() * (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) - 1), 0, EconomyDefines.interestGoldCap);
 
 
-        float finishGold = Mathf.Max(0,EconomyDefines.constantGoldForRace * diffMult + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus));
+        float finishGold = Mathf.Max(0, EconomyDefines.constantGoldForRace * diffMult + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus));
         float positionGold = Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count - playerPos)) * diffMult * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
 
         float outputGold = finishGold + positionGold;
 
         float distanceGold = 0;
-        if (playerPos==0)
+        if (playerPos == 0)
         {
-            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance );
+            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance);
         }
 
         DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);
@@ -257,9 +280,9 @@ public class TourneyController : Initializable
     {
         var playerRacer = GetPlayerRacer();
 
-        DataItemPlayer.main.scope.SetVariable("race_position_"+ongoingRace.raceID, ongoingRace.GetPositionForRacer(playerRacer));
-        DataItemPlayer.main.scope.SetVariable("race_distance_"+ongoingRace.raceID, playerRacer.position.distanceTraveled);
-        DataItemPlayer.main.scope.SetVariable("race_topspeed_"+ongoingRace.raceID, playerRacer.stats.realSpeed);
+        DataItemPlayer.main.scope.SetVariable("race_position_" + ongoingRace.raceID, ongoingRace.GetPositionForRacer(playerRacer));
+        DataItemPlayer.main.scope.SetVariable("race_distance_" + ongoingRace.raceID, playerRacer.position.distanceTraveled);
+        DataItemPlayer.main.scope.SetVariable("race_topspeed_" + ongoingRace.raceID, playerRacer.stats.realSpeed);
 
         if (IsLastRaceInSeason())
         {
@@ -270,7 +293,7 @@ public class TourneyController : Initializable
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
                 tournamentsWon.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
 
-                var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_"+DataItemPlayer.main.car.scriptable.InternalName);
+                var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + DataItemPlayer.main.car.scriptable.InternalName);
                 characterWins.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
             }
         }
@@ -278,15 +301,15 @@ public class TourneyController : Initializable
     void PickRandomEnvironment()
     {
         var environments = ResourceCache.main.environments.Where(e => e != tournamentEnvironment).ToArray();
-        if (environments.Length >0)
-            tournamentEnvironment =  ResourceCache.main.environments[Mathf.FloorToInt(Random.value * environments.Length)];
+        if (environments.Length > 0)
+            tournamentEnvironment = ResourceCache.main.environments[Mathf.FloorToInt(Random.value * environments.Length)];
     }
 
     float debugSet = 0;
     void DebugRace()
     {
         int x = 2;
-        if (ongoingRace.GetTimeRemaining()<20- debugSet*x)
+        if (ongoingRace.GetTimeRemaining() < 20 - debugSet * x)
         {
             Inspect($"--- RACE UPDATE ({debugSet * x}) ---");
             int i = 0;
@@ -304,7 +327,7 @@ public class Race : Countdown
     public int raceID = 0;
     public float lapDistance = 210;
     public List<Racer> racers;
-    public RaceDefines.RaceModifiers modifier =  RaceDefines.RaceModifiers.Nothing;
+    public RaceDefines.RaceModifiers modifier = RaceDefines.RaceModifiers.Nothing;
     public int GetPositionForRacer(Racer racer)
     {
         return racers.IndexOf(racer);

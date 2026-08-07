@@ -14,7 +14,7 @@ public class RacerAbilities : RacerComponent
     {
         switch (phase)
         {
-            case RaceDefines.RacePhase.RaceBegin:
+            case RaceDefines.RacePhase.RaceSetup:
                 abilities.Clear();
                 if (racer is PlayerRacer player)
                 {
@@ -41,6 +41,8 @@ public class RacerAbilities : RacerComponent
                 racer.modifiers.Refresh();
                 racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
+                break;
+            case RaceDefines.RacePhase.RaceBegin:
                 ListenToEvent(ShipDefines.PartEvent.OnRaceStart);
                 break;
             case RaceDefines.RacePhase.RaceTick:

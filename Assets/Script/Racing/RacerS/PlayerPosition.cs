@@ -15,7 +15,7 @@ public class RacerPosition : RacerComponent
         base.HandleRacePhase(phase);
         switch (phase)
         {
-            case RaceDefines.RacePhase.RaceBegin:
+            case RaceDefines.RacePhase.RaceSetup:
                 distanceTraveled = DifficultyDefines.enemyStartDistance*racer.id;
                 racerPosition = TourneyController.main.ongoingRace.racers.Count;
                 aheadOfRival = false;

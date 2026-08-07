@@ -7,8 +7,9 @@ public static class RaceDefines
     public enum RacePhase
     {
         RaceBegin = 0,
-        RaceTick = 1,
-        RaceEnd = 2,
+        RaceSetup = 1,
+        RaceTick = 2,
+        RaceEnd = 3,
 
     }
     public enum AbilityTarget

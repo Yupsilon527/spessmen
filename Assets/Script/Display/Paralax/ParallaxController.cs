@@ -24,7 +24,7 @@ public class ParallaxController : MonoBehaviour
     {
         for (int i = 0; i < layers.Length; i++)
         {
-            layers[i].Scroll(worldDelta);
+            layers[i].Scroll(worldDelta );
         }
     }
 

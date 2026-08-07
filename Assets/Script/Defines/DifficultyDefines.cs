@@ -12,4 +12,5 @@ public static class DifficultyDefines
     public static float lapDistanceAdd = 20;
 
     public static float enemyStartDistance = 7;
+    public static float aiUseAbilityChance = .2f;
 }
