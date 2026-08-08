@@ -1,9 +1,12 @@
 
+using UnityEngine;
+
 public class Racer 
 {
     public int id = 0;
    public float distanceRaced;
 
+    public ShipScriptable playerShip;
     public RacerComponent[] components;
    public  RacerStatsTable stats;
     public RacerPosition position ;
@@ -12,6 +15,10 @@ public class Racer
     public Racer(int rId)
     {
         id = rId;
+        if (id == 0)
+            playerShip = DataItemPlayer.main.car.scriptable;
+        else
+            playerShip = ResourceCache.main.ships[Mathf.FloorToInt(ResourceCache.main.ships.Count * Random.value)];
 
         stats = new (this);
         position = new (this);

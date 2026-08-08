@@ -7,10 +7,10 @@ public class LeaderboardEntry : MonoBehaviour
     public TextMeshProUGUI racerName, racerPosition, racerDescription;
     public Image racerPortrait;
 
-    void ShowRacer(Racer racer)
+     void ShowRacer(Racer racer)
     {
-        racerName.text = racer.id == 0 ? "You" : ("Racer " + racer.id);
-        if (TourneyController.main.GetPlayerRival() == racer) racerName.text += " (Rival)";
+        racerName.text = racer.id == 0 ? LanguageController.main.Translate("Leaderboard", "LeaderboardYou") : LanguageController.main.Translate("Racers", racer.playerShip.InternalName);
+        if (TourneyController.main.GetPlayerRival() == racer) racerName.text += $" ({LanguageController.main.Translate("Leaderboard", "LeaderboardRival")})";
     }
     public void ShowRacerPosition(Racer racer, int position)
     {

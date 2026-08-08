@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.Localization.Settings;
 
 public partial class ShopView : ViewBase
 {
@@ -100,9 +101,16 @@ public partial class ShopView : ViewBase
     public void UpdateState()
     {
         if (playerGold != null && DataItemPlayer.main != null)
-            playerGold.text = "Your gold: " + DataItemPlayer.main.econ.gold.GetValue();
+        {
+            string goldLabel =  LanguageController.main.Translate("UI Table", "Gold Label");
+            playerGold.text = goldLabel.Replace("%gold%",DataItemPlayer.main.econ.gold.GetValue().ToString("F1"));
+        }
+
         if (resetCost != null)
-            resetCost.text = "Cost " + GetResetCost();
+        {
+            string costLabel =  LanguageController.main.Translate("UI Table", "Cost Label");
+            resetCost.text = costLabel.Replace("%cost%", GetResetCost().ToString("F1"));
+        }
 
         for (int i = 0; i < itemButtonSelection.Length; i++)
         {

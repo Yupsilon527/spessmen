@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 895435ce0960a584ebaec964c5bd451d, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 168213516288
+    m_Localized: Costs %cost%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216427040768
+    m_Localized: $%gold%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 309486063616
+    m_Localized: Reroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 996047491072
+    m_Localized: Store
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5022193455104
+    m_Localized: Go!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643117555712
+    m_Localized: 'Race %raceID%/%raceTotal%<br>Rival Distance: %rivalDistance%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10046894149632
+    m_Localized: Part Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10083472674816
+    m_Localized: Scroll over any part to show info!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10379565371392
+    m_Localized: Discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10937374248960
+    m_Localized: Lap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10973814362112
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11003535200256
+    m_Localized: Fuel
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

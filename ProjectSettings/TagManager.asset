@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Terrain
   - Creature
@@ -11,7 +11,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Creatures
+  - Racers
   - Water
   - UI
   - Foreground
@@ -41,9 +41,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Terrain
+  - name: Background
     uniqueID: 1866581795
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Racers
+    uniqueID: 2846294747
+    locked: 0
+  - name: Effects
+    uniqueID: 2162091071
+    locked: 0
+  - name: Foreground
+    uniqueID: 1857106883
+    locked: 0
+  - name: Overlay
+    uniqueID: 263287423
+    locked: 0
+  m_RenderingLayers:
+  - Default

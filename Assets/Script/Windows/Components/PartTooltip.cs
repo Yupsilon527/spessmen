@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class PartTooltip : MonoBehaviour
 {
@@ -13,7 +16,7 @@ public class PartTooltip : MonoBehaviour
     {
         Clear();
     }
-    public void ShowPart(PartScriptable part, bool build)
+    public async void ShowPart(PartScriptable part, bool build)
     {
         if (title!=null)
         {
@@ -28,10 +31,21 @@ public class PartTooltip : MonoBehaviour
             description.text = part.GetEffectDescription() ;
             if (build)
             {
-                if (part.combos.Length >0)
-                description.text += "<br>Can merge with "+string.Join(',', part.combos.Select(combo =>combo.other.InternalName));
+                if (part.combos.Length > 0)
+                {
+                    string mergeLabel = await LocalizationSettings.StringDatabase .GetLocalizedStringAsync("UI Table", "CanMergeWith").Task;
+
+                    var nameTasks = part.combos
+                        .Select(combo => LocalizationSettings.StringDatabase
+                            .GetLocalizedStringAsync("Parts", combo.other.InternalName).Task)
+                        .ToArray();
+
+                    string[] names = await Task.WhenAll(nameTasks);
+
+                    description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
+                }
                 if (part.attach != ItemDefines.PartCondition.Anywhere)
-                description.text += "<br>"+part.attach ;
+                description.text += "<br>"+ await LocalizationSettings.StringDatabase .GetLocalizedStringAsync("Part Info", part.attach.ToString()).Task;
             }
         }
         if (grid!=null)
@@ -44,15 +58,22 @@ public class PartTooltip : MonoBehaviour
         }
         if (toggleActive) gameObject.SetActive(true);
     }
-    public void Clear()
+    public async void Clear()
     {
+        var titleTask = LocalizationSettings.StringDatabase
+            .GetLocalizedStringAsync("UI Table", "PartInfo").Task;
+        var subtitleTask = LocalizationSettings.StringDatabase
+            .GetLocalizedStringAsync("UI Table", "MouseOverHint").Task;
+
+        await Task.WhenAll(titleTask, subtitleTask);
+
         if (title != null)
         {
-            title.text = "Part Info";
+            title.text = titleTask.Result;
         }
         if (subtitle != null)
         {
-            subtitle.text = "Mouse over part to show info";
+            subtitle.text = subtitleTask.Result;
         }
         if (description != null)
         {

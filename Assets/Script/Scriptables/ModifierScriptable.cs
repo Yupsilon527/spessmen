@@ -1,6 +1,8 @@
 
 
 using System.Linq;
+using Unity.Burst.Intrinsics;
+using UnityEngine.Localization.Settings;
 
 public class ModifierScriptable : GridScriptable
 {
@@ -51,7 +53,7 @@ public class ModifierScriptable : GridScriptable
             {
                 output += "<br>";
             }
-            output += $"{prop.Property} {prop.ValueToString(0,true,0)}";
+            output += $"{LanguageController.main.Translate("Modifiers", prop.Property.ToString())} {prop.ValueToString(0,true,0)}";
         }
 
         if (output.Length > 0 && relative.Length > 0)
@@ -77,7 +79,7 @@ public class ModifierScriptable : GridScriptable
             {
                 output += "<br>";
             }
-            output += state.State.ToString() ;
+            output += LanguageController.main.Translate("Modifiers", state.State.ToString()) ;
         }
 
         return output;

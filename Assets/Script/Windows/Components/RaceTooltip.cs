@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class RaceTooltip : MonoBehaviour
@@ -7,22 +8,41 @@ public class RaceTooltip : MonoBehaviour
     public TextMeshProUGUI  raceNumber, raceEnvironment, raceWeather;
     public Image environmentDisplay, weatherDisplay;
 
-    public void ShowCurrentRace()
+    public  void ShowCurrentRace()
     {
+        Clear();
         if (TourneyController.main?.ongoingRace == null) return;
         if (raceNumber != null)
         {
             int cRace = (TourneyController.main?.GetCurrentRaceIndex()??0) + 1;
             int raceTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
-            raceNumber.text = $"Race {cRace}/{Mathf.Ceil(cRace / raceTotal+1)* raceTotal}<br>Length: {TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1")}";
+
+            string raceLabel =  LanguageController.main.Translate("UI Table", "Race Label");
+
+            raceNumber.text = raceLabel.Replace("%raceID%", cRace.ToString()).Replace("%raceTotal%", (Mathf.Ceil(cRace / raceTotal + 1) * raceTotal).ToString()).Replace("%rivalDistance%", TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1"));
         }
 
         var environment = TourneyController.main.tournamentEnvironment;
         if (environment == null) return;
-            if (raceEnvironment!=null) raceEnvironment.text = environment?.InternalName ?? "";
-            if (raceWeather != null) raceWeather.text = TourneyController.main.ongoingRace.modifier.ToString();
+        if (raceEnvironment != null)
+        {
+            string envName =  LanguageController.main.Translate("Environments", environment?.InternalName ?? "None");
+            raceEnvironment.text = envName;
+        }
+            if (raceWeather != null) 
+        {
+            string weatherName =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString());
+            string weatherDesc =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString()+"_desc");
+            raceWeather.text = weatherName+"<br>"+weatherDesc;
+        }
 
-            if (environmentDisplay != null) environmentDisplay.sprite = environment.icon;
+        if (environmentDisplay != null) environmentDisplay.sprite = environment.icon;
             if (weatherDisplay != null) weatherDisplay.sprite = environment.weatherIcons[(int)TourneyController.main.ongoingRace.modifier];
+    }
+    void Clear()
+    {
+        if (raceNumber != null) raceNumber.text = "";
+        if (raceEnvironment != null) raceEnvironment.text = "";
+        if (raceWeather != null) raceWeather.text = "";
     }
 }
