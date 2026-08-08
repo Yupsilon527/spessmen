@@ -4,6 +4,9 @@ public static class RaceDefines
     public static int SeasonRaces = 3;
     public static int TournamentSeasons = 3;
 
+    public static float raceLength = 20;
+    public static float raceLengthLong = 30;
+
     public enum RacePhase
     {
         RaceBegin = 0,

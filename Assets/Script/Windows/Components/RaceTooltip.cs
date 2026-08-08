@@ -9,11 +9,12 @@ public class RaceTooltip : MonoBehaviour
 
     public void ShowCurrentRace()
     {
+        if (TourneyController.main?.ongoingRace == null) return;
         if (raceNumber != null)
         {
             int cRace = (TourneyController.main?.GetCurrentRaceIndex()??0) + 1;
             int raceTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
-            raceNumber.text = $"Race {cRace}/{Mathf.Ceil(cRace / raceTotal+1)* raceTotal}";
+            raceNumber.text = $"Race {cRace}/{Mathf.Ceil(cRace / raceTotal+1)* raceTotal}<br>Length: {TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1")}";
         }
 
         var environment = TourneyController.main.tournamentEnvironment;

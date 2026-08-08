@@ -551,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: spacing
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: extraCopies

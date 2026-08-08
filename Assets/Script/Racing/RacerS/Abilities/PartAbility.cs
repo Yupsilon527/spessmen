@@ -24,7 +24,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BaseSpeed,
-                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * (level+1) *rnval * (level == 0 ? .9f : 1f)
+                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * level *rnval * (level == 0 ? .9f : 1f)
             }
             }
         };
@@ -35,7 +35,7 @@ public class PartAbility
         {
             InternalName = "npc_engine",
             function = ShipDefines.PartEvent.OnTimePass,
-            cooldown = 2 + UnityEngine.Random.value,
+            cooldown = DifficultyDefines.enemyEngineCooldown - rnval * DifficultyDefines.enemyEngineDelta,
             fuelCost = 10,
             actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
             {

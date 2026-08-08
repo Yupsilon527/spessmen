@@ -78,7 +78,7 @@ public class TourneyController : Initializable
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
                     StopAllCoroutines();
-                    float raceTime = 20;//TODO define
+                    float raceTime = RaceDefines.raceLength;
                     debugSet = 0;
 
                     var player = GetPlayerRacer();
@@ -109,7 +109,7 @@ public class TourneyController : Initializable
                             }));
                             break;
                         case RaceDefines.RaceModifiers.LapsLonger:
-                            ongoingRace.lapDistance *= 1.25f;
+                            ongoingRace.lapDistance = RaceDefines.raceLengthLong;
                             break;
                         case RaceDefines.RaceModifiers.LongerRace:
                             raceTime *= 1.5f;
@@ -335,5 +335,20 @@ public class Race : Countdown
     public void UpdateLeaderboard()
     {
         racers.Sort((a, b) => b.position.distanceTraveled.CompareTo(a.position.distanceTraveled));
+    }
+    public float GetRivalDistance()
+    {
+        var baseSpeed = DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID ;
+        var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed*raceID-2) : 0;
+        float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
+        return GetRivalDistance(baseSpeed, engineSpeed, engineCooldown, modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
+    }
+    public float GetRivalDistance(float x, float z, float y, float n)
+    {
+        float k = Mathf.Floor(n / y);
+        float r = n - k * y;
+        return x * n
+                    + z * y * (k * (k - 1) / 2f)
+                    + z * k * r;
     }
 }
