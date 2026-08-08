@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 168213516288
-    m_Localized: Costs %cost%
+    m_Localized: $%cost%
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
-    m_Localized: $%gold%
+    m_Localized: 'Your $$$: %gold%'
     m_Metadata:
       m_Items: []
   - m_Id: 309486063616
@@ -64,6 +64,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 11003535200256
     m_Localized: Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47363813969920
+    m_Localized: Leaderboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47393765494784
+    m_Localized: Tournament Standings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49302064762880
+    m_Localized: Results
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50074445844480
+    m_Localized: Proceed
     m_Metadata:
       m_Items: []
   references:

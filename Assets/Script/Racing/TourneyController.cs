@@ -22,6 +22,8 @@ public class TourneyController : Initializable
     public TourneyPhase currentPhase;
     public void FreshStart()
     {
+        leaderboard.Clear();
+        ongoingRace = null;
         InitRacers();
         ChangePhase(TourneyPhase.beforeRace);
     }

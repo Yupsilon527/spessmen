@@ -23,6 +23,34 @@ MonoBehaviour:
     m_Key: "LeaderboardRival\t"
     m_Metadata:
       m_Items: []
+  - m_Id: 19803176603648
+    m_Key: playerPosition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20725411778560
+    m_Key: raceIncome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20798635937792
+    m_Key: performanceIncome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20967364399104
+    m_Key: interestIncome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21476603236352
+    m_Key: rivalIncome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21607910117376
+    m_Key: cashOutTotal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21623580037120
+    m_Key: moneyTotal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

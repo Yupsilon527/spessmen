@@ -103,13 +103,13 @@ public partial class ShopView : ViewBase
         if (playerGold != null && DataItemPlayer.main != null)
         {
             string goldLabel =  LanguageController.main.Translate("UI Table", "Gold Label");
-            playerGold.text = goldLabel.Replace("%gold%",DataItemPlayer.main.econ.gold.GetValue().ToString("F1"));
+            playerGold.text = goldLabel.Replace("%gold%",DataItemPlayer.main.econ.gold.GetValue().ToString("F0"));
         }
 
         if (resetCost != null)
         {
             string costLabel =  LanguageController.main.Translate("UI Table", "Cost Label");
-            resetCost.text = costLabel.Replace("%cost%", GetResetCost().ToString("F1"));
+            resetCost.text = costLabel.Replace("%cost%", GetResetCost().ToString("F0"));
         }
 
         for (int i = 0; i < itemButtonSelection.Length; i++)

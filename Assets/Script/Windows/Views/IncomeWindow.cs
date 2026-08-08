@@ -18,10 +18,13 @@ public class IncomeWindow : MonoBehaviour
 
             float interest = DataItemPlayer.main.scope.GetVariable("gold_interest")?.GetFloatValue() ?? 0;
 
-            baseIncome.text = $"Race Complete: {bi:F1}g<br>Your Position: {pi:F1}g";
+            string completionLabel = LanguageController.main.Translate("Leaderboard","raceIncome").Replace("%value%", bi.ToString("F1"));
+            string positionLabel = LanguageController.main.Translate("Leaderboard", "performanceIncome").Replace("%value%", pi.ToString("F1"));
+
+            baseIncome.text = $"{completionLabel}<br>{positionLabel}";
 
             if (interest > 0)
-                bonusIncome.text = $"Interest: {interest:F1}g";
+                bonusIncome.text = LanguageController.main.Translate("Leaderboard", "interestIncome").Replace("%value%", interest.ToString("F1"));
             else
                 bonusIncome.text = "";
 
@@ -31,13 +34,13 @@ public class IncomeWindow : MonoBehaviour
             if (performance > 0)
             {
                 if (bonusIncome.text.Length > 0) bonusIncome.text += "<br>";
-                bonusIncome.text += $"Distance ahead of Rival: {performance:F1}g";
+                bonusIncome.text += LanguageController.main.Translate("Leaderboard", "rivalIncome").Replace("%value%", performance.ToString("F1")); ;
             }
             else
                 bonusIncome.text += "";
 
-            totalIncome.text = $"Cash Out: {(bi+pi+interest+performance):F1}g";
-            totalGold.text = $"Your cash: {DataItemPlayer.main.econ.gold.GetValue():F1}g";
+            totalIncome.text = LanguageController.main.Translate("Leaderboard", "cashOutTotal").Replace("%value%", (bi + pi + interest + performance).ToString("F1")); ;
+            totalGold.text = LanguageController.main.Translate("UI Table", "Gold Label").Replace("%gold%", DataItemPlayer.main.econ.gold.GetValue().ToString("F0")); ;
         }
     }
 }
