@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Blue Shell 2
   grid:
-    width: 3
-    height: 2
-    cells: 010101010101
+    width: 5
+    height: 3
+    cells: 000101010001010101010101010101
   states: []
   properties: []
   relative: []
@@ -32,10 +32,10 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 3
-      scale: 5
-      value: 12
+      scale: 3
+      value: -0.5
       reverse: 0
-      effectSource: 0
+      effectSource: 1
       effectTarget: 1
       condition: 0
       conditionCheck: 0

@@ -18,10 +18,14 @@ MonoBehaviour:
     height: 3
     cells: 000101010100010101
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 3
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Lucky Nitro 2  OnActivated
+    maxUses: 0
     cooldown: 0.15
     fuelCost: 25
     classification: 5

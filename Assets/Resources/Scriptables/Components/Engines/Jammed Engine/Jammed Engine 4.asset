@@ -22,8 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Jammed Engine 4 GasAbove OnTimePass
+    maxUses: 0
     cooldown: 2
-    fuelCost: 90
+    fuelCost: 56
     classification: 3
     function: 1
     condition: 7
@@ -39,6 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   - InternalName: Jammed Engine 4 GasBelow OnTimePass
+    maxUses: 0
     cooldown: 2
     fuelCost: 0
     classification: 3

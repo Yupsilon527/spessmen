@@ -18,12 +18,16 @@ MonoBehaviour:
     height: 3
     cells: 010100010101010100
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 4
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Lucky Engine 3  OnTimePass
+    maxUses: 0
     cooldown: 2.1
-    fuelCost: 60
+    fuelCost: 54
     classification: 3
     function: 1
     condition: 0

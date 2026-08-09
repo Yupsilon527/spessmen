@@ -22,8 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Engine 2  OnTimePass
+    maxUses: 0
     cooldown: 1.9
-    fuelCost: 36
+    fuelCost: 35
     classification: 3
     function: 1
     condition: 0

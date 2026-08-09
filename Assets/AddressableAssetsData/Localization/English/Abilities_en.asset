@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098633
-    m_Localized: if speed is below %value%
+    m_Localized: if speed below %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098634
@@ -79,11 +79,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098635
-    m_Localized: if position is below %value%
+    m_Localized: if position below %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098636
-    m_Localized: if position is above %value%
+    m_Localized: if position above %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098637
@@ -95,27 +95,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098639
-    m_Localized: if fuel is below %value%
+    m_Localized: if fuel above %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098640
-    m_Localized: if fuel is above %value%
+    m_Localized: if fuel below %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098641
-    m_Localized: if fuel is below %value%%
+    m_Localized: if fuel above %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098642
-    m_Localized: if fuel is above %value%%
+    m_Localized: if fuel below %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098643
-    m_Localized: if current lap is below %value%%
+    m_Localized: if current lap below %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098644
-    m_Localized: if current lap is above %value%%
+    m_Localized: if current lap above %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098645

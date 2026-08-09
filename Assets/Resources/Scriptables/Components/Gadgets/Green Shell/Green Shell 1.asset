@@ -33,17 +33,17 @@ MonoBehaviour:
     - behavior: 0
       stat: 3
       scale: 0
-      value: -4
+      value: -10
       reverse: 0
       effectSource: 0
       effectTarget: 2
       condition: 13
-      conditionCheck: 0.75
+      conditionCheck: 0.66
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 86a0bb90deb19ef42b889e54062b38b6, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 1
   partType: 4
   attach: 0
   priceMultiplier: 1.2

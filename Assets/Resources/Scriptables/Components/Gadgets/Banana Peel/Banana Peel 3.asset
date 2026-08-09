@@ -16,13 +16,14 @@ MonoBehaviour:
   grid:
     width: 3
     height: 2
-    cells: 010101010001
+    cells: 000100010001
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Banana Peel 3  OnActivated
-    cooldown: 6
+    maxUses: 5
+    cooldown: 0.5
     fuelCost: 0
     classification: 4
     function: 2
@@ -31,27 +32,16 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 3
-      scale: 12
-      value: -120
+      scale: 3
+      value: 0
       reverse: 0
       effectSource: 0
       effectTarget: 3
       condition: 0
       conditionCheck: 0
-    - behavior: 0
-      stat: 3
-      scale: 12
-      value: -16
-      reverse: 1
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: c1cd1e2f3adf1ea47b567376e5ff47ea, type: 2}
+  combos: []
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 2
+  boonRarity: 3
   partType: 4
   attach: 0
   priceMultiplier: 1.2

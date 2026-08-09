@@ -1,9 +1,6 @@
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 public class PartTooltip : MonoBehaviour
 {
@@ -52,20 +49,13 @@ public class PartTooltip : MonoBehaviour
     }
     public async void Clear()
     {
-        var titleTask = LocalizationSettings.StringDatabase
-            .GetLocalizedStringAsync("UI Table", "PartInfo").Task;
-        var subtitleTask = LocalizationSettings.StringDatabase
-            .GetLocalizedStringAsync("UI Table", "MouseOverHint").Task;
-
-        await Task.WhenAll(titleTask, subtitleTask);
-
         if (title != null)
         {
-            title.text = titleTask.Result;
+            title.text = LanguageController.main.Translate("UI Table", "PartInfo");
         }
         if (subtitle != null)
         {
-            subtitle.text = subtitleTask.Result;
+            subtitle.text = LanguageController.main.Translate("UI Table", "MouseOverHint");
         }
         if (description != null)
         {

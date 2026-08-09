@@ -110,8 +110,8 @@ MonoBehaviour:
     m_Localized: 'Can Merge With '
     m_Metadata:
       m_Items: []
-  - m_Id: 382498736345088
-    m_Localized: 309486063616
+  - m_Id: 309486063616
+    m_Localized: Reroll
     m_Metadata:
       m_Items: []
   references:

@@ -74,6 +74,7 @@ public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitH
     }
     public void OnClick()
     {
+        if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.racing)
         foreach (var ability in corresponding)
             ability.Activate( ShipDefines.PartEvent.OnActivated);
     }

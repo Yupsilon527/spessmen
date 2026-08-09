@@ -88,7 +88,7 @@ public class PartAbility
                 }
                 else
                 {
-                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": ´+label;
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": "+label;
                 }
             }
 
@@ -96,19 +96,19 @@ public class PartAbility
             effects += label;
         }
 
-        string costs = ".<br>";
+        string costs = ". ";
         if (fuelCost > 0)
         {
             costs += LanguageController.main.Translate("Abilities", "Ability Cost").Replace("%value%", fuelCost.ToString());
         }
         if (cooldown > 0)
         {
-            if (costs.Length > 0) costs += "<br>";
+            if (costs.Length > 0) costs += " ";
             costs += LanguageController.main.Translate("Abilities", "Ability Cooldown").Replace("%value%", cooldown.ToString());
         }
         if (maxUses > 0)
         {
-            if (costs.Length > 0) costs += "<br>";
+            if (costs.Length > 0) costs += " ";
             costs += LanguageController.main.Translate("Abilities", "Ability Uses").Replace("%value%", maxUses.ToString());
         }
 

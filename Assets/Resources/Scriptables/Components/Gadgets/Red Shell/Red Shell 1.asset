@@ -32,27 +32,27 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 3
-      scale: 0
-      value: -4
+      scale: 12
+      value: -30
       reverse: 0
-      effectSource: 2
+      effectSource: 0
       effectTarget: 2
       condition: 0
       conditionCheck: 0
     - behavior: 0
       stat: 3
-      scale: 3
-      value: -0.1
-      reverse: 0
-      effectSource: 2
-      effectTarget: 2
+      scale: 12
+      value: -13
+      reverse: 1
+      effectSource: 0
+      effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 53df9ab08632c5b49b9a25d4caffc0de, type: 2}
   icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 0
+  boonRarity: 1
   partType: 4
   attach: 0
   priceMultiplier: 1.2

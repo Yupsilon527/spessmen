@@ -18,10 +18,14 @@ MonoBehaviour:
     height: 2
     cells: 01010101
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 2
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Lucky Wheel 3  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1

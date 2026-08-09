@@ -22,8 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Rubberband Engine 3  OnTimePass
+    maxUses: 0
     cooldown: 1.6
-    fuelCost: 48
+    fuelCost: 36.75
     classification: 3
     function: 1
     condition: 0

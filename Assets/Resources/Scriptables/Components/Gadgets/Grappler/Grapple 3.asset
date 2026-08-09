@@ -22,8 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Grapple 3  OnActivated
+    maxUses: 0
     cooldown: 4
-    fuelCost: 50
+    fuelCost: 40
     classification: 4
     function: 2
     condition: 0
@@ -34,7 +35,7 @@ MonoBehaviour:
       scale: 3
       value: 0.2
       reverse: 0
-      effectSource: 1
+      effectSource: 2
       effectTarget: 0
       condition: 0
       conditionCheck: 0
@@ -43,8 +44,8 @@ MonoBehaviour:
       scale: 3
       value: -0.25
       reverse: 0
-      effectSource: 1
-      effectTarget: 1
+      effectSource: 2
+      effectTarget: 2
       condition: 0
       conditionCheck: 0
   combos: []
