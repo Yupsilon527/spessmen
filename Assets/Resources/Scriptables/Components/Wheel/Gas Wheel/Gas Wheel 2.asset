@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Gas Wheel 2  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -32,7 +33,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 20
-      value: 0.1333333
+      value: 0.16
       reverse: 0
       effectSource: 0
       effectTarget: 0

@@ -41,8 +41,8 @@ MonoBehaviour:
       conditionCheck: 0
     - behavior: 0
       stat: 3
-      scale: 0
-      value: -10
+      scale: 3
+      value: -0.075
       reverse: 0
       effectSource: 0
       effectTarget: 0

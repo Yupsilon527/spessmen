@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Legengas Wheel  OnTimePass
+    maxUses: 0
     cooldown: 0.75
     fuelCost: 0
     classification: 1
@@ -39,6 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   - InternalName: Legengas Wheel  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -49,7 +51,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 20
-      value: 0.375
+      value: 0.35
       reverse: 0
       effectSource: 0
       effectTarget: 0

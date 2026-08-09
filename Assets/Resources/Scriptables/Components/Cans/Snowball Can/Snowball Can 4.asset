@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Can 4  OnTimePass
+    maxUses: 0
     cooldown: 4
     fuelCost: 0
     classification: 2
@@ -33,6 +34,7 @@ MonoBehaviour:
       stat: 2
       scale: 0
       value: 16
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -41,6 +43,7 @@ MonoBehaviour:
       stat: 2
       scale: 6
       value: 8
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
