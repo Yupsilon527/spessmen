@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -43,7 +42,7 @@ public class TourneyController : Initializable
                 {
                     raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
                     racers = leaderboard.Keys.Select(k => k).ToList(),
-                    lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * GetCurrentRaceIndex() //TODO define
+                    lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * GetCurrentRaceIndex() 
                 };
                 if (GetCurrentRaceIndex() % RaceDefines.SeasonRaces == 0)
                 {
@@ -95,33 +94,27 @@ public class TourneyController : Initializable
                         case RaceDefines.RaceModifiers.FuelCosnumption:
                             player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
-                                {  ModifierDefines.Property.fuel_consumption_total,1.25f }
+                                {  ModifierDefines.Property.fuel_consumption_total,1.5f }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.ActiveCooldown:
                             player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
-                                {  ModifierDefines.Property.ability_cooldown,1.5f }
+                                {  ModifierDefines.Property.ability_cooldown,2f }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.EngineCooldown:
                             player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
-                                {  ModifierDefines.Property.engine_cooldown,1.5f }
+                                {  ModifierDefines.Property.engine_cooldown,1.5f },
+                                {  ModifierDefines.Property.nitro_cooldown,1.5f }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.LapsLonger:
-                            ongoingRace.lapDistance = RaceDefines.raceLengthLong;
+                            ongoingRace.lapDistance *= 2;
                             break;
                         case RaceDefines.RaceModifiers.LongerRace:
-                            raceTime *= 1.5f;
-                            break;
-                        case RaceDefines.RaceModifiers.AllCooldownsOff:
-                            foreach (var ability in player.abilities.GetAbilities())
-                            {
-                                if (ability.data.function != ShipDefines.PartEvent.OnRaceStart)
-                                    ability.FireCooldown();
-                            }
+                            raceTime *= RaceDefines.raceLengthLong;
                             break;
                         case RaceDefines.RaceModifiers.RandomEngine:
                         case RaceDefines.RaceModifiers.RandomGadget:

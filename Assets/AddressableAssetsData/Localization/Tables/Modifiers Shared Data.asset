@@ -1,0 +1,344 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Modifiers Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Modifiers
+  m_TableCollectionNameGuidString: 1bb1f80ec1a2efe41b09ce466f1a96d7
+  m_Entries:
+  - m_Id: 37669787570176
+    m_Key: chance scale neg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31333012115456
+    m_Key: chance scale pos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38406500290577
+    m_Key: gain effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281425
+    m_Key: prop_ability_cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281428
+    m_Key: prop_ability_power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281433
+    m_Key: prop_active_fuel_consumtion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475713
+    m_Key: prop_active_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475720
+    m_Key: prop_active_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281410
+    m_Key: prop_base_speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281411
+    m_Key: prop_base_speed_percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281412
+    m_Key: prop_bonus_speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281414
+    m_Key: prop_boost_speed_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281415
+    m_Key: prop_boost_speed_percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281429
+    m_Key: prop_cooldown_total
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281442
+    m_Key: prop_effect_resistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281424
+    m_Key: prop_engine_cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281430
+    m_Key: prop_engine_fuel_consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281444
+    m_Key: prop_engine_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475715
+    m_Key: prop_engine_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475723
+    m_Key: prop_expansion_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475722
+    m_Key: prop_expansion_rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281434
+    m_Key: prop_fuel_consumption_total
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281426
+    m_Key: prop_gadget_cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281431
+    m_Key: prop_gadget_fuel_consumtion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281445
+    m_Key: prop_gadget_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475716
+    m_Key: prop_gadget_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281436
+    m_Key: prop_gold_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281435
+    m_Key: prop_gold_income
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281437
+    m_Key: prop_gold_interest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281421
+    m_Key: prop_incoming_base_speed_percentage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281422
+    m_Key: prop_incoming_boost_speed_percentage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281423
+    m_Key: prop_incoming_gas_percentage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281419
+    m_Key: prop_incoming_speed_engines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281420
+    m_Key: prop_incoming_speed_nitro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281417
+    m_Key: prop_incoming_speed_total
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281418
+    m_Key: prop_incoming_speed_wheels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475721
+    m_Key: prop_item_rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281441
+    m_Key: prop_luck_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281427
+    m_Key: prop_nitro_cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281432
+    m_Key: prop_nitro_fuel_consumtion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281446
+    m_Key: prop_nitro_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475717
+    m_Key: prop_nitro_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281438
+    m_Key: prop_opponent_speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281439
+    m_Key: prop_rival_speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475714
+    m_Key: prop_shop_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281440
+    m_Key: prop_shop_resets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281443
+    m_Key: prop_speed_resistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281416
+    m_Key: prop_tank_capacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281413
+    m_Key: prop_total_speed_percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281447
+    m_Key: prop_trinket_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475718
+    m_Key: prop_trinket_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475712
+    m_Key: prop_wheel_prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475719
+    m_Key: prop_wheel_weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281408
+    m_Key: property relative
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355627589632
+    m_Key: property relative mult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475725
+    m_Key: scale_basespeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475726
+    m_Key: scale_boostspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475742
+    m_Key: scale_carslots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475724
+    m_Key: scale_constant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475734
+    m_Key: scale_currentfuelpercent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475733
+    m_Key: scale_currentfuelvalue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475730
+    m_Key: scale_currentposition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475731
+    m_Key: scale_currentrivalposition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475728
+    m_Key: scale_distancetraveled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475744
+    m_Key: scale_fueltotal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475729
+    m_Key: scale_lapscompleted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475736
+    m_Key: scale_lucky
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475737
+    m_Key: scale_numengines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475740
+    m_Key: scale_numgadgets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475739
+    m_Key: scale_numnitros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475741
+    m_Key: scale_numtrinkets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475738
+    m_Key: scale_numwheels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475735
+    m_Key: scale_random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475732
+    m_Key: scale_rivaldistancetraveled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475743
+    m_Key: scale_totalslots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475727
+    m_Key: scale_totalspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37671192662016
+    m_Key: stat scale neg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281409
+    m_Key: stat scale pos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41482728673280
+    m_Key: lose effect
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4699108400999956544
+  references:
+    version: 2
+    RefIds:
+    - rid: 4699108400999956544
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1786268858547

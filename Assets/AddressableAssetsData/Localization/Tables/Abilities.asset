@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
-  m_Name: Leaderboard
+  m_Name: Abilities
   m_EditorClassIdentifier: 
-  m_SharedTableData: {fileID: 11400000, guid: 299e978f14e42804d99591de73545f3b, type: 2}
+  m_SharedTableData: {fileID: 11400000, guid: 874850baf36065940894688fbb5d2937, type: 2}
   m_Tables:
-  - {fileID: 11400000, guid: b5b67edd42aa95e438d72bc98c8e87c6, type: 2}
+  - {fileID: 11400000, guid: bf36d1227738f9c4a95b596406b5e580, type: 2}
   m_Extensions:
-  - rid: 4699108400999956563
+  - rid: 4699108400999956545
   m_Group: String Table
   references:
     version: 2
     RefIds:
-    - rid: 4699108400999956563
+    - rid: 4699108400999956545
       type: {class: CsvExtension, ns: UnityEditor.Localization.Plugins.CSV, asm: Unity.Localization.Editor}
       data:
         m_Collection: {fileID: 11400000}
         m_ColumnsList:
-        - rid: 4699108400999956564
-        - rid: 4699108400999956565
-        m_ConnectedFile: Assets/AddressableAssetsData/Localization/csv/Leaderboard.csv
-    - rid: 4699108400999956564
+        - rid: 4699108400999956546
+        - rid: 4699108400999956547
+        m_ConnectedFile: Assets/AddressableAssetsData/Localization/csv/Abilities.csv
+    - rid: 4699108400999956546
       type: {class: KeyIdColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
       data:
         m_IncludeId: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
         m_KeyFieldName: key
         m_IdFieldName: Id
         m_CommentFieldName: Shared Comments
-    - rid: 4699108400999956565
+    - rid: 4699108400999956547
       type: {class: LocaleColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
       data:
         m_LocaleIdentifier:

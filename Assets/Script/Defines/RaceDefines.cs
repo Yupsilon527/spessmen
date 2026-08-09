@@ -38,9 +38,8 @@ public static class RaceDefines
 
         Elite = 7,
 
-        AllCooldownsOff=7,
-        RandomEngine=8,
-        RandomGadget=9,
+        RandomGadget = 7,
+        RandomEngine =8,
         Total=10,
     }
 

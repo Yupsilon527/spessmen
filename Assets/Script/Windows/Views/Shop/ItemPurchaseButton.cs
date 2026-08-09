@@ -69,9 +69,9 @@ public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
     {
         if (purchaseData != null)
         {
-            string goldCost = purchaseData.itemCost == 0 ? "free": purchaseData.itemCost.ToString();// LanguageController.main.Translate("item_cost_gold").Replace("%g", purchaseData.itemCost.ToString());
+            string goldCost = purchaseData.itemCost == 0 ? LanguageController.main.Translate("UI Table", "Cost Free") : LanguageController.main.Translate("UI Table", "Cost Label");
             if (coinImage != null) coinImage.gameObject.SetActive(purchaseData.itemCost > 0);
-            if (priceLabel != null) priceLabel.text = goldCost;
+            if (priceLabel != null) priceLabel.text = goldCost.Replace("%cost%", purchaseData.itemCost.ToString("F0")); ;
         }
         else
         {

@@ -1,0 +1,339 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Modifiers_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 1bb1f80ec1a2efe41b09ce466f1a96d7, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19355627589632
+    m_Localized: +1% %property% for every %value% %scale% they have
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281408
+    m_Localized: +1 %property% for every %value% %scale% they have
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281409
+    m_Localized: 'Gains %value% times %source% %scale% '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281410
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281411
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281412
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281413
+    m_Localized: Total Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281414
+    m_Localized: Boost Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281415
+    m_Localized: Boost Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281416
+    m_Localized: Tank Gapacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281417
+    m_Localized: Incoming Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281418
+    m_Localized: Speed From Wheels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281419
+    m_Localized: Speed From Engines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281420
+    m_Localized: Speed From Nitros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281421
+    m_Localized: Incoming Base Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281422
+    m_Localized: Incoming Boost Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281423
+    m_Localized: Incoming Gas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281424
+    m_Localized: Engine Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281425
+    m_Localized: Active Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281426
+    m_Localized: Gadget Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281427
+    m_Localized: Nitro Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281428
+    m_Localized: Ability Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281429
+    m_Localized: Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31333012115456
+    m_Localized: 'Gains between 0-%value% '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281442
+    m_Localized: Resistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281430
+    m_Localized: Engine Fuel Consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281444
+    m_Localized: Engine Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475715
+    m_Localized: Engine Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475723
+    m_Localized: Expansion Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475722
+    m_Localized: Expansion Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281434
+    m_Localized: Fuel Consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281431
+    m_Localized: Gadget Fuel Consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281445
+    m_Localized: Gadget Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475716
+    m_Localized: Gadget Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281436
+    m_Localized: $ from races
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281435
+    m_Localized: Income
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281437
+    m_Localized: Interest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475721
+    m_Localized: Rare Item Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281441
+    m_Localized: Luck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281432
+    m_Localized: Nitro Fuel Consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281446
+    m_Localized: Nitro Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475717
+    m_Localized: Nitro Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281438
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281439
+    m_Localized: Rival Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475714
+    m_Localized: Discount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281440
+    m_Localized: Free Rerolls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281443
+    m_Localized: Weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281447
+    m_Localized: Decal Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475718
+    m_Localized: Decal Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475712
+    m_Localized: Wheel Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475719
+    m_Localized: Wheel Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475725
+    m_Localized: Wheel Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475726
+    m_Localized: Engine Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475742
+    m_Localized: Empty Slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475724
+    m_Localized: Constant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475734
+    m_Localized: Current Fuel Percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475733
+    m_Localized: Current Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475730
+    m_Localized: Position
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475731
+    m_Localized: "Rival\u2019s Position"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475728
+    m_Localized: Distance Traveled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475744
+    m_Localized: Tank Capacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475729
+    m_Localized: Laps Completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475736
+    m_Localized: Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475737
+    m_Localized: Engines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475740
+    m_Localized: Gadgets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475739
+    m_Localized: Nitros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475741
+    m_Localized: Decals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475738
+    m_Localized: Wheels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475735
+    m_Localized: Random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475732
+    m_Localized: "Rival\u2019s Distance"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475743
+    m_Localized: Car Slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475727
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355707281433
+    m_Localized: Active Item Fuel Consumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475713
+    m_Localized: Active Item Prices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19355711475720
+    m_Localized: Active Item Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37669787570176
+    m_Localized: 'Loses between 0-%value% '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37671192662016
+    m_Localized: 'Loses %value% times %source% %scale% '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38406500290577
+    m_Localized: 'Gains %value% '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41482728673280
+    m_Localized: 'Loses %value% '
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

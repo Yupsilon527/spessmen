@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -16,15 +15,15 @@ public class PartTooltip : MonoBehaviour
     {
         Clear();
     }
-    public async void ShowPart(PartScriptable part, bool build)
+    public  void ShowPart(PartScriptable part, bool build)
     {
         if (title!=null)
         {
-            title.text = part.InternalName;
+            title.text = LanguageController.main.Translate("Parts", part.InternalName);
         }
         if (subtitle != null)
         {
-            subtitle.text = part.boonRarity + " " + part.partType;
+            subtitle.text = LanguageController.main.Translate("Abilities", "rarity_"+part.boonRarity) + " " + LanguageController.main.Translate("Abilities", "class_" + part.partType);
         }
         if (description != null)
         {
@@ -33,19 +32,12 @@ public class PartTooltip : MonoBehaviour
             {
                 if (part.combos.Length > 0)
                 {
-                    string mergeLabel = await LocalizationSettings.StringDatabase .GetLocalizedStringAsync("UI Table", "CanMergeWith").Task;
-
-                    var nameTasks = part.combos
-                        .Select(combo => LocalizationSettings.StringDatabase
-                            .GetLocalizedStringAsync("Parts", combo.other.InternalName).Task)
-                        .ToArray();
-
-                    string[] names = await Task.WhenAll(nameTasks);
-
+                    string mergeLabel = LanguageController.main.Translate("UI Table", "CanMergeWith");
+                    string[] names = part.combos.Select(combo => LanguageController.main.Translate("Parts", combo.other.InternalName))  .ToArray();
                     description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
                 }
                 if (part.attach != ItemDefines.PartCondition.Anywhere)
-                description.text += "<br>"+ await LocalizationSettings.StringDatabase .GetLocalizedStringAsync("Part Info", part.attach.ToString()).Task;
+                description.text += "<br>"+ LanguageController.main.Translate("UI Table", "condition_"+part.attach);
             }
         }
         if (grid!=null)
@@ -54,7 +46,7 @@ public class PartTooltip : MonoBehaviour
         }
         if (value != null)
         {
-            value.text = (part.GetBasePrice() * EconomyDefines.partResellPrice)+"g";
+            value.text = "$"+(part.GetBasePrice() * EconomyDefines.partResellPrice);
         }
         if (toggleActive) gameObject.SetActive(true);
     }

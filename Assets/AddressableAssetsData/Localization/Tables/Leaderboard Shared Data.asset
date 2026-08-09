@@ -16,39 +16,35 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 299e978f14e42804d99591de73545f3b
   m_Entries:
   - m_Id: 22222376960
-    m_Key: LeaderboardYou
+    m_Key: leaderboardyou
     m_Metadata:
       m_Items: []
   - m_Id: 8629957595136
-    m_Key: "LeaderboardRival\t"
+    m_Key: leaderboardrival
     m_Metadata:
       m_Items: []
   - m_Id: 19803176603648
-    m_Key: playerPosition
+    m_Key: playerposition
     m_Metadata:
       m_Items: []
   - m_Id: 20725411778560
-    m_Key: raceIncome
+    m_Key: raceincome
     m_Metadata:
       m_Items: []
   - m_Id: 20798635937792
-    m_Key: performanceIncome
+    m_Key: performanceincome
     m_Metadata:
       m_Items: []
   - m_Id: 20967364399104
-    m_Key: interestIncome
+    m_Key: interestincome
     m_Metadata:
       m_Items: []
   - m_Id: 21476603236352
-    m_Key: rivalIncome
+    m_Key: rivalincome
     m_Metadata:
       m_Items: []
   - m_Id: 21607910117376
-    m_Key: cashOutTotal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 21623580037120
-    m_Key: moneyTotal
+    m_Key: cashouttotal
     m_Metadata:
       m_Items: []
   m_Metadata:

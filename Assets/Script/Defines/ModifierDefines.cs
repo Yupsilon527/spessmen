@@ -76,24 +76,24 @@ public static class ModifierDefines
         luck_bonus = 25,
 
         effect_resistance = 48,
-       speed_resistance = 49,
+        speed_resistance = 49,
 
-       engine_prices = 31,
-       gadget_prices = 32,
-       nitro_prices = 33,
-       trinket_prices = 34,
-       wheel_prices = 35,
-       active_prices = 36,
-       shop_prices = 37,
+        engine_prices = 31,
+        gadget_prices = 32,
+        nitro_prices = 33,
+        trinket_prices = 34,
+        wheel_prices = 35,
+        active_prices = 36,
+        shop_prices = 37,
 
-       engine_weight = 38,
-       gadget_weight = 39,
-       nitro_weight = 40,
-       trinket_weight = 41,
-       wheel_weight = 42,
-       active_weight = 43,
-       item_rarity = 44,
-       
+        engine_weight = 38,
+        gadget_weight = 39,
+        nitro_weight = 40,
+        trinket_weight = 41,
+        wheel_weight = 42,
+        active_weight = 43,
+        item_rarity = 44,
+
         expansion_rarity = 45,
         expansion_prices = 46,
 
@@ -193,7 +193,7 @@ public static class ModifierDefines
         public static string ValueToString(Property property, float value)
         {
             if (IsPropertyMultiplicative(property))
-            return $"{(value > 0 ? "+" : "")}{Mathf.Round(value * 100)}%";
+                return $"{(value > 0 ? "+" : "")}{Mathf.Round(value * 100)}%";
             else
                 return $"{(value > 0 ? "+" : "")}{Mathf.RoundToInt(value * 10) / 10f}";
 
@@ -214,11 +214,10 @@ public static class ModifierDefines
 
         public string ValueToString()
         {
-            if (IsPropertyMultiplicative(Property))
-            {
-                return $"+1% {Property} for every {Mathf.CeilToInt(1 / translation)* .01f} {baseStat}";
-            }
-            return $"+1 {Property} for every {Mathf.CeilToInt(1 / translation)} {baseStat}";
+            return LanguageController.main.Translate("Modifiers", IsPropertyMultiplicative(Property) ? "Property Relative Mult" : "Property Relative")
+                .Replace("%property%", LanguageController.main.Translate("Modifiers", "prop_"+ Property.ToString()))
+                .Replace("%value%", (Mathf.CeilToInt(1 / translation) * .01f).ToString())
+                .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_"+ baseStat));
         }
     }
     #endregion

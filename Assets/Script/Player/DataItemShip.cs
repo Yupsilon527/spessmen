@@ -118,9 +118,9 @@ public class DataItemShip : DataItemGrid
                 return IsTopmost( py);
             case ItemDefines.PartCondition.Bottom:
                 return IsBottommost( py);
-            case ItemDefines.PartCondition.Left:
+            case ItemDefines.PartCondition.Back:
                 return IsLeftmost(px);
-            case ItemDefines.PartCondition.Right:
+            case ItemDefines.PartCondition.Front:
                 return IsRightmost(px);
             default:
                 return true;

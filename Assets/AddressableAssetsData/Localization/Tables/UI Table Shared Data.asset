@@ -16,67 +16,99 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 895435ce0960a584ebaec964c5bd451d
   m_Entries:
   - m_Id: 168213516288
-    m_Key: Cost Label
+    m_Key: cost label
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
-    m_Key: Gold Label
+    m_Key: gold label
     m_Metadata:
       m_Items: []
-  - m_Id: 309486063616
-    m_Key: "Reroll\t"
+  - m_Id: 382498736345088
+    m_Key: reroll
     m_Metadata:
       m_Items: []
   - m_Id: 996047491072
-    m_Key: Shop
+    m_Key: shop
     m_Metadata:
       m_Items: []
   - m_Id: 5022193455104
-    m_Key: Start
+    m_Key: start
     m_Metadata:
       m_Items: []
   - m_Id: 7643117555712
-    m_Key: Race Label
+    m_Key: race label
     m_Metadata:
       m_Items: []
   - m_Id: 10046894149632
-    m_Key: PartInfo
+    m_Key: partinfo
     m_Metadata:
       m_Items: []
   - m_Id: 10083472674816
-    m_Key: MouseOverHint
+    m_Key: mouseoverhint
     m_Metadata:
       m_Items: []
   - m_Id: 10379565371392
-    m_Key: Discard
+    m_Key: discard
     m_Metadata:
       m_Items: []
   - m_Id: 10937374248960
-    m_Key: Lap Header
+    m_Key: lap header
     m_Metadata:
       m_Items: []
   - m_Id: 10973814362112
-    m_Key: Speed Header
+    m_Key: speed header
     m_Metadata:
       m_Items: []
   - m_Id: 11003535200256
-    m_Key: Fuel Header
+    m_Key: fuel header
     m_Metadata:
       m_Items: []
   - m_Id: 47363813969920
-    m_Key: Leaderboard
+    m_Key: leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 47393765494784
-    m_Key: Tourney Score
+    m_Key: tourney score
     m_Metadata:
       m_Items: []
   - m_Id: 49302064762880
-    m_Key: Tourney Results
+    m_Key: tourney results
     m_Metadata:
       m_Items: []
   - m_Id: 50074445844480
-    m_Key: Proceed
+    m_Key: proceed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112711875596288
+    m_Key: restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 338784752144384
+    m_Key: modifiertitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362853774036992
+    m_Key: condition_anywhere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362859662839808
+    m_Key: condition_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362860493312000
+    m_Key: condition_bottom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362861365727232
+    m_Key: condition_front
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362868630261760
+    m_Key: condition_back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364806314823680
+    m_Key: canmergewith
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -32,7 +32,6 @@ public static class ShipDefines
         RefreshGadgets,
         RefreshNitros,
         RefreshCooldowns,
-        Total,
     }
     public enum PartEvent
     {
@@ -47,7 +46,7 @@ public static class ShipDefines
         OnEngineActivate = 8,
         OnNitroActivate = 9,
         OnFastAbilityActivate = 10,
-        OnBigAbilityActivate = 10,
+        OnBigAbilityActivate = 11,
     }
     public enum PartCondition
     {

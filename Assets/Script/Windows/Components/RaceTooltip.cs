@@ -33,7 +33,7 @@ public class RaceTooltip : MonoBehaviour
         {
             string weatherName =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString());
             string weatherDesc =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString()+"_desc");
-            raceWeather.text = weatherName+"<br>"+weatherDesc;
+            raceWeather.text = $"{LanguageController.main.Translate("UI Table", "ModifierTitle")}<br>{weatherName}<br>{weatherDesc}";
         }
 
         if (environmentDisplay != null) environmentDisplay.sprite = environment.icon;

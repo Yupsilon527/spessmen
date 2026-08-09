@@ -39,8 +39,8 @@ public static class ItemDefines
     {
         Anywhere,
         Bottom,
-        Left,
-        Right,
+        Back,
+        Front,
         Top
     }
 

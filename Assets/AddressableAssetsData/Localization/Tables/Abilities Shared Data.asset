@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Abilities Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Abilities
+  m_TableCollectionNameGuidString: 874850baf36065940894688fbb5d2937
+  m_Entries:
+  - m_Id: 19397650321408
+    m_Key: ability cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904320
+    m_Key: ability cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904321
+    m_Key: ability uses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904322
+    m_Key: effect_basespeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098624
+    m_Key: effect_boostspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098625
+    m_Key: effect_fillgas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098626
+    m_Key: effect_totalspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098627
+    m_Key: effect_refreshengines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098628
+    m_Key: effect_refreshgadgets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098629
+    m_Key: effect_refreshnitros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098630
+    m_Key: effect_refreshcooldowns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098631
+    m_Key: condition_always
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098632
+    m_Key: condition_random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098633
+    m_Key: condition_speedbelow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098634
+    m_Key: condition_speedabove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098635
+    m_Key: condition_positionbelow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098636
+    m_Key: condition_positionabove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098637
+    m_Key: condition_aheadofrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098638
+    m_Key: condition_behindrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098639
+    m_Key: condition_gasabove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098640
+    m_Key: condition_gasbelow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098641
+    m_Key: condition_gaspercentabove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098642
+    m_Key: condition_gaspercentbelow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098643
+    m_Key: condition_lapbelow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098644
+    m_Key: condition_lapabove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098645
+    m_Key: condition_lucky
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098646
+    m_Key: function_onracestart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098647
+    m_Key: function_ontimepass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098648
+    m_Key: function_onactivated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098649
+    m_Key: function_onlapcompleted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098650
+    m_Key: function_onotherovertaken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098651
+    m_Key: function_onrivalovertaken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098652
+    m_Key: function_onsoundbarrierbroken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098653
+    m_Key: function_ongadgetactivate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098654
+    m_Key: function_onengineactivate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098655
+    m_Key: function_onnitroactivate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098656
+    m_Key: function_onfastabilityactivate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098657
+    m_Key: function_onbigabilityactivate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098658
+    m_Key: target_self
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098659
+    m_Key: target_firstracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098660
+    m_Key: target_frontracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098661
+    m_Key: target_backracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098662
+    m_Key: target_rivalracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940344692736
+    m_Key: rarity_common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469952
+    m_Key: rarity_rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469953
+    m_Key: rarity_epic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469954
+    m_Key: rarity_legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469955
+    m_Key: class_other
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469956
+    m_Key: class_wheel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469957
+    m_Key: class_tank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469958
+    m_Key: class_gadget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469959
+    m_Key: class_nitro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469960
+    m_Key: class_decal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469961
+    m_Key: class_expansion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45198567444480
+    m_Key: class_engine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29995515678720
+    m_Key: source_self
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29998795624448
+    m_Key: source_firstracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30000477540352
+    m_Key: source_frontracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30001849077760
+    m_Key: source_backracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30004072058880
+    m_Key: source_rivalracer
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4699108400999956543
+  references:
+    version: 2
+    RefIds:
+    - rid: 4699108400999956543
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1786268842843

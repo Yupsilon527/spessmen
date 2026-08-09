@@ -21,7 +21,7 @@ public class RaceResultsWindow : MonoBehaviour
         {
             int position = TourneyController.main?.ongoingRace?.GetPositionForRacer(TourneyController.main.GetPlayerRacer()) ?? 0;
 
-            string posString = LanguageController.main.Translate("Leaderboard", "playerPosition").Replace("%position%", (position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th"));
+            string posString = LanguageController.main?.Translate("Leaderboard", "playerPosition").Replace("%position%", (position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th"))??"";
             playerPosition.text = posString;
         }
     }

@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Abilities_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 874850baf36065940894688fbb5d2937, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19397650321408
+    m_Localized: Uses %value% fuel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904320
+    m_Localized: Cooldown %value%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904321
+    m_Localized: '%value% uses each race.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397662904322
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098624
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098625
+    m_Localized: Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098626
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098627
+    m_Localized: Engine CD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098628
+    m_Localized: Gadget CD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098629
+    m_Localized: Nitro CD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098630
+    m_Localized: CD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098631
+    m_Localized: Always
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098632
+    m_Localized: '%value%% chance'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098633
+    m_Localized: if speed is below %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098634
+    m_Localized: if speed is above %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098635
+    m_Localized: if position is below %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098636
+    m_Localized: if position is above %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098637
+    m_Localized: if ahead of their rival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098638
+    m_Localized: if behind their rival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098639
+    m_Localized: if fuel is below %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098640
+    m_Localized: if fuel is above %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098641
+    m_Localized: if fuel is below %value%%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098642
+    m_Localized: if fuel is above %value%%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098643
+    m_Localized: if current lap is below %value%%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098644
+    m_Localized: if current lap is above %value%%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098645
+    m_Localized: '%value%% chance'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098646
+    m_Localized: Race Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098647
+    m_Localized: Passively
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098648
+    m_Localized: When activated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098649
+    m_Localized: Each Lap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098650
+    m_Localized: Racer overtaken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098651
+    m_Localized: Rival overtaken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098652
+    m_Localized: When you break sound barrier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098653
+    m_Localized: When you use a gadget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098654
+    m_Localized: When you use an engine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098655
+    m_Localized: When you use a nitro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098656
+    m_Localized: When you use a ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098657
+    m_Localized: When you use a spammy ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098658
+    m_Localized: Player %effect%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098659
+    m_Localized: The racer in the first position %effect%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098660
+    m_Localized: The racer in front %effect%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098661
+    m_Localized: The racer in back %effect%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397667098662
+    m_Localized: The their rival racer %effect%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940344692736
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469952
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469953
+    m_Localized: Epic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469954
+    m_Localized: Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469955
+    m_Localized: Part
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469956
+    m_Localized: Wheel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469957
+    m_Localized: Tank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469958
+    m_Localized: Gadget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469959
+    m_Localized: Nitro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469960
+    m_Localized: Decal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20940361469961
+    m_Localized: Expansion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29995515678720
+    m_Localized: their
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29998795624448
+    m_Localized: "first racer\u2019s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30000477540352
+    m_Localized: racer in front
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30001849077760
+    m_Localized: racer in back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30004072058880
+    m_Localized: "their rival\u2019s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45198567444480
+    m_Localized: Engine
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

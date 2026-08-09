@@ -16,15 +16,79 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: a82df9a016fecee4d8e586103f81493d
   m_Entries:
   - m_Id: 119278571520
-    m_Key: Alley
+    m_Key: alley
     m_Metadata:
       m_Items: []
   - m_Id: 186093834240
-    m_Key: Nothing
+    m_Key: nothing
     m_Metadata:
       m_Items: []
   - m_Id: 361776451584
-    m_Key: Nothing_desc
+    m_Key: nothing_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222195539968
+    m_Key: fasterrival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397568
+    m_Key: fasterrival_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397569
+    m_Key: fuelcosnumption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397570
+    m_Key: fuelcosnumption_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397571
+    m_Key: activecooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397572
+    m_Key: activecooldown_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397573
+    m_Key: enginecooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397574
+    m_Key: enginecooldown_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397575
+    m_Key: lapslonger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397576
+    m_Key: lapslonger_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786176
+    m_Key: longerrace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786177
+    m_Key: longerrace_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786178
+    m_Key: randomengine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786179
+    m_Key: randomengine_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786180
+    m_Key: randomgadget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786181
+    m_Key: randomgadget_desc
     m_Metadata:
       m_Items: []
   m_Metadata:

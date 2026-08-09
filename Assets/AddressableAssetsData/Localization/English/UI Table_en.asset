@@ -23,11 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
-    m_Localized: 'Your $$$: %gold%'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 309486063616
-    m_Localized: Reroll
+    m_Localized: 'Total $: %gold%'
     m_Metadata:
       m_Items: []
   - m_Id: 996047491072
@@ -80,6 +76,42 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 50074445844480
     m_Localized: Proceed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112711875596288
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 338784752144384
+    m_Localized: Modifier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362853774036992
+    m_Localized: Goes Anywhere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362859662839808
+    m_Localized: Must be on Top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362860493312000
+    m_Localized: Must be on Bottom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362861365727232
+    m_Localized: Must be in Front
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362868630261760
+    m_Localized: Must be in Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364806314823680
+    m_Localized: 'Can Merge With '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 382498736345088
+    m_Localized: 309486063616
     m_Metadata:
       m_Items: []
   references:

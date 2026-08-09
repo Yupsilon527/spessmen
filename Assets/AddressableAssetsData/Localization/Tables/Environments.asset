@@ -15,8 +15,33 @@ MonoBehaviour:
   m_SharedTableData: {fileID: 11400000, guid: a82df9a016fecee4d8e586103f81493d, type: 2}
   m_Tables:
   - {fileID: 11400000, guid: a93ff04c5d17bed4892de3c1a9d89399, type: 2}
-  m_Extensions: []
+  m_Extensions:
+  - rid: 4699108400999956557
   m_Group: String Table
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4699108400999956557
+      type: {class: CsvExtension, ns: UnityEditor.Localization.Plugins.CSV, asm: Unity.Localization.Editor}
+      data:
+        m_Collection: {fileID: 11400000}
+        m_ColumnsList:
+        - rid: 4699108400999956558
+        - rid: 4699108400999956559
+        m_ConnectedFile: Assets/AddressableAssetsData/Localization/csv/Environments.csv
+    - rid: 4699108400999956558
+      type: {class: KeyIdColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_IncludeId: 1
+        m_IncludeSharedComments: 0
+        m_KeyFieldName: key
+        m_IdFieldName: Id
+        m_CommentFieldName: Shared Comments
+    - rid: 4699108400999956559
+      type: {class: LocaleColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_LocaleIdentifier:
+          m_Code: en
+        m_FieldName: English(en)
+        m_CommentFieldName: English(en) Comments
+        m_IncludeComments: 0

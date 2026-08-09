@@ -30,4 +30,38 @@ public class LanguageLocale
         for (int i = 0; i < LanguageController.TableNames.Length; i++)
             tables[LanguageController.TableNames[i]] = output[i];
     }
+    public bool HasTranslation(string table, string name)
+    {
+        if (name == null)
+        {
+            LanguageController.main.Inspect("Tried to translate null value!");
+            return false;
+        }
+        name = name.ToLower();
+        if (tables.ContainsKey(table))
+        {
+            return true;
+        }
+        LanguageController.main.Inspect($"{name} key does not exist in language {name}");
+        return false;
+    }
+    public string Translate(string table, string name)
+    {
+        if (name == null)
+        {
+            LanguageController.main.Inspect("Tried to translate null value!");
+            return "MISSINGNO";
+        }
+        name = name.ToLower();
+        if (tables.TryGetValue(table, out var entry))
+        {
+        return entry?.GetEntry(name)?.GetLocalizedString() ?? name;
+        }
+        LanguageController.main.Inspect($"(LOCALE MISSING ERROR) {name} key does not exist in language {name}");
+#if UNITY_EDITOR
+        return "�" + name + "?";
+#else
+            return name;
+#endif
+    }
 }

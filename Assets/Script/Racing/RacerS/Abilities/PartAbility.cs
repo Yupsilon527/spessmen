@@ -48,53 +48,70 @@ public class PartAbility
     }
     public string GetAbilityDescription()
     {
-        string output = $"{function}: ";
+        string output = $"{LanguageController.main.Translate("Abilities", "function_"+function)}: ";
 
         string effects = "";
         foreach (ConditionalPartAltetration a in actions)
         {
-
-
             string label = "";
-            if (a.condition != ShipDefines.PartCondition.Always)
-            {
-                label +=$"if {a.condition} {a.conditionCheck}: ";
-            }
 
+            string numValue =  Mathf.Abs(a.value).ToString();
+            if (a.behavior == ShipDefines.AlterationType.Multiply)
+            {
+                numValue = Mathf.Abs(a.value * 100) + "% ";
+                if (numValue[0] == '+')
+                    numValue = "x" + label.Substring(1);
+                else
+                    numValue = "x" + label;
+            }
             if (a.scale == ShipDefines.ScaleType.Constant)
             {
-                label += a.value + " ";
+                label += LanguageController.main.Translate("Modifiers", a.value < 0 ? "Lose Effect" : "Gain Effect")
+                   .Replace("%value%", numValue)
+                   .Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + a.effectSource))
+                   .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + a.scale));
             }
             else
             {
-                label += $"{MathF.Round(a.value * 100)}% of {a.effectSource} {a.scale} as ";
+                label += LanguageController.main.Translate("Modifiers",((a.scale== ShipDefines.ScaleType.Lucky || a.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (a.value> 0 ?  "Pos" : "Neg"))
+                    .Replace("%value%", numValue)
+                    .Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + a.effectSource))
+                    .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + a.scale));
             }
-            if (a.behavior == ShipDefines.AlterationType.Multiply)
+            label += LanguageController.main.Translate("Abilities", "effect_" + a.stat);
+                label = LanguageController.main.Translate("Abilities", "target_" + a.effectTarget).Replace("%effect%", label);
+            if (a.condition != ShipDefines.PartCondition.Always)
             {
-                if (effects[0] == '+')
-                    label = "x" + label.Substring(1);
+                if (a.condition == ShipDefines.PartCondition.RelativeToRival)
+                {
+                    label = LanguageController.main.Translate("Abilities", a.conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival" + function) + ": "+ label;
+                }
                 else
-                    label = "x" + label;
-            }
-            label += a.stat;
-            if (a.effectTarget != RaceDefines.AbilityTarget.Self)
-            {
-                label = a.effectTarget + " gets " + label;
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": ´+label;
+                }
             }
 
             if (effects.Length > 0) effects += ", ";
             effects += label;
         }
 
-        string costs = ". ";
+        string costs = ".<br>";
         if (fuelCost > 0)
         {
-            costs += "Uses " + Mathf.Round(fuelCost) + " Fuel. ";
+            costs += LanguageController.main.Translate("Abilities", "Ability Cost").Replace("%value%", fuelCost.ToString());
         }
         if (cooldown > 0)
         {
-            costs += Mathf.Round(cooldown) + " Cooldown.";
+            if (costs.Length > 0) costs += "<br>";
+            costs += LanguageController.main.Translate("Abilities", "Ability Cooldown").Replace("%value%", cooldown.ToString());
         }
+        if (maxUses > 0)
+        {
+            if (costs.Length > 0) costs += "<br>";
+            costs += LanguageController.main.Translate("Abilities", "Ability Uses").Replace("%value%", maxUses.ToString());
+        }
+
 
         return output + effects + costs;
 

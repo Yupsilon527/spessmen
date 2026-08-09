@@ -6,7 +6,7 @@ using System.Linq;
 
 public class LanguageController : Initializable
 {
-    public static readonly string[] TableNames = { "Environments", "Leaderboard", "UI Table" , "Racers" };
+    public static readonly string[] TableNames = { "Environments", "Leaderboard", "UI Table" , "Abilities", "Modifiers", "Racers" };
     public static LanguageController main;
     protected override void Initialize()
     {
@@ -68,15 +68,19 @@ public class LanguageController : Initializable
     {
         LocalizationSettings.SelectedLocaleChanged -= OnChangeLanguage;
     }
-    public string TranslateName(string table, string name)
+    public string TranslateName(string table, string stringID)
     {
-        string stringID = name.ToLower()
+        string name = stringID.ToLower()
         .Replace(' ', '_');
-        return Translate(table, stringID);
+        return Translate(table, name);
     }
     public string Translate(string table, string stringID)
     {
         if (active == null) return stringID;
-        return active?.tables[table]?.GetEntry(stringID)?.GetLocalizedString() ?? stringID;
+        return active?.Translate(table,stringID) ?? stringID;
+    }
+    public bool HasTranslation(string table, string stringID)
+    {
+        return active?.HasTranslation(table,stringID) ?? false;
     }
 }

@@ -1,0 +1,61 @@
+key,Id,English(en)
+ability cost,19397650321408,Uses %value% fuel.
+ability cooldown,19397662904320,Cooldown %value%.
+ability uses,19397662904321,%value% uses each race.
+effect_basespeed,19397662904322,Speed
+effect_boostspeed,19397667098624,Speed
+effect_fillgas,19397667098625,Fuel
+effect_totalspeed,19397667098626,Speed
+effect_refreshengines,19397667098627,Engine CD
+effect_refreshgadgets,19397667098628,Gadget CD
+effect_refreshnitros,19397667098629,Nitro CD
+effect_refreshcooldowns,19397667098630,CD
+condition_always,19397667098631,Always
+condition_random,19397667098632,%value%% chance
+condition_speedbelow,19397667098633,if speed is below %value%
+condition_speedabove,19397667098634,if speed is above %value%
+condition_positionbelow,19397667098635,if position is below %value%
+condition_positionabove,19397667098636,if position is above %value%
+condition_aheadofrival,19397667098637,if ahead of their rival
+condition_behindrival,19397667098638,if behind their rival
+condition_gasabove,19397667098639,if fuel is below %value%
+condition_gasbelow,19397667098640,if fuel is above %value%
+condition_gaspercentabove,19397667098641,if fuel is below %value%%
+condition_gaspercentbelow,19397667098642,if fuel is above %value%%
+condition_lapbelow,19397667098643,if current lap is below %value%%
+condition_lapabove,19397667098644,if current lap is above %value%%
+condition_lucky,19397667098645,%value%% chance
+function_onracestart,19397667098646,Race Start
+function_ontimepass,19397667098647,Passively
+function_onactivated,19397667098648,When activated
+function_onlapcompleted,19397667098649,Each Lap
+function_onotherovertaken,19397667098650,Racer overtaken
+function_onrivalovertaken,19397667098651,Rival overtaken
+function_onsoundbarrierbroken,19397667098652,When you break sound barrier
+function_ongadgetactivate,19397667098653,When you use a gadget
+function_onengineactivate,19397667098654,When you use an engine
+function_onnitroactivate,19397667098655,When you use a nitro
+function_onfastabilityactivate,19397667098656,When you use a ability
+function_onbigabilityactivate,19397667098657,When you use a spammy ability
+target_self,19397667098658,Player %effect%
+target_firstracer,19397667098659,The racer in the first position %effect%
+target_frontracer,19397667098660,The racer in front %effect%
+target_backracer,19397667098661,The racer in back %effect%
+target_rivalracer,19397667098662,The their rival racer %effect%
+rarity_common,20940344692736,Common
+rarity_rare,20940361469952,Rare
+rarity_epic,20940361469953,Epic
+rarity_legendary,20940361469954,Legendary
+class_other,20940361469955,Part
+class_wheel,20940361469956,Wheel
+class_tank,20940361469957,Tank
+class_gadget,20940361469958,Gadget
+class_nitro,20940361469959,Nitro
+class_decal,20940361469960,Decal
+class_expansion,20940361469961,Expansion
+class_engine,45198567444480,Engine
+source_self,29995515678720,their
+source_firstracer,29998795624448,first racer’s
+source_frontracer,30000477540352,racer in front
+source_backracer,30001849077760,racer in back
+source_rivalracer,30004072058880,their rival’s

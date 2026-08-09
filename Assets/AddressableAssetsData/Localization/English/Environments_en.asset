@@ -27,7 +27,71 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 186093834240
-    m_Localized: ' '
+    m_Localized: Nothing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222195539968
+    m_Localized: Faster Rival
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397568
+    m_Localized: Your Rival is 2 times faster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397569
+    m_Localized: Fuel Guzzler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397570
+    m_Localized: You consume 50% more fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397571
+    m_Localized: Pacifism
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397572
+    m_Localized: Active abilities 2x cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397573
+    m_Localized: Bad Mechanic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397574
+    m_Localized: Your engine and nitro cooldown is 50% longer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397575
+    m_Localized: Longlaps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222300397576
+    m_Localized: The lasp are 2 times longer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786176
+    m_Localized: Longrun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786177
+    m_Localized: The race is 50% longer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786178
+    m_Localized: Engine Chaos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786179
+    m_Localized: Opponents gain a random engine!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786180
+    m_Localized: Gadget Chaos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 331222308786181
+    m_Localized: Opponents gain a random gadget!
     m_Metadata:
       m_Items: []
   references:

@@ -50,10 +50,6 @@ MonoBehaviour:
     m_Localized: 'Cash Out: $%value%'
     m_Metadata:
       m_Items: []
-  - m_Id: 21623580037120
-    m_Localized: 'Your $$$: $%value%'
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []
