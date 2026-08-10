@@ -25,6 +25,7 @@ public class CharacterResolver : MonoBehaviour
     public Dictionary<string, Renderer> SpriteRenderers;
     public SpriteLibrary library;
     protected Renderer[] renderers;
+    public LayerResolver[] layers;
     public bool autoUpdateCenter = false;
     public Transform centerBone;
 
@@ -48,7 +49,7 @@ public class CharacterResolver : MonoBehaviour
         renderer.enabled = enabled;
         if (renderer.TryGetComponent(out SpriteSkin skin)) skin.enabled = enabled;
     }
-    void InitSpriteRenderers()
+    public void InitSpriteRenderers()
     {
         var parent = library == null ? transform : library.transform;
 
@@ -61,6 +62,7 @@ public class CharacterResolver : MonoBehaviour
                 SpriteRenderers.Add(renderer.name.ToLower(), renderer);
             }
         }
+        layers = GetComponentsInChildren<LayerResolver>();
     }
     public virtual void LoadCharacter(CharacterSheet character, bool additive = false, float scaleOverride = 1)
     {
@@ -157,7 +159,7 @@ public class CharacterResolver : MonoBehaviour
         }
     }
     bool ShadowsEnabled {
-        get => toonType != ToonType.character;
+        get => toonType != ToonType.character ;
     }
     public void ToggleRenderers()
     {
@@ -256,6 +258,13 @@ public class CharacterResolver : MonoBehaviour
             foreach (Renderer renderer in renderers)
                 renderer.sortingLayerID = SortingLayer.NameToID(layer);
     }
+    public void ChangeSortingOrder(int layerOrder)
+    {
+        foreach (var layer in layers)
+        {
+            layer.ChangeOrder(layerOrder);
+        }
+    }
     #region AttachPoints
     public Dictionary<string, Transform> Attachpoints;
 
@@ -280,7 +289,12 @@ public class CharacterResolver : MonoBehaviour
     public bool FindAttachPoint(string searchName, out Transform atp)
     {
         atp = null;
-        if (Attachpoints.ContainsKey(searchName))
+        if (searchName.Length == 0)
+        {
+            atp = transform;
+            return true;
+        }
+        else if (Attachpoints.ContainsKey(searchName))
         {
             atp = Attachpoints[searchName];
             return true;
@@ -296,11 +310,11 @@ public class CharacterResolver : MonoBehaviour
             headScale = head.localScale;
         }
     }
-    public void SetHeadScale(float value)
+    public void SetAtpScale(string atpName, float value)
     {
-        if (FindAttachPoint("head",out Transform head))
+        if (FindAttachPoint(atpName, out Transform atp))
         {
-            head.transform.localScale = headScale * value;
+            atp.transform.localScale = headScale * value;
         }
     }
 }

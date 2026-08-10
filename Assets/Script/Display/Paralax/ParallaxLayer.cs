@@ -5,6 +5,7 @@ public class ParallaxLayer : MonoBehaviour
 {
     public Sprite[] spriteVariants;
     public SpriteRenderer spriteTemplate;
+    public float startingSpeed = 1f;
     public float speed = 1f;
     public float desiredWidth = 1f;
     public float spacing = 0f;
@@ -36,13 +37,13 @@ public class ParallaxLayer : MonoBehaviour
         {
             sprite.sprite = spriteVariants[Mathf.FloorToInt(Random.value * spriteVariants.Length)]; 
         }
-        ScrolRawl(deltaPosition);
+        ScrollRaw(deltaPosition);
     }
     public void Scroll(float worldDelta)
     {
-        ScrolRawl(worldDelta * speed);
+        ScrollRaw(worldDelta * speed);
     }
-    public void ScrolRawl(float delta)
+    public void ScrollRaw(float delta)
     {
         for (int i = 0; i < copies.Length; i++)
         {

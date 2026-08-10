@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 public class RacerToon
 {
     public Racer racer;
     public Toon toon;
+    public GameObject character;
     public float displaySpeed;
     public void PlayAnimation(string animName, int priority = 0, float fadeTime = .1f, float delay = 0, bool forced = true)
     {
@@ -44,6 +44,7 @@ public class ArenaController : MonoBehaviour
         {
             racer.displaySpeed = racer.racer.stats.realSpeed;
             racer.toon.ResetAlertTimes();
+            racer.toon.animator.SetBool("Driving", false);
         }
     }
     private void Update()
@@ -60,8 +61,11 @@ public class ArenaController : MonoBehaviour
             float relativePosition = racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled;
             if (relativePosition == 0) continue;
             racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id);
+
         }
-        parallax?.SetWorldDelta(playerRacer.racer.position.distanceTraveled);
+
+        float worldScroll = Mathf.Min(playerRacer.racer.position.distanceTraveled * 10, playerRacer.racer.position.distanceTraveled + 600);
+        parallax?.SetWorldDelta(worldScroll);
     }
     void HandleFloatingText()
     {
@@ -73,17 +77,20 @@ public class ArenaController : MonoBehaviour
                 racer.toon.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
                 racer.displaySpeed = racer.racer.stats.realSpeed;
             }
+            racer.toon.animator.SetBool("Driving", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing &&  racer.displaySpeed > 0);
+            racer.toon.animator.SetBool("Boosting", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing &&  racer.displaySpeed > ShipDefines.soundBarrierSpeed);
         }
     }
     public void LoadRacers(Racer[] racers)
     {
         foreach (var racer in racers)
-            LoadFighterPrefab(racer, racer.id == 0 ? racerPrefab : opponentPrefab);
+            LoadFighterPrefab(racer, racer.id == 0 ? racerPrefab : opponentPrefab, racer.playerShip);
     }
     public void Clear()
     {
         foreach (var racer in racers)
         {
+            epool.DeactivateObject(racer.character);
             epool.DeactivateObject(racer.toon.gameObject);
         }
         racers.Clear();
@@ -91,36 +98,30 @@ public class ArenaController : MonoBehaviour
             ef.Stop();
     }
 
-    public RacerToon LoadFighterPrefab(Racer racer, GameObject prefab)
+    public RacerToon LoadFighterPrefab(Racer racer, GameObject prefab, ShipScriptable character)
     {
         RacerToon fighter = new RacerToon()
         {
             racer = racer,
         };
-        if (PoolToonForPlayer(prefab, transform, 0) is Toon toon)
+        if (PoolToonForPlayer(prefab, transform) is Toon toon)
         {
             toon.character.toonType = CharacterResolver.ToonType.complete;
             toon.overlay.AssignRacer(racer);
             fighter.toon = toon;
+
+            if (PoolPrefabForPlayer(character.prefab, toon.character.FindAttachPoint("origin")) is GameObject g)
+            {
+                toon.animator = g.GetComponentInChildren<Animator>();
+            }
         }
         racers.Add(fighter);
         return fighter;
     }
-    public Toon PoolToonForPlayer(GameObject prefab, Transform parent, int childIndex = 0)
+    public Toon PoolToonForPlayer(GameObject prefab, Transform parent)
     {
-        var gob = epool.PoolItem(prefab);
-        if (gob != null)
+        if (PoolPrefabForPlayer(prefab, parent) is GameObject gob)
         {
-            var tempParent = parent.GetChild(childIndex);
-
-            tempParent.transform.localPosition = Vector3.zero;
-            tempParent.transform.localScale = Vector3.one;
-
-            gob.transform.SetParent(tempParent.transform);
-            gob.transform.localPosition = Vector3.zero;
-            gob.transform.localScale = Vector3.one;
-            gob.transform.localRotation = Quaternion.identity;
-
             var toon = gob.GetComponent<Toon>();
 
             // toon.character.ChangeLayer("Combatant");
@@ -130,6 +131,22 @@ public class ArenaController : MonoBehaviour
             return toon;
         }
         return null;
+    }
+    public GameObject PoolPrefabForPlayer(GameObject prefab, Transform parent)
+    {
+        var gob = epool.PoolItem(prefab);
+        if (gob != null)
+        {
+
+            gob.transform.SetParent(parent.transform);
+            gob.transform.localPosition = Vector3.zero;
+            gob.transform.localScale = prefab.transform.localScale;
+            gob.transform.localRotation = Quaternion.identity;
+
+            return gob;
+        }
+        return null;
+
     }
     public RacerToon GetPlayerRacer()
     {

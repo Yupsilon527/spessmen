@@ -4,6 +4,8 @@ using UnityEngine;
 public class ShipScriptable : ModifierScriptable
 {
     public Sprite blueprint;
+    public GameObject prefab;
+    public RuntimeAnimatorController ac;
     public float startingGold = 30;
     public PartScriptable[] startingParts;
     protected override void OnValidate()
