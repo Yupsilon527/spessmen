@@ -16,12 +16,12 @@ public class LeaderboardEntry : MonoBehaviour
     {
         ShowRacer(racer);
         racerDescription.text = (Mathf.Round(10*racer.position.distanceTraveled)/10).ToString("F1");
-        racerPosition.text = position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th";
+        racerPosition.text = position == 0 ? "1<sup>st" : position == 1 ? "2<sup>nd" : position == 2 ? "3<sup>rd" : $"{position + 1}<sup>th";
     }
     public void ShowRacerTournamentStanding(Racer racer, int position)
     {
         ShowRacer(racer);
-        racerDescription.text = position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th";
+        racerDescription.text = position == 0 ? "1<sup>st" : position == 1 ? "2<sup>nd" : position == 2 ? "3<sup>rd" : $"{position + 1}<sup>th";
         racerPosition.text = TourneyController.main.GetScoreForRacer(racer).ToString() ;
     }
     public void ShowPlayerResults( int raceID)
@@ -37,6 +37,6 @@ public class LeaderboardEntry : MonoBehaviour
         racerDescription.text = $"{distance}m ({topspeed})";
 
         int position =Mathf.RoundToInt( positionVar.GetFloatValue());
-        racerPosition.text = position == 0 ? "1st" : position == 1 ? "2nd" : position == 2 ? "3rd" : $"{position + 1}th";
+        racerPosition.text = position == 0 ? "1<sup>st" : position == 1 ? "2<sup>nd" : position == 2 ? "3<sup>rd" : $"{position + 1}<sup>th";
     }
 }

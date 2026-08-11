@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7643117555712
-    m_Localized: 'Race %raceID%/%raceTotal%<br>Rival Distance: %rivalDistance%'
+    m_Localized: Race %raceID%/%raceTotal%
     m_Metadata:
       m_Items: []
   - m_Id: 10046894149632
@@ -112,6 +112,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 309486063616
     m_Localized: Reroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1132299669114880
+    m_Localized: Lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1141803819372544
+    m_Localized: 'Distance To Beat: %rivalDistance%'
     m_Metadata:
       m_Items: []
   references:

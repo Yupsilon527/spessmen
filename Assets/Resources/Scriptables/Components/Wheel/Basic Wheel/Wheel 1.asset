@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Wheel 1  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
       stat: 0
       scale: 0
       value: 10
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
@@ -45,6 +47,6 @@ MonoBehaviour:
   partType: 1
   attach: 1
   priceMultiplier: 1
-  weightMultiplier: 2
+  weightMultiplier: 4
   unique: 0
   lockedForSomeReason: 0

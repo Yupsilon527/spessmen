@@ -58,20 +58,20 @@ public static class ItemDefines
         else
             return  - chaosMinus / (chaos - chaosMinus);
     }
-    public static Color GetColorForRarity(BoonRarity rarity)
+    public static Color32 GetColorForRarity(BoonRarity rarity)
     {
         switch (rarity)
         {
             default:
                 return Color.black;
             case BoonRarity.common:
-                return new Color(82, 129, 74);
+                return new Color(82f/255f, 129f / 255f, 74f / 255f);
             case BoonRarity.rare:
-                return new Color(53, 159, 209);
+                return new Color(53f / 255f, 159f / 255f, 209f / 255f);
             case BoonRarity.epic:
-                return new Color(175, 66, 183);
+                return new Color(175f / 255f, 66f / 255f, 183f / 255f);
             case BoonRarity.legendary:
-                return new Color(238, 231, 65);
+                return new Color(238f / 255f, 231f / 255f, 65f / 255f);
 
         }
     }

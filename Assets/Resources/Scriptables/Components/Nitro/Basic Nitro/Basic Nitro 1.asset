@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Basic Nitro 1  OnActivated
+    maxUses: 0
     cooldown: 0.5
     fuelCost: 20
     classification: 5
@@ -46,6 +47,6 @@ MonoBehaviour:
   partType: 5
   attach: 2
   priceMultiplier: 0.56
-  weightMultiplier: 1
+  weightMultiplier: 2
   unique: 0
   lockedForSomeReason: 0

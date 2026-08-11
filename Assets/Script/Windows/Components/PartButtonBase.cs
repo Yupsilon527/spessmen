@@ -8,17 +8,17 @@ public class PartButtonBase : Initializable
     public DataItemPart mPart;
     protected RectTransform recttransform;
     protected GridPreview gridPreview;
-    public Image sprite;
+    public Image sprite, outlineMask;
     public Image outline;
     public int rotation = 0;
     public virtual void FromPart(DataItemPart part, bool draw)
     {
-        ClearToken(false);
+        Clear(false);
         mPart = part;
         if (draw)
             Redraw();
     }
-    public void ClearToken(bool draw)
+    public virtual void Clear(bool draw)
     {
         mPart = null;
         if (draw)
@@ -34,19 +34,22 @@ public class PartButtonBase : Initializable
     }
     protected virtual void Redraw()
     {
-        sprite.sprite = mPart.scriptable.icon;
-        gridPreview.Draw(mPart);
-        if (outline != null) outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
+        DrawScriptable(mPart.scriptable);
+        gridPreview?.Draw(mPart);
+    }
+    public virtual void DrawScriptable(PartScriptable part)
+    {
+        if (sprite != null) sprite.sprite = part.icon;
+        if (outlineMask != null) outlineMask.sprite = part.icon;
+        if (outline != null) outline.color = ItemDefines.GetColorForRarity(part.boonRarity); 
     }
     public void Rotate(bool clockwise)
     {
-        // mPart.Rotate(clockwise);
         Rotate(rotation + (clockwise ? 1 : -1));
         AdjustRotation(rotation);
     }
     public void Rotate(int rot)
     {
-        // mPart.Rotate(clockwise);
         rotation = rot % 4;
         AdjustRotation(rotation);
     }

@@ -3,34 +3,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
+public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
 {
     public ShopView shop;
-    public DragDropSlot dropSlot;
     public Button button;
+    public DragDropSlot dropSlot;
+
+    public PartScriptable partSO;
     public PurchaseData purchaseData;
-    public Image icon;
-    public Outline outline;
+
     public TextMeshProUGUI priceLabel;
-    public Image coinImage;
     public Toggle lockToggle;
     bool locked = false;
 
-    public virtual void Clear()
+    public override void Clear(bool draw)
     {
         if (priceLabel != null) priceLabel.text = "";
-        if (coinImage != null) coinImage.gameObject.SetActive(false);
-        if (outline != null) outline.effectColor = Color.clear;
         purchaseData = null;
+        partSO = null;
         button.interactable = false;
-        icon.enabled = false;
         SetLocked(false);
+        base.Clear(draw);
     }
     public void AssignItem(DataItemPlayer purchasingPlayaer, PurchaseData purchase)
     {
         if (purchase == null)
         {
-            Clear();
+            Clear(true);
         }
         else
         {
@@ -44,33 +43,33 @@ public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
                 button.onClick.AddListener(() =>
                 {
                     PurchaseItem(customer);
-                   
                 });
             }
         }
         UpdateEnableState(purchasingPlayaer, false);
     }
-    public PartScriptable itemAction;
+    protected override void Redraw()
+    {
+        outlineMask.gameObject?.SetActive(partSO != null);
+        sprite.gameObject?.SetActive(partSO != null);
+        if (partSO != null)
+        DrawScriptable(partSO);
+    }
     public virtual void ShowItemAction(DataItemPlayer player, PartScriptable newAction)
     {
-        if (itemAction != newAction)
+        if (partSO != newAction)
         {
-            Clear();
-            itemAction = newAction;
+            Clear(false);
+            partSO = newAction;
+            DrawScriptable(partSO);
         }
-        if (icon != null)
-        {
-            icon.sprite = newAction.icon;
-            icon.enabled = true;
-        }
-        if (outline != null) outline.effectColor = ItemDefines.GetColorForRarity(newAction.boonRarity);
+        Redraw();
     }
     void UpdatePrice()
     {
         if (purchaseData != null)
         {
             string goldCost = purchaseData.itemCost == 0 ? LanguageController.main.Translate("UI Table", "Cost Free") : LanguageController.main.Translate("UI Table", "Cost Label");
-            if (coinImage != null) coinImage.gameObject.SetActive(purchaseData.itemCost > 0);
             if (priceLabel != null) priceLabel.text = goldCost.Replace("%cost%", purchaseData.itemCost.ToString("F0")); ;
         }
         else
@@ -105,7 +104,7 @@ public class ItemPurchaseButton : MonoBehaviour, IPointerEnterHandler
            var newToken = shop.dragdrop.GenerateToken(purchaseData);
             newToken.AttachToSlot(dropSlot,true);
             
-            Clear();
+            Clear(true);
         }
     }
     bool SanityCheck()

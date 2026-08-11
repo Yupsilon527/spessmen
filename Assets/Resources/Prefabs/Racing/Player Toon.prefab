@@ -8,62 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a9f44f1e2acfcc54da7a301c2056df66, type: 3}
-    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.686
-      objectReference: {fileID: 0}
-    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_FillMethod
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_FillOrigin
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 139401549892991473, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_FillClockwise
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 362110113028744623, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 731345773401440334, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_fontSize
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 731345773401440334, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 731345773401440334, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 731345773401440334, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 774622792050405697, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a9f44f1e2acfcc54da7a301c2056df66, type: 3}
-    - target: {fileID: 2394302698799998975, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2394302698799998975, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2394302698799998975, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 15.000001
-      objectReference: {fileID: 0}
     - target: {fileID: 3129294628065586073, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -104,49 +48,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3910059981238255164, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5111156778673111021, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
       propertyPath: m_Name
       value: Player Toon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731243856935369540, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8615225379828064913, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 21.73
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

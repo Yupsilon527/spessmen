@@ -1,14 +1,8 @@
 TODO
-	localization
-
-	visual
-		racer character
-		opponent character
 
 	characters
-		race display
 		portraits
-		side displays
+		car displays
 
 	character selection
 FIX

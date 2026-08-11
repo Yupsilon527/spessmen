@@ -1,11 +1,10 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class RaceTooltip : MonoBehaviour
 {
-    public TextMeshProUGUI  raceNumber, raceEnvironment, raceWeather;
+    public TextMeshProUGUI raceNumber, rivalDist, raceEnvironment, raceWeather;
     public Image environmentDisplay, weatherDisplay;
 
     public  void ShowCurrentRace()
@@ -21,7 +20,11 @@ public class RaceTooltip : MonoBehaviour
 
             raceNumber.text = raceLabel.Replace("%raceID%", cRace.ToString()).Replace("%raceTotal%", (Mathf.Ceil(cRace / raceTotal + 1) * raceTotal).ToString()).Replace("%rivalDistance%", TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1"));
         }
-
+        if (rivalDist!= null)
+        {
+            string distLabel = LanguageController.main.Translate("UI Table", "Rival Label");
+            rivalDist.text = distLabel.Replace("%rivalDistance%", TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1"));
+        }
         var environment = TourneyController.main.tournamentEnvironment;
         if (environment == null) return;
         if (raceEnvironment != null)

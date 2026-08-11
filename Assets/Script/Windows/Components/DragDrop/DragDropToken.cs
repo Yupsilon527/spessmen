@@ -13,6 +13,7 @@ public class DragDropToken : PartButtonBase
     {
         base.Redraw();
         sprite.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height)*40;
+        outlineMask.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height)*40;
     }
     #region Rotate
     private void Update()
@@ -315,7 +316,7 @@ public class DragDropToken : PartButtonBase
     }
     public void Delete()
     {
-        ClearToken(false);
+        Clear(false);
         if (slot != null && slot.slot != DragDropSlot.TokenSlot.build)
             slot.ClearToken();
         slot = null;

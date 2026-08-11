@@ -111,6 +111,14 @@ MonoBehaviour:
     m_Key: canmergewith
     m_Metadata:
       m_Items: []
+  - m_Id: 1132299669114880
+    m_Key: lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1141803819372544
+    m_Key: Rival Label
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

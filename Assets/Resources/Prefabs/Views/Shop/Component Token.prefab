@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 1096447023653791610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.04, y: 1.04, z: 1.04}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 991416279209762773}
@@ -185,7 +185,8 @@ MonoBehaviour:
   inspect: 0
   cellSize: 20
   sprite: {fileID: 8648090968405913575}
-  outline: {fileID: 0}
+  outlineMask: {fileID: 5829450401546548643}
+  outline: {fileID: 929213072786449635}
   rotation: 0
   parent: {fileID: 0}
   eventTrigger: {fileID: 1628595322529547726}
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 34e88811be95c0f49a3e26dc83fd4e8d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

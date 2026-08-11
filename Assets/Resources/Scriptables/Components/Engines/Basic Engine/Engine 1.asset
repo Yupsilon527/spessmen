@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Engine 1  OnTimePass
+    maxUses: 0
     cooldown: 2
     fuelCost: 25
     classification: 3
@@ -46,6 +47,6 @@ MonoBehaviour:
   partType: 3
   attach: 0
   priceMultiplier: 1
-  weightMultiplier: 1.6
+  weightMultiplier: 3
   unique: 0
   lockedForSomeReason: 0
