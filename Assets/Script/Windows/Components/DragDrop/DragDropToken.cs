@@ -9,6 +9,11 @@ public class DragDropToken : PartButtonBase
     bool dragDropMode = false;
     public EventTrigger eventTrigger;
 
+    protected override void Redraw()
+    {
+        base.Redraw();
+        sprite.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height)*40;
+    }
     #region Rotate
     private void Update()
     {

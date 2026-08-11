@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Speedy Wheel  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -44,6 +45,6 @@ MonoBehaviour:
   partType: 1
   attach: 1
   priceMultiplier: 0.25
-  weightMultiplier: 0.001
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 1

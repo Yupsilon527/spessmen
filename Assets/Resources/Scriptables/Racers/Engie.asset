@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4a0b8893c1e9946969cc102c533d11, type: 3}
+  m_Name: Engie
+  m_EditorClassIdentifier: 
+  InternalName: Engie
+  grid:
+    width: 10
+    height: 10
+    cells: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000101010101010101000001010101010101010000010101010101010100000101010101010101000001010101010101010000000101000001010000
+  states: []
+  properties:
+  - Property: 9
+    value: 0.3
+    IncreasePerLevel: 0
+  - Property: 30
+    value: 0.3
+    IncreasePerLevel: 0
+  - Property: 23
+    value: 0.2
+    IncreasePerLevel: 0
+  relative: []
+  blueprint: {fileID: 21300000, guid: 1d24236f4779db6419bdf057c33d4d1c, type: 3}
+  prefab: {fileID: 6721421295461978808, guid: da13f685ca9a4cd43b8101524c2715fd, type: 3}
+  startingGold: 30
+  startingParts:
+  - {fileID: 11400000, guid: f2e438033fb0f0b47ae7fd401f1e2c89, type: 2}
+  - {fileID: 11400000, guid: 5ca32fade74a5e7479d28d2d4a7cc2d6, type: 2}

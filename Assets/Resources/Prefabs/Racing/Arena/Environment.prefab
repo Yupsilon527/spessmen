@@ -59,7 +59,6 @@ MonoBehaviour:
   - {fileID: 7883484191125285137}
   - {fileID: 9006775031259586902}
   - {fileID: 2839730846013995318}
-  scrollSpeed: 5
 --- !u!1 &8854646645601713862
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: spacing
-      value: 60
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: extraCopies
@@ -456,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: spacing
-      value: 6
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: extraCopies

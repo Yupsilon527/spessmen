@@ -7,9 +7,9 @@ public class PartButtonBase : Initializable
 
     public DataItemPart mPart;
     protected RectTransform recttransform;
-    protected   GridPreview gridPreview;
+    protected GridPreview gridPreview;
     public Image sprite;
-    public Outline outline;
+    public Image outline;
     public int rotation = 0;
     public virtual void FromPart(DataItemPart part, bool draw)
     {
@@ -36,7 +36,7 @@ public class PartButtonBase : Initializable
     {
         sprite.sprite = mPart.scriptable.icon;
         gridPreview.Draw(mPart);
-  if (outline!=null)      outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
+        if (outline != null) outline.effectColor = ItemDefines.GetColorForRarity(mPart.scriptable.boonRarity);
     }
     public void Rotate(bool clockwise)
     {
@@ -57,7 +57,7 @@ public class PartButtonBase : Initializable
     public void SnapToGrid(RectTransform targetRect)
     {
         Vector2Int slotCoords = new Vector2Int(mPart.originX, mPart.originY);
-        DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y,rotation);
+        DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation);
         Rect rect = targetRect.rect;
 
         int width = mPart.rotation % 2 == 0 ? mPart.width : mPart.height;

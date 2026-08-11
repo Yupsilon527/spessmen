@@ -113,7 +113,9 @@ public class ArenaController : MonoBehaviour
             if (PoolPrefabForPlayer(character.prefab, toon.character.FindAttachPoint("origin")) is GameObject g)
             {
                 toon.animator = g.GetComponentInChildren<Animator>();
+                toon.character.Init();
             }
+            toon.character.ChangeSortingOrder(-racer.id);
         }
         racers.Add(fighter);
         return fighter;

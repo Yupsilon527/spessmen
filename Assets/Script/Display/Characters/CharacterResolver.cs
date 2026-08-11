@@ -33,6 +33,10 @@ public class CharacterResolver : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+    public void Init()
+    {
         InitSpriteRenderers();
         InitAttachPoints();
         InitHead();

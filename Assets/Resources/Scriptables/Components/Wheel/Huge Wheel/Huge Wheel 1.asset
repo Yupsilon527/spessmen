@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Huge Wheel 1  OnRaceStart
+    maxUses: 0
     cooldown: 0
     fuelCost: 0
     classification: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
       stat: 0
       scale: 0
       value: 24
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
