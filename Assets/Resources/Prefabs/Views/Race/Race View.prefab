@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspect: 0
   time: {fileID: 8258782193766848457}
-  playership: {fileID: 3742594169047058019}
+  playership: {fileID: 9123680349753416972}
   preview: {fileID: 923844634528698789}
   interfaceParent: {fileID: 6550460355941179802}
   gameOverParent: {fileID: 6543713583262357058}
@@ -1813,11 +1813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 410
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 410
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1849,11 +1849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4099,9 +4099,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62ba9ed31ff2a94587b60de65bc05d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3742594169047058019 stripped
+--- !u!224 &4597703337719444998 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
+  m_PrefabInstance: {fileID: 4064655793169022407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9123680349753416972 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 835650251253431204, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5113094213811118283, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
   m_PrefabInstance: {fileID: 4064655793169022407}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -4110,11 +4115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c64346fe4d9bd4eb7ddaabf99bd276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &4597703337719444998 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 551370154613115841, guid: f3c4b8aa1a5962b4898edffef16db699, type: 3}
-  m_PrefabInstance: {fileID: 4064655793169022407}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4365868665308206834
 PrefabInstance:
   m_ObjectHideFlags: 0
