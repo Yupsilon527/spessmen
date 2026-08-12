@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Nitrecon Decl
   m_EditorClassIdentifier: 
-  InternalName: Nitro Decal
+  InternalName: Nitrecon Decl
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 30
-    value: 0.33
+  - Property: 29
+    value: -0.5
     IncreasePerLevel: 0
   - Property: 26
-    value: 0.25
+    value: 0.15
     IncreasePerLevel: 0
   relative: []
   abilities: []

@@ -18,10 +18,7 @@ MonoBehaviour:
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 0
-    value: 0
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
   - InternalName: Versatile Decal  OnEngineActivate
