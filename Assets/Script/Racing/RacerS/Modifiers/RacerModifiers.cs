@@ -246,7 +246,7 @@ public class RacerModifiers : PropertyComponent
     }
     public Modifier FindModifierByName(string Name)
     {
-        Name = Name.ToLower();
+        Name = Name?.ToLower() ?? "";
         foreach (Modifier Mod in modifiers)
         {
             if (!Mod.dead && !Mod.IsExpired())

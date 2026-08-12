@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 33
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,8 +133,8 @@ TextureImporter:
         y: 397
         width: 277
         height: 156
-      alignment: 9
-      pivot: {x: 0.49340975, y: -0.32248217}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,8 +155,8 @@ TextureImporter:
         y: 390
         width: 171
         height: 174
-      alignment: 9
-      pivot: {x: 0.4990652, y: -0.26835686}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: BF Items_2
       rect:
         serializedVersion: 2
-        x: 31
-        y: 253
+        x: 32
+        y: 254
         width: 169
         height: 59
-      alignment: 9
-      pivot: {x: 0.4866283, y: -1.1635404}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,8 +199,8 @@ TextureImporter:
         y: 256
         width: 68
         height: 98
-      alignment: 9
-      pivot: {x: 0.5114122, y: -0.7689217}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,6 +209,50 @@ TextureImporter:
       bones: []
       spriteID: 4a2934bf97f4f3d47b45fae10dd2d413
       internalID: 1003317942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BF Items_4
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 177
+        width: 85
+        height: 178
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf26128ddc5146c4c8855c60f3f8b6bb
+      internalID: 1684884658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BF Items_5
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 16
+        width: 314
+        height: 174
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6daedcf0a6fb2f848bab46d13db7d30c
+      internalID: 1492323135
       vertices: []
       indices: 
       edges: []
@@ -231,6 +275,8 @@ TextureImporter:
       BF Items_1: -379367814
       BF Items_2: 98573996
       BF Items_3: 1003317942
+      BF Items_4: 1684884658
+      BF Items_5: 1492323135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

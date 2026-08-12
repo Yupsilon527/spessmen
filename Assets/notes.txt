@@ -8,6 +8,8 @@ TODO
 FIX
 	items in ability UI have no outline rarity
 
+	modifiers bugged
+
 QoL
 	part highlight position
 	parts cant rotate (decals, square)

@@ -6,11 +6,12 @@ public class ParallaxLayer : MonoBehaviour
 {
     public WeightSprite[] spriteVariants;
     public SpriteRenderer spriteTemplate;
-    public float startingSpeed = 1f;
     public float speed = 1f;
     public float desiredWidth = 1f;
     public float spacing = 0f;
     public float deltaPosition = 0f;
+    public float objectRandomOffset = 0f;
+    public bool allowXflip = false;
 
     private HashSet<SpriteRenderer> activeRenderers = new HashSet<SpriteRenderer>();
     private HashSet<SpriteRenderer> disabledRenderers = new HashSet<SpriteRenderer>();
@@ -18,11 +19,6 @@ public class ParallaxLayer : MonoBehaviour
     private float step;
     private int requiredCopies;
 
-    void Awake()
-    {
-        // The template itself counts as the first active renderer.
-        activeRenderers.Add(spriteTemplate);
-    }
 
     public void ChangeEnvironment(WeightSprite[] svars)
     {
@@ -100,9 +96,11 @@ public class ParallaxLayer : MonoBehaviour
    protected virtual void CycleSprite(SpriteRenderer renderer)
     {
         renderer.sprite = WeightList.PickWeight(spriteVariants)?.value ?? null;
+        renderer.flipX = !(allowXflip && Random.value < .5f);
+        if (requiredCopies == 0) return;
         while (renderer.transform.localPosition.x < -step * requiredCopies / 2f)
         {
-            renderer.transform.localPosition += Vector3.right * (requiredCopies - 1) * step;
+            renderer.transform.localPosition += Vector3.right * ((requiredCopies - 1) * step + Random.value * objectRandomOffset);
         }
     }
 

@@ -5,7 +5,7 @@ public static class RaceDefines
     public static int TournamentSeasons = 3;
 
     public static float raceLength = 20;
-    public static float raceLengthLong = 30;
+    public static float raceLengthLong = 1.5f;
 
     public enum RacePhase
     {
@@ -40,7 +40,7 @@ public static class RaceDefines
 
         RandomGadget = 7,
         RandomEngine =8,
-        Total=10,
+        Total=9,
     }
 
     public static Racer GetRacerRelative(Racer original, AbilityTarget target)

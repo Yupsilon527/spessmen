@@ -4,7 +4,7 @@ gold label,216427040768,Total $: %gold%
 reroll,309486063616,Reroll
 shop,996047491072,Store
 start,5022193455104,Go!
-race label,7643117555712,Race %raceID%/%raceTotal%<br>Rival Distance: %rivalDistance%
+race label,7643117555712,Race %raceID%/%raceTotal%
 partinfo,10046894149632,Part Info
 mouseoverhint,10083472674816,Scroll over any part to show info!
 discard,10379565371392,Discard
@@ -23,3 +23,5 @@ condition_bottom,362860493312000,Must be on Bottom
 condition_front,362861365727232,Must be in Front
 condition_back,362868630261760,Must be in Back
 canmergewith,364806314823680,Can Merge With 
+lock,1132299669114880,Lock
+rival label,1141803819372544,Distance To Beat: %rivalDistance%

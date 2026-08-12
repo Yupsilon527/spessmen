@@ -1,11 +1,19 @@
 using System.Linq;
 using TMPro;
-using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityButton : PartButtonBase, IPointerEnterHandler, IPointerExitHandler
+public class PartButtonScaleable : PartButtonBase
+{
+    protected override void Redraw()
+    {
+        base.Redraw();
+        sprite.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height) * 40;
+        outlineMask.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height) * 40;
+    }
+}
+public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI cooldownValue;
     public Image cooldownFill;

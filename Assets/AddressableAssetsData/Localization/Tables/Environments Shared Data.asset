@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: alley
     m_Metadata:
       m_Items: []
+  - m_Id: 1575318834810880
+    m_Key: junkyard
+    m_Metadata:
+      m_Items: []
   - m_Id: 186093834240
     m_Key: nothing
     m_Metadata:

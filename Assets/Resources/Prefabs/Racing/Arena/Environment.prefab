@@ -84,13 +84,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854646645601713862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 0}
-  m_LocalScale: {x: 25, y: 25, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.06104851, w: 0.99813485}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517326853421417587}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7}
 --- !u!212 &3673233630280367505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,11 +156,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: speed
-      value: 0.002
+      value: 0.00125
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: spacing
-      value: 90
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: extraCopies
@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: spriteTemplate
       value: 
       objectReference: {fileID: 8997451245534315869, guid: 6d802c39707827f4299ecd4f7e138a51, type: 3}
+    - target: {fileID: 2333288008049331034, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
+      propertyPath: objectRandomOffset
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2569127775168000990, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: m_Name
       value: FgLayer
@@ -479,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5772697318803940438, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5772697318803940438, guid: 6bd40dec6a2606f4facec8bb88ea5708, type: 3}
       propertyPath: m_LocalPosition.z
@@ -546,9 +550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteVariants: []
   spriteTemplate: {fileID: 4834509207722385341, guid: 9a0b3400ebbe5db49bcad35cf1af69b9, type: 3}
-  startingSpeed: 1
-  speed: 0.0001666667
+  speed: 0.0000666667
   desiredWidth: 60
   spacing: 1
   deltaPosition: 0
+  objectRandomOffset: 1.5
+  allowXflip: 1
   possibleColors: []

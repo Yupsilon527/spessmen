@@ -58,7 +58,7 @@ public class ArenaController : MonoBehaviour
         float posDelta = distanceFarAway * Mathf.Min(1 + playerRacer.racer.position.distanceTraveled * 2, TourneyController.main?.ongoingRace?.lapDistance ?? 200);
         foreach (var racer in racers)
         {
-            float relativePosition = racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled;
+            float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
             if (relativePosition == 0) continue;
             racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id);
 

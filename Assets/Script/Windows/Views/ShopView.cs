@@ -127,7 +127,7 @@ public partial class ShopView : ViewBase
     {
         if (numResets < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (numResets + 1);
+        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (numResets + 1) * .6f;
     }
     public override void OnOpened()
     {

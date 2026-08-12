@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c7815909f590499bd71e66b82aa64, type: 3}
+  m_Name: Junkyard
+  m_EditorClassIdentifier: 
+  InternalName: Junkyard
+  icon: {fileID: 21300000, guid: e18ce67a5821c5443bca077c1702534c, type: 3}
+  background: {fileID: 21300000, guid: 75289cdaa42d4684f9ece4cd20d77439, type: 3}
+  weatherIcons:
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  groundSprites:
+  - Weight: 1
+    value: {fileID: 21300000, guid: de6a4e44714365b4ea509032526502c6, type: 3}
+  frontSprites:
+  - Weight: 5
+    value: {fileID: -3315812265751551876, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
+  - Weight: 25
+    value: {fileID: -2058059716, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
+  backSprites:
+  - Weight: 25
+    value: {fileID: -1504497087, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 25
+    value: {fileID: 1302304173, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 25
+    value: {fileID: -1872123648, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 25
+    value: {fileID: 2000302083, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 25
+    value: {fileID: -1492072766, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 12
+    value: {fileID: 614912483, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 3
+    value: {fileID: -1640385317, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  - Weight: 1
+    value: {fileID: -268280666, guid: 214780c48e60dc7458bcf1c1a406f0c4, type: 3}
+  farSprites:
+  - Weight: 14
+    value: {fileID: 159882332, guid: 3979f1775a045664787dda5f188d7d9b, type: 3}
+  - Weight: 2
+    value: {fileID: 770184666, guid: 3979f1775a045664787dda5f188d7d9b, type: 3}
+  - Weight: 12
+    value: {fileID: -665638786, guid: 3979f1775a045664787dda5f188d7d9b, type: 3}
+  - Weight: 9
+    value: {fileID: 2031191361, guid: 3979f1775a045664787dda5f188d7d9b, type: 3}
+  - Weight: 3
+    value: {fileID: -338905890, guid: 3979f1775a045664787dda5f188d7d9b, type: 3}
+  bgColors:
+  - {r: 0.2901961, g: 0.4745098, b: 0.27058825, a: 1}
+  - {r: 0.57254905, g: 0.62352943, b: 0.28627452, a: 1}
+  - {r: 0.5019608, g: 0.5254902, b: 0.654902, a: 1}
+  - {r: 0.48235294, g: 0.29411766, b: 0.47058824, a: 1}
+  - {r: 0.43137255, g: 0.49803922, b: 0.5529412, a: 1}
+  - {r: 0.35686275, g: 0.5803922, b: 0.46666667, a: 1}
+  - {r: 0.6313726, g: 0.6392157, b: 0.28627452, a: 1}
+  - {r: 0.6, g: 0.5921569, b: 0.43529412, a: 1}
+  - {r: 0.35686275, g: 0.5921569, b: 0.4745098, a: 1}

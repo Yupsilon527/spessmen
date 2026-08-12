@@ -3,18 +3,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragDropToken : PartButtonBase
+public class DragDropToken : PartButtonScaleable
 {
     public AbilityDragDropInterface parent;
     bool dragDropMode = false;
     public EventTrigger eventTrigger;
 
-    protected override void Redraw()
-    {
-        base.Redraw();
-        sprite.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height)*40;
-        outlineMask.rectTransform.sizeDelta = new Vector2(mPart.width, mPart.height)*40;
-    }
     #region Rotate
     private void Update()
     {

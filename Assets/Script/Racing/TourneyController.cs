@@ -48,14 +48,15 @@ public class TourneyController : Initializable
                 {
                     PickRandomEnvironment();
                 }
+                ArenaController.main.parallax.SetWorldDelta(0);
                 ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
                 if (ongoingRace.raceID % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons - 1)
                 {
-                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
                 }
                 else if (ongoingRace.raceID % (RaceDefines.SeasonRaces) == RaceDefines.SeasonRaces - 1)
                 {
-                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
                 }
                 break;
             case TourneyPhase.setup:
@@ -236,7 +237,8 @@ public class TourneyController : Initializable
     }
     void HandlePlayerReward()
     {
-        float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, GetCurrentRaceIndex());
+        int raceTotal = Mathf.Min(EconomyDefines.goldPerRaceLimit, GetCurrentRaceIndex());
+        float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, raceTotal);
 
         if (ongoingRace.raceID % DifficultyDefines.eliteRaceInterval == DifficultyDefines.eliteRaceInterval - 1)
             diffMult *= DifficultyDefines.eliteRaceMultiplier;

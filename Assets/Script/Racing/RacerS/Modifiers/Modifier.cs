@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class Modifier : Countdown
 {
     protected Racer racer;
-    public string ModifierName;
+    public string ModifierName="UNASSIGNED";
     public bool dead = false;
     public int stacks = 1;
     public List<ModifierDefines.State> states = new List<ModifierDefines.State>();

@@ -13,25 +13,23 @@ MonoBehaviour:
   m_Name: Alley
   m_EditorClassIdentifier: 
   InternalName: Alley
-  icon: {fileID: 21300000, guid: 084c4044e5cbc844199f409857c4e069, type: 3}
-  background: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9949ed8920ecb5342aa20cde885c73ce, type: 3}
+  background: {fileID: 21300000, guid: ef854f3cd8e02934d9b1117c257abe36, type: 3}
   weatherIcons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
   groundSprites:
   - Weight: 1
     value: {fileID: 21300000, guid: 2a26792f7447f6e4c8c0db74fd8a9f87, type: 3}
   frontSprites:
-  - Weight: 3
-    value: {fileID: -3315812265751551876, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
   - Weight: 6
     value: {fileID: -1559695105, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
   - Weight: 25
@@ -62,6 +60,10 @@ MonoBehaviour:
     value: {fileID: 98573996, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
   - Weight: 9
     value: {fileID: 1003317942, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  - Weight: 9
+    value: {fileID: 1684884658, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  - Weight: 3
+    value: {fileID: 1492323135, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
   bgColors:
   - {r: 0.47843137, g: 0.5137255, b: 0.7254902, a: 1}
   - {r: 0.47843137, g: 0.5878857, b: 0.7254902, a: 1}

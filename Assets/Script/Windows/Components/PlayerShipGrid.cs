@@ -7,6 +7,11 @@ public class PlayerShipGrid : MonoBehaviour
     public Image shipPreview;
     public GridPreview grid;
 
+    [Header("Colors")]
+    public Color colorEnabled = Color.white;
+    public Color colorOccupied = Color.white;
+
+
     public void AssignShip(DataItemShip ship)
     {
         myShip = ship;
@@ -28,7 +33,7 @@ public class PlayerShipGrid : MonoBehaviour
             {
                 bool empty = myShip.Valid(x,y);
                 var display = grid.tile[y * myShip.width + x];
-                display.color = empty ? Color.white : Color.red;
+                display.color = empty ? colorEnabled : colorOccupied;
             }
     }
 }
