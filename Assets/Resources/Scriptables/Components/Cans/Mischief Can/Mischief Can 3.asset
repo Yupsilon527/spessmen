@@ -39,9 +39,7 @@ MonoBehaviour:
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 0ce00eaba6dc755479cfec7a2ceb3a88, type: 2}
+  combos: []
   icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
   boonRarity: 3
   partType: 2

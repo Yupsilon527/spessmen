@@ -348,6 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPreview: {fileID: 9067541303430008423}
   grid: {fileID: 6041423059978215187}
+  colorEnabled: {r: 0.80396336, g: 0.9433962, b: 0.9420003, a: 0.25882354}
+  colorOccupied: {r: 0.9811321, g: 0.5399311, b: 0.5399311, a: 0.52156866}
 --- !u!114 &6041423059978215187
 MonoBehaviour:
   m_ObjectHideFlags: 0

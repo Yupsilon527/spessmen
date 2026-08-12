@@ -10,41 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Nitroboost Decal
+  m_Name: Nitrecon Decl
   m_EditorClassIdentifier: 
-  InternalName: Nitroboost Decal
+  InternalName: Nitro Decal
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties: []
+  properties:
+  - Property: 30
+    value: 0.33
+    IncreasePerLevel: 0
+  - Property: 26
+    value: 0.25
+    IncreasePerLevel: 0
   relative: []
-  abilities:
-  - InternalName: Nitroboost Decal  OnNitroActivate
-    maxUses: 0
-    cooldown: 0
-    fuelCost: 0
-    classification: 6
-    function: 9
-    condition: 0
-    conditionCheck: 0
-    actions:
-    - behavior: 0
-      stat: 3
-      scale: 3
-      value: 0.12
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+  abilities: []
   combos: []
   icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 3
+  boonRarity: 2
   partType: 6
   attach: 0
-  priceMultiplier: 0.66
-  weightMultiplier: 5
+  priceMultiplier: 1
+  weightMultiplier: 3
   unique: 0
   lockedForSomeReason: 0
