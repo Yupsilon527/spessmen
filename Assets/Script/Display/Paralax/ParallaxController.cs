@@ -6,7 +6,7 @@ public class ParallaxController : MonoBehaviour
     public ParallaxLayer groundLayer;
     public ParallaxLayer frontLayer;
     public ParallaxLayer backLayer;
-    public ParallaxLayer farLayer;
+    public ColorParallaxLayer farLayer;
 
     public void FromEnvironment(EnvironmentScriptable env)
     {
@@ -14,6 +14,7 @@ public class ParallaxController : MonoBehaviour
         groundLayer.ChangeEnvironment( env.groundSprites);
         frontLayer.ChangeEnvironment( env.frontSprites);
         backLayer.ChangeEnvironment( env.backSprites);
+        farLayer.possibleColors = env.bgColors;
         farLayer.ChangeEnvironment( env.farSprites);
     }
 

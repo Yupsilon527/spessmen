@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspect: 0
-  renderer: {fileID: 0}
+  renderer: {fileID: 8646994420102139895}
   sortingOrderDepth: 12
 --- !u!1 &3660397047146314108
 GameObject:
@@ -2075,13 +2075,13 @@ PrefabInstance:
       addedObject: {fileID: 8644627162698989747}
     - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7972987401378670877}
+    - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3350623277560482544}
     - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3071526349009147631}
-    - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7972987401378670877}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
 --- !u!4 &3139235899221063101 stripped

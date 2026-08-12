@@ -27,10 +27,48 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   groundSprites:
-  - {fileID: 21300000, guid: cc652de790638ca418986db00fa9a608, type: 3}
+  - Weight: 1
+    value: {fileID: 21300000, guid: 2a26792f7447f6e4c8c0db74fd8a9f87, type: 3}
   frontSprites:
-  - {fileID: 21300000, guid: e906b78845355b44ab994609aa4c9bba, type: 3}
+  - Weight: 3
+    value: {fileID: -3315812265751551876, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
+  - Weight: 6
+    value: {fileID: -1559695105, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
+  - Weight: 25
+    value: {fileID: -2058059716, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
   backSprites:
-  - {fileID: 21300000, guid: d6fc630a586adef45a74d6fd1634602e, type: 3}
+  - Weight: 25
+    value: {fileID: -5397573168801136404, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 25
+    value: {fileID: -1167264957, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 25
+    value: {fileID: -1448798753, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 25
+    value: {fileID: -266724354, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 25
+    value: {fileID: -1487900452, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 12
+    value: {fileID: 1783342672, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 3
+    value: {fileID: 1871732102, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
+  - Weight: 1
+    value: {fileID: 1849102740, guid: db092835136bd9042abb1b8b40cef4c1, type: 3}
   farSprites:
-  - {fileID: 21300000, guid: bcfd07be28e71804f9795f42805f22e1, type: 3}
+  - Weight: 3
+    value: {fileID: -1615620336238461295, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  - Weight: 3
+    value: {fileID: -379367814, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  - Weight: 6
+    value: {fileID: 98573996, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  - Weight: 9
+    value: {fileID: 1003317942, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+  bgColors:
+  - {r: 0.47843137, g: 0.5137255, b: 0.7254902, a: 1}
+  - {r: 0.47843137, g: 0.5878857, b: 0.7254902, a: 1}
+  - {r: 0.5856967, g: 0.77410436, b: 0.84276724, a: 1}
+  - {r: 0.68529713, g: 0.89130163, b: 0.9685534, a: 1}
+  - {r: 0.44080526, g: 0.70440245, b: 0.53327316, a: 1}
+  - {r: 0.7640851, g: 0.9559748, b: 0.62829787, a: 1}
+  - {r: 0.6363901, g: 0.9559748, b: 0.5200743, a: 1}
+  - {r: 0.94448006, g: 0.9685534, b: 0.64265645, a: 1}
+  - {r: 0.8092405, g: 0.8301887, b: 0.54040575, a: 1}

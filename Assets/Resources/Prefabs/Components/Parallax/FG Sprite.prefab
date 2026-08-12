@@ -13,9 +13,17 @@ PrefabInstance:
       value: FG Sprite
       objectReference: {fileID: 0}
     - target: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
+      propertyPath: m_Size.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e906b78845355b44ab994609aa4c9bba, type: 3}
+      objectReference: {fileID: -2058059716, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
     - target: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
       propertyPath: m_SortingLayer
       value: 4
@@ -24,9 +32,13 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 263287423
       objectReference: {fileID: 0}
+    - target: {fileID: 4834509207722385341, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5772697318803940438, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -106.12917
+      value: -52.357613
       objectReference: {fileID: 0}
     - target: {fileID: 5772697318803940438, guid: 892f664964581f745a8f7b8019a72faf, type: 3}
       propertyPath: m_LocalPosition.y

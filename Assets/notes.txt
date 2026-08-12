@@ -6,6 +6,8 @@ TODO
 
 	character selection
 FIX
+	items in ability UI have no outline rarity
+
 QoL
 	part highlight position
 	parts cant rotate (decals, square)

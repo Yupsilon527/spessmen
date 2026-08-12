@@ -4,7 +4,9 @@ using UnityEngine;
 public class EnvironmentScriptable : ScriptableBase
 {
     public Sprite icon, background;
-    public Sprite[] weatherIcons, groundSprites, frontSprites, backSprites, farSprites;
+    public Sprite[] weatherIcons;
+    public WeightSprite[] groundSprites, frontSprites, backSprites, farSprites;
+    public Color[] bgColors;
 
     protected override void OnValidate()
     {
@@ -13,5 +15,14 @@ public class EnvironmentScriptable : ScriptableBase
         {
             weatherIcons = new Sprite[(int)RaceDefines.RaceModifiers.Total];
         }
+    }
+}
+
+[System.Serializable]
+public class WeightSprite : WeightList.WeightItem<Sprite>
+{
+    public WeightSprite(Sprite value, float weight) : base(value, weight)
+    {
+        this.value = value;
     }
 }
