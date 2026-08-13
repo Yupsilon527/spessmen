@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Jammed Engine 1
   grid:
-    width: 3
+    width: 2
     height: 3
-    cells: 010101010101010100
+    cells: 010101010101
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Jammed Engine 1 GasAbove OnTimePass
+    maxUses: 0
     cooldown: 2
     fuelCost: 28
     classification: 3
@@ -39,6 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   - InternalName: Jammed Engine 1 GasBelow OnTimePass
+    maxUses: 0
     cooldown: 2
     fuelCost: 0
     classification: 3
@@ -58,7 +60,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 9ebe30e7763caaa409e18fc748e1a8f7, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1547318843, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 0
   partType: 3
   attach: 0

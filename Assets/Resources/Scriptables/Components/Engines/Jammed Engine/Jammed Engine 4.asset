@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Jammed Engine 4
   grid:
-    width: 3
+    width: 2
     height: 3
-    cells: 010101010101010100
+    cells: 010101010101
   states: []
   properties: []
   relative: []
@@ -58,7 +58,7 @@ MonoBehaviour:
       condition: 8
       conditionCheck: 1
   combos: []
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1547318843, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 3
   attach: 0

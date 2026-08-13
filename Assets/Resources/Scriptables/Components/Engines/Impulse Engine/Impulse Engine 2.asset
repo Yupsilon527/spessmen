@@ -16,12 +16,13 @@ MonoBehaviour:
   grid:
     width: 4
     height: 3
-    cells: 000101010101010101010100
+    cells: 000001010101010101010000
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Impulse Engine 2  OnTimePass
+    maxUses: 0
     cooldown: 3.5
     fuelCost: 63
     classification: 3
@@ -50,7 +51,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 7fd99fe154fb18349844eb9e05916dcd, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1886732634, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 3
   attach: 0

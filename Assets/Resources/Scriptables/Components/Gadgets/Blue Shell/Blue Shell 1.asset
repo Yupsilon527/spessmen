@@ -16,7 +16,7 @@ MonoBehaviour:
   grid:
     width: 5
     height: 3
-    cells: 000101010001010101010101010101
+    cells: 010101010101010101010001010100
   states: []
   properties: []
   relative: []
@@ -42,7 +42,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 7e99180f09fd0304fbfc20fca7a77b1c, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1663185023, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 4
   attach: 0

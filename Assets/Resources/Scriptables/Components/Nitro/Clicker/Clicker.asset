@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Clicker
   grid:
-    width: 4
+    width: 3
     height: 3
-    cells: 010101010101010100010100
+    cells: 010100000100000101
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Clicker  OnActivated
+    maxUses: 0
     cooldown: 0.04
     fuelCost: 0
     classification: 5
@@ -39,7 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -4275096293392824688, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 5
   attach: 2

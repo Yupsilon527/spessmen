@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Cursed Nitro 1
   grid:
-    width: 3
+    width: 2
     height: 3
-    cells: 010100010101010100
+    cells: 010101010101
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Cursed Nitro 1  OnActivated
+    maxUses: 0
     cooldown: 0.15
     fuelCost: 15
     classification: 5
@@ -50,7 +51,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 6a9168247fa3f71418954d37368feb87, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1130130309, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 1
   partType: 5
   attach: 2

@@ -25,7 +25,7 @@ MonoBehaviour:
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 1880500672, guid: 5ea6ac59792e962428fa09c9755d6301, type: 3}
   boonRarity: 1
   partType: 6
   attach: 0

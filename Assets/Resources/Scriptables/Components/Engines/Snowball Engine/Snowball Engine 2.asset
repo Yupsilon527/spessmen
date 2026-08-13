@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Engine 2  OnTimePass
+    maxUses: 0
     cooldown: 3.8
     fuelCost: 35
     classification: 3
@@ -50,7 +51,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 1a38ae7da69e08d4d8d9a8811daf5906, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -2031732983, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 3
   attach: 0

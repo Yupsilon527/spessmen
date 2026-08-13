@@ -10,24 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Lucky Nitro 2
+  m_Name: Compact Nitro 4
   m_EditorClassIdentifier: 
-  InternalName: Lucky Nitro 2
+  InternalName: Compact Nitro 4
   grid:
-    width: 3
-    height: 3
-    cells: 000101010100010101
+    width: 2
+    height: 1
+    cells: 0101
   states: []
-  properties:
-  - Property: 25
-    value: 3
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
-  - InternalName: Lucky Nitro 2  OnActivated
-    maxUses: 0
-    cooldown: 0.15
-    fuelCost: 25
+  - InternalName: Compact Nitro 4  OnActivated
+    maxUses: 2
+    cooldown: 0.5
+    fuelCost: 0
     classification: 5
     function: 2
     condition: 0
@@ -35,21 +32,28 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 1
-      scale: 12
-      value: 50
+      scale: 0
+      value: 40
       reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 4a0a353f436d45d4aadaaeeeb137477b, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 2
+    - behavior: 0
+      stat: 1
+      scale: 4
+      value: 0.05
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
+  combos: []
+  icon: {fileID: 1433391201, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 3
   partType: 5
   attach: 2
-  priceMultiplier: 0.666
+  priceMultiplier: 0.56
   weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

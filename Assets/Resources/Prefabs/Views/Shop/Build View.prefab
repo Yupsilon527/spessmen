@@ -3626,6 +3626,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5970672382036563318}
     m_Modifications:
+    - target: {fileID: 142959430055645815, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
+    - target: {fileID: 553905683346992901, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
     - target: {fileID: 557380816416580020, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3697,6 +3705,10 @@ PrefabInstance:
     - target: {fileID: 1091001401830988582, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096603764799952279, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
       objectReference: {fileID: 0}
     - target: {fileID: 1177383961327913099, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: shop
@@ -3737,6 +3749,14 @@ PrefabInstance:
     - target: {fileID: 1433119642887384508, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_Name
       value: Shop Component
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876811435161326042, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710676665147407590, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
       objectReference: {fileID: 0}
     - target: {fileID: 3248678245631805637, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3846,6 +3866,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4739389703839450925, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761235348894383446, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
     - target: {fileID: 5282278594505077518, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3910,6 +3938,10 @@ PrefabInstance:
       propertyPath: shop
       value: 
       objectReference: {fileID: 6477342639533918858}
+    - target: {fileID: 7127459956135501317, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294835709
+      objectReference: {fileID: 0}
     - target: {fileID: 7665705628025121318, guid: 24bffb32e4b713e4a959cb4a6f50e133, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

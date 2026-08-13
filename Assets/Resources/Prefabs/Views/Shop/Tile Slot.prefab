@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 364393803792832111, guid: 1aaaf9a9a013de440bbd5a3e1c939aac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2119079756, guid: f60bb27b7876dea41b00790edaed6f9e, type: 3}
+    - target: {fileID: 364393803792832111, guid: 1aaaf9a9a013de440bbd5a3e1c939aac, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 364393803792832111, guid: 1aaaf9a9a013de440bbd5a3e1c939aac, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2309950375082382998, guid: 1aaaf9a9a013de440bbd5a3e1c939aac, type: 3}
       propertyPath: m_Name
       value: Tile Slot

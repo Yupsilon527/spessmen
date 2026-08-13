@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Parts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Parts
+  m_TableCollectionNameGuidString: b82afc173664f7740ba92ade92cbe7b3
+  m_Entries:
+  - m_Id: 11942137856
+    m_Key: Eweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78589628416
+    m_Key: Gweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100899131392
+    m_Key: Nweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117508575232
+    m_Key: Tweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 132138307584
+    m_Key: Wweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146533158912
+    m_Key: Xweight Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 165457858560
+    m_Key: Lucky Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 178984488960
+    m_Key: Time Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193106710528
+    m_Key: Gold Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 202636169216
+    m_Key: Money Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 213377781760
+    m_Key: Reroll Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229014147072
+    m_Key: Cool Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 242100375552
+    m_Key: Faster Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253072674816
+    m_Key: Fire Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263675875328
+    m_Key: Horse Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283842088960
+    m_Key: Hotrod Sticker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2283149365248
+    m_Key: Basic Nitro 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2309086941184
+    m_Key: Basic Nitro 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2317374885888
+    m_Key: Basic Nitro 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2326770126848
+    m_Key: Basic Nitro 4
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4699108491825512511
+  references:
+    version: 2
+    RefIds:
+    - rid: 4699108491825512511
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1786618911576

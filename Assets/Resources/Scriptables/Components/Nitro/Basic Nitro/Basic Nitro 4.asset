@@ -16,12 +16,13 @@ MonoBehaviour:
   grid:
     width: 3
     height: 3
-    cells: 010100010101010100
+    cells: 000101010101000101
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Basic Nitro 4  OnActivated
+    maxUses: 0
     cooldown: 0.5
     fuelCost: 60
     classification: 5
@@ -39,7 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -4598601632356572206, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 5
   attach: 2

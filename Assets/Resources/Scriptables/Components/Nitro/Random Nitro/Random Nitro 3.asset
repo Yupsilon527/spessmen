@@ -16,12 +16,16 @@ MonoBehaviour:
   grid:
     width: 3
     height: 3
-    cells: 010100010101010101
+    cells: 010101010101010100
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 2
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Random Nitro 3  OnActivated
+    maxUses: 0
     cooldown: 1
     fuelCost: 40
     classification: 5
@@ -31,7 +35,7 @@ MonoBehaviour:
     actions:
     - behavior: 0
       stat: 1
-      scale: 11
+      scale: 12
       value: 80
       reverse: 0
       effectSource: 0
@@ -41,7 +45,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: ac4ddedeec9f8b147a4e025f50cb12b8, type: 2}
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -1927804968, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 5
   attach: 2
