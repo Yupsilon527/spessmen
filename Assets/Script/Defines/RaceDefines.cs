@@ -4,8 +4,8 @@ public static class RaceDefines
     public static int SeasonRaces = 3;
     public static int TournamentSeasons = 3;
 
-    public static float raceLength = 20;
-    public static float raceLengthLong = 1.5f;
+    public const float raceLength = 20;
+    public const float raceLengthLong = 1.5f;
 
     public enum RacePhase
     {

@@ -20,7 +20,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 47
-    value: 3
+    value: 7
     IncreasePerLevel: 0
   relative: []
   abilities: []

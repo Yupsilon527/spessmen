@@ -331,7 +331,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 41482728673280
-    m_Localized: Loses %value%l
+    m_Localized: 'loses %value% '
     m_Metadata:
       m_Items: []
   references:

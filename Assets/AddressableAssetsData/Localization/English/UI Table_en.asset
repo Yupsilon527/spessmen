@@ -123,11 +123,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2213108190711808
-    m_Localized: Start with $%value% gold
+    m_Localized: Start with $%value%
     m_Metadata:
       m_Items: []
   - m_Id: 2213203409801216
     m_Localized: Start with %parts%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2239847977619456
+    m_Localized: 'Your record: %ownDistance%m (%ownSpeed%km/h)'
     m_Metadata:
       m_Items: []
   references:

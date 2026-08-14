@@ -391,7 +391,7 @@ MonoBehaviour:
   opponentPrefab: {fileID: 5111156778673111021, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
   distanceFarAway: 0.8
   distanceDelta: 24
-  distanceFarAwayDelta: 75
+  distanceFarAwayDelta: 35
 --- !u!1 &1685758839
 GameObject:
   m_ObjectHideFlags: 0

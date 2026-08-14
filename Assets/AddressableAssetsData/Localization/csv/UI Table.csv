@@ -24,6 +24,6 @@ condition_front,362861365727232,Must be in Front
 condition_back,362868630261760,Must be in Back
 canmergewith,364806314823680,Can Merge With 
 lock,1132299669114880,Lock
-rival label,1141803819372544,Distance To Beat: %rivalDistance%
+rival label,1141803819372544,Distance To Beat: %rivalDistance%<br>Your record: %ownDistance%m (%ownSpeed%km/h)
 starting gold,2213108190711808,Start with $%value%
 starting parts,2213203409801216,Start with %parts%

@@ -127,6 +127,10 @@ MonoBehaviour:
     m_Key: starting parts
     m_Metadata:
       m_Items: []
+  - m_Id: 2239847977619456
+    m_Key: record label
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

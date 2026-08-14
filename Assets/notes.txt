@@ -16,6 +16,10 @@ QoL
 
 	settings > reset, main menu
 
+	UNDO
+		purchase
+		part
+
 FEA
 	global/multihit abilities
 		storm (slows everyone)

@@ -5,8 +5,8 @@ using UnityEngine;
 public static class ShipDefines
 {
     public static int shipSize = 10;
-    public static float soundBarrierSpeed = 100;
-    public static float gasBase = 100;
+    public const float soundBarrierSpeed = 100;
+    public const float gasBase = 100;
     public static Vector2Int[] deltaPos = new Vector2Int[]{
         Vector2Int.zero,
         Vector2Int.up,

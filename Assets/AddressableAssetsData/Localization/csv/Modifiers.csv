@@ -77,4 +77,4 @@ scale_totalslots,19355711475743,Car Slots
 scale_totalspeed,19355711475727,Speed
 stat scale neg,37671192662016,loses %value% times %source% %scale% as 
 stat scale pos,19355707281409,gains %value% times %source% %scale% as 
-lose effect,41482728673280,Loses %value%l
+lose effect,41482728673280,loses %value% 

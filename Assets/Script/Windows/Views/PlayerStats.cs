@@ -28,7 +28,7 @@ public class PlayerStats : Initializable
             if (distance != null)
                 distance.text = $"{Mathf.RoundToInt(player.position.distanceTraveled * 10) / 10}m";
             if (speed != null)
-                speed.text = (Mathf.RoundToInt(player.stats.realSpeed * 10) / 10).ToString();
+                speed.text = (Mathf.RoundToInt(player.stats.realSpeed * 10) / 10).ToString()+"km/h";
         }
     }
     void UpdatePlayerFuel()

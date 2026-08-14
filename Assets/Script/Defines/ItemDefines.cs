@@ -3,19 +3,19 @@ using UnityEngine;
 
 public static class ItemDefines
 {
-    public static float commonSpawnWeight = 100;
-    public static float raritySpawnWeight = 60;
+    public const float commonSpawnWeight = 100;
+    public const float raritySpawnWeight = 60;
 
-    public static float chaosPerRace = 20;
-    public static float chaosPerShopReset = 10;
-    public static float chaosFromCommon = 10;
-    public static float chaosFromRare = 20;
-    public static float chaosFromEpic = 33;
-    public static float chaosFromLegendary = 50;
+    public const float chaosPerRace = 20;
+    public const float chaosPerShopReset = 10;
+    public const float chaosFromCommon = 10;
+    public const float chaosFromRare = 20;
+    public const float chaosFromEpic = 33;
+    public const float chaosFromLegendary = 50;
 
-    public static float chaosPlus = 50;
-    public static float chaosMinus = 30;
-    public static float luckPlus = 7;
+    public const float chaosPlus = 50;
+    public const float chaosMinus = 30;
+    public const float luckPlus = 7;
 
     public enum BoonRarity
     {

@@ -312,7 +312,7 @@ public class TourneyController : Initializable
             int i = 0;
             foreach (var racer in ongoingRace.racers)
             {
-                Inspect($"Racer {racer.id} is in position {i + 1} with {racer.position.distanceTraveled} distance going fast at {racer.stats.baseSpeed} mph! Fuel: {racer.abilities.fuel.GetValue()}/{racer.abilities.fuel.GetLimit()}");
+                Inspect($"Racer {racer.id} is in position {i + 1} with {racer.position.distanceTraveled} distance going fast at {racer.stats.baseSpeed} km/h! Fuel: {racer.abilities.fuel.GetValue()}/{racer.abilities.fuel.GetLimit()}");
                 i++;
             }
             debugSet++;
@@ -335,12 +335,16 @@ public class Race : Countdown
     }
     public float GetRivalDistance()
     {
+        return GetRivalDistance(raceID +1, modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
+    }
+    public static  float GetRivalDistance(int raceID, float raceDuration = RaceDefines.raceLength)
+    {
         var baseSpeed = DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID ;
         var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed*raceID-2) : 0;
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
-        return GetRivalDistance(baseSpeed, engineSpeed, engineCooldown, modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
+        return GetRivalDistance(baseSpeed, engineSpeed, engineCooldown, raceDuration );
     }
-    public float GetRivalDistance(float x, float z, float y, float n)
+    public static float GetRivalDistance(float x, float z, float y, float n)
     {
         float k = Mathf.Floor(n / y);
         float r = n - k * y;
