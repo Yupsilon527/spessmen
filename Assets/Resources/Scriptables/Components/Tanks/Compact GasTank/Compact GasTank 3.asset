@@ -27,11 +27,11 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 1a09051041850b6449e41e1345d1791b, type: 2}
-  icon: {fileID: 1130130309, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  icon: {fileID: -7292719347879236571, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 2
   attach: 0
   priceMultiplier: 0.75
-  weightMultiplier: 0.88
+  weightMultiplier: 2.64
   unique: 0
   lockedForSomeReason: 0

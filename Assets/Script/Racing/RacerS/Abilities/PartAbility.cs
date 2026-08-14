@@ -24,7 +24,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BaseSpeed,
-                value =  DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * level *rnval * (level == 0 ? .9f : 1f)
+                value =  DifficultyDefines.enemyBaseSpeed - DifficultyDefines.enemyWheelSpeed + DifficultyDefines.enemyWheelSpeed * (level +1)*rnval
             }
             }
         };
@@ -48,14 +48,14 @@ public class PartAbility
     }
     public string GetAbilityDescription()
     {
-        string output = $"{LanguageController.main.Translate("Abilities", "function_"+function)}: ";
+        string output = $"{LanguageController.main.Translate("Abilities", "function_" + function)}: ";
 
         string effects = "";
         foreach (ConditionalPartAltetration a in actions)
         {
             string label = "";
 
-            string numValue =  Mathf.Abs(a.value).ToString();
+            string numValue = Mathf.Abs(a.value).ToString();
             if (a.behavior == ShipDefines.AlterationType.Multiply)
             {
                 numValue = Mathf.Abs(a.value * 100) + "% ";
@@ -73,22 +73,22 @@ public class PartAbility
             }
             else
             {
-                label += LanguageController.main.Translate("Modifiers",((a.scale== ShipDefines.ScaleType.Lucky || a.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (a.value> 0 ?  "Pos" : "Neg"))
+                label += LanguageController.main.Translate("Modifiers", ((a.scale == ShipDefines.ScaleType.Lucky || a.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (a.value > 0 ? "Pos" : "Neg"))
                     .Replace("%value%", numValue)
                     .Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + a.effectSource))
                     .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + a.scale));
             }
             label += LanguageController.main.Translate("Abilities", "effect_" + a.stat);
-                label = LanguageController.main.Translate("Abilities", "target_" + a.effectTarget).Replace("%effect%", label);
+            label = LanguageController.main.Translate("Abilities", "target_" + a.effectTarget).Replace("%effect%", label);
             if (a.condition != ShipDefines.PartCondition.Always)
             {
                 if (a.condition == ShipDefines.PartCondition.RelativeToRival)
                 {
-                    label = LanguageController.main.Translate("Abilities", a.conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival" + function) + ": "+ label;
+                    label = LanguageController.main.Translate("Abilities", a.conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival" + function) + ": " + label;
                 }
                 else
                 {
-                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": "+label;
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": " + label;
                 }
             }
 

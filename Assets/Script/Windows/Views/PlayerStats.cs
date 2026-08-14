@@ -19,14 +19,14 @@ public class PlayerStats : Initializable
     }
     void UpdatePlayerPosition()
     {
-        if(player!=null)
+        if (player != null)
         {
-            if (lap!=null)
-                lap.text = player.position.currentLap.ToString() ;
+            if (lap != null)
+                lap.text = player.position.currentLap.ToString();
             if (position != null)
-                position.text = (TourneyController.main.ongoingRace.GetPositionForRacer(player)+1).ToString();
+                position.text = (TourneyController.main.ongoingRace.GetPositionForRacer(player) + 1).ToString();
             if (distance != null)
-                distance.text = (Mathf.RoundToInt(player.position.distanceTraveled * 10) / 10).ToString();
+                distance.text = $"{Mathf.RoundToInt(player.position.distanceTraveled * 10) / 10}m";
             if (speed != null)
                 speed.text = (Mathf.RoundToInt(player.stats.realSpeed * 10) / 10).ToString();
         }

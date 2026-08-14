@@ -103,7 +103,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 932648510, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: 1189957147, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: 21300000, guid: b8d33d4673a97d94ebbb2555bf9dfa5b, type: 3}
   boonRarity: 0
   partType: 1
   attach: 1

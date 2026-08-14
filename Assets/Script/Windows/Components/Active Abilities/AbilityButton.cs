@@ -63,6 +63,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
                 if (cd > longestCD)
                 {
                     longestCD = cd;
+                    longestExhaust = ability.GetDuration();
                 }
             }
         }

@@ -15,7 +15,7 @@ public class LeaderboardEntry : MonoBehaviour
     public void ShowRacerPosition(Racer racer, int position)
     {
         ShowRacer(racer);
-        racerDescription.text = (Mathf.Round(10*racer.position.distanceTraveled)/10).ToString("F1");
+        racerDescription.text = $"{(Mathf.Round(10 * racer.position.distanceTraveled) / 10)}m ({(Mathf.Round(10 * racer.stats.realSpeed) / 10)} mph)";
         racerPosition.text = position == 0 ? "1<sup>st" : position == 1 ? "2<sup>nd" : position == 2 ? "3<sup>rd" : $"{position + 1}<sup>th";
     }
     public void ShowRacerTournamentStanding(Racer racer, int position)

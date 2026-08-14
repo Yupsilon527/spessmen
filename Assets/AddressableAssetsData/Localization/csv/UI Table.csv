@@ -1,27 +1,27 @@
 key,Id,English(en)
-cost label,168213516288,$%cost%
-gold label,216427040768,Total $: %gold%
-reroll,309486063616,Reroll
-shop,996047491072,Store
-start,5022193455104,Go!
-race label,7643117555712,Race %raceID%/%raceTotal%
-partinfo,10046894149632,Part Info
-mouseoverhint,10083472674816,Scroll over any part to show info!
-discard,10379565371392,Discard
-lap header,10937374248960,Lap
-speed header,10973814362112,Speed
-fuel header,11003535200256,Fuel
-leaderboard,47363813969920,Leaderboard
-tourney score,47393765494784,Tournament Standings
-tourney results,49302064762880,Results
-proceed,50074445844480,Proceed
-restart,112711875596288,Restart
-modifiertitle,338784752144384,Modifier
-condition_anywhere,362853774036992,Goes Anywhere
-condition_top,362859662839808,Must be on Top
-condition_bottom,362860493312000,Must be on Bottom
-condition_front,362861365727232,Must be in Front
-condition_back,362868630261760,Must be in Back
-canmergewith,364806314823680,Can Merge With 
-lock,1132299669114880,Lock
-rival label,1141803819372544,Distance To Beat: %rivalDistance%
+"cost label",168213516288,"$%cost%"
+"gold label",216427040768,"Total $: %gold%"
+"reroll",309486063616,"Reroll"
+"shop",996047491072,"Store"
+"start",5022193455104,"Go!"
+"race label",7643117555712,"Race %raceID%/%raceTotal%"
+"partinfo",10046894149632,"Part Info"
+"mouseoverhint",10083472674816,"Scroll over any part to show info!"
+"discard",10379565371392,"Discard"
+"lap header",10937374248960,"Lap"
+"speed header",10973814362112,"Speed"
+"fuel header",11003535200256,"Fuel"
+"leaderboard",47363813969920,"Leaderboard"
+"tourney score",47393765494784,"Tournament Standings"
+"tourney results",49302064762880,"Results"
+"proceed",50074445844480,"Proceed"
+"restart",112711875596288,"Restart"
+"modifiertitle",338784752144384,"Modifier"
+"condition_anywhere",362853774036992,"Goes Anywhere"
+"condition_top",362859662839808,"Must be on Top"
+"condition_bottom",362860493312000,"Must be on Bottom"
+"condition_front",362861365727232,"Must be in Front"
+"condition_back",362868630261760,"Must be in Back"
+"canmergewith",364806314823680,"Can Merge With "
+"lock",1132299669114880,"Lock"
+"rival label",1141803819372544,"Distance To Beat: %rivalDistance%"

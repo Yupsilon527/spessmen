@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Large Tank 2
   grid:
-    width: 4
-    height: 3
-    cells: 010101010101010001010100
+    width: 3
+    height: 4
+    cells: 000001010101010101010101
   states: []
   properties:
   - Property: 6
@@ -32,6 +32,6 @@ MonoBehaviour:
   partType: 2
   attach: 0
   priceMultiplier: 0.75
-  weightMultiplier: 0.6
+  weightMultiplier: 1.8
   unique: 0
   lockedForSomeReason: 0

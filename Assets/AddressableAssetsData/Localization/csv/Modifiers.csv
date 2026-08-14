@@ -1,80 +1,80 @@
 key,Id,English(en)
-"chance scale neg",37669787570176,"loses between 0-%value% "
-"chance scale pos",31333012115456,"gains between 0-%value% "
-"gain effect",38406500290577,"gains %value% "
-"prop_ability_cooldown",19355707281425,"Active Cooldowns"
-"prop_ability_power",19355707281428,"Ability Power"
-"prop_active_fuel_consumtion",19355707281433,"Active Item Fuel Consumption"
-"prop_active_prices",19355711475713,"Active Item Prices"
-"prop_active_weight",19355711475720,"Active Item Rarity"
-"prop_base_speed",19355707281410,"Speed"
-"prop_base_speed_percent",19355707281411,"Speed"
-"prop_bonus_speed",19355707281412,"Speed"
-"prop_boost_speed_bonus",19355707281414,"Boost Speed"
-"prop_boost_speed_percent",19355707281415,"Boost Speed"
-"prop_cooldown_total",19355707281429,"Cooldowns"
-"prop_effect_resistance",19355707281442,"Resistance"
-"prop_engine_cooldown",19355707281424,"Engine Cooldowns"
-"prop_engine_fuel_consumption",19355707281430,"Engine Fuel Consumption"
-"prop_engine_prices",19355707281444,"Engine Prices"
-"prop_engine_weight",19355711475715,"Engine Rarity"
-"prop_expansion_prices",19355711475723,"Expansion Prices"
-"prop_expansion_rarity",19355711475722,"Expansion Rarity"
-"prop_fuel_consumption_total",19355707281434,"Fuel Consumption"
-"prop_gadget_cooldown",19355707281426,"Gadget Cooldowns"
-"prop_gadget_fuel_consumtion",19355707281431,"Gadget Fuel Consumption"
-"prop_gadget_prices",19355707281445,"Gadget Prices"
-"prop_gadget_weight",19355711475716,"Gadget Rarity"
-"prop_gold_bonus",19355707281436,"$ from races"
-"prop_gold_income",19355707281435,"Income"
-"prop_gold_interest",19355707281437,"Interest"
-"prop_incoming_base_speed_percentage",19355707281421,"Incoming Base Speed"
-"prop_incoming_boost_speed_percentage",19355707281422,"Incoming Boost Speed"
-"prop_incoming_gas_percentage",19355707281423,"Incoming Gas"
-"prop_incoming_speed_engines",19355707281419,"Speed From Engines"
-"prop_incoming_speed_nitro",19355707281420,"Speed From Nitros"
-"prop_incoming_speed_total",19355707281417,"Incoming Speed"
-"prop_incoming_speed_wheels",19355707281418,"Speed From Wheels"
-"prop_item_rarity",19355711475721,"Rare Item Chance"
-"prop_luck_bonus",19355707281441,"Luck"
-"prop_nitro_cooldown",19355707281427,"Nitro Cooldowns"
-"prop_nitro_fuel_consumtion",19355707281432,"Nitro Fuel Consumption"
-"prop_nitro_prices",19355707281446,"Nitro Prices"
-"prop_nitro_weight",19355711475717,"Nitro Rarity"
-"prop_opponent_speed",19355707281438,"Difficulty"
-"prop_rival_speed",19355707281439,"Rival Speed"
-"prop_shop_prices",19355711475714,"Discount"
-"prop_shop_resets",19355707281440,"Free Rerolls"
-"prop_speed_resistance",19355707281443,"Weight"
-"prop_tank_capacity",19355707281416,"Tank Gapacity"
-"prop_total_speed_percent",19355707281413,"Total Speed"
-"prop_trinket_prices",19355707281447,"Decal Prices"
-"prop_trinket_weight",19355711475718,"Decal Rarity"
-"prop_wheel_prices",19355711475712,"Wheel Prices"
-"prop_wheel_weight",19355711475719,"Wheel Rarity"
-"property relative",19355707281408,"+1 %property% for every %value% %scale% as "
-"property relative mult",19355627589632,"+1% %property% for every %value% %scale% as "
-"scale_basespeed",19355711475725,"Wheel Speed"
-"scale_boostspeed",19355711475726,"Engine Speed"
-"scale_carslots",19355711475742,"Empty Slots"
-"scale_constant",19355711475724,"Constant"
-"scale_currentfuelpercent",19355711475734,"Current Fuel Percent"
-"scale_currentfuelvalue",19355711475733,"Current Fuel"
-"scale_currentposition",19355711475730,"Position"
-"scale_currentrivalposition",19355711475731,"Rival’s Position"
-"scale_distancetraveled",19355711475728,"Distance Traveled"
-"scale_fueltotal",19355711475744,"Tank Capacity"
-"scale_lapscompleted",19355711475729,"Laps Completed"
-"scale_lucky",19355711475736,"Chance"
-"scale_numengines",19355711475737,"Engines"
-"scale_numgadgets",19355711475740,"Gadgets"
-"scale_numnitros",19355711475739,"Nitros"
-"scale_numtrinkets",19355711475741,"Decals"
-"scale_numwheels",19355711475738,"Wheels"
-"scale_random",19355711475735,"Random"
-"scale_rivaldistancetraveled",19355711475732,"Rival’s Distance"
-"scale_totalslots",19355711475743,"Car Slots"
-"scale_totalspeed",19355711475727,"Speed"
-"stat scale neg",37671192662016,"loses %value% times %source% %scale% as "
-"stat scale pos",19355707281409,"gains %value% times %source% %scale% as "
-"lose effect",41482728673280,"Loses %value%l"
+chance scale neg,37669787570176,loses between 0-%value% 
+chance scale pos,31333012115456,gains between 0-%value% 
+gain effect,38406500290577,gains %value% 
+prop_ability_cooldown,19355707281425,Active Cooldowns
+prop_ability_power,19355707281428,Ability Power
+prop_active_fuel_consumtion,19355707281433,Active Item Fuel Consumption
+prop_active_prices,19355711475713,Active Item Prices
+prop_active_weight,19355711475720,Active Item Rarity
+prop_base_speed,19355707281410,Speed
+prop_base_speed_percent,19355707281411,Speed
+prop_bonus_speed,19355707281412,Speed
+prop_boost_speed_bonus,19355707281414,Boost Speed
+prop_boost_speed_percent,19355707281415,Boost Speed
+prop_cooldown_total,19355707281429,Cooldowns
+prop_effect_resistance,19355707281442,Resistance
+prop_engine_cooldown,19355707281424,Engine Cooldowns
+prop_engine_fuel_consumption,19355707281430,Engine Fuel Consumption
+prop_engine_prices,19355707281444,Engine Prices
+prop_engine_weight,19355711475715,Engine Rarity
+prop_expansion_prices,19355711475723,Expansion Prices
+prop_expansion_rarity,19355711475722,Expansion Rarity
+prop_fuel_consumption_total,19355707281434,Fuel Consumption
+prop_gadget_cooldown,19355707281426,Gadget Cooldowns
+prop_gadget_fuel_consumtion,19355707281431,Gadget Fuel Consumption
+prop_gadget_prices,19355707281445,Gadget Prices
+prop_gadget_weight,19355711475716,Gadget Rarity
+prop_gold_bonus,19355707281436,$ from races
+prop_gold_income,19355707281435,Income
+prop_gold_interest,19355707281437,Interest
+prop_incoming_base_speed_percentage,19355707281421,Incoming Base Speed
+prop_incoming_boost_speed_percentage,19355707281422,Incoming Boost Speed
+prop_incoming_gas_percentage,19355707281423,Incoming Gas
+prop_incoming_speed_engines,19355707281419,Speed From Engines
+prop_incoming_speed_nitro,19355707281420,Speed From Nitros
+prop_incoming_speed_total,19355707281417,Incoming Speed
+prop_incoming_speed_wheels,19355707281418,Speed From Wheels
+prop_item_rarity,19355711475721,Rare Item Chance
+prop_luck_bonus,19355707281441,Luck
+prop_nitro_cooldown,19355707281427,Nitro Cooldowns
+prop_nitro_fuel_consumtion,19355707281432,Nitro Fuel Consumption
+prop_nitro_prices,19355707281446,Nitro Prices
+prop_nitro_weight,19355711475717,Nitro Rarity
+prop_opponent_speed,19355707281438,Difficulty
+prop_rival_speed,19355707281439,Rival Speed
+prop_shop_prices,19355711475714,Discount
+prop_shop_resets,19355707281440,Free Rerolls
+prop_speed_resistance,19355707281443,Weight
+prop_tank_capacity,19355707281416,Tank Gapacity
+prop_total_speed_percent,19355707281413,Total Speed
+prop_trinket_prices,19355707281447,Decal Prices
+prop_trinket_weight,19355711475718,Decal Rarity
+prop_wheel_prices,19355711475712,Wheel Prices
+prop_wheel_weight,19355711475719,Wheel Rarity
+property relative,19355707281408,+1 %property% for every %value% %scale% as 
+property relative mult,19355627589632,+1% %property% for every %value% %scale% as 
+scale_basespeed,19355711475725,Wheel Speed
+scale_boostspeed,19355711475726,Engine Speed
+scale_carslots,19355711475742,Empty Slots
+scale_constant,19355711475724,Constant
+scale_currentfuelpercent,19355711475734,Current Fuel Percent
+scale_currentfuelvalue,19355711475733,Current Fuel
+scale_currentposition,19355711475730,Position
+scale_currentrivalposition,19355711475731,Rival’s Position
+scale_distancetraveled,19355711475728,Distance Traveled
+scale_fueltotal,19355711475744,Tank Capacity
+scale_lapscompleted,19355711475729,Laps Completed
+scale_lucky,19355711475736,Chance
+scale_numengines,19355711475737,Engines
+scale_numgadgets,19355711475740,Gadgets
+scale_numnitros,19355711475739,Nitros
+scale_numtrinkets,19355711475741,Decals
+scale_numwheels,19355711475738,Wheels
+scale_random,19355711475735,Random
+scale_rivaldistancetraveled,19355711475732,Rival’s Distance
+scale_totalslots,19355711475743,Car Slots
+scale_totalspeed,19355711475727,Speed
+stat scale neg,37671192662016,loses %value% times %source% %scale% as 
+stat scale pos,19355707281409,gains %value% times %source% %scale% as 
+lose effect,41482728673280,Loses %value%l

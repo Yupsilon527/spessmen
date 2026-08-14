@@ -5,14 +5,16 @@ TODO
 		car displays
 
 	character selection
+	font
 FIX
-	items in ability UI have no outline rarity
-
-	modifiers bugged
 
 QoL
 	part highlight position
 	parts cant rotate (decals, square)
+
+	part speed given
+
+	settings > reset, main menu
 
 FEA
 	global/multihit abilities

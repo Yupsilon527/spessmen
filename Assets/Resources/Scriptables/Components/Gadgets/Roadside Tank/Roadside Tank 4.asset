@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Roadside Tank Tank 2
+  m_Name: Roadside Tank 4
   m_EditorClassIdentifier: 
-  InternalName: Roadside Tank Tank 2
+  InternalName: Roadside Tank Tank 4
   grid:
     width: 2
     height: 2
-    cells: 01010100
+    cells: 00010101
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Roadside Tank Tank 2  OnActivated
+  - InternalName: Roadside Tank Tank 4  OnActivated
     maxUses: 0
-    cooldown: 3
+    cooldown: 1.5
     fuelCost: 0
     classification: 4
     function: 2
@@ -33,7 +33,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 60
+      value: 120
       reverse: 0
       effectSource: 0
       effectTarget: 0
@@ -48,14 +48,12 @@ MonoBehaviour:
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 9bf023f682e82164282046cc51946d47, type: 2}
+  combos: []
   icon: {fileID: -1282615572, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 1
+  boonRarity: 3
   partType: 4
   attach: 0
   priceMultiplier: 0.5
-  weightMultiplier: 1.2
+  weightMultiplier: 1
   unique: 0
   lockedForSomeReason: 0

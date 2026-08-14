@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_GUID: c13f84703e431c74db3b9b065e124990
   m_SerializeEntries:
+  - m_GUID: 352549fe2405c864c85d21095f70f5a9
+    m_Address: Racers_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87a8e87d690f26042813f12670c66138
     m_Address: Modifiers_en
     m_ReadOnly: 1

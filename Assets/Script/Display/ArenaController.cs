@@ -60,7 +60,19 @@ public class ArenaController : MonoBehaviour
         {
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
             if (relativePosition == 0) continue;
-            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition) + racer.racer.id);
+
+            float d = 100;
+            float m = 15;
+
+            if (racer.racer.position.distanceTraveled < d)
+            {
+                float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / d);
+                float nearStartMultiplier = Mathf.Max(m, 1f / (racer.racer.position.distanceTraveled * m + 0.0001f)); // +epsilon avoids div-by-zero at 0
+                float multiplier = Mathf.SmoothStep(nearStartMultiplier, 1f, t);
+
+                relativePosition *= multiplier;
+            }
+            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition));
 
         }
 

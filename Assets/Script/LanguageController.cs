@@ -6,7 +6,7 @@ using System.Linq;
 
 public class LanguageController : Initializable
 {
-    public static readonly string[] TableNames = { "Environments", "Leaderboard", "UI Table" , "Abilities", "Modifiers", "Racers" };
+    public static readonly string[] TableNames = { "Environments", "Leaderboard", "UI Table" , "Abilities", "Modifiers", "Racers", "Parts" };
     public static LanguageController main;
     protected override void Initialize()
     {
