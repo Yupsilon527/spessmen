@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Gas Tank 3
   grid:
-    width: 3
-    height: 2
-    cells: 010101010100
+    width: 2
+    height: 3
+    cells: 010001010101
   states: []
   properties:
   - Property: 6

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Active Rec 2
   grid:
-    width: 3
+    width: 2
     height: 2
-    cells: 010101010000
+    cells: 01010101
   states: []
   properties: []
   relative: []

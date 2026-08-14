@@ -22,11 +22,11 @@ MonoBehaviour:
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -4598601632356572206, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 1
   partType: 7
   attach: 0
   priceMultiplier: 0.3
-  weightMultiplier: 0.8
+  weightMultiplier: 2
   unique: 0
   lockedForSomeReason: 0

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Technician Can 3
+  m_Name: Technician Can 4
   m_EditorClassIdentifier: 
-  InternalName: Technician Can 3
+  InternalName: Technician Can 4
   grid:
-    width: 3
-    height: 2
-    cells: 010101010100
+    width: 2
+    height: 3
+    cells: 010001010101
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Technician Can 3  OnLapCompleted
+  - InternalName: Technician Can 4  OnLapCompleted
     maxUses: 0
     cooldown: 0
     fuelCost: 0
@@ -33,17 +33,15 @@ MonoBehaviour:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 8
+      value: 10
       reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: bf4f3448ddd4c4a428320199518ca875, type: 2}
-  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 2
+  combos: []
+  icon: {fileID: -1508152377, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 3
   partType: 2
   attach: 0
   priceMultiplier: 0.87

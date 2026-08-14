@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Basic Can 3
+  m_Name: Mischief Can 2
   m_EditorClassIdentifier: 
-  InternalName: Basic Can 3
+  InternalName: Mischief Can 2
   grid:
     width: 3
     height: 2
@@ -21,30 +21,32 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Basic Can 3  OnTimePass
-    cooldown: 3.3
+  - InternalName: Mischief Can 2  OnRivalOvertaken
+    maxUses: 0
+    cooldown: 0
     fuelCost: 0
     classification: 2
-    function: 1
+    function: 5
     condition: 0
     conditionCheck: 0
     actions:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 16
+      value: 50
+      reverse: 0
       effectSource: 0
       effectTarget: 0
       condition: 0
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 4897d8353c20eca4c9b5ae44762deeb7, type: 2}
-  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+    result: {fileID: 11400000, guid: aff570a78810ca845839e322b65f9e94, type: 2}
+  icon: {fileID: -240816473, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 2
   attach: 0
-  priceMultiplier: 0.87
-  weightMultiplier: 0.66
+  priceMultiplier: 0.4
+  weightMultiplier: 0.75
   unique: 0
   lockedForSomeReason: 0

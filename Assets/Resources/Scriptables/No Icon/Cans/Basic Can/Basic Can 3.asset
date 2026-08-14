@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Snowball Can 2
+  m_Name: Basic Can 3
   m_EditorClassIdentifier: 
-  InternalName: Snowball Can 2
+  InternalName: Basic Can 3
   grid:
     width: 3
     height: 2
-    cells: 000101010100
+    cells: 010101010100
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Snowball Can 2  OnTimePass
+  - InternalName: Basic Can 3  OnTimePass
     maxUses: 0
-    cooldown: 4.75
+    cooldown: 3.3
     fuelCost: 0
     classification: 2
     function: 1
@@ -33,16 +33,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 2
       scale: 0
-      value: 2
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 2
-      scale: 6
-      value: 2
+      value: 16
       reverse: 0
       effectSource: 0
       effectTarget: 0
@@ -50,9 +41,9 @@ MonoBehaviour:
       conditionCheck: 0
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 207c2e25934984f4ab622d3bbbc326da, type: 2}
-  icon: {fileID: 342349809, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
-  boonRarity: 1
+    result: {fileID: 11400000, guid: 4897d8353c20eca4c9b5ae44762deeb7, type: 2}
+  icon: {fileID: 362969093, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 2
   partType: 2
   attach: 0
   priceMultiplier: 0.87

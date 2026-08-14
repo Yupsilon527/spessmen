@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Engine Rev 2
   grid:
-    width: 3
+    width: 2
     height: 2
-    cells: 010101010000
+    cells: 01010101
   states: []
   properties: []
   relative: []
@@ -40,7 +40,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: 3352192, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  icon: {fileID: 1239801845, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 4
   attach: 0
