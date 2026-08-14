@@ -13,6 +13,6 @@ public static class DifficultyDefines
     public const float lapDistanceBase = 200;
     public const float lapDistanceAdd = 20;
 
-    public const float enemyStartDistance = 7;
+    public const float enemyStartDistance = 2;
     public const float aiUseAbilityChance = .2f;
 }

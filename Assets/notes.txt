@@ -7,6 +7,7 @@ TODO
 	character selection
 	font
 FIX
+	merge part -> token doesnt get discarded
 
 QoL
 	part highlight position

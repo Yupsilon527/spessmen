@@ -257,7 +257,7 @@ public class TourneyController : Initializable
         float distanceGold = 0;
         if (playerPos == 0)
         {
-            distanceGold = Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance);
+            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.oerformanceGoldCap);
         }
 
         DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);
@@ -335,7 +335,7 @@ public class Race : Countdown
     }
     public float GetRivalDistance()
     {
-        return GetRivalDistance(raceID +1, modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
+        return GetRivalDistance(raceID , modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
     }
     public static  float GetRivalDistance(int raceID, float raceDuration = RaceDefines.raceLength)
     {
@@ -344,12 +344,12 @@ public class Race : Countdown
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
         return GetRivalDistance(baseSpeed, engineSpeed, engineCooldown, raceDuration );
     }
-    public static float GetRivalDistance(float x, float z, float y, float n)
+    public static float GetRivalDistance(float bspd, float espd, float encd, float rt)
     {
-        float k = Mathf.Floor(n / y);
-        float r = n - k * y;
-        return x * n
-                    + z * y * (k * (k - 1) / 2f)
-                    + z * k * r;
+        float euse = Mathf.Floor(rt / encd);
+        float eint = rt - euse * encd;
+        return bspd * rt
+                    + espd * encd * (euse * (euse - 1) / 2f)
+                    + espd * euse * eint / 2f;
     }
 }

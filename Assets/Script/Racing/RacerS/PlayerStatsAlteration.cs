@@ -83,7 +83,10 @@ public class PlayerStatsAlteration
                 float CD = GetEffectiveChange(caster, mult, self);
                 foreach (var ab in stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine))
                 {
+                    if (CD> 0)
                     ab.Shorten(CD);
+                    else
+                    ab.Extend(CD);
                 }
                 break;
         }
