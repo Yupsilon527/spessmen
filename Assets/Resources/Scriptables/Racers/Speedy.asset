@@ -20,9 +20,10 @@ MonoBehaviour:
   states: []
   properties: []
   relative: []
+  baseColor: {r: 1, g: 0.7071954, b: 0, a: 1}
+  portrait: {fileID: 1412596812, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
   blueprint: {fileID: 21300000, guid: 1d24236f4779db6419bdf057c33d4d1c, type: 3}
   prefab: {fileID: 981279437659273271, guid: 3d8acbb314fbf544eaf1e1c2bb9812ee, type: 3}
-  ac: {fileID: 9100000, guid: b5d914fc1ed310e4699d317b9888cac3, type: 2}
   startingGold: 30
   startingParts:
   - {fileID: 11400000, guid: 0bc635952fe97774d85492538925d922, type: 2}

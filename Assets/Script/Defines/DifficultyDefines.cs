@@ -6,7 +6,7 @@ public static class DifficultyDefines
 
     public static float enemyBaseSpeed = 10;
     public static float enemyWheelSpeed = 8;
-    public static float enemyEngineSpeed = 14;
+    public static float enemyEngineSpeed = 9;
     public static float enemyEngineCooldown = 4;
     public static float enemyEngineDelta = 2;
 

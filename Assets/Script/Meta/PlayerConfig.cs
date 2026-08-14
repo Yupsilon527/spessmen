@@ -69,10 +69,6 @@ public class PlayerConfig : Initializable
         PlayerPrefs.DeleteAll();
     }
     #endregion
-    private void Start()
-    {
-        StartNewGame();
-    }
     public void StartNewGame()
     {
         DataItemPlayer.main.FromData(playerCharacter);

@@ -44,8 +44,9 @@ public class Ability : Countdown
     public bool CanBeActivated()
     {
         return (data.fuelCost == 0 
-            || (data.function == ShipDefines.PartEvent.OnActivated &&  caster.abilities.fuel.GetValue() >= GetFuelCost())
-            || (data.function != ShipDefines.PartEvent.OnActivated &&  caster.abilities.fuel.GetValue() > 0)) 
+          //  || (data.function == ShipDefines.PartEvent.OnActivated &&  caster.abilities.fuel.GetValue() >= GetFuelCost())
+          //  || (data.function != ShipDefines.PartEvent.OnActivated &&  caster.abilities.fuel.GetValue() > 0)) 
+            || caster.abilities.fuel.GetValue() >= GetFuelCost()) 
             && (data.maxUses == 0 || useCount < data.maxUses) && !IsRunning()
             && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspect: 1
+  tournamentEnvironment: {fileID: 0}
   currentPhase: 0
 --- !u!114 &2694216569649576648
 MonoBehaviour:
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014e5ef1f0f383947a5ad43aed17c7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inspect: 0
+  inspect: 1
   econ: {fileID: 3999593555177293472}
   score: {fileID: 8479669570223774603}
 --- !u!114 &3999593555177293472

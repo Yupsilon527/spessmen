@@ -1,8 +1,6 @@
 
 
 using System.Linq;
-using Unity.Burst.Intrinsics;
-using UnityEngine.Localization.Settings;
 
 public class ModifierScriptable : GridScriptable
 {

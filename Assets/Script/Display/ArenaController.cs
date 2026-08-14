@@ -49,8 +49,10 @@ public class ArenaController : MonoBehaviour
     }
     private void Update()
     {
+        if (TourneyController.main.currentPhase > TourneyController.TourneyPhase.beforeRace) { 
         UpdateRacerPositions();
         HandleFloatingText();
+    }
     }
     public void UpdateRacerPositions()
     {

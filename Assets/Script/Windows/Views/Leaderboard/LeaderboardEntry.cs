@@ -9,6 +9,7 @@ public class LeaderboardEntry : MonoBehaviour
 
      void ShowRacer(Racer racer)
     {
+        racerPortrait.sprite = racer.playerShip.portrait;
         racerName.text = racer.id == 0 ? LanguageController.main.Translate("Leaderboard", "LeaderboardYou") : LanguageController.main.Translate("Racers", racer.playerShip.InternalName);
         if (TourneyController.main.GetPlayerRival() == racer) racerName.text += $" ({LanguageController.main.Translate("Leaderboard", "LeaderboardRival")})";
     }

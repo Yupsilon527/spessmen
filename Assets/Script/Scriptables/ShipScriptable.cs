@@ -1,9 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ship", menuName = "Data/Ship Data")]
+[CreateAssetMenu(fileName = "Racer", menuName = "Data/Racer Data")]
 public class ShipScriptable : ModifierScriptable
 {
-    public Sprite blueprint;
+    public Color baseColor;
+    public Sprite portrait, blueprint;
     public GameObject prefab;
     public float startingGold = 30;
     public PartScriptable[] startingParts;

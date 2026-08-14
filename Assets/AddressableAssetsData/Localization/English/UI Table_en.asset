@@ -122,6 +122,14 @@ MonoBehaviour:
     m_Localized: 'Distance To Beat: %rivalDistance%'
     m_Metadata:
       m_Items: []
+  - m_Id: 2213108190711808
+    m_Localized: Start with $%value% gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2213203409801216
+    m_Localized: Start with %parts%
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
