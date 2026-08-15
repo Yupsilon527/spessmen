@@ -66,7 +66,7 @@ public class CharacterResolver : MonoBehaviour
                 SpriteRenderers.Add(renderer.name.ToLower(), renderer);
             }
         }
-        layers = GetComponentsInChildren<LayerResolver>();
+        layers = GetComponentsInChildren<LayerResolver>(true);
     }
     public virtual void LoadCharacter(CharacterSheet character, bool additive = false, float scaleOverride = 1)
     {
