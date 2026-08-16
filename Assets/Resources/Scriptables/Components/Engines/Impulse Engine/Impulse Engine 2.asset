@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Impulse Engine 2
   grid:
-    width: 4
+    width: 3
     height: 3
-    cells: 000001010101010101010000
+    cells: 000101010101010100
   states: []
   properties: []
   relative: []
@@ -51,7 +51,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 7fd99fe154fb18349844eb9e05916dcd, type: 2}
-  icon: {fileID: 1886732634, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  icon: {fileID: -2140984661, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 2
   partType: 3
   attach: 0

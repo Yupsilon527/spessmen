@@ -22,6 +22,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Cursed Nitro 3  OnActivated
+    maxUses: 0
     cooldown: 0.15
     fuelCost: 30
     classification: 5
@@ -48,7 +49,7 @@ MonoBehaviour:
       condition: 0
       conditionCheck: 0
   combos: []
-  icon: {fileID: -1862548716, guid: fb6058b254cb3b344b93ce2ca5970384, type: 3}
+  icon: {fileID: -4229674953759081290, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 5
   attach: 2

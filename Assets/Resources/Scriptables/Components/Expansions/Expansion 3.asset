@@ -23,10 +23,10 @@ MonoBehaviour:
   abilities: []
   combos: []
   icon: {fileID: 1025868862, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
-  boonRarity: 2
+  boonRarity: 1
   partType: 7
   attach: 0
-  priceMultiplier: 0.6
-  weightMultiplier: 4
+  priceMultiplier: 1.6
+  weightMultiplier: 1.2
   unique: 0
   lockedForSomeReason: 0

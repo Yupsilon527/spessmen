@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerStats : Initializable
 {
     public Racer player;
-    public TextMeshProUGUI  lap, distance, speed, position, fuelpercent, fuelvalue;
+    public TextMeshProUGUI  lap, distance, speed,basespeed,boostspeed, position, fuelpercent, fuelvalue;
     public Image fuelFill;
 
     public void Update()
@@ -29,6 +29,10 @@ public class PlayerStats : Initializable
                 distance.text = $"{Mathf.RoundToInt(player.position.distanceTraveled * 10) / 10}m";
             if (speed != null)
                 speed.text = (Mathf.RoundToInt(player.stats.realSpeed * 10) / 10).ToString()+"km/h";
+            if (boostspeed != null)
+                boostspeed.text = (Mathf.RoundToInt(player.stats.boosterSpeed * 10) / 10).ToString()+"km/h";
+            if (basespeed != null)
+                basespeed.text = (Mathf.RoundToInt(player.stats.baseSpeed * 10) / 10).ToString()+"km/h";
         }
     }
     void UpdatePlayerFuel()

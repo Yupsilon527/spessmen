@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Gas Gear 1
+  m_EditorClassIdentifier: 
+  InternalName: Gas Gear 1
+  grid:
+    width: 2
+    height: 2
+    cells: 01010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Gas Gear 1  OnTimePass
+    maxUses: 0
+    cooldown: 1
+    fuelCost: 0
+    classification: 1
+    function: 1
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - behavior: 0
+      stat: 0
+      scale: 9
+      value: 0.04
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: eebff701f2d1bfb4384328f10594d28e, type: 2}
+  icon: {fileID: 1610975651, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  boonRarity: 0
+  partType: 1
+  attach: 0
+  priceMultiplier: 0.967
+  weightMultiplier: 0.75
+  unique: 0
+  lockedForSomeReason: 0

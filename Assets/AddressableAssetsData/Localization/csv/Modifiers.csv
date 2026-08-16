@@ -30,7 +30,7 @@ prop_gold_income,19355707281435,Income
 prop_gold_interest,19355707281437,Interest
 prop_incoming_base_speed_percentage,19355707281421,Incoming Base Speed
 prop_incoming_boost_speed_percentage,19355707281422,Incoming Boost Speed
-prop_incoming_gas_percentage,19355707281423,Incoming Gas
+prop_incoming_gas_percentage,19355707281423,Incoming Juice
 prop_incoming_speed_engines,19355707281419,Speed From Engines
 prop_incoming_speed_nitro,19355707281420,Speed From Nitros
 prop_incoming_speed_total,19355707281417,Incoming Speed
@@ -46,7 +46,7 @@ prop_rival_speed,19355707281439,Rival Speed
 prop_shop_prices,19355711475714,Discount
 prop_shop_resets,19355707281440,Free Rerolls
 prop_speed_resistance,19355707281443,Weight
-prop_tank_capacity,19355707281416,Tank Gapacity
+prop_tank_capacity,19355707281416,Tank Capacity
 prop_total_speed_percent,19355707281413,Total Speed
 prop_trinket_prices,19355707281447,Decal Prices
 prop_trinket_weight,19355711475718,Decal Rarity

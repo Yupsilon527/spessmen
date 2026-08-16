@@ -26,6 +26,35 @@ FEA
 		storm (slows everyone)
 	pickups
 
+	MECHANICS
+		stun and stun imm
+		topspeed
+			basespeed goes only up to topspeed, boostspeed unlimited
+			stat like speed, etc
+				inc by parts
+				inc during races
+			engine increase basespeed, boostspeed
+			wheel increase topspeed
+		teleport
+			good teleport - affected by teleport distance (raw, %)
+			bad teleport (affected by resistance, weight)
+		ghost parts
+			destroyed on race complete
+			also parts effect when destroyed
+		(give gold power)
+	Zombies
+		run over for gold
+		
+		nerf gold4dist mechanic
+		LARGE ZOMBIES - slow down hit by first racer, when run over goes to bank
+		property reduce large zombies slwodown
+
+		events
+			zombie run over
+			lzombie run over
+			zombie run over in fisrt pos
+		
+
 CARS
 	starter - enemies slower, rival slower, free reroll
 	speedy - accelerates
@@ -36,11 +65,7 @@ CARS
 	??? - speed when in first lap, plus engine % total speed
 	??? - overgas, and bonus speed overgas (legen wheel that gives you 20%), base speed reduced, gas incoming increase
 
-Items
-	legendary
-		clicker - fast CD, 0 fuel use active, grant small boost
-		overgas tank (gas has no limit)
-		overgas wheel (%speed when at or over 100% gas)
+
 
 multiple item classifications
 

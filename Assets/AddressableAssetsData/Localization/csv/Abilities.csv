@@ -1,10 +1,10 @@
 key,Id,English(en)
-ability cost,19397650321408,Uses %value% fuel.
+ability cost,19397650321408,Uses %value% juice.
 ability cooldown,19397662904320,Cooldown %value%.
 ability uses,19397662904321,%value% uses each race.
-effect_basespeed,19397662904322,Speed
-effect_boostspeed,19397667098624,Speed
-effect_fillgas,19397667098625,Fuel
+effect_basespeed,19397662904322,Base Speed
+effect_boostspeed,19397667098624,Boost Speed
+effect_fillgas,19397667098625,Juice
 effect_totalspeed,19397667098626,Speed
 effect_refreshengines,19397667098627,Engine CD
 effect_refreshgadgets,19397667098628,Gadget CD
@@ -18,10 +18,10 @@ condition_positionbelow,19397667098635,if position below %value%
 condition_positionabove,19397667098636,if position above %value%
 condition_aheadofrival,19397667098637,if ahead of their rival
 condition_behindrival,19397667098638,if behind their rival
-condition_gasabove,19397667098639,if fuel above %value%
-condition_gasbelow,19397667098640,if fuel below %value%
-condition_gaspercentabove,19397667098641,if fuel above %value%%
-condition_gaspercentbelow,19397667098642,if fuel below %value%%
+condition_gasabove,19397667098639,if juice above %value%
+condition_gasbelow,19397667098640,if juice below %value%
+condition_gaspercentabove,19397667098641,if juice above %value%%
+condition_gaspercentbelow,19397667098642,if juice below %value%%
 condition_lapbelow,19397667098643,if current lap below %value%%
 condition_lapabove,19397667098644,if current lap above %value%%
 condition_lucky,19397667098645,%value%% chance

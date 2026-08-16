@@ -217,8 +217,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed4ebc18be4c8fc41a53061581c83ce4, type: 2}
+  m_sharedMaterial: {fileID: -1642333629054992905, guid: ed4ebc18be4c8fc41a53061581c83ce4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6797680250015816348, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 8023108504121094260, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
       propertyPath: m_Name
       value: Leaderboard Entry (9)
@@ -550,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 6515049798435627342, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797680250015816348, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
       objectReference: {fileID: 0}
     - target: {fileID: 8023108504121094260, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
       propertyPath: m_Name
@@ -676,6 +684,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6797680250015816348, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 8023108504121094260, guid: 76201257750eaa542a5ff7da85a13f6d, type: 3}
       propertyPath: m_Name
       value: Leaderboard Entry (8)
@@ -709,6 +721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1345983963568671322, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 1626301003353551240, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -773,9 +789,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2773322966527175811, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_Pivot.y
@@ -783,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -791,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3598201540023603942, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMin.y
@@ -889,6 +909,14 @@ PrefabInstance:
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
       value: 49302064762880
       objectReference: {fileID: 0}
+    - target: {fileID: 6430415522942795481, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519444003063007522, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 6701709965552534795, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -953,6 +981,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8016442395793233239, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
+      objectReference: {fileID: 0}
     - target: {fileID: 8157994181647761028, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -972,6 +1004,10 @@ PrefabInstance:
     - target: {fileID: 8157994181647761028, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433879883587552598, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.848389
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4806394585786753690, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
