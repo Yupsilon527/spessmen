@@ -127,8 +127,12 @@ MonoBehaviour:
     m_Key: starting parts
     m_Metadata:
       m_Items: []
-  - m_Id: 3074324488425472
-    m_Key: charsel
+  - m_Id: 3247582407987200
+    m_Key: done loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247589177593856
+    m_Key: char sel
     m_Metadata:
       m_Items: []
   m_Metadata:

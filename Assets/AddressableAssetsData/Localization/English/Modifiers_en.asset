@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281416
-    m_Localized: Tank Gapacity
+    m_Localized: Tank Capacity
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281417
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281423
-    m_Localized: Incoming Gas
+    m_Localized: Incoming Juice
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281424

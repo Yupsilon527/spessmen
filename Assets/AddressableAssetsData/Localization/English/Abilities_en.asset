@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 19397650321408
-    m_Localized: Uses %value% fuel.
+    m_Localized: Uses %value% juice.
     m_Metadata:
       m_Items: []
   - m_Id: 19397662904320
@@ -31,15 +31,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397662904322
-    m_Localized: Speed
+    m_Localized: Base Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098624
-    m_Localized: Speed
+    m_Localized: Boost Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098625
-    m_Localized: Fuel
+    m_Localized: Juice
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098626
@@ -95,19 +95,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098639
-    m_Localized: if fuel above %value%
+    m_Localized: if juice above %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098640
-    m_Localized: if fuel below %value%
+    m_Localized: if juice below %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098641
-    m_Localized: if fuel above %value%%
+    m_Localized: if juice above %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098642
-    m_Localized: if fuel below %value%%
+    m_Localized: if juice below %value%%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098643

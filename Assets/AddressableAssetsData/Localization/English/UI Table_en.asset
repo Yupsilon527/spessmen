@@ -131,8 +131,12 @@ MonoBehaviour:
     m_Localized: Start with %parts%
     m_Metadata:
       m_Items: []
-  - m_Id: 3074324488425472
-    m_Localized: Pick A Racer!
+  - m_Id: 3247582407987200
+    m_Localized: Click Anywhere To Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247589177593856
+    m_Localized: Pick a Racer!
     m_Metadata:
       m_Items: []
   references:
