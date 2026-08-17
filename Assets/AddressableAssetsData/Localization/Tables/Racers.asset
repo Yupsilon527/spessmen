@@ -44,4 +44,4 @@ MonoBehaviour:
           m_Code: en
         m_FieldName: English(en)
         m_CommentFieldName: English(en) Comments
-        m_IncludeComments: 1
+        m_IncludeComments: 0

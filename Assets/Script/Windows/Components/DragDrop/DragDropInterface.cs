@@ -19,8 +19,8 @@ public class AbilityDragDropInterface : ShipPreview
 
     void FindSlots()
     {
-        shopSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.shop).ToArray() ;
-        stashSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.stash).ToArray() ;
+        shopSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.shop).ToArray();
+        stashSlots = GetComponentsInChildren<DragDropSlot>().Where(s => s.slot == DragDropSlot.TokenSlot.stash).ToArray();
     }
 
     public void InitSlots(DataItemShip s)
@@ -28,15 +28,16 @@ public class AbilityDragDropInterface : ShipPreview
         if (s == null) return;
         ship = s;
 
-        foreach (var slot in ship.parts)
+        foreach (var part in ship.parts)
         {
-         
-                    var token = GenerateToken(slot);
-                    token.AttachToSlot(buildSlot, true);
+            if (part.deleted) continue;
+            var token = GenerateToken(part);
+            token.AttachToSlot(buildSlot, true);
         }
         int i = 0;
         foreach (var part in ship.stash)
         {
+            if (part.deleted) continue;
             var token = GenerateToken(part);
             token.AttachToSlot(stashSlots[i], true);
             i++;
@@ -68,16 +69,16 @@ public class AbilityDragDropInterface : ShipPreview
     public void ApplyChanges()
     {
         ship.stash.RemoveWhere(p => p == null || ship.parts.Contains(p));
-        foreach (var slot in stashSlots)  
+        foreach (var slot in stashSlots)
         {
-            if (slot.attachedToken != null && slot.attachedToken.mPart!=null)
+            if (slot.attachedToken != null && slot.attachedToken.mPart != null)
             {
                 var part = slot.attachedToken.mPart;
                 ship.parts.Remove(part);
                 ship.stash.Add(part);
             }
         }
-        foreach (var slot in shopSlots)  
+        foreach (var slot in shopSlots)
         {
             if (slot.attachedToken != null)
             {

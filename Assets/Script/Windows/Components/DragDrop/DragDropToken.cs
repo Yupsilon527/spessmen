@@ -26,45 +26,6 @@ public class DragDropToken : PartButtonScaleable
         }
     }
     #endregion
-    #region Info Overlay
-    public virtual string GetTooltipString()
-    {
-        /*  switch (behavior)
-          {
-              case TokenBehavior.Ability:
-                  if (attachedAbility != null)
-                  {
-                      return attachedAbility.original.GetTooltip(true);
-                  }
-                  break;
-              case TokenBehavior.Effect:
-                  if (attachedEffect)
-                  {
-                      string desc = attachedEffect.name;//TODO getdesc
-                      if (slot != null && slot.GetMod() != null)
-                          desc = slot.GetMod().modCondition + "\n" + desc;//TODO get modData desc
-                      return desc;
-                  }
-                  break;
-              case TokenBehavior.Event:
-                  if (overrideEvent != AbilityDefines.Event.Nothing)
-                  {
-                      return overrideEvent.ToString();
-                  }
-                  break;
-          }*/
-        return "MISSINGNUM";
-    }
-    /* public override void OnPointerEnter(PointerEventData eventData)
-     {
-         //      RectTransform rtf = GetComponent<RectTransform>();
-         //   InfoOverlayController.main.OpenAtPosition(GetTooltipString(), rtf.position);
-     }
-     public override void OnPointerExit(PointerEventData eventData)
-     {
-         //     InfoOverlayController.main.Close();
-     }*/
-    #endregion
     #region Drag Drop
     protected override void Initialize()
     {
@@ -315,6 +276,7 @@ public class DragDropToken : PartButtonScaleable
     public void Delete()
     {
         Clear(false);
+        mPart.deleted = true;
         if (slot != null && slot.slot != DragDropSlot.TokenSlot.build)
             slot.ClearToken();
         slot = null;

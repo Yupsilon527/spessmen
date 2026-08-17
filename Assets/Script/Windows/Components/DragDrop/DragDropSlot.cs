@@ -33,16 +33,6 @@ public class DragDropSlot : EventTrigger
        
         return "";
     }
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        string toolTip = GetTooltipString();
-     //   if (toolTip != string.Empty)
-     //       InfoOverlayController.main.OpenAtPosition(toolTip, recttransform.position);
-    }
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        //InfoOverlayController.main.Close();
-    }
     #endregion
 
     #region Attached Token

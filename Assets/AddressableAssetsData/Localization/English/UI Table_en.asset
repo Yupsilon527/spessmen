@@ -119,8 +119,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1141803819372544
-    m_Localized: 'Distance To Beat: %rivalDistance%<br>Your record: %ownDistance%m
-      (%ownSpeed%km/h)'
+    m_Localized: 'Distance To Beat: %rivalDistance%'
     m_Metadata:
       m_Items: []
   - m_Id: 2213108190711808
@@ -137,6 +136,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3247589177593856
     m_Localized: Pick a Racer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3249409245483008
+    m_Localized: 'Your record: %ownDistance%m (%ownSpeed%km/h)'
     m_Metadata:
       m_Items: []
   references:

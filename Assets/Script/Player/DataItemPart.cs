@@ -3,6 +3,7 @@ using System.Linq;
 
 public class DataItemPart : DataItemGrid
 {
+    public bool deleted = false;
     public PartScriptable scriptable;
     public int rotation = 0;
     public int originX;

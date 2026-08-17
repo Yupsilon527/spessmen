@@ -135,6 +135,10 @@ MonoBehaviour:
     m_Key: char sel
     m_Metadata:
       m_Items: []
+  - m_Id: 3249409245483008
+    m_Key: record label
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

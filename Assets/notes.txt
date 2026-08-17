@@ -17,9 +17,15 @@ QoL
 
 	settings > reset, main menu
 
+	buttons - settings AND endgame
+		restart 
+		back
+
 	UNDO
 		purchase
 		part
+
+	save and continue
 
 FEA
 	global/multihit abilities

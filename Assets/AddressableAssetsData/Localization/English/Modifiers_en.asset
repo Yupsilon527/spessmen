@@ -27,19 +27,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281409
-    m_Localized: 'gains %value% times %source% %scale% as '
+    m_Localized: 'gains %value%x %source% %scale% as '
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281410
-    m_Localized: Speed
+    m_Localized: Base Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281411
-    m_Localized: Speed
+    m_Localized: Base Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281412
-    m_Localized: Speed
+    m_Localized: Bonus Base Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281413
@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281416
-    m_Localized: Tank Capacity
+    m_Localized: Juice Capacity
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281417
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281434
-    m_Localized: Fuel Consumption
+    m_Localized: Juice Consumption
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281431
@@ -223,11 +223,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355711475725
-    m_Localized: Wheel Speed
+    m_Localized: Base Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19355711475726
-    m_Localized: Engine Speed
+    m_Localized: Boost Speed
     m_Metadata:
       m_Items: []
   - m_Id: 19355711475742
@@ -323,7 +323,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37671192662016
-    m_Localized: 'loses %value% times %source% %scale% as '
+    m_Localized: 'loses %value%x %source% %scale% as '
     m_Metadata:
       m_Items: []
   - m_Id: 38406500290577

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class RacerAbilities : RacerComponent
 {
@@ -32,10 +33,18 @@ public class RacerAbilities : RacerComponent
                     float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * .75f + .25f);
                     int level = TourneyController.main.GetCurrentRaceIndex();
                     AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal), racer));
-                    if (level > 2 )
+
+                    int engLevel = level - RaceDefines.SeasonRaces + 1;
+                    int cycleLength = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+
+                    for (int i = 1; i <= level / cycleLength; i++)
+                    {
+                        engLevel += Mathf.Max(0, level - cycleLength * i);
+                    }
+                    if (engLevel > 0 )
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
-                        AddAbility(new Ability(PartAbility.NpcEngine(level-2, rnVal), racer));
+                        AddAbility(new Ability(PartAbility.NpcEngine(engLevel, rnVal), racer));
                     }
                 }
                 racer.modifiers.Refresh();

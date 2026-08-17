@@ -7,9 +7,9 @@ prop_ability_power,19355707281428,Ability Power
 prop_active_fuel_consumtion,19355707281433,Active Item Fuel Consumption
 prop_active_prices,19355711475713,Active Item Prices
 prop_active_weight,19355711475720,Active Item Rarity
-prop_base_speed,19355707281410,Speed
-prop_base_speed_percent,19355707281411,Speed
-prop_bonus_speed,19355707281412,Speed
+prop_base_speed,19355707281410,Base Speed
+prop_base_speed_percent,19355707281411,Base Speed
+prop_bonus_speed,19355707281412,Bonus Base Speed
 prop_boost_speed_bonus,19355707281414,Boost Speed
 prop_boost_speed_percent,19355707281415,Boost Speed
 prop_cooldown_total,19355707281429,Cooldowns
@@ -20,7 +20,7 @@ prop_engine_prices,19355707281444,Engine Prices
 prop_engine_weight,19355711475715,Engine Rarity
 prop_expansion_prices,19355711475723,Expansion Prices
 prop_expansion_rarity,19355711475722,Expansion Rarity
-prop_fuel_consumption_total,19355707281434,Fuel Consumption
+prop_fuel_consumption_total,19355707281434,Juice Consumption
 prop_gadget_cooldown,19355707281426,Gadget Cooldowns
 prop_gadget_fuel_consumtion,19355707281431,Gadget Fuel Consumption
 prop_gadget_prices,19355707281445,Gadget Prices
@@ -46,7 +46,7 @@ prop_rival_speed,19355707281439,Rival Speed
 prop_shop_prices,19355711475714,Discount
 prop_shop_resets,19355707281440,Free Rerolls
 prop_speed_resistance,19355707281443,Weight
-prop_tank_capacity,19355707281416,Tank Capacity
+prop_tank_capacity,19355707281416,Juice Capacity
 prop_total_speed_percent,19355707281413,Total Speed
 prop_trinket_prices,19355707281447,Decal Prices
 prop_trinket_weight,19355711475718,Decal Rarity
@@ -54,8 +54,8 @@ prop_wheel_prices,19355711475712,Wheel Prices
 prop_wheel_weight,19355711475719,Wheel Rarity
 property relative,19355707281408,+1 %property% for every %value% %scale% as 
 property relative mult,19355627589632,+1% %property% for every %value% %scale% as 
-scale_basespeed,19355711475725,Wheel Speed
-scale_boostspeed,19355711475726,Engine Speed
+scale_basespeed,19355711475725,Base Speed
+scale_boostspeed,19355711475726,Boost Speed
 scale_carslots,19355711475742,Empty Slots
 scale_constant,19355711475724,Constant
 scale_currentfuelpercent,19355711475734,Current Fuel Percent
@@ -75,6 +75,6 @@ scale_random,19355711475735,Random
 scale_rivaldistancetraveled,19355711475732,Rival’s Distance
 scale_totalslots,19355711475743,Car Slots
 scale_totalspeed,19355711475727,Speed
-stat scale neg,37671192662016,loses %value% times %source% %scale% as 
-stat scale pos,19355707281409,gains %value% times %source% %scale% as 
+stat scale neg,37671192662016,loses %value%x %source% %scale% as 
+stat scale pos,19355707281409,gains %value%x %source% %scale% as 
 lose effect,41482728673280,loses %value% 
