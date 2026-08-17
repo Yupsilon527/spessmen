@@ -30,8 +30,8 @@ MonoBehaviour:
     IncreasePerLevel: 0
   relative: []
   baseColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-  portrait: {fileID: -83140088, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
-  blueprint: {fileID: 21300000, guid: 1d24236f4779db6419bdf057c33d4d1c, type: 3}
+  portrait: {fileID: 6943535168657398750, guid: acaefdbfcef4ed14cb4df49d3636a4d6, type: 3}
+  blueprint: {fileID: 21300000, guid: 9ab8d6daa453cb04d8ac050ffd4382d6, type: 3}
   prefab: {fileID: 6721421295461978808, guid: da13f685ca9a4cd43b8101524c2715fd, type: 3}
   startingGold: 30
   startingParts:

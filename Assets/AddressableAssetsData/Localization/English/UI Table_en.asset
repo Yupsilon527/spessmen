@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 11003535200256
-    m_Localized: Fuel
+    m_Localized: Juice
     m_Metadata:
       m_Items: []
   - m_Id: 47363813969920
@@ -119,7 +119,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1141803819372544
-    m_Localized: 'Distance To Beat: %rivalDistance%'
+    m_Localized: 'Distance To Beat: %rivalDistance%<br>Your record: %ownDistance%m
+      (%ownSpeed%km/h)'
     m_Metadata:
       m_Items: []
   - m_Id: 2213108190711808
@@ -130,8 +131,8 @@ MonoBehaviour:
     m_Localized: Start with %parts%
     m_Metadata:
       m_Items: []
-  - m_Id: 2239847977619456
-    m_Localized: 'Your record: %ownDistance%m (%ownSpeed%km/h)'
+  - m_Id: 3074324488425472
+    m_Localized: Pick A Racer!
     m_Metadata:
       m_Items: []
   references:
