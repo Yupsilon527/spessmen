@@ -47,7 +47,7 @@ public class PartTooltip : MonoBehaviour
         }
         if (toggleActive) gameObject.SetActive(true);
     }
-    public async void Clear()
+    public  void Clear()
     {
         if (title != null)
         {

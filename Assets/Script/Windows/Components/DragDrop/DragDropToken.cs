@@ -32,6 +32,11 @@ public class DragDropToken : PartButtonScaleable
         base.Initialize();
         FindComponent(ref eventTrigger);
 
+        EventTrigger.Entry x = new EventTrigger.Entry();
+        x.eventID = EventTriggerType.PointerClick;
+        x.callback.AddListener((data) => { if (!dragDropMode && slot.slot != DragDropSlot.TokenSlot.build) Rotate(true); });
+        eventTrigger.triggers.Add(x);
+
         EventTrigger.Entry OnBeginDrag = new EventTrigger.Entry();
         OnBeginDrag.eventID = EventTriggerType.BeginDrag;
         OnBeginDrag.callback.AddListener((data) => { this.OnBeginDrag((PointerEventData)data); });
@@ -107,14 +112,13 @@ public class DragDropToken : PartButtonScaleable
                         continue;
                     if (CanAttachToSlot(nslot))
                     {
+
                         AttachToSlot(nslot, false);
                         return true;
                     }
                 }
             }
         }
-        if (dragStart + .1f > Time.time)
-            Rotate(true);
         SnapBack(true);
         return false;
     }
@@ -131,7 +135,7 @@ public class DragDropToken : PartButtonScaleable
             token.mPart.Transform(token.mPart.GetMergeOutcome(mPart));
             token.mPart.purchaseCost = token.mPart.purchaseCost + token.mPart.purchaseCost;
             token.FromPart(token.mPart, true);
-            Delete();
+            Delete(true);
             return true;
         }
         return false;
@@ -179,7 +183,7 @@ public class DragDropToken : PartButtonScaleable
             if (slot.slot == DragDropSlot.TokenSlot.discard)
             {
                 DataItemPlayer.main.econ.GiveGold(mPart.purchaseCost * EconomyDefines.partResellPrice);
-                Delete();
+                Delete(true);
             }
             else if (slot.attachedToken == null)
             {
@@ -213,7 +217,7 @@ public class DragDropToken : PartButtonScaleable
                 }
               else   if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
                 {
-                    Delete();
+                    Delete(true);
                     ViewManager.Instance.shop.playership.UpdateGrid();
                 }
             }
@@ -273,10 +277,10 @@ public class DragDropToken : PartButtonScaleable
             }
         }
     }
-    public void Delete()
+    public void Delete(bool erase)
     {
+        if (erase && mPart != null) mPart.deleted = true;
         Clear(false);
-        mPart.deleted = true;
         if (slot != null && slot.slot != DragDropSlot.TokenSlot.build)
             slot.ClearToken();
         slot = null;

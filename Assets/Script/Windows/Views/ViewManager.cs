@@ -38,7 +38,7 @@ public class ViewManager : WindowManager
     {
         if (shop.gameObject.activeSelf)
         {
-            shop.InitializeShop();
+            shop.InitializeShop(true);
         }
         else { 
         ChangeView(Views.shopView);

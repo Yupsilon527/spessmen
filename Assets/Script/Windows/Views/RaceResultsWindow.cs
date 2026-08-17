@@ -15,7 +15,7 @@ public class RaceResultsWindow : MonoBehaviour
         UpdatePlayerPosition();
         raceTooltip?.ShowCurrentRace();
     }
-    public void UpdatePlayerPosition()
+    public virtual  void UpdatePlayerPosition()
     {
         if (playerPosition != null)
         {

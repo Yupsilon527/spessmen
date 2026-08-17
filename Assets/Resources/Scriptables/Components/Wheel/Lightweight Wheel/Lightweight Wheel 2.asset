@@ -41,7 +41,7 @@ MonoBehaviour:
       conditionCheck: 0
   combos: []
   icon: {fileID: 1658573858, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
-  boonRarity: 3
+  boonRarity: 1
   partType: 1
   attach: 1
   priceMultiplier: 1

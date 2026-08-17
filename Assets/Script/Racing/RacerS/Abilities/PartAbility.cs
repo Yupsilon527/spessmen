@@ -41,7 +41,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BoostSpeed,
-                value =  DifficultyDefines.enemyEngineSpeed * (level+1) *rnval
+                value =  DifficultyDefines.enemyEngineSpeed * level *rnval
             }
             }
         };

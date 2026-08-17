@@ -51,7 +51,7 @@ public class DragDropSlot : EventTrigger
     public void DeleteToken()
     {
         if (attachedToken != null)
-            attachedToken.Delete();
+            attachedToken.Delete(true);
         ClearToken();
     }
     #endregion

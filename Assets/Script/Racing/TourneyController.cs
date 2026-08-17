@@ -233,7 +233,13 @@ public class TourneyController : Initializable
     }
     public bool CanPlayerProceed()
     {
-        return !IsLastRaceInSeason() || GetLeaderboardSorted()[0].id == 0;
+        return !IsLastRaceInSeason() || GetRacerPosition(GetPlayerRacer()) == 0;
+    }
+    public int GetRacerPosition(Racer racer)
+    {
+        if (leaderboard == null || leaderboard.Count == 0|| racer==null ||!leaderboard.TryGetValue(racer, out float targetScore))
+            return 9;
+        return  leaderboard.Count(kvp => kvp.Value > targetScore);
     }
     void HandlePlayerReward()
     {
@@ -257,7 +263,7 @@ public class TourneyController : Initializable
         float distanceGold = 0;
         if (playerPos == 0)
         {
-            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.oerformanceGoldCap);
+            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.performanceGoldCap);
         }
 
         DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);

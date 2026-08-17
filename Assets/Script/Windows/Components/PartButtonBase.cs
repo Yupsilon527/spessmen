@@ -46,7 +46,6 @@ public class PartButtonBase : Initializable
     public void Rotate(bool clockwise)
     {
         Rotate(rotation + (clockwise ? 1 : -1));
-        AdjustRotation(rotation);
     }
     public void Rotate(int rot)
     {

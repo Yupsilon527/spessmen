@@ -91,7 +91,7 @@ public class AbilityDragDropInterface : ShipPreview
     public override void Clear()
     {
         foreach (var token in tokens)
-            token.Delete();
+            token.Delete(false);
         tokens.Clear();
     }
     #endregion

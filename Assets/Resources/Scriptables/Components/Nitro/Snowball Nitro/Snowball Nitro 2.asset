@@ -22,9 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Nitro 2  OnActivated
-    maxUses: 0
-    cooldown: 30
-    fuelCost: 50
+    maxUses: 2
+    cooldown: 0
+    fuelCost: 0
     classification: 5
     function: 2
     condition: 0

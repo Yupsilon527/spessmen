@@ -43,7 +43,7 @@ MonoBehaviour:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 953522b3f6e47ac41a0b91906e943d15, type: 2}
   icon: {fileID: 1658573858, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
-  boonRarity: 2
+  boonRarity: 0
   partType: 1
   attach: 1
   priceMultiplier: 1

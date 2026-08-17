@@ -22,9 +22,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Nitro 3  OnActivated
-    maxUses: 0
-    cooldown: 30
-    fuelCost: 75
+    maxUses: 3
+    cooldown: 0
+    fuelCost: 0
     classification: 5
     function: 2
     condition: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     - behavior: 0
       stat: 1
       scale: 0
-      value: 25
+      value: 18
       reverse: 0
       effectSource: 0
       effectTarget: 0

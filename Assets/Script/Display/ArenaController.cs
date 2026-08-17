@@ -74,7 +74,7 @@ public class ArenaController : MonoBehaviour
 
                 relativePosition *= multiplier;
             }
-            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition));
+            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(1 +relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition));
 
         }
 

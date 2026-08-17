@@ -18,7 +18,7 @@ public class RaceTooltip : MonoBehaviour
 
             string raceLabel =  LanguageController.main.Translate("UI Table", "Race Label");
 
-            raceNumber.text = raceLabel.Replace("%raceID%", cRace.ToString()).Replace("%raceTotal%", (Mathf.Ceil(cRace / raceTotal + 1) * raceTotal).ToString());
+            raceNumber.text = raceLabel.Replace("%raceID%", cRace.ToString()).Replace("%raceTotal%", (Mathf.Ceil((cRace-1) / raceTotal) * raceTotal).ToString());
         }
         if (rivalDist!= null)
         {

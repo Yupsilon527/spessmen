@@ -42,12 +42,19 @@ public partial class ShopView : ViewBase
             ii++;
         }
     }
-    public void ResetStore(bool hardReset)
+    public void ResetStore(bool hardReset,bool gameStart)
     {
         if (DataItemPlayer.main?.car == null) return;
         if (hardReset)
         {
             numResets = 0;
+            if (gameStart)
+            {
+                foreach (var b in itemButtonSelection)
+                {
+                    b.ToggleLocked(false);
+                }
+            }
         }
         else
         {
@@ -84,10 +91,7 @@ public partial class ShopView : ViewBase
 
             }
 
-            
-
             PurchaseData.AccountLuck(valid);
-
             for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
             {
                 var ia = new PurchaseData(valid);
@@ -120,7 +124,7 @@ public partial class ShopView : ViewBase
     {
         if (DataItemPlayer.main.econ.gold.ChargeValue(GetResetCost()))
         {
-            ResetStore(false);
+            ResetStore(false,false);
         }
     }
     float GetResetCost()
@@ -134,16 +138,16 @@ public partial class ShopView : ViewBase
         base.OnOpened();
         if (DataItemPlayer.main != null)
         {
-            InitializeShop();
+            InitializeShop(false);
         }
     }
-    public void InitializeShop()
+    public void InitializeShop(bool newGame)
     {
         if (DataItemPlayer.main == null) return;
         playership.AssignShip(DataItemPlayer.main.car);
         dragdrop.InitSlots(DataItemPlayer.main.car);
 
-        ResetStore(true);
+        ResetStore(true,newGame);
         raceTooltip?.ShowCurrentRace();
 
         DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(UpdateState);
