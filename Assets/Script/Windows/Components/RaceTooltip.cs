@@ -26,9 +26,9 @@ public class RaceTooltip : MonoBehaviour
             string recordLabel = LanguageController.main.Translate("UI Table", "Record Label");
 
             rivalDist.text = distLabel.Replace("%rivalDistance%", TourneyController.main.ongoingRace.modifier != RaceDefines.RaceModifiers.Nothing ? "???" :  TourneyController.main.ongoingRace.GetRivalDistance().ToString("F1"));
-            if (cRace>0)
-                rivalDist.text+= "<br>" + recordLabel.Replace("%ownDistance%", DataItemPlayer.main.scope.GetVariable("race_distance_" + (cRace-2 )).GetFloatValue().ToString("F1")+"m")
-                .Replace("%ownSpeed%", DataItemPlayer.main.scope.GetVariable("race_topspeed_" + (cRace -2)).GetFloatValue().ToString("F1"));
+            if (cRace > 1)
+                rivalDist.text += "<br>" + recordLabel.Replace("%ownDistance%", DataItemPlayer.main.scope.GetVariable("race_distance_" + (cRace - 2)).GetFloatValue().ToString("F1") + "m")
+                .Replace("%ownSpeed%", DataItemPlayer.main.scope.GetVariable("race_topspeed_" + (cRace - 2)).GetFloatValue().ToString("F1"));
         }
         var environment = TourneyController.main.tournamentEnvironment;
         if (environment == null) return;

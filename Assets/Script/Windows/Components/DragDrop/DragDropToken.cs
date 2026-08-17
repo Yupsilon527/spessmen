@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DragDropToken : PartButtonScaleable
 {
     public AbilityDragDropInterface parent;
+    float dragStart = 0;
     bool dragDropMode = false;
     public EventTrigger eventTrigger;
 
@@ -100,6 +101,7 @@ public class DragDropToken : PartButtonScaleable
         if (slot.Interactable)
         {
             dragDropMode = true;
+            dragStart = Time.time;
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
                 DataItemPlayer.main.car.RemovePart(mPart);
@@ -150,6 +152,8 @@ public class DragDropToken : PartButtonScaleable
                 }
             }
         }
+        if (dragStart + .1f > Time.time)
+            Rotate(true);
         SnapBack(true);
         return false;
     }

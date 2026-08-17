@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
@@ -13,22 +14,38 @@ public class LanguageLocale
     public LanguageLocale(string n)
     {
         localeCode = n;
-        LoadEntries();
     }
-     async void LoadEntries()
+    public async Task LoadEntries()
     {
+        LanguageController.main.Inspect("Init locale " + localeCode);
         tables = new();
+
         Locale locale = LocalizationSettings.AvailableLocales.Locales
             .Find(l => l.Identifier.Code == localeCode);
 
-        var tasks = LanguageController.TableNames.Select(name =>
-            LocalizationSettings.StringDatabase.GetTableAsync(name, locale).Task
-        ).ToArray();
+        foreach (var name in LanguageController.TableNames)
+        {
+            try
+            {
+                var handle = LocalizationSettings.StringDatabase.GetTableAsync(name, locale);
+                var table = await handle.Task;
 
-        var output = await Task.WhenAll(tasks);
+                if (handle.Status != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                {
+                    LanguageController.main.Inspect($"FAILED table '{name}': {handle.OperationException}");
+                    continue;
+                }
 
-        for (int i = 0; i < LanguageController.TableNames.Length; i++)
-            tables[LanguageController.TableNames[i]] = output[i];
+                tables[name] = table;
+                LanguageController.main.Inspect($"loaded table '{name}' ok");
+            }
+            catch (System.Exception e)
+            {
+                LanguageController.main.Inspect($"EXCEPTION loading table '{name}': {e}");
+            }
+        }
+
+        LanguageController.main.Inspect("done loading tables for " + localeCode);
     }
     public bool HasTranslation(string table, string name)
     {
@@ -42,7 +59,7 @@ public class LanguageLocale
         {
             return true;
         }
-        LanguageController.main.Inspect($"{name} key does not exist in language {name}");
+        LanguageController.main.Inspect($"{name} key does not exist in language {localeCode}");
         return false;
     }
     public string Translate(string table, string name)
@@ -57,7 +74,7 @@ public class LanguageLocale
         {
         return entry?.GetEntry(name)?.GetLocalizedString() ?? name;
         }
-        LanguageController.main.Inspect($"(LOCALE MISSING ERROR) {name} key does not exist in language {name}");
+        LanguageController.main.Inspect($"(LOCALE MISSING ERROR) {name} key does not exist in language {localeCode}");
 #if UNITY_EDITOR
         return "�" + name + "?";
 #else

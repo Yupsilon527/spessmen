@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class LanguageController : Initializable
 {
@@ -29,13 +30,14 @@ public class LanguageController : Initializable
 
     LanguageLocale active;
     HashSet< LanguageLocale> languageData;
-    public void RebuildLocales()
+    public async void RebuildLocales()
     {
         languageData = new();
         foreach (var loc in LocalizationSettings.AvailableLocales.Locales)
         {
             languageData.Add(new(loc.Identifier.Code));
         }
+        await Task.WhenAll(languageData.Select(l => l.LoadEntries()));
         OnChangeLanguage(LocalizationSettings.Instance.GetSelectedLocale());
     }
 

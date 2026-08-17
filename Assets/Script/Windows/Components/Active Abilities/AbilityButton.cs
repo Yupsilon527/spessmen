@@ -70,6 +70,8 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
             button.interactable = corresponding.Any(a=>a.CanBeActivated());
         if (longestCD>0)
             ShowCooldown(longestCD, longestExhaust);
+        else if (!button.interactable)
+            cooldownFill.fillAmount = 1;
     }
     void ShowCooldown(float cd, float total)
     {

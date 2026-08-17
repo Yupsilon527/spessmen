@@ -79,6 +79,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st: scale "
+	"st: scale"
+	"st: boost"
 	"st: lab h"
 	"st:"
 	"st: tr(en):\"some value\""
