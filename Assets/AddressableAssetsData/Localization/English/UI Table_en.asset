@@ -142,6 +142,18 @@ MonoBehaviour:
     m_Localized: 'Your record: %ownDistance%m (%ownSpeed%km/h)'
     m_Metadata:
       m_Items: []
+  - m_Id: 5072056056975360
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5076274511777792
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5079221274578944
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

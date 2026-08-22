@@ -33,7 +33,16 @@ MonoBehaviour:
     - behavior: 0
       stat: 0
       scale: 18
-      value: 1
+      value: 0.2
+      reverse: 0
+      effectSource: 0
+      effectTarget: 0
+      condition: 0
+      conditionCheck: 0
+    - behavior: 0
+      stat: 0
+      scale: 0
+      value: 4
       reverse: 0
       effectSource: 0
       effectTarget: 0

@@ -13,6 +13,8 @@ FIX
 	leaderboard doesn't show player position end of tourney
 
 QoL
+	char loadout already set up
+
 	part highlight position
 	parts cant rotate (decals, square)
 

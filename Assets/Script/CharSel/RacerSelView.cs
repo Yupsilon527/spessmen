@@ -1,6 +1,4 @@
 
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class RacerSelView : RacerSelComponent
 {
@@ -26,12 +24,6 @@ public class RacerSelView : RacerSelComponent
 
     public  void StartTheGame()
     {
-        PlayerConfig.main.StartCoroutine(NewGameCoroutine());
-    }
-    IEnumerator NewGameCoroutine()
-    {
-        yield return SceneManager.LoadSceneAsync("Race Scene", LoadSceneMode.Single);
-        yield return null;
-        PlayerConfig.main.StartNewGame();
+        SceneTransitionManager.main.TransitionGameScene("Race Scene", () => PlayerConfig.main.StartNewGame());
     }
 }

@@ -139,6 +139,18 @@ MonoBehaviour:
     m_Key: record label
     m_Metadata:
       m_Items: []
+  - m_Id: 5072056056975360
+    m_Key: settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5076274511777792
+    m_Key: resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5079221274578944
+    m_Key: quit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

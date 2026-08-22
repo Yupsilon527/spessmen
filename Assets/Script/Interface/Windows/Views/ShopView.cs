@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine;
 
 public partial class ShopView : ViewBase
 {
@@ -50,6 +51,7 @@ public partial class ShopView : ViewBase
             numResets = 0;
             if (gameStart)
             {
+                dragdrop.Clear();
                 foreach (var b in itemButtonSelection)
                 {
                     b.ToggleLocked(false);
@@ -144,10 +146,10 @@ public partial class ShopView : ViewBase
     public void InitializeShop(bool newGame)
     {
         if (DataItemPlayer.main == null) return;
-        playership.AssignShip(DataItemPlayer.main.car);
-        dragdrop.InitSlots(DataItemPlayer.main.car);
 
+        playership.AssignShip(DataItemPlayer.main.car);
         ResetStore(true,newGame);
+        dragdrop.InitSlots(DataItemPlayer.main.car);
         raceTooltip?.ShowCurrentRace();
 
         DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(UpdateState);

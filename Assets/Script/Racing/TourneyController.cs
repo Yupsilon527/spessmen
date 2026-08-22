@@ -50,11 +50,14 @@ public class TourneyController : Initializable
                 }
                 ArenaController.main.parallax.SetWorldDelta(0);
                 ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
-                if (ongoingRace.raceID % (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons) == RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons - 1)
+
+                int rTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+
+                if (ongoingRace.raceID % rTotal == rTotal - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
                 }
-                else if (ongoingRace.raceID % (RaceDefines.SeasonRaces) == RaceDefines.SeasonRaces - 1)
+                else if (ongoingRace.raceID % RaceDefines.SeasonRaces == RaceDefines.SeasonRaces - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
                 }

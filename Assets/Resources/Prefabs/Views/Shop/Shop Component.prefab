@@ -37,10 +37,10 @@ RectTransform:
   - {fileID: 8458382138613547893}
   m_Father: {fileID: 4077153555819822720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 127, y: 60}
+  m_SizeDelta: {x: 220, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &493412244063994268
 CanvasRenderer:
@@ -301,8 +301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0.4245987, y: -17.840302}
+  m_SizeDelta: {x: 0, y: -42.4084}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4217264538404567373
 CanvasRenderer:
@@ -902,8 +902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -499.99997, y: -14}
+  m_AnchoredPosition: {x: 119.00003, y: 0}
+  m_SizeDelta: {x: -262.00006, y: -24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3290314819956152717
 CanvasRenderer:
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 2831778795654095794}
   - component: {fileID: 1935752090584980830}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Gold Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1225,7 +1225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.2}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 8, y: 11}
+  m_AnchoredPosition: {x: 8, y: 137.56454}
   m_SizeDelta: {x: 240, y: 48}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &7046684655012972680
