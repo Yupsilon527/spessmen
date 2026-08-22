@@ -151,6 +151,16 @@ MonoBehaviour:
     m_Key: quit
     m_Metadata:
       m_Items: []
+  - m_Id: 5098900282052608
+    m_Key: 'loading
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5100613504241664
+    m_Key: stash
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -101,7 +101,7 @@ public class DragDropToken : PartButtonScaleable
         {
             if (ob.isValid)
             {
-                if (ob.gameObject.TryGetComponent(out DragDropToken ntoken))
+                if (ob.gameObject.GetComponentInParent< DragDropToken>() is  DragDropToken ntoken)
                 {
                     if (TryMergeAnother(ntoken))
                         return true;

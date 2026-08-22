@@ -79,6 +79,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st: stash"
 	"st: scale "
 	"st: scale"
 	"st: boost"

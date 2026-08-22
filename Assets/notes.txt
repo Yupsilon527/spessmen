@@ -1,16 +1,6 @@
 TODO
-
-	characters
-		portraits
-		car displays
-
-	character selection
-	font
+	starting cooldown props
 FIX
-	merge part -> token doesnt get discarded
-
-	end game shop doesn't unlock/reset
-	leaderboard doesn't show player position end of tourney
 
 QoL
 	char loadout already set up
