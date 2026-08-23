@@ -10,6 +10,7 @@ public class PlayerConfig : Initializable
     public ShipScriptable playerCharacter;
     public VariableScope globalScope;
     public static PlayerConfig main;
+    SerialziedTourney ser;
 
     protected override void Initialize()
     {
@@ -37,11 +38,31 @@ public class PlayerConfig : Initializable
         if (!initialized) return;
         Inspect("Saving " + name);
 
-        string heroSerialized = JsonUtility.ToJson(new VariableScopeSerializable(globalScope));
-        Inspect($"Serialized heroes {heroSerialized}");
-        Inspect(heroSerialized);
-        PlayerPrefs.SetString(saveKey, heroSerialized);
+        SaveScope();
+        SaveRun();
+        PlayerPrefs.SetInt(saveKey, 1);
+
         PlayerPrefs.Save();
+    }
+    void SaveScope()
+    {
+        string globalScope = JsonUtility.ToJson(new VariableScopeSerializable(this.globalScope));
+        Inspect($"Serialized playerScope {globalScope}");
+        Inspect(globalScope);
+        PlayerPrefs.SetString(saveKey + "-vars", globalScope);
+    }
+    void SaveRun()
+    {
+        if (TourneyController.main != null)
+        {  
+        ser = new SerialziedTourney(TourneyController.main);
+            string tourneyString = JsonUtility.ToJson(ser);
+
+            Inspect($"Serialized run {tourneyString}");
+            Inspect(tourneyString);
+
+            PlayerPrefs.SetString(saveKey+"-run", tourneyString);
+        }
     }
 
     public bool LoadData()
@@ -51,7 +72,7 @@ public class PlayerConfig : Initializable
         Inspect($"Deserialzie {saveKey}");
         if (PlayerPrefs.HasKey(saveKey))
         {
-            string serialized = PlayerPrefs.GetString(saveKey);
+            string serialized = PlayerPrefs.GetString(saveKey + "-vars");
             Inspect("Deserialize data " + serialized);
 
             VariableScopeSerializable heroData = JsonUtility.FromJson<VariableScopeSerializable>(serialized);

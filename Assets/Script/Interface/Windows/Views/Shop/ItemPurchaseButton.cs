@@ -69,8 +69,8 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     {
         if (purchaseData != null)
         {
-            string goldCost = purchaseData.itemCost == 0 ? LanguageController.main.Translate("UI Table", "Cost Free") : LanguageController.main.Translate("UI Table", "Cost Label");
-            if (priceLabel != null) priceLabel.text = goldCost.Replace("%cost%",Mathf.Ceil( purchaseData.itemCost).ToString("F0")); ;
+            string goldCost = purchaseData.purchaseCost == 0 ? LanguageController.main.Translate("UI Table", "Cost Free") : LanguageController.main.Translate("UI Table", "Cost Label");
+            if (priceLabel != null) priceLabel.text = goldCost.Replace("%cost%",Mathf.Ceil( purchaseData.purchaseCost).ToString("F0")); ;
         }
         else
         {

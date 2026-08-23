@@ -6,7 +6,7 @@ using UnityEngine;
 public class TourneyController : Initializable
 {
     public static TourneyController main;
-    Dictionary<Racer, float> leaderboard = new();
+    public Dictionary<Racer, float> leaderboard = new();
     public EnvironmentScriptable tournamentEnvironment;
     public Countdown raceCountdown = new();
 
@@ -61,10 +61,12 @@ public class TourneyController : Initializable
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
                 }
+                PlayerConfig.main.SaveData();
                 break;
             case TourneyPhase.setup:
                 if (currentPhase == TourneyPhase.beforeRace || !ongoingRace.IsRunning())
                 {
+                    PlayerConfig.main.SaveData();
                     raceCountdown.Set(3);
                     foreach (var racer in ongoingRace.racers)
                     {

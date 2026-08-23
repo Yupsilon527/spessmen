@@ -1,13 +1,8 @@
-
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEngine;
 
 public partial class ShopView : ViewBase
 {
-    int numResets = 0;
-
     public TextMeshProUGUI playerGold;
     public TextMeshProUGUI resetCost;
 
@@ -30,17 +25,14 @@ public partial class ShopView : ViewBase
             var button = itemButtonSelection[iB];
             button?.dropSlot?.attachedToken?.DiscardToken();
 
-            if (button.IsLocked())
+            if (!button.IsLocked())
             {
-                iB++;
-                continue;
+                button.gameObject.SetActive(ii < items.Length && items[ii] != null);
+                button.AssignItem(DataItemPlayer.main, items[ii]);
+                ii++;
             }
 
-            button.gameObject.SetActive(ii<items.Length && items[ii] != null);
-            button.AssignItem(DataItemPlayer.main, items[ii]);
-
             iB++;
-            ii++;
         }
     }
     public void ResetStore(bool hardReset,bool gameStart)
@@ -48,7 +40,7 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main?.car == null) return;
         if (hardReset)
         {
-            numResets = 0;
+            DataItemPlayer.main.shop.numRerolls = 0;
             if (gameStart)
             {
                 dragdrop.Clear();
@@ -60,46 +52,13 @@ public partial class ShopView : ViewBase
         }
         else
         {
-            numResets++;
+            DataItemPlayer.main.shop.numRerolls++;
             DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerShopReset);
         }
-        List<PurchaseData> itemActions = new();
         if (ResourceCache.main != null)
         {
-            List<PartScriptable> playerparts = new();
-            playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
-            var playerPartsArray = playerparts.ToArray();
-            playerparts.Clear();
-            foreach (var part in playerPartsArray)
-            {
-                foreach (var c in part.combos)
-                {
-                    playerparts.Add(c.other);
-                }
-            }
-
-            List<WeightPart> valid = new();
-            foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
-            {
-                if (item.boonRarity >= ItemDefines.BoonRarity.rare && TourneyController.main.GetCurrentRaceIndex() == 0)
-                {
-                    continue;
-                } 
-                else if (item.boonRarity >= ItemDefines.BoonRarity.epic && TourneyController.main.GetCurrentRaceIndex() < RaceDefines.SeasonRaces)
-                {
-                    continue;
-                }
-                valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (15 - (int)item.boonRarity) : 10)));
-
-            }
-
-            PurchaseData.AccountLuck(valid);
-            for (int i = 0; i < itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1); i++)
-            {
-                var ia = new PurchaseData(valid);
-                itemActions.Add(ia);
-            }
-            PresentMultipleItems(itemActions.ToArray());
+            DataItemPlayer.main.shop.RegenerateShop(itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1));
+            PresentMultipleItems(DataItemPlayer.main.shop.itemActions.ToArray());
             UpdateState();
         }
     }
@@ -131,9 +90,9 @@ public partial class ShopView : ViewBase
     }
     float GetResetCost()
     {
-        if (numResets < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
+        if (DataItemPlayer.main.shop.numRerolls < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (numResets + 1) * .6f;
+        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (DataItemPlayer.main.shop.numRerolls + 1) * .6f;
     }
     public override void OnOpened()
     {

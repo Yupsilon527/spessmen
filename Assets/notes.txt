@@ -1,5 +1,7 @@
 TODO
 	starting cooldown props
+
+	load/save
 FIX
 
 QoL

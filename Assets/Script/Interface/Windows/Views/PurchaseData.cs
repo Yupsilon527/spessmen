@@ -5,9 +5,9 @@ using UnityEngine;
 public class PurchaseData
 {
     public PartScriptable part;
-    public float itemCost;
+    public float purchaseCost;
     public float discount;
-    bool wasPurchased = false;
+    public bool wasPurchased = false;
 
     public PurchaseData(List<WeightPart> valid)
     {
@@ -98,7 +98,7 @@ public class PurchaseData
     public void SetDiscount(float price)
     {
         discount = price;
-        itemCost = part.GetBasePrice() * discount;
+        purchaseCost = part.GetBasePrice() * discount;
     }
     public bool CanBePurchased(DataItemPlayer purchasingPlayer)
     {
@@ -106,9 +106,9 @@ public class PurchaseData
     }
     public bool MakePurchase(DataItemPlayer purchasingPlayaer)
     {
-        if (CanBePurchased(purchasingPlayaer) && purchasingPlayaer.econ.gold.GetValue() >= itemCost)
+        if (CanBePurchased(purchasingPlayaer) && purchasingPlayaer.econ.gold.GetValue() >= purchaseCost)
         {
-            purchasingPlayaer.econ.gold.SubstractedValue(itemCost);
+            purchasingPlayaer.econ.gold.SubstractedValue(purchaseCost);
             wasPurchased = true;
             return true;
         }

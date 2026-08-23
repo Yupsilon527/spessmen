@@ -8,6 +8,7 @@ public class DataItemPlayer : Initializable
     public DataItemShip car;
 
     public PlayerEconomyController econ;
+    public PlayerShopController shop;
     public PlayerChaosController score;
     public VariableScope scope;
     protected override void Initialize()
@@ -15,6 +16,7 @@ public class DataItemPlayer : Initializable
             main = this;
         econ=GetComponent<PlayerEconomyController>();
         score = GetComponent<PlayerChaosController>();
+        shop = GetComponent<PlayerShopController>();
         scope = new VariableScope();
 
         base.Initialize();
