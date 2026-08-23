@@ -44,6 +44,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
                     PurchaseItem(customer);
                 });
             }
+            SetLocked(purchase.playerLocked);
         }
         UpdateEnableState(purchasingPlayaer, false);
     }

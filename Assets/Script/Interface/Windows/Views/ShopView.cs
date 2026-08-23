@@ -14,32 +14,13 @@ public partial class ShopView : ViewBase
 
     public void PresentMultipleItems(PurchaseData[] items)
     {
-        int iB = 0;
-        int ii = 0;
-
-        while (ii < items.Length)
+        for (int i =0; i<items.Length; i++)
         {
-            if (iB >= itemButtonSelection.Length)
-                return;
-
-            if ((items[ii]?.playerLocked ) ?? true)
-            {
-                ii++;
-                continue;
-            }
-
-            var button = itemButtonSelection[iB];
+            var button = itemButtonSelection[i];
             button?.dropSlot?.attachedToken?.DiscardToken();
 
-
-            if (  !button.IsLocked())
-            {
-                button.gameObject.SetActive(ii < items.Length && items[ii] != null);
-                button.AssignItem(DataItemPlayer.main, items[ii]);
-                ii++;
-            }
-
-            iB++;
+            button.gameObject.SetActive(i < items.Length && items[i] != null);
+            button.AssignItem(DataItemPlayer.main, items[i]);
         }
     }
     public void ResetStore(bool hardReset, bool gameStart)

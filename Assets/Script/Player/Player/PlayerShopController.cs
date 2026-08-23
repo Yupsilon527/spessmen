@@ -28,43 +28,52 @@ public class PlayerShopController : PlayerComponent
     }
     public void RegenerateShopItems(int total)
     {
-        int amt = total - itemActions.Sum(b => (b.playerLocked && !b.wasPurchased) ? 1 : 0);
-        itemActions = itemActions.Where(i => i.playerLocked).ToList() ;
 
-        if (ResourceCache.main != null)
+        if (ResourceCache.main == null) return;
+
+      //  int amt = total - itemActions.Sum(b => (b.playerLocked && !b.wasPurchased) ? 1 : 0);
+       // itemActions = itemActions.Where(i => i.playerLocked && !i.wasPurchased).ToList();
+
+        List<PartScriptable> playerparts = new();
+        playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
+        var playerPartsArray = playerparts.ToArray();
+        playerparts.Clear();
+        foreach (var part in playerPartsArray)
         {
-            List<PartScriptable> playerparts = new();
-            playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
-            var playerPartsArray = playerparts.ToArray();
-            playerparts.Clear();
-            foreach (var part in playerPartsArray)
+            foreach (var c in part.combos)
             {
-                foreach (var c in part.combos)
-                {
-                    playerparts.Add(c.other);
-                }
+                playerparts.Add(c.other);
             }
+        }
 
-            List<WeightPart> valid = new();
-            foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
+        List<WeightPart> valid = new();
+        foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
+        {
+            if (item.boonRarity >= ItemDefines.BoonRarity.rare && TourneyController.main.GetCurrentRaceIndex() == 0)
             {
-                if (item.boonRarity >= ItemDefines.BoonRarity.rare && TourneyController.main.GetCurrentRaceIndex() == 0)
-                {
-                    continue;
-                }
-                else if (item.boonRarity >= ItemDefines.BoonRarity.epic && TourneyController.main.GetCurrentRaceIndex() < RaceDefines.SeasonRaces)
-                {
-                    continue;
-                }
-                valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (15 - (int)item.boonRarity) : 10)));
-
+                continue;
             }
-
-            PurchaseData.AccountLuck(valid);
-            for (int i = 0; i < amt; i++)
+            else if (item.boonRarity >= ItemDefines.BoonRarity.epic && TourneyController.main.GetCurrentRaceIndex() < RaceDefines.SeasonRaces)
             {
-                var ia = new PurchaseData(valid);
-                itemActions.Add(ia);
+                continue;
+            }
+            valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (15 - (int)item.boonRarity) : 10)));
+
+        }
+
+        PurchaseData.AccountLuck(valid);
+
+
+        for (int i = 0; i < total; i++)
+        {
+            if (i < itemActions.Count)
+            {
+                if ((!itemActions[i].playerLocked || itemActions[i].wasPurchased))
+                    itemActions[i] = new PurchaseData(valid);
+            }
+            else
+            {
+                itemActions.Add(new PurchaseData(valid));
             }
         }
     }
