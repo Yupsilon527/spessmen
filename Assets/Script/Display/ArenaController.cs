@@ -57,7 +57,7 @@ public class ArenaController : MonoBehaviour
     public void UpdateRacerPositions()
     {
         var playerRacer = GetPlayerRacer();
-        float posDelta = distanceFarAway * Mathf.Min(1 + playerRacer.racer.position.distanceTraveled * 2, TourneyController.main?.ongoingRace?.lapDistance ?? 200);
+        float posDelta = distanceFarAway * Mathf.Max(1 + playerRacer.racer.position.distanceTraveled * 2, TourneyController.main?.ongoingRace?.lapDistance ?? 200);
         foreach (var racer in racers)
         {
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);

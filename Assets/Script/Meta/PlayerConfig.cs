@@ -40,7 +40,6 @@ public class PlayerConfig : Initializable
 
         SaveScope();
         SaveRun();
-        PlayerPrefs.SetInt(saveKey, 1);
 
         PlayerPrefs.Save();
     }
@@ -62,7 +61,20 @@ public class PlayerConfig : Initializable
             Inspect(tourneyString);
 
             PlayerPrefs.SetString(saveKey+"-run", tourneyString);
+            PlayerPrefs.SetInt(saveKey, 1);
         }
+        else { 
+        PlayerPrefs.SetInt(saveKey, 0);
+    }
+    }
+    public bool HasRun()
+    {
+        return PlayerPrefs.GetString(saveKey + "-run").Length > 0;
+    }
+    public void ClearRun()
+    {
+        PlayerPrefs.SetString(saveKey + "-run", "");
+        PlayerPrefs.SetInt(saveKey, 0);
     }
 
     public bool LoadData()
@@ -72,18 +84,35 @@ public class PlayerConfig : Initializable
         Inspect($"Deserialzie {saveKey}");
         if (PlayerPrefs.HasKey(saveKey))
         {
-            string serialized = PlayerPrefs.GetString(saveKey + "-vars");
-            Inspect("Deserialize data " + serialized);
-
-            VariableScopeSerializable heroData = JsonUtility.FromJson<VariableScopeSerializable>(serialized);
-            if (heroData != null)
-            {
-                heroData.Deserialize(globalScope);
-                return true;
-            }
+            LoadVars();
+            return true;
         }
 
         return false;
+    }
+    SerialziedTourney LoadRun()
+    {
+        string serialized = PlayerPrefs.GetString(saveKey + "-run");
+        Inspect("Deserialize data " + serialized);
+
+        SerialziedTourney varData = JsonUtility.FromJson<SerialziedTourney>(serialized);
+        if (varData != null)
+        {
+            return varData;
+        }
+        return null;
+    }
+    void LoadVars()
+    {
+
+        string serialized = PlayerPrefs.GetString(saveKey + "-vars");
+        Inspect("Load run from data " + serialized);
+
+        VariableScopeSerializable varData = JsonUtility.FromJson<VariableScopeSerializable>(serialized);
+        if (varData != null)
+        {
+            varData.Deserialize(globalScope);
+        }
     }
     public void EraseData()
     {
@@ -95,5 +124,12 @@ public class PlayerConfig : Initializable
         DataItemPlayer.main.FromData(playerCharacter);
         TourneyController.main.FreshStart();
         ViewManager.Instance.OnNewGameBegin();
+    }
+    public void StartNewGameFromSaveData()
+    {
+        var run = LoadRun();
+        run.player.Deserialize(DataItemPlayer.main);
+        run.Deserialize(TourneyController.main);
+        ViewManager.Instance.ChangeView(ViewManager.Views.shopView);
     }
 }

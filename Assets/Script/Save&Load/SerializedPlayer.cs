@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +16,25 @@ public class SerializedPlayer : SerializableData<DataItemPlayer>
     {
         gold = data.econ.gold.GetValue();
         bank = data.econ.bank.GetValue();
-        chaos = data.score.playerChaos ;
+        chaos = data.score.playerChaos;
         scope = new (data.scope);
         car = new (data.car);
 
         numRerolls = data.shop.numRerolls;
         shop= data.shop.itemActions.Select(p =>  new SerializedPurchaseData(p)).ToList();
+    }
+    public override void Deserialize(DataItemPlayer output)
+    {
+        output.econ.Setup();
+        output.econ.gold.SetValue(gold);
+        output.econ.bank.SetValue(bank);
+        output.score.playerChaos = chaos;
+        scope.Deserialize(output.scope);
+
+        output.car = car.Deserialize();
+
+        output.shop.numRerolls = numRerolls;
+        output.shop.itemActions = shop.Select(p => p.Deserialize()).ToList();
     }
 }
 
@@ -40,4 +52,8 @@ public class SerializedPurchaseData : SerializableData<PurchaseData>
         discount = data.discount;
         purchased = data.wasPurchased;
 }
+    public override PurchaseData Deserialize()
+    {
+        throw new NotImplementedException();
+    }
 }

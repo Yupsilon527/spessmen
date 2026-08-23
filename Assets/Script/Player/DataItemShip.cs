@@ -7,17 +7,19 @@ public class DataItemShip : DataItemGrid
     public HashSet<DataItemPart> parts = new();
     public DataItemPart[,] occupied;
 
-    public DataItemShip(ShipScriptable so)
+    public DataItemShip(ShipScriptable so, bool giveStart)
     {
         scriptable = so;
         width = so.grid.width;
         height = so.grid.height;
         Encode(so.grid.ToOutputGrid());
         ResetOccupancy();
-
-        foreach (var stashed in so.startingParts)
+        if (giveStart)
         {
-            stash.Add(new DataItemPart(stashed, stashed.GetBasePrice()));
+            foreach (var stashed in so.startingParts)
+            {
+                stash.Add(new DataItemPart(stashed, stashed.GetBasePrice()));
+            }
         }
     }
 
@@ -30,7 +32,7 @@ public class DataItemShip : DataItemGrid
     public bool IsOccupied(int x, int y)
     {
         if (IsInsideBounds(x, y))
-            return occupied[x, y]!=null;
+            return occupied[x, y] != null;
         return false;
     }
 
@@ -57,7 +59,7 @@ public class DataItemShip : DataItemGrid
     {
         bool[,] shape = placement.RetrieveRotated(rotation);
         int shapeWidth = shape.GetLength(0);
-        int shapeHeight = shape.GetLength(1);   
+        int shapeHeight = shape.GetLength(1);
 
         if (placement.scriptable.partType == ItemDefines.PartType.expansion)
         {
@@ -115,9 +117,9 @@ public class DataItemShip : DataItemGrid
         switch (condition)
         {
             case ItemDefines.PartCondition.Top:
-                return IsTopmost( py);
+                return IsTopmost(py);
             case ItemDefines.PartCondition.Bottom:
-                return IsBottommost( py);
+                return IsBottommost(py);
             case ItemDefines.PartCondition.Back:
                 return IsLeftmost(px);
             case ItemDefines.PartCondition.Front:
@@ -193,7 +195,7 @@ public class DataItemShip : DataItemGrid
 
         foreach (var placement in parts)
         {
-            if (!TryPlace(placement, placement.originX, placement.originY,placement.rotation))
+            if (!TryPlace(placement, placement.originX, placement.originY, placement.rotation))
             {
                 return false;
             }

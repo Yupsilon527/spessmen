@@ -23,7 +23,7 @@ public class DataItemPlayer : Initializable
     }
     public void FromData(ShipScriptable s)
     {
-        car = new(s);
+        car = new(s,true);
         econ.Setup();
         score.Setup();
 

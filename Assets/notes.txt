@@ -38,6 +38,8 @@ FEA
 				inc during races
 			engine increase basespeed, boostspeed
 			wheel increase topspeed
+
+			nitros move basespeed to topspeed?
 		teleport
 			good teleport - affected by teleport distance (raw, %)
 			bad teleport (affected by resistance, weight)

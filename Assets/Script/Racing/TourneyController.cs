@@ -158,6 +158,8 @@ public class TourneyController : Initializable
                     }
                     HandlePlayerReward();
                     UpdateVariables();
+                    if (!CanPlayerProceed())
+                        PlayerConfig.main.ClearRun();
                 }
                 break;
         }

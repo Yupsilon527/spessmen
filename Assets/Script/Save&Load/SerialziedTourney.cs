@@ -18,4 +18,9 @@ public class SerialziedTourney : SerializableData<TourneyController>
         raceId = data.GetCurrentRaceIndex();
         raceModifier = (int)(data.ongoingRace?.modifier ?? 0);
     }
+    public override void Deserialize(TourneyController output)
+    {
+        base.Deserialize(output);
+        output. ChangePhase(TourneyController.TourneyPhase.beforeRace);
+    }
 }
