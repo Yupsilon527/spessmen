@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 5396
+  controlID: 23745
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 5397
+  controlID: 23746
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 5398
+  controlID: 23747
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -246,7 +246,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 76ebfeffe4fdfeff0eddffff20ddffffd8deffff56f4ffff60f5ffffa0f6ffff20c2000068c20000c2c20000
+      m_ExpandedIDs: ac2af8ff3c50f8ff44b9f9ff40c8f9ff9a0efafffeb4faffba43fbffce69fbffd869fbffc694fbff2e66fcfff4ddfcfffeddfcff14defcffa6f8fcff3e05fdffc006fdffea0cfdff7aacfdff8eacfdff90acfdffacb2fdffbeb9fdff76ebfeffe4fdfeff0eddffff20ddffffd8deffff56f4ffff60f5ffff9ef6ffffa0f6ffff20c2000068c20000c2c2000098f10000c0f10000d0f100003afc000072fc00008aff0000b2ff0000c2ff00004800010080000100a81b01000a1e0100121f0100221f01006a260100f0260100e0460100664701004079010078790100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -877,9 +877,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 498.78415, y: 129.8699, z: 1.2770705}
+    m_Target: {x: 553.9312, y: 145.99564, z: -0.39062756}
     speed: 2
-    m_Value: {x: 498.78415, y: 129.8699, z: 1.2770705}
+    m_Value: {x: 553.9312, y: 145.99564, z: -0.39062756}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -929,9 +929,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 407.78625
+    m_Target: 574.55725
     speed: 2
-    m_Value: 407.78625
+    m_Value: 574.55725
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -984,8 +984,8 @@ MonoBehaviour:
     y: 482
     width: 1303.3334
     height: 331.3333
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 10}
@@ -1039,7 +1039,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script/Save&Load
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1049,16 +1049,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Script/Save&Load
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Ypsilon\unity\miner
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 1554.6667}
-    m_SelectedIDs: 1cc30000
-    m_LastClickedID: 49948
-    m_ExpandedIDs: 000000004e8a0000508a0000528a0000548a0000568a0000588a00005a8a00005c8a00005e8a0000608a0000628a0000648a0000668a0000688a00006a8a00006c8a00006e8a0000708a0000728a0000748a0000768a0000788a00007a8a00007c8a00007e8a0000808a0000828a0000848a0000868a0000888a00008a8a00008c8a00008e8a0000908a00007a8b00007e8b000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 608a0000
+    m_LastClickedID: 35424
+    m_ExpandedIDs: 000000004e8a0000508a0000528a0000548a0000568a0000588a00005a8a00005c8a00005e8a0000608a0000628a0000648a0000668a0000688a00006a8a00006c8a00006e8a0000708a0000728a0000748a0000768a0000788a00007a8a00007c8a00007e8a0000808a0000828a0000848a0000868a0000888a00008a8a00008c8a00008e8a0000908a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1113,8 +1113,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 76ebfeff
-    m_LastClickedInstanceID: -70794
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:

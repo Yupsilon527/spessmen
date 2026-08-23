@@ -254,7 +254,10 @@ namespace Variables
         {
             foreach (var v in scope)
             {
-                data.scope.Add(v.name, new Variable(v));
+                if (!data.scope.ContainsKey(v.name))
+                    data.scope.Add(v.name, new Variable(v));
+                else
+                    data.scope[v.name] = new Variable(v);
             }
         }
     }

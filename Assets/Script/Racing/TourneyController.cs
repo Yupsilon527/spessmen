@@ -38,11 +38,9 @@ public class TourneyController : Initializable
                     foreach (var racer in leaderboard.Keys.ToArray())
                         leaderboard[racer] = 0;
                 }
-                ongoingRace = new Race()
+                ongoingRace = new Race(ongoingRace == null ? 0 : ongoingRace.raceID + 1)
                 {
-                    raceID = ongoingRace == null ? 0 : ongoingRace.raceID + 1,
-                    racers = leaderboard.Keys.Select(k => k).ToList(),
-                    lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * GetCurrentRaceIndex() 
+                    racers = leaderboard.Keys.Select(k => k).ToList(), 
                 };
                 if (GetCurrentRaceIndex() % RaceDefines.SeasonRaces == 0)
                 {
@@ -156,10 +154,12 @@ public class TourneyController : Initializable
                     {
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
-                    HandlePlayerReward();
                     UpdateVariables();
                     if (!CanPlayerProceed())
                         PlayerConfig.main.ClearRun();
+                    else
+                        HandlePlayerReward();
+
                 }
                 break;
         }
@@ -201,6 +201,19 @@ public class TourneyController : Initializable
         for (int i = 0; i < opponents; i++)
         {
             leaderboard.Add(new AiRacer(i + 1), 0);
+        }
+        ArenaController.main?.Clear();
+        ArenaController.main?.LoadRacers(leaderboard.Keys.ToArray());
+    }
+    public void LoadRacers(List<string> names, List<float> scores)
+    {
+        leaderboard.Clear();
+        leaderboard.Add(new PlayerRacer(DataItemPlayer.main.car), scores[0]);
+        for (int i = 1; i < names.Count; i++)
+        {
+            var racer = new AiRacer(i + 1);
+            leaderboard.Add(racer, scores[i]);
+            racer.playerShip = ResourceCache.main.LoadShip(names[i]);
         }
         ArenaController.main?.Clear();
         ArenaController.main?.LoadRacers(leaderboard.Keys.ToArray());
@@ -284,6 +297,8 @@ public class TourneyController : Initializable
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
 
         DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
+
+        ViewManager.Instance.shop.ResetStore(true, false);
     }
 
     void UpdateVariables()
@@ -338,6 +353,11 @@ public class Race : Countdown
     public float lapDistance = 210;
     public List<Racer> racers;
     public RaceDefines.RaceModifiers modifier = RaceDefines.RaceModifiers.Nothing;
+    public Race(int id)
+    {
+        raceID = id;
+        lapDistance = DifficultyDefines.lapDistanceBase + DifficultyDefines.lapDistanceAdd * raceID;
+    }
     public int GetPositionForRacer(Racer racer)
     {
         return racers.IndexOf(racer);
@@ -353,13 +373,14 @@ public class Race : Countdown
     public static  float GetRivalDistance(int raceID, float raceDuration = RaceDefines.raceLength)
     {
         var baseSpeed = DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID ;
-        var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed*raceID-2) : 0;
+        var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed * raceID - 2) : 0;
+        int numEngines = Mathf.FloorToInt(raceID / RaceDefines.SeasonRaces) - 1;
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
-        return GetRivalDistance(baseSpeed, engineSpeed, engineCooldown, raceDuration );
+        return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration );
     }
-    public static float GetRivalDistance(float bspd, float espd, float encd, float rt)
+    public static float GetRivalDistance(float bspd, float enbr, float espd, float encd, float rt)
     {
-        float euse = Mathf.Floor(rt / encd);
+        float euse = Mathf.Floor(rt / encd)* enbr;
         float eint = rt - euse * encd;
         return bspd * rt
                     + espd * encd * (euse * (euse - 1) / 2f)

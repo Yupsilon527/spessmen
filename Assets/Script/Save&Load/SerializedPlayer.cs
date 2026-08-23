@@ -42,18 +42,23 @@ public class SerializedPlayer : SerializableData<DataItemPlayer>
 public class SerializedPurchaseData : SerializableData<PurchaseData>
 {
     public string part;
-    public float purchaseCost, discount;
+    public float  discount;
     public bool purchased;
+    public bool locked;
 
     public SerializedPurchaseData(PurchaseData data) : base(data)
     {
         part = data.part.InternalName;
-        purchaseCost = data.purchaseCost;
         discount = data.discount;
         purchased = data.wasPurchased;
-}
+       locked = data.playerLocked;
+    }
     public override PurchaseData Deserialize()
     {
-        throw new NotImplementedException();
+        var scr = ResourceCache.main.LoadComponent(part);
+        PurchaseData output = new PurchaseData(scr, discount);
+        output.wasPurchased = purchased;
+        output.playerLocked = locked;
+        return output;
     }
 }

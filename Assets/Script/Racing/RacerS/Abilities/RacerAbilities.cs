@@ -35,16 +35,12 @@ public class RacerAbilities : RacerComponent
                     AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal), racer));
 
                     int engLevel = level - RaceDefines.SeasonRaces + 1;
-                    int cycleLength = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
 
-                    for (int i = 1; i <= level / cycleLength; i++)
-                    {
-                        engLevel += Mathf.Max(0, level - cycleLength * i);
-                    }
-                    if (engLevel > 0 )
+                    int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces) - 1;
+                    for (int i = 0; i < numEngines; i++)
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
-                        AddAbility(new Ability(PartAbility.NpcEngine(engLevel, rnVal), racer));
+                        AddAbility(new Ability(PartAbility.NpcEngine(engLevel, rnVal, 1f/numEngines), racer));
                     }
                 }
                 racer.modifiers.Refresh();

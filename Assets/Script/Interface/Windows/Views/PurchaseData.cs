@@ -7,6 +7,7 @@ public class PurchaseData
     public PartScriptable part;
     public float purchaseCost;
     public float discount;
+    public bool playerLocked = false;
     public bool wasPurchased = false;
 
     public PurchaseData(List<WeightPart> valid)

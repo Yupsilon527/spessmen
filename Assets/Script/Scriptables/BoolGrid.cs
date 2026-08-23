@@ -9,7 +9,16 @@ public class BoolGrid
 
     public bool Get(int x, int y) => cells[y * width + x];
     public void Set(int x, int y, bool value) => cells[y * width + x] = value;
+    public void Encode(bool[,] orig)
+    {
+        width = orig.GetLength(0);
+        height = orig.GetLength(1);
+        cells = new bool[width * height];
 
+        for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+                Set(x, y, orig[x, y]);
+    }
     public bool[] ToOutputGrid()
     {
         bool[] output = new bool[width * height];
@@ -24,7 +33,7 @@ public class BoolGrid
         int required = width * height;
 
         if (cells != null && cells.Length == required)
-            return; 
+            return;
 
         bool[] oldCells = cells;
         int oldWidth = oldCells != null && width > 0 ? (oldCells.Length / Mathf.Max(1, height == 0 ? 1 : height)) : 0;

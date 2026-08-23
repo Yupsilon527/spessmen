@@ -22,10 +22,17 @@ public partial class ShopView : ViewBase
             if (iB >= itemButtonSelection.Length)
                 return;
 
+            if ((items[ii]?.playerLocked ) ?? true)
+            {
+                ii++;
+                continue;
+            }
+
             var button = itemButtonSelection[iB];
             button?.dropSlot?.attachedToken?.DiscardToken();
 
-            if (!button.IsLocked())
+
+            if (  !button.IsLocked())
             {
                 button.gameObject.SetActive(ii < items.Length && items[ii] != null);
                 button.AssignItem(DataItemPlayer.main, items[ii]);
@@ -35,44 +42,40 @@ public partial class ShopView : ViewBase
             iB++;
         }
     }
-    public void ResetStore(bool hardReset,bool gameStart)
+    public void ResetStore(bool hardReset, bool gameStart)
     {
         if (DataItemPlayer.main?.car == null) return;
-        if (hardReset)
+        if (gameStart)
         {
-            DataItemPlayer.main.shop.numRerolls = 0;
-            if (gameStart)
+            dragdrop.Clear();
+            foreach (var b in itemButtonSelection)
             {
-                dragdrop.Clear();
-                foreach (var b in itemButtonSelection)
-                {
-                    b.ToggleLocked(false);
-                }
+                b.ToggleLocked(false);
             }
         }
-        else
-        {
-            DataItemPlayer.main.shop.numRerolls++;
-            DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerShopReset);
-        }
+        DataItemPlayer.main.shop.ResetShop(hardReset);
         if (ResourceCache.main != null)
         {
-            DataItemPlayer.main.shop.RegenerateShop(itemButtonSelection.Sum(b => b.IsLocked() ? 0 : 1));
-            PresentMultipleItems(DataItemPlayer.main.shop.itemActions.ToArray());
-            UpdateState();
+            //DataItemPlayer.main.shop.ResetShop(true);
+            ShowShop();
         }
+    }
+    public void ShowShop()
+    {
+        PresentMultipleItems(DataItemPlayer.main.shop.itemActions.ToArray());
+        UpdateState();
     }
     public void UpdateState()
     {
         if (playerGold != null && DataItemPlayer.main != null)
         {
-            string goldLabel =  LanguageController.main.Translate("UI Table", "Gold Label");
-            playerGold.text = goldLabel.Replace("%gold%",DataItemPlayer.main.econ.gold.GetValue().ToString("F0"));
+            string goldLabel = LanguageController.main.Translate("UI Table", "Gold Label");
+            playerGold.text = goldLabel.Replace("%gold%", DataItemPlayer.main?.econ?.gold?.GetValue().ToString("F0") ?? "");
         }
 
         if (resetCost != null)
         {
-            string costLabel =  LanguageController.main.Translate("UI Table", "Cost Label");
+            string costLabel = LanguageController.main.Translate("UI Table", "Cost Label");
             resetCost.text = costLabel.Replace("%cost%", GetResetCost().ToString("F0"));
         }
 
@@ -85,7 +88,7 @@ public partial class ShopView : ViewBase
     {
         if (DataItemPlayer.main.econ.gold.ChargeValue(GetResetCost()))
         {
-            ResetStore(false,false);
+            ResetStore(false, false);
         }
     }
     float GetResetCost()
@@ -107,7 +110,14 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main == null) return;
 
         playership.AssignShip(DataItemPlayer.main.car);
-        ResetStore(true,newGame);
+        if (newGame)
+        {
+            ResetStore(true, true);
+        }
+        else
+        {
+            ShowShop();
+        }
         dragdrop.InitSlots(DataItemPlayer.main.car);
         raceTooltip?.ShowCurrentRace();
 
@@ -124,7 +134,7 @@ public partial class ShopView : ViewBase
         if (DataItemPlayer.main.car.ValidateAll())
         {
             Conclude();
-            TourneyController.main.ChangePhase( TourneyController.TourneyPhase.setup);
+            TourneyController.main.ChangePhase(TourneyController.TourneyPhase.setup);
             ViewManager.Instance.ChangeView(ViewManager.Views.raceView);
         }
     }

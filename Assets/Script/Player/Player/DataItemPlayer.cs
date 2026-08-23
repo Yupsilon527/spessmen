@@ -26,6 +26,7 @@ public class DataItemPlayer : Initializable
         car = new(s,true);
         econ.Setup();
         score.Setup();
+        shop.Setup();
 
         econ.GiveGold(s.startingGold);
     }

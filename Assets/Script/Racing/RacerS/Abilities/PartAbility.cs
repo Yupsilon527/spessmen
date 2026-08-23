@@ -29,14 +29,14 @@ public class PartAbility
             }
         };
     }
-    public static PartAbility NpcEngine(int level, float rnval)
+    public static PartAbility NpcEngine(int level, float rnval, float gasUse)
     {
         return new PartAbility()
         {
             InternalName = "npc_engine",
             function = ShipDefines.PartEvent.OnTimePass,
             cooldown = DifficultyDefines.enemyEngineCooldown - rnval * DifficultyDefines.enemyEngineDelta,
-            fuelCost = 10,
+            fuelCost = gasUse * 10,
             actions = new ConditionalPartAltetration[]{  new ConditionalPartAltetration()
             {
                 behavior = ShipDefines.AlterationType.Addition,

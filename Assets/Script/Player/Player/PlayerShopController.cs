@@ -8,9 +8,29 @@ public class PlayerShopController : PlayerComponent
 
 
     public List<PurchaseData> itemActions = new();
-    public void RegenerateShop(int amt)
+    public override void Setup()
     {
         itemActions = new();
+        ResetShop(true);
+    }
+    public void ResetShop(bool hardReset)
+    {
+        if (hardReset)
+        {
+            numRerolls = 0;
+        }
+        else
+        {
+            numRerolls++;
+            player.score.GiveChaos(ItemDefines.chaosPerShopReset);
+        }
+        RegenerateShopItems(8);
+    }
+    public void RegenerateShopItems(int total)
+    {
+        int amt = total - itemActions.Sum(b => (b.playerLocked && !b.wasPurchased) ? 1 : 0);
+        itemActions = itemActions.Where(i => i.playerLocked).ToList() ;
+
         if (ResourceCache.main != null)
         {
             List<PartScriptable> playerparts = new();

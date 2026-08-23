@@ -31,9 +31,11 @@ public class ViewManager : WindowManager
         {
             case Views.shopView:
                 tabComponent.OpenTab(shop.gameObject);
+                shop.OnOpened();
                 break;
             case Views.raceView:
                 tabComponent.OpenTab(race.gameObject);
+                race.OnOpened();
                 break;
         }
     }
@@ -42,7 +44,7 @@ public class ViewManager : WindowManager
     {
         if (shop.gameObject.activeSelf)
         {
-            shop.InitializeShop(true);
+            shop.OnOpened();
         }
         else
         {

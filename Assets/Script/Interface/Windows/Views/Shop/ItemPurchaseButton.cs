@@ -14,7 +14,6 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
 
     public TextMeshProUGUI priceLabel;
     public Toggle lockToggle;
-    bool locked = false;
 
     public override void Clear(bool draw)
     {
@@ -113,11 +112,12 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     }
     public bool IsLocked()
     {
-        return locked && SanityCheck();
+        return purchaseData?.playerLocked ?? false && SanityCheck();
     }
     public void ToggleLocked(bool value)
     {
-        locked = value;
+        if (purchaseData!=null)
+        purchaseData.playerLocked = value;
         if (value && !SanityCheck())
         {
             SetLocked(false);
