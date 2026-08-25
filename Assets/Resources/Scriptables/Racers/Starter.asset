@@ -20,7 +20,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 20
-    value: -0.125
+    value: -0.1
     IncreasePerLevel: 0
   - Property: 24
     value: 1

@@ -165,6 +165,10 @@ MonoBehaviour:
     m_Key: undo
     m_Metadata:
       m_Items: []
+  - m_Id: 6236537424351232
+    m_Key: seasonend
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

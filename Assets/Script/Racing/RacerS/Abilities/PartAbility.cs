@@ -24,7 +24,7 @@ public class PartAbility
             {
                 behavior = ShipDefines.AlterationType.Addition,
                 stat = ShipDefines.StatType.BaseSpeed,
-                value =  DifficultyDefines.enemyBaseSpeed - DifficultyDefines.enemyWheelSpeed + DifficultyDefines.enemyWheelSpeed * (level +1)*rnval
+                value = Mathf.Max(DifficultyDefines.enemyMinSpeed,  DifficultyDefines.enemyBaseSpeed - DifficultyDefines.enemyWheelSpeed + DifficultyDefines.enemyWheelSpeed * (level +1)*rnval)
             }
             }
         };

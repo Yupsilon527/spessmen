@@ -181,7 +181,8 @@ public class TourneyController : Initializable
     }
     public float GetPointsForPosition(int position)
     {
-        return leaderboard.Count - position - 1;
+        float mult = (IsLastRaceInSeason()) ? DifficultyDefines.eliteRaceScoreMultiplier : 1;
+        return (leaderboard.Count - position - 1) * mult ;
     }
     public float GetScoreForRacer(Racer racer)
     {
@@ -375,7 +376,7 @@ public class Race : Countdown
     }
     public static  float GetRivalDistance(int raceID, float raceDuration = RaceDefines.raceLength)
     {
-        var baseSpeed = DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID ;
+        var baseSpeed =Mathf.Max(DifficultyDefines.enemyMinSpeed, DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID) ;
         var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed * raceID - 2) : 0;
         int numEngines = Mathf.FloorToInt(raceID / RaceDefines.SeasonRaces) - 1;
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;

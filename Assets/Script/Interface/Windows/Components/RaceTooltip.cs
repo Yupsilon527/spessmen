@@ -42,6 +42,8 @@ public class RaceTooltip : MonoBehaviour
             string weatherName =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString());
             string weatherDesc =  LanguageController.main.Translate("Environments", TourneyController.main.ongoingRace.modifier.ToString()+"_desc");
             raceWeather.text = $"{LanguageController.main.Translate("UI Table", "ModifierTitle")}<br>{weatherName}<br>{weatherDesc}";
+            if (TourneyController.main.IsLastRaceInSeason())
+                raceWeather.text += $"<br>{LanguageController.main.Translate("UI Table", "SeasonEnd").Replace("%mult%", DifficultyDefines.eliteRaceScoreMultiplier.ToString())}";
         }
 
         if (environmentDisplay != null) environmentDisplay.sprite = environment.icon;

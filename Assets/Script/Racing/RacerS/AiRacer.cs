@@ -12,7 +12,7 @@ public class AiRacer : Racer
         base.HandleRacePhase(phase);
         switch (phase)
         {
-            case RaceDefines.RacePhase.RaceSetup:
+            case RaceDefines.RacePhase.RaceBegin:
                 castables = abilities.GetAbilities().Where(a => a.data.function == ShipDefines.PartEvent.OnActivated).ToArray();
                 break;
             case RaceDefines.RacePhase.RaceTick:
