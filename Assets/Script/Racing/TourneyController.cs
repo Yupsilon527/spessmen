@@ -81,12 +81,6 @@ public class TourneyController : Initializable
                 if (currentPhase == TourneyPhase.setup || !ongoingRace.IsRunning())
                 {
                     Inspect($"Start race {ongoingRace.raceID} with {ongoingRace.racers.Count} racers!");
-                    foreach (var racer in ongoingRace.racers)
-                    {
-                        if (currentPhase == TourneyPhase.beforeRace)
-                            racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
-                        racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
-                    }
                     StopAllCoroutines();
                     float raceTime = RaceDefines.raceLength;
                     debugSet = 0;
@@ -144,6 +138,12 @@ public class TourneyController : Initializable
                                 }
                             }
                             break;
+                    }
+                    foreach (var racer in ongoingRace.racers)
+                    {
+                        if (currentPhase == TourneyPhase.beforeRace)
+                            racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
+                        racer.HandleRacePhase(RaceDefines.RacePhase.RaceBegin);
                     }
                     ongoingRace.Set(raceTime);
                 }

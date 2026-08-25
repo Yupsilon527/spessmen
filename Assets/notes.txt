@@ -4,7 +4,6 @@ TODO
 
 FIX
 	expansion valid bug
-	double toon fix
 	distance to beat
 QoL
 	char loadout already set up
