@@ -161,6 +161,10 @@ MonoBehaviour:
     m_Key: stash
     m_Metadata:
       m_Items: []
+  - m_Id: 6112203733110784
+    m_Key: undo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -97,7 +97,8 @@ public static class ModifierDefines
         expansion_rarity = 45,
         expansion_prices = 46,
 
-        total = 50,
+        starting_cooldown_mult = 50,
+        total = 51,
     };
     public enum State   //TODO
     {

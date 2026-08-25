@@ -62,6 +62,7 @@ public class AbilityDragDropInterface : ShipPreview
         token.transform.localScale = Vector3.one;
         token.FromPart(u, true);
         tokens.Add(token);
+        token.justPurchase = false;
         return token;
     }
     #endregion

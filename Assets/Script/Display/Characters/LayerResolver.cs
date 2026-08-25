@@ -10,6 +10,7 @@ public class LayerResolver : Initializable
     {
         base.Initialize();
         FindComponent(ref renderer);
+        sortingOrder = 0;
     }
     public void ChangeOrder(int nOrder)
     {

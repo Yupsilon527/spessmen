@@ -121,6 +121,9 @@ public class PlayerConfig : Initializable
     #endregion
     public void StartNewGame()
     {
+        ViewManager.Instance.shop.dragdrop.Clear();
+        ArenaController.main.Clear();
+        TourneyController.main.Clear();
         DataItemPlayer.main.FromData(playerCharacter);
         TourneyController.main.FreshStart();
         ViewManager.Instance.OnNewGameBegin();

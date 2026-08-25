@@ -19,10 +19,13 @@ public class TourneyController : Initializable
         afterRace,
     }
     public TourneyPhase currentPhase;
-    public void FreshStart()
+    public void Clear()
     {
         leaderboard.Clear();
         ongoingRace = null;
+    }
+    public void FreshStart()
+    {
         InitRacers();
         ChangePhase(TourneyPhase.beforeRace);
     }
@@ -59,6 +62,8 @@ public class TourneyController : Initializable
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
                 }
+
+                ViewManager.Instance.shop.ResetStore(true, false);
                 PlayerConfig.main.SaveData();
                 break;
             case TourneyPhase.setup:
@@ -297,8 +302,6 @@ public class TourneyController : Initializable
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
 
         DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
-
-        ViewManager.Instance.shop.ResetStore(true, false);
     }
 
     void UpdateVariables()

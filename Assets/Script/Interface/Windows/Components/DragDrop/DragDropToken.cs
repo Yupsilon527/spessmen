@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class DragDropToken : PartButtonScaleable
     public AbilityDragDropInterface parent;
     float dragStart = 0;
     bool dragDropMode = false;
+    public bool justPurchase = false;
     public EventTrigger eventTrigger;
 
     #region Rotate
@@ -126,7 +128,11 @@ public class DragDropToken : PartButtonScaleable
     #region Merging
     public bool CanMergeAnother(DragDropToken token)
     {
-        return token.mPart.CanMerge(mPart);
+        return CanMergeAnother(token.mPart);
+    }
+    public bool CanMergeAnother(DataItemPart part)
+    {
+        return part.CanMerge(mPart);
     }
     public bool TryMergeAnother(DragDropToken token)
     {
@@ -182,7 +188,7 @@ public class DragDropToken : PartButtonScaleable
         {
             if (slot.slot == DragDropSlot.TokenSlot.discard)
             {
-                DataItemPlayer.main.econ.GiveGold(mPart.purchaseCost * EconomyDefines.partResellPrice);
+                DataItemPlayer.main.econ.GiveGold(Mathf.Ceil(mPart.purchaseCost * (justPurchase ? 1 : EconomyDefines.partResellPrice)));
                 Delete(true);
             }
             else if (slot.attachedToken == null)
@@ -208,17 +214,30 @@ public class DragDropToken : PartButtonScaleable
                 Vector2 realPos = transform.position + Delta();
                 Vector2Int slotCoords = target.grid.GetGridPosition(realPos);
                 if (mPart.scriptable.partType != ItemDefines.PartType.expansion)
-                    {
+                {
                     foreach (var d in ShipDefines.deltaPos)
                     {
                         if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
                             return;
                     }
                 }
-              else   if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
+                else
                 {
-                    Delete(true);
-                    ViewManager.Instance.shop.playership.UpdateGrid();
+                    if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x, slotCoords.y, rotation))
+                    {
+                        Delete(true);
+                        ViewManager.Instance.shop.Refresh();
+                        ViewManager.Instance.shop.playership.UpdateGrid();
+                    }
+                    else
+                    {
+                        var overlapping = DataItemPlayer.main.car.GetPartsOccupying(mPart, slotCoords.x, slotCoords.y, rotation);
+                        foreach (var token in parent.tokens.Where(t => overlapping.Any(p => p == t.mPart)))
+                        {
+                            if (TryMergeAnother(token))
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -239,7 +258,7 @@ public class DragDropToken : PartButtonScaleable
 
         if (slotA.Locked)
         {
-            other.DiscardToken();
+            other.GoToStash();
         }
         else
         {
@@ -257,7 +276,7 @@ public class DragDropToken : PartButtonScaleable
             }
             else if (snapback && slot.slot == DragDropSlot.TokenSlot.shop)
             {
-                DiscardToken();
+                GoToStash();
             }
             else
             {
@@ -265,13 +284,13 @@ public class DragDropToken : PartButtonScaleable
             }
         }
     }
-    public void DiscardToken()
+    public void GoToStash()
     {
-        foreach (DragDropSlot trashslot in parent.stashSlots)
+        foreach (DragDropSlot stashslot in parent.stashSlots)
         {
-            if (trashslot.attachedToken == null)
+            if (stashslot.attachedToken == null)
             {
-                ChangeSlot(trashslot);
+                ChangeSlot(stashslot);
                 SnapBack(false);
                 break;
             }
@@ -291,7 +310,7 @@ public class DragDropToken : PartButtonScaleable
     {
         if (mPart != null && parent != null && parent.tooltip != null)
         {
-            parent.tooltip.ShowPart(mPart.scriptable,true);
+            parent.tooltip.ShowPart(mPart.scriptable,true, justPurchase);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

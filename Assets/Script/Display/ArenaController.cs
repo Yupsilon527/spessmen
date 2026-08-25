@@ -57,7 +57,7 @@ public class ArenaController : MonoBehaviour
     public void UpdateRacerPositions()
     {
         var playerRacer = GetPlayerRacer();
-        float posDelta = distanceFarAway * Mathf.Max(1 + playerRacer.racer.position.distanceTraveled * 2, TourneyController.main?.ongoingRace?.lapDistance ?? 200);
+        float posDelta =  TourneyController.main?.ongoingRace?.lapDistance ?? 200;
         foreach (var racer in racers)
         {
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
@@ -114,7 +114,7 @@ public class ArenaController : MonoBehaviour
 
     public RacerToon LoadFighterPrefab(Racer racer, GameObject prefab, ShipScriptable character)
     {
-        RacerToon fighter = new RacerToon()
+        RacerToon gobject = new RacerToon()
         {
             racer = racer,
         };
@@ -122,17 +122,19 @@ public class ArenaController : MonoBehaviour
         {
             toon.character.toonType = CharacterResolver.ToonType.complete;
             toon.overlay.AssignRacer(racer);
-            fighter.toon = toon;
+
+            gobject.toon = toon;
 
             if (PoolPrefabForPlayer(character.prefab, toon.character.FindAttachPoint("origin")) is GameObject g)
             {
                 toon.animator = g.GetComponentInChildren<Animator>();
                 toon.character.Init();
+                gobject.character = g;
             }
             toon.character.ChangeSortingOrder(-racer.id);
         }
-        racers.Add(fighter);
-        return fighter;
+        racers.Add(gobject);
+        return gobject;
     }
     public Toon PoolToonForPlayer(GameObject prefab, Transform parent)
     {

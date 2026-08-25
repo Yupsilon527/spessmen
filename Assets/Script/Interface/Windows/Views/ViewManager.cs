@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ViewManager : WindowManager
 {
@@ -8,7 +9,6 @@ public class ViewManager : WindowManager
     public RaceView race;
     public ShopView shop;
     public GameObject settingsMenu;
-
     public enum Views
     {
         shopView = 0,

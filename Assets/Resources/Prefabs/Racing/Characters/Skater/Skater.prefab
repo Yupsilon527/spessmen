@@ -2060,6 +2060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7956350617852539288}
   - component: {fileID: 6765442795994964075}
+  - component: {fileID: 4182115791929185899}
   m_Layer: 0
   m_Name: Wheelspin
   m_TagString: Untagged
@@ -2137,6 +2138,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4182115791929185899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208431361727922566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f12759ec0c0e754ca5f32bb192d235d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspect: 0
+  renderer: {fileID: 6765442795994964075}
+  sortingOrderDepth: 12
 --- !u!1 &8408788847110751366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409000595388838727}
   - component: {fileID: 424049467515751216}
+  - component: {fileID: 2391152442195925386}
   m_Layer: 0
   m_Name: Wheelspin
   m_TagString: Untagged
@@ -2224,6 +2241,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2391152442195925386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408788847110751366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f12759ec0c0e754ca5f32bb192d235d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspect: 0
+  renderer: {fileID: 424049467515751216}
+  sortingOrderDepth: 12
 --- !u!1 &8522176457101958308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3071526349009147631}
   - component: {fileID: 448011501510648584}
+  - component: {fileID: 6290726468117317245}
   m_Layer: 0
   m_Name: skate_0
   m_TagString: Untagged
@@ -2313,6 +2346,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6290726468117317245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522176457101958308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f12759ec0c0e754ca5f32bb192d235d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspect: 0
+  renderer: {fileID: 448011501510648584}
+  sortingOrderDepth: 12
 --- !u!1 &8659900120351999606
 GameObject:
   m_ObjectHideFlags: 0

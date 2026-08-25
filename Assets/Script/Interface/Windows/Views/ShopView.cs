@@ -1,5 +1,6 @@
 using System.Linq;
 using TMPro;
+using UnityEngine.UI;
 
 public partial class ShopView : ViewBase
 {
@@ -9,6 +10,7 @@ public partial class ShopView : ViewBase
     public PlayerShipGrid playership;
     public PartTooltip tooltip;
     public RaceTooltip raceTooltip;
+    public Button undoButton;
     public AbilityDragDropInterface dragdrop;
     public ItemPurchaseButton[] itemButtonSelection;
 
@@ -17,7 +19,7 @@ public partial class ShopView : ViewBase
         for (int i =0; i<items.Length; i++)
         {
             var button = itemButtonSelection[i];
-            button?.dropSlot?.attachedToken?.DiscardToken();
+            button?.dropSlot?.attachedToken?.GoToStash();
 
             button.gameObject.SetActive(i < items.Length && items[i] != null);
             button.AssignItem(DataItemPlayer.main, items[i]);
@@ -37,16 +39,15 @@ public partial class ShopView : ViewBase
         DataItemPlayer.main.shop.ResetShop(hardReset);
         if (ResourceCache.main != null)
         {
-            //DataItemPlayer.main.shop.ResetShop(true);
             ShowShop();
         }
     }
     public void ShowShop()
     {
         PresentMultipleItems(DataItemPlayer.main.shop.itemActions.ToArray());
-        UpdateState();
+        Refresh();
     }
-    public void UpdateState()
+    public override void Refresh()
     {
         if (playerGold != null && DataItemPlayer.main != null)
         {
@@ -64,6 +65,8 @@ public partial class ShopView : ViewBase
         {
             itemButtonSelection[i].UpdateEnableState(DataItemPlayer.main, true);
         }
+
+        undoButton?.gameObject?.SetActive(DataItemPlayer.main.car.CanUndoExpansion());
     }
     public void ResetButtonFunction()
     {
@@ -102,13 +105,14 @@ public partial class ShopView : ViewBase
         dragdrop.InitSlots(DataItemPlayer.main.car);
         raceTooltip?.ShowCurrentRace();
 
-        DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(UpdateState);
-        DataItemPlayer.main?.econ?.gold?.OnValueChanged.AddListener(UpdateState);
+        DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(Refresh);
+        DataItemPlayer.main?.econ?.gold?.OnValueChanged.AddListener(Refresh);
     }
     void Conclude()
     {
         dragdrop.ApplyChanges();
         dragdrop.Clear();
+        DataItemPlayer.main.car.ClearUndo();
     }
     public void Proceed()
     {
@@ -117,6 +121,21 @@ public partial class ShopView : ViewBase
             Conclude();
             TourneyController.main.ChangePhase(TourneyController.TourneyPhase.setup);
             ViewManager.Instance.ChangeView(ViewManager.Views.raceView);
+        }
+    }
+    public void HandleUndo()
+    {
+        if (DataItemPlayer.main.car.CanUndoExpansion())
+        {
+            var lastExp = DataItemPlayer.main.car.lastAppliedExpansion;
+            DataItemPlayer.main.car.UndoLastExpansion();
+
+            var undoToken = dragdrop.GenerateToken(lastExp);
+            undoToken.GoToStash();
+
+            Refresh();
+            playership.UpdateGrid();
+            DataItemPlayer.main.car.ValidateAll();
         }
     }
 }

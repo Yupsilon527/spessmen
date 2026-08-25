@@ -103,7 +103,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         {
            var newToken = shop.dragdrop.GenerateToken(purchaseData);
             newToken.AttachToSlot(dropSlot,true);
-            
+            newToken.justPurchase = true;
             Clear(true);
         }
     }
@@ -133,7 +133,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     {
         if (purchaseData!= null && shop != null && shop.tooltip!=null)
         {
-            shop.tooltip.ShowPart(purchaseData.part,true);
+            shop.tooltip.ShowPart(purchaseData.part,true,false);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

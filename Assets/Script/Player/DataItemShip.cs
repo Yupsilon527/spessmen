@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DataItemShip : DataItemGrid
 {
@@ -7,6 +9,8 @@ public class DataItemShip : DataItemGrid
     public HashSet<DataItemPart> parts = new();
     public DataItemPart[,] occupied;
 
+    public DataItemPart lastAppliedExpansion;
+    public HashSet<Vector2Int> lastExpansionSlots=new();
     public DataItemShip(ShipScriptable so, bool giveStart)
     {
         scriptable = so;
@@ -138,21 +142,27 @@ public class DataItemShip : DataItemGrid
         placement.rotation = rotation;
         if (placement.scriptable.partType == ItemDefines.PartType.expansion)
         {
-            ExpandGrid(placement);
+            ExpandGrid(placement, true);
         }
         else
         {
-            RegisteraPart(placement, true);
+            RegisterPart(placement, true);
             parts.Add(placement);
         }
         return true;
     }
+    public DataItemPart[] GetPartsOccupying(DataItemPart placement, int oX, int oY, int rotation)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
+    #region Place/Remove Parts
     public void RemovePart(DataItemPart part)
     {
-        RegisteraPart(part, false);
+        RegisterPart(part, false);
         parts.Remove(part);
     }
-    void RegisteraPart(DataItemPart part, bool value)
+    void RegisterPart(DataItemPart part, bool value)
     {
         bool[,] shape = part.RetrieveRotated(part.rotation);
         int shapeWidth = shape.GetLength(0);
@@ -170,24 +180,6 @@ public class DataItemShip : DataItemGrid
             }
         }
     }
-    void ExpandGrid(DataItemPart part)
-    {
-        bool[,] shape = part.RetrieveRotated(part.rotation);
-        int shapeWidth = shape.GetLength(0);
-        int shapeHeight = shape.GetLength(1);
-
-        for (int x = 0; x < shapeWidth; x++)
-        {
-            for (int y = 0; y < shapeHeight; y++)
-            {
-                if (!shape[x, y]) continue;
-
-                int px = part.originX + x;
-                int py = part.originY + y;
-                SetValue(px, py, true);
-            }
-        }
-    }
 
     public bool ValidateAll()
     {
@@ -202,6 +194,53 @@ public class DataItemShip : DataItemGrid
         }
 
         return true;
+    }
+    #endregion
+    #region Undo
+    void ExpandGrid(DataItemPart part, bool registerExpansion)
+    {
+        bool[,] shape = part.RetrieveRotated(part.rotation);
+        int shapeWidth = shape.GetLength(0);
+        int shapeHeight = shape.GetLength(1);
+
+        if (registerExpansion)
+        {
+            ClearUndo();
+            lastAppliedExpansion = part;
+        }
+
+        for (int x = 0; x < shapeWidth; x++)
+        {
+            for (int y = 0; y < shapeHeight; y++)
+            {
+                if (!shape[x, y]) continue;
+
+                int px = part.originX + x;
+                int py = part.originY + y;
+                SetValue(px, py, true);
+                if (registerExpansion)
+                    lastExpansionSlots.Add(new Vector2Int(px, py));
+            }
+        }
+    }
+    public void UndoLastExpansion()
+    {
+        lastAppliedExpansion.deleted = false;
+
+        foreach (var t in lastExpansionSlots)
+        {
+            SetValue(t.x, t.y, false);
+        }
+        ClearUndo();
+    }
+    public bool CanUndoExpansion()
+    {
+        return lastAppliedExpansion != null;
+    }
+    public void ClearUndo()
+    {
+        lastAppliedExpansion = null;
+        lastExpansionSlots.Clear();
     }
     #endregion
 }

@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raceNumber: {fileID: 9153522501784527936}
+  rivalDist: {fileID: 0}
   raceEnvironment: {fileID: 0}
   raceWeather: {fileID: 0}
   environmentDisplay: {fileID: 0}

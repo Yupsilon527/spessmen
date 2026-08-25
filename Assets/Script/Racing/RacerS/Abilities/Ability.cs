@@ -116,14 +116,14 @@ public class Ability : Countdown
                     caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
 
             caster.abilities.fuel.SubstractedValue(GetFuelCost());
-            FireCooldown();
+            FireCooldown(1);
             return true;
         }
         return false;
     }
-    public void FireCooldown()
+    public void FireCooldown(float mult )
     {
-        Set(GetPartCooldown());
+        Set(GetPartCooldown() * mult);
     }
 
     public override string ToString()

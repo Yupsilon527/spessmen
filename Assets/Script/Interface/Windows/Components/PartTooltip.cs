@@ -12,7 +12,7 @@ public class PartTooltip : MonoBehaviour
     {
         Clear();
     }
-    public  void ShowPart(PartScriptable part, bool build)
+    public  void ShowPart(PartScriptable part, bool build, bool justpurchased)
     {
         if (title!=null)
         {
@@ -43,7 +43,7 @@ public class PartTooltip : MonoBehaviour
         }
         if (value != null)
         {
-            value.text = "$"+(part.GetBasePrice() * EconomyDefines.partResellPrice);
+            value.text = "$"+Mathf.Ceil(part.GetBasePrice() * (justpurchased ? 1 : EconomyDefines.partResellPrice));
         }
         if (toggleActive) gameObject.SetActive(true);
     }

@@ -164,6 +164,10 @@ MonoBehaviour:
     m_Localized: Stash
     m_Metadata:
       m_Items: []
+  - m_Id: 6112203733110784
+    m_Localized: Undo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

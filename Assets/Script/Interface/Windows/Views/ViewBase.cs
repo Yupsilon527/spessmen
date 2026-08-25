@@ -5,4 +5,8 @@ public class ViewBase : Initializable
     {
 
     }
+    public virtual void Refresh()
+    {
+
+    }
 }

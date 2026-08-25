@@ -78,7 +78,7 @@ public class RacerAbilities : RacerComponent
         foreach (var ability in abilities)
         {
             if (!ability.Activate( evt) && evt == ShipDefines.PartEvent.OnRaceStart)
-                ability.FireCooldown();
+                ability.FireCooldown(racer.GetPropertyMultiplicative(ModifierDefines.Property.starting_cooldown_mult));
         }
     }
     public Ability[] GetAbilities()
