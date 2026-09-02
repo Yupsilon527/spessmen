@@ -75,7 +75,12 @@ public class DataItemShip : DataItemGrid
 
                     int px = oX + x;
                     int py = oY + y;
-                    if (!Valid(px, py)) return true;
+
+                    if (!Valid(px, py)
+                            && (Valid(px+1, py)
+                            || Valid(px-1, py)
+                            || Valid(px, py+1)
+                            || Valid(px, py-1))) return true;
                 }
             }
         }
@@ -111,8 +116,7 @@ public class DataItemShip : DataItemGrid
     public bool Valid(int px, int py)
     {
 
-        if (!IsInsideBounds(px, py)) return false;
-        if (!mGrid[px, py]) return false;
+        if (!GetValue(px, py))  return false;
         if (IsOccupied(px, py)) return false;
         return true;
     }
@@ -213,10 +217,11 @@ public class DataItemShip : DataItemGrid
         {
             for (int y = 0; y < shapeHeight; y++)
             {
-                if (!shape[x, y]) continue;
+                if (!shape[x, y] ) continue;
 
                 int px = part.originX + x;
                 int py = part.originY + y;
+                if (GetValue(px, py)) continue;
                 SetValue(px, py, true);
                 if (registerExpansion)
                     lastExpansionSlots.Add(new Vector2Int(px, py));

@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public class SerialziedTourney : SerializableData<TourneyController>
 {
     public string environmentName;
+    public string versionLabel;
     public SerializedPlayer player;
     public List<float> leaderboard;
     public List<string> opponents;
@@ -13,6 +15,7 @@ public class SerialziedTourney : SerializableData<TourneyController>
     public SerialziedTourney(TourneyController data) : base(data)
     {
         environmentName = data.tournamentEnvironment.InternalName;
+        versionLabel = Application.version;
         player = new SerializedPlayer(DataItemPlayer.main);
         leaderboard = data.leaderboard.Values.ToList();
         opponents = data.leaderboard.Keys.Select(r => r.playerShip.InternalName).ToList();

@@ -1,7 +1,7 @@
 
 public static class EconomyDefines
 {
-    public const float constantGoldForRace = 10;
+    public const float constantGoldForRace = 15;
     public const float interestGoldCap = 50;
     public const float performanceGoldCap = 60;
     public const float constantGoldPerPosition = 2;

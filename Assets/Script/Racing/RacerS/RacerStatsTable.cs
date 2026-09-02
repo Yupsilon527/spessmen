@@ -61,6 +61,7 @@ public class RacerStatsTable : RacerComponent
             }
         }
         realSpeed += alteredSpeed;
+        realSpeed = Mathf.Clamp(realSpeed, 0, RaceDefines.maxSpeed);
 
         if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed)
         {

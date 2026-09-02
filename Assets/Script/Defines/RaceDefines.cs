@@ -7,6 +7,8 @@ public static class RaceDefines
     public const float raceLength = 20;
     public const float raceLengthLong = 1.5f;
 
+    public const float maxSpeed = float.MaxValue/33;
+
     public enum RacePhase
     {
         RaceBegin = 0,

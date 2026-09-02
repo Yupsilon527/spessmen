@@ -1,5 +1,6 @@
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
 
 public partial class ShopView : ViewBase
@@ -132,6 +133,7 @@ public partial class ShopView : ViewBase
 
             var undoToken = dragdrop.GenerateToken(lastExp);
             undoToken.GoToStash();
+            DataItemPlayer.main.car.stash.Add(lastExp);
 
             Refresh();
             playership.UpdateGrid();

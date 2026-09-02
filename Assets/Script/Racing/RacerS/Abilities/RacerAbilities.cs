@@ -36,7 +36,7 @@ public class RacerAbilities : RacerComponent
 
                     int engLevel = level - RaceDefines.SeasonRaces + 1;
 
-                    int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces) - 1;
+                    int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces) ;
                     for (int i = 0; i < numEngines; i++)
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
