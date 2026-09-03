@@ -6,12 +6,13 @@ public static class ItemDefines
     public const float commonSpawnWeight = 70;
     public const float raritySpawnWeight = 7;
 
-    public const float chaosPerRace = 20;
+    public const float chaosPerRace = -5;
+    public const float chaosPerPosition = 3;
     public const float chaosPerShopReset = 10;
-    public const float chaosFromCommon = 10;
-    public const float chaosFromRare = 20;
-    public const float chaosFromEpic = 33;
-    public const float chaosFromLegendary = 50;
+    public const float chaosFromCommon = -3;
+    public const float chaosFromRare = 5;
+    public const float chaosFromEpic = 15;
+    public const float chaosFromLegendary = 25;
 
     public const float chaosPlus = 50;
     public const float chaosMinus = 30;

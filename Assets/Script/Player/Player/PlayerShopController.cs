@@ -65,15 +65,17 @@ public class PlayerShopController : PlayerComponent
 
         for (int i = 0; i < total; i++)
         {
+            var newItem = new PurchaseData(valid);
             if (i < itemActions.Count)
             {
                 if (!itemActions[i].playerLocked || itemActions[i].wasPurchased)
-                    itemActions[i] = new PurchaseData(valid);
+                    itemActions[i] = newItem;
             }
             else
             {
-                itemActions.Add(new PurchaseData(valid));
+                itemActions.Add(newItem);
             }
+            player.score.GiveLuck(newItem.part.boonRarity);
         }
     }
 }

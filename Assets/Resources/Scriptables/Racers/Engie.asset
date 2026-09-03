@@ -33,7 +33,7 @@ MonoBehaviour:
   portrait: {fileID: 6943535168657398750, guid: acaefdbfcef4ed14cb4df49d3636a4d6, type: 3}
   blueprint: {fileID: 21300000, guid: 9ab8d6daa453cb04d8ac050ffd4382d6, type: 3}
   prefab: {fileID: 6721421295461978808, guid: da13f685ca9a4cd43b8101524c2715fd, type: 3}
-  startingGold: 30
+  startingGold: 15
   startingParts:
   - {fileID: 11400000, guid: f2e438033fb0f0b47ae7fd401f1e2c89, type: 2}
   - {fileID: 11400000, guid: 5ca32fade74a5e7479d28d2d4a7cc2d6, type: 2}

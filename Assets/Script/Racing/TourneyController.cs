@@ -279,9 +279,9 @@ public class TourneyController : Initializable
         if (ongoingRace.raceID % DifficultyDefines.eliteRaceInterval == DifficultyDefines.eliteRaceInterval - 1)
             diffMult *= DifficultyDefines.eliteRaceMultiplier;
 
-        DataItemPlayer.main.score.GiveChaos(ItemDefines.chaosPerRace * diffMult);
-
         int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
+        DataItemPlayer.main.score.GiveChaos((ItemDefines.chaosPerRace + playerPos * ItemDefines.chaosPerPosition) * diffMult);
+
         float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue() * (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) - 1), 0, EconomyDefines.interestGoldCap);
 
 
@@ -307,6 +307,7 @@ public class TourneyController : Initializable
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
 
         DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
+
     }
 
     void UpdateVariables()
