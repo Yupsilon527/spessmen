@@ -1,6 +1,7 @@
 using System.Linq;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UI;
 
 public partial class ShopView : ViewBase
@@ -80,7 +81,7 @@ public partial class ShopView : ViewBase
     {
         if (DataItemPlayer.main.shop.numRerolls < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        return (1 + (TourneyController.main.GetCurrentRaceIndex())) * (DataItemPlayer.main.shop.numRerolls + 1) * .6f;
+        return Mathf.Floor((1 + (TourneyController.main.GetCurrentRaceIndex())) * (DataItemPlayer.main.shop.numRerolls + 1) * .6f);
     }
     public override void OnOpened()
     {

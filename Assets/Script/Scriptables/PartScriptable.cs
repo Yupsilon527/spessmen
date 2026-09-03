@@ -11,6 +11,7 @@ public class PartScriptable : ModifierScriptable
     public ItemDefines.PartCondition attach;
     public float priceMultiplier = 1, weightMultiplier = 1;
     public bool unique = false;
+    public bool rotating = true;
     public bool lockedForSomeReason = false;
     protected override void OnValidate()
     {

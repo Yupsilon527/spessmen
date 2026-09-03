@@ -20,7 +20,7 @@ public class SerialziedTourney : SerializableData<TourneyController>
         leaderboard = data.leaderboard.Values.ToList();
         opponents = data.leaderboard.Keys.Select(r => r.playerShip.InternalName).ToList();
 
-        raceId = data.GetCurrentRaceIndex()-1;
+        raceId = data.GetCurrentRaceIndex();
         raceModifier = (int)(data.ongoingRace?.modifier ?? 0);
     }
     public override void Deserialize(TourneyController output)

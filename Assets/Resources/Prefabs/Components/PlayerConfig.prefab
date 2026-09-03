@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspect: 0
-  saveKey: variables
+  saveKey: save0
   playerCharacter: {fileID: 11400000, guid: 176398c40d587ce47b4e418d90803e69, type: 2}

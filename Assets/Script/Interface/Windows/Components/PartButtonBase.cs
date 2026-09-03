@@ -49,6 +49,7 @@ public class PartButtonBase : Initializable
     }
     public void Rotate(int rot)
     {
+        if (mPart.CanBeRotated())
         rotation = rot % 4;
         AdjustRotation(rotation);
     }

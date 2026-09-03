@@ -132,6 +132,7 @@ public class PlayerConfig : Initializable
     {
         var run = LoadRun();
         run.player.Deserialize(DataItemPlayer.main);
+        playerCharacter = DataItemPlayer.main.car.scriptable;
         run.Deserialize(TourneyController.main);
         ViewManager.Instance.ChangeView(ViewManager.Views.shopView);
     }

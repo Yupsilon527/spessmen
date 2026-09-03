@@ -37,8 +37,9 @@ public abstract class DataItemGrid
     }
     public bool GetValue(int x, int y)
     {
-        if (!IsInsideBounds(x, y)) return false;
-        return mGrid[x, y] ;
+        if (IsInsideBounds(x, y))
+            return mGrid[x, y];
+        return false;
     }
     public virtual bool[,] RetrieveRotated(int rotation = 0)
     {

@@ -8,6 +8,7 @@ public class PartAbility
     public int maxUses = 0;
     public float cooldown = 0;
     public float fuelCost = 0;
+    public ItemDefines.OverflowBehavior overflow;
     public ItemDefines.PartType classification;
     public ShipDefines.PartEvent function;
     public ShipDefines.PartCondition condition;

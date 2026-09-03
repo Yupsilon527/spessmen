@@ -9,18 +9,18 @@ public class SerializedPart : SerializableData<DataItemPart>
     public SerializedPart(DataItemPart data) : base(data)
     {
         internalName = data.scriptable.InternalName;
-        x = data.originX; y = data.originY; r = data.rotation;
+        x = data.originX; y = data.originY; r = data.CanBeRotated() ?  data.rotation : 0;
         cost = data.purchaseCost;
     }
 
     public override DataItemPart Deserialize()
     {
-        var zxc = ResourceCache.main.LoadComponent(internalName);
-        if (zxc != null)
+        var part = ResourceCache.main.LoadComponent(internalName);
+        if (part != null)
         {
-            var output = new DataItemPart(zxc, cost);
+            var output = new DataItemPart(part, cost);
             output.originX = x; output.originY = y;
-            output.rotation = r;
+            output.rotation = output.CanBeRotated() ? r : 0;
             return output;
         }
         throw new Exception($"No part with name {internalName} has been found!");

@@ -1,29 +1,14 @@
 TODO
 
-	engine use below fuel chance?
-
 FIX
-	expansion valid bug
 	distance to beat
 QoL
 	char loadout already set up
 
 	part highlight position
-	parts cant rotate (decals, square)
 
 	part speed given
 
-	settings > reset, main menu
-
-	buttons - settings AND endgame
-		restart 
-		back
-
-	UNDO
-		purchase
-		part
-
-	save and continue
 
 FEA
 	global/multihit abilities

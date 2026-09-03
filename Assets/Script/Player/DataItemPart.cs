@@ -33,6 +33,17 @@ public class DataItemPart : DataItemGrid
     {
         return true;
     }
+    public bool CanBeRotated()
+    {
+        if (!scriptable.rotating)
+            return false;
+        if (width != height)
+            return true;
+        foreach (var g in mGrid)
+            if (!g)
+                return true;
+        return false;
+    }
     public bool CanMerge(DataItemPart other)
     {
         return other.scriptable.combos.Any ( combo => combo.other == scriptable ) || scriptable.combos.Any(combo => combo.other == other.scriptable);

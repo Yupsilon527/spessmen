@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Ability : Countdown
 {
     int useCount = 0;
@@ -44,13 +46,13 @@ public class Ability : Countdown
     public bool CanBeActivated()
     {
         return (data.fuelCost == 0
-            || (data.function == ShipDefines.PartEvent.OnActivated && caster.abilities.fuel.GetValue() >= GetFuelCost())
-            || (data.function != ShipDefines.PartEvent.OnActivated && caster.abilities.fuel.GetValue() > 0))
+            || (data.overflow == ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() >= GetFuelCost())
+            || (data.overflow != ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() > 0))
             // || caster.abilities.fuel.GetValue() >= GetFuelCost()) 
             && (data.maxUses == 0 || useCount < data.maxUses) && !IsRunning()
             && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }
-    public void ActivateOnRacer()
+    public void ActivateOnRacer(float strength = 1)
     {
         useCount++;
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
@@ -62,7 +64,7 @@ public class Ability : Countdown
 
             if (!action.CanAffectRacer(target)) continue;
 
-            float strength = this.caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
+             strength *= this.caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
 
             if (target == this.caster)
             {
@@ -99,28 +101,49 @@ public class Ability : Countdown
         if (evt == data.function && CanBeActivated())
         {
             TourneyController.main.Inspect($"{caster} activates ability {data.InternalName}");
+            float fuel = caster.abilities.fuel.GetValue();
+            float fCost = GetFuelCost();
 
-            ActivateOnRacer();
+            float strength = 1;
+            if (data.overflow == ItemDefines.OverflowBehavior.chanceToFail)
+            {
+                float castChance = caster.abilities.fuel.GetValue() / fCost;
+                float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
+                strength = ranVal > castChance ? 1 : 0;
+            }
+            else if (data.overflow == ItemDefines.OverflowBehavior.percentageStrength)
+            {
+                strength = fuel / fCost;
+            }
+            else
+            {
+                strength = fuel > fCost ? 1 : 0;
+            }
+                if (strength>0)
+            {
+                ActivateOnRacer(strength);
 
-            if (data.classification == ItemDefines.PartType.gadget)
-                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
-            else if (data.classification == ItemDefines.PartType.engine)
-                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
-            else if (data.classification == ItemDefines.PartType.nitro)
-                caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
+                if (data.classification == ItemDefines.PartType.gadget)
+                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
+                else if (data.classification == ItemDefines.PartType.engine)
+                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
+                else if (data.classification == ItemDefines.PartType.nitro)
+                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
 
-            if (data.function == ShipDefines.PartEvent.OnActivated)
-                if (data.cooldown > 1 || data.fuelCost > 20)
-                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
-                else
-                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
-
-            caster.abilities.fuel.SubstractedValue(GetFuelCost());
+                if (data.function == ShipDefines.PartEvent.OnActivated)
+                    if (data.cooldown > 1 || data.fuelCost > 20)
+                        caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
+                    else
+                        caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
+            }
+            caster.abilities.fuel.SubstractedValue(fCost);
             FireCooldown(1);
             return true;
         }
         return false;
     }
+
     public void FireCooldown(float mult )
     {
         Set(GetPartCooldown() * mult);

@@ -13,6 +13,7 @@ public class TourneyController : Initializable
     public Race ongoingRace;
     public enum TourneyPhase
     {
+        newRace,
         beforeRace,
         setup,
         racing,
@@ -27,6 +28,7 @@ public class TourneyController : Initializable
     public void FreshStart()
     {
         InitRacers();
+        ChangePhase(TourneyPhase.newRace);
         ChangePhase(TourneyPhase.beforeRace);
     }
     public void ChangePhase(TourneyPhase nPhase)
@@ -34,7 +36,7 @@ public class TourneyController : Initializable
         Inspect("Change Phase " + nPhase);
         switch (nPhase)
         {
-            case TourneyPhase.beforeRace:
+            case TourneyPhase.newRace:
                 int season = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
                 if (GetCurrentRaceIndex() % season == season - 1)
                 {
@@ -43,14 +45,12 @@ public class TourneyController : Initializable
                 }
                 ongoingRace = new Race(ongoingRace == null ? 0 : ongoingRace.raceID + 1)
                 {
-                    racers = leaderboard.Keys.Select(k => k).ToList(), 
+                    racers = leaderboard.Keys.Select(k => k).ToList(),
                 };
                 if (GetCurrentRaceIndex() % RaceDefines.SeasonRaces == 0)
                 {
                     PickRandomEnvironment();
                 }
-                ArenaController.main.parallax.SetWorldDelta(0);
-                ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
 
                 int rTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
 
@@ -65,6 +65,10 @@ public class TourneyController : Initializable
 
                 ViewManager.Instance.shop.ResetStore(true, false);
                 PlayerConfig.main.SaveData();
+                break;
+            case TourneyPhase.beforeRace:
+                ArenaController.main.parallax.SetWorldDelta(0);
+                ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
                 break;
             case TourneyPhase.setup:
                 if (currentPhase == TourneyPhase.beforeRace || !ongoingRace.IsRunning())
@@ -382,12 +386,12 @@ public class Race : Countdown
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
         return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration );
     }
-    public static float GetRivalDistance(float bspd, float enbr, float espd, float encd, float rt)
+    public static float GetRivalDistance(float baseSpeed, float engineCount, float boostSpeed, float engineCD, float raceTime)
     {
-        float euse = Mathf.Floor(rt / encd)* enbr;
-        float eint = rt - euse * encd;
-        return bspd * rt
-                    + espd * encd * (euse * (euse - 1) / 2f)
-                    + espd * euse * eint / 2f;
+        float interval = engineCD / engineCount;
+        float useCount = Mathf.Floor(raceTime / interval);
+        float leftoverTime = raceTime - useCount * interval;
+        return baseSpeed * raceTime
+                    + boostSpeed * (engineCD * (useCount * (useCount - 1) / 2f) + useCount * leftoverTime / 2f);
     }
 }

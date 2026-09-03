@@ -66,7 +66,7 @@ public class DragDropToken : PartButtonScaleable
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (slot.Interactable)
+        if (slot?.Interactable ?? false)
         {
             dragDropMode = true;
             dragStart = Time.time;
@@ -117,6 +117,17 @@ public class DragDropToken : PartButtonScaleable
 
                         AttachToSlot(nslot, false);
                         return true;
+                    }
+                    else
+                    {
+                        Vector2 realPos = transform.position + Delta();
+                        Vector2Int slotCoords = nslot.grid.GetGridPosition(realPos);
+                        var overlapping = DataItemPlayer.main.car.GetPartsOccupying(mPart, slotCoords.x, slotCoords.y, rotation);
+                        foreach (var token in parent.tokens.Where(t => overlapping.Any(p => p == t.mPart)))
+                        {
+                            if (TryMergeAnother(token))
+                                break;
+                        }
                     }
                 }
             }
@@ -206,7 +217,6 @@ public class DragDropToken : PartButtonScaleable
     {
         if (slot != null && slot != target && this.slot.slot != DragDropSlot.TokenSlot.build)
             slot.ClearToken();
-        slot = target;
         if (target.slot == DragDropSlot.TokenSlot.build)
         {
             if (!force)
@@ -215,10 +225,11 @@ public class DragDropToken : PartButtonScaleable
                 Vector2Int slotCoords = target.grid.GetGridPosition(realPos);
                 if (mPart.scriptable.partType != ItemDefines.PartType.expansion)
                 {
+                    slot = target;
                     foreach (var d in ShipDefines.deltaPos)
                     {
                         if (DataItemPlayer.main.car.TryPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
-                            return;
+                            return ;
                     }
                 }
                 else
@@ -229,20 +240,15 @@ public class DragDropToken : PartButtonScaleable
                         ViewManager.Instance.shop.Refresh();
                         ViewManager.Instance.shop.playership.UpdateGrid();
                     }
-                    else
-                    {
-                        var overlapping = DataItemPlayer.main.car.GetPartsOccupying(mPart, slotCoords.x, slotCoords.y, rotation);
-                        foreach (var token in parent.tokens.Where(t => overlapping.Any(p => p == t.mPart)))
-                        {
-                            if (TryMergeAnother(token))
-                                break;
-                        }
-                    }
                 }
+            }else
+            {
+                slot = target;
             }
         }
         else
         {
+            slot = target;
             slot.attachedToken = this;
         }
     }

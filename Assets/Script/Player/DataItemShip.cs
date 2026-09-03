@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DataItemShip : DataItemGrid
@@ -10,7 +12,7 @@ public class DataItemShip : DataItemGrid
     public DataItemPart[,] occupied;
 
     public DataItemPart lastAppliedExpansion;
-    public HashSet<Vector2Int> lastExpansionSlots=new();
+    public HashSet<Vector2Int> lastExpansionSlots = new();
     public DataItemShip(ShipScriptable so, bool giveStart)
     {
         scriptable = so;
@@ -76,11 +78,11 @@ public class DataItemShip : DataItemGrid
                     int px = oX + x;
                     int py = oY + y;
 
-                    if (!Valid(px, py)
-                            && (Valid(px+1, py)
-                            || Valid(px-1, py)
-                            || Valid(px, py+1)
-                            || Valid(px, py-1))) return true;
+                    if (!GetValue(px, py)
+                            && (GetValue(px + 1, py)
+                            || GetValue(px - 1, py)
+                            || GetValue(px, py + 1)
+                            || GetValue(px, py - 1))) return true;
                 }
             }
         }
@@ -116,7 +118,7 @@ public class DataItemShip : DataItemGrid
     public bool Valid(int px, int py)
     {
 
-        if (!GetValue(px, py))  return false;
+        if (!GetValue(px, py)) return false;
         if (IsOccupied(px, py)) return false;
         return true;
     }
@@ -157,7 +159,26 @@ public class DataItemShip : DataItemGrid
     }
     public DataItemPart[] GetPartsOccupying(DataItemPart placement, int oX, int oY, int rotation)
     {
-        throw new NotImplementedException();
+        HashSet<DataItemPart> parts = new();
+
+        bool[,] shape = placement.RetrieveRotated(placement.rotation);
+        int shapeWidth = shape.GetLength(0);
+        int shapeHeight = shape.GetLength(1);
+
+        for (int x = 0; x < shapeWidth; x++)
+        {
+            for (int y = 0; y < shapeHeight; y++)
+            {
+                if (!shape[x, y]) continue;
+
+                int px = placement.originX + x;
+                int py = placement.originY + y;
+
+                if (occupied[x, y] != null)
+                    parts.Add(occupied[x, y]);
+            }
+        }
+        return parts.ToArray();
     }
     #endregion
     #region Place/Remove Parts
@@ -217,7 +238,7 @@ public class DataItemShip : DataItemGrid
         {
             for (int y = 0; y < shapeHeight; y++)
             {
-                if (!shape[x, y] ) continue;
+                if (!shape[x, y]) continue;
 
                 int px = part.originX + x;
                 int py = part.originY + y;

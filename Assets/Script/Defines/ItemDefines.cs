@@ -24,6 +24,12 @@ public static class ItemDefines
         epic = 2,
         legendary = 3,
     }
+    public enum OverflowBehavior
+    {
+        unusable = 0,
+        chanceToFail = 1,
+        percentageStrength = 2,
+    }
     public enum PartType
     {
         other = 0,
