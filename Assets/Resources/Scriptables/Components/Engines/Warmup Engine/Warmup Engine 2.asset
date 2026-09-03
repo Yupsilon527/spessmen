@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Warmup Engine 2  OnTimePass
     maxUses: 0
-    cooldown: 2.6
+    cooldown: 0.8
     fuelCost: 48
+    overflow: 1
     classification: 3
     function: 1
     condition: 0
@@ -56,4 +57,5 @@ MonoBehaviour:
   priceMultiplier: 1.35
   weightMultiplier: 1
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0

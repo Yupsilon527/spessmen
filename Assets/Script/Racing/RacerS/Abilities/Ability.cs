@@ -105,22 +105,32 @@ public class Ability : Countdown
             float fCost = GetFuelCost();
 
             float strength = 1;
-            if (data.overflow == ItemDefines.OverflowBehavior.chanceToFail)
+            if (fCost > 0 && fuel < fCost)
             {
-                float castChance = caster.abilities.fuel.GetValue() / fCost;
-                float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
-                float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
-                strength = ranVal > castChance ? 1 : 0;
+                if (data.overflow == ItemDefines.OverflowBehavior.chanceToFail)
+                {
+                    if (fCost == 0)
+                    {
+                        strength = 1;
+                    }
+                    else
+                    {
+                        float castChance = caster.abilities.fuel.GetValue() / fCost;
+                        float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
+                        float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
+                        strength = ranVal > castChance ? 1 : 0;
+                    }
+                }
+                else if (data.overflow == ItemDefines.OverflowBehavior.percentageStrength)
+                {
+                    strength = fCost == 0 ? 1 : (fuel / fCost);
+                }
+                else
+                {
+                    strength = fuel > fCost ? 1 : 0;
+                }
             }
-            else if (data.overflow == ItemDefines.OverflowBehavior.percentageStrength)
-            {
-                strength = fuel / fCost;
-            }
-            else
-            {
-                strength = fuel > fCost ? 1 : 0;
-            }
-                if (strength>0)
+            if (strength>0)
             {
                 ActivateOnRacer(strength);
 

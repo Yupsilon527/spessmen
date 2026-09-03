@@ -1,21 +1,21 @@
 key,Id,English(en)
-alley,119278571520,Culdesac
-junkyard,,Junkyard
-nothing,186093834240,Nothing
-nothing_desc,361776451584, 
-fasterrival,331222195539968,Faster Rival
-fasterrival_desc,331222300397568,Your Rival is 2 times faster
-fuelcosnumption,331222300397569,Fuel Guzzler
-fuelcosnumption_desc,331222300397570,You consume 50% more fuel
-activecooldown,331222300397571,Pacifism
-activecooldown_desc,331222300397572,Active abilities 2x cooldown
-enginecooldown,331222300397573,Bad Mechanic
-enginecooldown_desc,331222300397574,Your engine and nitro cooldown is 50% longer.
-lapslonger,331222300397575,Longlaps
-lapslonger_desc,331222300397576,The lasp are 2 times longer!
-longerrace,331222308786176,Longrun
-longerrace_desc,331222308786177,The race is 50% longer!
-randomengine,331222308786178,Engine Chaos
-randomengine_desc,331222308786179,Opponents gain a random engine!
-randomgadget,331222308786180,Gadget Chaos
-randomgadget_desc,331222308786181,Opponents gain a random gadget!
+"alley",119278571520,"Culdesac"
+"junkyard",1575318834810880,"Junkyard"
+"nothing",186093834240,"Nothing"
+"nothing_desc",361776451584," "
+"fasterrival",331222195539968,"Faster Rival"
+"fasterrival_desc",331222300397568,"Your Rival is 2 times faster"
+"fuelcosnumption",331222300397569,"Fuel Guzzler"
+"fuelcosnumption_desc",331222300397570,"You consume 50% more fuel"
+"activecooldown",331222300397571,"Pacifism"
+"activecooldown_desc",331222300397572,"Active abilities 2x cooldown"
+"enginecooldown",331222300397573,"Bad Mechanic"
+"enginecooldown_desc",331222300397574,"Your engine and nitro cooldown is 50% longer."
+"lapslonger",331222300397575,"Longlaps"
+"lapslonger_desc",331222300397576,"The lasp are 2 times longer!"
+"longerrace",331222308786176,"Longrun"
+"longerrace_desc",331222308786177,"The race is 50% longer!"
+"randomengine",331222308786178,"Engine Chaos"
+"randomengine_desc",331222308786179,"Opponents gain a random engine!"
+"randomgadget",331222308786180,"Gadget Chaos"
+"randomgadget_desc",331222308786181,"Opponents gain a random gadget!"

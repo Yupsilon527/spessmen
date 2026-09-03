@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Jammed Engine 3 GasAbove OnTimePass
     maxUses: 0
-    cooldown: 2
+    cooldown: 1.25
     fuelCost: 49
+    overflow: 2
     classification: 3
     function: 1
     condition: 7
@@ -43,6 +44,7 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 2
     fuelCost: 0
+    overflow: 2
     classification: 3
     function: 1
     condition: 8
@@ -67,4 +69,5 @@ MonoBehaviour:
   priceMultiplier: 1.1
   weightMultiplier: 1
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0

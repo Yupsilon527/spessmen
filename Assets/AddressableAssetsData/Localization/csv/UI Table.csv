@@ -30,3 +30,14 @@ key,Id,English(en)
 "done loading",3247582407987200,"Click Anywhere To Play"
 "char sel",3247589177593856,"Pick a Racer!"
 "record label",3249409245483008,"Your record: %ownDistance%m (%ownSpeed%km/h)"
+"settings",5072056056975360,"Settings"
+"resume",5076274511777792,"Resume"
+"quit",5079221274578944,"Main Menu"
+"loading
+",5098900282052608,"Loading
+"
+"stash",5100613504241664,"Stash"
+"undo",6112203733110784,"Undo"
+"seasonend",6236537424351232,"Winner gets double score!"
+"new game",9428494405505024,"New Run"
+"continue run",9428523656581120,"Continue Run"

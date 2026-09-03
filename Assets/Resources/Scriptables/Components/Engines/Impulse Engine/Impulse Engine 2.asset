@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Impulse Engine 2  OnTimePass
     maxUses: 0
-    cooldown: 3.5
+    cooldown: 0.9
     fuelCost: 63
+    overflow: 1
     classification: 3
     function: 1
     condition: 0
@@ -58,4 +59,5 @@ MonoBehaviour:
   priceMultiplier: 1.25
   weightMultiplier: 1
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0

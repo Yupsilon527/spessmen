@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Rubberband Engine 4  OnTimePass
     maxUses: 0
-    cooldown: 1.5
+    cooldown: 0.75
     fuelCost: 42
+    overflow: 2
     classification: 3
     function: 1
     condition: 0
@@ -56,4 +57,5 @@ MonoBehaviour:
   priceMultiplier: 1.15
   weightMultiplier: 0.4
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0

@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Engine 4  OnTimePass
     maxUses: 0
-    cooldown: 1.75
+    cooldown: 0.875
     fuelCost: 50
+    overflow: 1
     classification: 3
     function: 1
     condition: 0
@@ -47,4 +48,5 @@ MonoBehaviour:
   priceMultiplier: 1
   weightMultiplier: 1.6
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0

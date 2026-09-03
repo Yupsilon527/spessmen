@@ -23,8 +23,9 @@ MonoBehaviour:
   abilities:
   - InternalName: Basic Can 4  OnTimePass
     maxUses: 0
-    cooldown: 4
+    cooldown: 0.6
     fuelCost: 0
+    overflow: 0
     classification: 2
     function: 1
     condition: 0
@@ -47,4 +48,5 @@ MonoBehaviour:
   priceMultiplier: 0.87
   weightMultiplier: 0.66
   unique: 0
+  rotating: 1
   lockedForSomeReason: 0
