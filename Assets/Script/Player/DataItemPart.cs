@@ -9,6 +9,7 @@ public class DataItemPart : DataItemGrid
     public int originX;
     public int originY;
     public float purchaseCost = 0;
+    public float givenSpeed, givenFuel;
 
     public DataItemPart(PartScriptable so, float purchaseCost)
     {
@@ -62,10 +63,10 @@ public class DataItemPart : DataItemGrid
     }
     public float GetSpeedGranted(Racer racer)
     {
-        return racer.abilities.GetAbilitiesCorrespondingToPart(scriptable).Sum(a => a.grantedSpeed);
+        return givenSpeed;
     }
     public float GetFuelGranted(Racer racer)
     {
-        return racer.abilities.GetAbilitiesCorrespondingToPart(scriptable).Sum(a => a.grantedFuel);
+        return givenFuel;
     }
 }

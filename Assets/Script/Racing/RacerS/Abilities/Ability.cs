@@ -4,14 +4,13 @@ public class Ability : Countdown
 {
     int useCount = 0;
     public Racer caster;
+    public DataItemPart part;
     public PartAbility data;
-
-
-    public float grantedSpeed, grantedFuel = 0;
 
     public Ability(PartAbility a, DataItemPart part, Racer caster)
     {
         data = a;
+        this.part = part;
         this.caster = caster;
     }
     public Ability(PartAbility a, Racer caster)
@@ -176,10 +175,10 @@ public class Ability : Countdown
     }
     public void RegisterGrantedSpeed(float amt)
     {
-        grantedSpeed += amt;
+        if (part != null) part.givenSpeed += amt;
     }
     public void RegisterGrantedFuel(float amt)
     {
-        grantedFuel += amt;
+        if (part != null) part.givenFuel += amt;
     }
 }

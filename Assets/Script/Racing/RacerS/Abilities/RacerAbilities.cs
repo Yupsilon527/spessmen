@@ -89,9 +89,8 @@ public class RacerAbilities : RacerComponent
     {
         return abilities.Where(a => a.data.classification == type).ToArray();
     }
-    public Ability[] GetAbilitiesCorrespondingToPart(PartScriptable part)//REDO
+    public Ability[] GetAbilitiesCorrespondingToPart(DataItemPart part)
     {
-        var valid = part.abilities.Select(p => p.InternalName);
-        return abilities.Where(a => valid.Contains(a.data.InternalName)).ToArray();
+        return abilities.Where(a => a.part == part).ToArray();
     }
 }

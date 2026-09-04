@@ -28,7 +28,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
     }
     public Ability[] GetCorrespondingAbilities()
     {
-        return TourneyController.main.GetPlayerRacer().abilities.GetAbilitiesCorrespondingToPart(mPart.scriptable);
+        return TourneyController.main.GetPlayerRacer().abilities.GetAbilitiesCorrespondingToPart(mPart);
     }
     protected override void Redraw()
     {
