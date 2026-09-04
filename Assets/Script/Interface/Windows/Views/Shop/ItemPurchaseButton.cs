@@ -33,7 +33,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         else
         {
             var customer = purchasingPlayaer;
-            ShowItemAction(customer, purchase.part);
+            ShowItemAction(customer, purchase.scriptable);
             purchaseData = purchase;
             UpdatePrice();
             if (button != null)
@@ -133,7 +133,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     {
         if (purchaseData!= null && shop != null && shop.tooltip!=null)
         {
-            shop.tooltip.ShowPart(purchaseData.part,true,false);
+            shop.tooltip.ShowPart(purchaseData);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

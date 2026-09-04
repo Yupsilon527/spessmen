@@ -180,6 +180,14 @@ MonoBehaviour:
     m_Localized: Continue Run
     m_Metadata:
       m_Items: []
+  - m_Id: 9794563599142912
+    m_Localized: 'Fuel Given: %value%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9794526043344896
+    m_Localized: 'Speed Given: %value%km/h'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

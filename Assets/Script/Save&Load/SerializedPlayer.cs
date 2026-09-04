@@ -48,7 +48,7 @@ public class SerializedPurchaseData : SerializableData<PurchaseData>
 
     public SerializedPurchaseData(PurchaseData data) : base(data)
     {
-        part = data.part.InternalName;
+        part = data.scriptable.InternalName;
         discount = data.discount;
         purchased = data.wasPurchased;
        locked = data.playerLocked;

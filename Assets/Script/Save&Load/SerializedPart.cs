@@ -5,7 +5,7 @@ public class SerializedPart : SerializableData<DataItemPart>
 {
     public string internalName;
     public int x, y, r;
-    public float cost;
+    public float cost,speedGiven, fuelGiven;
     public SerializedPart(DataItemPart data) : base(data)
     {
         internalName = data.scriptable.InternalName;

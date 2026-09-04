@@ -177,6 +177,14 @@ MonoBehaviour:
     m_Key: continue run
     m_Metadata:
       m_Items: []
+  - m_Id: 9794526043344896
+    m_Key: grantedspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9794563599142912
+    m_Key: grantedfuel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

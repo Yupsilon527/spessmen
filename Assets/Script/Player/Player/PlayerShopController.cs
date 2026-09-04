@@ -75,7 +75,7 @@ public class PlayerShopController : PlayerComponent
             {
                 itemActions.Add(newItem);
             }
-            player.score.GiveLuck(newItem.part.boonRarity);
+            player.score.GiveLuck(newItem.scriptable.boonRarity);
         }
     }
 }

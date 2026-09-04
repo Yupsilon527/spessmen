@@ -60,4 +60,12 @@ public class DataItemPart : DataItemGrid
     {
         return scriptable.InternalName + "Data" ;
     }
+    public float GetSpeedGranted(Racer racer)
+    {
+        return racer.abilities.GetAbilitiesCorrespondingToPart(scriptable).Sum(a => a.grantedSpeed);
+    }
+    public float GetFuelGranted(Racer racer)
+    {
+        return racer.abilities.GetAbilitiesCorrespondingToPart(scriptable).Sum(a => a.grantedFuel);
+    }
 }

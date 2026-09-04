@@ -63,19 +63,22 @@ public class PlayerStatsAlteration
         switch (stat)
         {
             case StatType.BaseSpeed:
+                 oldSpeed = target.stats.baseSpeed;
                 ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
-                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed); 
+                source.RegisterGrantedSpeed(target.stats.baseSpeed - oldSpeed); 
                 break;
             case StatType.BoostSpeed:
+                oldSpeed = target.stats.boosterSpeed;
                 ApplyToStat(ref target.stats.boosterSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
-                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed);
+                source.RegisterGrantedSpeed(target.stats.boosterSpeed - oldSpeed);
                 break;
             case StatType.TotalSpeed:
-                ApplyToStat(ref target.stats.alteredSpeed, GetEffectiveChange(caster, mult, self));
+                float efCh = GetEffectiveChange(caster, mult, self);
+                ApplyToStat(ref target.stats.alteredSpeed, efCh);
                 target.stats.SetDirty();
-                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed);
+                source.RegisterGrantedSpeed(efCh);
                 break;
             case StatType.FillGas:
                 float gasGiven = GetEffectiveChange(caster, mult, self);

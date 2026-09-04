@@ -93,7 +93,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
     {
         if (mPart != null && ViewManager.Instance.race != null && ViewManager.Instance.race.tooltip != null)
         {
-            ViewManager.Instance.race.tooltip.ShowPart(mPart.scriptable,false,false);
+            ViewManager.Instance.race.tooltip.ShowPart(mPart,false);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

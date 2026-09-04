@@ -1,6 +1,7 @@
 TODO
 
 FIX
+	BUG reset race item remain? (gamestart)
 	distance to beat
 QoL
 	char loadout already set up

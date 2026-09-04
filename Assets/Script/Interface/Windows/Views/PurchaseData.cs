@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PurchaseData
 {
-    public PartScriptable part;
+    public PartScriptable scriptable;
     public float purchaseCost;
     public float discount;
     public bool playerLocked = false;
@@ -16,13 +16,13 @@ public class PurchaseData
         var pickedItem = WeightList.PickWeight(valid);
         if (pickedItem != null)
         {
-            part = pickedItem.part;
+            scriptable = pickedItem.part;
         }
 
         float price = DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_prices);
-        if (part.abilities.Any(a => a.function == ShipDefines.PartEvent.OnActivated))
+        if (scriptable.abilities.Any(a => a.function == ShipDefines.PartEvent.OnActivated))
             price *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.active_prices);
-        switch (part.partType)
+        switch (scriptable.partType)
         {
             case ItemDefines.PartType.engine:
                 price *= DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.engine_prices);
@@ -91,7 +91,7 @@ public class PurchaseData
 
     public PurchaseData(PartScriptable action, float price = 1)
     {
-        part = action;
+        scriptable = action;
         SetDiscount(price);
     }
 
@@ -99,11 +99,11 @@ public class PurchaseData
     public void SetDiscount(float price)
     {
         discount = price;
-        purchaseCost = part.GetBasePrice() * discount;
+        purchaseCost = scriptable.GetBasePrice() * discount;
     }
     public bool CanBePurchased(DataItemPlayer purchasingPlayer)
     {
-        return !wasPurchased && part != null;
+        return !wasPurchased && scriptable != null;
     }
     public bool MakePurchase(DataItemPlayer purchasingPlayaer)
     {
