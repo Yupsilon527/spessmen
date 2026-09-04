@@ -69,6 +69,7 @@ public class TourneyController : Initializable
             case TourneyPhase.beforeRace:
                 ArenaController.main.parallax.SetWorldDelta(0);
                 ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
+                ArenaController.main.OnNewRaceBegin() ;
                 break;
             case TourneyPhase.setup:
                 if (currentPhase == TourneyPhase.beforeRace || !ongoingRace.IsRunning())
@@ -79,6 +80,7 @@ public class TourneyController : Initializable
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
                     }
+                 //   ArenaController.main.OnNewRaceBegin();
                 }
                 break;
             case TourneyPhase.racing:

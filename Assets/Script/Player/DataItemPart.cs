@@ -9,6 +9,7 @@ public class DataItemPart : DataItemGrid
     public int originX;
     public int originY;
     public float purchaseCost = 0;
+
     public DataItemPart(PartScriptable so, float purchaseCost)
     {
         Transform(so);

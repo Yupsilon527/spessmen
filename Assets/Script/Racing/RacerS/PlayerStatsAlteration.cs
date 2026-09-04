@@ -56,32 +56,53 @@ public class PlayerStatsAlteration
     {
         return target!=null;
     }
-    public virtual void GiveToPlayer(Racer caster, Racer target, float mult)
+    public virtual void GiveToPlayer(Racer caster, Racer target, Ability source, float mult)
     {
         bool self = caster == target;
+        float oldSpeed = target.stats.realSpeed;
         switch (stat)
         {
             case StatType.BaseSpeed:
                 ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
+                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed); 
                 break;
             case StatType.BoostSpeed:
                 ApplyToStat(ref target.stats.boosterSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
-                break;
-            case StatType.FillGas:
-                target.abilities.fuel.GiveValue(GetEffectiveChange(caster, mult, self));
+                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed);
                 break;
             case StatType.TotalSpeed:
                 ApplyToStat(ref target.stats.alteredSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
+                source.RegisterGrantedSpeed(target.stats.realSpeed - oldSpeed);
+                break;
+            case StatType.FillGas:
+                float gasGiven = GetEffectiveChange(caster, mult, self);
+                target.abilities.fuel.GiveValue(gasGiven);
+                source.RegisterGrantedFuel(gasGiven);
+                break;
+            case StatType.RefundGasCost:
+                float gasRefunded = GetEffectiveChange(caster, mult, self) * source.GetFuelCost();
+                target.abilities.fuel.GiveValue(gasRefunded);
+                source.RegisterGrantedFuel(gasRefunded);
+                break;
+            case StatType.GrantUse:
+                source.RefreshUses(GetEffectiveChange(caster, mult, self));
                 break;
             case StatType.RefreshCooldowns:
             case StatType.RefreshNitros:
             case StatType.RefreshEngines:
             case StatType.RefreshGadgets:
+            case StatType.RefreshSelf:
                 float CD = GetEffectiveChange(caster, mult, self);
-                foreach (var ab in stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine))
+
+                var valid = stat == StatType.RefreshSelf ? new Ability[] { source } :
+                    stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : 
+                    target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : 
+                    stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine);
+
+                foreach (var ab in valid)
                 {
                     if (CD> 0)
                     ab.Shorten(CD);

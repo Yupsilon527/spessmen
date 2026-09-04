@@ -32,6 +32,9 @@ public static class ShipDefines
         RefreshGadgets,
         RefreshNitros,
         RefreshCooldowns,
+        RefreshSelf,
+        RefundGasCost,
+        GrantUse,
     }
     public enum PartEvent
     {

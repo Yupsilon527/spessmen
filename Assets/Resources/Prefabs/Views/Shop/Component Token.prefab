@@ -189,6 +189,7 @@ MonoBehaviour:
   outline: {fileID: 929213072786449635}
   rotation: 0
   parent: {fileID: 0}
+  justPurchase: 0
   eventTrigger: {fileID: 1628595322529547726}
 --- !u!114 &1628595322529547726
 MonoBehaviour:
@@ -812,6 +813,10 @@ PrefabInstance:
     - target: {fileID: 5944159193736484535, guid: 5274e3cc82940b542a8f3f21c14617db, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944159193736484535, guid: 5274e3cc82940b542a8f3f21c14617db, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6070557235178330628, guid: 5274e3cc82940b542a8f3f21c14617db, type: 3}
       propertyPath: m_Sprite

@@ -54,6 +54,12 @@ public class ArenaController : MonoBehaviour
         HandleFloatingText();
     }
     }
+    public void OnNewRaceBegin()
+    {
+        ResetAnimations();
+        UpdateRacerPositions();
+        HandleFloatingText();
+    }
     public void UpdateRacerPositions()
     {
         var playerRacer = GetPlayerRacer();

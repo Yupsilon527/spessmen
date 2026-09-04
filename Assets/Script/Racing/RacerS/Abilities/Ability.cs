@@ -6,6 +6,9 @@ public class Ability : Countdown
     public Racer caster;
     public PartAbility data;
 
+
+    public float grantedSpeed, grantedFuel = 0;
+
     public Ability(PartAbility a, DataItemPart part, Racer caster)
     {
         data = a;
@@ -17,7 +20,7 @@ public class Ability : Countdown
         this.caster = caster;
     }
 
-    float GetFuelCost()
+    public float GetFuelCost()
     {
         float baseCost = data.fuelCost * caster.GetPropertyMultiplicative(ModifierDefines.Property.fuel_consumption_total);
         if (data.function == ShipDefines.PartEvent.OnActivated)
@@ -54,7 +57,7 @@ public class Ability : Countdown
     }
     public void ActivateOnRacer(float strength = 1)
     {
-        useCount++;
+        Use();
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
         foreach (ConditionalPartAltetration action in data.actions)
         {
@@ -93,7 +96,7 @@ public class Ability : Countdown
                     strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
                 }
             }
-            action.GiveToPlayer(this.caster, target, strength);
+            action.GiveToPlayer(this.caster, target,this, strength);
         }
     }
     public bool Activate(ShipDefines.PartEvent evt)
@@ -158,9 +161,25 @@ public class Ability : Countdown
     {
         Set(GetPartCooldown() * mult);
     }
+    public void Use(float val = 1)
+    {
+        useCount += Mathf.CeilToInt(val);
+    }
+    public void RefreshUses(float val)
+    {
 
+        useCount =Mathf.Max(0, useCount-Mathf.CeilToInt(val));
+    }
     public override string ToString()
     {
         return data.InternalName + " AbilityData";
+    }
+    public void RegisterGrantedSpeed(float amt)
+    {
+        grantedSpeed += amt;
+    }
+    public void RegisterGrantedFuel(float amt)
+    {
+        grantedFuel += amt;
     }
 }
