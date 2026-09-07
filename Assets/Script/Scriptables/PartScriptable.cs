@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Component", menuName = "Data/Component Data")]
+[CreateAssetMenu(fileName = "Component", menuName = "Data/Parts/Component Data")]
 public class PartScriptable : ModifierScriptable
 {
     public PartAbility[] abilities;

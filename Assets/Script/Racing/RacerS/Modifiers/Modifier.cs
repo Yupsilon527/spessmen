@@ -9,6 +9,7 @@ public class Modifier : Countdown
     public List<ModifierDefines.State> states = new List<ModifierDefines.State>();
     public Dictionary<ModifierDefines.Property, float> properties = new Dictionary<ModifierDefines.Property, float>();
 
+    public ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent;
     public ModifierDefines.Priority priority;
     public ModifierDefines.Flag flag;
     public ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique;

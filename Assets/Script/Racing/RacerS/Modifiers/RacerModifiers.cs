@@ -87,6 +87,7 @@ public class RacerModifiers : PropertyComponent
     public bool Add(Modifier Modifier, bool skipImmunityCheck = false, bool refresh = true)
     {
      //   if (!skipImmunityCheck && IsImmuneToModifier(Modifier)) { return false; }
+     if (Modifier.expire == ModifierDefines.ExpireType.Time)
         Modifier.Restart(Time.time);
         switch (Modifier.behavior)
         {
@@ -337,4 +338,31 @@ public class RacerModifiers : PropertyComponent
 
         return GetState(ModifierDefines.State.debuff_immune) && mod.IsNegative();
     }*/
+    #region Timely Update
+    float nextUpdateTime = 0;
+    bool HasUpdates = false;
+    public void FixedUpdate()
+    {
+        if (HasUpdates && nextUpdateTime < Time.time)
+        {
+            nextUpdateTime = Time.time + 1;
+            foreach (Modifier Mod in modifiers.ToArray())
+            {
+                if (Mod.dead) continue;
+                if (!Mod.IsExpired())
+                {
+                    if (Mod.expire == ModifierDefines.ExpireType.Time )
+                    {
+                        HasUpdates = true;
+                    }
+                    nextUpdateTime = Mathf.Min(nextUpdateTime, Mod.GetEndTime());
+                }
+                else
+                {
+                    Mod.Die(true);
+                }
+            }
+        }
+    }
+    #endregion
 }

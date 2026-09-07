@@ -100,13 +100,18 @@ public static class ModifierDefines
         starting_cooldown_mult = 50,
         total = 51,
     };
-    public enum State   //TODO
+    public enum State   
     {
         Stunned = 0,
         CanOvergas = 1,
         AbilityImmune = 2,
         StunImmune = 3,
         Total = 4,
+    }
+    public enum ExpireType
+    {
+        Permanent = 0,
+        Time = 1,
     }
     public static bool IsPropertyMultiplicative(Property Property)
     {
