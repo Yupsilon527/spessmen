@@ -64,7 +64,7 @@ public class Ability : Countdown
             var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
             TourneyController.main.Inspect($"{caster} uses ability {action.behavior} at {data.function} on {target}");
 
-            if (!action.CanAffectRacer(target)) continue;
+            if (!action.CanAffectRacer(target) ||( caster!= target && target.GetState(ModifierDefines.State.AbilityImmune))) continue;
 
              strength *= this.caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
 

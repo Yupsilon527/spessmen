@@ -45,4 +45,8 @@ public class RacerPosition : RacerComponent
                 break;
         }
     }
+    bool CanMove()
+    {
+        return racer.GetState(ModifierDefines.State.Stunned) && !racer.GetState(ModifierDefines.State.StunImmune);
+    }
 }

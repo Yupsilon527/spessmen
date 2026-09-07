@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using UnityEngine.Events;
 
 public abstract class Resource
@@ -28,13 +27,13 @@ public abstract class Resource
     public abstract float GetDifference();
 
 
-    public abstract void SetValue(float value);
-    public virtual void GiveValue(float value)
+    public abstract void SetValue(float value, bool absolute = false);
+    public virtual void GiveValue(float value, bool ignoreLimit = false)
     {
         if (resourceDebug) Debug.Log($"[{name}]  Give " + value);
         if (value != 0)
         {
-            SetValue(GetValue() + value);
+            SetValue(GetValue() + value, ignoreLimit);
         }
     }
 
@@ -57,7 +56,7 @@ public abstract class Resource
 
     public abstract void SetLimit(float value, LimitRule rule = LimitRule.leave_value, bool hard = false);
 
-    public virtual bool ChargeValue(float value)
+    public virtual bool ChargeValue(float value, bool canNegative= false)
     {
         if (resourceDebug) Debug.Log($"[{name}]  Charge " + value);
         if (value == 0)
@@ -68,7 +67,10 @@ public abstract class Resource
         {
             return false;
         }
-        GiveValue(-value);
+        if (value != 0)
+        {
+            SetValue(GetValue() - value,canNegative);
+        }
         return true;
     }
     public bool ChargePercentage(float value,bool total)
@@ -135,15 +137,15 @@ public class ResourceFloat : Resource
         d = (int)Mathf.Max(1, Mathf.Pow(10, d));
         return Mathf.Round(values[0] * d) / d;
     }
-    public override void SetValue(float value)
+    public override void SetValue(float value, bool ignoreLimit = false)
     {
         float oldlife = values[0];
-        if (hasHardLimit)
+        if (hasHardLimit && !ignoreLimit)
             values[0] = Mathf.Min(value, values[1]);
         else
             values[0] = value;
 
-        if (!canNegative && values[0] < 0)
+        if (!canNegative && values[0] < 0 && !ignoreLimit)
         {
             values[0] = Mathf.Max(0, values[0]);
         }
@@ -240,15 +242,15 @@ public class ResourceInt : Resource
         d = (int)Mathf.Max(1, Mathf.Pow(10, d));
         return Mathf.Round(values[0] * d) / d;
     }
-    public override void SetValue(float value)
+    public override void SetValue(float value, bool ignoreLimit)
     {
         float oldlife = values[0];
-        if (hasHardLimit)
+        if (hasHardLimit && !ignoreLimit)
             values[0] = Mathf.RoundToInt( Mathf.Min(value, values[1]));
         else
             values[0] = Mathf.RoundToInt(value);
 
-        if (!canNegative && values[0]<0)
+        if (!canNegative && !ignoreLimit && values[0]<0)
         {
             values[0] = Mathf.Max(0, values[0]);
         }
@@ -264,12 +266,12 @@ public class ResourceInt : Resource
         {
             case LimitRule.leave_value:
                 values[1] = ivalue;
-                SetValue(values[0]);
+                SetValue(values[0],false);
                 break;
             case LimitRule.give_difference:
                 float difference = value - values[1];
                 values[1] = ivalue;
-                SetValue(values[0] + difference);
+                SetValue(values[0] + difference,false);
                 break;
             case LimitRule.percent_value:
                 float percent = GetPercentage();
@@ -296,9 +298,9 @@ public class ResourceInt : Resource
         }
         if (resourceDebug) Debug.Log($"[{name}]  Set Max to " + value);
     }
-    public override void GiveValue(float value)
+    public override void GiveValue(float value, bool absolute)
     {
-        base.GiveValue(Mathf.Floor(value));
+        base.GiveValue(Mathf.Floor(value), absolute);
     }
     public override float RemainingValue(float value)
     {
@@ -308,8 +310,8 @@ public class ResourceInt : Resource
     {
         return base.SubstractedValue(Mathf.Ceil(value));
     }
-    public override bool ChargeValue(float value)
+    public override bool ChargeValue(float value, bool ignoreLimit = false)
     {
-        return base.ChargeValue(Mathf.Ceil(value));
+        return base.ChargeValue(Mathf.Ceil(value),ignoreLimit);
     }
 }

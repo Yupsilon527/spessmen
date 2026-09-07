@@ -105,7 +105,8 @@ public static class ModifierDefines
         Stunned = 0,
         CanOvergas = 1,
         AbilityImmune = 2,
-        Total = 3,
+        StunImmune = 3,
+        Total = 4,
     }
     public static bool IsPropertyMultiplicative(Property Property)
     {

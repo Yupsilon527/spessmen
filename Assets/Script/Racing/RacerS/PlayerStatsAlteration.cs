@@ -19,6 +19,7 @@ public class PlayerStatsAlteration
             case StatType.BoostSpeed:
                 return ModifierDefines.Property.incoming_boost_speed_percentage;
             case StatType.FillGas:
+            case StatType.GasAbsolute:
                 return ModifierDefines.Property.incoming_gas_percentage;
         }
         return ModifierDefines.Property.total;
@@ -81,8 +82,9 @@ public class PlayerStatsAlteration
                 source.RegisterGrantedSpeed(efCh);
                 break;
             case StatType.FillGas:
+            case StatType.GasAbsolute:
                 float gasGiven = GetEffectiveChange(caster, mult, self);
-                target.abilities.fuel.GiveValue(gasGiven);
+                target.abilities.fuel.GiveValue(gasGiven, stat == StatType.GasAbsolute || target.GetState(ModifierDefines.State.CanOvergas));
                 source.RegisterGrantedFuel(gasGiven);
                 break;
             case StatType.RefundGasCost:

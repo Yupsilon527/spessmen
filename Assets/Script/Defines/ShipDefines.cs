@@ -35,6 +35,7 @@ public static class ShipDefines
         RefreshSelf,
         RefundGasCost,
         GrantUse,
+        GasAbsolute,
     }
     public enum PartEvent
     {
