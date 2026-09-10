@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Tag", menuName = "Data/Parts/Tag Data")]
-public class ApplyTagSo : BasEffectSo
+public class ApplyTagSo : BaseEffectSo
 {
     public string modifierName;
 

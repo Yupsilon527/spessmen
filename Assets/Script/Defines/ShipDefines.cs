@@ -36,6 +36,7 @@ public static class ShipDefines
         RefundGasCost,
         GrantUse,
         GasAbsolute,
+        SpeedSteal,
     }
     public enum PartEvent
     {

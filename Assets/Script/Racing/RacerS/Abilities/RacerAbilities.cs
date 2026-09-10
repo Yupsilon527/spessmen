@@ -32,7 +32,7 @@ public class RacerAbilities : RacerComponent
                 {
                     float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * .75f + .25f);
                     int level = TourneyController.main.GetCurrentRaceIndex();
-                    AddAbility(new Ability(PartAbility.NpcWheel(level, rnVal), racer));
+                    AddAbility(new Ability(AbilityData.NpcWheel(level, rnVal), racer));
 
                     int engLevel = level - RaceDefines.SeasonRaces + 1;
 
@@ -40,7 +40,7 @@ public class RacerAbilities : RacerComponent
                     for (int i = 0; i < numEngines; i++)
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
-                        AddAbility(new Ability(PartAbility.NpcEngine(engLevel, rnVal, 1f/numEngines), racer));
+                        AddAbility(new Ability(AbilityData.NpcEngine(engLevel, rnVal, 1f/numEngines), racer));
                     }
                 }
                 racer.modifiers.Refresh();

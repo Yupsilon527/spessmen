@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Built In Modifier", menuName = "Abilities/Effects/Built In Modifier")]
-public class BuiltinModifierSO : BasEffectSo
+public class BuiltinModifierSO : BaseEffectSo
 {
     [Header("Duration")]
     public float duration = 1;

@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Component", menuName = "Data/Parts/Component Data")]
 public class PartScriptable : ModifierScriptable
 {
-    public PartAbility[] abilities;
+    public AbilityData[] abilities;
     public MergeOutput[] combos;
     public Sprite icon;
     public ItemDefines.BoonRarity boonRarity;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using static ShipDefines;
 
@@ -81,6 +82,14 @@ public class PlayerStatsAlteration
                 target.stats.SetDirty();
                 source.RegisterGrantedSpeed(efCh);
                 break;
+            case StatType.SpeedSteal:
+                if (target == caster) return;
+                float stolen = GetEffectiveChange(caster, mult, self);
+                ApplyToStat(ref target.stats.alteredSpeed, -stolen);
+                ApplyToStat(ref caster.stats.alteredSpeed, stolen);
+                target.stats.SetDirty();
+                source.RegisterGrantedSpeed(stolen);
+                break;
             case StatType.FillGas:
             case StatType.GasAbsolute:
                 float gasGiven = GetEffectiveChange(caster, mult, self);
@@ -130,6 +139,42 @@ public class ConditionalPartAltetration : PlayerStatsAlteration
     public override bool CanAffectRacer(Racer target)
     {
         return base.CanAffectRacer(target) && RacerMeetsCondition(target, condition, conditionCheck);
+    }
+    public override void GiveToPlayer(Racer caster, Racer target, Ability source, float mult)
+    {
+        TourneyController.main.Inspect($"{caster} inflicts {behavior} on {target}");
+        if (!CanAffectRacer(target) || (caster != target && target.GetState(ModifierDefines.State.AbilityImmune))) return;
+
+        mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
+
+        if (target == caster)
+        {
+            if (stat == StatType.BaseSpeed
+                || stat == StatType.BoostSpeed
+                || stat == StatType.TotalSpeed)
+            {
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
+                if (source.data.classification == ItemDefines.PartType.wheel)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
+                else if (source.data.classification == ItemDefines.PartType.engine)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
+                else if (source.data.classification == ItemDefines.PartType.nitro)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_nitro);
+            }
+            if (stat == StatType.BaseSpeed)
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
+            if (stat == StatType.BoostSpeed)
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
+        }
+        else
+        {
+            mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.effect_resistance);
+            if (stat == StatType.BaseSpeed || stat == StatType.BoostSpeed || stat == StatType.TotalSpeed)
+            {
+                mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
+            }
+        }
+        base.GiveToPlayer(caster, target, source, mult);
     }
 
 }

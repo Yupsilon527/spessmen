@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class AiRacer : Racer
 {
+    public enum AiSignal
+    {
+        Common,
+        Rubberband,
+        Refuel,
+    }
     Ability[] castables;
     public AiRacer(int rId) : base(rId)
     {
@@ -33,9 +39,9 @@ public class AiRacer : Racer
     {
         if (!a.CanBeActivated())
             return false;
-        if (TourneyController.main.ongoingRace.GetPositionForRacer(this) == 0 && a.data.actions.Any(e => e.effectTarget == RaceDefines.AbilityTarget.FrontRacer))
+        if (TourneyController.main.ongoingRace.GetPositionForRacer(this) == 0 && a.data.aiSignal== AiSignal.Rubberband)
             return false;
-        if (abilities.fuel.GetPercentage() > DifficultyDefines.aiUseAbilityChance && a.data.actions.Any(e => e.value > 0 && e.stat == ShipDefines.StatType.FillGas))
+        if (abilities.fuel.GetPercentage() > DifficultyDefines.aiUseAbilityChance && a.data.aiSignal == AiSignal.Refuel)
             return false;
             return Random.value < DifficultyDefines.aiUseAbilityChance;
     }

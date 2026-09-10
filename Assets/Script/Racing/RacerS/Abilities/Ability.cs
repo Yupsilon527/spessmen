@@ -5,15 +5,15 @@ public class Ability : Countdown
     int useCount = 0;
     public Racer caster;
     public DataItemPart part;
-    public PartAbility data;
+    public AbilityData data;
 
-    public Ability(PartAbility a, DataItemPart part, Racer caster)
+    public Ability(AbilityData a, DataItemPart part, Racer caster)
     {
         data = a;
         this.part = part;
         this.caster = caster;
     }
-    public Ability(PartAbility a, Racer caster)
+    public Ability(AbilityData a, Racer caster)
     {
         data = a;
         this.caster = caster;
@@ -58,44 +58,12 @@ public class Ability : Countdown
     {
         Use();
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
-        foreach (ConditionalPartAltetration action in data.actions)
+        foreach (var action in data.actions)
         {
             var caster = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
             var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
-            TourneyController.main.Inspect($"{caster} uses ability {action.behavior} at {data.function} on {target}");
-
-            if (!action.CanAffectRacer(target) ||( caster!= target && target.GetState(ModifierDefines.State.AbilityImmune))) continue;
-
-             strength *= this.caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
-
-            if (target == this.caster)
-            {
-                if (action.stat == ShipDefines.StatType.BaseSpeed
-                    || action.stat == ShipDefines.StatType.BoostSpeed
-                    || action.stat == ShipDefines.StatType.TotalSpeed)
-                {
-                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
-                    if (data.classification == ItemDefines.PartType.wheel)
-                        strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
-                    else if (data.classification == ItemDefines.PartType.engine)
-                        strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
-                    else if (data.classification == ItemDefines.PartType.nitro)
-                        strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_nitro);
-                }
-                if (action.stat == ShipDefines.StatType.BaseSpeed)
-                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
-                if (action.stat == ShipDefines.StatType.BoostSpeed)
-                    strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
-            }
-            else
-            {
-                strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.effect_resistance);
-                if (action.stat == ShipDefines.StatType.BaseSpeed || action.stat == ShipDefines.StatType.BoostSpeed || action.stat == ShipDefines.StatType.TotalSpeed)
-                {
-                    strength *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
-                }
-            }
-            action.GiveToPlayer(this.caster, target,this, strength);
+            TourneyController.main.Inspect($"{caster} uses ability {data.function} on {target}");
+            action.d(this.caster, target,this, strength);
         }
     }
     public bool Activate(ShipDefines.PartEvent evt)

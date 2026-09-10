@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BasEffectSo : ScriptableObject
+public abstract class BaseEffectSo : ScriptableObject
 {
     public RaceDefines.AbilityTarget effectSource, effectTarget;
     public ShipDefines.PartCondition condition;
