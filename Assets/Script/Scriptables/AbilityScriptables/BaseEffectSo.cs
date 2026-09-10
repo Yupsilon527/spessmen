@@ -13,4 +13,8 @@ public abstract class BaseEffectSo : ScriptableObject
     {
         return target != null && ShipDefines.RacerMeetsCondition(target, condition, conditionCheck);
     }
+    public virtual string GetDescription()
+    {
+        return "NOT IMPLEMENTED";
+    }
 }

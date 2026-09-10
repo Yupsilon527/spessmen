@@ -13,6 +13,12 @@ public class Ability : Countdown
         this.part = part;
         this.caster = caster;
     }
+    public Ability(AbilityScriptable a, DataItemPart part, Racer caster)
+    {
+        data = a.Translate() ;
+        this.part = part;
+        this.caster = caster;
+    }
     public Ability(AbilityData a, Racer caster)
     {
         data = a;
