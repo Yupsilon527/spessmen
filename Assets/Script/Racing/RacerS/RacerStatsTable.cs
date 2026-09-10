@@ -65,7 +65,7 @@ public class RacerStatsTable : RacerComponent
 
         if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed)
         {
-            racer.abilities.ListenToEvent(PartEvent.OnSoundBarrierBroken);
+            racer.ListenToEvent(PartEvent.OnSoundBarrierBroken);
             brokenSoundBarrier = true;
         }
 

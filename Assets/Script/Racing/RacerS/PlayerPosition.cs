@@ -29,19 +29,19 @@ public class RacerPosition : RacerComponent
 
                 int position = TourneyController.main.ongoingRace.GetPositionForRacer(racer);
                 if (position > racerPosition)
-                    racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnOtherOvertaken);
+                    racer.ListenToEvent(ShipDefines.PartEvent.OnOtherOvertaken);
                 racerPosition = position;
 
                 bool overtakenRival = racer.GetRival() == null ? false : racerPosition > racer.GetRival().position.racerPosition;
                 if (aheadOfRival != overtakenRival)
                 {
                     if (overtakenRival)
-                        racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnRivalOvertaken);
+                        racer.ListenToEvent(ShipDefines.PartEvent.OnRivalOvertaken);
                     aheadOfRival = overtakenRival;
                 }
 
                 if (currentLap > lastLap)
-                    racer.abilities.ListenToEvent(ShipDefines.PartEvent.OnLapCompleted);
+                    racer.ListenToEvent(ShipDefines.PartEvent.OnLapCompleted);
                 break;
         }
     }

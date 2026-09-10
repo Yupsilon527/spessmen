@@ -238,4 +238,5 @@ public static class ModifierDefines
         }
         return desc;
     }
+    public delegate void ModifierAction(Modifier self);
 }

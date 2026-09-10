@@ -47,12 +47,6 @@ public class RacerAbilities : RacerComponent
                 racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
                 break;
-            case RaceDefines.RacePhase.RaceBegin:
-                ListenToEvent(ShipDefines.PartEvent.OnRaceStart);
-                break;
-            case RaceDefines.RacePhase.RaceTick:
-                ListenToEvent(ShipDefines.PartEvent.OnTimePass);
-                break;
         }
         base.HandleRacePhase(phase);
     }

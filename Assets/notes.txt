@@ -17,7 +17,6 @@ FEA
 	pickups
 
 	MECHANICS
-		stun and stun imm
 		topspeed
 			basespeed goes only up to topspeed, boostspeed unlimited
 			stat like speed, etc

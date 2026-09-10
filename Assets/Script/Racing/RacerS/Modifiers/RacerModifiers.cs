@@ -25,7 +25,7 @@ public class RacerModifiers : PropertyComponent
                 Refresh(true);
                 break;
             case RaceDefines.RacePhase.RaceTick:
-                Refresh(false);
+                Think();
                 break;
             case RaceDefines.RacePhase.RaceEnd:
                 modifiers.Clear();
@@ -33,6 +33,48 @@ public class RacerModifiers : PropertyComponent
 
         }
     }
+    #region Events
+
+    public void ListenToEvent(ShipDefines.PartEvent evt)
+    {
+        DataItemPlayer.main.Inspect($"{racer} activate ability {evt}");
+        foreach (Modifier modifier in modifiers)
+        {
+            if (!modifier.dead && !modifier.IsExpired())
+            {
+                modifier.ExecuteEvent(evt);
+            }
+        }
+    }
+    #endregion
+    #region Timely Update
+    float nextUpdateTime = 0;
+    bool HasUpdates = false;
+    public void Think()
+    {
+        if (HasUpdates && nextUpdateTime < Time.time)
+        {
+            nextUpdateTime = Time.time + 1;
+            foreach (Modifier Mod in modifiers.ToArray())
+            {
+                if (Mod.dead) continue;
+                if (!Mod.IsExpired())
+                {
+                    if (Mod.expire == ModifierDefines.ExpireType.Time)
+                    {
+                        HasUpdates = true;
+                    }
+                    nextUpdateTime = Mathf.Min(nextUpdateTime, Mod.GetEndTime());
+                }
+                else
+                {
+                    Mod.Die(true);
+                }
+            }
+        }
+        Refresh(false);
+    }
+    #endregion
     #region Refresh
     bool propRefresh = true;
     bool statRefresh = true;
@@ -182,6 +224,7 @@ public class RacerModifiers : PropertyComponent
     {
         UpdateModifierStates(Modifier);
         UpdateModifierProperties(Modifier);
+        Modifier.ExecuteEvent(ShipDefines.PartEvent.OnActivated);
 
       /*  foreach (Modifier Mod in modifiers)
         {
@@ -338,31 +381,4 @@ public class RacerModifiers : PropertyComponent
 
         return GetState(ModifierDefines.State.debuff_immune) && mod.IsNegative();
     }*/
-    #region Timely Update
-    float nextUpdateTime = 0;
-    bool HasUpdates = false;
-    public void FixedUpdate()
-    {
-        if (HasUpdates && nextUpdateTime < Time.time)
-        {
-            nextUpdateTime = Time.time + 1;
-            foreach (Modifier Mod in modifiers.ToArray())
-            {
-                if (Mod.dead) continue;
-                if (!Mod.IsExpired())
-                {
-                    if (Mod.expire == ModifierDefines.ExpireType.Time )
-                    {
-                        HasUpdates = true;
-                    }
-                    nextUpdateTime = Mathf.Min(nextUpdateTime, Mod.GetEndTime());
-                }
-                else
-                {
-                    Mod.Die(true);
-                }
-            }
-        }
-    }
-    #endregion
 }

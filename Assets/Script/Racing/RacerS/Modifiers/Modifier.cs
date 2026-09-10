@@ -106,4 +106,50 @@ public class Modifier : Countdown
             racer.modifiers.Refresh(false);
         }
     }
+    #region Functions
+    public Dictionary<ShipDefines.PartEvent, ModifierDefines.ModifierAction> functions = new Dictionary<ShipDefines.PartEvent, ModifierDefines.ModifierAction>();
+
+    public void AddFunction(ShipDefines.PartEvent evt, ModifierDefines.ModifierAction execution)
+    {
+        if (execution == null)
+        {
+            return;
+        }
+
+        functions.Add(evt, execution);
+
+    }
+
+    public void ExecuteFunction(ShipDefines.PartEvent act)
+    {
+        ExecuteEvent(act);
+    }
+
+    public void ExecuteEvent(ShipDefines.PartEvent act)
+    {
+        if (functions.TryGetValue(act, out ModifierDefines.ModifierAction func))
+            func.Invoke(this);
+    }
+
+    #endregion
+    #region Parameters
+    public Dictionary<string, float> parameters = new Dictionary<string, float>();
+    public void SetParameter(string name, float value)
+    {
+        if (parameters.ContainsKey(name))
+        {
+            parameters[name] = value;
+        }
+        else
+        {
+            parameters.Add(name, value);
+        }
+    }
+    public float GetParameter(string name)
+    {
+        if (parameters.TryGetValue(name, out var value))
+            return value;
+        return 0;
+    }
+    #endregion
 }

@@ -43,6 +43,20 @@ public class Racer
         {
             component.HandleRacePhase(phase);
         }
+        switch (phase)
+        {
+            case RaceDefines.RacePhase.RaceBegin:
+                ListenToEvent(ShipDefines.PartEvent.OnRaceStart);
+                break;
+            case RaceDefines.RacePhase.RaceTick:
+                ListenToEvent(ShipDefines.PartEvent.OnTimePass);
+                break;
+        }
+    }
+    public void ListenToEvent(ShipDefines.PartEvent evt)
+    {
+        abilities.ListenToEvent(evt);
+        modifiers.ListenToEvent(evt);
     }
     #region States and Properties
     public virtual bool GetState(ModifierDefines.State State)

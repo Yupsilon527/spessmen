@@ -137,17 +137,17 @@ public class Ability : Countdown
                 ActivateOnRacer(strength);
 
                 if (data.classification == ItemDefines.PartType.gadget)
-                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
+                    caster.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
                 else if (data.classification == ItemDefines.PartType.engine)
-                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
+                    caster.ListenToEvent(ShipDefines.PartEvent.OnEngineActivate);
                 else if (data.classification == ItemDefines.PartType.nitro)
-                    caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
+                    caster.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
 
                 if (data.function == ShipDefines.PartEvent.OnActivated)
                     if (data.cooldown > 1 || data.fuelCost > 20)
-                        caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
+                        caster.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
                     else
-                        caster.abilities.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
+                        caster.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
             }
             caster.abilities.fuel.SubstractedValue(fCost);
             FireCooldown(1);
