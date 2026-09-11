@@ -2,6 +2,7 @@
 
 public abstract class  GridScriptable : ScriptableBase
 {
+    public UnlockCondition condition ;
     public BoolGrid grid ;
 }
 
