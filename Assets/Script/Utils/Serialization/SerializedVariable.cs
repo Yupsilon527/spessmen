@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Variables
@@ -217,11 +218,7 @@ namespace Variables
         public bool AllConditionsMet(Condition[] cs)
         {
             if (cs != null && cs.Length > 0)
-                foreach (Condition c in cs)
-                {
-                    if (!ConditionMet(c))
-                        return false;
-                }
+                return cs.All(c => ConditionMet(c));
             return true;
         }
         #endregion
