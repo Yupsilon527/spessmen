@@ -24,9 +24,9 @@ public class GlossaryContainer : ContainerMenu
     public void FilterParts()
     {
         filtered = ResourceCache.main.parts.Where(p => 
-        p.IsUnlocked() &&
-        MatchesRarity(p) &&
-        MatchesPartType(p)
+        p.IsUnlocked() 
+      && MatchesRarity(p)
+     && MatchesPartType(p)
     ).ToList();
         Refresh();
     }
@@ -64,6 +64,7 @@ public class GlossaryContainer : ContainerMenu
             var gObject = PoolEmptyContainer();
             if (gObject.TryGetComponent(out GlossaryButton gloBtn))
             {
+                gObject.SetActive(true);
                 gloBtn.glossaryParent = parent;
                 gloBtn.AssignItem(item);
                 buttons.Add(gloBtn);

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Starter
   m_EditorClassIdentifier: 
   InternalName: Starter
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 10
     height: 10

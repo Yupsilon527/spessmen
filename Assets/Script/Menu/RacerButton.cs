@@ -9,6 +9,7 @@ public class RacerButton : RacerSelComponent
     {
         base.AssignScriptable(ship);
         portrait.sprite = ship.portrait;
+        portrait.color = ship.IsUnlocked() ? Color.white : Color.black;
     }
     public virtual void OnPress()
     {

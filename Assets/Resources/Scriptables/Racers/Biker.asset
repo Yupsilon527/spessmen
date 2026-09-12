@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Biker
   m_EditorClassIdentifier: 
   InternalName: Biker
+  condition:
+    lockedByDefault: 0
+    conditions:
+    - variableName: seasons_won
+      value: 0
+      check: 3
   grid:
     width: 10
     height: 10

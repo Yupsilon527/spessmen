@@ -1,6 +1,5 @@
 using System.Linq;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 
 public class RacerSelDescription : RacerSelComponent
 {
@@ -24,7 +23,7 @@ public class RacerSelDescription : RacerSelComponent
         else
         {
             title.text = LanguageController.main.Translate("Racers", "racer_locked");
-            title.text = LanguageController.main.Translate("Racers", ship.InternalName+"_unlock_condition");
+            desc.text = LanguageController.main.Translate("Racers", ship.InternalName+"_unlock_condition");
         }
     }
 }

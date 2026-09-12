@@ -79,6 +79,14 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st: class tank"
+	"st: class eng"
+	"st: cl aex"
+	"st: ass d"
+	"st: nitro "
+	"st: cl dec"
+	"st: cl exp"
+	"st: cl en"
 	"st: contu"
 	"st: new f"
 	"st: stash"
