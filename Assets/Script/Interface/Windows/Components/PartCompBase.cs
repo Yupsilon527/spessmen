@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
 
 public class PartCompBase : Initializable
@@ -8,6 +7,7 @@ public class PartCompBase : Initializable
     public Image partIcon;
     public TextMeshProUGUI title, subtitle, description, value;
     public GridPreview grid;
+    public Graphic[] rarityColors;
     public virtual void ShowPart(PartScriptable part)
     {
         if (title != null)
@@ -31,11 +31,12 @@ public class PartCompBase : Initializable
         {
             grid.Draw(part.grid);
         }
+        if (rarityColors != null)
+        {
+            foreach (var g in rarityColors)
+                g.color = ItemDefines.GetColorForRarity(part.boonRarity);
+        }
         if (toggleActive) gameObject.SetActive(true);
-    }
-    private void Start()
-    {
-        Clear();
     }
     public virtual void Clear()
     {
@@ -62,6 +63,11 @@ public class PartCompBase : Initializable
         if (partIcon != null)
         {
             partIcon.enabled = false;
+        }
+        if (rarityColors != null)
+        {
+            foreach (var g in rarityColors)
+                g.color = UnityEngine.Color.clear;
         }
         if (toggleActive) gameObject.SetActive(false);
     }

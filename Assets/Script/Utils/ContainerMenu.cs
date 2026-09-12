@@ -7,7 +7,7 @@ public class ContainerMenu : Initializable
     [Header("Components")]
     public RectTransform outputTransform;
     public GameObject copyObject;
-    List<GameObject> buttonList;
+    List<GameObject> buttonList = new();
     public Action<List<GameObject>> sortAction = (list) => { };
 
     protected override void Initialize()

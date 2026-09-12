@@ -1,11 +1,12 @@
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 public class PartTooltip : PartCompBase
 {
-
-
+    private void Start()
+    {
+        Clear();
+    }
     public void ShowPart(PurchaseData part)
     {
         ShowPart(part.scriptable);

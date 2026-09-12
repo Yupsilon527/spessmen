@@ -32,6 +32,7 @@ public class PartScriptable : ModifierScriptable
         string output = base.GetEffectDescription();
         foreach (var ab in abilities)
         {
+            if (ab == null) continue;
             if (output.Length > 0) output += "<br>";
             output += ab.GetAbilityDescription();
         }
@@ -88,6 +89,7 @@ public class AbilityScriptable
         string effects = "";
         foreach (var a in actions)
         {
+            if (a == null) continue;
             string label = a.GetDescription();
             if (label.Length == 0) continue;
             if (a.condition != ShipDefines.PartCondition.Always)

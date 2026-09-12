@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5811695941202675762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24, y: 7.5}
-  m_SizeDelta: {x: -72, y: -25}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 18, y: 0}
+  m_SizeDelta: {x: -60, y: 18}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1850405478819134673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 15
-  m_fontSizeMax: 25
+  m_fontSizeMin: 12
+  m_fontSizeMax: 18
   m_fontStyle: 33
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 1024
@@ -168,11 +168,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5811695941202675762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24, y: -10}
-  m_SizeDelta: {x: -72, y: -30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 18, y: 0}
+  m_SizeDelta: {x: -60, y: 18}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3894793063446843487
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_text: Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed4ebc18be4c8fc41a53061581c83ce4, type: 2}
-  m_sharedMaterial: {fileID: -1642333629054992905, guid: ed4ebc18be4c8fc41a53061581c83ce4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 6b6a8d3d998e7064d82e99ffdf348e71, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -228,12 +228,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 15
-  m_fontSizeMax: 25
+  m_fontSizeMin: 12
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -313,7 +313,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -80, y: 99.74106}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2513942739965890401
 CanvasRenderer:
@@ -396,7 +396,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1268359624215700925}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8763696143626507725}
+        m_TargetAssemblyTypeName: GlossaryButton, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7765164574388055561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,10 +445,12 @@ MonoBehaviour:
   toggleActive: 0
   partIcon: {fileID: 8785650038554911115}
   title: {fileID: 623538085494168386}
-  subtitle: {fileID: 0}
+  subtitle: {fileID: 8204406413526891953}
   description: {fileID: 0}
   value: {fileID: 0}
   grid: {fileID: 0}
+  rarityColors:
+  - {fileID: 8204406413526891953}
   glossaryParent: {fileID: 0}
   assignedObject: {fileID: 0}
 --- !u!1 &6675330699735352602
@@ -473,7 +487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 12, y: 0}
+  m_AnchoredPosition: {x: 6, y: 0}
   m_SizeDelta: {x: 45, y: -6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3176305049164567535

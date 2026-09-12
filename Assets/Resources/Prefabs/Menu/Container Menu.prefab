@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790807030865452005}
   - component: {fileID: 1877851456085769746}
+  - component: {fileID: 5625107684741897019}
   m_Layer: 5
   m_Name: Output
   m_TagString: Untagged
@@ -51,8 +52,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Top: 15
+    m_Bottom: 15
   m_ChildAlignment: 0
   m_Spacing: 3
   m_ChildForceExpandWidth: 1
@@ -60,8 +61,22 @@ MonoBehaviour:
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5625107684741897019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825693934162042908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &3983189188034220074
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +88,7 @@ GameObject:
   - component: {fileID: 2569858002286059445}
   - component: {fileID: 7521201040536642293}
   - component: {fileID: 8479384025889415914}
+  - component: {fileID: 3416454862509646632}
   m_Layer: 5
   m_Name: Container Menu
   m_TagString: Untagged
@@ -145,3 +161,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3416454862509646632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983189188034220074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 12}
