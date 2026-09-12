@@ -25,30 +25,15 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 1
     fuelCost: 0
+    aiSignal: 0
     overflow: 0
     classification: 2
     function: 1
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 2
-      scale: 0
-      value: 8
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 2
-      scale: 6
-      value: 8
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 7e2fdb096a4a77641a8f014162778c8b, type: 2}
+    - {fileID: 11400000, guid: b31b07645fc6fd849a33c0de7a6d2be1, type: 2}
   combos: []
   icon: {fileID: 2076182967, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3

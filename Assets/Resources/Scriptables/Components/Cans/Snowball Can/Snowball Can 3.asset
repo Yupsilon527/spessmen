@@ -25,30 +25,15 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 2
     fuelCost: 0
+    aiSignal: 0
     overflow: 0
     classification: 2
     function: 1
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 2
-      scale: 0
-      value: 4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 2
-      scale: 6
-      value: 4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 959f0512ee0fcef4e8ce8d7b130a9b92, type: 2}
+    - {fileID: 11400000, guid: 959f0512ee0fcef4e8ce8d7b130a9b92, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: f1b5906e6ffd0c449bb3337cc6abeeff, type: 2}

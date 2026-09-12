@@ -22,27 +22,34 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Mischief Can 3  OnRivalOvertaken
-    maxUses: 0
+    maxUses: 1
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
     overflow: 0
     classification: 2
     function: 5
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 2
-      scale: 0
-      value: 120
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-  combos: []
+    - {fileID: 11400000, guid: 5db3278d6f127e44192e299bbdceec4e, type: 2}
+  - InternalName: Mischief Can 3  OnOtherOvertaken
+    maxUses: 0
+    cooldown: 0
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 2
+    function: 4
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 9b8077e8993c6d44d804b8d7a36a28c4, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 239919477cc0fc042802c1168fc077b6, type: 2}
   icon: {fileID: -240816473, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 3
+  boonRarity: 2
   partType: 2
   attach: 0
   priceMultiplier: 0.4

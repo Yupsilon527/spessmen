@@ -25,26 +25,19 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
     overflow: 0
     classification: 2
     function: 3
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 2
-      scale: 0
-      value: 6
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: f6146f18412f0924c8aaf5581a52cb80, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 6689bda410fe8ab4495330f66097c331, type: 2}
   icon: {fileID: -1508152377, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 1
+  boonRarity: 2
   partType: 2
   attach: 0
   priceMultiplier: 0.87

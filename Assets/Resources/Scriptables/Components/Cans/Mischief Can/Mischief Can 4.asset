@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Technician Can 4
+  m_Name: Mischief Can 4
   m_EditorClassIdentifier: 
-  InternalName: Technician Can 4
+  InternalName: Mischief Can 4
   grid:
     width: 2
     height: 3
@@ -21,32 +21,37 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Technician Can 4  OnLapCompleted
-    maxUses: 0
+  - InternalName: Mischief Can 4  OnRivalOvertaken
+    maxUses: 1
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
     overflow: 0
     classification: 2
-    function: 3
+    function: 5
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 2
-      scale: 0
-      value: 12
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 848d5a10b30187040b6b2de9a9da4a27, type: 2}
+  - InternalName: Mischief Can 4  OnOtherOvertaken
+    maxUses: 0
+    cooldown: 0
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 2
+    function: 4
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 94dfdbef059a3ab4a91da7818b37305c, type: 2}
   combos: []
-  icon: {fileID: -1508152377, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  icon: {fileID: -240816473, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
   partType: 2
   attach: 0
-  priceMultiplier: 0.87
-  weightMultiplier: 1
+  priceMultiplier: 0.4
+  weightMultiplier: 0.75
   unique: 0
   rotating: 1
   lockedForSomeReason: 0
