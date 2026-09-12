@@ -2,16 +2,9 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class PartTooltip : MonoBehaviour
+public class PartTooltip : PartCompBase
 {
-    public bool toggleActive = false;
-    public TextMeshProUGUI title, subtitle, description, value;
-    public GridPreview grid;
 
-    private void Start()
-    {
-        Clear();
-    }
 
     public void ShowPart(PurchaseData part)
     {
@@ -47,49 +40,5 @@ public class PartTooltip : MonoBehaviour
         {
             value.text = "$" + Mathf.Ceil(part.scriptable.GetBasePrice() * (justPurchase ? 1 : EconomyDefines.partResellPrice));
         }
-    }
-    public void ShowPart(PartScriptable part)
-    {
-        if (title != null)
-        {
-            title.text = LanguageController.main.Translate("Parts", part.InternalName);
-        }
-        if (subtitle != null)
-        {
-            subtitle.text = LanguageController.main.Translate("Abilities", "rarity_" + part.boonRarity) + " " + LanguageController.main.Translate("Abilities", "class_" + part.partType);
-        }
-        if (description != null)
-        {
-            description.text = part.GetEffectDescription();
-        }
-        if (grid != null)
-        {
-            grid.Draw(part.grid);
-        }
-        if (toggleActive) gameObject.SetActive(true);
-    }
-    public void Clear()
-    {
-        if (title != null)
-        {
-            title.text = LanguageController.main.Translate("UI Table", "PartInfo");
-        }
-        if (subtitle != null)
-        {
-            subtitle.text = LanguageController.main.Translate("UI Table", "MouseOverHint");
-        }
-        if (description != null)
-        {
-            description.text = "";
-        }
-        if (grid != null)
-        {
-            grid.Clear();
-        }
-        if (value != null)
-        {
-            value.text = "";
-        }
-        if (toggleActive) gameObject.SetActive(false);
     }
 }

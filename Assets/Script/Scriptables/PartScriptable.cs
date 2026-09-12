@@ -13,7 +13,6 @@ public class PartScriptable : ModifierScriptable
     public float priceMultiplier = 1, weightMultiplier = 1;
     public bool unique = false;
     public bool rotating = true;
-    public bool lockedForSomeReason = false;
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -23,10 +22,6 @@ public class PartScriptable : ModifierScriptable
             ability.InternalName = name + " " + ((ability.condition == ShipDefines.PartCondition.Always) ? "" : ability.condition) + " " + ability.function;
             ability.classification = partType;
         }
-    }
-    public virtual bool IsUnlocked()
-    {
-        return !lockedForSomeReason;
     }
     public virtual float GetBasePrice()
     {

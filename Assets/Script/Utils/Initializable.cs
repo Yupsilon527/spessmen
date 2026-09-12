@@ -1,6 +1,6 @@
 using UnityEngine;
 
-    public abstract class Initializable : MonoBehaviour
+public abstract class Initializable : MonoBehaviour
     {
     protected bool initialized = false;
        public bool inspect = false;
@@ -26,4 +26,4 @@ using UnityEngine;
             if (inspect)
                 Debug.Log($"[{name}] {str}");
         }
-    }
+}
