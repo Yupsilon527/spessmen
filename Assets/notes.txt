@@ -45,6 +45,11 @@ FEA
 			lzombie run over
 			zombie run over in fisrt pos
 		
+	multiple item classifications
+		also parts/abilities that refresh/boost abilities with specific classifications
+		or count them towards scales
+		or on nearby ability with tag activated
+		or any ability with tag used
 
 CARS
 	starter - enemies slower, rival slower, free reroll
@@ -58,6 +63,5 @@ CARS
 
 
 
-multiple item classifications
 
 classification relative properties (price, effectiveness, CD, etc) one property class

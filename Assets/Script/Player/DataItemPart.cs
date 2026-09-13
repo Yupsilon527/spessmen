@@ -69,4 +69,8 @@ public class DataItemPart : DataItemGrid
     {
         return givenFuel;
     }
+    public DataItemPart[] GetNeighboringParts()
+    {
+        return DataItemPlayer.main.car.GetPartsNeighboring(this);
+    }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Unity.Android.Gradle.Manifest;
+using System.Linq;
 using UnityEngine;
 using static ShipDefines;
 
@@ -109,20 +109,31 @@ public class PlayerStatsAlteration
             case StatType.RefreshEngines:
             case StatType.RefreshGadgets:
             case StatType.RefreshSelf:
+            case StatType.RefreshAdjecent:
+            case StatType.RefreshAdjecentGadgets:
+            case StatType.RefreshAdjecentNitros:
+            case StatType.RefreshAdjecentActives:
                 float CD = GetEffectiveChange(caster, mult, self);
 
                 var valid = stat == StatType.RefreshSelf ? new Ability[] { source } :
-                    stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() : 
+                    stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() :
+                    stat == StatType.RefreshAdjecent ? source.part.GetNeighboringParts().SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
+                    stat == StatType.RefreshAdjecentGadgets ? source.part.GetNeighboringParts().Where(p=> p.scriptable.partType == ItemDefines.PartType.gadget).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
+                    stat == StatType.RefreshAdjecentNitros ? source.part.GetNeighboringParts().Where(p=> p.scriptable.partType == ItemDefines.PartType.nitro).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
+                    stat == StatType.RefreshAdjecentActives ? source.part.GetNeighboringParts().Where(p=> p.scriptable.abilities.Any(a => a.function == PartEvent.OnActivated)).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
                     target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : 
                     stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine);
 
                 foreach (var ab in valid)
                 {
                     if (CD> 0)
-                    ab.Shorten(CD);
+                        ab.Shorten(CD);
                     else
-                    ab.Extend(CD);
+                        ab.Extend(CD);
                 }
+                break;
+
+
                 break;
         }
     }

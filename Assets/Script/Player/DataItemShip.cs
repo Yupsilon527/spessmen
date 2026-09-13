@@ -36,9 +36,7 @@ public class DataItemShip : DataItemGrid
     }
     public bool IsOccupied(int x, int y)
     {
-        if (IsInsideBounds(x, y))
-            return occupied[x, y] != null;
-        return false;
+        return GetOccupyingPart(x,y)!= null;
     }
 
     public void SetOccupied(int x, int y, DataItemPart part)
@@ -56,6 +54,12 @@ public class DataItemShip : DataItemGrid
                     total++;
             }
         return total;
+    }
+    public DataItemPart GetOccupyingPart(int x, int y)
+    {
+        if (IsInsideBounds(x, y))
+            return occupied[x, y];
+        return null;
     }
     #endregion
     #region Placement
@@ -156,7 +160,31 @@ public class DataItemShip : DataItemGrid
         }
         return true;
     }
-    public DataItemPart[] GetPartsOccupying(DataItemPart placement, int oX, int oY, int rotation)
+    public DataItemPart[] GetPartsOccupying(DataItemPart placement, int gridx, int gridy, int rot)
+    {
+        HashSet<DataItemPart> parts = new();
+
+        bool[,] shape = placement.RetrieveRotated(rot);
+        int shapeWidth = shape.GetLength(0);
+        int shapeHeight = shape.GetLength(1);
+
+        for (int x = 0; x < shapeWidth; x++)
+        {
+            for (int y = 0; y < shapeHeight; y++)
+            {
+                if (!shape[x, y]) continue;
+
+                int px = gridx + x;
+                int py = gridy + y;
+
+                if (occupied[px, py] != null)
+                    parts.Add(occupied[px, py]);
+            }
+        }
+        return parts.ToArray();
+    }
+    #endregion
+    public DataItemPart[] GetPartsNeighboring(DataItemPart placement)
     {
         HashSet<DataItemPart> parts = new();
 
@@ -173,13 +201,18 @@ public class DataItemShip : DataItemGrid
                 int px = placement.originX + x;
                 int py = placement.originY + y;
 
-                if (occupied[x, y] != null)
-                    parts.Add(occupied[x, y]);
+                if (GetOccupyingPart(px + 1, py) is DataItemPart pRight && pRight != placement)
+                    parts.Add(pRight);
+                if (GetOccupyingPart(px - 1, py) is DataItemPart pLeft && pLeft != placement)
+                    parts.Add(pLeft);
+                if (GetOccupyingPart(px, py + 1) is DataItemPart pUp && pUp != placement)
+                    parts.Add(pUp);
+                if (GetOccupyingPart(px, py - 1) is DataItemPart pDown && pDown != placement)
+                    parts.Add(pDown);
             }
         }
         return parts.ToArray();
     }
-    #endregion
     #region Place/Remove Parts
     public void RemovePart(DataItemPart part)
     {

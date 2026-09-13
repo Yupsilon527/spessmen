@@ -37,6 +37,10 @@ public static class ShipDefines
         GrantUse,
         GasAbsolute,
         SpeedSteal,
+        RefreshAdjecent,
+        RefreshAdjecentGadgets,
+        RefreshAdjecentNitros,
+        RefreshAdjecentActives,
     }
     public enum PartEvent
     {
