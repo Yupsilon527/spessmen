@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Biker Wheel 1
   m_EditorClassIdentifier: 
   InternalName: Biker Wheel 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 3
     height: 3
@@ -25,20 +28,14 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
+    overflow: 0
     classification: 1
     function: 0
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 0
-      scale: 0
-      value: 6
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 6aeee642f912d73458005b2884eb32d3, type: 2}
   combos: []
   icon: {fileID: 21300000, guid: 69f7e2bee4511154ba6dea65acf55c71, type: 3}
   boonRarity: 0
@@ -47,4 +44,4 @@ MonoBehaviour:
   priceMultiplier: 0.25
   weightMultiplier: 1
   unique: 0
-  lockedForSomeReason: 1
+  rotating: 1

@@ -9,20 +9,14 @@ public class PartTooltip : PartCompBase
     }
     public void ShowPart(PurchaseData part)
     {
-        ShowPart(part.scriptable);
+        ShowPart(part.scriptable,true);
 
-        if (part.scriptable.combos.Length > 0)
-        {
-            string mergeLabel = LanguageController.main.Translate("UI Table", "CanMergeWith");
-            string[] names = part.scriptable.combos.Select(combo => LanguageController.main.Translate("Parts", combo.other.InternalName)).ToArray();
-            description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
-        }
         if (part.scriptable.attach != ItemDefines.PartCondition.Anywhere)
             description.text += "<br>" + LanguageController.main.Translate("UI Table", "condition_" + part.scriptable.attach);
     }
-    public void ShowPart(DataItemPart part, bool justPurchase)
+    public void ShowPartData(DataItemPart part, bool justPurchase)
     {
-        ShowPart(part.scriptable);
+        ShowPart(part.scriptable,false);
 
         float grantedSpeed = part.GetSpeedGranted(TourneyController.main.GetPlayerRacer());
         if (grantedSpeed > 0)

@@ -316,7 +316,7 @@ public class DragDropToken : PartButtonScaleable
     {
         if (mPart != null && parent != null && parent.tooltip != null)
         {
-            parent.tooltip.ShowPart(mPart, justPurchase);
+            parent.tooltip.ShowPartData(mPart, justPurchase);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

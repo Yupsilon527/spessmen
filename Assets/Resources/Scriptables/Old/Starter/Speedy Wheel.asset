@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Speedy Wheel
   m_EditorClassIdentifier: 
   InternalName: Speedy Wheel
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
@@ -25,20 +28,14 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
+    overflow: 0
     classification: 1
     function: 0
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 0
-      scale: 0
-      value: 8
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 8e7ab4a5ce65a384ca300193b13d282f, type: 2}
   combos: []
   icon: {fileID: 21300000, guid: b8d33d4673a97d94ebbb2555bf9dfa5b, type: 3}
   boonRarity: 0
@@ -47,4 +44,4 @@ MonoBehaviour:
   priceMultiplier: 0.25
   weightMultiplier: 1
   unique: 0
-  lockedForSomeReason: 1
+  rotating: 1

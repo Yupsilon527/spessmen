@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class PartCompBase : Initializable
     public TextMeshProUGUI title, subtitle, description, value;
     public GridPreview grid;
     public Graphic[] rarityColors;
-    public virtual void ShowPart(PartScriptable part)
+    public virtual void ShowPart(PartScriptable part, bool showCombos)
     {
         if (title != null)
         {
@@ -35,6 +36,12 @@ public class PartCompBase : Initializable
         {
             foreach (var g in rarityColors)
                 g.color = ItemDefines.GetColorForRarity(part.boonRarity);
+        }
+        if (showCombos && part.combos.Length > 0)
+        {
+            string mergeLabel = LanguageController.main.Translate("UI Table", "CanMergeWith");
+            string[] names = part.combos.Select(combo => LanguageController.main.Translate("Parts", combo.other.InternalName)).ToArray();
+            description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
         }
         if (toggleActive) gameObject.SetActive(true);
     }

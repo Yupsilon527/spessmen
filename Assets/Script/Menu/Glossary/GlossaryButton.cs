@@ -6,7 +6,7 @@ public class GlossaryButton : PartCompBase
     public void AssignItem(PartScriptable item)
     {
         assignedObject = item;
-        ShowPart(item);
+        ShowPart(item,false);
     }
     public override void Clear()
     {
@@ -15,6 +15,6 @@ public class GlossaryButton : PartCompBase
     }
     public  void OnPressed()
     {
-        glossaryParent?.tooltip?.ShowPart(assignedObject);
+        glossaryParent?.tooltip?.ShowPart(assignedObject,true);
     }
 }
