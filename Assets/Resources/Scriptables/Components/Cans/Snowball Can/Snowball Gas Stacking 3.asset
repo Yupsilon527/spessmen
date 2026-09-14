@@ -19,6 +19,6 @@ MonoBehaviour:
   alteration:
     behavior: 0
     stat: 2
-    scale: 0
+    scale: 6
     value: 6
     reverse: 0

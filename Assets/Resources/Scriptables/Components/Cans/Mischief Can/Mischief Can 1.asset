@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Mischief Can 1
   m_EditorClassIdentifier: 
   InternalName: Mischief Can 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 3
     cells: 010001010101
   states: []
-  properties: []
+  properties:
+  - Property: 6
+    value: 15
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Mischief Can 1  OnRivalOvertaken
@@ -56,4 +62,3 @@ MonoBehaviour:
   weightMultiplier: 0.75
   unique: 0
   rotating: 1
-  lockedForSomeReason: 0

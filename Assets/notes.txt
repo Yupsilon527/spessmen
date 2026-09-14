@@ -1,5 +1,5 @@
 TODO
-
+	finish 4th or less >> fail tourney
 FIX
 	BUG reset race item remain? (gamestart)
 	distance to beat

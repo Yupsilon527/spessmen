@@ -28,8 +28,8 @@ MonoBehaviour:
   - Property: 7
     value: 0.2
     IncreasePerLevel: 0
-  - Property: 9
-    value: -0.666
+  - Property: 6
+    value: -50
     IncreasePerLevel: 0
   - Property: 42
     value: 1
