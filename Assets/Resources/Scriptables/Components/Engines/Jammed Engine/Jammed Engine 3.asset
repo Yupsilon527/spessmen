@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Jammed Engine 3
+  m_EditorClassIdentifier: 
+  InternalName: Jammed Engine 3
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 2
+    height: 3
+    cells: 010101010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Jammed Engine 3 GasAbove OnTimePass
+    maxUses: 0
+    cooldown: 1.25
+    fuelCost: 42
+    aiSignal: 0
+    overflow: 2
+    classification: 3
+    function: 1
+    condition: 7
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 0ad9c97b9af14aa468c955b4f950a21e, type: 2}
+  - InternalName: Jammed Engine 3 GasBelow OnTimePass
+    maxUses: 0
+    cooldown: 2
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 2
+    classification: 3
+    function: 1
+    condition: 8
+    conditionCheck: 1
+    actions:
+    - {fileID: 11400000, guid: 8495bbdf4f156904db3b91f6c5fff182, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 4e1cf7ad30f89fe4b9f6bb456bfd3da6, type: 2}
+  icon: {fileID: 1547318843, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 2
+  partType: 3
+  attach: 0
+  priceMultiplier: 1.1
+  weightMultiplier: 1
+  unique: 0
+  rotating: 1
