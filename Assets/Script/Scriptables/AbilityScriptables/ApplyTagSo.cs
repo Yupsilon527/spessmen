@@ -7,9 +7,9 @@ public class ApplyTagSo : BaseEffectSo
 
     public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        t.modifiers.Add(Translate(t));
+        t.modifiers.Add(Translate(t,m));
     }
-    public virtual Modifier Translate(Racer t)
+    public virtual Modifier Translate(Racer t, float m)
     {
         return new Modifier(t, 0)
         {
