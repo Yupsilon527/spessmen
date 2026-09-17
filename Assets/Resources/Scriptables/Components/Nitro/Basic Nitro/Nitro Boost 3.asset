@@ -18,7 +18,7 @@ MonoBehaviour:
   conditionCheck: 0
   modifierName: Nitro
   priority: 0
-  flag: 0
+  flag: 1
   behavior: 0
   states: []
   properties:

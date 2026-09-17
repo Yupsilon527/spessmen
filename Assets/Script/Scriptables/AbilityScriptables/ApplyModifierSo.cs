@@ -8,6 +8,7 @@ public class ApplyModifierSo : ApplyBuffSo
     public override Modifier Translate(Racer t, float m)
     {
         var modifier = base.Translate(t, m);
+        modifier.expire = expiretype;
         modifier.Set(duration * m);
         return modifier;
     }

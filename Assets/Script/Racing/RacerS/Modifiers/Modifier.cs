@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class Modifier : Countdown
@@ -19,7 +20,7 @@ public class Modifier : Countdown
         this.stacks = level;
     }
 
-    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Nothing, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
+    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Undispellable, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
     {
         this.racer = owner;
         this.states = states == null ? new() : states;
@@ -31,6 +32,8 @@ public class Modifier : Countdown
 
     public bool IsExpired()
     {
+        if (expire == ModifierDefines.ExpireType.Time)
+            return !IsRunning();
         return false;
     }
     #region States
@@ -150,6 +153,17 @@ public class Modifier : Countdown
         if (parameters.TryGetValue(name, out var value))
             return value;
         return 0;
+    }
+    #endregion
+    #region Flag
+    public bool IsPositive()
+    {
+        return flag >= ModifierDefines.Flag.Buff;
+    }
+
+    public bool IsNegative()
+    {
+        return flag <= ModifierDefines.Flag.Debuff;
     }
     #endregion
 }

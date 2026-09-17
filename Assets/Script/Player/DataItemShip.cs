@@ -177,7 +177,7 @@ public class DataItemShip : DataItemGrid
                 int px = gridx + x;
                 int py = gridy + y;
 
-                if (occupied[px, py] != null)
+                if (IsInsideBounds(px,py) &&  occupied[px, py] != null)
                     parts.Add(occupied[px, py]);
             }
         }

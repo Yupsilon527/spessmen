@@ -6,15 +6,11 @@ public static class ModifierDefines
 
     public enum Flag
     {
-        Nothing = -6,
         Undispellable = 0,
-        Positive = 1,
-        Regeneration = 2,
-        Negative = -1,
+        Buff = 1,
+        Boost = 2,
+        Debuff = -1,
         Disable = -2,
-        DamageOverTime = -3,
-        SoftDisable = -4,
-        HardDisable = -5,
     }
     public enum Priority
     {
@@ -98,7 +94,11 @@ public static class ModifierDefines
         expansion_prices = 46,
 
         starting_cooldown_mult = 50,
-        total = 51,
+
+        debuff_duration_multiplier = 51,
+        buff_duration_multiplier = 52,
+
+        total = 53,
     };
     public enum State   
     {
@@ -106,7 +106,8 @@ public static class ModifierDefines
         CanOvergas = 1,
         AbilityImmune = 2,
         StunImmune = 3,
-        Total = 4,
+        DebuffImmune = 4,
+        Total = 5,
     }
     public enum ExpireType
     {
@@ -163,6 +164,10 @@ public static class ModifierDefines
             case Property.active_weight:
             case Property.item_rarity:
             case Property.expansion_rarity:
+
+            case Property.starting_cooldown_mult:
+            case Property.debuff_duration_multiplier:
+            case Property.buff_duration_multiplier:
                 return true;
             default:
                 return false;

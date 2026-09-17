@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Speedy Wheel
   condition:
-    lockedByDefault: 0
+    lockedByDefault: 1
     conditions: []
   grid:
     width: 2

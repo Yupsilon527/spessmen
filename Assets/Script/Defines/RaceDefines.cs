@@ -35,14 +35,14 @@ public static class RaceDefines
         LapsLonger=5,
         LongerRace=6,
 
-        //FEA PlayerStunned,
-        //FEA RivalImmune,
+        PlayerStunned = 7,
+         RivalImmune = 8,
 
-        Elite = 7,
+        Elite = 9,
 
-        RandomGadget = 7,
-        RandomEngine =8,
-        Total=9,
+        RandomGadget = 9,
+        RandomEngine =10,
+        Total=11,
     }
 
     public static Racer GetRacerRelative(Racer original, AbilityTarget target)

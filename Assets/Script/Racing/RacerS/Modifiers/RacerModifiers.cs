@@ -16,7 +16,8 @@ public class RacerModifiers : PropertyComponent
     public override void HandleRacePhase(RaceDefines.RacePhase phase)
     {
         base.HandleRacePhase(phase);
-        switch (phase) {
+        switch (phase)
+        {
             case RaceDefines.RacePhase.RaceSetup:
                 foreach (Modifier modifier in modifiers)
                 {
@@ -55,6 +56,7 @@ public class RacerModifiers : PropertyComponent
         if (HasUpdates && nextUpdateTime < Time.time)
         {
             nextUpdateTime = Time.time + 1;
+            HasUpdates = false;
             foreach (Modifier Mod in modifiers.ToArray())
             {
                 if (Mod.dead) continue;
@@ -97,8 +99,8 @@ public class RacerModifiers : PropertyComponent
     {
         if (force)
         {
-            statRefresh  = true;
-             propRefresh = true;
+            statRefresh = true;
+            propRefresh = true;
         }
         if (statRefresh || propRefresh)
         {
@@ -126,68 +128,14 @@ public class RacerModifiers : PropertyComponent
     #endregion
 
     #region Create Modifiers
-    public bool Add(Modifier Modifier, bool skipImmunityCheck = false, bool refresh = true)
+    public bool Add(Modifier newModifier, bool skipImmunityCheck = false, bool refresh = true)
     {
-     //   if (!skipImmunityCheck && IsImmuneToModifier(Modifier)) { return false; }
-     if (Modifier.expire == ModifierDefines.ExpireType.Time)
-        Modifier.Restart(Time.time);
-        switch (Modifier.behavior)
-        {
-            case ModifierDefines.Behavior.Replace: //Replace 
-                if (TryFindModifierByName(Modifier.ModifierName, false, out Modifier found))
-                    Remove(found);
-                break;
-            case ModifierDefines.Behavior.Unique: //Unique 
-                if (HasModifier(Modifier.ModifierName))
-                {
-                    return false;
-                }
-                break;
-            case ModifierDefines.Behavior.IncreaseStacks:
-                if (TryFindModifierByName(Modifier.ModifierName, false, out Modifier original))
-                {
-                    original.SetStackCount(original.GetStackCount() + Modifier.GetStackCount());
-                    if (original.properties.Count > 0)
-                        RefreshProperties();
-                    return false;
-                }
-                break;
-            case ModifierDefines.Behavior.IncreaseDuration:
-                if (TryFindModifierByName(Modifier.ModifierName, false, out Modifier first))
-                {
-                    first.Extend(Modifier.GetDuration());
-                    return false;
-                }
-                break;
-
-        }
-        Debug.Log("[Modifiers] Add new modifier " + Modifier.ModifierName);
-        OnAddModifier(Modifier);
-        if (refresh) Refresh();
-        return true;
-    }
-    void OnAddModifier(Modifier Modifier)
-    {
-        modifiers.Add(Modifier);
-       /* foreach (Modifier Mod in modifiers)
-        {
-            if (IsImmuneToModifier(Mod))
-            {
-                Mod.Die(false);
-            }
-        }*/
-        RefreshModifier(Modifier);
-    }
-    #endregion
-
-    #region Add
-    public bool Add(Modifier newModifier)
-    {
-        //if (IsImmuneToModifier(newModifier)) { return false; }
-        newModifier.Restart(Time.time);
-    
+        if (!skipImmunityCheck && IsImmuneToModifier(newModifier)) { return false; }
+        if (newModifier.expire == ModifierDefines.ExpireType.Time)
+            newModifier.Restart(Time.time);
         switch (newModifier.behavior)
         {
+
             case ModifierDefines.Behavior.Replace: //Replace 
                 if (TryFindModifierByName(newModifier.ModifierName, false, out Modifier found))
                     DestroyModifier(found);
@@ -202,7 +150,9 @@ public class RacerModifiers : PropertyComponent
                 if (TryFindModifierByName(newModifier.ModifierName, false, out Modifier original))
                 {
                     original.Restart(Time.time);
-                    original.stacks += newModifier.stacks;
+                    original.SetStackCount(original.GetStackCount() + newModifier.GetStackCount());
+                    if (original.properties.Count > 0)
+                        RefreshProperties();
                     return false;
                 }
                 break;
@@ -215,24 +165,27 @@ public class RacerModifiers : PropertyComponent
                 break;
 
         }
-        Debug.Log("[Modifiers] Add new modifier " + newModifier.ModifierName);
-        OnModifierAdded(newModifier);
-        modifiers.Add(newModifier);
+        OnAddModifier(newModifier);
+        if (refresh) Refresh();
         return true;
     }
-    void OnModifierAdded(Modifier Modifier)
+    void OnAddModifier(Modifier Modifier)
     {
+        modifiers.Add(Modifier);
+        if (Modifier.expire == ModifierDefines.ExpireType.Time)
+            HasUpdates = true;
         UpdateModifierStates(Modifier);
         UpdateModifierProperties(Modifier);
         Modifier.ExecuteEvent(ShipDefines.PartEvent.OnActivated);
 
-      /*  foreach (Modifier Mod in modifiers)
+        foreach (Modifier Mod in modifiers)
         {
             if (IsImmuneToModifier(Mod))
             {
                 DestroyModifier(Mod);
             }
-        }*/
+        }
+        RefreshModifier(Modifier);
     }
     void Refresh()    //TODO
     {
@@ -271,6 +224,10 @@ public class RacerModifiers : PropertyComponent
         foreach (KeyValuePair<ModifierDefines.Property, float> prop in Mod.properties)
         {
             UpdateProperty(prop.Key, prop.Value);
+            if (prop.Key <= ModifierDefines.Property.tank_capacity)
+            {
+                racer.stats.SetDirty();
+            }
         }
     }
     void ResetPropertiesDefaults()
@@ -317,7 +274,7 @@ public class RacerModifiers : PropertyComponent
     }
     #endregion
     #region Filter
-    public Modifier[] Filter(string ModifierName = "", ModifierDefines.Flag alignment = ModifierDefines.Flag.Nothing, bool includePositives = false, bool includeNegative = false)
+    public Modifier[] Filter(string ModifierName = "", ModifierDefines.Flag alignment = ModifierDefines.Flag.Undispellable, bool includePositives = false, bool includeNegative = false)
     {
         List<Modifier> rest = new List<Modifier>();
         foreach (Modifier Mod in modifiers)
@@ -326,7 +283,7 @@ public class RacerModifiers : PropertyComponent
             {
                 if (ModifierName == "" || ModifierName == Mod.ModifierName)
                 {
-                 //   if ((alignment == ModifierDefines.Flag.Nothing || alignment == Mod.data.flag) || (includeNegative && Mod.IsNegative()) || (includePositives && Mod.IsPositive()))
+                    if ((alignment == ModifierDefines.Flag.Undispellable || alignment == Mod.flag) || (includeNegative && Mod.IsNegative()) || (includePositives && Mod.IsPositive()))
                     {
                         rest.Add(Mod);
                     }
@@ -342,7 +299,7 @@ public class RacerModifiers : PropertyComponent
     {
         Remove(Mod, false);
     }
-    public void DestroyFilteredModifiers(string ModifierName = "", ModifierDefines.Flag alignment = ModifierDefines.Flag.Nothing, bool includePositives = false, bool includeNegative = false, bool refresh = true)
+    public void DestroyFilteredModifiers(string ModifierName = "", ModifierDefines.Flag alignment = ModifierDefines.Flag.Undispellable, bool includePositives = false, bool includeNegative = false, bool refresh = true)
     {
         Remove(Filter(ModifierName, alignment, includePositives, includeNegative), false, refresh);
     }
@@ -367,10 +324,15 @@ public class RacerModifiers : PropertyComponent
     }
     #endregion
 
-    /*
+    #region Modifier Immunity
     public bool IsImmuneToModifier(Modifier mod)
     {
-        return IsImmuneToModifier(mod.data);
+        if (mod.flag == ModifierDefines.Flag.Undispellable)
+        {
+            return false;
+        }
+
+        return GetState(ModifierDefines.State.DebuffImmune) && mod.IsNegative();
     }
     public bool IsImmuneToModifier(ModifierData mod)
     {
@@ -379,6 +341,7 @@ public class RacerModifiers : PropertyComponent
             return false;
         }
 
-        return GetState(ModifierDefines.State.debuff_immune) && mod.IsNegative();
-    }*/
+        return GetState(ModifierDefines.State.DebuffImmune) && mod.flag <= ModifierDefines.Flag.Debuff;
+    }
+    #endregion
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InternalName: Biker Wheel 1
   condition:
-    lockedByDefault: 0
+    lockedByDefault: 1
     conditions: []
   grid:
     width: 3
