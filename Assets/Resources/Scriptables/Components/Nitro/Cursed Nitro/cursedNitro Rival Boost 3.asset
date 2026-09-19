@@ -18,12 +18,12 @@ MonoBehaviour:
   conditionCheck: 0
   modifierName: Nitro
   priority: 0
-  flag: 0
+  flag: 2
   behavior: 0
   states: []
   properties:
   - Property: 4
-    value: 300
+    value: 200
     IncreasePerLevel: 0
   expiretype: 1
   duration: 4

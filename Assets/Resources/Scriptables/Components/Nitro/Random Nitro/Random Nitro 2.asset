@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Random Nitro 2  OnActivated
     maxUses: 0
     cooldown: 0.05
-    fuelCost: 27
+    fuelCost: 18
     aiSignal: 0
     overflow: 0
     classification: 5

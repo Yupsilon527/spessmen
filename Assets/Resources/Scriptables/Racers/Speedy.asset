@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Speedy
   m_EditorClassIdentifier: 
   InternalName: Speedy
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 10
     height: 10
@@ -20,7 +23,10 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 23
-    value: -0.25
+    value: -0.2
+    IncreasePerLevel: 0
+  - Property: 6
+    value: -50
     IncreasePerLevel: 0
   relative: []
   baseColor: {r: 1, g: 0.7071954, b: 0, a: 1}

@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Basic Nitro 3  OnActivated
     maxUses: 0
-    cooldown: 1.5
+    cooldown: 2.25
     fuelCost: 30
     aiSignal: 0
     overflow: 0

@@ -19,15 +19,15 @@ MonoBehaviour:
   grid:
     width: 3
     height: 3
-    cells: 010100010101010100
+    cells: 000101010101000101
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Rival Nitro 1  OnActivated
-    maxUses: 1
-    cooldown: 8
-    fuelCost: 0
+    maxUses: 3
+    cooldown: 4
+    fuelCost: 33
     aiSignal: 0
     overflow: 0
     classification: 5

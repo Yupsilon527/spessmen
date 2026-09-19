@@ -19,15 +19,15 @@ MonoBehaviour:
   grid:
     width: 3
     height: 3
-    cells: 010100010101010100
+    cells: 010101010101010100
   states: []
   properties: []
   relative: []
   abilities:
   - InternalName: Cursed Nitro 2  OnActivated
     maxUses: 0
-    cooldown: 0.15
-    fuelCost: 21
+    cooldown: 4
+    fuelCost: 40
     aiSignal: 0
     overflow: 0
     classification: 5
