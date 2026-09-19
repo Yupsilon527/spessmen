@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Oilcan Slow 1
   m_EditorClassIdentifier: 
   effectSource: 0
-  effectTarget: 0
+  effectTarget: 3
   condition: 0
   conditionCheck: 0
   alteration:
     behavior: 0
-    stat: 2
+    stat: 0
     scale: 0
-    value: 35
+    value: -35
     reverse: 0

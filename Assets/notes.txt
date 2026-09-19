@@ -16,6 +16,14 @@ QoL
 
 	part speed given
 
+	STATS
+		racer
+			tourneys
+			wins
+		parts
+			seen
+			bought
+			races won
 
 FEA
 	global/multihit abilities

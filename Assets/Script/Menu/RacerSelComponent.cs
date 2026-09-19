@@ -20,4 +20,8 @@ public class RacerSelComponent : Initializable
             g.color = ship.baseColor;
         }
     }
+    public virtual void Clear()
+    {
+
+    }
 }

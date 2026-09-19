@@ -16,6 +16,6 @@ MonoBehaviour:
   effectTarget: 3
   condition: 0
   conditionCheck: 0
-  duration: 0.4
+  duration: 0.85
   BuiltinType: 0
   vars: []

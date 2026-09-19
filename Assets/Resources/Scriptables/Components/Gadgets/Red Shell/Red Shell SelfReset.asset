@@ -18,7 +18,7 @@ MonoBehaviour:
   conditionCheck: 0
   alteration:
     behavior: 0
-    stat: 8
+    stat: 17
     scale: 0
     value: 0.5
     reverse: 0

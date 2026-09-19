@@ -28,6 +28,10 @@ public class TourneyController : Initializable
     public void FreshStart()
     {
         InitRacers();
+
+        var characterAttempts = PlayerConfig.main.globalScope.GetVariable("attempts_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+        characterAttempts.SetFloatValue(characterAttempts.GetFloatValue() + 1);
+
         ChangePhase(TourneyPhase.newRace);
         ChangePhase(TourneyPhase.beforeRace);
     }
@@ -190,6 +194,10 @@ public class TourneyController : Initializable
     {
         return ongoingRace?.raceID ?? 0;
     }
+    public int GetCurrentSeason()
+    {
+        return Mathf.FloorToInt(ongoingRace?.raceID ?? 0 /(RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons)) ;
+    }
     public bool IsLastRaceInSeason()
     {
         int total = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
@@ -341,6 +349,13 @@ public class TourneyController : Initializable
 
                 var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + DataItemPlayer.main.car.scriptable.InternalName);
                 characterWins.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+
+                bool perfect = GetScoreForRacer(playerRacer) >= (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons + DifficultyDefines.eliteRaceScoreMultiplier - 1) * leaderboard.Count;
+                if (perfect)
+                {
+                    var perfectSeason = PlayerConfig.main.globalScope.GetVariable($"perfect_season{GetCurrentSeason()}_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+                    perfectSeason.SetBoolValue(true);
+                }
 
                 int cup = Mathf.FloorToInt(GetCurrentRaceIndex() / (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons));
                 var playerCup = PlayerConfig.main.globalScope.GetVariable("highest_cup");
