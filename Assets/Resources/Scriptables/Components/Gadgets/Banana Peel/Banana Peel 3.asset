@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: d7b538129c398ff42b0b3ac05b697d42, type: 2}
+    - {fileID: 11400000, guid: 824c3da51e1f81e4288c68b1e451ee2f, type: 2}
   - InternalName: Banana Peel 3  OnOtherOvertaken
     maxUses: 0
     cooldown: 0
