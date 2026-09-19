@@ -1,5 +1,11 @@
 TODO
 	cups
+
+	LOCALIZATION
+		modifier race
+
+	modifier descs
+
 FIX
 	BUG reset race item remain? (gamestart)
 	distance to beat

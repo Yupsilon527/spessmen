@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Banana Peel 2
+  m_EditorClassIdentifier: 
+  InternalName: Banana Peel 2
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 3
+    height: 2
+    cells: 000100010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Banana Peel 2  OnActivated
+    maxUses: 3
+    cooldown: 0.75
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 4
+    function: 2
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 7837bb8041e27644b9890d470d0a9747, type: 2}
+  - InternalName: Banana Peel 2  OnOtherOvertaken
+    maxUses: 0
+    cooldown: 0
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 4
+    function: 4
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 5e5fba6b1e8bd8e4080bd99e66de2d60, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: ac3ac33265a02bb4eb120c6d3505215a, type: 2}
+  icon: {fileID: -848201619, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 2
+  partType: 4
+  attach: 0
+  priceMultiplier: 1.2
+  weightMultiplier: 1
+  unique: 0
+  rotating: 1

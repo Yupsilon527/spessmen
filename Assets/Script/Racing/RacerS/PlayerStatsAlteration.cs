@@ -104,6 +104,13 @@ public class PlayerStatsAlteration
             case StatType.GrantUse:
                 source.RefreshUses(GetEffectiveChange(caster, mult, self));
                 break;
+            case StatType.GrantUseOwnPart:
+                float change = GetEffectiveChange(caster, mult, self);
+                foreach (var a in source.caster.abilities.GetAbilitiesCorrespondingToPart( source.part))
+                {
+                    a.RefreshUses(change);
+                }
+                break;
             case StatType.RefreshCooldowns:
             case StatType.RefreshNitros:
             case StatType.RefreshEngines:
@@ -116,6 +123,7 @@ public class PlayerStatsAlteration
                 float CD = GetEffectiveChange(caster, mult, self);
 
                 var valid = stat == StatType.RefreshSelf ? new Ability[] { source } :
+                    stat == StatType.RefreshOwnPart ? source.caster.abilities.GetAbilitiesCorrespondingToPart(source.part) :
                     stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() :
                     stat == StatType.RefreshAdjecent ? source.part.GetNeighboringParts().SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
                     stat == StatType.RefreshAdjecentGadgets ? source.part.GetNeighboringParts().Where(p=> p.scriptable.partType == ItemDefines.PartType.gadget).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 

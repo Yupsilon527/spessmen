@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Green Shell 3
+  m_EditorClassIdentifier: 
+  InternalName: Green Shell 3
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 3
+    height: 2
+    cells: 000100010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Green Shell 3  OnActivated
+    maxUses: 9
+    cooldown: 1
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 4
+    function: 2
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: de55543ddd63c854b827f421f85106ab, type: 2}
+  combos: []
+  icon: {fileID: -907340102, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 3
+  partType: 4
+  attach: 0
+  priceMultiplier: 1.2
+  weightMultiplier: 1
+  unique: 0
+  rotating: 1

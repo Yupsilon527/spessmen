@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Lucky Sticker
+  m_EditorClassIdentifier: 
+  InternalName: Lucky Sticker
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 1
+    height: 1
+    cells: 01
+  states: []
+  properties:
+  - Property: 25
+    value: 3
+    IncreasePerLevel: 0
+  relative: []
+  abilities: []
+  combos: []
+  icon: {fileID: -7869749984967096573, guid: 5ea6ac59792e962428fa09c9755d6301, type: 3}
+  boonRarity: 1
+  partType: 6
+  attach: 0
+  priceMultiplier: 0.24
+  weightMultiplier: 0.75
+  unique: 0
+  rotating: 1

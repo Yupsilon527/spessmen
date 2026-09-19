@@ -41,6 +41,8 @@ public static class ShipDefines
         RefreshAdjecentGadgets,
         RefreshAdjecentNitros,
         RefreshAdjecentActives,
+        RefreshOwnPart,
+        GrantUseOwnPart,
     }
     public enum PartEvent
     {

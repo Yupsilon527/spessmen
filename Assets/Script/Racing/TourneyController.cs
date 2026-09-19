@@ -125,6 +125,16 @@ public class TourneyController : Initializable
                         case RaceDefines.RaceModifiers.LongerRace:
                             raceTime *= RaceDefines.raceLengthLong;
                             break;
+                        case RaceDefines.RaceModifiers.PlayerStunned:
+                            player.modifiers.Add(new Modifier(player,flag:ModifierDefines.Flag.Debuff,states:
+                                new List<ModifierDefines.State> { ModifierDefines.State.Stunned},
+                                expire: ModifierDefines.ExpireType.Time, duration : 2));
+                            break;
+                        case RaceDefines.RaceModifiers.RivalImmune:
+                            var rival = player.GetRival();
+                            rival.modifiers.Add(new Modifier(rival, flag: ModifierDefines.Flag.Debuff, states:
+                                new List<ModifierDefines.State> { ModifierDefines.State.AbilityImmune }));
+                            break;
                         case RaceDefines.RaceModifiers.RandomEngine:
                         case RaceDefines.RaceModifiers.RandomGadget:
                             var validparts = ResourceCache.main.parts.Where(

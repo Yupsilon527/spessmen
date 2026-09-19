@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Countdown
 {
-    float startTime;
-    float durationTime;
+  protected  float startTime;
+    protected float durationTime;
     public float GetEndTime()
     {
         return startTime + durationTime;

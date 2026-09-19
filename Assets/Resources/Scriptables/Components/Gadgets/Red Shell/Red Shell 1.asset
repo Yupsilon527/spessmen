@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Red Shell 1
+  m_EditorClassIdentifier: 
+  InternalName: Red Shell 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 3
+    height: 2
+    cells: 000100010101
+  states: []
+  properties: []
+  relative: []
+  abilities:
+  - InternalName: Red Shell 1  OnActivated
+    maxUses: 0
+    cooldown: 8
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 4
+    function: 2
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: b2f2c8cecbd55a44abb716b0ec482d7b, type: 2}
+  - InternalName: Red Shell 1  OnLapCompleted
+    maxUses: 0
+    cooldown: 0
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 4
+    function: 3
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: 6bb0f98860533cf489ab80b9a85b39bc, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 53df9ab08632c5b49b9a25d4caffc0de, type: 2}
+  icon: {fileID: 1597006104, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 1
+  partType: 4
+  attach: 0
+  priceMultiplier: 1.2
+  weightMultiplier: 0.6
+  unique: 0
+  rotating: 1
