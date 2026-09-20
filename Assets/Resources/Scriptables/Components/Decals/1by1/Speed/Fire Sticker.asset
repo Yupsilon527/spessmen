@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Fire Sticker
   m_EditorClassIdentifier: 
   InternalName: Fire Sticker
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 1
     height: 1
@@ -32,4 +35,4 @@ MonoBehaviour:
   priceMultiplier: 0.4
   weightMultiplier: 2
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

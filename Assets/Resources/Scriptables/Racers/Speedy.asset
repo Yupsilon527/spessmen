@@ -26,7 +26,7 @@ MonoBehaviour:
     value: -0.2
     IncreasePerLevel: 0
   - Property: 6
-    value: -50
+    value: -30
     IncreasePerLevel: 0
   relative: []
   baseColor: {r: 1, g: 0.7071954, b: 0, a: 1}

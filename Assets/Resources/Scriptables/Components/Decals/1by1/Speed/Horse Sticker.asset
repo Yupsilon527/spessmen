@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Horse Sticker
   m_EditorClassIdentifier: 
   InternalName: Horse Sticker
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 1
     height: 1
@@ -20,7 +23,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 8
-    value: 0.24
+    value: 0.1
     IncreasePerLevel: 0
   relative: []
   abilities: []
@@ -32,4 +35,4 @@ MonoBehaviour:
   priceMultiplier: 0.4
   weightMultiplier: 2
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

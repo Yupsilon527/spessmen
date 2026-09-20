@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: AP Decal
   m_EditorClassIdentifier: 
   InternalName: AP Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
@@ -21,9 +24,6 @@ MonoBehaviour:
   properties:
   - Property: 22
     value: 0.5
-    IncreasePerLevel: 0
-  - Property: 23
-    value: 0.2
     IncreasePerLevel: 0
   relative: []
   abilities: []
@@ -35,4 +35,4 @@ MonoBehaviour:
   priceMultiplier: 1
   weightMultiplier: 3
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

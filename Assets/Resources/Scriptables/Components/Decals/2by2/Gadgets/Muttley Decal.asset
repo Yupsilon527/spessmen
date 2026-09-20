@@ -10,32 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Dastardly Decal
+  m_Name: Muttley Decal
   m_EditorClassIdentifier: 
-  InternalName: Dastardly Decal
+  InternalName: Muttley Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 28
-    value: -0.4
-    IncreasePerLevel: 0
-  - Property: 16
-    value: -0.25
-    IncreasePerLevel: 0
-  - Property: 20
-    value: 0.125
+  - Property: 22
+    value: 0.2
     IncreasePerLevel: 0
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: -214128534, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
+  icon: {fileID: 2121710601, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
   boonRarity: 2
   partType: 6
   attach: 0
   priceMultiplier: 1
   weightMultiplier: 3
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

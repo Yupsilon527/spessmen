@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PlayerShopController : PlayerComponent
 {
@@ -24,13 +25,15 @@ public class PlayerShopController : PlayerComponent
             player.score.GiveChaos(ItemDefines.chaosPerShopReset);
         }
         RegenerateShopItems(8);
+        foreach (var item in itemActions)
+        {
+            var variable = PlayerConfig.main.globalScope.GetVariable("items_encountered_" + item.scriptable.InternalName) ;
+            variable.SetFloatValue(variable.GetFloatValue() + 1);
+        }
     }
     public void RegenerateShopItems(int total)
     {
         if (ResourceCache.main == null) return;
-
-      //  int amt = total - itemActions.Sum(b => (b.playerLocked && !b.wasPurchased) ? 1 : 0);
-       // itemActions = itemActions.Where(i => i.playerLocked && !i.wasPurchased).ToList();
 
         List<PartScriptable> playerparts = new();
         playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
@@ -44,18 +47,17 @@ public class PlayerShopController : PlayerComponent
             }
         }
         int level = TourneyController.main.GetCurrentRaceIndex();
+        int fullslots = DataItemPlayer.main.car.CountTilesTotal();
 
         List<WeightPart> valid = new();
         foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
         {
             if (item.boonRarity >= ItemDefines.BoonRarity.rare && level == 0)
-            {
                 continue;
-            }
             else if (item.boonRarity >= ItemDefines.BoonRarity.epic && level < RaceDefines.SeasonRaces)
-            {
                 continue;
-            }
+            if (item.partType == ItemDefines.PartType.expansion && fullslots == 100)
+                continue;
             valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (3 * ((int)item.boonRarity+1)) : 2)));
 
         }
@@ -68,6 +70,11 @@ public class PlayerShopController : PlayerComponent
             var newItem = new PurchaseData(valid);
             if (i < itemActions.Count)
             {
+                if (itemActions[i].wasPurchased)
+                {
+                    var variable = PlayerConfig.main.globalScope.GetVariable("items_purchased_" + itemActions[i].scriptable.InternalName);
+                    variable.SetFloatValue(variable.GetFloatValue() + 1);
+                }
                 if (!itemActions[i].playerLocked || itemActions[i].wasPurchased)
                     itemActions[i] = newItem;
             }

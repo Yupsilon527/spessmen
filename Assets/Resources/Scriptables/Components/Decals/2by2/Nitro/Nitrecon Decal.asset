@@ -10,32 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Active Decal
+  m_Name: Nitrecon Decal
   m_EditorClassIdentifier: 
-  InternalName: Active Decal
+  InternalName: Nitrecon Decl
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 43
-    value: 2.5
-    IncreasePerLevel: 0
-  - Property: 42
+  - Property: 29
     value: -0.5
     IncreasePerLevel: 0
-  - Property: 38
-    value: -0.5
+  - Property: 26
+    value: 0.15
     IncreasePerLevel: 0
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: 1474232294, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
+  icon: {fileID: -174182996, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
   boonRarity: 2
   partType: 6
   attach: 0
-  priceMultiplier: 0.3
+  priceMultiplier: 1
   weightMultiplier: 3
   unique: 0
   lockedForSomeReason: 0

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Faster Sticker
   m_EditorClassIdentifier: 
   InternalName: Faster Sticker
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 1
     height: 1
@@ -20,7 +23,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 1
-    value: 0.075
+    value: 0.05
     IncreasePerLevel: 0
   relative: []
   abilities: []
@@ -32,4 +35,4 @@ MonoBehaviour:
   priceMultiplier: 0.4
   weightMultiplier: 2
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1
