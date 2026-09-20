@@ -10,35 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Superwheel Decal
+  m_Name: Weight Decal
   m_EditorClassIdentifier: 
-  InternalName: Superwheel Decal
+  InternalName: Weight Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 1
-    value: 0.333
-    IncreasePerLevel: 0
-  - Property: 31
-    value: 0.2
-    IncreasePerLevel: 0
-  - Property: 33
-    value: 0.2
-    IncreasePerLevel: 0
-  - Property: 35
-    value: -0.4
-    IncreasePerLevel: 0
+  properties: []
   relative: []
-  abilities: []
+  abilities:
+  - InternalName: Weight Decal  OnTimePass
+    maxUses: 0
+    cooldown: 3
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 6
+    function: 1
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: beac41e68420aad4b88ce5fd51f42735, type: 2}
   combos: []
-  icon: {fileID: 2018911388, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: 1412596812, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

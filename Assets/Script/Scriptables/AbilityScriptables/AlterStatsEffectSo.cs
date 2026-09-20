@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Alteration", menuName = "Data/Parts/Alteration Data")]
+[CreateAssetMenu(fileName = "Alteration", menuName = "Abilities/Effects/Alter Stats")]
 public class AlterStatsEffectSo : BaseEffectSo
 {
     public PlayerStatsAlteration alteration;

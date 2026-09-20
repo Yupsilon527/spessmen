@@ -12,8 +12,8 @@ public class SerializedPlayerShip : SerializableData<DataItemShip>
     public SerializedPlayerShip(DataItemShip data) : base(data)
     {
         internalName = data.scriptable.InternalName;
-        parts = data.parts.Select(p => new SerializedPart(p)).ToList();
-        stash = data.stash.Select(p => new SerializedPart(p)).ToList();
+        parts = data.parts.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
+        stash = data.stash.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
 
         grid = new BoolGrid();
         grid.Encode(data.mGrid);

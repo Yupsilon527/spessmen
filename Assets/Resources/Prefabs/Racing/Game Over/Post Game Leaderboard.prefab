@@ -794,6 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 2792873001153264183}
+  cupTitle: {fileID: 609180890860246717}
   raceTooltip: {fileID: 0}
   proceedButton: {fileID: 0}
 --- !u!1001 &5086495426070605999

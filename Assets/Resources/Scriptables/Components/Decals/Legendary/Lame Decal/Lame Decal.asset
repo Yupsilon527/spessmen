@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Nitrecon Decal
+  m_Name: Lame Decal
   m_EditorClassIdentifier: 
-  InternalName: Nitrecon Decal
+  InternalName: Lame Decal
   condition:
     lockedByDefault: 0
     conditions: []
@@ -22,20 +22,20 @@ MonoBehaviour:
     cells: 01010101
   states: []
   properties:
-  - Property: 29
+  - Property: 50
     value: -0.5
     IncreasePerLevel: 0
-  - Property: 26
-    value: -0.5
+  - Property: 23
+    value: -0.15
     IncreasePerLevel: 0
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: -174182996, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
-  boonRarity: 2
+  icon: {fileID: 205138001, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  boonRarity: 3
   partType: 6
   attach: 0
-  priceMultiplier: 1
-  weightMultiplier: 3
+  priceMultiplier: 0.66
+  weightMultiplier: 5
   unique: 0
   rotating: 1

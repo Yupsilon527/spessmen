@@ -123,8 +123,12 @@ public class Ability : Countdown
                     else
                         caster.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
             }
-            caster.abilities.fuel.SubstractedValue(fCost);
-            FireCooldown(1);
+            if (fCost > 0)
+            {
+                caster.abilities.fuel.SubstractedValue(fCost);
+                caster.ListenToEvent(ShipDefines.PartEvent.OnFuelSpent);
+            }
+                FireCooldown(1);
             return true;
         }
         return false;

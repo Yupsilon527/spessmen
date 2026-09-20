@@ -10,35 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Superengine Decal
+  m_Name: Griefer Decal
   m_EditorClassIdentifier: 
-  InternalName: Superengine Decal
+  InternalName: Griefer Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 13
-    value: -0.25
-    IncreasePerLevel: 0
-  - Property: 31
-    value: -0.15
-    IncreasePerLevel: 0
-  - Property: 35
-    value: 0.33
-    IncreasePerLevel: 0
-  - Property: 32
-    value: 0.33
-    IncreasePerLevel: 0
+  properties: []
   relative: []
-  abilities: []
+  abilities:
+  - InternalName: Griefer Decal  OnRivalOvertaken
+    maxUses: 0
+    cooldown: 0
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 6
+    function: 5
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: b76a0e3e8c399ab4cbdb2afcdf9ea9ed, type: 2}
   combos: []
-  icon: {fileID: -1504315507, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: 638577806, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

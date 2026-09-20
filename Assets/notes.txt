@@ -1,13 +1,22 @@
 TODO
 	cups
+		icons and loc
 
 	LOCALIZATION
 		modifier race
+		parts
+		effects
+		apply modifier/builtin
 
-	modifier descs
+	modifier descs race
+
+TEST
+	stats and stat collection
+	stat stealing
 
 FIX
-	BUG reset race item remain? (gamestart)
+	speed doesnt reset
+	stun doesnt work
 	distance to beat
 QoL
 	char loadout already set up

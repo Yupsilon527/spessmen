@@ -10,29 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Lame Decal
+  m_Name: Engineball Decal
   m_EditorClassIdentifier: 
-  InternalName: Lame Decal
+  InternalName: Engineball Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 21
-    value: 0.25
-    IncreasePerLevel: 0
-  - Property: 23
-    value: -0.5
+  - Property: 13
+    value: -0.1
     IncreasePerLevel: 0
   relative: []
-  abilities: []
+  abilities:
+  - InternalName: Engineball Decal  OnTimePass
+    maxUses: 0
+    cooldown: 1
+    fuelCost: 0
+    aiSignal: 0
+    overflow: 0
+    classification: 6
+    function: 1
+    condition: 0
+    conditionCheck: 0
+    actions:
+    - {fileID: 11400000, guid: f690b75f11360e34eb32940d63611073, type: 2}
   combos: []
-  icon: {fileID: 205138001, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: -1752019039, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

@@ -23,10 +23,10 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 28
-    value: -0.4
+    value: -0.3
     IncreasePerLevel: 0
   - Property: 16
-    value: -0.25
+    value: -0.3
     IncreasePerLevel: 0
   relative: []
   abilities: []

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Nitrogine Decal
   m_EditorClassIdentifier: 
   InternalName: Nitrogine Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
@@ -38,4 +41,4 @@ MonoBehaviour:
   priceMultiplier: 1
   weightMultiplier: 3
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

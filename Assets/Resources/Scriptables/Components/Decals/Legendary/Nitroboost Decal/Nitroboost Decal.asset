@@ -10,50 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Griefer Decal
+  m_Name: Nitroboost Decal
   m_EditorClassIdentifier: 
-  InternalName: Griefer Decal
+  InternalName: Nitroboost Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 16
-    value: -0.1
-    IncreasePerLevel: 0
-  - Property: 15
-    value: 0.1
-    IncreasePerLevel: 0
-  - Property: 26
-    value: 0.1
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
-  - InternalName: Griefer Decal  OnOtherOvertaken
+  - InternalName: Nitroboost Decal  OnNitroActivate
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
+    overflow: 0
     classification: 6
-    function: 4
+    function: 9
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 5
-      scale: 0
-      value: -0.5
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: aa4a1514135d7b24e9a37196ce5dab35, type: 2}
   combos: []
-  icon: {fileID: 638577806, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: 1052323636, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

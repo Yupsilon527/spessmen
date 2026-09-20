@@ -58,6 +58,7 @@ public static class ShipDefines
         OnNitroActivate = 9,
         OnFastAbilityActivate = 10,
         OnBigAbilityActivate = 11,
+        OnFuelSpent = 12,
     }
     public enum PartCondition
     {

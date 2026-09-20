@@ -196,7 +196,7 @@ public class TourneyController : Initializable
     }
     public int GetCurrentSeason()
     {
-        return Mathf.FloorToInt(ongoingRace?.raceID ?? 0 /(RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons)) ;
+        return Mathf.FloorToInt((ongoingRace?.raceID ?? 0 )/(RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons)) ;
     }
     public bool IsLastRaceInSeason()
     {

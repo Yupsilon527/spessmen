@@ -10,44 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Engineball Decal
+  m_Name: Green Decal
   m_EditorClassIdentifier: 
-  InternalName: Engineball Decal
+  InternalName: Green Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 13
-    value: -0.1
+  - Property: 15
+    value: -0.2
+    IncreasePerLevel: 0
+  - Property: 26
+    value: -0.2
     IncreasePerLevel: 0
   relative: []
-  abilities:
-  - InternalName: Engineball Decal  OnEngineActivate
-    maxUses: 0
-    cooldown: 0
-    fuelCost: 0
-    classification: 6
-    function: 8
-    condition: 0
-    conditionCheck: 0
-    actions:
-    - behavior: 0
-      stat: 1
-      scale: 13
-      value: 5
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+  abilities: []
   combos: []
-  icon: {fileID: -1752019039, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: 390056215, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

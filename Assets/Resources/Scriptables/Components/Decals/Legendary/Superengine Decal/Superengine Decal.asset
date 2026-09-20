@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Turbo Decal
+  m_Name: Superengine Decal
   m_EditorClassIdentifier: 
-  InternalName: Turbo Decal
+  InternalName: Superengine Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
   properties:
-  - Property: 15
-    value: -0.25
-    IncreasePerLevel: 0
-  - Property: 13
+  - Property: 9
     value: 0.5
     IncreasePerLevel: 0
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: -782273939, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  icon: {fileID: -1504315507, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1
