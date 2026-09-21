@@ -59,6 +59,66 @@ MonoBehaviour:
     m_Key: effect_refreshcooldowns
     m_Metadata:
       m_Items: []
+  - m_Id: 15765488249245696
+    m_Key: effect_refreshself
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245697
+    m_Key: effect_refundgascost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245698
+    m_Key: effect_grantuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245699
+    m_Key: effect_gasabsolute
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15755758495764480
+    m_Key: effect_speedsteal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15755758399295488
+    m_Key: effect_refreshadjecent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245700
+    m_Key: effect_refreshadjecentgadgets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245701
+    m_Key: effect_refreshadjecentnitros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245702
+    m_Key: effect_refreshadjecentactives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245703
+    m_Key: effect_refreshownpart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245704
+    m_Key: effect_grantuseownpart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765492716179456
+    m_Key: New Entry 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765492716179457
+    m_Key: New Entry 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765492716179458
+    m_Key: New Entry 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765492716179459
+    m_Key: New Entry 7
+    m_Metadata:
+      m_Items: []
   - m_Id: 19397667098631
     m_Key: condition_always
     m_Metadata:
@@ -253,6 +313,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30004072058880
     m_Key: source_rivalracer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245705
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245706
+    m_Key: New Entry 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245707
+    m_Key: New Entry 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245708
+    m_Key: New Entry 3
     m_Metadata:
       m_Items: []
   m_Metadata:

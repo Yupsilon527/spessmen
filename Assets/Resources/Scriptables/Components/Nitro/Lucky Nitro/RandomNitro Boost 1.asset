@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4a0fde4f5e6f3847b4241d977ab5684, type: 3}
-  m_Name: RandomNitro Boost 3
+  m_Name: RandomNitro Boost 1
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 4
-    value: 40
+    value: 8
     IncreasePerLevel: 0
   expiretype: 1
   duration: 4

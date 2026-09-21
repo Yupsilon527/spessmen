@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Random Nitro 1
+  m_Name: Random Nitro 2
   m_EditorClassIdentifier: 
-  InternalName: Random Nitro 1
+  InternalName: Random Nitro 2
   condition:
     lockedByDefault: 0
     conditions: []
@@ -24,10 +24,10 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Random Nitro 1  OnActivated
+  - InternalName: Random Nitro 2  OnActivated
     maxUses: 0
     cooldown: 0.05
-    fuelCost: 12
+    fuelCost: 18
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -35,12 +35,13 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 0897d7dd0b7694f4eb75a18f54104e95, type: 2}
+    - {fileID: 11400000, guid: b2e9d739360a5094bbd4120b61427500, type: 2}
+    - {fileID: 11400000, guid: 2b1243728d50af345be5f282a7eaaaee, type: 2}
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: f880df0f6b7b4d54badc44060e0a174c, type: 2}
+    result: {fileID: 11400000, guid: 69f93d07d9dd1044a8106389f07cdbe9, type: 2}
   icon: {fileID: 421313550, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 0
+  boonRarity: 1
   partType: 5
   attach: 2
   priceMultiplier: 0.56

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
-  condition: 11
-  conditionCheck: 3
+  condition: 0
+  conditionCheck: 0
   alteration:
     behavior: 0
     stat: 1

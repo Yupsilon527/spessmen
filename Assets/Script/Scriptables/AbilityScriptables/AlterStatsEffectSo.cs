@@ -21,22 +21,35 @@ public class AlterStatsEffectSo : BaseEffectSo
             else
                 numValue = "x" + label;
         }
-        if (alteration.scale == ShipDefines.ScaleType.Constant)
+
+        if (alteration.scale != ShipDefines.ScaleType.Constant)
+            numValue = LanguageController.main.Translate("Modifiers", ((alteration.scale == ShipDefines.ScaleType.Lucky || alteration.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (alteration.value > 0 ? "Pos" : "Neg")).Replace("%value%", numValue);
+
+
+
+        if (alteration.stat == ShipDefines.StatType.BaseSpeed 
+        || alteration.stat == ShipDefines.StatType.BoostSpeed
+        || alteration.stat == ShipDefines.StatType.FillGas
+        || alteration.stat == ShipDefines.StatType.GasAbsolute
+        || alteration.stat == ShipDefines.StatType.TotalSpeed )
         {
-            label += LanguageController.main.Translate("Modifiers", alteration.value < 0 ? "Lose Effect" : "Gain Effect")
-               .Replace("%value%", numValue)
-               .Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource))
-               .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + alteration.scale));
+            if (effectSource ==  RaceDefines.AbilityTarget.Self && effectTarget == RaceDefines.AbilityTarget.Self)
+            {
+                label += numValue + " " + LanguageController.main.Translate("Abilities", "effect_" + alteration.stat);
+            }
+            else { 
+            label += LanguageController.main.Translate("Modifiers", alteration.value < 0 ? "Lose Effect" : "Gain Effect").Replace("%value%", numValue);
+            label += LanguageController.main.Translate("Abilities", "effect_" + alteration.stat);
+        }
         }
         else
         {
-            label += LanguageController.main.Translate("Modifiers", ((alteration.scale == ShipDefines.ScaleType.Lucky || alteration.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (alteration.value > 0 ? "Pos" : "Neg"))
-                .Replace("%value%", numValue)
-                .Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource))
-                .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + alteration.scale));
+            label += LanguageController.main.Translate("Abilities", "effect_" + alteration.stat).Replace("%value%", numValue);
         }
-        label += LanguageController.main.Translate("Abilities", "effect_" + alteration.stat);
-        label = LanguageController.main.Translate("Abilities", "target_" + effectTarget).Replace("%effect%", label);
+        label= label.Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource))
+               .Replace("%scale%", LanguageController.main.Translate("Modifiers", "scale_" + alteration.scale))
+               .Replace("%target%", LanguageController.main.Translate("Abilities", "target_" + effectTarget));
         return label;
     }
 }
+

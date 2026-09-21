@@ -47,19 +47,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098627
-    m_Localized: Engine CD
+    m_Localized: "Refresh %target%\u2019s engines by %value%"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098628
-    m_Localized: Gadget CD
+    m_Localized: "Refresh %target%\u2019s gadgets by %value%"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098629
-    m_Localized: Nitro CD
+    m_Localized: "Refresh %target%\u2019s nitros by %value%"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098630
-    m_Localized: CD
+    m_Localized: "Refresh %target%\u2019s cooldowns by %value%"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098631
@@ -111,11 +111,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098643
-    m_Localized: if current lap below %value%%
+    m_Localized: if current lap below %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098644
-    m_Localized: if current lap above %value%%
+    m_Localized: if current lap above %value%
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098645
@@ -171,23 +171,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098658
-    m_Localized: Player %effect%
+    m_Localized: Player
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098659
-    m_Localized: The racer in the first position %effect%
+    m_Localized: The racer in the first position
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098660
-    m_Localized: The racer in front %effect%
+    m_Localized: The racer in front
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098661
-    m_Localized: The racer in back %effect%
+    m_Localized: The racer in back
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098662
-    m_Localized: The their rival racer %effect%
+    m_Localized: The their rival racer
     m_Metadata:
       m_Items: []
   - m_Id: 20940344692736
@@ -256,6 +256,50 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 45198567444480
     m_Localized: Engine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15755758399295488
+    m_Localized: Refresh adjecent cooldowns by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15755758495764480
+    m_Localized: Steal %value% speed from the %target%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245696
+    m_Localized: Refresh this part by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245697
+    m_Localized: Refund %value% % of Juice cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245698
+    m_Localized: Gains %value% uses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245699
+    m_Localized: Juice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245700
+    m_Localized: Refresh adjecent gadgets by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245701
+    m_Localized: Refresh adjecent nitros by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245702
+    m_Localized: Refresh adjecent actives by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245703
+    m_Localized: Refresh this part by %value%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765488249245704
+    m_Localized: Gains %value% uses
     m_Metadata:
       m_Items: []
   references:

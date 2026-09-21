@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281409
-    m_Localized: 'gains %value%x %source% %scale% as '
+    m_Localized: '%value%x %source% %scale% as '
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281410
@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 31333012115456
-    m_Localized: 'gains between 0-%value% '
+    m_Localized: 'between 0-%value% '
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281442
@@ -319,19 +319,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37669787570176
-    m_Localized: 'loses between 0-%value% '
+    m_Localized: 'between 0-%value% '
     m_Metadata:
       m_Items: []
   - m_Id: 37671192662016
-    m_Localized: 'loses %value%x %source% %scale% as '
+    m_Localized: '%value%x %source% %scale% as '
     m_Metadata:
       m_Items: []
   - m_Id: 38406500290577
-    m_Localized: 'gains %value% '
+    m_Localized: '%target% gains %value% '
     m_Metadata:
       m_Items: []
   - m_Id: 41482728673280
-    m_Localized: 'loses %value% '
+    m_Localized: '%target% loses %value% '
     m_Metadata:
       m_Items: []
   references:

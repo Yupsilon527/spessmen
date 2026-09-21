@@ -96,11 +96,20 @@ public class AbilityScriptable
             {
                 if (a.condition == ShipDefines.PartCondition.RelativeToRival)
                 {
-                    label = LanguageController.main.Translate("Abilities", conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival" + function) + ": " + label;
+                    label = LanguageController.main.Translate("Abilities", a.conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival") + ": " + label;
+                }
+                else if (a.condition == ShipDefines.PartCondition.LapBelow
+                    || a.condition == ShipDefines.PartCondition.LapAbove
+                    || a.condition == ShipDefines.PartCondition.SpeedAbove
+                    || a.condition == ShipDefines.PartCondition.SpeedBelow
+                    || a.condition == ShipDefines.PartCondition.GasBelow
+                    || a.condition == ShipDefines.PartCondition.GasAbove)
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F0")) + ": " + label;
                 }
                 else
                 {
-                    label = LanguageController.main.Translate("Abilities", "condition_" + condition).Replace("%value%", conditionCheck.ToString("F1")) + ": " + label;
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": " + label;
                 }
             }
             if (effects.Length > 0) effects += ", ";

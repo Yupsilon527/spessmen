@@ -15,16 +15,16 @@ MonoBehaviour:
   m_TableCollectionName: Modifiers
   m_TableCollectionNameGuidString: 1bb1f80ec1a2efe41b09ce466f1a96d7
   m_Entries:
-  - m_Id: 37669787570176
-    m_Key: chance scale neg
+  - m_Id: 15765452136288256
+    m_Key: New Entry
     m_Metadata:
       m_Items: []
-  - m_Id: 31333012115456
-    m_Key: chance scale pos
+  - m_Id: 15765452136288257
+    m_Key: New Entry 1
     m_Metadata:
       m_Items: []
-  - m_Id: 38406500290577
-    m_Key: gain effect
+  - m_Id: 15765452136288258
+    m_Key: New Entry 2
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281425
@@ -319,6 +319,42 @@ MonoBehaviour:
     m_Key: scale_totalspeed
     m_Metadata:
       m_Items: []
+  - m_Id: 15765452153065472
+    m_Key: New Entry 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065473
+    m_Key: New Entry 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065474
+    m_Key: New Entry 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065475
+    m_Key: New Entry 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065476
+    m_Key: New Entry 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065477
+    m_Key: New Entry 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38406500290577
+    m_Key: gain effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41482728673280
+    m_Key: lose effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15765452153065478
+    m_Key: New Entry 9
+    m_Metadata:
+      m_Items: []
   - m_Id: 37671192662016
     m_Key: stat scale neg
     m_Metadata:
@@ -327,8 +363,16 @@ MonoBehaviour:
     m_Key: stat scale pos
     m_Metadata:
       m_Items: []
-  - m_Id: 41482728673280
-    m_Key: lose effect
+  - m_Id: 15765452153065479
+    m_Key: New Entry 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37669787570176
+    m_Key: chance scale neg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31333012115456
+    m_Key: chance scale pos
     m_Metadata:
       m_Items: []
   m_Metadata:
