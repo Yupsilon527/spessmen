@@ -78,6 +78,12 @@ public class Racer
         return value;
     }
     #endregion
+    #region Is
+    public bool IsStunned()
+    {
+        return GetState(ModifierDefines.State.Stunned) && !GetState(ModifierDefines.State.StunImmune);
+    }
+    #endregion
     public override string ToString()
     {
         return "Racer "+id;

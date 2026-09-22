@@ -77,9 +77,9 @@ scale_totalslots,19355711475743,Car Slots
 scale_totalspeed,19355711475727,Speed
 ,,
 ,,
-,,
-,,
-,,
+modifier _nitro,,boosts
+modifier_stun,,gets stunned
+modifier duration,, for %duration%s
 ,,
 gain effect,38406500290577,%target% gains %value% 
 lose effect,41482728673280,%target% loses %value% 

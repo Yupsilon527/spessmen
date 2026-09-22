@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: b6f705e5cb0f88543a29918c7bf66cce, type: 2}
+    - {fileID: 11400000, guid: dfa9d5086fd26c640a421b4e724ff88a, type: 2}
   - InternalName: Luckball Wheel Lucky OnLapCompleted
     maxUses: 0
     cooldown: 0
@@ -47,13 +47,13 @@ MonoBehaviour:
     condition: 13
     conditionCheck: 0.15
     actions:
-    - {fileID: 11400000, guid: ed84a73b0294bcb4082d949e174c5373, type: 2}
+    - {fileID: 11400000, guid: 991324a096250e04a8eac3e86c0dc1ce, type: 2}
   combos: []
   icon: {fileID: -53804419, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 3
   partType: 1
   attach: 1
-  priceMultiplier: 0.95
+  priceMultiplier: 1.75
   weightMultiplier: 0.15
   unique: 0
   rotating: 1

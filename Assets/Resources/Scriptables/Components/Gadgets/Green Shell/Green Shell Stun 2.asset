@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc2c725b53bd8a647a6b9652b075d9ad, type: 3}
-  m_Name: Green Shell Stun
+  m_Name: Green Shell Stun 2
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 2
-  condition: 0
-  conditionCheck: 0
-  duration: 0.5
+  condition: 13
+  conditionCheck: 0.33
+  duration: 0.4
   BuiltinType: 0
   vars: []

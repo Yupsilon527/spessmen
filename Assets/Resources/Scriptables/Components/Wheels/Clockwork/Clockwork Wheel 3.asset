@@ -35,15 +35,15 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 984e070d382f5784b8d0571940d0ce2a, type: 2}
-  - InternalName: Clockwork Wheel 3  OnActivated
+    - {fileID: 11400000, guid: 2beabb08814df404a8c989a7c01af2da, type: 2}
+  - InternalName: Clockwork Wheel 3  OnTimePass
     maxUses: 0
     cooldown: 0.5
     fuelCost: 0
     aiSignal: 0
     overflow: 0
     classification: 1
-    function: 2
+    function: 1
     condition: 0
     conditionCheck: 0
     actions:

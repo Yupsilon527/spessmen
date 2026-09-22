@@ -10,6 +10,13 @@ TODO
 
 	modifier descs race
 
+	icons:
+		clockwork gear
+		lightweight wheel 1&2
+		juicer
+		snowball wheel
+		mischief can
+
 TEST
 	stats and stat collection
 	stat stealing

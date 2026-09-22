@@ -1,25 +1,25 @@
 key,Id,English(en)
 ability cost,19397650321408,Uses %value% juice.
-ability cooldown,19397662904320,Cooldown %value%.
+ability cooldown,19397662904320,Cooldown %value%s.
 ability uses,19397662904321,%value% uses each race.
 effect_basespeed,,Base Speed
 effect_boostspeed,,Boost Speed
 effect_fillgas,,Juice
 effect_totalspeed,,Speed
-effect_refreshengines,,Refresh %target%’s engines by %value%
-effect_refreshgadgets,,Refresh %target%’s gadgets by %value%
-effect_refreshnitros,,Refresh %target%’s nitros by %value%
-effect_refreshcooldowns,,Refresh %target%’s cooldowns by %value%
-effect_refreshself,,Refresh this part by %value%
+effect_refreshengines,,Refresh %target%’s engines CDs by %value%s
+effect_refreshgadgets,,Refresh %target%’s gadgets CDs by %value%s
+effect_refreshnitros,,Refresh %target%’s nitro CDs by %value%s
+effect_refreshcooldowns,,Refresh %target%’s CDs by %value%s
+effect_refreshself,,Refresh CD by %value%s
 effect_refundgascost,,Refund %value% % of Juice cost
 effect_grantuse,,Gains %value% uses
 effect_gasabsolute,,Juice
 effect_speedsteal,,Steal %value% speed from the %target%
-effect_refreshadjecent,,Refresh adjecent cooldowns by %value%
-effect_refreshadjecentgadgets,,Refresh adjecent gadgets by %value%
-effect_refreshadjecentnitros,,Refresh adjecent nitros by %value%
-effect_refreshadjecentactives,,Refresh adjecent actives by %value%
-effect_refreshownpart,,Refresh this part by %value%
+effect_refreshadjecent,,Refresh adjecent CDs by %value%s
+effect_refreshadjecentgadgets,,Refresh adjecent gadget CDs by %value%s
+effect_refreshadjecentnitros,,Refresh adjecent nitro CDs by %value%s
+effect_refreshadjecentactives,,Refresh adjecent active CDs by %value%s
+effect_refreshownpart,,Refresh this part’s CD by %value%
 effect_grantuseownpart,,Gains %value% uses
 ,,
 ,,

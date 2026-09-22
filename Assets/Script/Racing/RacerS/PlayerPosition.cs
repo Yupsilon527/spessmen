@@ -21,7 +21,7 @@ public class RacerPosition : RacerComponent
                 aheadOfRival = false;
                 break;
             case RaceDefines.RacePhase.RaceTick:
-                float dt =  (racer.GetState(ModifierDefines.State.Stunned)) ? 0 : Time.fixedDeltaTime;
+                float dt =  (racer.IsStunned()) ? 0 : Time.fixedDeltaTime;
                 int lastLap = currentLap;
                 bool raceStart = distanceTraveled == 0;
                 distanceTraveled += racer.stats.realSpeed * dt;
@@ -44,9 +44,5 @@ public class RacerPosition : RacerComponent
                     racer.ListenToEvent(ShipDefines.PartEvent.OnLapCompleted);
                 break;
         }
-    }
-    bool CanMove()
-    {
-        return racer.GetState(ModifierDefines.State.Stunned) && !racer.GetState(ModifierDefines.State.StunImmune);
     }
 }

@@ -107,4 +107,11 @@ public class BuiltinModifierSO : BaseEffectSo
         }
     }
     #endregion
+    public override string GetDescription()
+    {
+        string label = LanguageController.main.Translate("Abilities", "target_" + effectTarget)+" "+ LanguageController.main.Translate("Modifiers", "modifier_" + BuiltinType.ToString());
+        label = label.Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource));
+        label += LanguageController.main.Translate("Modifiers", "Modifier Duration").Replace("%duration%", duration.ToString("F1"));
+        return label;
+    }
 }

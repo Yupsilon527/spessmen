@@ -12,4 +12,10 @@ public class ApplyModifierSo : ApplyBuffSo
         modifier.Set(duration * m);
         return modifier;
     }
+    public override string GetDescription()
+    {
+        string label = base.GetDescription();
+        label += LanguageController.main.Translate("Modifiers", "Modifier Duration").Replace("%duration%", duration.ToString("F1"));
+        return label;
+    }
 }

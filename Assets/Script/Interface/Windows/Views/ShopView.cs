@@ -17,7 +17,7 @@ public partial class ShopView : ViewBase
 
     public void PresentMultipleItems(PurchaseData[] items)
     {
-        for (int i =0; i<items.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
             var button = itemButtonSelection[i];
             button?.dropSlot?.attachedToken?.GoToStash();
@@ -80,7 +80,7 @@ public partial class ShopView : ViewBase
     {
         if (DataItemPlayer.main.shop.numRerolls < DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.shop_resets))
             return 0;
-        return Mathf.Floor((1 + (TourneyController.main.GetCurrentRaceIndex())) * (DataItemPlayer.main.shop.numRerolls + 1) * .6f);
+        return Mathf.Max(1, Mathf.Floor((1 + (TourneyController.main.GetCurrentRaceIndex())) * (DataItemPlayer.main.shop.numRerolls + 1) * .6f));
     }
     public override void OnOpened()
     {

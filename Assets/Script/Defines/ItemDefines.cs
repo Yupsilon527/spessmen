@@ -78,7 +78,7 @@ public static class ItemDefines
             case BoonRarity.epic:
                 return new Color(175f / 255f, 66f / 255f, 183f / 255f);
             case BoonRarity.legendary:
-                return new Color(238f / 255f, 231f / 255f, 65f / 255f);
+                return new Color(255f / 255f, 223f / 255f, 25f / 255f);
 
         }
     }

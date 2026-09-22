@@ -30,4 +30,35 @@ public class ApplyBuffSo : ApplyTagSo
         }
         return modifier;
     }
+    public override string GetDescription()
+    {
+        string states = "";
+
+        foreach (var prop in properties)
+        {
+            if (states.Length > 0)
+            {
+                states += ", ";
+            }
+            states += $"{prop.ValueToString(0, true, 0)} {LanguageController.main.Translate("Modifiers", "prop_" + prop.Property.ToString())}";
+        }
+
+        if (states.Length > 0 && this.states.Length > 0)
+        {
+            states += ", ";
+        }
+        foreach (var state in this.states)
+        {
+            if (states.Length > 0)
+            {
+                states += ", ";
+            }
+            states += LanguageController.main.Translate("Modifiers", "state_" + state.State.ToString());
+        }
+
+    string label = LanguageController.main.Translate("Modifiers", "Gain Effect").Replace("%value%", states);
+        label = label.Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource))
+               .Replace("%target%", LanguageController.main.Translate("Abilities", "target_" + effectTarget));
+        return label;
+    }
 }

@@ -37,8 +37,8 @@ MonoBehaviour:
     actions:
     - {fileID: 11400000, guid: eacf033dfd9c0ed4fb099b4e3b1754b9, type: 2}
   - InternalName: Rival Wheel 1  OnTimePass
-    maxUses: 1
-    cooldown: 8
+    maxUses: 0
+    cooldown: 6
     fuelCost: 0
     aiSignal: 0
     overflow: 0

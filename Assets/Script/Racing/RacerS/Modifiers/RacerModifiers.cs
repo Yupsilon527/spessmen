@@ -215,7 +215,7 @@ public class RacerModifiers : PropertyComponent
     {
         foreach (ModifierDefines.State state in Mod.states)
         {
-            UpdateState(state, (int)Mod.priority);
+            UpdateState(state, 1 + (int)Mod.priority);
         }
     }
 

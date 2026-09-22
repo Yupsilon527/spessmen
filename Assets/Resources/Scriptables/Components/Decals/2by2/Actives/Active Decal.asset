@@ -22,8 +22,8 @@ MonoBehaviour:
     cells: 01010101
   states: []
   properties:
-  - Property: 14
-    value: -0.1
+  - Property: 22
+    value: 0.5
     IncreasePerLevel: 0
   relative: []
   abilities: []

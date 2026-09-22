@@ -28,7 +28,7 @@ MonoBehaviour:
     maxUses: 0
     cooldown: 1.5
     fuelCost: 0
-    aiSignal: 0
+    aiSignal: 2
     overflow: 0
     classification: 4
     function: 2

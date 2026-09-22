@@ -25,8 +25,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Red Shell 3  OnActivated
-    maxUses: 0
-    cooldown: 6
+    maxUses: 8
+    cooldown: 2
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -35,19 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: b2f2c8cecbd55a44abb716b0ec482d7b, type: 2}
-  - InternalName: Red Shell 3  OnLapCompleted
-    maxUses: 0
-    cooldown: 0
-    fuelCost: 0
-    aiSignal: 0
-    overflow: 0
-    classification: 4
-    function: 3
-    condition: 0
-    conditionCheck: 0
-    actions:
-    - {fileID: 11400000, guid: 6bb0f98860533cf489ab80b9a85b39bc, type: 2}
+    - {fileID: 11400000, guid: de55543ddd63c854b827f421f85106ab, type: 2}
   combos: []
   icon: {fileID: 1597006104, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3

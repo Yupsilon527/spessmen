@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Snowball Can 3
   m_EditorClassIdentifier: 
   InternalName: Snowball Can 3
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 3
     height: 2
@@ -32,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 959f0512ee0fcef4e8ce8d7b130a9b92, type: 2}
+    - {fileID: 11400000, guid: 6e5808be0c543d344a727cc931b7c52f, type: 2}
     - {fileID: 11400000, guid: 959f0512ee0fcef4e8ce8d7b130a9b92, type: 2}
   combos:
   - other: {fileID: 11400000}
@@ -45,4 +48,3 @@ MonoBehaviour:
   weightMultiplier: 0.66
   unique: 0
   rotating: 1
-  lockedForSomeReason: 0

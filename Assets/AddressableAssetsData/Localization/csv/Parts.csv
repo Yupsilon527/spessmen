@@ -184,7 +184,7 @@ lucky wheel 1,1065272879255562,Lucky Wheel 1
 lucky wheel 2,1065272879255563,Lucky Wheel 2
 lucky wheel 3,1065272879255564,Lucky Wheel 3
 lucky wheel 4,1065272879255565,Lucky Wheel 4
-oily wheel,1065272879255566,Oily Wheel
+,,
 rival wheel 1,1065272879255567,Rival Wheel 1
 rival wheel 2,1065272879255568,Rival Wheel 2
 snowball wheel 1,1065272879255569,Snowball Wheel 1
@@ -201,3 +201,6 @@ tiny wheel 1,1065272879255579,Tiny Wheel 1
 tiny wheel 2,1065272879255580,Tiny Wheel 2
 tiny wheel 3,1065272879255581,Tiny Wheel 3
 tiny wheel 4,1065272879255582,Tiny Wheel 4
+Lightweight Wheel 1,,Smiley Wheel
+Lightweight Wheel 2,,Frowny Wheel
+oily wheel,1065272879255566,Emotion Wheel

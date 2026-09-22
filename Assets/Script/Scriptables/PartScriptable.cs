@@ -84,7 +84,7 @@ public class AbilityScriptable
     }
     public string GetAbilityDescription()
     {
-        string output = $"{LanguageController.main.Translate("Abilities", "function_" + function)}: ";
+        string output = $"{LanguageController.main.Translate("Abilities", "function_" + function)}:<br>";
 
         string effects = "";
         foreach (var a in actions)
@@ -107,31 +107,38 @@ public class AbilityScriptable
                 {
                     label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F0")) + ": " + label;
                 }
+                else if (a.condition == ShipDefines.PartCondition.Lucky
+                    || a.condition == ShipDefines.PartCondition.Random)
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", (a.conditionCheck*100).ToString("F0")) + ": " + label;
+                }
                 else
                 {
                     label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": " + label;
                 }
             }
-            if (effects.Length > 0) effects += ", ";
+            if (effects.Length > 0) effects += "<br>";
             effects += label;
         }
 
-        string costs = ". ";
+        string costs = "";
         if (fuelCost > 0)
         {
+            if (costs.Length > 0) costs += "<br>";
             costs += LanguageController.main.Translate("Abilities", "Ability Cost").Replace("%value%", fuelCost.ToString());
         }
         if (cooldown > 0)
         {
-            if (costs.Length > 0) costs += " ";
-            costs += LanguageController.main.Translate("Abilities", "Ability Cooldown").Replace("%value%", cooldown.ToString());
+            if (costs.Length > 0) costs += "<br>" ;
+            costs +=  LanguageController.main.Translate("Abilities", "Ability Cooldown").Replace("%value%", cooldown.ToString());
         }
         if (maxUses > 0)
         {
-            if (costs.Length > 0) costs += " ";
+            if (costs.Length > 0) costs += "<br>" ;
             costs += LanguageController.main.Translate("Abilities", "Ability Uses").Replace("%value%", maxUses.ToString());
         }
-
+        if (costs.Length > 0)
+            costs = "<br>"+ costs;
 
         return output + effects + costs;
 

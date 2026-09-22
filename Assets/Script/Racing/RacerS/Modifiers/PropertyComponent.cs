@@ -16,12 +16,12 @@ public class PropertyComponent : RacerComponent
     }
     public void UpdateState(ModifierDefines.State State, int value)
     {
-        if ((int)State >= 0 && (int)State < (int)ModifierDefines.State.Total)
+        if ((int)State < 0 && (int)State >= (int)ModifierDefines.State.Total)
             return;
 
         if (Mathf.Abs(states[(int)State]) < Mathf.Abs(value))
         {
-            states[(int)State] += value;
+            states[(int)State] = value;
         }
     }
 

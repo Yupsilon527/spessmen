@@ -334,6 +334,18 @@ MonoBehaviour:
     m_Localized: '%target% loses %value% '
     m_Metadata:
       m_Items: []
+  - m_Id: 15952459185688578
+    m_Localized: boosts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459189882880
+    m_Localized: Is stunned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459189882881
+    m_Localized: ' for %duration%s'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

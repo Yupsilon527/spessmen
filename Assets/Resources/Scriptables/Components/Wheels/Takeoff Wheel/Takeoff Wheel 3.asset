@@ -47,7 +47,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: e29c7debacbda0544be8f3bfd2f91536, type: 2}
+    - {fileID: 11400000, guid: a23be2866f2f4084997d68368c0d765b, type: 2}
   - InternalName: Takeoff Wheel 3  OnRivalOvertaken
     maxUses: 0
     cooldown: 0
