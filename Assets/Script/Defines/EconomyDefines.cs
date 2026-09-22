@@ -1,13 +1,13 @@
 
 public static class EconomyDefines
 {
-    public const float constantGoldForRace = 25;
+    public const float constantGoldForRace = 10;
     public const float interestGoldCap = 100;
-    public const float performanceGoldCap = 90;
+    public const float performanceGoldCap = 10;
     public const float constantGoldPerPosition = 2;
-    public const float constantGoldPerDistance = .025f;
+    public const float constantGoldPerDistance = .003f;
     public const float constantGoldInterest = .2f;
-    public const float goldPerRaceIncrease = 1.125f;
+    public const float goldPerRaceIncrease = 1.15f;
     public static int goldPerRaceLimit = 9;
 
     public const float PartPriceBase = 20f;

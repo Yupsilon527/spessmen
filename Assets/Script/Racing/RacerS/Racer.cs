@@ -75,6 +75,8 @@ public class Racer
         float value = 1;
         if (modifiers != null)
             value *=  modifiers.GetPropertyMultiplicative(Property);
+        if (value < 0)
+            return 1 + value / (-value + .5f);
         return value;
     }
     #endregion

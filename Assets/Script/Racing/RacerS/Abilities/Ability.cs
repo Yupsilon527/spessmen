@@ -159,4 +159,14 @@ public class Ability : Countdown
     {
         if (part != null) part.givenFuel += amt;
     }
+    public int GetRemainingUses()
+    {
+        if (LimitedUses())
+            return useCount;
+                return 0;
+    }
+    public bool LimitedUses()
+    {
+        return data.maxUses > 0;
+    }
 }

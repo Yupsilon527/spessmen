@@ -174,8 +174,8 @@ public class RacerModifiers : PropertyComponent
         modifiers.Add(Modifier);
         if (Modifier.expire == ModifierDefines.ExpireType.Time)
             HasUpdates = true;
-        UpdateModifierStates(Modifier);
-        UpdateModifierProperties(Modifier);
+       // UpdateModifierStates(Modifier);
+      //  UpdateModifierProperties(Modifier);
         Modifier.ExecuteEvent(ShipDefines.PartEvent.OnActivated);
 
         foreach (Modifier Mod in modifiers)

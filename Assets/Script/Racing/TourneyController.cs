@@ -306,9 +306,9 @@ public class TourneyController : Initializable
 
 
         float finishGold = Mathf.Max(0, EconomyDefines.constantGoldForRace * diffMult + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus));
-        float positionGold = Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count - playerPos)) * diffMult * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
+        float positionGold = Mathf.Floor(EconomyDefines.constantGoldPerPosition * (ongoingRace.racers.Count - playerPos)) * diffMult;
 
-        float outputGold = finishGold + positionGold;
+        float outputGold = (finishGold + positionGold) * DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_income);
 
         float distanceGold = 0;
         if (playerPos == 0)
@@ -341,14 +341,14 @@ public class TourneyController : Initializable
         if (IsLastRaceInSeason())
         {
             var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
-            tournamentsCompleted.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+            tournamentsCompleted.Change(Variables.Change.Case.add, 1);
             if (ongoingRace.GetPositionForRacer(playerRacer) == 0)
             {
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
-                tournamentsWon.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+                tournamentsWon.Change(Variables.Change.Case.add, 1);
 
                 var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + DataItemPlayer.main.car.scriptable.InternalName);
-                characterWins.SetFloatValue(tournamentsCompleted.GetFloatValue() + 1);
+                characterWins.Change(Variables.Change.Case.add,1);
 
                 bool perfect = GetScoreForRacer(playerRacer) >= (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons + DifficultyDefines.eliteRaceScoreMultiplier - 1) * leaderboard.Count;
                 if (perfect)

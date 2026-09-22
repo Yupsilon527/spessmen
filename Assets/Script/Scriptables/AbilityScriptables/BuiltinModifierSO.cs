@@ -53,6 +53,7 @@ public class BuiltinModifierSO : BaseEffectSo
         }
         if (newModifier != null)
         {
+            newModifier.Set(duration);
             foreach (ModifierParameter parain in vars)
             {
                 newModifier.SetParameter(parain.name, parain.value);

@@ -1,4 +1,6 @@
 TODO
+	$ and c
+
 	cups
 		icons and loc
 
@@ -7,6 +9,9 @@ TODO
 		parts
 		effects
 		apply modifier/builtin
+
+	racer unlocks
+		racer unlocks locale
 
 	modifier descs race
 
@@ -17,25 +22,33 @@ TODO
 		snowball wheel
 		mischief can
 
+	part numbers/cooldowns
+		white when they have uses
+		gray when displaying CDs
+
+	VERSATILE DECAL
+
 TEST
 	stats and stat collection
-	stat stealing
-
+	tournament wins don't save?
 FIX
+	BUG -> vars saved endgame BEFORE player ends race
+	vampirism bug
+
+	bg moves when player stands
+	elite modifier???
+
+	part cant rot>>>rotation?
+
 	speed doesnt reset
-	stun doesnt work
 	distance to beat
 QoL
 	char loadout already set up
 
 	part highlight position
 
-	part speed given
 
 	STATS
-		racer
-			tourneys
-			wins
 		parts
 			seen
 			bought

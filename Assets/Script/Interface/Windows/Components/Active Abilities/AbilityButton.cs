@@ -67,9 +67,13 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
                 }
             }
         }
-            button.interactable = corresponding.Any(a=>a.CanBeActivated());
-        if (longestCD>0)
+            button.interactable = corresponding.Length > 0 && corresponding.Any(a=>  a.CanBeActivated());
+        if (longestCD > 0)
             ShowCooldown(longestCD, longestExhaust);
+        else if (UsesCharges()) {
+            int charges = GetAbilityCharges();
+            cooldownValue.text = charges== 0 ? "" : charges.ToString();
+        }
         else if (!button.interactable)
             cooldownFill.fillAmount = 1;
     }
@@ -82,6 +86,19 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
     {
         cooldownValue.text = "";
         cooldownFill.fillAmount = 0;
+    }
+    public bool UsesCharges()
+    {
+        return corresponding.Length > 0 && corresponding.Any(a => a.LimitedUses());
+    }
+    public int GetAbilityCharges()
+    {
+        foreach (var ability in corresponding)
+        {
+            if (ability.data.maxUses > 0)
+                return ability.data.maxUses - ability.GetRemainingUses();
+        }
+        return 0;
     }
     public void OnClick()
     {

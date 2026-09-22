@@ -87,6 +87,7 @@ public class PlayerStatsAlteration
                 float stolen = GetEffectiveChange(caster, mult, self);
                 ApplyToStat(ref target.stats.alteredSpeed, -stolen);
                 ApplyToStat(ref caster.stats.alteredSpeed, stolen);
+                caster.stats.SetDirty();
                 target.stats.SetDirty();
                 source.RegisterGrantedSpeed(stolen);
                 break;
