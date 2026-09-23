@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Engine 2  OnTimePass
     maxUses: 0
     cooldown: 1.75
-    fuelCost: 30
+    fuelCost: 23
     aiSignal: 0
     overflow: 1
     classification: 3

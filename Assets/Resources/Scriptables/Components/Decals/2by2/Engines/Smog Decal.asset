@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Smog Decal
   m_EditorClassIdentifier: 
   InternalName: Smog Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
@@ -20,10 +23,10 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 8
-    value: -0.25
+    value: -0.1
     IncreasePerLevel: 0
   - Property: 12
-    value: 0.33
+    value: 0.5
     IncreasePerLevel: 0
   relative: []
   abilities: []
@@ -35,4 +38,4 @@ MonoBehaviour:
   priceMultiplier: 1
   weightMultiplier: 3
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

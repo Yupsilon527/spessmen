@@ -28,24 +28,38 @@ public class RacerSelDescription : RacerSelComponent
             desc.text += $"<br>br>{LanguageController.main.Translate("UI Table", "Attempts")}: {(int)characterAttempts.GetFloatValue()}<br>{LanguageController.main.Translate("UI Table", "Wins")}: {(int)characterWins.GetFloatValue()}";
 
 
-            var playerCup = PlayerConfig.main.globalScope.GetVariable("highest_cup");
+            var playerCup = PlayerConfig.main.globalScope.GetVariable("highest_cup_with_" + ship.InternalName);
 
             if (playerCup.GetFloatValue() > 0) {
-              var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season0_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+              var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season0_with_" + ship.InternalName);
                 firstCup.gameObject.SetActive(!perfectCup.GetBoolValue());
                 firstCupG.gameObject.SetActive(perfectCup.GetBoolValue());
             }
+            else { 
+                firstCup.gameObject.SetActive(false);
+                firstCupG.gameObject.SetActive(false); 
+            }
             if (playerCup.GetFloatValue() > 1)
             {
-                var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season1_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+                var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season1_with_" + ship.InternalName);
                 secondCup.gameObject.SetActive(!perfectCup.GetBoolValue());
                 secondCupG.gameObject.SetActive(perfectCup.GetBoolValue());
             }
+            else
+            {
+                secondCup.gameObject.SetActive(false);
+                secondCupG.gameObject.SetActive(false);
+            }
             if (playerCup.GetFloatValue() > 2)
             {
-                var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season2_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+                var perfectCup = PlayerConfig.main.globalScope.GetVariable("perfect_season2_with_" + ship.InternalName);
                 thirdCup.gameObject.SetActive(!perfectCup.GetBoolValue());
                 thirdCupG.gameObject.SetActive(perfectCup.GetBoolValue());
+            }
+            else
+            {
+                thirdCup.gameObject.SetActive(false);
+                thirdCupG.gameObject.SetActive(false);
             }
         }
         else

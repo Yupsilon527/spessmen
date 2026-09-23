@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Rubberband Engine 2  OnTimePass
     maxUses: 0
     cooldown: 0.9
-    fuelCost: 31.5
+    fuelCost: 37.5
     aiSignal: 0
     overflow: 2
     classification: 3
@@ -35,8 +35,8 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: ca7f4f95b5609fc44bf9cb4a87bf5b33, type: 2}
     - {fileID: 11400000, guid: ba21539d91e58ba45b97cbc90e7d545a, type: 2}
+    - {fileID: 11400000, guid: ca7f4f95b5609fc44bf9cb4a87bf5b33, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: fb8dd38ff100642469196dabced38e29, type: 2}

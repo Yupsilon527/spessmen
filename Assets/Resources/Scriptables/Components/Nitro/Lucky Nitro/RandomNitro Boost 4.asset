@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
-  condition: 13
-  conditionCheck: 0.25
+  condition: 0
+  conditionCheck: 0
   modifierName: Nitro
   priority: 0
   flag: 2

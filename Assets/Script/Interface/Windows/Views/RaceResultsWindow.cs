@@ -7,6 +7,8 @@ public class RaceResultsWindow : MonoBehaviour
     public TextMeshProUGUI  playerPosition, cupTitle;
     public RaceTooltip raceTooltip;
     public Button proceedButton;
+    public Image cupIcon;
+    public Sprite cupFirstSprite, cupSecondSprite, cupThirdSprite, cupEndlessSprite;
 
      void OnEnable()
     {
@@ -32,6 +34,12 @@ public class RaceResultsWindow : MonoBehaviour
                 cup == 1 ? LanguageController.main?.Translate("Leaderboard", "secondcup") :
                 cup == 2 ? LanguageController.main?.Translate("Leaderboard", "thirdcup") : LanguageController.main?.Translate("Leaderboard", "endless");
             cupTitle.text = cupLabel;
+            if (cupIcon != null)
+            {
+                cupIcon.sprite = cup == 0 ? cupFirstSprite :
+                cup == 1 ? cupSecondSprite :
+                cup == 2 ? cupThirdSprite : cupEndlessSprite;
+            }
         }
         if (proceedButton != null)
             proceedButton.interactable = position <= 2;

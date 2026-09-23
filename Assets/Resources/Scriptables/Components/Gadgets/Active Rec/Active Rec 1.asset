@@ -26,8 +26,8 @@ MonoBehaviour:
   abilities:
   - InternalName: Active Rec 1  OnActivated
     maxUses: 0
-    cooldown: 0.1
-    fuelCost: 3
+    cooldown: 0
+    fuelCost: 10
     aiSignal: 0
     overflow: 0
     classification: 4

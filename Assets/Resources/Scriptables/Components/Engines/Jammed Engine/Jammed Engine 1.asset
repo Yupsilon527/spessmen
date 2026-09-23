@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Jammed Engine 1 GasAbove OnTimePass
     maxUses: 0
     cooldown: 1.25
-    fuelCost: 24
+    fuelCost: 18
     aiSignal: 0
     overflow: 2
     classification: 3

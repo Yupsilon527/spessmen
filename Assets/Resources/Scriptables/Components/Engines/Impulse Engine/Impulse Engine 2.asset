@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Impulse Engine 2  OnTimePass
     maxUses: 0
     cooldown: 0.9
-    fuelCost: 63
+    fuelCost: 33
     aiSignal: 0
     overflow: 1
     classification: 3

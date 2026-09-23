@@ -373,10 +373,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1842288045517489027, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000061035156
-      objectReference: {fileID: 0}
     - target: {fileID: 2186851952975283493, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -504,9 +500,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4235008344913534166, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
-      propertyPath: proceedButton
+      propertyPath: cupIcon
       value: 
-      objectReference: {fileID: 5160242567985208146}
+      objectReference: {fileID: 482073029165935373}
     - target: {fileID: 4684977673391704223, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -566,10 +562,6 @@ PrefabInstance:
     - target: {fileID: 6793005670187856624, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834124890918138558, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 6943912299837664880, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
       propertyPath: m_Enabled
@@ -635,6 +627,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 535855436091679822}
   m_SourcePrefab: {fileID: 100100000, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+--- !u!114 &482073029165935373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6878463211496469882, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
+  m_PrefabInstance: {fileID: 6468751284868324983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1161414699653073011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5322044752832534020, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
@@ -713,17 +716,6 @@ MonoBehaviour:
   raceWeather: {fileID: 0}
   environmentDisplay: {fileID: 0}
   weatherDisplay: {fileID: 0}
---- !u!114 &5160242567985208146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2186851952975283493, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}
-  m_PrefabInstance: {fileID: 6468751284868324983}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6398064810566617867 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 76527171906934140, guid: 9bf111f84ed98d94bb7d93cb4db26f2e, type: 3}

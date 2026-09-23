@@ -362,7 +362,7 @@ public class TourneyController : Initializable
                 playerCup.SetFloatValue(Mathf.Max(tournamentsCompleted.GetFloatValue(), cup));
 
                 var characterCup = PlayerConfig.main.globalScope.GetVariable("highest_cup_with_" + DataItemPlayer.main.car.scriptable.InternalName);
-                characterCup.SetFloatValue(Mathf.Max(characterCup.GetFloatValue(), cup));
+                characterCup.SetFloatValue(Mathf.Max(characterCup.GetFloatValue(), cup+1));
             }
         }
     }

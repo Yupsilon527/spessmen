@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Large Engine 1  OnTimePass
     maxUses: 0
     cooldown: 2
-    fuelCost: 60
+    fuelCost: 36
     aiSignal: 0
     overflow: 2
     classification: 3
