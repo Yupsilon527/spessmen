@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class Modifier : Countdown
 {
-    protected Racer racer;
+    protected Racer source,owner;
     public string ModifierName="UNASSIGNED";
     public bool dead = false;
     public int stacks = 1;
@@ -13,15 +13,17 @@ public class Modifier : Countdown
     public ModifierDefines.Priority priority;
     public ModifierDefines.Flag flag;
     public ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique;
-    public Modifier(Racer owner, int level = 0)
+    public Modifier(Racer source, Racer owner, int level = 0)
     {
-        this.racer = owner;
+        this.source = source;
+        this.owner = owner;
         this.stacks = level;
     }
 
-    public Modifier(Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Undispellable, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique,ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent, float duration = 0, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
+    public Modifier(Racer source, Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Undispellable, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique,ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent, float duration = 0, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
     {
-        this.racer = owner;
+        this.source = source;
+        this.owner = owner;
         this.states = states == null ? new() : states;
         this.properties = properties == null ? new() : properties;
         this.priority = priority;
@@ -30,7 +32,10 @@ public class Modifier : Countdown
         this.expire = expire;
         durationTime = duration;
     }
-
+    public override string ToString()
+    {
+        return base.ToString()+$" ({ModifierName})";
+    }
     public bool IsExpired()
     {
         if (expire == ModifierDefines.ExpireType.Time)
@@ -106,8 +111,8 @@ public class Modifier : Countdown
         if (!dead)
         {
             dead = true;
-            racer.modifiers.RefreshModifier(this);
-            racer.modifiers.Refresh(false);
+            owner.modifiers.RefreshModifier(this);
+            owner.modifiers.Refresh(false);
         }
     }
     #region Functions

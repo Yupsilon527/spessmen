@@ -21,7 +21,7 @@ public class RacerStatsTable : RacerComponent
         base.HandleRacePhase(phase);
         switch (phase)
         {
-            case RaceDefines.RacePhase.RaceBegin:
+            case RaceDefines.RacePhase.RaceSetup:
                 realSpeed = 0;
                 baseSpeed = 0;
                 boosterSpeed = 0;

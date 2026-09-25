@@ -8,7 +8,7 @@ public static class DifficultyDefines
     public const float enemyMinSpeed = 4;
     public const float enemyBaseSpeed = 10;
     public const float enemyWheelSpeed = 12;
-    public const float enemyEngineSpeed = 4;
+    public const float enemyEngineSpeed = 6;
     public const float enemyEngineCooldown = 2.5f;
     public const float enemyEngineDelta = 1.25f;
 

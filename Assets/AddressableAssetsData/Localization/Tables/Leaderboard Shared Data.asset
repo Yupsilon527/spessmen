@@ -47,6 +47,22 @@ MonoBehaviour:
     m_Key: cashouttotal
     m_Metadata:
       m_Items: []
+  - m_Id: 17383672521854976
+    m_Key: firstcup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575232
+    m_Key: secondcup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575233
+    m_Key: thirdcup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575234
+    m_Key: endless
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

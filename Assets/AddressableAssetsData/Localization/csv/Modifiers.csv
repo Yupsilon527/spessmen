@@ -1,5 +1,11 @@
 key,Id,English(en)
 ,,
+prop_starting_cooldown_mult,,Warmup
+,,
+prop_debuff_duration_multiplier,,Debuff Duration
+prop_buff_duration_multiplier,,Buff Duration
+,,
+,,
 ,,
 ,,
 prop_ability_cooldown,19355707281425,Active Cooldowns

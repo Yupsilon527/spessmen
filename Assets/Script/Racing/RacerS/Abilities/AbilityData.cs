@@ -8,7 +8,7 @@ public class AbilityData
     public class AbilityListener
     {
         public RaceDefines.AbilityTarget effectSource, effectTarget;
-        public AbilityFunction d;
+        public AbilityFunction action;
     }
 
     public string InternalName;
@@ -39,7 +39,7 @@ public class AbilityData
                 {
                     new AbilityListener()
                 {
-                d= (caster, target, source, mult) =>
+                action= (caster, target, source, mult) =>
                 {
             action.GiveToPlayer(caster, target, source, mult);
         }
@@ -65,7 +65,7 @@ public class AbilityData
                 {
                     new AbilityListener()
                 {
-                d= (caster, target, source, mult) =>
+                action= (caster, target, source, mult) =>
                 {
                     action.GiveToPlayer(caster, target, source, mult);
                 }

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Basic Can 1
   m_EditorClassIdentifier: 
   InternalName: Basic Can 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 3
     height: 2
@@ -41,7 +44,6 @@ MonoBehaviour:
   partType: 2
   attach: 0
   priceMultiplier: 0.87
-  weightMultiplier: 0.66
+  weightMultiplier: 1
   unique: 0
   rotating: 1
-  lockedForSomeReason: 0

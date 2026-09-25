@@ -15,16 +15,40 @@ MonoBehaviour:
   m_TableCollectionName: Modifiers
   m_TableCollectionNameGuidString: 1bb1f80ec1a2efe41b09ce466f1a96d7
   m_Entries:
-  - m_Id: 15952459085025280
-    m_Key: New Entry 11
+  - m_Id: 17078340075556864
+    m_Key: New Entry 19
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459173105664
-    m_Key: New Entry 12
+  - m_Id: 17078340167831552
+    m_Key: prop_starting_cooldown_mult
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459173105665
-    m_Key: New Entry 13
+  - m_Id: 17078340172025856
+    m_Key: New Entry 20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025857
+    m_Key: prop_debuff_duration_multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025858
+    m_Key: prop_buff_duration_multiplier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025859
+    m_Key: New Entry 21
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025860
+    m_Key: New Entry 22
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025861
+    m_Key: New Entry 23
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025862
+    m_Key: New Entry 24
     m_Metadata:
       m_Items: []
   - m_Id: 19355707281425
@@ -319,12 +343,12 @@ MonoBehaviour:
     m_Key: scale_totalspeed
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459185688576
-    m_Key: New Entry 14
+  - m_Id: 17078340184608768
+    m_Key: New Entry 25
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459185688577
-    m_Key: New Entry 15
+  - m_Id: 17078340184608769
+    m_Key: New Entry 26
     m_Metadata:
       m_Items: []
   - m_Id: 15952459185688578
@@ -339,8 +363,8 @@ MonoBehaviour:
     m_Key: modifier duration
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459189882882
-    m_Key: New Entry 16
+  - m_Id: 17078340184608770
+    m_Key: New Entry 27
     m_Metadata:
       m_Items: []
   - m_Id: 38406500290577
@@ -351,8 +375,8 @@ MonoBehaviour:
     m_Key: lose effect
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459189882883
-    m_Key: New Entry 17
+  - m_Id: 17078340184608771
+    m_Key: New Entry 28
     m_Metadata:
       m_Items: []
   - m_Id: 37671192662016
@@ -363,8 +387,8 @@ MonoBehaviour:
     m_Key: stat scale pos
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459189882884
-    m_Key: New Entry 18
+  - m_Id: 17078340184608772
+    m_Key: New Entry 29
     m_Metadata:
       m_Items: []
   - m_Id: 37669787570176
@@ -373,6 +397,38 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 31333012115456
     m_Key: chance scale pos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459085025280
+    m_Key: New Entry 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459173105664
+    m_Key: New Entry 12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459173105665
+    m_Key: New Entry 13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459185688576
+    m_Key: New Entry 14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459185688577
+    m_Key: New Entry 15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459189882882
+    m_Key: New Entry 16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459189882883
+    m_Key: New Entry 17
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15952459189882884
+    m_Key: New Entry 18
     m_Metadata:
       m_Items: []
   - m_Id: 15765452136288256

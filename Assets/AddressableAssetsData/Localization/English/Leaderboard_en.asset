@@ -50,6 +50,22 @@ MonoBehaviour:
     m_Localized: 'Cash Out: $%value%'
     m_Metadata:
       m_Items: []
+  - m_Id: 17383672521854976
+    m_Localized: Paper Cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575232
+    m_Localized: Reusable Cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575233
+    m_Localized: Slushie Cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17383672580575234
+    m_Localized: Endless
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

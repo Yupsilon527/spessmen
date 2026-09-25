@@ -84,14 +84,15 @@ public class ArenaController : MonoBehaviour
 
         }
 
-        float worldScroll = Mathf.Min(playerRacer.racer.position.distanceTraveled * 10, playerRacer.racer.position.distanceTraveled + 600);
+        float worldScroll = Mathf.Min(playerRacer.racer.stats.realSpeed* 18 ,1500);
+        if (playerRacer.racer.IsStunned()) worldScroll = 0;
         parallax?.SetWorldDelta(worldScroll);
     }
     void HandleFloatingText()
     {
         foreach (var racer in racers)
         {
-            if (!racer.toon.nextAlertTime.IsRunning() && racer.racer.stats.realSpeed != racer.displaySpeed)
+            if (TourneyController.main.currentPhase > TourneyController.TourneyPhase.setup && !racer.toon.nextAlertTime.IsRunning() && racer.racer.stats.realSpeed != racer.displaySpeed)
             {
                 float delta = racer.racer.stats.realSpeed - racer.displaySpeed;
                 racer.toon.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");

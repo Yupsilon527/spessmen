@@ -61,8 +61,7 @@ public class RaceView : ViewBase
     {
         if (!TourneyController.main.ongoingRace.IsRunning())
         {
-            TourneyController.main.ChangePhase(TourneyController.TourneyPhase.newRace);
-            TourneyController.main.ChangePhase(TourneyController.TourneyPhase.beforeRace);
+            TourneyController.main.Proceed();
             ViewManager.Instance.ChangeView(ViewManager.Views.shopView);
         }
     }

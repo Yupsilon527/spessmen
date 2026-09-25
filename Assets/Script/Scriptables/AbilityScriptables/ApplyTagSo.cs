@@ -7,11 +7,11 @@ public class ApplyTagSo : BaseEffectSo
 
     public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        t.modifiers.Add(Translate(t,m));
+        t.modifiers.Add(Translate(c,t,m));
     }
-    public virtual Modifier Translate(Racer t, float m)
+    public virtual Modifier Translate(Racer s, Racer t, float m)
     {
-        return new Modifier(t, 0)
+        return new Modifier(s,t, 0)
         {
             ModifierName = modifierName,
             priority = ModifierDefines.Priority.low,

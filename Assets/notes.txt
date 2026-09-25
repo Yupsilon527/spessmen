@@ -1,11 +1,10 @@
 TODO
 	$ and c
 
-	cups
-		icons and loc
 
 	LOCALIZATION
 		modifier race
+		modifier props
 		parts
 		effects
 		apply modifier/builtin
@@ -28,21 +27,25 @@ TODO
 
 	VERSATILE DECAL
 
+	modifier scaling
+
 TEST
 	stats and stat collection
 	tournament wins don't save?
 FIX
-	BUG -> vars saved endgame BEFORE player ends race
+	rival overtaken event bug
+
 	vampirism bug
 
-	bg moves when player stands
 	elite modifier???
 
 	part cant rot>>>rotation?
 
-	speed doesnt reset
 	distance to beat
 QoL
+	alert LUCKY
+	alert MODIFIER NAME
+	undo merge
 	char loadout already set up
 
 	part highlight position

@@ -25,7 +25,7 @@ public class RacerSelDescription : RacerSelComponent
 
             var characterAttempts = PlayerConfig.main.globalScope.GetVariable("attempts_with_" + ship.InternalName);
             var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + ship.InternalName);
-            desc.text += $"<br>br>{LanguageController.main.Translate("UI Table", "Attempts")}: {(int)characterAttempts.GetFloatValue()}<br>{LanguageController.main.Translate("UI Table", "Wins")}: {(int)characterWins.GetFloatValue()}";
+            desc.text += $"<br><br>{LanguageController.main.Translate("UI Table", "Attempts")}: {(int)characterAttempts.GetFloatValue()}<br>{LanguageController.main.Translate("UI Table", "Wins")}: {(int)characterWins.GetFloatValue()}";
 
 
             var playerCup = PlayerConfig.main.globalScope.GetVariable("highest_cup_with_" + ship.InternalName);

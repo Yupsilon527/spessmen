@@ -26,6 +26,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
   - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
   - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
+  - {fileID: 21300000, guid: e1d6d2cca32550f46bf7c2d056e3db77, type: 3}
   groundSprites:
   - Weight: 1
     value: {fileID: 21300000, guid: 2a26792f7447f6e4c8c0db74fd8a9f87, type: 3}

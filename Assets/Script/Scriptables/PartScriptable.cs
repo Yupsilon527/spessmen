@@ -77,7 +77,7 @@ public class AbilityScriptable
              actions = actions.Select ( a=> new AbilityData.AbilityListener() {  
                  effectSource = a.effectSource, 
                  effectTarget = a.effectTarget,  
-                 d = (Racer caster, Racer target, Ability source, float mult) => { a.AffectOnRacer(caster, target, source, mult); 
+                 action = (Racer caster, Racer target, Ability source, float mult) => {   a.AffectOnRacer(caster, target, source, mult); 
                  }
              } ).ToArray(),
         };

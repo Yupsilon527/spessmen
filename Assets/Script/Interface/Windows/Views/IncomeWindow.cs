@@ -39,8 +39,9 @@ public class IncomeWindow : MonoBehaviour
             else
                 bonusIncome.text += "";
 
-            totalIncome.text = LanguageController.main.Translate("Leaderboard", "cashOutTotal").Replace("%value%", (bi + pi + interest + performance).ToString("F1")); ;
-            totalGold.text = LanguageController.main.Translate("UI Table", "Gold Label").Replace("%gold%", DataItemPlayer.main.econ.gold.GetValue().ToString("F0")); ;
+            float total = bi + pi + interest + performance;
+            totalIncome.text = LanguageController.main.Translate("Leaderboard", "cashOutTotal").Replace("%value%", total.ToString("F1")); ;
+            totalGold.text = LanguageController.main.Translate("UI Table", "Gold Label").Replace("%gold%", (DataItemPlayer.main.econ.gold.GetValue() + total).ToString("F0")); ;
         }
     }
 }

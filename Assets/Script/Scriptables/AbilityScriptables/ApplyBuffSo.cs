@@ -9,9 +9,9 @@ public class ApplyBuffSo : ApplyTagSo
 
     public ModifierDefines.StateData[] states;
     public ModifierDefines.PropertyData[] properties;
-    public override Modifier Translate(Racer t, float m)
+    public override Modifier Translate(Racer s, Racer t, float m)
     {
-        var modifier =  new Modifier(t, 0)
+        var modifier =  new Modifier(s, t, 0)
         {
             ModifierName = modifierName,
             states = new(),

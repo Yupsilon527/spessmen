@@ -339,11 +339,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15952459189882880
-    m_Localized: Is stunned
+    m_Localized: gets stunned
     m_Metadata:
       m_Items: []
   - m_Id: 15952459189882881
     m_Localized: ' for %duration%s'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340167831552
+    m_Localized: Warmup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025857
+    m_Localized: Debuff Duration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17078340172025858
+    m_Localized: Buff Duration
     m_Metadata:
       m_Items: []
   references:

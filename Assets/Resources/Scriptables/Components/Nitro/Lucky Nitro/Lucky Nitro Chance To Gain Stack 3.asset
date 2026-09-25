@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 184a38f13d8edfa4fad66dfe1b250b09, type: 3}
-  m_Name: Jengine Speed Up 4
+  m_Name: Lucky Nitro Chance To Gain Stack 3
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
-  condition: 8
-  conditionCheck: 1
+  condition: 13
+  conditionCheck: 0.2
   alteration:
     behavior: 0
-    stat: 1
+    stat: 10
     scale: 0
-    value: -12
+    value: 1
     reverse: 0

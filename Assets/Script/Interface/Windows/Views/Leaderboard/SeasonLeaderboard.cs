@@ -14,9 +14,9 @@ public class SeasonLeaderboard : Leaderboard
         int races = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
         int start = Mathf.FloorToInt(TourneyController.main.GetCurrentRaceIndex() / races) * races;
 
-        for (int i = start; i < start+ races; i++)
+        for (int i = 0; i <  races; i++)
         {
-                entries[i].ShowPlayerResults( i);
+                entries[i].ShowPlayerResults( i+ start);
                 entries[i].gameObject.SetActive(true);
         }
     }

@@ -18,7 +18,7 @@ public class RacerModifiers : PropertyComponent
         base.HandleRacePhase(phase);
         switch (phase)
         {
-            case RaceDefines.RacePhase.RaceSetup:
+            case RaceDefines.RacePhase.RaceBegin:
                 foreach (Modifier modifier in modifiers)
                 {
                     modifier.Restart(Time.time);
@@ -70,6 +70,9 @@ public class RacerModifiers : PropertyComponent
                 }
                 else
                 {
+#if UNITY_EDITOR
+                    Debug.Log($"[Modifiers] Remove Modifier {Mod.ModifierName} from {racer}");
+#endif
                     Mod.Die(true);
                 }
             }
@@ -86,6 +89,7 @@ public class RacerModifiers : PropertyComponent
     {
         if (Modifier.states.Count > 0) RefreshStates();
         if (Modifier.properties.Count > 0) RefreshProperties();
+        HasUpdates = true;
     }
     public void RefreshProperties()
     {
@@ -171,6 +175,9 @@ public class RacerModifiers : PropertyComponent
     }
     void OnAddModifier(Modifier Modifier)
     {
+#if UNITY_EDITOR
+        Debug.Log($"[Modifiers] Add Modifier {Modifier.ModifierName} for {Modifier.GetDuration()} on {racer}");
+#endif
         modifiers.Add(Modifier);
         if (Modifier.expire == ModifierDefines.ExpireType.Time)
             HasUpdates = true;

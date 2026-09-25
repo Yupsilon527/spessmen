@@ -73,6 +73,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
         else if (UsesCharges()) {
             int charges = GetAbilityCharges();
             cooldownValue.text = charges== 0 ? "" : charges.ToString();
+            cooldownValue.color = Color.white;
         }
         else if (!button.interactable)
             cooldownFill.fillAmount = 1;
@@ -81,6 +82,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
     {
         cooldownValue.text = $"{Mathf.Round(cd*10)/10}";
         cooldownFill.fillAmount = cd/total;
+        cooldownValue.color = Color.gray;
     }
     void HideCooldown()
     {

@@ -15,15 +15,15 @@ public class BuiltinModifierSO : BaseEffectSo
     public BuiltInModifierType BuiltinType;
     public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        t.modifiers.Add(GetBuiltinModifier(s));
+        t.modifiers.Add(GetBuiltinModifier(s,t));
     }
-    Modifier GetBuiltinModifier(Ability source)
+    Modifier GetBuiltinModifier(Ability source, Racer t)
     {
         Modifier newModifier = null;
         switch (BuiltinType)
         {
             case BuiltInModifierType.Stun:
-                newModifier = new Modifier(source.caster, 1)
+                newModifier = new Modifier(source.caster, t,1)
                 {
                     ModifierName = "Stun",
                     behavior = ModifierDefines.Behavior.IncreaseDuration,
@@ -32,7 +32,7 @@ public class BuiltinModifierSO : BaseEffectSo
                 };
                 break;
             case BuiltInModifierType.Turbo:
-                newModifier = new Modifier(source.caster, 1)
+                newModifier = new Modifier(source.caster, t, 1)
                 {
                     ModifierName = "Turbo",
                     behavior = ModifierDefines.Behavior.IncreaseDuration,

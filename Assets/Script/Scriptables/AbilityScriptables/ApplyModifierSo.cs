@@ -5,9 +5,9 @@ public class ApplyModifierSo : ApplyBuffSo
 {
     public ModifierDefines.ExpireType expiretype;
     public float duration = 10;
-    public override Modifier Translate(Racer t, float m)
+    public override Modifier Translate(Racer s,Racer t, float m)
     {
-        var modifier = base.Translate(t, m);
+        var modifier = base.Translate(s,t, m);
         modifier.expire = expiretype;
         modifier.Set(duration * m);
         return modifier;

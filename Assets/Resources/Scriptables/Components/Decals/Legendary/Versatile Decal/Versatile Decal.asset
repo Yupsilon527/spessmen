@@ -13,95 +13,44 @@ MonoBehaviour:
   m_Name: Versatile Decal
   m_EditorClassIdentifier: 
   InternalName: Versatile Decal
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 2
     cells: 01010101
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 2
+    IncreasePerLevel: 0
   relative: []
   abilities:
-  - InternalName: Versatile Decal  OnEngineActivate
+  - InternalName: Versatile Decal  OnFastAbilityActivate
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
+    overflow: 0
     classification: 6
-    function: 8
+    function: 10
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 5
-      scale: 0
-      value: 0.4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 6
-      scale: 0
-      value: 0.4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-  - InternalName: Versatile Decal  OnNitroActivate
+    - {fileID: 11400000, guid: a6e6e8771aee5af42a98e2dd7ee5f922, type: 2}
+  - InternalName: Versatile Decal  OnBigAbilityActivate
     maxUses: 0
     cooldown: 0
     fuelCost: 0
+    aiSignal: 0
+    overflow: 0
     classification: 6
-    function: 9
+    function: 11
     condition: 0
     conditionCheck: 0
     actions:
-    - behavior: 0
-      stat: 5
-      scale: 0
-      value: 0.25
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 4
-      scale: 0
-      value: 0.25
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-  - InternalName: Versatile Decal  OnGadgetActivate
-    maxUses: 0
-    cooldown: 0
-    fuelCost: 0
-    classification: 6
-    function: 7
-    condition: 0
-    conditionCheck: 0
-    actions:
-    - behavior: 0
-      stat: 6
-      scale: 0
-      value: 0.4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
-    - behavior: 0
-      stat: 4
-      scale: 0
-      value: 0.4
-      reverse: 0
-      effectSource: 0
-      effectTarget: 0
-      condition: 0
-      conditionCheck: 0
+    - {fileID: 11400000, guid: 63e66500146aa0e4eb39ea3f71ed1737, type: 2}
   combos: []
   icon: {fileID: 932648510, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
@@ -110,4 +59,4 @@ MonoBehaviour:
   priceMultiplier: 0.66
   weightMultiplier: 5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

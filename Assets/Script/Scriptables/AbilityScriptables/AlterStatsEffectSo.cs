@@ -6,7 +6,9 @@ public class AlterStatsEffectSo : BaseEffectSo
     public PlayerStatsAlteration alteration;
     public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
+        if (CanAffectRacer(t)) { 
         alteration.GiveToPlayer(c, t, s, m);
+    }
     }
     public override string GetDescription()
     {

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class RaceResultsWindow : MonoBehaviour
 {
-    public TextMeshProUGUI  playerPosition, cupTitle;
+    public TextMeshProUGUI  playerPosition, cupTitle, qualifiedText;
     public RaceTooltip raceTooltip;
     public Button proceedButton;
     public Image cupIcon;
@@ -41,7 +41,10 @@ public class RaceResultsWindow : MonoBehaviour
                 cup == 2 ? cupThirdSprite : cupEndlessSprite;
             }
         }
+        bool qualified = position <= 2;
+        if (qualifiedText != null)
+            qualifiedText.text = qualified ? LanguageController.main?.Translate("Leaderboard", "qualified") : LanguageController.main?.Translate("Leaderboard", "disqualified");
         if (proceedButton != null)
-            proceedButton.interactable = position <= 2;
+            proceedButton.interactable = qualified;
     }
 }

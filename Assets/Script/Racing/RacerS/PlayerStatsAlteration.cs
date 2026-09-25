@@ -141,9 +141,6 @@ public class PlayerStatsAlteration
                         ab.Extend(CD);
                 }
                 break;
-
-
-                break;
         }
     }
 }

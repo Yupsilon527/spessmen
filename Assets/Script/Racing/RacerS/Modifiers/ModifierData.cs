@@ -3,9 +3,8 @@ using System.Collections.Generic;
 public class ModifierData : Modifier
 {
     public ModifierScriptable data;
-    public ModifierData(Racer racer, ModifierScriptable data, int stacks = 1):base(racer,stacks)
+    public ModifierData(Racer racer, ModifierScriptable data, int stacks = 1):base(racer, racer, stacks)
     {
-        this.racer = racer;
         this.data = data;
         ModifierName = data.InternalName;
         SetStackCount(stacks);
@@ -27,12 +26,12 @@ public class ModifierData : Modifier
         foreach (var prop in props)
         {
             if (ModifierDefines.IsPropertyMultiplicative(prop))
-                SetProperty(prop, GetProperty(prop) * data.GetProperty(prop, stacks - 1) * data.GetPropertyForRacer(prop, racer) - 1);
+                SetProperty(prop, GetProperty(prop) * data.GetProperty(prop, stacks - 1) * data.GetPropertyForRacer(prop, owner) - 1);
             else
-                SetProperty(prop, GetProperty(prop) + data.GetProperty(prop, stacks - 1) + data.GetPropertyForRacer(prop, racer));
+                SetProperty(prop, GetProperty(prop) + data.GetProperty(prop, stacks - 1) + data.GetPropertyForRacer(prop, owner));
         }
 
         if (properties.Count > 0)
-            racer.modifiers.RefreshModifier(this);
+            owner.modifiers.RefreshModifier(this);
     }
 }

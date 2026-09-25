@@ -35,6 +35,13 @@ public class TourneyController : Initializable
         ChangePhase(TourneyPhase.newRace);
         ChangePhase(TourneyPhase.beforeRace);
     }
+    public void Proceed()
+    {
+        UpdateVariables();
+        HandlePlayerReward();
+        ChangePhase(TourneyPhase.newRace);
+        ChangePhase(TourneyPhase.beforeRace);
+    }
     public void ChangePhase(TourneyPhase nPhase)
     {
         Inspect("Change Phase " + nPhase);
@@ -99,25 +106,25 @@ public class TourneyController : Initializable
                     switch (ongoingRace.modifier)
                     {
                         case RaceDefines.RaceModifiers.FasterRival:
-                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            player.modifiers.Add(new Modifier(player, player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
                                 {  ModifierDefines.Property.rival_speed, 2 }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.FuelCosnumption:
-                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            player.modifiers.Add(new Modifier(player, player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
                                 {  ModifierDefines.Property.fuel_consumption_total,1.5f }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.ActiveCooldown:
-                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            player.modifiers.Add(new Modifier(player, player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
                                 {  ModifierDefines.Property.ability_cooldown,2f }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.EngineCooldown:
-                            player.modifiers.Add(new Modifier(player, properties: new Dictionary<ModifierDefines.Property, float>()
+                            player.modifiers.Add(new Modifier(player, player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
                                 {  ModifierDefines.Property.engine_cooldown,1.5f },
                                 {  ModifierDefines.Property.nitro_cooldown,1.5f }
@@ -130,20 +137,20 @@ public class TourneyController : Initializable
                             raceTime *= RaceDefines.raceLengthLong;
                             break;
                         case RaceDefines.RaceModifiers.PlayerStunned:
-                            player.modifiers.Add(new Modifier(player,flag:ModifierDefines.Flag.Debuff,states:
+                            player.modifiers.Add(new Modifier(player, player, flag: ModifierDefines.Flag.Debuff,states:
                                 new List<ModifierDefines.State> { ModifierDefines.State.Stunned},
                                 expire: ModifierDefines.ExpireType.Time, duration : 2));
                             break;
                         case RaceDefines.RaceModifiers.RivalImmune:
                             var rival = player.GetRival();
-                            rival.modifiers.Add(new Modifier(rival, flag: ModifierDefines.Flag.Debuff, states:
+                            rival.modifiers.Add(new Modifier(rival, rival, flag: ModifierDefines.Flag.Debuff, states:
                                 new List<ModifierDefines.State> { ModifierDefines.State.AbilityImmune }));
                             break;
                         case RaceDefines.RaceModifiers.RandomEngine:
                         case RaceDefines.RaceModifiers.RandomGadget:
                             var validparts = ResourceCache.main.parts.Where(
                                 p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons))
-                                && p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget)
+                                && (p.partType == ItemDefines.PartType.nitro  || p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget))
                                 ).ToArray();
 
                             if (validparts.Length > 0)
@@ -179,12 +186,12 @@ public class TourneyController : Initializable
                     {
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
-                    UpdateVariables();
                     if (!CanPlayerProceed())
-                        PlayerConfig.main.ClearRun();
-                    else
-                        HandlePlayerReward();
+                    {
 
+                        UpdateVariables();
+                        PlayerConfig.main.ClearRun();
+                    }
                 }
                 break;
         }

@@ -53,11 +53,11 @@ public class Ability : Countdown
     }
     public bool CanBeActivated()
     {
-        return (data.fuelCost == 0
+        return (data.maxUses == 0 || useCount < data.maxUses) && !IsRunning()
+            && (data.fuelCost == 0
             || (data.overflow == ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() >= GetFuelCost())
             || (data.overflow != ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() > 0))
-            // || caster.abilities.fuel.GetValue() >= GetFuelCost()) 
-            && (data.maxUses == 0 || useCount < data.maxUses) && !IsRunning()
+            && (!caster.IsStunned() || (data.function != ShipDefines.PartEvent.OnActivated && data.function != ShipDefines.PartEvent.OnTimePass))
             && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }
     public void ActivateOnRacer(float strength = 1)
@@ -66,10 +66,10 @@ public class Ability : Countdown
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
         foreach (var action in data.actions)
         {
-            var caster = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
+            var source = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
             var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
-            TourneyController.main.Inspect($"{caster} uses ability {data.function} on {target}");
-            action.d(this.caster, target,this, strength);
+            TourneyController.main.Inspect($"{source} uses ability {data.function} on {target}");
+            action.action(source, target,this, strength);
         }
     }
     public bool Activate(ShipDefines.PartEvent evt)
