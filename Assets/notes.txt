@@ -9,9 +9,6 @@ TODO
 		effects
 		apply modifier/builtin
 
-	racer unlocks
-		racer unlocks locale
-
 	modifier descs race
 
 	icons:
@@ -20,14 +17,12 @@ TODO
 		juicer
 		snowball wheel
 		mischief can
-
-	part numbers/cooldowns
-		white when they have uses
-		gray when displaying CDs
-
-	VERSATILE DECAL
+		edd hat
 
 	modifier scaling
+
+	racer unlocks
+		racer unlocks locale
 
 TEST
 	stats and stat collection

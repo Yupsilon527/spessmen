@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 7
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 646d4c77a4c9b2749a4cbbebde432623, type: 2}
+    - {fileID: 11400000, guid: b459e5e931d08b74d95e21a49852222e, type: 2}
   - InternalName: Jammed Engine 2 GasBelow OnTimePass
     maxUses: 0
     cooldown: 2
@@ -47,7 +47,7 @@ MonoBehaviour:
     condition: 8
     conditionCheck: 1
     actions:
-    - {fileID: 11400000, guid: b459e5e931d08b74d95e21a49852222e, type: 2}
+    - {fileID: 11400000, guid: 646d4c77a4c9b2749a4cbbebde432623, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 5e22271d93be5fb439efe3604fa17624, type: 2}

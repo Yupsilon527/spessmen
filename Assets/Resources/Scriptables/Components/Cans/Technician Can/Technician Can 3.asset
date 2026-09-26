@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Technician Can 3
   m_EditorClassIdentifier: 
   InternalName: Technician Can 3
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 3
@@ -42,4 +45,3 @@ MonoBehaviour:
   weightMultiplier: 1
   unique: 0
   rotating: 1
-  lockedForSomeReason: 0

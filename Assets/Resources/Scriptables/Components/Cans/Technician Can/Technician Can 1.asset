@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Technician Can 1
   m_EditorClassIdentifier: 
   InternalName: Technician Can 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 2
     height: 3
@@ -22,7 +25,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Technician Can 1  OnLapCompleted
-    maxUses: 0
+    maxUses: 10
     cooldown: 0
     fuelCost: 0
     aiSignal: 0
@@ -44,4 +47,3 @@ MonoBehaviour:
   weightMultiplier: 1
   unique: 0
   rotating: 1
-  lockedForSomeReason: 0
