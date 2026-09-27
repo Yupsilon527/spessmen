@@ -21,10 +21,7 @@ MonoBehaviour:
     height: 3
     cells: 000101010101000101
   states: []
-  properties:
-  - Property: 5
-    value: -0.375
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
   - InternalName: Snowball Nitro 2  OnActivated

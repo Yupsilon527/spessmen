@@ -32,7 +32,7 @@ public class RacerPosition : RacerComponent
                     racer.ListenToEvent(ShipDefines.PartEvent.OnOtherOvertaken);
                 racerPosition = position;
 
-                bool overtakenRival = racer.GetRival() == null ? false : racerPosition > racer.GetRival().position.racerPosition;
+                bool overtakenRival = racer.GetRival() == null ? false : racerPosition < racer.GetRival().position.racerPosition;
                 if (aheadOfRival != overtakenRival)
                 {
                     if (overtakenRival)

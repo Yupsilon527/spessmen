@@ -40,7 +40,7 @@ public class PlayerStats : Initializable
         if(player!=null)
         {
             if (fuelvalue != null)
-                fuelvalue.text =$"{ player.abilities.fuel.GetValue()}/{player.abilities.fuel.GetLimit()}";
+                fuelvalue.text =$"{ player.abilities.fuel.GetValue().ToString("F1")}/{player.abilities.fuel.GetLimit().ToString("F0")}";
             if (fuelpercent != null)
                 fuelpercent.text = Mathf.RoundToInt(player.abilities.fuel.GetPercentage()*100f) +"%";
                 if (fuelFill != null)

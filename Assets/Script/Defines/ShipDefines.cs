@@ -136,7 +136,7 @@ public static class ShipDefines
                 return racer.position.currentLap * (reverse ? -1 : 1);
             case ScaleType.CurrentPosition:
                 int pos = TourneyController.main.ongoingRace.GetPositionForRacer(racer);
-                return reverse ? (TourneyController.main.ongoingRace.racers.Count - pos) : pos;
+                return !reverse ? (TourneyController.main.ongoingRace.racers.Count - pos) : pos;
             case ScaleType.CurrentRivalPosition:
                  pos = racer.GetRival() == null ? 0: TourneyController.main.ongoingRace.GetPositionForRacer(racer.GetRival());
                 return reverse ? (TourneyController.main.ongoingRace.racers.Count - pos) : pos;

@@ -349,7 +349,8 @@ public class TourneyController : Initializable
         {
             var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
             tournamentsCompleted.Change(Variables.Change.Case.add, 1);
-            if (ongoingRace.GetPositionForRacer(playerRacer) == 0)
+
+            if (CanPlayerProceed())
             {
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
                 tournamentsWon.Change(Variables.Change.Case.add, 1);

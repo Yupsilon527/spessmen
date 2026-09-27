@@ -23,9 +23,10 @@ public class ArenaController : MonoBehaviour
     public GameObject racerPrefab, opponentPrefab;
     public HashSet<RacerToon> racers = new();
     [Header("Toon Distance Delta")]
-    public float distanceFarAway = 300;
+    public float distanceFarAway = .5f;
     public float distanceDelta = 100;
     public float distanceFarAwayDelta = 30;
+    public float aheadDelta = .5f;
 
     public static ArenaController main;
     private void Awake()
@@ -69,18 +70,25 @@ public class ArenaController : MonoBehaviour
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
             if (relativePosition == 0) continue;
 
-            float d = 100;
+            float distBase = 50;
             float m = 15;
-
-            if (racer.racer.position.distanceTraveled < d)
+            float dd = distanceDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
+            float df = distanceFarAwayDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
+            if (racer.racer.position.distanceTraveled > playerRacer.racer.position.distanceTraveled)
             {
-                float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / d);
-                float nearStartMultiplier = Mathf.Max(m, 1f / (racer.racer.position.distanceTraveled * m + 0.0001f)); // +epsilon avoids div-by-zero at 0
+                dd *= aheadDelta;
+                df *= aheadDelta;
+            }
+
+            if (racer.racer.position.distanceTraveled < distBase)
+            {
+                float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / distBase);
+                float nearStartMultiplier = Mathf.Max(m, 1f / (racer.racer.position.distanceTraveled * m + 0.0001f));
                 float multiplier = Mathf.SmoothStep(nearStartMultiplier, 1f, t);
 
                 relativePosition *= multiplier;
             }
-            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(1 +relativePosition), posDelta) / distanceDelta + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) / distanceFarAwayDelta) * Mathf.Sign(relativePosition));
+            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(1 +relativePosition), posDelta) / dd + Mathf.Max(Mathf.Abs(relativePosition) - posDelta * distanceFarAway, 0) / df ) * Mathf.Sign(relativePosition));
 
         }
 

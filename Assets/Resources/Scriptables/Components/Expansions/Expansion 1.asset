@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Expansion 1
   m_EditorClassIdentifier: 
   InternalName: Expansion 1
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 3
     height: 1
@@ -26,7 +29,7 @@ MonoBehaviour:
   boonRarity: 1
   partType: 7
   attach: 0
-  priceMultiplier: 1.2
+  priceMultiplier: 0.6
   weightMultiplier: 1.2
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

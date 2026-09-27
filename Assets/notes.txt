@@ -1,15 +1,4 @@
 TODO
-	$ and c
-
-
-	LOCALIZATION
-		modifier race
-		modifier props
-		parts
-		effects
-		apply modifier/builtin
-
-	modifier descs race
 
 	icons:
 		clockwork gear
@@ -20,13 +9,11 @@ TODO
 		edd hat
 
 	modifier scaling
-
-	racer unlocks
-		racer unlocks locale
+	$ and c
+	descs funny sometimes?
 
 TEST
 	stats and stat collection
-	tournament wins don't save?
 FIX
 	rival overtaken event bug
 

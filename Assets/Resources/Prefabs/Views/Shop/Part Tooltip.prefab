@@ -229,12 +229,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29459faf8301bf43939b2c5a8fe01ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inspect: 0
   toggleActive: 0
+  partIcon: {fileID: 0}
   title: {fileID: 5672150133371322481}
   subtitle: {fileID: 198713450015004774}
   description: {fileID: 2132345435655158772}
   value: {fileID: 0}
   grid: {fileID: 7967888224375894452}
+  rarityColors: []
 --- !u!114 &543594535281733944
 MonoBehaviour:
   m_ObjectHideFlags: 0

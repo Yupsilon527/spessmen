@@ -127,7 +127,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 322913593888768
-    m_Localized: Smog Decal
+    m_Localized: Bomberdude Decal
     m_Metadata:
       m_Items: []
   - m_Id: 322870845542400
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 322842290720768
-    m_Localized: Bomberdude Decal
+    m_Localized: Wah Decal
     m_Metadata:
       m_Items: []
   - m_Id: 322889828962304
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 242100375552
-    m_Localized: Wah Sticker
+    m_Localized: Lightspeed Sticker
     m_Metadata:
       m_Items: []
   - m_Id: 253072674816
@@ -735,7 +735,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255566
-    m_Localized: Oily Wheel
+    m_Localized: Emotion Wheel
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255567
@@ -804,6 +804,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1078531858534400
     m_Localized: Flower Wheel+
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16106083245264896
+    m_Localized: Solar Generator 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16106083354316801
+    m_Localized: Smiley Wheel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16106083354316802
+    m_Localized: Frowny Wheel
     m_Metadata:
       m_Items: []
   references:

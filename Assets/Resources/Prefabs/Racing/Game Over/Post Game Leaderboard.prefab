@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 2792873001153264183}
   cupTitle: {fileID: 609180890860246717}
-  qualifiedText: {fileID: 0}
+  qualifiedText: {fileID: 484115098473081967}
   raceTooltip: {fileID: 0}
   proceedButton: {fileID: 2186851952975283493}
   cupIcon: {fileID: 6878463211496469882}

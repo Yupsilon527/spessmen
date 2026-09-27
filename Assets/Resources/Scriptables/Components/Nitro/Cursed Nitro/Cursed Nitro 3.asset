@@ -17,9 +17,9 @@ MonoBehaviour:
     lockedByDefault: 0
     conditions: []
   grid:
-    width: 3
+    width: 2
     height: 3
-    cells: 010101010101010100
+    cells: 010101010101
   states: []
   properties: []
   relative: []

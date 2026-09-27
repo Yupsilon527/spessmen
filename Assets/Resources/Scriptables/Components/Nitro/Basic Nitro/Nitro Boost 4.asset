@@ -23,10 +23,10 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 4
-    value: 80
+    value: 60
     IncreasePerLevel: 0
-  - Property: 3
-    value: 0.3
+  - Property: 5
+    value: 0.2
     IncreasePerLevel: 0
   expiretype: 1
-  duration: 2
+  duration: 4

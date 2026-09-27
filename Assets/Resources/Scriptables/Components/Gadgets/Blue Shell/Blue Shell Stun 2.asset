@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blue Shell Stun 2
   m_EditorClassIdentifier: 
   effectSource: 0
-  effectTarget: 3
+  effectTarget: 1
   condition: 0
   conditionCheck: 0
   duration: 1.5

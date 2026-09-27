@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartTooltip : PartCompBase
 {
@@ -13,6 +14,7 @@ public class PartTooltip : PartCompBase
 
         if (part.scriptable.attach != ItemDefines.PartCondition.Anywhere)
             description.text += "<br>" + LanguageController.main.Translate("UI Table", "condition_" + part.scriptable.attach);
+    LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
     public void ShowPartData(DataItemPart part, bool justPurchase)
     {

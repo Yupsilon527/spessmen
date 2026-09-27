@@ -56,7 +56,7 @@ target_self,19397667098658,Player
 target_firstracer,19397667098659,The racer in the first position
 target_frontracer,19397667098660,The racer in front
 target_backracer,19397667098661,The racer in back
-target_rivalracer,19397667098662,The rival racer
+target_rivalracer,19397667098662,Rival
 rarity_common,20940344692736,Common
 rarity_rare,20940361469952,Rare
 rarity_epic,20940361469953,Epic

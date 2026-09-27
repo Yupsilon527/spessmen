@@ -43,7 +43,7 @@ public class RacerStatsTable : RacerComponent
         float bSpeed = baseSpeed;
         bSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.base_speed);
         bSpeed *= racer.GetPropertyMultiplicative(ModifierDefines.Property.base_speed_percent);
-        bSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.bonus_speed) * racer.GetPropertyMultiplicative(ModifierDefines.Property.total_speed_percent);
+        bSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.bonus_speed);
 
         float tSpeed = boosterSpeed;
         tSpeed += racer.GetPropertyAdditive(ModifierDefines.Property.boost_speed_bonus);
@@ -61,7 +61,7 @@ public class RacerStatsTable : RacerComponent
             }
         }
         realSpeed += alteredSpeed;
-        realSpeed = Mathf.Clamp(realSpeed, 0, RaceDefines.maxSpeed);
+        realSpeed = Mathf.Clamp(realSpeed * racer.GetPropertyMultiplicative(ModifierDefines.Property.total_speed_percent), 0, RaceDefines.maxSpeed);
 
         if (!brokenSoundBarrier && realSpeed > soundBarrierSpeed)
         {
