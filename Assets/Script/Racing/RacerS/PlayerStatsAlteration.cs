@@ -62,6 +62,35 @@ public class PlayerStatsAlteration
     {
         bool self = caster == target;
         float oldSpeed = target.stats.realSpeed;
+
+        if (target == caster)
+        {
+            if (stat == StatType.BaseSpeed
+                || stat == StatType.BoostSpeed
+                || stat == StatType.TotalSpeed)
+            {
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
+                if (source.data.classification == ItemDefines.PartType.wheel)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
+                else if (source.data.classification == ItemDefines.PartType.engine)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
+                else if (source.data.classification == ItemDefines.PartType.nitro)
+                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_nitro);
+            }
+            if (stat == StatType.BaseSpeed)
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
+            if (stat == StatType.BoostSpeed)
+                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
+        }
+        else
+        {
+            mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.effect_resistance);
+            if (stat == StatType.BaseSpeed || stat == StatType.BoostSpeed || stat == StatType.TotalSpeed)
+            {
+                mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
+            }
+        }
+
         switch (stat)
         {
             case StatType.BaseSpeed:
@@ -116,6 +145,7 @@ public class PlayerStatsAlteration
             case StatType.RefreshNitros:
             case StatType.RefreshEngines:
             case StatType.RefreshGadgets:
+            case StatType.RefreshOwnPart:
             case StatType.RefreshSelf:
             case StatType.RefreshAdjecent:
             case StatType.RefreshAdjecentGadgets:
@@ -159,38 +189,6 @@ public class ConditionalPartAltetration : PlayerStatsAlteration
     }
     public override void GiveToPlayer(Racer caster, Racer target, Ability source, float mult)
     {
-        TourneyController.main.Inspect($"{caster} inflicts {behavior} on {target}");
-        if (!CanAffectRacer(target) || (caster != target && target.GetState(ModifierDefines.State.AbilityImmune))) return;
-
-        mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
-
-        if (target == caster)
-        {
-            if (stat == StatType.BaseSpeed
-                || stat == StatType.BoostSpeed
-                || stat == StatType.TotalSpeed)
-            {
-                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_total);
-                if (source.data.classification == ItemDefines.PartType.wheel)
-                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_wheels);
-                else if (source.data.classification == ItemDefines.PartType.engine)
-                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_engines);
-                else if (source.data.classification == ItemDefines.PartType.nitro)
-                    mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_speed_nitro);
-            }
-            if (stat == StatType.BaseSpeed)
-                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_base_speed_percentage);
-            if (stat == StatType.BoostSpeed)
-                mult *= caster.GetPropertyMultiplicative(ModifierDefines.Property.incoming_boost_speed_percentage);
-        }
-        else
-        {
-            mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.effect_resistance);
-            if (stat == StatType.BaseSpeed || stat == StatType.BoostSpeed || stat == StatType.TotalSpeed)
-            {
-                mult *= target.GetPropertyMultiplicative(ModifierDefines.Property.speed_resistance);
-            }
-        }
         base.GiveToPlayer(caster, target, source, mult);
     }
 

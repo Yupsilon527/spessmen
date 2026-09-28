@@ -25,8 +25,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Compact Nitro 3  OnActivated
-    maxUses: 2
-    cooldown: 0.5
+    maxUses: 3
+    cooldown: 1
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: e35bafa86b534764ba5575d01f174744, type: 2}
+    - {fileID: 11400000, guid: a41d581f3de65084596dccff3f9dcd30, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 45f6d8b19ec47df4880db9a275cbe951, type: 2}

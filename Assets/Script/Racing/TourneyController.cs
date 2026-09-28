@@ -186,6 +186,7 @@ public class TourneyController : Initializable
                     {
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
+                    UpdateLocalVars();
                     if (!CanPlayerProceed())
                     {
 
@@ -320,7 +321,7 @@ public class TourneyController : Initializable
         float distanceGold = 0;
         if (playerPos == 0)
         {
-            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.performanceGoldCap);
+            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.performanceGoldCap) * diffMult;
         }
 
         DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);
@@ -336,14 +337,17 @@ public class TourneyController : Initializable
         DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
 
     }
-
-    void UpdateVariables()
+    void UpdateLocalVars()
     {
         var playerRacer = GetPlayerRacer();
 
         DataItemPlayer.main.scope.SetVariable("race_position_" + ongoingRace.raceID, ongoingRace.GetPositionForRacer(playerRacer));
         DataItemPlayer.main.scope.SetVariable("race_distance_" + ongoingRace.raceID, playerRacer.position.distanceTraveled);
         DataItemPlayer.main.scope.SetVariable("race_topspeed_" + ongoingRace.raceID, playerRacer.stats.realSpeed);
+    }
+    void UpdateVariables()
+    {
+        var playerRacer = GetPlayerRacer();
 
         if (IsLastRaceInSeason())
         {

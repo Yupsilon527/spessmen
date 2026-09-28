@@ -5,9 +5,14 @@ public class ApplyTagSo : BaseEffectSo
 {
     public string modifierName;
 
-    public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        t.modifiers.Add(Translate(c,t,m));
+        bool _ = base.AffectOnRacer(c, t, s, m);
+        if (_)
+        {
+            t.modifiers.Add(Translate(c, t, m));
+        }
+        return _;
     }
     public virtual Modifier Translate(Racer s, Racer t, float m)
     {

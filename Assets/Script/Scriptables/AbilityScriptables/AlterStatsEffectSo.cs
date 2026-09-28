@@ -4,11 +4,14 @@
 public class AlterStatsEffectSo : BaseEffectSo
 {
     public PlayerStatsAlteration alteration;
-    public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        if (CanAffectRacer(t)) { 
-        alteration.GiveToPlayer(c, t, s, m);
-    }
+        bool _ = base.AffectOnRacer(c, t, s, m);
+        if (_)
+        {
+            alteration.GiveToPlayer(c, t, s, m);
+        }
+        return _;
     }
     public override string GetDescription()
     {
@@ -17,18 +20,20 @@ public class AlterStatsEffectSo : BaseEffectSo
         string numValue = Mathf.Abs(alteration.value).ToString();
         if (alteration.behavior == ShipDefines.AlterationType.Multiply)
         {
-            numValue = Mathf.Abs(alteration.value * 100) + "% ";
+            numValue = Mathf.Abs(alteration.value * 100) + "%";
             if (numValue[0] == '+')
-                numValue = "x" + label.Substring(1);
+                numValue = "x" + numValue.Substring(1);
             else
-                numValue = "x" + label;
+                numValue = "x" + numValue;
         }
+        if ( alteration.stat == ShipDefines.StatType.RefundGasCost)
+            numValue = Mathf.Abs(alteration.value * 100).ToString();
 
         if (alteration.scale != ShipDefines.ScaleType.Constant)
             numValue = LanguageController.main.Translate("Modifiers", ((alteration.scale == ShipDefines.ScaleType.Lucky || alteration.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (alteration.value > 0 ? "Pos" : "Neg")).Replace("%value%", numValue);
 
         if (alteration.stat == ShipDefines.StatType.BaseSpeed
-        || alteration.stat == ShipDefines.StatType.BoostSpeed
+        || alteration.stat == ShipDefines.StatType.BoostSpeed   
         || alteration.stat == ShipDefines.StatType.FillGas
         || alteration.stat == ShipDefines.StatType.GasAbsolute
         || alteration.stat == ShipDefines.StatType.TotalSpeed)

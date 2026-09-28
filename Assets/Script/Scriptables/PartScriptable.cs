@@ -19,8 +19,11 @@ public class PartScriptable : ModifierScriptable
         grid.ValidateAndRecreate();
         foreach (var ability in abilities)
         {
-            ability.InternalName = name + " " + ((ability.condition == ShipDefines.PartCondition.Always) ? "" : ability.condition) + " " + ability.function;
+            string newName = name + " " + ((ability.condition == ShipDefines.PartCondition.Always) ? "" : ability.condition) + " " + ability.function;
+            if (ability.InternalName != newName) { 
+            ability.InternalName = newName;
             ability.classification = partType;
+        }
         }
     }
     public virtual float GetBasePrice()
@@ -77,7 +80,10 @@ public class AbilityScriptable
              actions = actions.Select ( a=> new AbilityData.AbilityListener() {  
                  effectSource = a.effectSource, 
                  effectTarget = a.effectTarget,  
-                 action = (Racer caster, Racer target, Ability source, float mult) => {   a.AffectOnRacer(caster, target, source, mult); 
+                 action = (Racer caster, Racer target, Ability source, float mult) => {  
+                     
+                     
+                     a.AffectOnRacer(caster, target, source, mult); 
                  }
              } ).ToArray(),
         };

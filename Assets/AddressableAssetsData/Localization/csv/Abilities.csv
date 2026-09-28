@@ -1,26 +1,26 @@
 key,Id,English(en)
-ability cost,19397650321408,Uses %value% juice.
-ability cooldown,19397662904320,Cooldown %value%s.
-ability uses,19397662904321,%value% uses each race.
-effect_basespeed,,Base Speed
-effect_boostspeed,,Boost Speed
-effect_fillgas,,Juice
-effect_totalspeed,,Speed
-effect_refreshengines,,Refresh %target%’s engines CDs by %value%s
-effect_refreshgadgets,,Refresh %target%’s gadgets CDs by %value%s
-effect_refreshnitros,,Refresh %target%’s nitro CDs by %value%s
-effect_refreshcooldowns,,Refresh %target%’s CDs by %value%s
-effect_refreshself,,Refresh CD by %value%s
-effect_refundgascost,,Refund %value% % of Juice cost
-effect_grantuse,,Gains %value% uses
-effect_gasabsolute,,Juice
-effect_speedsteal,,Steal %value% speed from the %target%
-effect_refreshadjecent,,Refresh adjecent CDs by %value%s
-effect_refreshadjecentgadgets,,Refresh adjecent gadget CDs by %value%s
-effect_refreshadjecentnitros,,Refresh adjecent nitro CDs by %value%s
-effect_refreshadjecentactives,,Refresh adjecent active CDs by %value%s
-effect_refreshownpart,,Refresh this part’s CD by %value%
-effect_grantuseownpart,,Gains %value% uses
+ability cost,19397650321408,Uses %value% juice
+ability cooldown,19397662904320,Cooldown %value%s
+ability uses,19397662904321,%value% uses each race
+effect_basespeed,19397662904322,Base Speed
+effect_boostspeed,19397667098624,Boost Speed
+effect_fillgas,19397667098625,Juice
+effect_totalspeed,19397667098626,Speed
+effect_refreshengines,19397667098627,Refresh %target%’s engines by %value%
+effect_refreshgadgets,19397667098628,Refresh %target%’s gadgets by %value%
+effect_refreshnitros,19397667098629,Refresh %target%’s nitros by %value%
+effect_refreshcooldowns,19397667098630,Refresh %target%’s cooldowns by %value%
+effect_refreshself,1.57654882492457E+016,Refresh this part by %value%
+effect_refundgascost,1.57654882492457E+016,Refund %value% % of Juice cost
+effect_grantuse,1.57654882492457E+016,Gains %value% uses
+effect_gasabsolute,1.57654882492457E+016,Juice
+effect_speedsteal,1.57557584957645E+016,Steal %value% speed from the %target%
+effect_refreshadjecent,1.57557583992955E+016,Refresh adjecent cooldowns by %value%
+effect_refreshadjecentgadgets,1.57654882492457E+016,Refresh adjecent gadgets by %value%
+effect_refreshadjecentnitros,1.57654882492457E+016,Refresh adjecent nitros by %value%
+effect_refreshadjecentactives,1.57654882492457E+016,Refresh adjecent actives by %value%
+effect_refreshownpart,1.57654882492457E+016,Refresh this part by %value%
+effect_grantuseownpart,1.57654882492457E+016,Gains %value% uses
 ,,
 ,,
 ,,
@@ -31,14 +31,14 @@ condition_speedbelow,19397667098633,if speed below %value%
 condition_speedabove,19397667098634,if speed is above %value%
 condition_positionbelow,19397667098635,if position below %value%
 condition_positionabove,19397667098636,if position above %value%
-condition_aheadofrival,19397667098637,if ahead of rival
-condition_behindrival,19397667098638,if behind rival
+condition_aheadofrival,19397667098637,if ahead of their rival
+condition_behindrival,19397667098638,if behind their rival
 condition_gasabove,19397667098639,if juice above %value%
 condition_gasbelow,19397667098640,if juice below %value%
 condition_gaspercentabove,19397667098641,if juice above %value%%
 condition_gaspercentbelow,19397667098642,if juice below %value%%
-condition_lapbelow,19397667098643,if lap below %value%
-condition_lapabove,19397667098644,if lap above %value%
+condition_lapbelow,19397667098643,if current lap below %value%
+condition_lapabove,19397667098644,if current lap above %value%
 condition_lucky,19397667098645,%value%% chance
 function_onracestart,19397667098646,Race Start
 function_ontimepass,19397667098647,Passively
@@ -50,13 +50,13 @@ function_onsoundbarrierbroken,19397667098652,When you break sound barrier
 function_ongadgetactivate,19397667098653,When you use a gadget
 function_onengineactivate,19397667098654,When you use an engine
 function_onnitroactivate,19397667098655,When you use a nitro
-function_onfastabilityactivate,19397667098656,When you use a ability
-function_onbigabilityactivate,19397667098657,When you use a spammy ability
+function_onfastabilityactivate,19397667098656,When you spam a ability
+function_onbigabilityactivate,19397667098657,When you use a ability
 target_self,19397667098658,Player
 target_firstracer,19397667098659,The racer in the first position
 target_frontracer,19397667098660,The racer in front
 target_backracer,19397667098661,The racer in back
-target_rivalracer,19397667098662,Rival
+target_rivalracer,19397667098662,Their rival
 rarity_common,20940344692736,Common
 rarity_rare,20940361469952,Rare
 rarity_epic,20940361469953,Epic
@@ -74,3 +74,7 @@ source_firstracer,29998795624448,first racer’s
 source_frontracer,30000477540352,racer in front
 source_backracer,30001849077760,racer in back
 source_rivalracer,30004072058880,rival’s
+New Entry,1.57654882492457E+016,
+New Entry 1,1.57654882492457E+016,
+New Entry 2,1.57654882492457E+016,
+New Entry 3,1.57654882492457E+016,

@@ -29,7 +29,7 @@ nitrogine decal,323021022597120,Engine Decal
 clockwork decal,323037862727680,Gears Decal
 horse decal,323047987777536,Horse Decal
 speedster decal,323086512459776,Comet Decal
-wasteful decal,323098797576192,Edd Decal
+wasteful decal,323098797576192,Red X Decal
 cheap sticker,323117298651136,Discount Decal
 engineball decal,323128535191552,8ball Decal
 green decal,323379019026432,Unicorn Decal
@@ -135,7 +135,7 @@ basic can 4,354394215190528,Hamster Generator 4
 mischief can 1,354434014941184,Solar Generator 1
 mischief can 2,354439719194624,Solar Generator 2
 mischief can 3,354445696077824,Solar Generator 3
-mischief can 4,,Solar Generator 4
+mischief can 4,1.61060832452649E+016,Solar Generator 4
 snowball can 1,354462213246976,Tetris Generator 1
 snowball can 2,354467024113664,Tetris Generator 2
 snowball can 3,354472631898112,Tetris Generator 3
@@ -169,9 +169,9 @@ wheel 4,1065272875061254,Wheel 4
 clockwork wheel 1,1065272875061255,Clockwork Wheel 1
 clockwork wheel 2,1065272875061256,Clockwork Wheel 2
 clockwork wheel 3,1065272875061257,Clockwork Wheel 3
-gas gear 1,1065272875061258,Juicer 1
-gas gear 2,1065272879255552,Juicer 2
-gas gear 3,1065272879255553,Juicer 3
+gas gear 1,1065272875061258,Juice Gear 1
+gas gear 2,1065272879255552,Juice Gear 2
+gas gear 3,1065272879255553,Juice Gear 3
 gas wheel 1,1065272879255554,Rampup Wheel 1
 gas wheel 2,1065272879255555,Rampup Wheel 2
 gas wheel 3,1065272879255556,Rampup Wheel 3
@@ -201,6 +201,6 @@ tiny wheel 1,1065272879255579,Tiny Wheel 1
 tiny wheel 2,1065272879255580,Tiny Wheel 2
 tiny wheel 3,1065272879255581,Tiny Wheel 3
 tiny wheel 4,1065272879255582,Tiny Wheel 4
-Lightweight Wheel 1,,Smiley Wheel
-Lightweight Wheel 2,,Frowny Wheel
-oily wheel,1065272879255566,Emotion Wheel
+lightweight wheel 1,1.61060833543168E+016,Comedy Wheel
+lightweight wheel 2,1.61060833543168E+016,Tragedy Wheel
+oily wheel,1065272879255566,Theather Wheel

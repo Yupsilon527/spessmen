@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 331222300397570
-    m_Localized: You consume 50% more fuel
+    m_Localized: Parts consume 50% more fuel
     m_Metadata:
       m_Items: []
   - m_Id: 331222300397571
@@ -63,19 +63,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 331222300397575
-    m_Localized: Longlaps
+    m_Localized: Long Track
     m_Metadata:
       m_Items: []
   - m_Id: 331222300397576
-    m_Localized: The lasp are 2 times longer!
+    m_Localized: Laps are 2 times longer!
     m_Metadata:
       m_Items: []
   - m_Id: 331222308786176
-    m_Localized: Longrun
+    m_Localized: Endurance Race
     m_Metadata:
       m_Items: []
   - m_Id: 331222308786177
-    m_Localized: The race is 50% longer!
+    m_Localized: The race lasts 50% longer!
     m_Metadata:
       m_Items: []
   - m_Id: 331222308786178
@@ -96,6 +96,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1575318834810880
     m_Localized: Junkyard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006491029504
+    m_Localized: Sabotage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304192
+    m_Localized: You begin the race stunned for 2 seconds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304193
+    m_Localized: Above It All
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304194
+    m_Localized: Your Rival cannot be targeted by abilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304195
+    m_Localized: Gadget Chaos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304196
+    m_Localized: Opponents gain a random gadget!
     m_Metadata:
       m_Items: []
   references:

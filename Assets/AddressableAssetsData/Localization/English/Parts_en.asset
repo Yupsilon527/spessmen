@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 323098797576192
-    m_Localized: Edd Decal
+    m_Localized: Red X Decal
     m_Metadata:
       m_Items: []
   - m_Id: 323086512459776
@@ -675,15 +675,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1065272875061258
-    m_Localized: Juicer 1
+    m_Localized: Juice Gear 1
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255552
-    m_Localized: Juicer 2
+    m_Localized: Juice Gear 2
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255553
-    m_Localized: Juicer 3
+    m_Localized: Juice Gear 3
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255554
@@ -735,7 +735,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255566
-    m_Localized: Emotion Wheel
+    m_Localized: Theather Wheel
     m_Metadata:
       m_Items: []
   - m_Id: 1065272879255567
@@ -810,12 +810,12 @@ MonoBehaviour:
     m_Localized: Solar Generator 4
     m_Metadata:
       m_Items: []
-  - m_Id: 16106083354316801
-    m_Localized: Smiley Wheel
+  - m_Id: 16442017488736257
+    m_Localized: Comedy Wheel
     m_Metadata:
       m_Items: []
-  - m_Id: 16106083354316802
-    m_Localized: Frowny Wheel
+  - m_Id: 16442017492930560
+    m_Localized: Tragedy Wheel
     m_Metadata:
       m_Items: []
   references:

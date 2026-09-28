@@ -25,9 +25,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Random Nitro 1  OnActivated
-    maxUses: 3
-    cooldown: 1
-    fuelCost: 0
+    maxUses: 0
+    cooldown: 2
+    fuelCost: 12
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -36,7 +36,7 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: 0897d7dd0b7694f4eb75a18f54104e95, type: 2}
-    - {fileID: 11400000, guid: a20bcb48c2c614c4696b89c542e3f308, type: 2}
+    - {fileID: 11400000, guid: 120deea281a7317408cb7c60dce3649c, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: f880df0f6b7b4d54badc44060e0a174c, type: 2}

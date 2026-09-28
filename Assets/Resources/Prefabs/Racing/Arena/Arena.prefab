@@ -264,9 +264,9 @@ MonoBehaviour:
   parallax: {fileID: 5902228255680752998}
   racerPrefab: {fileID: 4315715481392536687, guid: a3e9facf9903ff54290a7fa0585a8246, type: 3}
   opponentPrefab: {fileID: 5111156778673111021, guid: 8d29708337e09d440ac0247bd606d0d5, type: 3}
-  distanceFarAway: 0.25
-  distanceDelta: 0.75
-  distanceFarAwayDelta: 1.2
+  distanceFarAway: 0.8
+  distanceDelta: 0.25
+  distanceFarAwayDelta: 2.1
   aheadDelta: 0.875
 --- !u!1001 &2435762466435013585
 PrefabInstance:

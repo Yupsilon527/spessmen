@@ -79,6 +79,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st: confi"
+	"st: restart"
+	"st: reset"
 	"st: class tank"
 	"st: class eng"
 	"st: cl aex"

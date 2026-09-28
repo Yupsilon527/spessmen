@@ -21,16 +21,13 @@ MonoBehaviour:
     height: 3
     cells: 010101010101
   states: []
-  properties:
-  - Property: 25
-    value: 1
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
   - InternalName: Random Nitro 3  OnActivated
-    maxUses: 3
-    cooldown: 1
-    fuelCost: 0
+    maxUses: 0
+    cooldown: 2
+    fuelCost: 28
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -39,8 +36,8 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: abf1d9c9e10c6a34e89ffb9d2fc7faae, type: 2}
-    - {fileID: 11400000, guid: 0130d01e3512f3942be6aea2ae505924, type: 2}
-    - {fileID: 11400000, guid: 63336f16b21184246a14294166cdd228, type: 2}
+    - {fileID: 11400000, guid: edc7b2474f0b6624982ab0430505e0ed, type: 2}
+    - {fileID: 11400000, guid: 2b1243728d50af345be5f282a7eaaaee, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: ac4ddedeec9f8b147a4e025f50cb12b8, type: 2}

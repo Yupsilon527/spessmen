@@ -15,15 +15,15 @@ MonoBehaviour:
   effectSource: 0
   effectTarget: 0
   condition: 13
-  conditionCheck: 0.25
+  conditionCheck: 0.05
   modifierName: Nitro
   priority: 0
   flag: 2
   behavior: 0
   states: []
   properties:
-  - Property: 4
-    value: 8
+  - Property: 25
+    value: 1
     IncreasePerLevel: 0
-  expiretype: 1
+  expiretype: 0
   duration: 4

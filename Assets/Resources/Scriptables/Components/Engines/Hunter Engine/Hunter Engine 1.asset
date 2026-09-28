@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Hunter Engine 1  OnTimePass
     maxUses: 0
-    cooldown: 0.875
+    cooldown: 2.5
     fuelCost: 25
     aiSignal: 0
     overflow: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   effectSource: 0
   effectTarget: 0
   condition: 11
-  conditionCheck: 4
+  conditionCheck: 5
   alteration:
     behavior: 0
     stat: 1

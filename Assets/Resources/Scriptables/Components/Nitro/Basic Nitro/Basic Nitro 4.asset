@@ -26,8 +26,8 @@ MonoBehaviour:
   abilities:
   - InternalName: Basic Nitro 4  OnActivated
     maxUses: 0
-    cooldown: 2
-    fuelCost: 32
+    cooldown: 1.5
+    fuelCost: 25
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 4bc11d4d75cc6aa4f82a3f61c5f6eb6a, type: 2}
+    - {fileID: 11400000, guid: 7add8886b4eacc842b209e7350216fa1, type: 2}
   combos: []
   icon: {fileID: -4598601632356572206, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3

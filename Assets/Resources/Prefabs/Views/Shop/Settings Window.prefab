@@ -842,7 +842,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 0}
+  cupTitle: {fileID: 0}
+  qualifiedText: {fileID: 0}
   raceTooltip: {fileID: 0}
+  proceedButton: {fileID: 0}
+  cupIcon: {fileID: 0}
+  cupFirstSprite: {fileID: 0}
+  cupSecondSprite: {fileID: 0}
+  cupThirdSprite: {fileID: 0}
+  cupEndlessSprite: {fileID: 0}
   endButton: {fileID: 6424958918369573819}
   continueButton: {fileID: 485738921248185072}
 --- !u!222 &9190785260531877257
@@ -1163,7 +1171,6 @@ GameObject:
   - component: {fileID: 3170031236096178961}
   - component: {fileID: 5042013870353936347}
   - component: {fileID: 7321001937321716968}
-  - component: {fileID: 4710025972032345965}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -1273,9 +1280,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4710025972032345965}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
-        m_MethodName: OnPressed
+        m_MethodName: CloseAux
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1287,7 +1294,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
-        m_MethodName: CloseSettingsMenu
+        m_MethodName: OpenConfirmMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1312,20 +1319,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.84313726}
   m_EffectDistance: {x: 2, y: -3}
   m_UseGraphicAlpha: 1
---- !u!114 &4710025972032345965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042453171803151306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea16900a0b5c56479a163abe392f4b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inspect: 0
-  buttonComponent: {fileID: 0}
 --- !u!1 &7455688427736904059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1443,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
-        m_MethodName: CloseSettingsMenu
+        m_MethodName: CloseAux
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

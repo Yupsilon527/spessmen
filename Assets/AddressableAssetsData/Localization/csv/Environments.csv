@@ -1,27 +1,27 @@
 key,Id,English(en)
-alley,119278571520,Culdesac
-junkyard,1575318834810880,Junkyard
-nothing,186093834240,Nothing
-nothing_desc,361776451584, 
-fasterrival,331222195539968,Faster Rival
-fasterrival_desc,331222300397568,Your Rival is 2 times faster
-fuelcosnumption,331222300397569,Fuel Guzzler
-fuelcosnumption_desc,331222300397570,Parts consume 50% more fuel
-activecooldown,331222300397571,Pacifism
-activecooldown_desc,331222300397572,Active abilities 2x cooldown
-enginecooldown,331222300397573,Bad Mechanic
-enginecooldown_desc,331222300397574,Your engine and nitro cooldown is 50% longer.
-lapslonger,331222300397575,Long Track
-lapslonger_desc,331222300397576,Laps are 2 times longer!
-longerrace,331222308786176,Endurance Race
-longerrace_desc,331222308786177,The race lasts 50% longer!
-randomengine,331222308786178,Engine Chaos
-randomengine_desc,331222308786179,Opponents gain a random engine!
-randomgadget,331222308786180,Gadget Chaos
-randomgadget_desc,331222308786181,Opponents gain a random gadget!
-playerstunned,,Sabotage
-playerstunned_desc,,You begin the race stunned for 2 seconds
-rivalimmune,,Above It All
-rivalimmune_desc,,Your Rival cannot be targeted by abilities
-elite,,Gadget Chaos
-elite_desc,,Opponents gain a random gadget!
+"alley",119278571520,"Culdesac"
+"junkyard",1575318834810880,"Junkyard"
+"nothing",186093834240,"Nothing"
+"nothing_desc",361776451584," "
+"fasterrival",331222195539968,"Faster Rival"
+"fasterrival_desc",331222300397568,"Your Rival is 2 times faster"
+"fuelcosnumption",331222300397569,"Fuel Guzzler"
+"fuelcosnumption_desc",331222300397570,"Parts consume 50% more fuel"
+"activecooldown",331222300397571,"Pacifism"
+"activecooldown_desc",331222300397572,"Active abilities 2x cooldown"
+"enginecooldown",331222300397573,"Bad Mechanic"
+"enginecooldown_desc",331222300397574,"Your engine and nitro cooldown is 50% longer."
+"lapslonger",331222300397575,"Long Track"
+"lapslonger_desc",331222300397576,"Laps are 2 times longer!"
+"longerrace",331222308786176,"Endurance Race"
+"longerrace_desc",331222308786177,"The race lasts 50% longer!"
+"randomengine",331222308786178,"Engine Chaos"
+"randomengine_desc",331222308786179,"Opponents gain a random engine!"
+"randomgadget",331222308786180,"Gadget Chaos"
+"randomgadget_desc",331222308786181,"Opponents gain a random gadget!"
+"playerstunned",18181006491029504,"Sabotage"
+"playerstunned_desc",18181006583304192,"You begin the race stunned for 2 seconds"
+"rivalimmune",18181006583304193,"Above It All"
+"rivalimmune_desc",18181006583304194,"Your Rival cannot be targeted by abilities"
+"elite",18181006583304195,"Gadget Chaos"
+"elite_desc",18181006583304196,"Opponents gain a random gadget!"

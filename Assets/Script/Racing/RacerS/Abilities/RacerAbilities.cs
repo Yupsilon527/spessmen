@@ -40,10 +40,13 @@ public class RacerAbilities : RacerComponent
                     for (int i = 0; i < numEngines; i++)
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
-                        AddAbility(new Ability(AbilityData.NpcEngine(engLevel, rnVal, 1f/numEngines), racer));
+                        AddAbility(new Ability(AbilityData.NpcEngine(engLevel, rnVal, 1f), racer));
                     }
+                    racer.modifiers.Add(new Modifier(racer, racer, 0, properties: new Dictionary<ModifierDefines.Property, float>() { { ModifierDefines.Property.tank_capacity, numEngines * DifficultyDefines.enemyTankBonus * engLevel } }));
+
                 }
                 racer.modifiers.Refresh();
+                racer.stats.UpdateRealSpeed();
                 racer.stats.UpdateGasTotal();
                 fuel.SetLimit(racer.stats.gasTotal, Resource.LimitRule.full_value);
                 break;

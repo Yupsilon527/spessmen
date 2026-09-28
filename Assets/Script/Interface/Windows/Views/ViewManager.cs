@@ -9,6 +9,7 @@ public class ViewManager : WindowManager
     public RaceView race;
     public ShopView shop;
     public GameObject settingsMenu;
+    public GameObject confirmExitMenu;
     public enum Views
     {
         shopView = 0,
@@ -20,12 +21,12 @@ public class ViewManager : WindowManager
     {
         Instance = this;
         base.Initialize();
-        CloseSettingsMenu();
+        CloseAux();
     }
 
     public void ChangeView(Views view)
     {
-        CloseSettingsMenu();
+        CloseAux();
         race?.preview?.Clear();
         switch (view)
         {
@@ -42,6 +43,7 @@ public class ViewManager : WindowManager
 
     public void OnNewGameBegin()
     {
+        CloseAux();
         if (shop.gameObject.activeSelf)
         {
             shop.OnOpened();
@@ -51,6 +53,11 @@ public class ViewManager : WindowManager
             ChangeView(Views.shopView);
         }
     }
+    public void CloseAux()
+    {
+        CloseSettingsMenu();
+        CloseConfirmMenu();
+    }
     public void OpenSettingsMenu()
     {
         settingsMenu?.gameObject?.SetActive(true);
@@ -58,5 +65,13 @@ public class ViewManager : WindowManager
     public void CloseSettingsMenu()
     {
         settingsMenu?.gameObject?.SetActive(false);
+    }
+    public void OpenConfirmMenu()
+    {
+        confirmExitMenu?.gameObject?.SetActive(true);
+    }
+    public void CloseConfirmMenu()
+    {
+        confirmExitMenu?.gameObject?.SetActive(false);
     }
 }

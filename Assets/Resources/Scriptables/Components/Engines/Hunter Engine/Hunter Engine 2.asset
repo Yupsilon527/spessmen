@@ -26,8 +26,8 @@ MonoBehaviour:
   abilities:
   - InternalName: Hunter Engine 2  OnTimePass
     maxUses: 0
-    cooldown: 0.83
-    fuelCost: 35
+    cooldown: 1.75
+    fuelCost: 40
     aiSignal: 0
     overflow: 1
     classification: 3

@@ -11,6 +11,7 @@ public static class DifficultyDefines
     public const float enemyEngineSpeed = 6;
     public const float enemyEngineCooldown = 2.5f;
     public const float enemyEngineDelta = 1.25f;
+    public const float enemyTankBonus = 10;
 
     public const float lapDistanceBase = 200;
     public const float lapDistanceAdd = 20;

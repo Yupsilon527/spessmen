@@ -95,6 +95,30 @@ MonoBehaviour:
     m_Key: randomgadget_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 18181006491029504
+    m_Key: playerstunned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304192
+    m_Key: playerstunned_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304193
+    m_Key: rivalimmune
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304194
+    m_Key: rivalimmune_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304195
+    m_Key: elite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18181006583304196
+    m_Key: elite_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

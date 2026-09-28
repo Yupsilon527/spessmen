@@ -25,7 +25,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Compact Nitro 4  OnActivated
-    maxUses: 2
+    maxUses: 4
     cooldown: 0.5
     fuelCost: 0
     aiSignal: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 4ea582d0299eeb5469b7feae16fed5b1, type: 2}
+    - {fileID: 11400000, guid: 6c2da11197356d6459214f951a66cdce, type: 2}
   combos: []
   icon: {fileID: 1433391201, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3

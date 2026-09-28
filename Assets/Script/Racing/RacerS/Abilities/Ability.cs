@@ -64,12 +64,16 @@ public class Ability : Countdown
     {
         Use();
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
+
+        if (data.function == ShipDefines.PartEvent.OnActivated)
+            strength *= caster.GetPropertyMultiplicative(ModifierDefines.Property.ability_power);
+
         foreach (var action in data.actions)
         {
             var source = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
             var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
             TourneyController.main.Inspect($"{source} uses ability {data.function} on {target}");
-            action.action(source, target,this, strength);
+            action.action(source, target,this, strength );
         }
     }
     public bool Activate(ShipDefines.PartEvent evt)
@@ -118,7 +122,7 @@ public class Ability : Countdown
                     caster.ListenToEvent(ShipDefines.PartEvent.OnNitroActivate);
 
                 if (data.function == ShipDefines.PartEvent.OnActivated)
-                    if (data.cooldown > 1 || data.fuelCost > 20)
+                    if (data.cooldown > 1 || data.fuelCost > 10 || data.maxUses > 3)
                         caster.ListenToEvent(ShipDefines.PartEvent.OnBigAbilityActivate);
                     else
                         caster.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);

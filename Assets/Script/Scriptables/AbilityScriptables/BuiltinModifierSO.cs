@@ -13,9 +13,14 @@ public class BuiltinModifierSO : BaseEffectSo
         Turbo = 1,
     }
     public BuiltInModifierType BuiltinType;
-    public override void AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
     {
-        t.modifiers.Add(GetBuiltinModifier(s,t));
+        bool _ = base.AffectOnRacer(c, t, s, m);
+        if (_)
+        {
+            t.modifiers.Add(GetBuiltinModifier(s, t));
+        }
+        return _;
     }
     Modifier GetBuiltinModifier(Ability source, Racer t)
     {

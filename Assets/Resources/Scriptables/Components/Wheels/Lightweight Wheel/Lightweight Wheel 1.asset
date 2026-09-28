@@ -30,7 +30,7 @@ MonoBehaviour:
   combos:
   - other: {fileID: 11400000, guid: 288493adc99d8ed4fada0ffe9f2fa0c1, type: 2}
     result: {fileID: 11400000, guid: a8d8b448e1c72314aa20a05bb391a17b, type: 2}
-  icon: {fileID: 1658573858, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  icon: {fileID: 1355141496, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 2
   partType: 1
   attach: 1

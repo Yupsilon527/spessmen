@@ -22,8 +22,11 @@ MonoBehaviour:
   behavior: 0
   states: []
   properties:
-  - Property: 3
-    value: 1
+  - Property: 1
+    value: 0.6
+    IncreasePerLevel: 0
+  - Property: 5
+    value: 0.8
     IncreasePerLevel: 0
   expiretype: 1
   duration: 3

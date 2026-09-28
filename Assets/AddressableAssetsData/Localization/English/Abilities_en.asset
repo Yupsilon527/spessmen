@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 19397650321408
-    m_Localized: Uses %value% juice.
+    m_Localized: Uses %value% juice
     m_Metadata:
       m_Items: []
   - m_Id: 19397662904320
-    m_Localized: Cooldown %value%.
+    m_Localized: Cooldown %value%s
     m_Metadata:
       m_Items: []
   - m_Id: 19397662904321
-    m_Localized: '%value% uses each race.'
+    m_Localized: '%value% uses each race'
     m_Metadata:
       m_Items: []
   - m_Id: 19397662904322
@@ -187,7 +187,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098662
-    m_Localized: The their rival racer
+    m_Localized: Their rival
     m_Metadata:
       m_Items: []
   - m_Id: 20940344692736

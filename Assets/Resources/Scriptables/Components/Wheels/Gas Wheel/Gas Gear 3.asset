@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Gas Gear 3  OnTimePass
     maxUses: 0
-    cooldown: 0.33
+    cooldown: 1
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
     actions:
     - {fileID: 11400000, guid: 68427e802efdce848b24dffb02edcf84, type: 2}
   combos: []
-  icon: {fileID: 1610975651, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  icon: {fileID: -647442007, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 2
   partType: 1
   attach: 0

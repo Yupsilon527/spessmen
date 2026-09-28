@@ -41,3 +41,7 @@ key,Id,English(en)
 "seasonend",6236537424351232,"Winner gets double score!"
 "new game",9428494405505024,"New Run"
 "continue run",9428523656581120,"Continue Run"
+"grantedspeed",9794526043344896,"Speed Given: %value%km/h"
+"grantedfuel",9794563599142912,"Fuel Given: %value%"
+"filter",12812893838807040,"Filter"
+"glossary",12812921982586880,"Glossary"

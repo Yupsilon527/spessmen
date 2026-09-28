@@ -27,7 +27,7 @@ MonoBehaviour:
   - InternalName: Basic Nitro 1  OnActivated
     maxUses: 0
     cooldown: 3
-    fuelCost: 20
+    fuelCost: 10
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 7d7d0bf78c507da4d956e88da9898321, type: 2}
+    - {fileID: 11400000, guid: 73ef3fb3dd47074419ffbc402e340452, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 1242dd021071e9848a03bb8adae01b60, type: 2}

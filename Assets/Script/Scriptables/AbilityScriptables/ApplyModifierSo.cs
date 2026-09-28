@@ -15,6 +15,7 @@ public class ApplyModifierSo : ApplyBuffSo
     public override string GetDescription()
     {
         string label = base.GetDescription();
+        if (expiretype != ModifierDefines.ExpireType.Permanent) 
         label += LanguageController.main.Translate("Modifiers", "Modifier Duration").Replace("%duration%", duration.ToString("F1"));
         return label;
     }
