@@ -18,8 +18,8 @@ public class IncomeWindow : MonoBehaviour
 
             float interest = DataItemPlayer.main.scope.GetVariable("gold_interest")?.GetFloatValue() ?? 0;
 
-            string completionLabel = LanguageController.main.Translate("Leaderboard","raceIncome").Replace("%value%", bi.ToString("F1"));
-            string positionLabel = LanguageController.main.Translate("Leaderboard", "performanceIncome").Replace("%value%", pi.ToString("F1"));
+            string completionLabel = LanguageController.main.Translate("Leaderboard","raceIncome").Replace("%value%", EconomyDefines.FormatGold(bi));
+            string positionLabel = LanguageController.main.Translate("Leaderboard", "performanceIncome").Replace("%value%", EconomyDefines.FormatGold(pi));
 
             baseIncome.text = $"{completionLabel}<br>{positionLabel}";
 

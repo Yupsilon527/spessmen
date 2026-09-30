@@ -38,7 +38,7 @@ public class TourneyController : Initializable
     public void Proceed()
     {
         UpdateVariables();
-        HandlePlayerReward();
+        GivePlayerReward();
         ChangePhase(TourneyPhase.newRace);
         ChangePhase(TourneyPhase.beforeRace);
     }
@@ -91,7 +91,6 @@ public class TourneyController : Initializable
                     {
                         racer.HandleRacePhase(RaceDefines.RacePhase.RaceSetup);
                     }
-                 //   ArenaController.main.OnNewRaceBegin();
                 }
                 break;
             case TourneyPhase.racing:
@@ -192,6 +191,10 @@ public class TourneyController : Initializable
 
                         UpdateVariables();
                         PlayerConfig.main.ClearRun();
+                    }
+                    else
+                    {
+                        CalcPlayerReward();
                     }
                 }
                 break;
@@ -299,7 +302,7 @@ public class TourneyController : Initializable
             return 9;
         return  leaderboard.Count(kvp => kvp.Value > targetScore);
     }
-    void HandlePlayerReward()
+    void CalcPlayerReward()
     {
         int raceTotal = Mathf.Min(EconomyDefines.goldPerRaceLimit, GetCurrentRaceIndex());
         float diffMult = Mathf.Pow(EconomyDefines.goldPerRaceIncrease, raceTotal);
@@ -333,9 +336,12 @@ public class TourneyController : Initializable
         GE.SetFloatValue(GE.GetFloatValue() + interest + outputGold + distanceGold);
 
         Inspect($"Give player {interest + outputGold + distanceGold} gold; {outputGold} base, {distanceGold} performance and {interest} interest");
+        DataItemPlayer.main.scope.SetVariable("gold_total", interest + outputGold + distanceGold);
 
-        DataItemPlayer.main.econ.GiveGold(interest + outputGold + distanceGold);
-
+    }
+    void GivePlayerReward()
+    {
+        DataItemPlayer.main.econ.GiveGold(DataItemPlayer.main.scope.GetVariable("gold_total").GetFloatValue());
     }
     void UpdateLocalVars()
     {
@@ -425,20 +431,29 @@ public class Race : Countdown
     {
         return GetRivalDistance(raceID , modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
     }
-    public static  float GetRivalDistance(int raceID, float raceDuration = RaceDefines.raceLength)
+    public static  float GetRivalDistance(int level, float raceDuration = RaceDefines.raceLength)
     {
-        var baseSpeed =Mathf.Max(DifficultyDefines.enemyMinSpeed, DifficultyDefines.enemyBaseSpeed + DifficultyDefines.enemyWheelSpeed * raceID) ;
-        var engineSpeed = raceID > 2 ? (DifficultyDefines.enemyEngineSpeed * raceID - 2) : 0;
-        int numEngines = Mathf.FloorToInt(raceID / RaceDefines.SeasonRaces) - 1;
+        var baseSpeed = DifficultyDefines.GetEnemyWheelSpeedAtLevel(level) ;
+
+        int engineLevel = level - RaceDefines.SeasonRaces + 1;
+        var engineSpeed = engineLevel > 0 ? (DifficultyDefines.enemyEngineSpeed * engineLevel) : 0;
+
+        int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces);
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
-        return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration );
+
+        float gasCapacity = 100 + DifficultyDefines.enemyTankBonus * engineLevel;
+        float gasUse = DifficultyDefines.enemyGasUse;
+        int maxRevs = Mathf.CeilToInt(gasCapacity / gasUse);
+
+        return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration , maxRevs);
     }
-    public static float GetRivalDistance(float baseSpeed, float engineCount, float boostSpeed, float engineCD, float raceTime)
+    public static float GetRivalDistance(float baseSpeed, float engineCount, float boostSpeed, float engineCD, float raceTime, int maxEngineUses)
     {
+        if (engineCount <= 0)
+            return baseSpeed * raceTime;
         float interval = engineCD / engineCount;
-        float useCount = Mathf.Floor(raceTime / interval);
-        float leftoverTime = raceTime - useCount * interval;
+        int n = Mathf.Min(Mathf.FloorToInt(raceTime / interval) + 1, maxEngineUses);
         return baseSpeed * raceTime
-                    + boostSpeed * (engineCD * (useCount * (useCount - 1) / 2f) + useCount * leftoverTime / 2f);
+             + boostSpeed * (n * raceTime - interval * n * (n - 1) / 2f);
     }
 }

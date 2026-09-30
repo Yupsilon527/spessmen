@@ -29,7 +29,7 @@ public class AbilityData
         {
             behavior = ShipDefines.AlterationType.Addition,
             stat = ShipDefines.StatType.BaseSpeed,
-            value = Mathf.Max(DifficultyDefines.enemyMinSpeed, DifficultyDefines.enemyBaseSpeed - DifficultyDefines.enemyWheelSpeed + DifficultyDefines.enemyWheelSpeed * (level + 1) * rnval)
+            value = DifficultyDefines.GetEnemyWheelSpeedAtLevel(level , rnval)
         };
         return new AbilityData()
         {
@@ -53,14 +53,14 @@ public class AbilityData
         {
             behavior = ShipDefines.AlterationType.Addition,
             stat = ShipDefines.StatType.BoostSpeed,
-            value = DifficultyDefines.enemyEngineSpeed * level * rnval
+            value = DifficultyDefines.enemyEngineSpeed * level 
         };
         return new AbilityData()
         {
             InternalName = "npc_engine",
             function = ShipDefines.PartEvent.OnTimePass,
             cooldown = DifficultyDefines.enemyEngineCooldown - rnval * DifficultyDefines.enemyEngineDelta,
-            fuelCost = gasUse * 10,
+            fuelCost = gasUse * DifficultyDefines.enemyGasUse,
             actions = new AbilityListener[]
                 {
                     new AbilityListener()

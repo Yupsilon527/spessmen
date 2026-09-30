@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Xweight Sticker
   m_EditorClassIdentifier: 
   InternalName: Xweight Sticker
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 1
     height: 1
@@ -29,7 +32,7 @@ MonoBehaviour:
   boonRarity: 1
   partType: 6
   attach: 0
-  priceMultiplier: 0.4
+  priceMultiplier: 0.2
   weightMultiplier: 1.5
   unique: 0
-  lockedForSomeReason: 0
+  rotating: 1

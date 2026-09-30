@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public static class EconomyDefines
 {
     public const float constantGoldForRace = 15;
@@ -12,4 +14,10 @@ public static class EconomyDefines
 
     public const float PartPriceBase = 20f;
     public const float partResellPrice = 0.6f;
+
+    public static string FormatGold(float value)
+    {
+        int playerGoldvalue = Mathf.CeilToInt(value);
+        return playerGoldvalue < 100 ? (playerGoldvalue.ToString("F0") + LanguageController.main.Translate("UI Table", "Cent unit")) : ((playerGoldvalue * .01f).ToString("F2") + LanguageController.main.Translate("UI Table", "Dollar unit"));
+    }
 }

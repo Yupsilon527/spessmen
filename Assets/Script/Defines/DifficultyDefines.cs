@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public static class DifficultyDefines
     {
     public static int eliteRaceInterval = 3;
@@ -8,9 +10,10 @@ public static class DifficultyDefines
     public const float enemyMinSpeed = 4;
     public const float enemyBaseSpeed = 10;
     public const float enemyWheelSpeed = 12;
-    public const float enemyEngineSpeed = 6;
+    public const float enemyEngineSpeed = 7;
     public const float enemyEngineCooldown = 2.5f;
     public const float enemyEngineDelta = 1.25f;
+    public const float enemyGasUse = 10;
     public const float enemyTankBonus = 10;
 
     public const float lapDistanceBase = 200;
@@ -18,4 +21,9 @@ public static class DifficultyDefines
 
     public const float enemyStartDistance = 2;
     public const float aiUseAbilityChance = .2f;
+
+    public static float GetEnemyWheelSpeedAtLevel(int level, float rnval = 1)
+    {
+        return Mathf.Max(enemyMinSpeed, enemyBaseSpeed - enemyWheelSpeed + enemyWheelSpeed * (level + 1) * rnval);
+    }
 }

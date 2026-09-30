@@ -21,7 +21,10 @@ MonoBehaviour:
     height: 3
     cells: 010101010101010101
   states: []
-  properties: []
+  properties:
+  - Property: 1
+    value: 0.05
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Huge Wheel 1  OnRaceStart

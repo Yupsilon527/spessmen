@@ -1,4 +1,3 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,13 +52,12 @@ public partial class ShopView : ViewBase
         if (playerGold != null && DataItemPlayer.main != null)
         {
             string goldLabel = LanguageController.main.Translate("UI Table", "Gold Label");
-            playerGold.text = goldLabel.Replace("%gold%", DataItemPlayer.main?.econ?.gold?.GetValue().ToString("F0") ?? "");
+            playerGold.text = goldLabel.Replace("%gold%", EconomyDefines.FormatGold(DataItemPlayer.main.econ.gold.GetValue()));
         }
 
         if (resetCost != null)
         {
-            string costLabel = LanguageController.main.Translate("UI Table", "Cost Label");
-            resetCost.text = costLabel.Replace("%cost%", GetResetCost().ToString("F0"));
+            resetCost.text = EconomyDefines.FormatGold(GetResetCost());
         }
 
         for (int i = 0; i < itemButtonSelection.Length; i++)

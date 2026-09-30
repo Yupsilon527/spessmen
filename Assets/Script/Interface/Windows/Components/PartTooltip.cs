@@ -35,7 +35,7 @@ public class PartTooltip : PartCompBase
 
         if (value != null)
         {
-            value.text = "$" + Mathf.Ceil(part.scriptable.GetBasePrice() * (justPurchase ? 1 : EconomyDefines.partResellPrice));
+            value.text = EconomyDefines.FormatGold( Mathf.Ceil(part.scriptable.GetBasePrice() * (justPurchase ? 1 : EconomyDefines.partResellPrice)));
         }
     }
 }

@@ -18,12 +18,8 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 168213516288
-    m_Localized: $%cost%
-    m_Metadata:
-      m_Items: []
   - m_Id: 216427040768
-    m_Localized: 'Total $: %gold%'
+    m_Localized: 'Total : %gold%'
     m_Metadata:
       m_Items: []
   - m_Id: 996047491072
@@ -139,7 +135,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3249409245483008
-    m_Localized: 'Your record: %ownDistance%m (%ownSpeed%km/h)'
+    m_Localized: 'Your record: %ownDistance% (%ownSpeed%km/h)'
     m_Metadata:
       m_Items: []
   - m_Id: 5072056056975360
@@ -194,6 +190,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12812921982586880
     m_Localized: Glossary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176515636727808
+    m_Localized: m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176515636727809
+    m_Localized: km/h
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176899000307712
+    m_Localized: $
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176899008696320
+    m_Localized: c
     m_Metadata:
       m_Items: []
   references:

@@ -275,7 +275,10 @@ public class DragDropToken : PartButtonScaleable
     {
         if (slot != null)
         {
-            Rotate(mPart.rotation);
+            if (mPart.CanBeRotated())
+                Rotate(mPart.rotation);
+            else
+                Rotate(0);
             if (slot.slot == DragDropSlot.TokenSlot.build)
             {
                 SnapToGrid(slot.recttransform);

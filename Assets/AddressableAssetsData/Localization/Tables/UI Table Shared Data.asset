@@ -15,8 +15,8 @@ MonoBehaviour:
   m_TableCollectionName: UI Table
   m_TableCollectionNameGuidString: 895435ce0960a584ebaec964c5bd451d
   m_Entries:
-  - m_Id: 168213516288
-    m_Key: cost label
+  - m_Id: 19176898987724800
+    m_Key: New Entry 2
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
@@ -191,6 +191,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12812921982586880
     m_Key: glossary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176515636727808
+    m_Key: distance_unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176515636727809
+    m_Key: speed_unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176899000307712
+    m_Key: dollar unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19176899008696320
+    m_Key: cent unit
     m_Metadata:
       m_Items: []
   m_Metadata:

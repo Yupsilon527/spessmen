@@ -1,16 +1,13 @@
 TODO
 
-	icons:
-		clockwork gear
-		lightweight wheel 1&2
-		juicer
-		snowball wheel
-		mischief can
-		edd hat
+	SHOP tokens in shop dont save
 
 	modifier scaling
-	$ and c
 	descs funny sometimes?
+
+	racer info
+	turbo button toggle
+	see race info during race
 
 TEST
 	stats and stat collection

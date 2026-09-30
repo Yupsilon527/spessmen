@@ -21,7 +21,10 @@ MonoBehaviour:
     height: 2
     cells: 01010101
   states: []
-  properties: []
+  properties:
+  - Property: 25
+    value: 1
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Lucky Wheel 1  OnRaceStart

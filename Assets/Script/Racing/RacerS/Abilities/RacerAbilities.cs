@@ -30,11 +30,15 @@ public class RacerAbilities : RacerComponent
                 }
                 else
                 {
-                    float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * .75f + .25f);
                     int level = TourneyController.main.GetCurrentRaceIndex();
+                    int engLevel = level - RaceDefines.SeasonRaces + 1;
+
+                    float diff = engLevel > 0 ? .1f : .75f;
+
+                    float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * diff + (1- diff));
+
                     AddAbility(new Ability(AbilityData.NpcWheel(level, rnVal), racer));
 
-                    int engLevel = level - RaceDefines.SeasonRaces + 1;
 
                     int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces) ;
                     for (int i = 0; i < numEngines; i++)
@@ -42,7 +46,7 @@ public class RacerAbilities : RacerComponent
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;
                         AddAbility(new Ability(AbilityData.NpcEngine(engLevel, rnVal, 1f), racer));
                     }
-                    racer.modifiers.Add(new Modifier(racer, racer, 0, properties: new Dictionary<ModifierDefines.Property, float>() { { ModifierDefines.Property.tank_capacity, numEngines * DifficultyDefines.enemyTankBonus * engLevel } }));
+                    racer.modifiers.Add(new Modifier(racer, racer, 0, properties: new Dictionary<ModifierDefines.Property, float>() { { ModifierDefines.Property.tank_capacity, DifficultyDefines.enemyTankBonus * engLevel } }));
 
                 }
                 racer.modifiers.Refresh();

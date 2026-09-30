@@ -26,7 +26,7 @@ public class Racer
         modifiers = new (this);
         components = new RacerComponent[]
         {
-            stats,position,abilities,modifiers
+            abilities,modifiers,stats,position
         };
     }
 

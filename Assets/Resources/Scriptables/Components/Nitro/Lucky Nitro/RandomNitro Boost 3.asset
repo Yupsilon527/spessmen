@@ -23,7 +23,7 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 4
-    value: 32
+    value: 52
     IncreasePerLevel: 0
   expiretype: 1
   duration: 4
