@@ -25,7 +25,7 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Wheel 1  OnLapCompleted
-    maxUses: 4
+    maxUses: 8
     cooldown: 0
     fuelCost: 0
     aiSignal: 0

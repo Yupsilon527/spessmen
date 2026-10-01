@@ -299,7 +299,7 @@ public class TourneyController : Initializable
     public int GetRacerPosition(Racer racer)
     {
         if (leaderboard == null || leaderboard.Count == 0|| racer==null ||!leaderboard.TryGetValue(racer, out float targetScore))
-            return 9;
+            return 99;
         return  leaderboard.Count(kvp => kvp.Value > targetScore);
     }
     void CalcPlayerReward()

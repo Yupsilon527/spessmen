@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4a0fde4f5e6f3847b4241d977ab5684, type: 3}
-  m_Name: cursedNitro Rival Boost 2
+  m_Name: cursedNitro Self Curse
   m_EditorClassIdentifier: 
-  effectSource: 4
-  effectTarget: 4
+  effectSource: 0
+  effectTarget: 0
   condition: 0
   conditionCheck: 0
   modifierName: Nitro
@@ -22,8 +22,8 @@ MonoBehaviour:
   behavior: 0
   states: []
   properties:
-  - Property: 4
-    value: 100
+  - Property: 23
+    value: 0.2
     IncreasePerLevel: 0
-  expiretype: 1
-  duration: 4
+  expiretype: 0
+  duration: 3

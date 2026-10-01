@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Speedy Wheel 3
+  m_Name: Time Gear
   m_EditorClassIdentifier: 
-  InternalName: Speedy Wheel 3
+  InternalName: Time Gear
   condition:
     lockedByDefault: 0
     conditions: []
@@ -24,9 +24,9 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Speedy Wheel 3  OnTimePass
+  - InternalName: Time Gear  OnTimePass
     maxUses: 0
-    cooldown: 0.9
+    cooldown: 1
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -35,15 +35,19 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: e29c7debacbda0544be8f3bfd2f91536, type: 2}
+    - {fileID: 11400000, guid: eb4b7b29c57e3f647834627910a8e642, type: 2}
   combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 7b81e0338473a1e49ba196e6b00b31d0, type: 2}
-  icon: {fileID: -234120867, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  - other: {fileID: 11400000, guid: b1bb647c9d308c24b95d7cc504552019, type: 2}
+    result: {fileID: 11400000, guid: b1b1691124c7407479f6b0b1f5878d17, type: 2}
+  - other: {fileID: 11400000, guid: 7ab58548a9bc9d2499e837f4868ba413, type: 2}
+    result: {fileID: 11400000, guid: d91f34fa7856a2f478d19ba932495a0c, type: 2}
+  - other: {fileID: 11400000, guid: 7b81e0338473a1e49ba196e6b00b31d0, type: 2}
+    result: {fileID: 11400000, guid: 9d4a087f497a7b848b94cf43277cc5bb, type: 2}
+  icon: {fileID: 923615755, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
   boonRarity: 2
   partType: 1
-  attach: 1
+  attach: 0
   priceMultiplier: 1
-  weightMultiplier: 1
+  weightMultiplier: 3
   unique: 0
   rotating: 1

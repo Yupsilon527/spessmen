@@ -12,6 +12,9 @@ TODO
 TEST
 	stats and stat collection
 FIX
+	part rotation
+
+	speeds don't reset
 	rival overtaken event bug
 
 	vampirism bug

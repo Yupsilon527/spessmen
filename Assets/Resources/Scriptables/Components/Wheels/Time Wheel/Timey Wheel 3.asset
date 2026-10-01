@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Speedy Wheel 3
+  m_Name: Timey Wheel 3
   m_EditorClassIdentifier: 
-  InternalName: Speedy Wheel 3
+  InternalName: Timey Wheel 3
   condition:
     lockedByDefault: 0
     conditions: []
@@ -24,7 +24,7 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Speedy Wheel 3  OnTimePass
+  - InternalName: Timey Wheel 3  OnTimePass
     maxUses: 0
     cooldown: 0.9
     fuelCost: 0
@@ -36,10 +36,11 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: e29c7debacbda0544be8f3bfd2f91536, type: 2}
+    - {fileID: 11400000, guid: 1c9245b7a2ca85443be75c0efa1d8eca, type: 2}
   combos:
   - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 7b81e0338473a1e49ba196e6b00b31d0, type: 2}
-  icon: {fileID: -234120867, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+    result: {fileID: 11400000, guid: 9d4a087f497a7b848b94cf43277cc5bb, type: 2}
+  icon: {fileID: -1719253340, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 2
   partType: 1
   attach: 1

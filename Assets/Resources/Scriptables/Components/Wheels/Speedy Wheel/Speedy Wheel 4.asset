@@ -21,10 +21,7 @@ MonoBehaviour:
     height: 2
     cells: 01010101
   states: []
-  properties:
-  - Property: 9
-    value: 0.25
-    IncreasePerLevel: 0
+  properties: []
   relative: []
   abilities:
   - InternalName: Speedy Wheel 4  OnTimePass

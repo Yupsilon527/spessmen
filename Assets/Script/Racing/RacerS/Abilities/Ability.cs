@@ -12,12 +12,14 @@ public class Ability : Countdown
         data = a;
         this.part = part;
         this.caster = caster;
+        ResetGrantedValues();
     }
     public Ability(AbilityScriptable a, DataItemPart part, Racer caster)
     {
         data = a.Translate() ;
         this.part = part;
         this.caster = caster;
+        ResetGrantedValues();
     }
     public Ability(AbilityData a, Racer caster)
     {
@@ -154,6 +156,11 @@ public class Ability : Countdown
     public override string ToString()
     {
         return data.InternalName + " AbilityData";
+    }
+    void ResetGrantedValues()
+    {
+        if (part != null) part.givenSpeed = 0;
+        if (part != null) part.givenFuel = 0;
     }
     public void RegisterGrantedSpeed(float amt)
     {
