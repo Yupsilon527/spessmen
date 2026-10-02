@@ -27,6 +27,7 @@ public class ArenaController : MonoBehaviour
     public float distanceDelta = 100;
     public float distanceFarAwayDelta = 30;
     public float aheadDelta = .5f;
+    public float minDistance = 12;
 
     public static ArenaController main;
     private void Awake()
@@ -70,7 +71,6 @@ public class ArenaController : MonoBehaviour
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
             if (relativePosition == 0) continue;
 
-            float distBase = 12;
             float m = 15;
             float dd = distanceDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
             float df = distanceFarAwayDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
@@ -80,9 +80,9 @@ public class ArenaController : MonoBehaviour
                 df *= aheadDelta;
             }
 
-            if (racer.racer.position.distanceTraveled < distBase)
+            if (racer.racer.position.distanceTraveled < minDistance)
             {
-                float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / distBase);
+                float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / minDistance);
                 float nearStartMultiplier = Mathf.Max(m, 1f / (racer.racer.position.distanceTraveled * m + 0.0001f));
                 float multiplier = Mathf.SmoothStep(nearStartMultiplier, 1f, t);
 

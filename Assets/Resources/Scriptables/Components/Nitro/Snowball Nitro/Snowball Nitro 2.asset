@@ -25,8 +25,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Snowball Nitro 2  OnActivated
-    maxUses: 2
-    cooldown: 4
+    maxUses: 3
+    cooldown: 3
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 4b66171749f8ccb4ab356099a6191cb7, type: 2}
+    - {fileID: 11400000, guid: 538eea351f6221948a8513a73d682be0, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 826ce7083f6796047b94ff945311c8e3, type: 2}

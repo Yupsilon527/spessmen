@@ -8,8 +8,8 @@ public static class DifficultyDefines
     public const float eliteRaceScoreMultiplier = 2;
 
     public const float enemyMinSpeed = 4;
-    public const float enemyBaseSpeed = 8;
-    public const float enemyWheelSpeed = 6;
+    public const float enemyBaseSpeed = 2;
+    public const float enemyWheelSpeed = 12;
     public const float enemyEngineSpeed = 5;
     public const float enemyEngineCooldown = 2.5f;
     public const float enemyEngineDelta = 1.25f;

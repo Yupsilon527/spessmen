@@ -25,6 +25,13 @@ public partial class ShopView : ViewBase
             button.AssignItem(DataItemPlayer.main, items[i]);
         }
     }
+    public void StashTokens()
+    {
+        foreach (var button in itemButtonSelection)
+        {
+            button?.dropSlot?.attachedToken?.GoToStash();
+        }
+    }
     public void ResetStore(bool hardReset, bool gameStart)
     {
         if (DataItemPlayer.main?.car == null) return;
@@ -107,7 +114,7 @@ public partial class ShopView : ViewBase
         DataItemPlayer.main?.econ?.gold?.OnValueChanged.RemoveListener(Refresh);
         DataItemPlayer.main?.econ?.gold?.OnValueChanged.AddListener(Refresh);
     }
-    void Conclude()
+    void ApplyChanges()
     {
         dragdrop.ApplyChanges();
         dragdrop.Clear();
@@ -117,7 +124,7 @@ public partial class ShopView : ViewBase
     {
         if (DataItemPlayer.main.car.ValidateAll())
         {
-            Conclude();
+            ApplyChanges();
             TourneyController.main.ChangePhase(TourneyController.TourneyPhase.setup);
             ViewManager.Instance.ChangeView(ViewManager.Views.raceView);
         }

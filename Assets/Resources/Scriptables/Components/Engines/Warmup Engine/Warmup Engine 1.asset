@@ -35,8 +35,8 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: a591688bd78288049b91f486df334889, type: 2}
     - {fileID: 11400000, guid: ae6d5203ec4831249932b299631d6827, type: 2}
+    - {fileID: 11400000, guid: be3e06856c722b04fbf7fffef472708c, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 27a3bab0aa85a67448309d68d4ad159e, type: 2}
@@ -45,6 +45,6 @@ MonoBehaviour:
   partType: 3
   attach: 0
   priceMultiplier: 1.4
-  weightMultiplier: 1
+  weightMultiplier: 4
   unique: 0
   rotating: 1

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 
 [Serializable]
 public class SerializedPlayerShip : SerializableData<DataItemShip>
@@ -12,6 +11,9 @@ public class SerializedPlayerShip : SerializableData<DataItemShip>
     public SerializedPlayerShip(DataItemShip data) : base(data)
     {
         internalName = data.scriptable.InternalName;
+
+        ViewManager.Instance?.shop?.StashTokens();
+
         parts = data.parts.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
         stash = data.stash.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
 

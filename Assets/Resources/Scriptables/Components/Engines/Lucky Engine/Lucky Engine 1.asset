@@ -19,7 +19,7 @@ MonoBehaviour:
   grid:
     width: 3
     height: 3
-    cells: 010100010101010100
+    cells: 010101010101010100
   states: []
   properties: []
   relative: []

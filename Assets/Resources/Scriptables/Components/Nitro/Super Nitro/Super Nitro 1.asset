@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Snowball Nitro 3
+  m_Name: Super Nitro 1
   m_EditorClassIdentifier: 
-  InternalName: Snowball Nitro 3
+  InternalName: Super Nitro 1
   condition:
     lockedByDefault: 0
     conditions: []
@@ -24,10 +24,10 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Snowball Nitro 3  OnActivated
-    maxUses: 4
-    cooldown: 2
-    fuelCost: 0
+  - InternalName: Super Nitro 1  OnActivated
+    maxUses: 0
+    cooldown: 4
+    fuelCost: 33
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -35,13 +35,15 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 14b7af6e11c33c64b8f8ffaf3fc66968, type: 2}
-  combos: []
-  icon: {fileID: 397868835, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 3
+    - {fileID: 11400000, guid: 32cc112e68f82104fb34aea9a01b6c2b, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 37f7878806f9a9c45a312f403852fc3e, type: 2}
+  icon: {fileID: 264338246508582504, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  boonRarity: 1
   partType: 5
   attach: 2
-  priceMultiplier: 1
+  priceMultiplier: 0.56
   weightMultiplier: 1
   unique: 0
   rotating: 1

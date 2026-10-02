@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 184a38f13d8edfa4fad66dfe1b250b09, type: 3}
-  m_Name: Wengine Acc 1
+  m_Name: SbNitro Boost 3
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
@@ -19,6 +19,6 @@ MonoBehaviour:
   alteration:
     behavior: 0
     stat: 1
-    scale: 5
-    value: 3
+    scale: 6
+    value: 12
     reverse: 0

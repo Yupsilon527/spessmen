@@ -41,7 +41,7 @@ public class RaceResultsWindow : MonoBehaviour
                 cup == 2 ? cupThirdSprite : cupEndlessSprite;
             }
         }
-        bool qualified = position <= 2;
+        bool qualified = TourneyController.main?.CanPlayerProgress() ?? false;
         if (qualifiedText != null)
             qualifiedText.text = qualified ? LanguageController.main?.Translate("Leaderboard", "qualified") : LanguageController.main?.Translate("Leaderboard", "disqualified");
         if (proceedButton != null)

@@ -34,7 +34,7 @@ public static class ItemDefines
     public enum PartType
     {
         other = 0,
-        wheel=1,
+        wheel = 1,
         tank = 2,
         engine = 3,
         gadget = 4,
@@ -54,16 +54,16 @@ public static class ItemDefines
     public static float LuckNumber(float luck)
     {
         if (luck >= 0)
-            return   (luck + luckPlus) / luckPlus;
+            return (luck + luckPlus) / luckPlus;
         else
-            return  - luckPlus / (luck - luckPlus);
+            return -luckPlus / (luck - luckPlus);
     }
     public static float ChaosNumber(float chaos)
     {
         if (chaos >= 0)
-            return  (chaos + chaosPlus) / chaosPlus;
+            return (chaos + chaosPlus) / chaosPlus;
         else
-            return  - chaosMinus / (chaos - chaosMinus);
+            return -chaosMinus / (chaos - chaosMinus);
     }
     public static Color32 GetColorForRarity(BoonRarity rarity)
     {
@@ -72,7 +72,7 @@ public static class ItemDefines
             default:
                 return Color.black;
             case BoonRarity.common:
-                return new Color(82f/255f, 129f / 255f, 74f / 255f);
+                return new Color(82f / 255f, 129f / 255f, 74f / 255f);
             case BoonRarity.rare:
                 return new Color(53f / 255f, 159f / 255f, 209f / 255f);
             case BoonRarity.epic:

@@ -186,7 +186,7 @@ public class TourneyController : Initializable
                         leaderboard[racer] += GetPointsForPosition(ongoingRace.GetPositionForRacer(racer));
                     }
                     UpdateLocalVars();
-                    if (!CanPlayerProceed())
+                    if (!CanPlayerProgress())
                     {
 
                         UpdateVariables();
@@ -292,9 +292,10 @@ public class TourneyController : Initializable
                 ChangePhase(TourneyPhase.afterRace);
         }
     }
-    public bool CanPlayerProceed()
+    public bool CanPlayerProgress()
     {
-        return !IsLastRaceInSeason() || GetRacerPosition(GetPlayerRacer()) == 0;
+        int playerPosition = GetRacerPosition(GetPlayerRacer());
+        return (IsLastRaceInSeason() && playerPosition == 0) || GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
     }
     public int GetRacerPosition(Racer racer)
     {
@@ -360,7 +361,7 @@ public class TourneyController : Initializable
             var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
             tournamentsCompleted.Change(Variables.Change.Case.add, 1);
 
-            if (CanPlayerProceed())
+            if (CanPlayerProgress())
             {
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
                 tournamentsWon.Change(Variables.Change.Case.add, 1);

@@ -32,19 +32,19 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         }
         else
         {
-            var customer = purchasingPlayaer;
-            ShowItemAction(customer, purchase.scriptable);
             purchaseData = purchase;
-            UpdatePrice();
-            if (button != null)
-            {
-                button.onClick.RemoveAllListeners();
-                button.onClick.AddListener(() =>
+                var customer = purchasingPlayaer;
+                ShowItemAction(customer, purchase.scriptable);
+                UpdatePrice();
+                if (button != null)
                 {
-                    PurchaseItem(customer);
-                });
-            }
-            SetLocked(purchase.playerLocked);
+                    button.onClick.RemoveAllListeners();
+                    button.onClick.AddListener(() =>
+                    {
+                        PurchaseItem(customer);
+                    });
+                }
+                SetLocked(purchase.playerLocked);
         }
         UpdateEnableState(purchasingPlayaer, false);
     }
@@ -53,13 +53,13 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         outlineMask.gameObject?.SetActive(partSO != null);
         sprite.gameObject?.SetActive(partSO != null);
         if (partSO != null)
-        DrawScriptable(partSO);
+            DrawScriptable(partSO);
     }
     public virtual void ShowItemAction(DataItemPlayer player, PartScriptable newAction)
     {
         if (partSO != newAction)
         {
-            Clear(false);
+           // Clear(false);
             partSO = newAction;
             DrawScriptable(partSO);
         }
@@ -70,7 +70,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         if (purchaseData != null)
         {
             string goldCost = purchaseData.purchaseCost == 0 ? LanguageController.main.Translate("UI Table", "Cost Free") : EconomyDefines.FormatGold(purchaseData.purchaseCost);
-            if (priceLabel != null) priceLabel.text = goldCost ;
+            if (priceLabel != null) priceLabel.text = goldCost;
         }
         else
         {
@@ -86,6 +86,11 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         }
         else
         {
+            if (purchaseData.wasPurchased)
+            {
+                Clear(true);
+                return;
+            }    
             if (recalcAction)
             {
                 AssignItem(purchasingPlayaer, purchaseData);
@@ -94,22 +99,23 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
             button.interactable = purchaseData != null && purchaseData.CanBePurchased(purchasingPlayaer);
         }
     }
-    public void PurchaseItem() {
-      PurchaseItem(DataItemPlayer.main);
+    public void PurchaseItem()
+    {
+        PurchaseItem(DataItemPlayer.main);
     }
     public void PurchaseItem(DataItemPlayer purchasingPlayaer)
     {
         if (purchaseData.MakePurchase(purchasingPlayaer))
         {
-           var newToken = shop.dragdrop.GenerateToken(purchaseData);
-            newToken.AttachToSlot(dropSlot,true);
+            var newToken = shop.dragdrop.GenerateToken(purchaseData);
+            newToken.AttachToSlot(dropSlot, true);
             newToken.justPurchase = true;
             Clear(true);
         }
     }
     bool SanityCheck()
     {
-        return  purchaseData != null && purchaseData.CanBePurchased(DataItemPlayer.main);
+        return purchaseData != null && purchaseData.CanBePurchased(DataItemPlayer.main);
     }
     public bool IsLocked()
     {
@@ -117,8 +123,8 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     }
     public void ToggleLocked(bool value)
     {
-        if (purchaseData!=null)
-        purchaseData.playerLocked = value;
+        if (purchaseData != null)
+            purchaseData.playerLocked = value;
         if (value && !SanityCheck())
         {
             SetLocked(false);
@@ -131,14 +137,14 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (purchaseData!= null && shop != null && shop.tooltip!=null)
+        if (purchaseData != null && shop != null && shop.tooltip != null)
         {
             shop.tooltip.ShowPart(purchaseData);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (shop!=null && shop.tooltip!=null)
+        if (shop != null && shop.tooltip != null)
         {
             shop.tooltip.Clear();
         }

@@ -36,7 +36,7 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: 81c516da465ba144881756bfeed8a474, type: 2}
-    - {fileID: 11400000, guid: 2b0af0303c9901f47ab0b782103d7554, type: 2}
+    - {fileID: 11400000, guid: 9e69961622f2b2147adf84eaf104c0bb, type: 2}
   combos: []
   icon: {fileID: -483145769, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 3

@@ -23,7 +23,7 @@ public class PostRaceWindow : RaceResultsWindow
     {
         if (continueButton!=null)
         {
-            continueButton.interactable = TourneyController.main?.CanPlayerProceed() ?? false;
+            continueButton.interactable = TourneyController.main?.CanPlayerProgress() ?? false;
         }
     }
 }
