@@ -10,21 +10,15 @@ TODO
 
 TEST
 	stats and stat collection
+	part rotation on unrotatable parts???
+	distance to beat
+
+	part cant rot>>>rotation?
 FIX
-	IMPORTANT
-		speed inconsistend
-		player speed is doubled on game reset (idk why)
-
-	part rotation
-
-
 	vampirism bug
 
 	elite modifier???
 
-	part cant rot>>>rotation?
-
-	distance to beat
 QoL
 	alert LUCKY
 	alert MODIFIER NAME

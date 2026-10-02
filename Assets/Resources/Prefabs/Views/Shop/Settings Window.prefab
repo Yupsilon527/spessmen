@@ -795,7 +795,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418122621766066518}
-  - component: {fileID: 1273495161979748806}
   - component: {fileID: 9190785260531877257}
   - component: {fileID: 1716382189999769295}
   - component: {fileID: 1405082149603856238}
@@ -829,30 +828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1273495161979748806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6445089107755503857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381cd1480b055e049800fceaf7a55327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
-  cupTitle: {fileID: 0}
-  qualifiedText: {fileID: 0}
-  raceTooltip: {fileID: 0}
-  proceedButton: {fileID: 0}
-  cupIcon: {fileID: 0}
-  cupFirstSprite: {fileID: 0}
-  cupSecondSprite: {fileID: 0}
-  cupThirdSprite: {fileID: 0}
-  cupEndlessSprite: {fileID: 0}
-  endButton: {fileID: 6424958918369573819}
-  continueButton: {fileID: 485738921248185072}
 --- !u!222 &9190785260531877257
 CanvasRenderer:
   m_ObjectHideFlags: 0

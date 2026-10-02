@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Timey Wheel 2  OnTimePass
     maxUses: 0
-    cooldown: 1.2
+    cooldown: 0.8
     fuelCost: 0
     aiSignal: 0
     overflow: 0

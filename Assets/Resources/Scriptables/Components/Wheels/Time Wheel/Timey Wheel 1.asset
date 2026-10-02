@@ -10,38 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Super Nitro 3
+  m_Name: Timey Wheel 1
   m_EditorClassIdentifier: 
-  InternalName: Super Nitro 3
+  InternalName: Timey Wheel 1
   condition:
     lockedByDefault: 0
     conditions: []
   grid:
-    width: 3
-    height: 3
-    cells: 000101010101000101
+    width: 2
+    height: 2
+    cells: 01010101
   states: []
   properties: []
   relative: []
   abilities:
-  - InternalName: Super Nitro 3  OnActivated
+  - InternalName: Timey Wheel 1  OnTimePass
     maxUses: 0
-    cooldown: 2
-    fuelCost: 33
+    cooldown: 0.8
+    fuelCost: 0
     aiSignal: 0
     overflow: 0
-    classification: 5
-    function: 2
+    classification: 1
+    function: 1
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 4450f278bb7468347a618841e87e7d99, type: 2}
-  combos: []
-  icon: {fileID: 264338246508582504, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
-  boonRarity: 3
-  partType: 5
-  attach: 2
-  priceMultiplier: 0.56
+    - {fileID: 11400000, guid: 0261bf27ed08018469eee0ae50ae0b50, type: 2}
+    - {fileID: 11400000, guid: eb4b7b29c57e3f647834627910a8e642, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: b1b1691124c7407479f6b0b1f5878d17, type: 2}
+  icon: {fileID: -1719253340, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  boonRarity: 1
+  partType: 1
+  attach: 1
+  priceMultiplier: 1
   weightMultiplier: 1
   unique: 0
   rotating: 1

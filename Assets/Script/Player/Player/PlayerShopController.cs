@@ -34,19 +34,20 @@ public class PlayerShopController : PlayerComponent
     {
         if (ResourceCache.main == null) return;
 
-        List<PartScriptable> playerparts = new();
-        playerparts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
-        var playerPartsArray = playerparts.ToArray();
-        playerparts.Clear();
+        List<PartScriptable> priorityParts = new();
+        priorityParts.AddRange(DataItemPlayer.main.car.parts.Select(p => p.scriptable));
+        var playerPartsArray = priorityParts.ToArray();
+        priorityParts.Clear();
         foreach (var part in playerPartsArray)
         {
             foreach (var c in part.combos)
             {
-                playerparts.Add(c.other);
+                priorityParts.Add(c.other);
             }
         }
         int level = TourneyController.main.GetCurrentRaceIndex();
         int fullslots = DataItemPlayer.main.car.CountTilesTotal();
+        float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main?.GetPropertySpeculative(ModifierDefines.Property.luck_bonus) ?? 0);
 
         List<WeightPart> valid = new();
         foreach (var item in ResourceCache.main.parts.Where((PartScriptable item) => item.IsUnlocked()))
@@ -57,7 +58,10 @@ public class PlayerShopController : PlayerComponent
                 continue;
             if (item.partType == ItemDefines.PartType.expansion && fullslots == 100)
                 continue;
-            valid.Add(new WeightPart(item, (playerparts.Contains(item) ? (3 * ((int)item.boonRarity+1)) : 2)));
+
+
+            int rarityBonus = (int)item.boonRarity + 1;
+            valid.Add(new WeightPart(item, priorityParts.Contains(item) ? (3 * rarityBonus * luckCoefficient) : (2 + rarityBonus * (luckCoefficient-1))));
 
         }
 

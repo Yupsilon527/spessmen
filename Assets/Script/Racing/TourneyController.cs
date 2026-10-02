@@ -295,7 +295,10 @@ public class TourneyController : Initializable
     public bool CanPlayerProgress()
     {
         int playerPosition = GetRacerPosition(GetPlayerRacer());
-        return (IsLastRaceInSeason() && playerPosition == 0) || GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
+        if (IsLastRaceInSeason())
+            return playerPosition == 0;
+        else 
+            return  GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
     }
     public int GetRacerPosition(Racer racer)
     {

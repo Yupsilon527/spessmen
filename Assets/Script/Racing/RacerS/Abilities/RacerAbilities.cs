@@ -66,8 +66,8 @@ public class RacerAbilities : RacerComponent
         {
             AddAbility(new Ability(ab, part, racer));
         }
-        if (part.scriptable.HasModifier())
-            racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
+        if (scriptable.HasModifier())
+            racer.modifiers.Add(scriptable.GetInnateModifier(racer));
     }
     public void AddAbility(Ability ability)
     {
