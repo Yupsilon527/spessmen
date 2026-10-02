@@ -22,8 +22,6 @@ public class RacerAbilities : RacerComponent
                     foreach (DataItemPart part in DataItemPlayer.main.car.parts)
                     {
                         AddPart(part);
-                        if (part.scriptable.HasModifier())
-                            racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
                     }
                     if (DataItemPlayer.main.car.scriptable.HasModifier())
                         racer.modifiers.Add(DataItemPlayer.main.car.scriptable.GetInnateModifier(racer));
@@ -68,6 +66,8 @@ public class RacerAbilities : RacerComponent
         {
             AddAbility(new Ability(ab, part, racer));
         }
+        if (part.scriptable.HasModifier())
+            racer.modifiers.Add(part.scriptable.GetInnateModifier(racer));
     }
     public void AddAbility(Ability ability)
     {
