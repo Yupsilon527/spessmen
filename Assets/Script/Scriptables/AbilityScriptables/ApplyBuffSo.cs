@@ -6,6 +6,7 @@ public class ApplyBuffSo : ApplyTagSo
     public ModifierDefines.Priority priority;
     public ModifierDefines.Flag flag;
     public ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique;
+    public ModifierDefines.Visibility visibility;
 
     public ModifierDefines.StateData[] states;
     public ModifierDefines.PropertyData[] properties;
@@ -19,6 +20,7 @@ public class ApplyBuffSo : ApplyTagSo
             priority = priority,
             flag = flag,
             behavior = behavior,
+            visibility = visibility,
         };
         foreach (var state in states)
         {

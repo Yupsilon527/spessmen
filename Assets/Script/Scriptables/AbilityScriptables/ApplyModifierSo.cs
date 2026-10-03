@@ -9,6 +9,7 @@ public class ApplyModifierSo : ApplyBuffSo
     {
         var modifier = base.Translate(s,t, m);
         modifier.expire = expiretype;
+        modifier.visibility = visibility;
         modifier.Set(duration * m);
         return modifier;
     }

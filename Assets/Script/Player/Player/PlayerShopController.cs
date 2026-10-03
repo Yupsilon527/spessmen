@@ -71,18 +71,20 @@ public class PlayerShopController : PlayerComponent
         for (int i = 0; i < total; i++)
         {
             var newItem = new PurchaseData(valid);
+            var seenCount = DataItemPlayer.main.scope.GetVariable("item_seen_" + newItem.scriptable.InternalName);
+
             if (i < itemActions.Count)
             {
-                if (itemActions[i].wasPurchased)
-                {
-                    var variable = PlayerConfig.main.globalScope.GetVariable("items_purchased_" + itemActions[i].scriptable.InternalName);
-                    variable.SetFloatValue(variable.GetFloatValue() + 1);
-                }
                 if (!itemActions[i].playerLocked || itemActions[i].wasPurchased)
+                {
+                    seenCount.Change(Variables.Change.Case.add, 1);
+
                     itemActions[i] = newItem;
+                }
             }
             else
             {
+                seenCount.Change(Variables.Change.Case.add, 1);
                 itemActions.Add(newItem);
             }
             player.score.GiveLuck(newItem.scriptable.boonRarity);

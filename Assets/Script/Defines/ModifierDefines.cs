@@ -115,6 +115,11 @@ public static class ModifierDefines
         Permanent = 0,
         Time = 1,
     }
+    public enum Visibility
+    {
+        hidden = 0,
+        alerted = 1,
+    }
     public static bool IsPropertyMultiplicative(Property Property)
     {
         switch (Property)

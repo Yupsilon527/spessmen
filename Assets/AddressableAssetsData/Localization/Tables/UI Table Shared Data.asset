@@ -15,8 +15,8 @@ MonoBehaviour:
   m_TableCollectionName: UI Table
   m_TableCollectionNameGuidString: 895435ce0960a584ebaec964c5bd451d
   m_Entries:
-  - m_Id: 19176898987724800
-    m_Key: New Entry 2
+  - m_Id: 20275285388595200
+    m_Key: New Entry
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
@@ -207,6 +207,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 19176899008696320
     m_Key: cent unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20275285518618624
+    m_Key: part_seen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20275285518618625
+    m_Key: part_purchased
     m_Metadata:
       m_Items: []
   m_Metadata:

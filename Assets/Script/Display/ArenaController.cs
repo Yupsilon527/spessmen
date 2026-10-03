@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,10 @@ public class RacerToon
     public Toon toon;
     public GameObject character;
     public float displaySpeed;
+    public void Alert(string label, Color color, string atp)
+    {
+        toon.Alert(label, color, atp);
+    }
     public void PlayAnimation(string animName, int priority = 0, float fadeTime = .1f, float delay = 0, bool forced = true)
     {
         toon.PlayAnimation(animName, priority, fadeTime, delay, forced);
@@ -64,7 +69,7 @@ public class ArenaController : MonoBehaviour
     }
     public void UpdateRacerPositions()
     {
-        var playerRacer = GetPlayerRacer();
+        var playerRacer = GetPlayerToon();
         float posDelta =  TourneyController.main?.ongoingRace?.lapDistance ?? 200;
         foreach (var racer in racers)
         {
@@ -103,7 +108,7 @@ public class ArenaController : MonoBehaviour
             if (TourneyController.main.currentPhase > TourneyController.TourneyPhase.setup && !racer.toon.nextAlertTime.IsRunning() && racer.racer.stats.realSpeed != racer.displaySpeed)
             {
                 float delta = racer.racer.stats.realSpeed - racer.displaySpeed;
-                racer.toon.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
+                racer.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
                 racer.displaySpeed = racer.racer.stats.realSpeed;
             }
             racer.toon.animator.SetBool("Driving", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing &&  racer.displaySpeed > 0);
@@ -181,11 +186,11 @@ public class ArenaController : MonoBehaviour
         return null;
 
     }
-    public RacerToon GetPlayerRacer()
+    public RacerToon GetPlayerToon()
     {
-        return GetFighterByOwner(TourneyController.main.GetPlayerRacer());
+        return GetToonForRacer(TourneyController.main.GetPlayerRacer());
     }
-    public RacerToon GetFighterByOwner(Racer racer)
+    public RacerToon GetToonForRacer(Racer racer)
     {
         return racers.FirstOrDefault(t => t.racer == racer);
     }

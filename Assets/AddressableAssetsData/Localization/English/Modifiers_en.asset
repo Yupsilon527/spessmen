@@ -334,10 +334,6 @@ MonoBehaviour:
     m_Localized: '%target% loses %value% '
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459185688578
-    m_Localized: boosts
-    m_Metadata:
-      m_Items: []
   - m_Id: 15952459189882880
     m_Localized: gets stunned
     m_Metadata:
@@ -356,6 +352,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17078340172025858
     m_Localized: Buff Duration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19951024832679936
+    m_Localized: Lucky
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19951024878817280
+    m_Localized: Stunned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19951024878817281
+    m_Localized: boosts
     m_Metadata:
       m_Items: []
   references:

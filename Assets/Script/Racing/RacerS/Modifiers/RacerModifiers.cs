@@ -181,9 +181,14 @@ public class RacerModifiers : PropertyComponent
         modifiers.Add(Modifier);
         if (Modifier.expire == ModifierDefines.ExpireType.Time)
             HasUpdates = true;
-       // UpdateModifierStates(Modifier);
-      //  UpdateModifierProperties(Modifier);
+        // UpdateModifierStates(Modifier);
+        //  UpdateModifierProperties(Modifier);
         Modifier.ExecuteEvent(ShipDefines.PartEvent.OnActivated);
+
+        if (Modifier.visibility == ModifierDefines.Visibility.alerted)
+        {
+            ArenaController.main.GetToonForRacer(racer).Alert(LanguageController.main.Translate("Modifiers", Modifier.ModifierName), GetModifierColor(Modifier.flag), "center");
+        }
 
         foreach (Modifier Mod in modifiers)
         {
@@ -193,6 +198,20 @@ public class RacerModifiers : PropertyComponent
             }
         }
         RefreshModifier(Modifier);
+    }
+    Color GetModifierColor(ModifierDefines.Flag flag)
+    {
+        switch (flag)
+        {
+            case ModifierDefines.Flag.Buff:
+                return Color.green;
+            case ModifierDefines.Flag.Debuff:
+                return Color.red;
+            case ModifierDefines.Flag.Disable:
+                return Color.yellow;
+            default:
+                return Color.white;
+        }
     }
     void Refresh()    //TODO
     {

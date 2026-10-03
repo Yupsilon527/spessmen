@@ -179,7 +179,12 @@ public static class ShipDefines
             case PartCondition.Lucky:
                 float luckCoefficient = ItemDefines.LuckNumber(DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.luck_bonus));
                 float ranVal = 1f - Mathf.Pow(1f - Random.value, luckCoefficient);
-                return ranVal < conditionCheck;
+                if( ranVal < conditionCheck)
+                {
+                    ArenaController.main.GetToonForRacer(racer).Alert(LanguageController.main.Translate("UI Table", "Lucky"), Color.green, "center");
+                    return true;
+                }
+                return false;
             case PartCondition.SpeedBelow:
                 return racer.stats.realSpeed < conditionCheck;
             case PartCondition.SpeedAbove:

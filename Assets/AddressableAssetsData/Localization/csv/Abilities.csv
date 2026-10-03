@@ -6,11 +6,11 @@ effect_basespeed,19397662904322,Base Speed
 effect_boostspeed,19397667098624,Boost Speed
 effect_fillgas,19397667098625,Juice
 effect_totalspeed,19397667098626,Speed
-effect_refreshengines,19397667098627,Refresh %target%’s engines by %value%
-effect_refreshgadgets,19397667098628,Refresh %target%’s gadgets by %value%
-effect_refreshnitros,19397667098629,Refresh %target%’s nitros by %value%
-effect_refreshcooldowns,19397667098630,Refresh %target%’s cooldowns by %value%
-effect_refreshself,1.57654882492457E+016,Refresh this part by %value%
+effect_refreshengines,19397667098627,Refresh %target%’s engines by %value%s
+effect_refreshgadgets,19397667098628,Refresh %target%’s gadgets by %value%s
+effect_refreshnitros,19397667098629,Refresh %target%’s nitros by %value%s
+effect_refreshcooldowns,19397667098630,Refresh %target%’s cooldowns by %value%s
+effect_refreshself,1.57654882492457E+016,Refresh this part by %value%s
 effect_refundgascost,1.57654882492457E+016,Refund %value% % of Juice cost
 effect_grantuse,1.57654882492457E+016,Gains %value% uses
 effect_gasabsolute,1.57654882492457E+016,Juice

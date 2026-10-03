@@ -47,19 +47,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098627
-    m_Localized: "Refresh %target%\u2019s engines by %value%"
+    m_Localized: "Refresh %target%\u2019s engines by %value%s"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098628
-    m_Localized: "Refresh %target%\u2019s gadgets by %value%"
+    m_Localized: "Refresh %target%\u2019s gadgets by %value%s"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098629
-    m_Localized: "Refresh %target%\u2019s nitros by %value%"
+    m_Localized: "Refresh %target%\u2019s nitros by %value%s"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098630
-    m_Localized: "Refresh %target%\u2019s cooldowns by %value%"
+    m_Localized: "Refresh %target%\u2019s cooldowns by %value%s"
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098631
@@ -163,11 +163,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098656
-    m_Localized: When you use a ability
+    m_Localized: When you spam a ability
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098657
-    m_Localized: When you use a spammy ability
+    m_Localized: When you use a ability
     m_Metadata:
       m_Items: []
   - m_Id: 19397667098658
@@ -267,7 +267,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15765488249245696
-    m_Localized: Refresh this part by %value%
+    m_Localized: Refresh this part by %value%s
     m_Metadata:
       m_Items: []
   - m_Id: 15765488249245697

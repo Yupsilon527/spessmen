@@ -38,8 +38,8 @@ public class PlayerConfig : Initializable
         if (!initialized) return;
         Inspect("Saving " + name);
 
-        SaveScope();
         SaveRun();
+        SaveScope();
 
         PlayerPrefs.Save();
     }

@@ -343,16 +343,16 @@ MonoBehaviour:
     m_Key: scale_totalspeed
     m_Metadata:
       m_Items: []
-  - m_Id: 17078340184608768
-    m_Key: New Entry 25
+  - m_Id: 19951024832679936
+    m_Key: lucky
     m_Metadata:
       m_Items: []
-  - m_Id: 17078340184608769
-    m_Key: New Entry 26
+  - m_Id: 19951024878817280
+    m_Key: stun
     m_Metadata:
       m_Items: []
-  - m_Id: 15952459185688578
-    m_Key: modifier _nitro
+  - m_Id: 19951024878817281
+    m_Key: modifier_nitro
     m_Metadata:
       m_Items: []
   - m_Id: 15952459189882880
@@ -387,8 +387,8 @@ MonoBehaviour:
     m_Key: stat scale pos
     m_Metadata:
       m_Items: []
-  - m_Id: 17078340184608772
-    m_Key: New Entry 29
+  - m_Id: 19951024878817282
+    m_Key: New Entry 30
     m_Metadata:
       m_Items: []
   - m_Id: 37669787570176

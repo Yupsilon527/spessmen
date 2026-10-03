@@ -111,6 +111,10 @@ public class PurchaseData
         {
             purchasingPlayaer.econ.gold.SubstractedValue(purchaseCost);
             wasPurchased = true;
+
+            var buyCount = DataItemPlayer.main.scope.GetVariable("item_purchased_" + scriptable.InternalName);
+            buyCount.Change(Variables.Change.Case.add, 1);
+
             return true;
         }
         return false;

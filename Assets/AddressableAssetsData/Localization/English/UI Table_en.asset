@@ -208,6 +208,14 @@ MonoBehaviour:
     m_Localized: c
     m_Metadata:
       m_Items: []
+  - m_Id: 20275285518618624
+    m_Localized: Encountered %value% times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20275285518618625
+    m_Localized: Bought %value% times
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

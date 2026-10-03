@@ -1,8 +1,20 @@
 TODO
+	alerts
+		LUCKY
+		MODIFIER
+		part usage?
 
+		
+	STATS
+		parts
+			races won
+			seasons won
 
 	modifier scaling
 	descs funny sometimes?
+
+	see racer info in menu
+	see race info in game
 
 	racer info
 	turbo button toggle
@@ -20,19 +32,11 @@ FIX
 	elite modifier???
 
 QoL
-	alert LUCKY
-	alert MODIFIER NAME
 	undo merge
-	char loadout already set up
 
 	part highlight position
 
 
-	STATS
-		parts
-			seen
-			bought
-			races won
 
 FEA
 	global/multihit abilities

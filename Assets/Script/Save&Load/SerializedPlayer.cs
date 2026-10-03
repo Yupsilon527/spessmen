@@ -17,11 +17,23 @@ public class SerializedPlayer : SerializableData<DataItemPlayer>
         gold = data.econ.gold.GetValue();
         bank = data.econ.bank.GetValue();
         chaos = data.score.playerChaos;
-        scope = new (data.scope);
         car = new (data.car);
 
         numRerolls = data.shop.numRerolls;
         shop= data.shop.itemActions.Select(p =>  new SerializedPurchaseData(p)).ToList();
+
+        string a = "item_purchased_";
+        string b = "item_seen_";
+        foreach (var kvp in data.scope.scope)
+        {
+            if ((kvp.Key.Length > a.Length && kvp.Key.Substring(0, a.Length) == a)|| (kvp.Key.Length > b.Length && kvp.Key.Substring(0, b.Length) == b))
+            {
+                PlayerConfig.main.globalScope.GetVariable(kvp.Key).Change(Change.Case.add, kvp.Value.GetFloatValue());
+                kvp.Value.SetFloatValue(0);
+            }
+        }
+
+        scope = new(data.scope);
     }
     public override void Deserialize(DataItemPlayer output)
     {

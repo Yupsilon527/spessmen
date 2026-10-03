@@ -22,6 +22,7 @@ public class ApplyTagSo : BaseEffectSo
             priority = ModifierDefines.Priority.low,
             flag = ModifierDefines.Flag.Undispellable,
             behavior = ModifierDefines.Behavior.Unique,
+            visibility = ModifierDefines.Visibility.hidden,
         };
     }
     public override string GetDescription()

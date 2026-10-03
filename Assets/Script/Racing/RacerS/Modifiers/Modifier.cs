@@ -9,6 +9,7 @@ public class Modifier : Countdown
     public List<ModifierDefines.State> states = new List<ModifierDefines.State>();
     public Dictionary<ModifierDefines.Property, float> properties = new Dictionary<ModifierDefines.Property, float>();
 
+    public ModifierDefines.Visibility visibility = ModifierDefines.Visibility.hidden;
     public ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent;
     public ModifierDefines.Priority priority;
     public ModifierDefines.Flag flag;
@@ -20,7 +21,7 @@ public class Modifier : Countdown
         this.stacks = level;
     }
 
-    public Modifier(Racer source, Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Undispellable, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique,ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent, float duration = 0, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
+    public Modifier(Racer source, Racer owner, ModifierDefines.Priority priority = ModifierDefines.Priority.normal, ModifierDefines.Flag flag = ModifierDefines.Flag.Undispellable, ModifierDefines.Behavior behavior = ModifierDefines.Behavior.Unique,ModifierDefines.Visibility visibility = ModifierDefines.Visibility.hidden,ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Permanent, float duration = 0, List<ModifierDefines.State> states = null , Dictionary<ModifierDefines.Property, float> properties = null)
     {
         this.source = source;
         this.owner = owner;
@@ -29,6 +30,7 @@ public class Modifier : Countdown
         this.priority = priority;
         this.flag = flag;
         this.behavior = behavior;
+        this.visibility = visibility;
         this.expire = expire;
         durationTime = duration;
     }

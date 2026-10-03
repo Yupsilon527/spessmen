@@ -4,7 +4,7 @@ using UnityEngine;
 public class GlossaryView : MonoBehaviour
 {
     public GlossaryContainer list;
-    public PartTooltip tooltip;
+    public PartCompBase tooltip;
 
 
     public void OnOpened()

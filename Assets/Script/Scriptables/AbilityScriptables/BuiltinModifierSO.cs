@@ -28,11 +28,13 @@ public class BuiltinModifierSO : BaseEffectSo
         switch (BuiltinType)
         {
             case BuiltInModifierType.Stun:
-                newModifier = new Modifier(source.caster, t,1)
+                newModifier = new Modifier(source.caster, t, 1)
                 {
                     ModifierName = "Stun",
                     behavior = ModifierDefines.Behavior.IncreaseDuration,
+                    visibility = ModifierDefines.Visibility.alerted,
                     expire = ModifierDefines.ExpireType.Time,
+                    flag = ModifierDefines.Flag.Disable,
                     states = new List<ModifierDefines.State> { ModifierDefines.State.Stunned }
                 };
                 break;
@@ -40,8 +42,10 @@ public class BuiltinModifierSO : BaseEffectSo
                 newModifier = new Modifier(source.caster, t, 1)
                 {
                     ModifierName = "Turbo",
-                    behavior = ModifierDefines.Behavior.IncreaseDuration,
+                    behavior = ModifierDefines.Behavior.Multiple,
                     expire = ModifierDefines.ExpireType.Time,
+                    visibility = ModifierDefines.Visibility.hidden,
+                    flag = ModifierDefines.Flag.Boost,
                     functions = new Dictionary<ShipDefines.PartEvent, ModifierDefines.ModifierAction>()
                     {
                          {
