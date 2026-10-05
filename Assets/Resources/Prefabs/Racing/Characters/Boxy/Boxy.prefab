@@ -1866,11 +1866,11 @@ Transform:
   m_GameObject: {fileID: 7564859893813402648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70597136, w: 0.70824045}
-  m_LocalPosition: {x: -3.17, y: 0.49, z: 0}
+  m_LocalPosition: {x: -1.5100001, y: -0.26999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8883828653778738994}
+  m_Father: {fileID: 1861815046146748718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4930084138434662894
 MonoBehaviour:
@@ -2015,6 +2015,7 @@ Transform:
   - {fileID: 3082239315012918823}
   - {fileID: 5600762774854254224}
   - {fileID: 9156533542623004757}
+  - {fileID: 7751120014213234941}
   m_Father: {fileID: 8883828653778738994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5230442783479257400
@@ -2331,9 +2332,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1861815046146748718}
-    - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7751120014213234941}
     - targetCorrespondingSourceObject: {fileID: 3853505742960032319, guid: 2f9258982cfba394f871156ff50d4102, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1147723010131397633}

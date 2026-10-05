@@ -40,7 +40,13 @@ using UnityEngine;
             else
                 transform.localScale = Vector3.one * transform.lossyScale.x / val;
         }
-
+    public void Sort(int order)
+    {
+        foreach (ParticleSystem p in particles)
+        {
+            p.GetComponent<ParticleSystemRenderer>().sortingOrder = order;
+        }
+    }
         public virtual void Emit(float delay, int repeats, float scale = 1)
         {
             realScale = scale;

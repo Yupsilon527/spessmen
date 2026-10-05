@@ -5,7 +5,7 @@ using UnityEngine;
     public class SpecialEffectPool : ObjectPool
     {
         public GameObject textEffectPrefab;
-        GameObject PoolEffect(GameObject prefab, float delay = 0, float scale = 1)
+        GameObject PoolEffect(GameObject prefab, float delay = 0, float scale = 1, int layer = 0)
         {
             GameObject effect = PoolItem(prefab);
             if (effect == null)
@@ -15,15 +15,16 @@ using UnityEngine;
             if (effect.TryGetComponent(out SpecialEffectController sec))
             {
                 sec.assignedObjectPool = this;
+            sec.Sort(layer);
                 sec.Emit(delay, scale);
             }
 
             return effect;
         }
 
-        public GameObject EffectFromPrefab(GameObject prefab, Vector3 pos, float delay = 0, float scale = 1)
+        public GameObject EffectFromPrefab(GameObject prefab, Vector3 pos, float delay = 0, float scale = 1, int layer = 0)
         {
-            GameObject effect = PoolEffect(prefab, delay, scale);
+            GameObject effect = PoolEffect(prefab, delay, scale, layer);
             if (effect == null)
                 return null;
 
@@ -32,9 +33,9 @@ using UnityEngine;
             return effect;
         }
 
-        public GameObject AttachEffectFromPrefab(GameObject parent, GameObject prefab, float delay = 0, float scale = 1)
+        public GameObject AttachEffectFromPrefab(GameObject parent, GameObject prefab, float delay = 0, float scale = 1, int layer = 0)
         {
-            GameObject effect = PoolEffect(prefab, delay, scale);
+            GameObject effect = PoolEffect(prefab, delay, scale, layer);
             if (effect == null)
                 return null;
 

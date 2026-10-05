@@ -14,17 +14,17 @@ public class CreateEffectSO : VisualEffectSO
         if (_)
         {
             var toonTable = ArenaController.main.GetToonForRacer(t);
-            MakeEffectOnToon(toonTable.toon, EffectDelay);
+            MakeEffectOnToon(toonTable.toon, EffectDelay, t.id);
         }
         return _;
     }
-    public virtual GameObject MakeEffectOnToon(Toon toonTarget, float delay)
+    public virtual GameObject MakeEffectOnToon(Toon toonTarget, float delay, int order)
     {
         if (!toonTarget.gameObject.activeSelf) return null;
         var atp = toonTarget.character.FindAttachPoint(AttachPoint);
 
         if (attached)
-            return ArenaController.main.epool.AttachEffectFromPrefab(atp.gameObject, EffectPrefab, EffectDelay);
+            return ArenaController.main.epool.AttachEffectFromPrefab(atp.gameObject, EffectPrefab, EffectDelay, order);
         else
             return ArenaController.main.epool.EffectFromPrefab(EffectPrefab, atp.position, EffectDelay);
     }
