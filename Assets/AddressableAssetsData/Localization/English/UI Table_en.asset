@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 50074445844480
-    m_Localized: Proceed
+    m_Localized: "Okay\u2026"
     m_Metadata:
       m_Items: []
   - m_Id: 112711875596288
@@ -214,6 +214,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 20275285518618625
     m_Localized: Bought %value% times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20700341247840256
+    m_Localized: "You unlocked\u2026"
     m_Metadata:
       m_Items: []
   references:

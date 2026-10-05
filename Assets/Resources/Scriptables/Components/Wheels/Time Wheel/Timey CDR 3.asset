@@ -20,10 +20,11 @@ MonoBehaviour:
   priority: 2
   flag: 1
   behavior: 0
+  visibility: 0
   states: []
   properties:
   - Property: 23
-    value: -0.03
+    value: -0.01
     IncreasePerLevel: 0
   expiretype: 0
   duration: 3

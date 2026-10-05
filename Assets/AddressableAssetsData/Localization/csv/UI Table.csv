@@ -1,53 +1,54 @@
 key,Id,English(en)
-"New Entry",20275285388595200,
-"gold label",216427040768,"Total : %gold%"
-"reroll",309486063616,"Reroll"
-"shop",996047491072,"Store"
-"start",5022193455104,"Go!"
-"race label",7643117555712,"Race %raceID%/%raceTotal%"
-"partinfo",10046894149632,"Part Info"
-"mouseoverhint",10083472674816,"Scroll over any part to show info!"
-"discard",10379565371392,"Discard"
-"lap header",10937374248960,"Lap"
-"speed header",10973814362112,"Speed"
-"fuel header",11003535200256,"Juice"
-"leaderboard",47363813969920,"Leaderboard"
-"tourney score",47393765494784,"Tournament Standings"
-"tourney results",49302064762880,"Results"
-"proceed",50074445844480,"Proceed"
-"restart",112711875596288,"Restart"
-"modifiertitle",338784752144384,"Modifier"
-"condition_anywhere",362853774036992,"Goes Anywhere"
-"condition_top",362859662839808,"Must be on Top"
-"condition_bottom",362860493312000,"Must be on Bottom"
-"condition_front",362861365727232,"Must be in Front"
-"condition_back",362868630261760,"Must be in Back"
-"canmergewith",364806314823680,"Can Merge With "
-"lock",1132299669114880,"Lock"
-"rival label",1141803819372544,"Distance To Beat: %rivalDistance%"
-"starting gold",2213108190711808,"Start with $%value%"
-"starting parts",2213203409801216,"Start with %parts%"
-"done loading",3247582407987200,"Click Anywhere To Play"
-"char sel",3247589177593856,"Pick a Racer!"
-"record label",3249409245483008,"Your record: %ownDistance% (%ownSpeed%km/h)"
-"settings",5072056056975360,"Settings"
-"resume",5076274511777792,"Resume"
-"quit",5079221274578944,"Main Menu"
+New Entry,2.02752853885952E+016,
+gold label,216427040768,Total : %gold%
+reroll,309486063616,Reroll
+shop,996047491072,Store
+start,5022193455104,Go!
+race label,7643117555712,Race %raceID%/%raceTotal%
+partinfo,10046894149632,Part Info
+mouseoverhint,10083472674816,Scroll over any part to show info!
+discard,10379565371392,Discard
+lap header,10937374248960,Lap
+speed header,10973814362112,Speed
+fuel header,11003535200256,Juice
+leaderboard,47363813969920,Leaderboard
+tourney score,47393765494784,Tournament Standings
+tourney results,49302064762880,Results
+proceed,50074445844480,Okay…
+restart,112711875596288,Restart
+modifiertitle,338784752144384,Modifier
+condition_anywhere,362853774036992,Goes Anywhere
+condition_top,362859662839808,Must be on Top
+condition_bottom,362860493312000,Must be on Bottom
+condition_front,362861365727232,Must be in Front
+condition_back,362868630261760,Must be in Back
+canmergewith,364806314823680,Can Merge With 
+lock,1132299669114880,Lock
+rival label,1141803819372544,Distance To Beat: %rivalDistance%
+starting gold,2213108190711808,Start with $%value%
+starting parts,2213203409801216,Start with %parts%
+done loading,3247582407987200,Click Anywhere To Play
+char sel,3247589177593856,Pick a Racer!
+record label,3249409245483008,Your record: %ownDistance% (%ownSpeed%km/h)
+settings,5072056056975360,Settings
+resume,5076274511777792,Resume
+quit,5079221274578944,Main Menu
 "loading
 ",5098900282052608,"Loading
 "
-"stash",5100613504241664,"Stash"
-"undo",6112203733110784,"Undo"
-"seasonend",6236537424351232,"Winner gets double score!"
-"new game",9428494405505024,"New Run"
-"continue run",9428523656581120,"Continue Run"
-"grantedspeed",9794526043344896,"Speed Given: %value%km/h"
-"grantedfuel",9794563599142912,"Fuel Given: %value%"
-"filter",12812893838807040,"Filter"
-"glossary",12812921982586880,"Glossary"
-"distance_unit",19176515636727808,"m"
-"speed_unit",19176515636727809,"km/h"
-"dollar unit",19176899000307712,"$"
-"cent unit",19176899008696320,"c"
-"part_seen",20275285518618624,"Encountered %value% times"
-"part_purchased",20275285518618625,"Bought %value% times"
+stash,5100613504241664,Stash
+undo,6112203733110784,Undo
+seasonend,6236537424351232,Winner gets double score!
+new game,9.42849440550502E+015,New Run
+continue run,9.42852365658112E+015,Continue Run
+grantedspeed,9.7945260433449E+015,Speed Given: %value%km/h
+grantedfuel,9.79456359914291E+015,Fuel Given: %value%
+filter,1.2812893838807E+016,Filter
+glossary,1.28129219825869E+016,Glossary
+distance_unit,1.91765156367278E+016,m
+speed_unit,1.91765156367278E+016,km/h
+dollar unit,1.91768990003077E+016,$
+cent unit,1.91768990086963E+016,c
+part_seen,2.02752855186186E+016,Encountered %value% times
+part_purchased,2.02752855186186E+016,Bought %value% times
+unlock title,,You unlocked…

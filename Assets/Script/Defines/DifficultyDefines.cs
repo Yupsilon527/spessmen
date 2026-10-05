@@ -22,7 +22,7 @@ public static class DifficultyDefines
     public const float enemyStartDistance = 2;
     public const float aiUseAbilityChance = .2f;
 
-    public static int qualifiedPosition = 0;
+    public static int qualifiedPosition = 3;
 
     public static float GetEnemyWheelSpeedAtLevel(int level, float rnval = 1)
     {

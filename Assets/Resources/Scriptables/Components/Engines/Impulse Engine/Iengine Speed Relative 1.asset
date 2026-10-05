@@ -20,5 +20,5 @@ MonoBehaviour:
     behavior: 0
     stat: 1
     scale: 1
-    value: 0.1
+    value: 0.03
     reverse: 0

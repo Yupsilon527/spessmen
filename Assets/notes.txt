@@ -1,9 +1,8 @@
 TODO
 	alerts
-		LUCKY
-		MODIFIER
-		part usage?
+		part use
 
+	3... 2... 1...
 		
 	STATS
 		parts
@@ -20,12 +19,10 @@ TODO
 	turbo button toggle
 	see race info during race
 
+	has description
+
 TEST
 	stats and stat collection
-	part rotation on unrotatable parts???
-	distance to beat
-
-	part cant rot>>>rotation?
 FIX
 	vampirism bug
 

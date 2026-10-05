@@ -81,8 +81,6 @@ public class AbilityScriptable
                  effectSource = a.effectSource, 
                  effectTarget = a.effectTarget,  
                  action = (Racer caster, Racer target, Ability source, float mult) => {  
-                     
-                     
                      a.AffectOnRacer(caster, target, source, mult); 
                  }
              } ).ToArray(),
