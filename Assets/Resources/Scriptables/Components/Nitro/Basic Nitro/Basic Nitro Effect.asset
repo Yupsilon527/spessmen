@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49211dd187260fd4d8c44bdf192631d5, type: 3}
-  m_Name: Compact Nitro Effect
+  m_Name: Basic Nitro Effect
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
@@ -19,4 +19,4 @@ MonoBehaviour:
   EffectDelay: 0
   AttachPoint: exhaust
   attached: 0
-  EffectPrefab: {fileID: 7900813935917755283, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+  EffectPrefab: {fileID: 6699958649483390614, guid: 139e12a3113b72d42b3a7732816496a5, type: 3}

@@ -36,6 +36,7 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: d15bca42133d120448dcaebc7e853282, type: 2}
+    - {fileID: 11400000, guid: 53a974132ea38bc43a5f7b5b1f8f1d65, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: 9fd424ce9eb09894f9dd8b0b233bb9b2, type: 2}

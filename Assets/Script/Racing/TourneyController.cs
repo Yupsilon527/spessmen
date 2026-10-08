@@ -351,7 +351,8 @@ public class TourneyController : Initializable
     {
         var playerRacer = GetPlayerRacer();
 
-        DataItemPlayer.main.scope.SetVariable("race_position_" + ongoingRace.raceID, ongoingRace.GetPositionForRacer(playerRacer));
+        int playerPos = ongoingRace.GetPositionForRacer(playerRacer);
+        DataItemPlayer.main.scope.SetVariable("race_position_" + ongoingRace.raceID, playerPos);
         DataItemPlayer.main.scope.SetVariable("race_distance_" + ongoingRace.raceID, playerRacer.position.distanceTraveled);
         DataItemPlayer.main.scope.SetVariable("race_topspeed_" + ongoingRace.raceID, playerRacer.stats.realSpeed);
     }
