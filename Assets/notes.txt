@@ -40,6 +40,10 @@ FEA
 		storm (slows everyone)
 	pickups
 
+	conditional parts
+		
+		if/else
+
 	MECHANICS
 		topspeed
 			basespeed goes only up to topspeed, boostspeed unlimited
@@ -49,7 +53,13 @@ FEA
 			engine increase basespeed, boostspeed
 			wheel increase topspeed
 
+		boost speed
+			constantly decays
+			unlimited
+
+			
 			nitros move basespeed to topspeed?
+
 		teleport
 			good teleport - affected by teleport distance (raw, %)
 			bad teleport (affected by resistance, weight)
