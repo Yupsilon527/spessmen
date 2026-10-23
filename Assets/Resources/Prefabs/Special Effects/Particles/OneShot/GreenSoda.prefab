@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.061159227
+      objectReference: {fileID: 0}
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7654552006888177398, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900813935917755283, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
       propertyPath: m_Name
-      value: Soda
+      value: GreenSoda
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -29,6 +29,7 @@ using UnityEngine;
             reps = 0;
             if (delay > 0)
                 yield return new WaitForSeconds(delay);
+            Scale(realScale, false);
             Play();
         }
         public void Scale(float val, bool local)

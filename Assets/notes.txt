@@ -1,4 +1,7 @@
 TODO
+	states
+		engine/active jammed
+		vamp immune
 
 	3... 2... 1...
 

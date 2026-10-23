@@ -5,12 +5,14 @@ using UnityEngine;
 public class BuiltinModifierSO : BaseEffectSo
 {
     [Header("Duration")]
+    public ModifierDefines.ExpireType expire = ModifierDefines.ExpireType.Time;
     public float duration = 1;
     #region Type
     public enum BuiltInModifierType
     {
         Stun = 0,
         Turbo = 1,
+        Jammed = 2,
     }
     public BuiltInModifierType BuiltinType;
     public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
@@ -33,7 +35,7 @@ public class BuiltinModifierSO : BaseEffectSo
                     ModifierName = "Stun",
                     behavior = ModifierDefines.Behavior.IncreaseDuration,
                     visibility = ModifierDefines.Visibility.alerted,
-                    expire = ModifierDefines.ExpireType.Time,
+                    expire = expire,
                     flag = ModifierDefines.Flag.Disable,
                     states = new List<ModifierDefines.State> { ModifierDefines.State.Stunned }
                 };
@@ -43,7 +45,7 @@ public class BuiltinModifierSO : BaseEffectSo
                 {
                     ModifierName = "Turbo",
                     behavior = ModifierDefines.Behavior.Multiple,
-                    expire = ModifierDefines.ExpireType.Time,
+                    expire = expire,
                     visibility = ModifierDefines.Visibility.hidden,
                     flag = ModifierDefines.Flag.Boost,
                     functions = new Dictionary<ShipDefines.PartEvent, ModifierDefines.ModifierAction>()
@@ -56,6 +58,17 @@ public class BuiltinModifierSO : BaseEffectSo
                                 }
                          }
                      }
+                };
+                break;
+            case BuiltInModifierType.Jammed:
+                newModifier = new Modifier(source.caster, t, 1)
+                {
+                    ModifierName = "Jammed",
+                    behavior = ModifierDefines.Behavior.IncreaseDuration,
+                    visibility = ModifierDefines.Visibility.alerted,
+                    expire = expire,
+                    flag = ModifierDefines.Flag.Disable,
+                    states = new List<ModifierDefines.State> { ModifierDefines.State.EnginesJammed }
                 };
                 break;
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Buff", menuName = "Data/Parts/Buff Data")]
+[CreateAssetMenu(fileName = "Buff", menuName = "Data/Effects/Buff Data")]
 public class ApplyBuffSo : ApplyTagSo
 {
     public ModifierDefines.Priority priority;

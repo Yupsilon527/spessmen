@@ -108,7 +108,9 @@ public static class ModifierDefines
         StunImmune = 3,
         DebuffImmune = 4,
         VampImmune = 5, //TODO
-        Total = 6,
+        EnginesJammed = 6,
+        ActivesJammed = 7,
+        Total = 10,
     }
     public enum ExpireType
     {
