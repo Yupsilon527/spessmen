@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.arc.value
-      value: 100
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.m_Rotation.z
-      value: 130
+      value: 166
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.radius.value
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.45
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 8854024084797640398, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: c4b8a832943339b41848bc60b89166db, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

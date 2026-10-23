@@ -18,5 +18,5 @@ MonoBehaviour:
   conditionCheck: 0
   EffectDelay: 0
   AttachPoint: exhaust
-  attached: 0
-  EffectPrefab: {fileID: 7900813935917755283, guid: 0a73093d2a55d094aad17fd113e591d4, type: 3}
+  effectType: 0
+  EffectPrefab: {fileID: 8570211252497366187, guid: 4c010b935825fd944a2908319ee458fa, type: 3}

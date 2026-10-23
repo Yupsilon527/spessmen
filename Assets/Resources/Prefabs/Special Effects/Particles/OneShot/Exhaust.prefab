@@ -25,12 +25,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.arc.value
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.m_Rotation.z
-      value: 130
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.radius.value
@@ -46,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 3
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -58,7 +66,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.45
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 6.283185
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startSpeed.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
@@ -267,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 8854024084797640398, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 76753398f5d22264ebb0c32701a68881, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

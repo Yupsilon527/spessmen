@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49211dd187260fd4d8c44bdf192631d5, type: 3}
-  m_Name: Clover Nitro
+  m_Name: Clover Nitro Effect
   m_EditorClassIdentifier: 
   effectSource: 0
   effectTarget: 0
