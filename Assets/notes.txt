@@ -1,32 +1,33 @@
 TODO
-	alerts
-		part use
 
 	3... 2... 1...
-		
-	STATS
-		parts
-			races won
-			seasons won
 
-	modifier scaling
+
 	descs funny sometimes?
 
 	see racer info in menu
 	see race info in game
 
-	racer info
 	turbo button toggle
 	see race info during race
 
-	has description
+	nitro particles
+	nitro animations
+
+	content
+		new character
+		character parts
+
 
 TEST
 	stats and stat collection
+	unlockables
+
 FIX
 	vampirism bug
 
-	elite modifier???
+	effect "description"
+		has description
 
 QoL
 	undo merge
@@ -36,13 +37,20 @@ QoL
 
 
 FEA
-	global/multihit abilities
-		storm (slows everyone)
-	pickups
+	alerts
+		part use
 
-	conditional parts
-		
+	racer info
+		in main menu
+		in build view
+
+	modifier scaling
+	topspeed/decceleration
+
+	conditional effects
 		if/else
+
+	pickups
 
 	MECHANICS
 		topspeed

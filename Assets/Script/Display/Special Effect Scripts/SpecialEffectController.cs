@@ -27,17 +27,15 @@ using UnityEngine;
         protected virtual IEnumerator EmitOnce(float delay, bool kill = true)
         {
             reps = 0;
-            Scale(0,true);
             if (delay > 0)
                 yield return new WaitForSeconds(delay);
-            Scale(realScale, false);
             Play();
         }
         public void Scale(float val, bool local)
         {
             if (local)
                 transform.localScale = Vector3.one * val;
-            else
+            else if (val!=0)
                 transform.localScale = Vector3.one * transform.lossyScale.x / val;
         }
     public void Sort(int order)
@@ -97,7 +95,6 @@ using UnityEngine;
             {
                 p.Stop();
             }
-            assignedObjectPool?.DeactivateObject(gameObject);
         }
         private void OnParticleSystemStopped()
         {
@@ -106,9 +103,9 @@ using UnityEngine;
         protected virtual void Kill()
         {
             if (reps == 0)
-            {
-                Stop();
-            }
+        {
+            assignedObjectPool?.DeactivateObject(gameObject);
+        }
         }
 
 }

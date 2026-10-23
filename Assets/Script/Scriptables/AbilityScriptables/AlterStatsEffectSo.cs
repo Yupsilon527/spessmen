@@ -13,6 +13,10 @@ public class AlterStatsEffectSo : BaseEffectSo
         }
         return _;
     }
+    public override bool HasDescription()
+    {
+        return true;
+    }
     public override string GetDescription()
     {
         string label = "";

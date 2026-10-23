@@ -25,6 +25,10 @@ public class ApplyTagSo : BaseEffectSo
             visibility = ModifierDefines.Visibility.hidden,
         };
     }
+    public override bool HasDescription()
+    {
+        return true;
+    }
     public override string GetDescription()
     {
         string label = LanguageController.main.Translate("Modifiers", "Gain Effect").Replace("%value%", LanguageController.main.Translate("Modifiers", "modifier_" + modifierName));

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-public class RacerToon
+public class RacerToonTable
 {
     public Racer racer;
     public Toon toon;
     public GameObject character;
     public float displaySpeed;
+    public HashSet<SpecialEffectController> boostEffects = new();
     public void Alert(string label, Color color, string atp)
     {
         toon.Alert(label, color, atp);
@@ -14,6 +15,17 @@ public class RacerToon
     public void PlayAnimation(string animName, int priority = 0, float fadeTime = .1f, float delay = 0, bool forced = true)
     {
         toon.PlayAnimation(animName, priority, fadeTime, delay, forced);
+    }
+    public void AddAfterburnerEffects(SpecialEffectController specialEffect)
+    {
+        boostEffects.Add(specialEffect);
+    }
+    public void ClearAfterburnerEffects()
+    {
+        foreach (var effect in boostEffects)
+        {
+            effect.Stop();
+        }
     }
 }
 
@@ -25,13 +37,16 @@ public class ArenaController : MonoBehaviour
     public SpecialEffectPool epool;
     public ParallaxController parallax;
     public GameObject racerPrefab, opponentPrefab;
-    public HashSet<RacerToon> racers = new();
+    public HashSet<RacerToonTable> racers = new();
     [Header("Toon Distance Delta")]
     public float distanceFarAway = .5f;
     public float distanceDelta = 100;
     public float distanceFarAwayDelta = 30;
     public float aheadDelta = .5f;
     public float minDistance = 12;
+    [Header("World Scroll")]
+    public float a = 45;
+    public float b = 1600;
 
     public static ArenaController main;
     private void Awake()
@@ -55,10 +70,11 @@ public class ArenaController : MonoBehaviour
     }
     private void Update()
     {
-        if (TourneyController.main.currentPhase > TourneyController.TourneyPhase.beforeRace) { 
-        UpdateRacerPositions();
-        HandleFloatingText();
-    }
+        if (TourneyController.main.currentPhase > TourneyController.TourneyPhase.beforeRace)
+        {
+            UpdateRacerPositions();
+            HandleFloatingText();
+        }
     }
     public void OnNewRaceBegin()
     {
@@ -69,7 +85,7 @@ public class ArenaController : MonoBehaviour
     public void UpdateRacerPositions()
     {
         var playerRacer = GetPlayerToon();
-        float posDelta =  TourneyController.main?.ongoingRace?.lapDistance ?? 200;
+        float posDelta = TourneyController.main?.ongoingRace?.lapDistance ?? 200;
         foreach (var racer in racers)
         {
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
@@ -87,16 +103,17 @@ public class ArenaController : MonoBehaviour
             if (racer.racer.position.distanceTraveled < minDistance)
             {
                 float t = Mathf.Clamp01(racer.racer.position.distanceTraveled / minDistance);
-                float nearStartMultiplier = Mathf.Max(m, 1f / (racer.racer.position.distanceTraveled * m + 0.0001f));
+                float nearStartMultiplier = 1f / (racer.racer.position.distanceTraveled * m);
+                nearStartMultiplier = Mathf.Max(m + nearStartMultiplier / 3, nearStartMultiplier);
                 float multiplier = Mathf.SmoothStep(nearStartMultiplier, 1f, t);
 
                 relativePosition *= multiplier;
             }
-            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(1 +relativePosition), posDelta) / dd + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) * distanceFarAway / df ) * Mathf.Sign(relativePosition));
+            racer.toon.transform.position = Vector3.right * ((Mathf.Min(Mathf.Abs(1 + relativePosition), posDelta) / dd + Mathf.Max(Mathf.Abs(relativePosition) - posDelta, 0) * distanceFarAway / df) * Mathf.Sign(relativePosition));
 
         }
 
-        float worldScroll = Mathf.Min(playerRacer.racer.stats.realSpeed* 18 ,1500);
+        float worldScroll = Mathf.Min(playerRacer.racer.stats.realSpeed * a, b);
         if (playerRacer.racer.IsStunned()) worldScroll = 0;
         parallax?.SetWorldDelta(worldScroll);
     }
@@ -110,8 +127,15 @@ public class ArenaController : MonoBehaviour
                 racer.Alert(delta.ToString("F1"), delta < 0 ? Color.red : Color.white, "center");
                 racer.displaySpeed = racer.racer.stats.realSpeed;
             }
-            racer.toon.animator.SetBool("Driving", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing &&  racer.displaySpeed > 0);
-            racer.toon.animator.SetBool("Boosting", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing &&  racer.displaySpeed > ShipDefines.soundBarrierSpeed);
+            racer.toon.animator.SetBool("Driving", TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing && racer.displaySpeed > 0);
+
+            bool boosting = TourneyController.main.currentPhase >= TourneyController.TourneyPhase.racing && racer.racer.modifiers.Filter(alignment: ModifierDefines.Flag.Boost).Length > 0;
+
+            if (racer.toon.animator.GetBool("Boosting") && !boosting)
+            {
+                racer.ClearAfterburnerEffects();
+            }
+                racer.toon.animator.SetBool("Boosting", boosting);
         }
     }
     public void LoadRacers(Racer[] racers)
@@ -131,9 +155,9 @@ public class ArenaController : MonoBehaviour
             ef.Stop();
     }
 
-    public RacerToon LoadFighterPrefab(Racer racer, GameObject prefab, ShipScriptable character)
+    public RacerToonTable LoadFighterPrefab(Racer racer, GameObject prefab, ShipScriptable character)
     {
-        RacerToon gobject = new RacerToon()
+        RacerToonTable gobject = new RacerToonTable()
         {
             racer = racer,
         };
@@ -185,11 +209,11 @@ public class ArenaController : MonoBehaviour
         return null;
 
     }
-    public RacerToon GetPlayerToon()
+    public RacerToonTable GetPlayerToon()
     {
         return GetToonForRacer(TourneyController.main.GetPlayerRacer());
     }
-    public RacerToon GetToonForRacer(Racer racer)
+    public RacerToonTable GetToonForRacer(Racer racer)
     {
         return racers.FirstOrDefault(t => t.racer == racer);
     }

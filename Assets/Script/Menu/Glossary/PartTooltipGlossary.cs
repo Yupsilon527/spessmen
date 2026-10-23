@@ -1,5 +1,3 @@
-using UnityEngine;
-using UnityEngine.UI;
 
 public class PartTooltipGlossary : PartCompBase
 {
@@ -15,6 +13,8 @@ public class PartTooltipGlossary : PartCompBase
         var seenVariable = PlayerConfig.main.globalScope?.GetVariable("item_seen_" + part.InternalName);
 
         description.text += "<br><br>" + LanguageController.main.Translate("UI Table", "part_seen").Replace("%value%", seenVariable?.GetFloatValue().ToString("F0") ?? "0")
-            +"<br>" + LanguageController.main.Translate("UI Table", "part_purchased").Replace("%value%", boughtVariable?.GetFloatValue().ToString("F0") ?? "0");
+            +"<br>" + LanguageController.main.Translate("UI Table", "part_purchased").Replace("%value%", boughtVariable?.GetFloatValue().ToString("F0") ?? "0")
+            +"<br>" + LanguageController.main.Translate("UI Table", "part_races_won_with").Replace("%value%", boughtVariable?.GetFloatValue().ToString("F0") ?? "0")
+            +"<br>" + LanguageController.main.Translate("UI Table", "part_seasons_won_with").Replace("%value%", boughtVariable?.GetFloatValue().ToString("F0") ?? "0");
     }
 }

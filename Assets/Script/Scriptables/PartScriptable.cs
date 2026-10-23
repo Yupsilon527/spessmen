@@ -93,7 +93,7 @@ public class AbilityScriptable
         string effects = "";
         foreach (var a in actions)
         {
-            if (a == null) continue;
+            if (a == null ||!a.HasDescription()) continue;
             string label = a.GetDescription();
             if (label.Length == 0) continue;
             if (a.condition != ShipDefines.PartCondition.Always)

@@ -38,12 +38,12 @@ public static class RaceDefines
         PlayerStunned = 7,
          RivalImmune = 8,
 
-        Elite = 9,
 
         RandomGadget = 9,
         RandomEngine =10,
         Total=11,
     }
+    public static int BasicModifiersCount = (int)RaceModifiers.RandomGadget;
 
     public static Racer GetRacerRelative(Racer original, AbilityTarget target)
     {

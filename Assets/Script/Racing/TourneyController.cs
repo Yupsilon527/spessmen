@@ -67,11 +67,11 @@ public class TourneyController : Initializable
 
                 if (ongoingRace.raceID % rTotal == rTotal - 1)
                 {
-                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt((int)RaceDefines.RaceModifiers.Elite + Random.value * ((int)RaceDefines.RaceModifiers.Total - (int)RaceDefines.RaceModifiers.Elite));
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(RaceDefines.BasicModifiersCount + Random.value * ((int)RaceDefines.RaceModifiers.Total -RaceDefines.BasicModifiersCount));
                 }
                 else if (ongoingRace.raceID % RaceDefines.SeasonRaces == RaceDefines.SeasonRaces - 1)
                 {
-                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * ((int)RaceDefines.RaceModifiers.Elite - 1));
+                    ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * (RaceDefines.BasicModifiersCount - 1));
                 }
 
                 ViewManager.Instance.shop.ResetStore(true, false);
@@ -80,7 +80,7 @@ public class TourneyController : Initializable
             case TourneyPhase.beforeRace:
                 ArenaController.main.parallax.SetWorldDelta(0);
                 ArenaController.main.parallax.FromEnvironment(tournamentEnvironment);
-                ArenaController.main.OnNewRaceBegin() ;
+                ArenaController.main.OnNewRaceBegin();
                 break;
             case TourneyPhase.setup:
                 if (currentPhase == TourneyPhase.beforeRace || !ongoingRace.IsRunning())
@@ -136,9 +136,9 @@ public class TourneyController : Initializable
                             raceTime *= RaceDefines.raceLengthLong;
                             break;
                         case RaceDefines.RaceModifiers.PlayerStunned:
-                            player.modifiers.Add(new Modifier(player, player, flag: ModifierDefines.Flag.Debuff,states:
-                                new List<ModifierDefines.State> { ModifierDefines.State.Stunned},
-                                expire: ModifierDefines.ExpireType.Time, duration : 2));
+                            player.modifiers.Add(new Modifier(player, player, flag: ModifierDefines.Flag.Debuff, states:
+                                new List<ModifierDefines.State> { ModifierDefines.State.Stunned },
+                                expire: ModifierDefines.ExpireType.Time, duration: 2));
                             break;
                         case RaceDefines.RaceModifiers.RivalImmune:
                             var rival = player.GetRival();
@@ -149,7 +149,7 @@ public class TourneyController : Initializable
                         case RaceDefines.RaceModifiers.RandomGadget:
                             var validparts = ResourceCache.main.parts.Where(
                                 p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons))
-                                && (p.partType == ItemDefines.PartType.nitro  || p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget))
+                                && (p.partType == ItemDefines.PartType.nitro || p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget))
                                 ).ToArray();
 
                             if (validparts.Length > 0)
@@ -207,7 +207,7 @@ public class TourneyController : Initializable
     }
     public int GetCurrentSeason()
     {
-        return Mathf.FloorToInt((ongoingRace?.raceID ?? 0 )/(RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons)) ;
+        return Mathf.FloorToInt((ongoingRace?.raceID ?? 0) / (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons));
     }
     public bool IsLastRaceInSeason()
     {
@@ -217,7 +217,7 @@ public class TourneyController : Initializable
     public float GetPointsForPosition(int position)
     {
         float mult = (IsLastRaceInSeason()) ? DifficultyDefines.eliteRaceScoreMultiplier : 1;
-        return (leaderboard.Count - position - 1) * mult ;
+        return (leaderboard.Count - position - 1) * mult;
     }
     public float GetScoreForRacer(Racer racer)
     {
@@ -297,14 +297,14 @@ public class TourneyController : Initializable
         int playerPosition = GetRacerPosition(GetPlayerRacer());
         if (IsLastRaceInSeason())
             return playerPosition == 0;
-        else 
-            return  GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
+        else
+            return GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
     }
     public int GetRacerPosition(Racer racer)
     {
-        if (leaderboard == null || leaderboard.Count == 0|| racer==null ||!leaderboard.TryGetValue(racer, out float targetScore))
+        if (leaderboard == null || leaderboard.Count == 0 || racer == null || !leaderboard.TryGetValue(racer, out float targetScore))
             return 99;
-        return  leaderboard.Count(kvp => kvp.Value > targetScore);
+        return leaderboard.Count(kvp => kvp.Value > targetScore);
     }
     void CalcPlayerReward()
     {
@@ -328,7 +328,7 @@ public class TourneyController : Initializable
         float distanceGold = 0;
         if (playerPos == 0)
         {
-            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance),EconomyDefines.performanceGoldCap) * diffMult;
+            distanceGold = Mathf.Min(Mathf.FloorToInt((ongoingRace.racers[0].position.distanceTraveled - ongoingRace.racers[1].position.distanceTraveled) * EconomyDefines.constantGoldPerDistance), EconomyDefines.performanceGoldCap) * diffMult;
         }
 
         DataItemPlayer.main.scope.SetVariable("gold_race", finishGold);
@@ -360,18 +360,37 @@ public class TourneyController : Initializable
     {
         var playerRacer = GetPlayerRacer();
 
-        if (IsLastRaceInSeason())
+        bool firstSpot = GetRacerPosition(playerRacer) == 0;
+        bool endSeason = IsLastRaceInSeason();
+        bool canProgress = CanPlayerProgress();
+
+        foreach (var item in DataItemPlayer.main?.car?.parts)
+        {
+            if (firstSpot)
+            {
+                var racesLead = PlayerConfig.main.globalScope.GetVariable("items_races_won_with_" + item.scriptable.InternalName);
+                racesLead.SetFloatValue(racesLead.GetFloatValue() + 1);
+            }
+
+            if (endSeason && canProgress)
+            {
+                var seasonsWon = PlayerConfig.main.globalScope.GetVariable("items_seasons_won_with_" + item.scriptable.InternalName);
+                seasonsWon.SetFloatValue(seasonsWon.GetFloatValue() + 1);
+            }
+        }
+
+        if (endSeason)
         {
             var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
             tournamentsCompleted.Change(Variables.Change.Case.add, 1);
 
-            if (CanPlayerProgress())
+            if (canProgress)
             {
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
                 tournamentsWon.Change(Variables.Change.Case.add, 1);
 
                 var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + DataItemPlayer.main.car.scriptable.InternalName);
-                characterWins.Change(Variables.Change.Case.add,1);
+                characterWins.Change(Variables.Change.Case.add, 1);
 
                 bool perfect = GetScoreForRacer(playerRacer) >= (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons + DifficultyDefines.eliteRaceScoreMultiplier - 1) * leaderboard.Count;
                 if (perfect)
@@ -385,7 +404,7 @@ public class TourneyController : Initializable
                 playerCup.SetFloatValue(Mathf.Max(tournamentsCompleted.GetFloatValue(), cup));
 
                 var characterCup = PlayerConfig.main.globalScope.GetVariable("highest_cup_with_" + DataItemPlayer.main.car.scriptable.InternalName);
-                characterCup.SetFloatValue(Mathf.Max(characterCup.GetFloatValue(), cup+1));
+                characterCup.SetFloatValue(Mathf.Max(characterCup.GetFloatValue(), cup + 1));
             }
         }
     }
@@ -434,11 +453,11 @@ public class Race : Countdown
     }
     public float GetRivalDistance()
     {
-        return GetRivalDistance(raceID , modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
+        return GetRivalDistance(raceID, modifier == RaceDefines.RaceModifiers.LongerRace ? RaceDefines.raceLengthLong : RaceDefines.raceLength);
     }
-    public static  float GetRivalDistance(int level, float raceDuration = RaceDefines.raceLength)
+    public static float GetRivalDistance(int level, float raceDuration = RaceDefines.raceLength)
     {
-        var baseSpeed = DifficultyDefines.GetEnemyWheelSpeedAtLevel(level) ;
+        var baseSpeed = DifficultyDefines.GetEnemyWheelSpeedAtLevel(level);
 
         int engineLevel = level - RaceDefines.SeasonRaces + 1;
         var engineSpeed = engineLevel > 0 ? (DifficultyDefines.enemyEngineSpeed * engineLevel) : 0;
@@ -450,7 +469,7 @@ public class Race : Countdown
         float gasUse = DifficultyDefines.enemyGasUse;
         int maxRevs = Mathf.CeilToInt(gasCapacity / gasUse);
 
-        return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration , maxRevs);
+        return GetRivalDistance(baseSpeed, numEngines, engineSpeed, engineCooldown, raceDuration, maxRevs);
     }
     public static float GetRivalDistance(float baseSpeed, float engineCount, float boostSpeed, float engineCD, float raceTime, int maxEngineUses)
     {
