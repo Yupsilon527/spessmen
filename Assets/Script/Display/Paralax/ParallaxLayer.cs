@@ -25,7 +25,7 @@ public class ParallaxLayer : MonoBehaviour
         spriteVariants = svars;
 
         step = GetSpriteWidth(spriteTemplate, spriteVariants[0]) + spacing;
-        requiredCopies = Mathf.CeilToInt(desiredWidth / step) + 1;
+        requiredCopies = Mathf.FloorToInt(desiredWidth / step) + 1;
 
         ResizePool();
         DrawFresh();
