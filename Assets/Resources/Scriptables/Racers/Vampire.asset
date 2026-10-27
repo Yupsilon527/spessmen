@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4a0b8893c1e9946969cc102c533d11, type: 3}
+  m_Name: Vampire
+  m_EditorClassIdentifier: 
+  InternalName: Vampire
+  condition:
+    lockedByDefault: 0
+    conditions: []
+  grid:
+    width: 10
+    height: 10
+    cells: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010101010101010101010101010101010101010101010101010101010100010100000000010100
+  states: []
+  properties:
+  - Property: 22
+    value: 1
+    IncreasePerLevel: 0
+  relative: []
+  baseColor: {r: 1, g: 0.7071954, b: 0, a: 1}
+  portrait: {fileID: 6943535168657398750, guid: 5f308dcab9ad04a429c641268ffc7d51, type: 3}
+  blueprint: {fileID: 21300000, guid: 256e0a718ccbc63488729a0307b2a914, type: 3}
+  prefab: {fileID: 981279437659273271, guid: ce69cf7808c3dba42af0bc808b8913b3, type: 3}
+  startingGold: 10
+  startingParts:
+  - {fileID: 11400000, guid: 2f6583dafbf6e6647a57bd45719af5e3, type: 2}
+  - {fileID: 11400000, guid: 2f6583dafbf6e6647a57bd45719af5e3, type: 2}
+  - {fileID: 11400000, guid: 238e392f8ac01f04a8ca7b5e4be51912, type: 2}

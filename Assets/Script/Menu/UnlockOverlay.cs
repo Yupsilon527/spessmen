@@ -12,8 +12,7 @@ public class UnlockOverlay : Window
     private void OnEnable()
     {
         UpdateUnlocks();
-        if (queuedUnlocks.Count == 0)
-            Close();
+        HandleProceed();
     }
     void UpdateUnlocks()
     {

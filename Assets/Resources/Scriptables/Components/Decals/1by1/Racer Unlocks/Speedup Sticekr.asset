@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
+  m_Name: Speedup Sticekr
+  m_EditorClassIdentifier: 
+  InternalName: Speedup Sticekr
+  condition:
+    lockedByDefault: 0
+    conditions:
+    - variableName: seasons_completed_with_speedy
+      value: 1
+      check: 4
+  grid:
+    width: 1
+    height: 1
+    cells: 01
+  states: []
+  properties:
+  - Property: 1
+    value: -0.06
+    IncreasePerLevel: 0
+  relative: []
+  abilities: []
+  combos: []
+  icon: {fileID: -1062191230, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
+  boonRarity: 3
+  partType: 6
+  attach: 0
+  priceMultiplier: 0.25
+  weightMultiplier: 12
+  unique: 0
+  rotating: 1

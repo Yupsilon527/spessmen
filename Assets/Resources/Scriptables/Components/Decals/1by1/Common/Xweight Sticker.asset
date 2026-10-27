@@ -33,6 +33,6 @@ MonoBehaviour:
   partType: 6
   attach: 0
   priceMultiplier: 0.2
-  weightMultiplier: 2
+  weightMultiplier: 4
   unique: 0
   rotating: 1

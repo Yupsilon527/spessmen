@@ -142,13 +142,13 @@ public class TourneyController : Initializable
                             break;
                         case RaceDefines.RaceModifiers.RivalImmune:
                             var rival = player.GetRival();
-                            rival.modifiers.Add(new Modifier(rival, rival, flag: ModifierDefines.Flag.Debuff, states:
+                            rival.modifiers.Add(new Modifier(rival, rival, flag: ModifierDefines.Flag.Buff, states:
                                 new List<ModifierDefines.State> { ModifierDefines.State.AbilityImmune }));
                             break;
                         case RaceDefines.RaceModifiers.RandomEngine:
                         case RaceDefines.RaceModifiers.RandomGadget:
                             var validparts = ResourceCache.main.parts.Where(
-                                p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons))
+                                p => (int)p.boonRarity == Mathf.Min((int)ItemDefines.BoonRarity.legendary, Mathf.FloorToInt(ongoingRace.raceID / RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons+1))
                                 && (p.partType == ItemDefines.PartType.nitro || p.partType == (ongoingRace.modifier == RaceDefines.RaceModifiers.RandomEngine ? ItemDefines.PartType.engine : ItemDefines.PartType.gadget))
                                 ).ToArray();
 
@@ -216,7 +216,7 @@ public class TourneyController : Initializable
     }
     public float GetPointsForPosition(int position)
     {
-        float mult = (IsLastRaceInSeason()) ? DifficultyDefines.eliteRaceScoreMultiplier : 1;
+        float mult = ((IsLastRaceInSeason()) ? DifficultyDefines.eliteRaceScoreMultiplier : 1) *DifficultyDefines.raceScoreMultiplier;
         return (leaderboard.Count - position - 1) * mult;
     }
     public float GetScoreForRacer(Racer racer)
@@ -294,11 +294,10 @@ public class TourneyController : Initializable
     }
     public bool CanPlayerProgress()
     {
-        int playerPosition = GetRacerPosition(GetPlayerRacer());
         if (IsLastRaceInSeason())
-            return playerPosition == 0;
+            return GetRacerPosition(GetPlayerRacer()) == 0;
         else
-            return GetCurrentSeason() == 0 || playerPosition < DifficultyDefines.qualifiedPosition;
+            return ongoingRace == null ? true : ongoingRace.GetPositionForRacer(GetPlayerRacer()) < DifficultyDefines.qualifiedPosition;
     }
     public int GetRacerPosition(Racer racer)
     {
@@ -384,6 +383,9 @@ public class TourneyController : Initializable
             var tournamentsCompleted = PlayerConfig.main.globalScope.GetVariable("seasons_completed");
             tournamentsCompleted.Change(Variables.Change.Case.add, 1);
 
+            var characterSeasons = PlayerConfig.main.globalScope.GetVariable("seasons_completed_with_" + DataItemPlayer.main.car.scriptable.InternalName);
+            characterSeasons.Change(Variables.Change.Case.add, 1);
+
             if (canProgress)
             {
                 var tournamentsWon = PlayerConfig.main.globalScope.GetVariable("seasons_won");
@@ -392,7 +394,7 @@ public class TourneyController : Initializable
                 var characterWins = PlayerConfig.main.globalScope.GetVariable("seasons_won_with_" + DataItemPlayer.main.car.scriptable.InternalName);
                 characterWins.Change(Variables.Change.Case.add, 1);
 
-                bool perfect = GetScoreForRacer(playerRacer) >= (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons + DifficultyDefines.eliteRaceScoreMultiplier - 1) * leaderboard.Count;
+                bool perfect = GetScoreForRacer(playerRacer) >= (RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons + DifficultyDefines.eliteRaceScoreMultiplier - 1) * leaderboard.Count * DifficultyDefines.raceScoreMultiplier;
                 if (perfect)
                 {
                     var perfectSeason = PlayerConfig.main.globalScope.GetVariable($"perfect_season{GetCurrentSeason()}_with_" + DataItemPlayer.main.car.scriptable.InternalName);

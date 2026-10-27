@@ -931,10 +931,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2000966576}
   - {fileID: 5389026295079282871}
   - {fileID: 447431958}
   - {fileID: 923703748}
+  - {fileID: 2000966576}
   - {fileID: 1376117326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2695,10 +2695,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 970984713}
     m_Modifications:
-    - target: {fileID: 4808436874204751148, guid: cdb57a8d9ebf67a4884dc64b6bbf419e, type: 3}
-      propertyPath: animation
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6637805340466120007, guid: cdb57a8d9ebf67a4884dc64b6bbf419e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
