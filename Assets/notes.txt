@@ -37,7 +37,9 @@ QoL
 
 	part highlight position
 
-
+	Unlockables
+		generic unlockable SO (completion marks?)
+		unlockables taht don't fire alert
 
 FEA
 	alerts

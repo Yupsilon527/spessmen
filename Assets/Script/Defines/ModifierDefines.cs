@@ -107,7 +107,7 @@ public static class ModifierDefines
         AbilityImmune = 2,
         StunImmune = 3,
         DebuffImmune = 4,
-        VampImmune = 5, //TODO
+        VampImmune = 5, 
         EnginesJammed = 6,
         ActivesJammed = 7,
         Total = 10,

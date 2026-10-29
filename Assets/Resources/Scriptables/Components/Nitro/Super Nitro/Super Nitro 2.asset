@@ -25,9 +25,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Super Nitro 2  OnActivated
-    maxUses: 0
-    cooldown: 2.5
-    fuelCost: 29
+    maxUses: 1
+    cooldown: 6.5
+    fuelCost: 0
     aiSignal: 0
     overflow: 0
     classification: 5
@@ -35,8 +35,8 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 768092d9b1a27e6419fa8d104a13bb3f, type: 2}
-    - {fileID: 11400000, guid: 477fd9d2932290e478df67c520d4ea7c, type: 2}
+    - {fileID: 11400000, guid: 362681073180ad64389af6ec4d49c469, type: 2}
+    - {fileID: 11400000, guid: c043ccd586059854d8e7e2d7cbc0a2ef, type: 2}
   combos:
   - other: {fileID: 11400000}
     result: {fileID: 11400000, guid: a4036466c7ccb084582931f5e98e360d, type: 2}

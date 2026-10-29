@@ -112,13 +112,14 @@ public class PlayerStatsAlteration
                 source.RegisterGrantedSpeed(efCh);
                 break;
             case StatType.SpeedSteal:
-                if (target == caster) return;
+                if (target == caster ||target.GetState(ModifierDefines.State.VampImmune)) return;
                 float stolen = GetEffectiveChange(caster, mult, self);
-                ApplyToStat(ref target.stats.alteredSpeed, -stolen);
-                ApplyToStat(ref caster.stats.alteredSpeed, stolen);
+                float maxSpeed = Mathf.Min(stolen, target.stats.alteredSpeed / 2);
+                ApplyToStat(ref target.stats.alteredSpeed, -maxSpeed);
+                ApplyToStat(ref caster.stats.alteredSpeed, maxSpeed);
                 caster.stats.SetDirty();
                 target.stats.SetDirty();
-                source.RegisterGrantedSpeed(stolen);
+                source.RegisterGrantedSpeed(maxSpeed);
                 break;
             case StatType.FillGas:
             case StatType.GasAbsolute:

@@ -23,10 +23,15 @@ public class GlossaryContainer : ContainerMenu
 
     public void FilterParts()
     {
-        filtered = ResourceCache.main.parts.Where(p => 
+        filtered = ResourceCache.main.parts.Where(p =>
+#if !UNITY_EDITOR
+    MatchesRarity(p)
+     && MatchesPartType(p)
+#else
         p.IsUnlocked() 
       && MatchesRarity(p)
      && MatchesPartType(p)
+#endif
     ).ToList();
         Refresh();
     }

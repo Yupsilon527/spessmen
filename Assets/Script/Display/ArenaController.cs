@@ -7,7 +7,7 @@ public class RacerToonTable
     public Toon toon;
     public GameObject character;
     public float displaySpeed;
-    public HashSet<SpecialEffectController> boostEffects = new();
+    public SpecialEffectController boostEffects;
     public void Alert(string label, Color color, string atp)
     {
         toon.Alert(label, color, atp);
@@ -18,14 +18,13 @@ public class RacerToonTable
     }
     public void AddAfterburnerEffects(SpecialEffectController specialEffect)
     {
-        boostEffects.Add(specialEffect);
+        if (boostEffects != null)
+            ClearAfterburnerEffects();
+        boostEffects = specialEffect;
     }
     public void ClearAfterburnerEffects()
     {
-        foreach (var effect in boostEffects)
-        {
-            effect.Stop();
-        }
+        boostEffects.Stop();
     }
 }
 
@@ -135,7 +134,7 @@ public class ArenaController : MonoBehaviour
             {
                 racer.ClearAfterburnerEffects();
             }
-                racer.toon.animator.SetBool("Boosting", boosting);
+            racer.toon.animator.SetBool("Boosting", boosting);
         }
     }
     public void LoadRacers(Racer[] racers)

@@ -15,7 +15,10 @@ MonoBehaviour:
   InternalName: Neversoft Decal
   condition:
     lockedByDefault: 0
-    conditions: []
+    conditions:
+    - variableName: seasons_completed_with_starter
+      value: 1
+      check: 4
   grid:
     width: 2
     height: 2
@@ -31,7 +34,7 @@ MonoBehaviour:
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: -909896, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
+  icon: {fileID: 1378278503, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0

@@ -20,13 +20,14 @@ MonoBehaviour:
   priority: 2
   flag: 2
   behavior: 0
+  visibility: 0
   states: []
   properties:
-  - Property: 1
-    value: 0.5
+  - Property: 3
+    value: 0.2
     IncreasePerLevel: 0
-  - Property: 5
-    value: 0.6
+  - Property: 7
+    value: 0.25
     IncreasePerLevel: 0
   expiretype: 1
-  duration: 3
+  duration: 2.5

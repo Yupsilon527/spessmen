@@ -25,8 +25,8 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Cursed Nitro 1  OnActivated
-    maxUses: 1
-    cooldown: 9
+    maxUses: 2
+    cooldown: 3
     fuelCost: 0
     aiSignal: 0
     overflow: 0

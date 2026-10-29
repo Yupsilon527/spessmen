@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Cardboard Wheel
+  m_Name: Money Wheel
   m_EditorClassIdentifier: 
-  InternalName: Cardboard Wheel
+  InternalName: Money Wheel
   condition:
     lockedByDefault: 0
-    conditions: []
+    conditions:
+    - variableName: highest_cup_with_skater
+      value: 1
+      check: 4
   grid:
     width: 2
     height: 2
@@ -24,7 +27,7 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Cardboard Wheel  OnRaceStart
+  - InternalName: Money Wheel  OnRaceStart
     maxUses: 0
     cooldown: 0
     fuelCost: 0
@@ -35,14 +38,14 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 4dd55252cc75b0942ba954b6f2049ed2, type: 2}
-    - {fileID: 11400000, guid: 424468193d4dc0e45884be7bbd9b73a9, type: 2}
+    - {fileID: 11400000, guid: 80655e8dcdd27df43a4ac48851e9d03c, type: 2}
+    - {fileID: 11400000, guid: edb569377c8dd96449b59a9858f40362, type: 2}
   combos: []
   icon: {fileID: -828597655, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
-  boonRarity: 0
+  boonRarity: 3
   partType: 1
   attach: 1
   priceMultiplier: 1
-  weightMultiplier: 1.25
+  weightMultiplier: 2
   unique: 0
   rotating: 1

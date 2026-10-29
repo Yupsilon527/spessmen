@@ -198,6 +198,7 @@ MonoBehaviour:
   unique: 1
   unlockTitle: {fileID: 4875744540325883312}
   unlockIcon: {fileID: 35326097597570920}
+  deltaRotation: 7
 --- !u!1 &5840197219808311138
 GameObject:
   m_ObjectHideFlags: 0

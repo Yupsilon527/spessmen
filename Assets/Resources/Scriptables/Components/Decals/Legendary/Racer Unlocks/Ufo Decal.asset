@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Atom Decal
+  m_Name: Ufo Decal
   m_EditorClassIdentifier: 
-  InternalName: Atom Decal
+  InternalName: Ufo Decal
   condition:
     lockedByDefault: 0
-    conditions: []
+    conditions:
+    - variableName: seasons_completed_with_engie
+      value: 1
+      check: 4
   grid:
     width: 2
     height: 2
@@ -34,7 +37,7 @@ MonoBehaviour:
   relative: []
   abilities: []
   combos: []
-  icon: {fileID: -909896, guid: fdad8a19d1623164c927e59bc5c4736a, type: 3}
+  icon: {fileID: 470588426, guid: c15c5690e75f0a040b733d5fd9f05877, type: 3}
   boonRarity: 3
   partType: 6
   attach: 0

@@ -25,9 +25,9 @@ MonoBehaviour:
   relative: []
   abilities:
   - InternalName: Random Nitro 4  OnActivated
-    maxUses: 0
+    maxUses: 6
     cooldown: 2
-    fuelCost: 36
+    fuelCost: 0
     aiSignal: 0
     overflow: 0
     classification: 5

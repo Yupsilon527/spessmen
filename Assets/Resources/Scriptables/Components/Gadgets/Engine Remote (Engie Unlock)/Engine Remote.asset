@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
-  m_Name: Vamp Wheel
+  m_Name: Engine Remote
   m_EditorClassIdentifier: 
-  InternalName: Vamp Wheel
+  InternalName: Engine Remote
   condition:
     lockedByDefault: 0
-    conditions: []
+    conditions:
+    - variableName: seasons_completed_with_engie
+      value: 1
+      check: 4
   grid:
     width: 2
     height: 2
@@ -24,36 +27,38 @@ MonoBehaviour:
   properties: []
   relative: []
   abilities:
-  - InternalName: Vamp Wheel  OnRaceStart
+  - InternalName: Engine Remote  OnRaceStart
     maxUses: 0
     cooldown: 0
     fuelCost: 0
     aiSignal: 0
     overflow: 0
-    classification: 1
+    classification: 4
     function: 0
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: c53e5233af0073e4ba6aae642c936257, type: 2}
-  - InternalName: Vamp Wheel  OnGadgetActivate
-    maxUses: 0
-    cooldown: 0
+    - {fileID: 11400000, guid: ba94809682d301f479716bc8951be1bd, type: 2}
+  - InternalName: Engine Remote  OnActivated
+    maxUses: 4
+    cooldown: 0.1
     fuelCost: 0
     aiSignal: 0
     overflow: 0
-    classification: 1
-    function: 7
+    classification: 4
+    function: 2
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: 61765b5d329095642a89f8c15cf92e71, type: 2}
-  combos: []
-  icon: {fileID: -828597655, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+    - {fileID: 11400000, guid: ab9bab52294ab714e9222a8ce1a332f8, type: 2}
+  combos:
+  - other: {fileID: 11400000}
+    result: {fileID: 11400000, guid: 13d94159546e6ee4bac93bbea073fd40, type: 2}
+  icon: {fileID: 1239801845, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
   boonRarity: 3
-  partType: 1
-  attach: 1
-  priceMultiplier: 1
-  weightMultiplier: 2
+  partType: 4
+  attach: 0
+  priceMultiplier: 0.2
+  weightMultiplier: 10
   unique: 0
   rotating: 1

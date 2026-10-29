@@ -60,6 +60,8 @@ public class Ability : Countdown
             || (data.overflow == ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() >= GetFuelCost())
             || (data.overflow != ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() > 0))
             && (!caster.IsStunned() || (data.function != ShipDefines.PartEvent.OnActivated && data.function != ShipDefines.PartEvent.OnTimePass))
+            && (data.classification != ItemDefines.PartType.engine || !caster.GetState(ModifierDefines.State.EnginesJammed))
+            && (data.function !=  ShipDefines.PartEvent.OnActivated|| !caster.GetState(ModifierDefines.State.ActivesJammed))
             && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }
     public void ActivateOnRacer(float strength = 1)
@@ -80,7 +82,7 @@ public class Ability : Countdown
     }
     public bool Activate(ShipDefines.PartEvent evt)
     {
-        if (evt == data.function && CanBeActivated())
+        if (evt == data.function && (evt == ShipDefines.PartEvent.OnRaceStart || CanBeActivated()))
         {
             TourneyController.main.Inspect($"{caster} activates ability {data.InternalName}");
             float fuel = caster.abilities.fuel.GetValue();

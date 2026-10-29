@@ -23,7 +23,10 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 22
-    value: 1
+    value: 0.4
+    IncreasePerLevel: 0
+  - Property: 50
+    value: -1
     IncreasePerLevel: 0
   relative: []
   baseColor: {r: 1, g: 0.7071954, b: 0, a: 1}

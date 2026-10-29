@@ -116,6 +116,7 @@ public static class ShipDefines
         TotalSlots,
 
         FuelTotal,
+        PlayerGold,
 
         Total,
     }
@@ -160,6 +161,8 @@ public static class ShipDefines
                 return reverse ? (DataItemPlayer.main.car.CountTilesTotal() - DataItemPlayer.main.car.CountTilesEmpty()) : DataItemPlayer.main.car.CountTilesEmpty();
             case ScaleType.TotalSlots:
                 return DataItemPlayer.main.car.CountTilesTotal();
+            case ScaleType.PlayerGold:
+                return DataItemPlayer.main.econ.gold.GetValue();
             case ScaleType.Random:
                 return reverse ? (1- Random.value) : Random.value;
             case ScaleType.Lucky:
