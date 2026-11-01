@@ -23,8 +23,8 @@ MonoBehaviour:
   visibility: 0
   states: []
   properties:
-  - Property: 5
+  - Property: 1
     value: 1
     IncreasePerLevel: 0
   expiretype: 1
-  duration: 8
+  duration: 6

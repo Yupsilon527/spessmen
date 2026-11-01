@@ -52,7 +52,7 @@ MonoBehaviour:
     actions:
     - {fileID: 11400000, guid: 61765b5d329095642a89f8c15cf92e71, type: 2}
   combos: []
-  icon: {fileID: -828597655, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
+  icon: {fileID: -2020619820, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 3
   partType: 1
   attach: 1

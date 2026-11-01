@@ -847,6 +847,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Parts 2_31
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 448
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71306725e3c514e47a1337f9f1258a60
+      internalID: 1199008801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parts 2_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce3924b9589acf498456365d72ef46d
+      internalID: -1152532391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parts 2_33
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 160
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ac310b33426b44abf6a7f5d12ad727
+      internalID: -2020619820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parts 2_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47f89ba4f074c34fb0a6e6ade477219
+      internalID: 1693730060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -861,51 +949,51 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Parts 1_1: -4229674953759081290
-      Parts 1_10: 1130130309
-      Parts 1_11: -2140984661
-      Parts 1_12: 1886732634
-      Parts 1_13: -192170854
-      Parts 1_14: -1927804968
-      Parts 1_15: -2031732983
-      Parts 1_16: -823755598
-      Parts 1_17: 362969093
-      Parts 1_18: -907340102
-      Parts 1_19: -848201619
-      Parts 1_2: 2380615158140346388
-      Parts 1_20: -1282615572
-      Parts 1_21: 1433391201
-      Parts 1_22: -1776106495
-      Parts 1_23: -2034911408
-      Parts 1_24: 3352192
-      Parts 1_25: 995354066
-      Parts 1_26: 1597006104
-      Parts 1_27: 1663185023
-      Parts 1_28: 1239801845
-      Parts 1_29: -1508152377
-      Parts 1_3: -4275096293392824688
-      Parts 1_30: -240816473
-      Parts 1_31: -1927435592
-      Parts 1_32: 2076182967
-      Parts 1_33: -256022465
-      Parts 1_34: 1608402187
-      Parts 1_35: 912237981
-      Parts 1_36: -381535420
-      Parts 1_37: -548683512
-      Parts 1_38: 1588630014
-      Parts 1_39: -2006749333
-      Parts 1_4: -7292719347879236571
-      Parts 1_40: 1636568271
-      Parts 1_41: 1885797446
-      Parts 1_42: -1946166722
-      Parts 1_43: -480801201
-      Parts 1_44: -528163761
-      Parts 1_45: 397868835
-      Parts 1_5: 264338246508582504
-      Parts 1_6: -54445785871783094
-      Parts 1_7: 1547318843
-      Parts 1_8: 421313550
-      Parts 1_9: 1451713812
+      Parts 1_1: -1907714645
+      Parts 1_10: -362038695
+      Parts 1_11: -1173297186
+      Parts 1_12: -1484126921
+      Parts 1_13: 1966719804
+      Parts 1_14: 1088508772
+      Parts 1_15: 976457709
+      Parts 1_16: -1100465306
+      Parts 1_17: 1921920019
+      Parts 1_18: 626365601
+      Parts 1_19: 100020395
+      Parts 1_2: -1265691668
+      Parts 1_20: -1185078282
+      Parts 1_21: 1512025831
+      Parts 1_22: -309575238
+      Parts 1_23: 934524327
+      Parts 1_24: 1250934156
+      Parts 1_25: 676394645
+      Parts 1_26: 132919143
+      Parts 1_27: -1231919438
+      Parts 1_28: -1965757540
+      Parts 1_29: 982916837
+      Parts 1_3: -425139945
+      Parts 1_30: 1069922958
+      Parts 1_31: 161136941
+      Parts 1_32: 255987922
+      Parts 1_33: 1840045762
+      Parts 1_34: 1604063460
+      Parts 1_35: -1522117686
+      Parts 1_36: 1333070013
+      Parts 1_37: -1727522691
+      Parts 1_38: -685079384
+      Parts 1_39: -415423353
+      Parts 1_4: -1125769810
+      Parts 1_40: -1662169921
+      Parts 1_41: -322935511
+      Parts 1_42: -847068895
+      Parts 1_43: 1979140675
+      Parts 1_44: -1623540536
+      Parts 1_45: 388465619
+      Parts 1_5: -202338382
+      Parts 1_6: 2134374645
+      Parts 1_7: 1623091011
+      Parts 1_8: 1210906086
+      Parts 1_9: -1439603499
       Parts 2_0: -1567506322
       Parts 2_00: -4598601632356572206
       Parts 2_1: -166738990
@@ -932,6 +1020,10 @@ TextureImporter:
       Parts 2_29: 877691522
       Parts 2_3: 1043504810
       Parts 2_30: -647442007
+      Parts 2_31: 1199008801
+      Parts 2_32: -1152532391
+      Parts 2_33: -2020619820
+      Parts 2_34: 1693730060
       Parts 2_4: 906308045
       Parts 2_5: 488850439
       Parts 2_6: 802724178

@@ -21,10 +21,13 @@ MonoBehaviour:
       check: 4
   grid:
     width: 2
-    height: 2
-    cells: 01010101
+    height: 1
+    cells: 0101
   states: []
-  properties: []
+  properties:
+  - Property: 5
+    value: 0.4
+    IncreasePerLevel: 0
   relative: []
   abilities:
   - InternalName: Engine Remote  OnRaceStart
@@ -40,8 +43,8 @@ MonoBehaviour:
     actions:
     - {fileID: 11400000, guid: ba94809682d301f479716bc8951be1bd, type: 2}
   - InternalName: Engine Remote  OnActivated
-    maxUses: 4
-    cooldown: 0.1
+    maxUses: 0
+    cooldown: 5
     fuelCost: 0
     aiSignal: 0
     overflow: 0

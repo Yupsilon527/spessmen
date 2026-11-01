@@ -21,8 +21,8 @@ MonoBehaviour:
       check: 4
   grid:
     width: 3
-    height: 3
-    cells: 010100000100000101
+    height: 1
+    cells: 010101
   states: []
   properties: []
   relative: []
@@ -41,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6ad553f4afb074a48ae0a786cbb05fc9, type: 2}
     - {fileID: 11400000, guid: 4882de0ad0313bf4f8e4023c57612eab, type: 2}
   combos: []
-  icon: {fileID: -4275096293392824688, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  icon: {fileID: -1152532391, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 3
   partType: 5
   attach: 2
