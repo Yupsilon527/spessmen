@@ -34,10 +34,14 @@ MonoBehaviour:
   - Weight: 1
     value: {fileID: 21300000, guid: f895dba75d94a5b4783074c3c399a3b8, type: 3}
   frontSprites:
-  - Weight: 6
-    value: {fileID: -1559695105, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
-  - Weight: 25
-    value: {fileID: -2058059716, guid: a644fdafc8b9ef346a54a8a8f471cc90, type: 3}
+  - Weight: 9
+    value: {fileID: -1559695105, guid: d40bd0735932a054a9ad5919a20943a5, type: 3}
+  - Weight: 2
+    value: {fileID: -3315812265751551876, guid: d40bd0735932a054a9ad5919a20943a5, type: 3}
+  - Weight: 9
+    value: {fileID: -2058059716, guid: d40bd0735932a054a9ad5919a20943a5, type: 3}
+  - Weight: 4
+    value: {fileID: 925973505, guid: d40bd0735932a054a9ad5919a20943a5, type: 3}
   backSprites:
   - Weight: 25
     value: {fileID: -5397573168801136404, guid: 8be58603130bab0499feecf47d76c3ec, type: 3}
@@ -56,25 +60,23 @@ MonoBehaviour:
   - Weight: 4
     value: {fileID: 1849102740, guid: 8be58603130bab0499feecf47d76c3ec, type: 3}
   farSprites:
-  - Weight: 3
-    value: {fileID: -1615620336238461295, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
-  - Weight: 3
-    value: {fileID: -379367814, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
   - Weight: 6
-    value: {fileID: 98573996, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
-  - Weight: 9
-    value: {fileID: 1003317942, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
-  - Weight: 9
-    value: {fileID: 1684884658, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
-  - Weight: 3
-    value: {fileID: 1492323135, guid: 1ce4d40ef2928f24f93abbf676774283, type: 3}
+    value: {fileID: -1615620336238461295, guid: ed1f35b8d917a9947a017b4f5e357dc2, type: 3}
+  - Weight: 6
+    value: {fileID: -379367814, guid: ed1f35b8d917a9947a017b4f5e357dc2, type: 3}
+  - Weight: 6
+    value: {fileID: 98573996, guid: ed1f35b8d917a9947a017b4f5e357dc2, type: 3}
+  - Weight: 8
+    value: {fileID: 1003317942, guid: ed1f35b8d917a9947a017b4f5e357dc2, type: 3}
+  - Weight: 4
+    value: {fileID: 1684884658, guid: ed1f35b8d917a9947a017b4f5e357dc2, type: 3}
   bgColors:
-  - {r: 0.47843137, g: 0.5137255, b: 0.7254902, a: 1}
-  - {r: 0.47843137, g: 0.5878857, b: 0.7254902, a: 1}
-  - {r: 0.5856967, g: 0.77410436, b: 0.84276724, a: 1}
-  - {r: 0.68529713, g: 0.89130163, b: 0.9685534, a: 1}
-  - {r: 0.44080526, g: 0.70440245, b: 0.53327316, a: 1}
-  - {r: 0.7640851, g: 0.9559748, b: 0.62829787, a: 1}
-  - {r: 0.6363901, g: 0.9559748, b: 0.5200743, a: 1}
-  - {r: 0.94448006, g: 0.9685534, b: 0.64265645, a: 1}
-  - {r: 0.8092405, g: 0.8301887, b: 0.54040575, a: 1}
+  - {r: 0.78039217, g: 0.56078434, b: 0.99215686, a: 1}
+  - {r: 1, g: 0.43529412, b: 0.5921569, a: 1}
+  - {r: 0.972549, g: 0.6156863, b: 0.92941177, a: 1}
+  - {r: 0.8039216, g: 0.43137255, b: 0.8039216, a: 1}
+  - {r: 0.5529412, g: 0.36862746, b: 0.8352941, a: 1}
+  - {r: 0.4509804, g: 0.25882354, b: 0.7137255, a: 1}
+  - {r: 0.40392157, g: 0.20392157, b: 0.65882355, a: 1}
+  - {r: 0.10980392, g: 0.11764706, b: 0.57254905, a: 1}
+  - {r: 0.20392157, g: 0.14901961, b: 0.6313726, a: 1}

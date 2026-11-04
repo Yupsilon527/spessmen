@@ -10,6 +10,7 @@ public class ParallaxLayer : MonoBehaviour
     public float desiredWidth = 1f;
     public float spacing = 0f;
     public float deltaPosition = 0f;
+    public float offsetPosition = 0f;
     public float objectRandomOffset = 0f;
     public bool allowXflip = false;
 
@@ -33,7 +34,6 @@ public class ParallaxLayer : MonoBehaviour
 
     void ResizePool()
     {
-        // Grow: pull from disabled pool first, only instantiate if pool is empty.
         while (activeRenderers.Count < requiredCopies)
         {
             SpriteRenderer renderer = disabledRenderers.FirstOrDefault();
@@ -49,7 +49,6 @@ public class ParallaxLayer : MonoBehaviour
             activeRenderers.Add(renderer);
         }
 
-        // Shrink: park excess renderers in the disabled pool instead of destroying them.
         while (activeRenderers.Count > requiredCopies)
         {
             SpriteRenderer renderer = activeRenderers.First();
@@ -58,11 +57,10 @@ public class ParallaxLayer : MonoBehaviour
             disabledRenderers.Add(renderer);
         }
 
-        // Re-layout evenly now that membership is settled.
         int index = 0;
         foreach (var renderer in activeRenderers)
         {
-            renderer.transform.localPosition = Vector3.left * step * (requiredCopies / 2f - index);
+            renderer.transform.localPosition = Vector3.left * (step * (requiredCopies / 2f - index) - offsetPosition);
             index++;
         }
     }
@@ -86,7 +84,7 @@ public class ParallaxLayer : MonoBehaviour
         foreach (var renderer in activeRenderers)
         {
             renderer.transform.localPosition += Vector3.left * delta;
-            if (renderer.transform.localPosition.x < -step * requiredCopies / 2f)
+            if (renderer.transform.localPosition.x < -step * requiredCopies / 2f + offsetPosition)
             {
                 CycleSprite(renderer);
             }
@@ -98,7 +96,7 @@ public class ParallaxLayer : MonoBehaviour
         renderer.sprite = WeightList.PickWeight(spriteVariants)?.value ?? null;
         renderer.flipX = !(allowXflip && Random.value < .5f);
         if (requiredCopies == 0) return;
-        while (renderer.transform.localPosition.x < -step * requiredCopies / 2f)
+        while (renderer.transform.localPosition.x < -step * requiredCopies / 2f + offsetPosition)
         {
             renderer.transform.localPosition += Vector3.right * ((requiredCopies - 1) * step + Random.value * objectRandomOffset);
         }
