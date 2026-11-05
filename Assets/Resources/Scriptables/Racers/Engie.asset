@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Engie
   m_EditorClassIdentifier: 
   InternalName: Engie
+  condition:
+    lockedByDefault: 0
+    conditions: []
   grid:
     width: 10
     height: 10
