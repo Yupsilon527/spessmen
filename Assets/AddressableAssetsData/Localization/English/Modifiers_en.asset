@@ -366,6 +366,22 @@ MonoBehaviour:
     m_Localized: boosts
     m_Metadata:
       m_Items: []
+  - m_Id: 31925316222881793
+    m_Localized: Cannot Be Stunned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31925316222881794
+    m_Localized: Can Go Over Juice Limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31926474953887744
+    m_Localized: Remove %value% from %target%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31926974193504256
+    m_Localized: Engine Jammed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

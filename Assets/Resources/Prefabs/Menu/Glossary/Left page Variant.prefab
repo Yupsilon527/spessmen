@@ -245,6 +245,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2771091400351268422, guid: 8e44392426a862a4faf06cd3e1e867c3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.40000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771091400351268422, guid: 8e44392426a862a4faf06cd3e1e867c3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771091400351268422, guid: 8e44392426a862a4faf06cd3e1e867c3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8000001
+      objectReference: {fileID: 0}
     - target: {fileID: 5673276281818440168, guid: 8e44392426a862a4faf06cd3e1e867c3, type: 3}
       propertyPath: m_Name
       value: Left page Variant

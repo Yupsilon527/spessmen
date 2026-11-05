@@ -20,7 +20,7 @@ public class RemoveModifierSO : BaseEffectSo
     }
     public override string GetDescription()
     {
-        string label = LanguageController.main.Translate("Modifiers", "Gain Effect").Replace("%value%", LanguageController.main.Translate("Modifiers", "modifier_" + modifierName));
+        string label = LanguageController.main.Translate("Modifiers", "Remove Effect").Replace("%value%", LanguageController.main.Translate("Modifiers", "modifier_" + modifierName));
         label = label.Replace("%source%", LanguageController.main.Translate("Abilities", "source_" + effectSource))
                .Replace("%target%", LanguageController.main.Translate("Abilities", "target_" + effectTarget));
         return label;

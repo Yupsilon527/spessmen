@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: biker
     m_Metadata:
       m_Items: []
+  - m_Id: 30132363842195456
+    m_Key: vampire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30132363947053056
+    m_Key: vampire_unlock_condition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30133005310660608
+    m_Key: racer_locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30132363947053057
+    m_Key: racerlocked
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

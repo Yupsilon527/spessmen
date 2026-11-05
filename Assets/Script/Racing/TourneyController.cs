@@ -359,13 +359,14 @@ public class TourneyController : Initializable
     {
         var playerRacer = GetPlayerRacer();
 
-        bool firstSpot = GetRacerPosition(playerRacer) == 0;
+        bool raceWon = GetRacerPosition(playerRacer) < DifficultyDefines.qualifiedPosition;
         bool endSeason = IsLastRaceInSeason();
         bool canProgress = CanPlayerProgress();
 
         foreach (var item in DataItemPlayer.main?.car?.parts)
         {
-            if (firstSpot)
+            if (item == null) continue;
+            if (raceWon)
             {
                 var racesLead = PlayerConfig.main.globalScope.GetVariable("items_races_won_with_" + item.scriptable.InternalName);
                 racesLead.SetFloatValue(racesLead.GetFloatValue() + 1);

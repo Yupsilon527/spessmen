@@ -220,6 +220,14 @@ MonoBehaviour:
     m_Localized: "You unlocked\u2026"
     m_Metadata:
       m_Items: []
+  - m_Id: 32257629808922624
+    m_Localized: Won %value% seasons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32257629964111872
+    m_Localized: Won %value% races
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

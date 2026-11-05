@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: junkyard
     m_Metadata:
       m_Items: []
+  - m_Id: 32252514515456000
+    m_Key: halloween
+    m_Metadata:
+      m_Items: []
   - m_Id: 186093834240
     m_Key: nothing
     m_Metadata:

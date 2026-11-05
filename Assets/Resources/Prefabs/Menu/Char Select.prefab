@@ -1103,6 +1103,7 @@ MonoBehaviour:
   colorGraphics: []
   description: {fileID: 5777874690707946352}
   preview: {fileID: 0}
+  proceedButton: {fileID: 1071666666850289435}
 --- !u!1001 &2872997332265364560
 PrefabInstance:
   m_ObjectHideFlags: 0

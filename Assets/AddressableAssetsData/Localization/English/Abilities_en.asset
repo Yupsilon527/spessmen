@@ -259,7 +259,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15755758399295488
-    m_Localized: Refresh adjecent cooldowns by %value%
+    m_Localized: Refresh adjecent parts cooldowns by %value%
     m_Metadata:
       m_Items: []
   - m_Id: 15755758495764480

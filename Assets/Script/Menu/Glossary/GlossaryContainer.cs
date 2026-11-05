@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GlossaryContainer : ContainerMenu
 {
@@ -20,11 +21,12 @@ public class GlossaryContainer : ContainerMenu
     public bool partDecal { get; set; }
     public bool partExpansion { get; set; }
     public bool setRarityCommong { get; set; }
+    public Toggle commonToggle, rareToggle, epicToggle, legendaryToggle, wheelToggle, tankToggle, engineToggle, gadgetToggle, nitroToggle, decalToggle, expansionToggle;
 
     public void FilterParts()
     {
         filtered = ResourceCache.main.parts.Where(p =>
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
     MatchesRarity(p)
      && MatchesPartType(p)
 #else
@@ -56,8 +58,18 @@ public class GlossaryContainer : ContainerMenu
     }
     public void ResetFilters()
     {
-        rarityCommom = rarityRare = rarityEpic = rarityLegendary = true;
-        partWheel = partTank = partEngine = partGadget = partNitro = partDecal = partExpansion = true;
+        rarityCommom = commonToggle == null ? true : commonToggle.isOn;
+        rarityRare = rareToggle == null ? true : rareToggle.isOn;
+        rarityEpic = epicToggle == null ? true : epicToggle.isOn;
+        rarityLegendary = legendaryToggle == null ? true : legendaryToggle.isOn;
+
+        partWheel = wheelToggle == null ? true : wheelToggle.isOn;
+        partTank = tankToggle == null ? true : tankToggle.isOn;
+        partEngine = engineToggle == null ? true : engineToggle.isOn;
+        partGadget = gadgetToggle == null ? true : gadgetToggle.isOn;
+        partNitro = nitroToggle == null ? true : nitroToggle.isOn;
+        partDecal = decalToggle == null ? true : decalToggle.isOn;
+        partExpansion = expansionToggle == null ? true : expansionToggle.isOn;
 
         FilterParts();
     }

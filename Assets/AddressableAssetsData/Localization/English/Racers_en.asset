@@ -34,6 +34,22 @@ MonoBehaviour:
     m_Localized: Devon
     m_Metadata:
       m_Items: []
+  - m_Id: 30132363842195456
+    m_Localized: Susie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30132363947053056
+    m_Localized: Complete 1 Cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30132363947053057
+    m_Localized: Locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30133005310660608
+    m_Localized: Locked
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

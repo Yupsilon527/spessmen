@@ -122,6 +122,10 @@ MonoBehaviour:
     m_Localized: Opponents gain a random gadget!
     m_Metadata:
       m_Items: []
+  - m_Id: 32252514515456000
+    m_Localized: Graveyard
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

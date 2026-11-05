@@ -1,29 +1,36 @@
 
+using System.Linq;
 using UnityEngine;
 
-public class Racer 
+public class Racer
 {
     public int id = 0;
-   public float distanceRaced;
+    public float distanceRaced;
 
     public ShipScriptable playerShip;
     public RacerComponent[] components;
-   public  RacerStatsTable stats;
-    public RacerPosition position ;
-    public RacerAbilities abilities ;
-    public RacerModifiers modifiers ;
+    public RacerStatsTable stats;
+    public RacerPosition position;
+    public RacerAbilities abilities;
+    public RacerModifiers modifiers;
     public Racer(int rId)
     {
         id = rId;
         if (id == 0)
             playerShip = DataItemPlayer.main.car.scriptable;
         else
-            playerShip = ResourceCache.main.ships[Mathf.FloorToInt(ResourceCache.main.ships.Count * Random.value)];
+        {
+            var validRacers = ResourceCache.main.ships.Where(r => !TourneyController.main.leaderboard.Keys.Any(r => r.playerShip == playerShip)).ToArray();
+            if (validRacers.Length > 0)
+                playerShip = validRacers[Mathf.RoundToInt((validRacers.Length - 1) * Random.value)];
+            else
+                playerShip = ResourceCache.main.ships[Mathf.RoundToInt((ResourceCache.main.ships.Count - 1) * Random.value)];
+        }
 
-        stats = new (this);
-        position = new (this);
-        abilities = new (this);
-        modifiers = new (this);
+        stats = new(this);
+        position = new(this);
+        abilities = new(this);
+        modifiers = new(this);
         components = new RacerComponent[]
         {
             abilities,modifiers,stats,position
@@ -74,7 +81,7 @@ public class Racer
     {
         float value = 1;
         if (modifiers != null)
-            value *=  modifiers.GetPropertyMultiplicative(Property);
+            value *= modifiers.GetPropertyMultiplicative(Property);
         if (value < 0)
             return 1 + value / (-value + .5f);
         return value;
@@ -88,6 +95,6 @@ public class Racer
     #endregion
     public override string ToString()
     {
-        return "Racer "+id;
+        return "Racer " + id;
     }
 }

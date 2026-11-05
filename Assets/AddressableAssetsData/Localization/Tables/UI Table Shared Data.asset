@@ -15,8 +15,8 @@ MonoBehaviour:
   m_TableCollectionName: UI Table
   m_TableCollectionNameGuidString: 895435ce0960a584ebaec964c5bd451d
   m_Entries:
-  - m_Id: 20275285388595200
-    m_Key: New Entry
+  - m_Id: 32257629808922624
+    m_Key: part_seasons_won_with
     m_Metadata:
       m_Items: []
   - m_Id: 216427040768
@@ -152,9 +152,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5098900282052608
-    m_Key: 'loading
-
-'
+    m_Key: loading
     m_Metadata:
       m_Items: []
   - m_Id: 5100613504241664
@@ -219,6 +217,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 20700341247840256
     m_Key: unlock title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32257629964111872
+    m_Key: part_races_won_with
     m_Metadata:
       m_Items: []
   m_Metadata:

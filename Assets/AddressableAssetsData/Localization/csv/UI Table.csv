@@ -1,5 +1,5 @@
 key,Id,English(en)
-New Entry,2.02752853885952E+016,
+part_seasons_won_with,2.02752853885952E+016,Won %value% seasons
 gold label,216427040768,Total : %gold%
 reroll,309486063616,Reroll
 shop,996047491072,Store
@@ -33,8 +33,7 @@ record label,3249409245483008,Your record: %ownDistance% (%ownSpeed%km/h)
 settings,5072056056975360,Settings
 resume,5076274511777792,Resume
 quit,5079221274578944,Main Menu
-"loading
-",5098900282052608,"Loading
+loading,5098900282052608,"Loading
 "
 stash,5100613504241664,Stash
 undo,6112203733110784,Undo
@@ -51,4 +50,5 @@ dollar unit,1.91768990003077E+016,$
 cent unit,1.91768990086963E+016,c
 part_seen,2.02752855186186E+016,Encountered %value% times
 part_purchased,2.02752855186186E+016,Bought %value% times
-unlock title,,You unlocked…
+unlock title,2.07003412478403E+016,You unlocked…
+part_races_won_with,,Won %value% races

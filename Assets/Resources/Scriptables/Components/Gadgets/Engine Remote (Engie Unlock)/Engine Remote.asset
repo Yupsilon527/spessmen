@@ -20,8 +20,8 @@ MonoBehaviour:
       value: 1
       check: 4
   grid:
-    width: 2
-    height: 1
+    width: 1
+    height: 2
     cells: 0101
   states: []
   properties:
@@ -44,7 +44,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ba94809682d301f479716bc8951be1bd, type: 2}
   - InternalName: Engine Remote  OnActivated
     maxUses: 0
-    cooldown: 5
+    cooldown: 6
     fuelCost: 0
     aiSignal: 0
     overflow: 0
@@ -54,10 +54,8 @@ MonoBehaviour:
     conditionCheck: 0
     actions:
     - {fileID: 11400000, guid: ab9bab52294ab714e9222a8ce1a332f8, type: 2}
-  combos:
-  - other: {fileID: 11400000}
-    result: {fileID: 11400000, guid: 13d94159546e6ee4bac93bbea073fd40, type: 2}
-  icon: {fileID: 1239801845, guid: c745dc1edf3b0ba48b57b097d6e4eb9f, type: 3}
+  combos: []
+  icon: {fileID: 1199008801, guid: 479dc35c0b2831845ada2e0b3473e2c9, type: 3}
   boonRarity: 3
   partType: 4
   attach: 0

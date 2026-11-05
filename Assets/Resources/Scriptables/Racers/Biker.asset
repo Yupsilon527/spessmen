@@ -15,10 +15,7 @@ MonoBehaviour:
   InternalName: Biker
   condition:
     lockedByDefault: 0
-    conditions:
-    - variableName: seasons_completed
-      value: 1
-      check: 4
+    conditions: []
   grid:
     width: 10
     height: 10

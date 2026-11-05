@@ -103,22 +103,6 @@ MonoBehaviour:
     m_Key: effect_grantuseownpart
     m_Metadata:
       m_Items: []
-  - m_Id: 19951074828783616
-    m_Key: New Entry 8
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19951074895892480
-    m_Key: New Entry 9
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19951074895892481
-    m_Key: New Entry 10
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19951074895892482
-    m_Key: New Entry 11
-    m_Metadata:
-      m_Items: []
   - m_Id: 19397667098631
     m_Key: condition_always
     m_Metadata:
@@ -313,22 +297,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30004072058880
     m_Key: source_rivalracer
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15765488249245705
-    m_Key: New Entry
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15765488249245706
-    m_Key: New Entry 1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15765488249245707
-    m_Key: New Entry 2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15765488249245708
-    m_Key: New Entry 3
     m_Metadata:
       m_Items: []
   m_Metadata:
