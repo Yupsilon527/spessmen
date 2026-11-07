@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Engine 4  OnTimePass
     maxUses: 0
-    cooldown: 1
+    cooldown: 1.5
     fuelCost: 30
     aiSignal: 0
     overflow: 1

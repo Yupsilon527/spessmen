@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Grapple 1  OnActivated
     maxUses: 1
-    cooldown: 6
+    cooldown: 5
     fuelCost: 0
     aiSignal: 0
     overflow: 0

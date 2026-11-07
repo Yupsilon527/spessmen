@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Impulse Engine 1  OnTimePass
     maxUses: 0
-    cooldown: 1
+    cooldown: 1.5
     fuelCost: 20
     aiSignal: 0
     overflow: 1

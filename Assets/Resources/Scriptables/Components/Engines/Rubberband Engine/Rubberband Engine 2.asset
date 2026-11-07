@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Rubberband Engine 2  OnTimePass
     maxUses: 0
-    cooldown: 0.9
+    cooldown: 1.35
     fuelCost: 37.5
     aiSignal: 0
     overflow: 2

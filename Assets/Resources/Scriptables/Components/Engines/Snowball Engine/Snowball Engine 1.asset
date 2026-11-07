@@ -26,7 +26,7 @@ MonoBehaviour:
   abilities:
   - InternalName: Snowball Engine 1  OnTimePass
     maxUses: 0
-    cooldown: 1.4
+    cooldown: 2.1
     fuelCost: 25
     aiSignal: 0
     overflow: 1
