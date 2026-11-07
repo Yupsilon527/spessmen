@@ -14,8 +14,11 @@ public class SerializedPlayerShip : SerializableData<DataItemShip>
 
         ViewManager.Instance?.shop?.StashTokens();
 
-        parts = data.parts.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
-        stash = data.stash.Where(p => !p.deleted).Select(p => new SerializedPart(p)).ToList();
+        var partCache = data.parts.Where(p => !p.deleted);
+        var stashCache = data.stash.Where(p => !p.deleted && !partCache.Contains(p));
+
+        parts = partCache.Select(p => new SerializedPart(p)).ToList();
+        stash = stashCache.Select(p => new SerializedPart(p)).ToList();
 
         grid = new BoolGrid();
         grid.Encode(data.mGrid);

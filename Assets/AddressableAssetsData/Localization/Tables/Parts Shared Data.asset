@@ -911,6 +911,10 @@ MonoBehaviour:
     m_Key: engine remote
     m_Metadata:
       m_Items: []
+  - m_Id: 31004575436541952
+    m_Key: vamp starter wheel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -58,20 +58,21 @@ public class TourneyController : Initializable
                 {
                     racers = leaderboard.Keys.Select(k => k).ToList(),
                 };
-                if (GetCurrentRaceIndex() % RaceDefines.SeasonRaces == 0)
-                {
-                    PickRandomEnvironment();
-                }
 
                 int rTotal = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+                int cRi = GetCurrentRaceIndex();
 
-                if (ongoingRace.raceID % rTotal == rTotal - 1)
+                if (cRi % rTotal == rTotal - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(RaceDefines.BasicModifiersCount + Random.value * ((int)RaceDefines.RaceModifiers.Total -RaceDefines.BasicModifiersCount));
                 }
-                else if (ongoingRace.raceID % RaceDefines.SeasonRaces == RaceDefines.SeasonRaces - 1)
+                else if (cRi % RaceDefines.SeasonRaces == RaceDefines.SeasonRaces - 1)
                 {
                     ongoingRace.modifier = (RaceDefines.RaceModifiers)Mathf.FloorToInt(1 + Random.value * (RaceDefines.BasicModifiersCount - 1));
+                }
+                else if (cRi % RaceDefines.SeasonRaces == 0)
+                {
+                    PickRandomEnvironment();
                 }
 
                 ViewManager.Instance.shop.ResetStore(true, false);
@@ -107,7 +108,7 @@ public class TourneyController : Initializable
                         case RaceDefines.RaceModifiers.FasterRival:
                             player.modifiers.Add(new Modifier(player, player, properties: new Dictionary<ModifierDefines.Property, float>()
                             {
-                                {  ModifierDefines.Property.rival_speed, 2 }
+                                {  ModifierDefines.Property.rival_speed, 1 }
                             }));
                             break;
                         case RaceDefines.RaceModifiers.FuelCosnumption:
@@ -415,7 +416,7 @@ public class TourneyController : Initializable
     {
         var environments = ResourceCache.main.environments.Where(e => e != tournamentEnvironment).ToArray();
         if (environments.Length > 0)
-            tournamentEnvironment = ResourceCache.main.environments[Mathf.FloorToInt(Random.value * environments.Length)];
+            tournamentEnvironment = environments[Mathf.FloorToInt(Random.value * environments.Length)];
     }
 
     float debugSet = 0;

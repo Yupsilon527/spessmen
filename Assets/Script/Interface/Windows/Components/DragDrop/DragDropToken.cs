@@ -278,7 +278,7 @@ public class DragDropToken : PartButtonScaleable
             if (mPart.CanBeRotated())
                 Rotate(mPart.rotation);
             else
-                Rotate(0);
+                ResetRotation();
             if (slot.slot == DragDropSlot.TokenSlot.build)
             {
                 SnapToGrid(slot.recttransform);
@@ -319,7 +319,7 @@ public class DragDropToken : PartButtonScaleable
     {
         if (mPart != null && parent != null && parent.tooltip != null)
         {
-            parent.tooltip.ShowPartData(mPart, justPurchase);
+            parent.tooltip.ShowPartData(mPart, justPurchase, true);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

@@ -14,11 +14,13 @@ public class PartTooltip : PartCompBase
 
         if (part.scriptable.attach != ItemDefines.PartCondition.Anywhere)
             description.text += "<br>" + LanguageController.main.Translate("UI Table", "condition_" + part.scriptable.attach);
-    LayoutRebuilder.MarkLayoutForRebuild(GetComponent<RectTransform>());
     }
-    public void ShowPartData(DataItemPart part, bool justPurchase)
+    public void ShowPartData(DataItemPart part, bool justPurchase, bool includeAttach)
     {
-        ShowPart(part.scriptable,false);
+        ShowPart(part.scriptable,false,true);
+
+        if (includeAttach && part.scriptable.attach != ItemDefines.PartCondition.Anywhere)
+            description.text += "<br>" + LanguageController.main.Translate("UI Table", "condition_" + part.scriptable.attach);
 
         float grantedSpeed = part.GetSpeedGranted(TourneyController.main.GetPlayerRacer());
         if (grantedSpeed > 0)
@@ -37,5 +39,13 @@ public class PartTooltip : PartCompBase
         {
             value.text = EconomyDefines.FormatGold( Mathf.Ceil(part.scriptable.GetBasePrice() * (justPurchase ? 1 : EconomyDefines.partResellPrice)));
         }
+        if (toggleActive)
+            gameObject.SetActive(true);
+        if (description != null)
+            LayoutRebuilder.MarkLayoutForRebuild(description.transform as RectTransform);
+
+        Canvas.ForceUpdateCanvases();
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
     }
 }

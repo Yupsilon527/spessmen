@@ -90,7 +90,7 @@ public class ArenaController : MonoBehaviour
             float relativePosition = Mathf.Min(racer.racer.position.distanceTraveled - playerRacer.racer.position.distanceTraveled);
             if (relativePosition == 0) continue;
 
-            float m = 15;
+            float m = 9;
             float dd = distanceDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
             float df = distanceFarAwayDelta * TourneyController.main?.ongoingRace?.lapDistance ?? DifficultyDefines.lapDistanceBase;
             if (racer.racer.position.distanceTraveled > playerRacer.racer.position.distanceTraveled)

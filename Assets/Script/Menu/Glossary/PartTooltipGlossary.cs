@@ -5,7 +5,7 @@ public class PartTooltipGlossary : PartCompBase
     {
         Clear();
     }
-    public override void ShowPart(PartScriptable part, bool showCombos)
+    public override void ShowPart(PartScriptable part, bool showCombos, bool skipRebuild = false)
     {
         base.ShowPart(part, showCombos);
 

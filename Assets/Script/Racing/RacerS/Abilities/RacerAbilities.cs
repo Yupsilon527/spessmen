@@ -31,7 +31,7 @@ public class RacerAbilities : RacerComponent
                     int level = TourneyController.main.GetCurrentRaceIndex();
                     int engLevel = level - RaceDefines.SeasonRaces + 1;
 
-                    float diff = engLevel > 0 ? .1f : .75f;
+                    float diff = engLevel > 0 ? .3f : .75f;
 
                     float rnVal = TourneyController.main.GetPlayerRival() == racer ? 1f : (UnityEngine.Random.value * diff + (1- diff));
 

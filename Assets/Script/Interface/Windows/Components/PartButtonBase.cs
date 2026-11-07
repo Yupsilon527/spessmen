@@ -53,6 +53,11 @@ public class PartButtonBase : Initializable
         rotation = rot % 4;
         AdjustRotation(rotation);
     }
+    public void ResetRotation()
+    {
+        rotation = 0;
+        AdjustRotation(rotation);
+    }
     public virtual void AdjustRotation(int rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, -90 * rotation);

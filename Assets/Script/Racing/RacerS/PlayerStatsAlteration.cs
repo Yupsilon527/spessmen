@@ -114,7 +114,7 @@ public class PlayerStatsAlteration
             case StatType.SpeedSteal:
                 if (target == caster ||target.GetState(ModifierDefines.State.VampImmune)) return;
                 float stolen = GetEffectiveChange(caster, mult, self);
-                float maxSpeed = Mathf.Min(stolen, target.stats.alteredSpeed / 2);
+                float maxSpeed = Mathf.Min(stolen, target.stats.realSpeed / 2);
                 ApplyToStat(ref target.stats.alteredSpeed, -maxSpeed);
                 ApplyToStat(ref caster.stats.alteredSpeed, maxSpeed);
                 caster.stats.SetDirty();

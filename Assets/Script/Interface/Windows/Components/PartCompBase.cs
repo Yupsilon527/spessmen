@@ -9,7 +9,7 @@ public class PartCompBase : Initializable
     public TextMeshProUGUI title, subtitle, description, value;
     public GridPreview grid;
     public Graphic[] rarityColors;
-    public virtual void ShowPart(PartScriptable part, bool showCombos)
+    public virtual void ShowPart(PartScriptable part, bool showCombos, bool skipRebuild = false)
     {
         if (title != null)
         {
@@ -43,7 +43,7 @@ public class PartCompBase : Initializable
             string[] names = part.combos.Select(combo => LanguageController.main.Translate("Parts", combo.other.InternalName)).ToArray();
             description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
         }
-        if (toggleActive) gameObject.SetActive(true);
+        if (toggleActive && !skipRebuild) gameObject.SetActive(true);
     }
     public virtual void Clear()
     {

@@ -5,6 +5,7 @@ TODO
 
 	3... 2... 1...
 
+	"use again" ability mechanic 
 
 	descs funny sometimes?
 

@@ -20,7 +20,7 @@ public class Racer
             playerShip = DataItemPlayer.main.car.scriptable;
         else
         {
-            var validRacers = ResourceCache.main.ships.Where(r => !TourneyController.main.leaderboard.Keys.Any(r => r.playerShip == playerShip)).ToArray();
+            var validRacers = ResourceCache.main.ships.Where(ship => !TourneyController.main.leaderboard.Keys.Any(racer => racer.playerShip == ship)).ToArray();
             if (validRacers.Length > 0)
                 playerShip = validRacers[Mathf.RoundToInt((validRacers.Length - 1) * Random.value)];
             else
