@@ -28,6 +28,9 @@ TEST
 	unlockables
 
 FIX
+	bug >> 2 items 1 stash slot
+	bug >> item erased when unequipted (nitro)
+
 	vampirism bug
 
 	effect "description"

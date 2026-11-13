@@ -35,7 +35,7 @@ MonoBehaviour:
     condition: 0
     conditionCheck: 0
     actions:
-    - {fileID: 11400000, guid: d71de39de1fe6744b9965d6c2a4021ee, type: 2}
+    - {fileID: 11400000, guid: 382a27f7314917d45ac270c28938905e, type: 2}
   - InternalName: Vamp Starter Wheel  OnGadgetActivate
     maxUses: 0
     cooldown: 0

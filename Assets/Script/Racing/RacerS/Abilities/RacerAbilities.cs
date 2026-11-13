@@ -29,7 +29,8 @@ public class RacerAbilities : RacerComponent
                 else
                 {
                     int level = TourneyController.main.GetCurrentRaceIndex();
-                    int engLevel = level - RaceDefines.SeasonRaces + 1;
+                    int engStart = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+                    int engLevel = level - engStart + 1;
 
                     float diff = engLevel > 0 ? .3f : .75f;
 
@@ -38,7 +39,7 @@ public class RacerAbilities : RacerComponent
                     AddAbility(new Ability(AbilityData.NpcWheel(level, rnVal), racer));
 
 
-                    int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces) ;
+                    int numEngines = Mathf.FloorToInt(level / engStart) ;
                     for (int i = 0; i < numEngines; i++)
                     {
                         rnVal = TourneyController.main.GetPlayerRival() == racer ? 1 : UnityEngine.Random.value;

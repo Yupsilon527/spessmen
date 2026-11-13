@@ -35,7 +35,7 @@ MonoBehaviour:
   boonRarity: 3
   partType: 6
   attach: 0
-  priceMultiplier: 0.25
+  priceMultiplier: 0.14
   weightMultiplier: 12
   unique: 0
   rotating: 1

@@ -18,8 +18,11 @@ public class Racer
         id = rId;
         if (id == 0)
             playerShip = DataItemPlayer.main.car.scriptable;
+        else if (id == 1 && DataItemPlayer.main.car.rival != null)
+            playerShip = DataItemPlayer.main.car.rival.scriptable;
         else
         {
+
             var validRacers = ResourceCache.main.ships.Where(ship => !TourneyController.main.leaderboard.Keys.Any(racer => racer.playerShip == ship)).ToArray();
             if (validRacers.Length > 0)
                 playerShip = validRacers[Mathf.RoundToInt((validRacers.Length - 1) * Random.value)];

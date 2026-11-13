@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -310,7 +310,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 118.66333}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8236493346067186895
 CanvasRenderer:
@@ -384,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 269885044281130742, guid: 3af41e9f50cf4ff42a43926485c52678, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 526
       objectReference: {fileID: 0}
     - target: {fileID: 269885044281130742, guid: 3af41e9f50cf4ff42a43926485c52678, type: 3}
       propertyPath: m_SizeDelta.y
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22940491775489973, guid: 7f942b1f6734a1d44b037b471cf7cad5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 22940491775489973, guid: 7f942b1f6734a1d44b037b471cf7cad5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -768,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 269885044281130742, guid: 3af41e9f50cf4ff42a43926485c52678, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 526
       objectReference: {fileID: 0}
     - target: {fileID: 269885044281130742, guid: 3af41e9f50cf4ff42a43926485c52678, type: 3}
       propertyPath: m_SizeDelta.y

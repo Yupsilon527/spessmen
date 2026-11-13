@@ -44,7 +44,7 @@ MonoBehaviour:
   boonRarity: 2
   partType: 1
   attach: 1
-  priceMultiplier: 1
+  priceMultiplier: 1.5
   weightMultiplier: 1
   unique: 0
   rotating: 1

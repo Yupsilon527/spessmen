@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 240794457240731438, guid: 0fd97f2174b610642bdd38aacd7d748b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.061159227
       objectReference: {fileID: 0}

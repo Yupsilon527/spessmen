@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.arc.value
-      value: 100
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: ShapeModule.m_Rotation.z
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.8
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -7373617932717556306, guid: dc1e32077e11a344296e773944f230a7, type: 3}
       propertyPath: InitialModule.startRotation.scalar

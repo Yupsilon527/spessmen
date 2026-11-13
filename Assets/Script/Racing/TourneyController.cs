@@ -463,10 +463,11 @@ public class Race : Countdown
     {
         var baseSpeed = DifficultyDefines.GetEnemyWheelSpeedAtLevel(level);
 
-        int engineLevel = level - RaceDefines.SeasonRaces + 1;
+        int engineMin = RaceDefines.SeasonRaces * RaceDefines.TournamentSeasons;
+        int engineLevel = level - engineMin + 1;
         var engineSpeed = engineLevel > 0 ? (DifficultyDefines.enemyEngineSpeed * engineLevel) : 0;
 
-        int numEngines = Mathf.FloorToInt(level / RaceDefines.SeasonRaces);
+        int numEngines = Mathf.FloorToInt(level / engineMin);
         float engineCooldown = DifficultyDefines.enemyEngineCooldown - DifficultyDefines.enemyEngineDelta;
 
         float gasCapacity = 100 + DifficultyDefines.enemyTankBonus * engineLevel;

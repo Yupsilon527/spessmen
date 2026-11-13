@@ -3,8 +3,8 @@ using UnityEngine;
 
 public static class ItemDefines
 {
-    public const float commonSpawnWeight = 70;
-    public const float raritySpawnWeight = 7;
+    public const float commonSpawnWeight = 60;
+    public const float raritySpawnWeight = 15;
 
     public const float chaosPerRace = -5;
     public const float chaosPerPosition = 3;

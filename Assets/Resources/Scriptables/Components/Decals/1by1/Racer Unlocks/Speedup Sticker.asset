@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8244ea0e76f8419a0151a74206a65, type: 3}
   m_Name: Speedup Sticker
   m_EditorClassIdentifier: 
-  InternalName: Speedup Sticekr
+  InternalName: Speedup Sticker
   condition:
     lockedByDefault: 0
     conditions:
@@ -35,7 +35,7 @@ MonoBehaviour:
   boonRarity: 3
   partType: 6
   attach: 0
-  priceMultiplier: 0.25
+  priceMultiplier: 0.14
   weightMultiplier: 12
   unique: 0
   rotating: 1

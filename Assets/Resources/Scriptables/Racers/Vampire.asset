@@ -26,9 +26,12 @@ MonoBehaviour:
   states: []
   properties:
   - Property: 22
-    value: 0.4
+    value: 0.2
     IncreasePerLevel: 0
   - Property: 50
+    value: -1
+    IncreasePerLevel: 0
+  - Property: 48
     value: -1
     IncreasePerLevel: 0
   relative: []

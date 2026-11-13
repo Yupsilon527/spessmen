@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DataItemShip : DataItemGrid
 {
+    public DataItemShip rival;
     public ShipScriptable scriptable;
     public HashSet<DataItemPart> stash = new();
     public HashSet<DataItemPart> parts = new();
