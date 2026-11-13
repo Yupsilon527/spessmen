@@ -20,12 +20,14 @@ public class ResourceCache : Initializable
         }
     }
 
+    public List<UnlockAnnouncement> notifs = new();
     public List<ShipScriptable> ships = new();
     public List<PartScriptable> parts = new();
     public List<EnvironmentScriptable> environments = new();
     public List<TrackedUnlockable> unlockables = new();
     void Precache()
     {
+        notifs.AddRange(Resources.LoadAll<UnlockAnnouncement>("Scriptables"));
         ships.AddRange(Resources.LoadAll<ShipScriptable>("Scriptables"));
         parts.AddRange(Resources.LoadAll<PartScriptable>("Scriptables"));
         environments.AddRange(Resources.LoadAll<EnvironmentScriptable>("Scriptables"));
@@ -34,6 +36,10 @@ public class ResourceCache : Initializable
 
     private void Start()
     {
+        foreach (var notif in notifs.Where(s => !s.IsUnlocked()))
+        {
+            unlockables.Add(new TrackedUnlockable(notif));
+        }
         foreach (var ship in ships.Where(s => !s.IsUnlocked()))
         {
             unlockables.Add(new TrackedUnlockable(ship));

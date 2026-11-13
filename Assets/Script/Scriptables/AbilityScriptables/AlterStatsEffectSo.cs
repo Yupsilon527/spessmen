@@ -4,12 +4,12 @@
 public class AlterStatsEffectSo : BaseEffectSo
 {
     public PlayerStatsAlteration alteration;
-    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m, bool a)
     {
-        bool _ = base.AffectOnRacer(c, t, s, m);
+        bool _ = base.AffectOnRacer(c, t, s, m, a);
         if (_)
         {
-            alteration.GiveToPlayer(c, t, s, m);
+            alteration.GiveToPlayer(c, t, s, m, a);
         }
         return _;
     }
@@ -30,14 +30,14 @@ public class AlterStatsEffectSo : BaseEffectSo
             else
                 numValue = "x" + numValue;
         }
-        if ( alteration.stat == ShipDefines.StatType.RefundGasCost)
+        if (alteration.stat == ShipDefines.StatType.RefundGasCost)
             numValue = Mathf.Abs(alteration.value * 100).ToString();
 
         if (alteration.scale != ShipDefines.ScaleType.Constant)
             numValue = LanguageController.main.Translate("Modifiers", ((alteration.scale == ShipDefines.ScaleType.Lucky || alteration.scale == ShipDefines.ScaleType.Random) ? "Chance Scale " : "Stat Scale ") + (alteration.value > 0 ? "Pos" : "Neg")).Replace("%value%", numValue);
 
         if (alteration.stat == ShipDefines.StatType.BaseSpeed
-        || alteration.stat == ShipDefines.StatType.BoostSpeed   
+        || alteration.stat == ShipDefines.StatType.BoostSpeed
         || alteration.stat == ShipDefines.StatType.FillGas
         || alteration.stat == ShipDefines.StatType.GasAbsolute
         || alteration.stat == ShipDefines.StatType.TotalSpeed)

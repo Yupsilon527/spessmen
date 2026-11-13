@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
@@ -27,7 +26,8 @@ public class UnlockOverlay : Window
         {
             if (!unlock.isUnlocked && unlock.unlockable.IsUnlocked())
             {
-                queuedUnlocks.Add(unlock.unlockable);
+                if (unlock.unlockable.announcesUnlock)
+                    queuedUnlocks.Add(unlock.unlockable);
                 unlock.isUnlocked = true;
             }
         }

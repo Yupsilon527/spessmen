@@ -1,7 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 public abstract class  UnlockScriptable : ScriptableBase
 {
+    public bool announcesUnlock = true;
     public UnlockCondition condition ;
     public virtual bool IsUnlocked()
     {

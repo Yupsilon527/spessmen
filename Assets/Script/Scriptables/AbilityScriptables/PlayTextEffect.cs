@@ -6,9 +6,9 @@ public class PlayTextEffect : VisualEffectSO
 {
     public string AlertName = "";
 
-    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m, bool a)
     {
-        bool _ = base.AffectOnRacer(c, t, s, m);
+        bool _ = base.AffectOnRacer(c, t, s, m, a);
         if (_)
         {
             ArenaController.main.GetToonForRacer(t).Alert(AlertName, Color.white, AttachPoint);

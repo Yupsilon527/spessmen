@@ -106,7 +106,7 @@ public class AbilityButton : PartButtonScaleable, IPointerEnterHandler, IPointer
     {
         if (TourneyController.main.currentPhase == TourneyController.TourneyPhase.racing)
         foreach (var ability in corresponding)
-            ability.Activate( ShipDefines.PartEvent.OnActivated);
+            ability.Activate( ShipDefines.PartEvent.OnActivated, false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

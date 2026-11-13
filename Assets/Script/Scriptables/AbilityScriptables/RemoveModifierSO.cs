@@ -5,12 +5,12 @@ public class RemoveModifierSO : BaseEffectSo
 {
     public string modifierName;
 
-    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m, bool a)
     {
-        bool _ = base.AffectOnRacer(c, t, s, m);
+        bool _ = base.AffectOnRacer(c, t, s, m, a);
         if (_)
         {
-            t.modifiers.Remove(t.modifiers.Filter(modifierName), false, true) ;
+            t.modifiers.Remove(t.modifiers.Filter(modifierName), false, true);
         }
         return _;
     }

@@ -27,7 +27,7 @@ public class PlayerStatsAlteration
     }
     public float GetEffectiveChange(Racer player, float mult, bool onSelf)
     {
-        float output = value * GetScale( player, scale, reverse) * mult;
+        float output = value * GetScale(player, scale, reverse) * mult;
         if (onSelf && GetRelatedProperty() < ModifierDefines.Property.total)
             return output * player.GetPropertyMultiplicative(GetRelatedProperty());
         return output;
@@ -56,9 +56,9 @@ public class PlayerStatsAlteration
     }
     public virtual bool CanAffectRacer(Racer target)
     {
-        return target!=null;
+        return target != null;
     }
-    public virtual void GiveToPlayer(Racer caster, Racer target, Ability source, float mult)
+    public virtual void GiveToPlayer(Racer caster, Racer target, Ability source, float mult, bool mainCast)
     {
         bool self = caster == target;
         float oldSpeed = target.stats.realSpeed;
@@ -94,10 +94,10 @@ public class PlayerStatsAlteration
         switch (stat)
         {
             case StatType.BaseSpeed:
-                 oldSpeed = target.stats.baseSpeed;
+                oldSpeed = target.stats.baseSpeed;
                 ApplyToStat(ref target.stats.baseSpeed, GetEffectiveChange(caster, mult, self));
                 target.stats.SetDirty();
-                source.RegisterGrantedSpeed(target.stats.baseSpeed - oldSpeed); 
+                source.RegisterGrantedSpeed(target.stats.baseSpeed - oldSpeed);
                 break;
             case StatType.BoostSpeed:
                 oldSpeed = target.stats.boosterSpeed;
@@ -112,7 +112,7 @@ public class PlayerStatsAlteration
                 source.RegisterGrantedSpeed(efCh);
                 break;
             case StatType.SpeedSteal:
-                if (target == caster ||target.GetState(ModifierDefines.State.VampImmune)) return;
+                if (target == caster || target.GetState(ModifierDefines.State.VampImmune)) return;
                 float stolen = GetEffectiveChange(caster, mult, self);
                 float maxSpeed = Mathf.Min(stolen, target.stats.realSpeed / 2);
                 ApplyToStat(ref target.stats.alteredSpeed, -maxSpeed);
@@ -137,7 +137,7 @@ public class PlayerStatsAlteration
                 break;
             case StatType.GrantUseOwnPart:
                 float change = GetEffectiveChange(caster, mult, self);
-                foreach (var a in source.caster.abilities.GetAbilitiesCorrespondingToPart( source.part))
+                foreach (var a in source.caster.abilities.GetAbilitiesCorrespondingToPart(source.part))
                 {
                     a.RefreshUses(change);
                 }
@@ -157,20 +157,31 @@ public class PlayerStatsAlteration
                 var valid = stat == StatType.RefreshSelf ? new Ability[] { source } :
                     stat == StatType.RefreshOwnPart ? source.caster.abilities.GetAbilitiesCorrespondingToPart(source.part) :
                     stat == StatType.RefreshCooldowns ? target.abilities.GetAbilities() :
-                    stat == StatType.RefreshAdjecent ? source.part.GetNeighboringParts().SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
-                    stat == StatType.RefreshAdjecentGadgets ? source.part.GetNeighboringParts().Where(p=> p.scriptable.partType == ItemDefines.PartType.gadget).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
-                    stat == StatType.RefreshAdjecentNitros ? source.part.GetNeighboringParts().Where(p=> p.scriptable.partType == ItemDefines.PartType.nitro).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
-                    stat == StatType.RefreshAdjecentActives ? source.part.GetNeighboringParts().Where(p=> p.scriptable.abilities.Any(a => a.function == PartEvent.OnActivated)).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) : 
-                    target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro : 
+                    stat == StatType.RefreshAdjecent ? source.part.GetNeighboringParts().SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) :
+                    stat == StatType.RefreshAdjecentGadgets ? source.part.GetNeighboringParts().Where(p => p.scriptable.partType == ItemDefines.PartType.gadget).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) :
+                    stat == StatType.RefreshAdjecentNitros ? source.part.GetNeighboringParts().Where(p => p.scriptable.partType == ItemDefines.PartType.nitro).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) :
+                    stat == StatType.RefreshAdjecentActives ? source.part.GetNeighboringParts().Where(p => p.scriptable.abilities.Any(a => a.function == PartEvent.OnActivated)).SelectMany(part => caster.abilities.GetAbilitiesCorrespondingToPart(part)) :
+                    target.abilities.GetAbilityByType(stat == StatType.RefreshNitros ? ItemDefines.PartType.nitro :
                     stat == StatType.RefreshGadgets ? ItemDefines.PartType.gadget : ItemDefines.PartType.engine);
 
                 foreach (var ab in valid)
                 {
-                    if (CD> 0)
+                    if (CD > 0)
                         ab.Shorten(CD);
                     else
                         ab.Extend(CD);
                 }
+                break;
+            case StatType.UseAgain:
+                float uses = mainCast ?  GetEffectiveChange(caster, mult, self) : 0;
+                for (int i = 0; i < uses; i++)
+                {
+                    if (uses - i > 1 || UnityEngine.Random.value < uses - 1)
+                    {
+                        source.Activate(PartEvent.OnActivated, true);
+                    }
+                }
+
                 break;
         }
     }
@@ -188,9 +199,9 @@ public class ConditionalPartAltetration : PlayerStatsAlteration
     {
         return base.CanAffectRacer(target) && RacerMeetsCondition(target, condition, conditionCheck);
     }
-    public override void GiveToPlayer(Racer caster, Racer target, Ability source, float mult)
+    public override void GiveToPlayer(Racer caster, Racer target, Ability source, float mult, bool maincast)
     {
-        base.GiveToPlayer(caster, target, source, mult);
+        base.GiveToPlayer(caster, target, source, mult, maincast);
     }
 
 }

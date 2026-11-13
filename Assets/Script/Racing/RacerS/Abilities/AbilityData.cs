@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class AbilityData
 {
-    public delegate void AbilityFunction(Racer caster, Racer target, Ability source, float mult);
+    public delegate void AbilityFunction(Racer caster, Racer target, Ability source, float mult, bool mc);
     public class AbilityListener
     {
         public RaceDefines.AbilityTarget effectSource, effectTarget;
@@ -39,9 +39,9 @@ public class AbilityData
                 {
                     new AbilityListener()
                 {
-                action= (caster, target, source, mult) =>
+                action= (caster, target, source, mult, main) =>
                 {
-            action.GiveToPlayer(caster, target, source, mult);
+            action.GiveToPlayer(caster, target, source, mult, main);
         }
     }
     }
@@ -65,9 +65,9 @@ public class AbilityData
                 {
                     new AbilityListener()
                 {
-                action= (caster, target, source, mult) =>
+                action= (caster, target, source, mult, main) =>
                 {
-                    action.GiveToPlayer(caster, target, source, mult);
+                    action.GiveToPlayer(caster, target, source, mult, main);
                 }
             }
             }

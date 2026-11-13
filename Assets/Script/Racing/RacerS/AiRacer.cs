@@ -28,7 +28,7 @@ public class AiRacer : Racer
                     {
                         if (ShouldUse(c))
                         {
-                            c.Activate( ShipDefines.PartEvent.OnActivated);
+                            c.Activate( ShipDefines.PartEvent.OnActivated, false);
                         }
                     }
                 }

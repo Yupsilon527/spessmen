@@ -14,9 +14,9 @@ public class CreateEffectSO : VisualEffectSO
     public EffectType effectType;
     public GameObject EffectPrefab;
 
-    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m,bool a)
     {
-        bool _ = base.AffectOnRacer(c, t, s, m);
+        bool _ = base.AffectOnRacer(c, t, s, m,a);
         if (_)
         {
             RacerToonTable toonTable = ArenaController.main.GetToonForRacer(t);

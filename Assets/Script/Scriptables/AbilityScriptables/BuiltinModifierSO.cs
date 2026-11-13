@@ -15,9 +15,9 @@ public class BuiltinModifierSO : BaseEffectSo
         Jammed = 2,
     }
     public BuiltInModifierType BuiltinType;
-    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m)
+    public override bool AffectOnRacer(Racer c, Racer t, Ability s, float m, bool a)
     {
-        bool _ = base.AffectOnRacer(c, t, s, m);
+        bool _ = base.AffectOnRacer(c, t, s, m,a);
         if (_)
         {
             t.modifiers.Add(GetBuiltinModifier(s, t));

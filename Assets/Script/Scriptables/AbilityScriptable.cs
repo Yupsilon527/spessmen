@@ -1,0 +1,103 @@
+﻿using System;
+using System.Linq;
+
+[Serializable]
+public class AbilityScriptable
+{
+    public string InternalName;
+    public int maxUses = 0;
+    public float cooldown = 0;
+    public float fuelCost = 0;
+    public AiRacer.AiSignal aiSignal;
+    public ItemDefines.OverflowBehavior overflow;
+    public ItemDefines.PartType classification;
+    public ShipDefines.PartEvent function;
+    public ShipDefines.PartCondition condition;
+    public float conditionCheck;
+    public BaseEffectSo[] actions;
+
+    public virtual AbilityData Translate()
+    {
+        return new()
+        {
+            InternalName = InternalName,
+            maxUses = maxUses,
+            cooldown = cooldown,
+            fuelCost = fuelCost,
+            aiSignal = aiSignal,
+            overflow = overflow,
+            classification = classification,
+            function = function,
+            condition = condition,
+            conditionCheck = conditionCheck,
+             actions = actions.Select ( a=> new AbilityData.AbilityListener() {  
+                 effectSource = a.effectSource, 
+                 effectTarget = a.effectTarget,  
+                 action = (Racer caster, Racer target, Ability source, float mult, bool main) => {  
+                     a.AffectOnRacer(caster, target, source, mult, main); 
+                 }
+             } ).ToArray(),
+        };
+    }
+    public string GetAbilityDescription()
+    {
+        string output = $"{LanguageController.main.Translate("Abilities", "function_" + function)}:<br>";
+
+        string effects = "";
+        foreach (var a in actions)
+        {
+            if (a == null ||!a.HasDescription()) continue;
+            string label = a.GetDescription();
+            if (label.Length == 0) continue;
+            if (a.condition != ShipDefines.PartCondition.Always)
+            {
+                if (a.condition == ShipDefines.PartCondition.RelativeToRival)
+                {
+                    label = LanguageController.main.Translate("Abilities", a.conditionCheck < 0 ? "condition_BehindRival" : "condition_AheadOfRival") + ": " + label;
+                }
+                else if (a.condition == ShipDefines.PartCondition.LapBelow
+                    || a.condition == ShipDefines.PartCondition.LapAbove
+                    || a.condition == ShipDefines.PartCondition.SpeedAbove
+                    || a.condition == ShipDefines.PartCondition.SpeedBelow
+                    || a.condition == ShipDefines.PartCondition.GasBelow
+                    || a.condition == ShipDefines.PartCondition.GasAbove)
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F0")) + ": " + label;
+                }
+                else if (a.condition == ShipDefines.PartCondition.Lucky
+                    || a.condition == ShipDefines.PartCondition.Random)
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", (a.conditionCheck*100).ToString("F0")) + ": " + label;
+                }
+                else
+                {
+                    label = LanguageController.main.Translate("Abilities", "condition_" + a.condition).Replace("%value%", a.conditionCheck.ToString("F1")) + ": " + label;
+                }
+            }
+            if (effects.Length > 0) effects += "<br>";
+            effects += label;
+        }
+
+        string costs = "";
+        if (fuelCost > 0)
+        {
+            if (costs.Length > 0) costs += "<br>";
+            costs += LanguageController.main.Translate("Abilities", "Ability Cost").Replace("%value%", fuelCost.ToString());
+        }
+        if (cooldown > 0)
+        {
+            if (costs.Length > 0) costs += "<br>" ;
+            costs +=  LanguageController.main.Translate("Abilities", "Ability Cooldown").Replace("%value%", cooldown.ToString());
+        }
+        if (maxUses > 0)
+        {
+            if (costs.Length > 0) costs += "<br>" ;
+            costs += LanguageController.main.Translate("Abilities", "Ability Uses").Replace("%value%", maxUses.ToString());
+        }
+        if (costs.Length > 0)
+            costs = "<br>"+ costs;
+
+        return output + effects + costs;
+
+    }
+}

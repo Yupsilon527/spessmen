@@ -43,6 +43,7 @@ public static class ShipDefines
         RefreshAdjecentActives,
         RefreshOwnPart,
         GrantUseOwnPart,
+        UseAgain,
     }
     public enum PartEvent
     {

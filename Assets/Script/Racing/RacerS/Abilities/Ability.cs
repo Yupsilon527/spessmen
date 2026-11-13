@@ -16,7 +16,7 @@ public class Ability : Countdown
     }
     public Ability(AbilityScriptable a, DataItemPart part, Racer caster)
     {
-        data = a.Translate() ;
+        data = a.Translate();
         this.part = part;
         this.caster = caster;
         ResetGrantedValues();
@@ -61,12 +61,12 @@ public class Ability : Countdown
             || (data.overflow != ItemDefines.OverflowBehavior.unusable && caster.abilities.fuel.GetValue() > 0))
             && (!caster.IsStunned() || (data.function != ShipDefines.PartEvent.OnActivated && data.function != ShipDefines.PartEvent.OnTimePass))
             && (data.classification != ItemDefines.PartType.engine || !caster.GetState(ModifierDefines.State.EnginesJammed))
-            && (data.function !=  ShipDefines.PartEvent.OnActivated|| !caster.GetState(ModifierDefines.State.ActivesJammed))
+            && (data.function != ShipDefines.PartEvent.OnActivated || !caster.GetState(ModifierDefines.State.ActivesJammed))
             && ShipDefines.RacerMeetsCondition(caster, data.condition, data.conditionCheck);
     }
-    public void ActivateOnRacer(float strength = 1)
+    public void ActivateOnRacer(float strength = 1, bool mainCast = false)
     {
-        Use();
+        if (mainCast) Use();
         TourneyController.main.Inspect($"{caster} uses ability {data.InternalName} at {data.function}");
 
         if (data.function == ShipDefines.PartEvent.OnActivated)
@@ -77,10 +77,10 @@ public class Ability : Countdown
             var source = RaceDefines.GetRacerRelative(this.caster, action.effectSource);
             var target = RaceDefines.GetRacerRelative(this.caster, action.effectTarget);
             TourneyController.main.Inspect($"{source} uses ability {data.function} on {target}");
-            action.action(source, target,this, strength );
+            action.action(source, target, this, strength, mainCast);
         }
     }
-    public bool Activate(ShipDefines.PartEvent evt)
+    public bool Activate(ShipDefines.PartEvent evt, bool freeUse)
     {
         if (evt == data.function && (evt == ShipDefines.PartEvent.OnRaceStart || CanBeActivated()))
         {
@@ -89,7 +89,7 @@ public class Ability : Countdown
             float fCost = GetFuelCost();
 
             float strength = 1;
-            if (fCost > 0 && fuel < fCost)
+            if (!freeUse && fCost > 0 && fuel < fCost)
             {
                 if (data.overflow == ItemDefines.OverflowBehavior.chanceToFail)
                 {
@@ -114,9 +114,9 @@ public class Ability : Countdown
                     strength = fuel > fCost ? 1 : 0;
                 }
             }
-            if (strength>0)
+            if (strength > 0)
             {
-                ActivateOnRacer(strength);
+                ActivateOnRacer(strength, !freeUse);
 
                 if (data.classification == ItemDefines.PartType.gadget)
                     caster.ListenToEvent(ShipDefines.PartEvent.OnGadgetActivate);
@@ -131,18 +131,18 @@ public class Ability : Countdown
                     else
                         caster.ListenToEvent(ShipDefines.PartEvent.OnFastAbilityActivate);
             }
-            if (fCost > 0)
+            if (!freeUse && fCost > 0)
             {
                 caster.abilities.fuel.SubstractedValue(fCost);
                 caster.ListenToEvent(ShipDefines.PartEvent.OnFuelSpent);
             }
-                FireCooldown(1);
+            FireCooldown(1);
             return true;
         }
         return false;
     }
 
-    public void FireCooldown(float mult )
+    public void FireCooldown(float mult)
     {
         Set(GetPartCooldown() * mult);
     }
@@ -153,7 +153,7 @@ public class Ability : Countdown
     public void RefreshUses(float val)
     {
 
-        useCount =Mathf.Max(0, useCount-Mathf.CeilToInt(val));
+        useCount = Mathf.Max(0, useCount - Mathf.CeilToInt(val));
     }
     public override string ToString()
     {
@@ -176,7 +176,7 @@ public class Ability : Countdown
     {
         if (LimitedUses())
             return useCount;
-                return 0;
+        return 0;
     }
     public bool LimitedUses()
     {

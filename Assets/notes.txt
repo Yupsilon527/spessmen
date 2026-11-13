@@ -7,6 +7,8 @@ TODO
 
 	"use again" ability mechanic 
 
+	tutorial
+
 	descs funny sometimes?
 
 	see racer info in menu
