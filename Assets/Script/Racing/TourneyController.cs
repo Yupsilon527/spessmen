@@ -317,7 +317,7 @@ public class TourneyController : Initializable
         int playerPos = ongoingRace.GetPositionForRacer(GetPlayerRacer());
         DataItemPlayer.main.score.GiveChaos((ItemDefines.chaosPerRace + playerPos * ItemDefines.chaosPerPosition) * diffMult);
 
-        float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue() * (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) - 1), 0, EconomyDefines.interestGoldCap);
+        float interest = Mathf.Clamp(DataItemPlayer.main.econ.gold.GetValue(), 0, EconomyDefines.interestGoldCap + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest_cap)) * (EconomyDefines.constantGoldInterest + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_interest) - 1);
 
 
         float finishGold = Mathf.Max(0, EconomyDefines.constantGoldForRace * diffMult + DataItemPlayer.main.GetPropertySpeculative(ModifierDefines.Property.gold_bonus));

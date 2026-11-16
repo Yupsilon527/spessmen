@@ -98,7 +98,8 @@ public static class ModifierDefines
         debuff_duration_multiplier = 51,
         buff_duration_multiplier = 52,
 
-        total = 53,
+        gold_interest_cap = 53,
+        total = 54,
     };
     public enum State   
     {
