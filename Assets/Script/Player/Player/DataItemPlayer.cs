@@ -1,5 +1,7 @@
 
 
+using System.Collections;
+using System.Collections.Generic;
 using Variables;
 
 public class DataItemPlayer : Initializable
@@ -49,5 +51,32 @@ public class DataItemPlayer : Initializable
         }
 
         return value;
+    }
+    public void TriggerEventOutOfRace(ShipDefines.PartEvent evt, bool includeStash)
+    {
+        var racer = TourneyController.main.GetPlayerRacer();
+        OutOfRaceEvent(evt, racer, car.parts);
+        if (includeStash)
+        {
+            OutOfRaceEvent(evt, racer, car.stash );
+        }
+    }
+    public void OutOfRaceEvent(ShipDefines.PartEvent evt, Racer racer,  DataItemPart part)
+    {
+            foreach (var a in part.scriptable.abilities)
+            {
+                if (a.function != evt) continue;
+                foreach (var e in a.actions)
+                {
+                    e.AffectOnRacer(racer, racer, null, 1, true);
+                }
+            }
+        }
+    void OutOfRaceEvent(ShipDefines.PartEvent evt, Racer racer, IEnumerable< DataItemPart> parts)
+    {
+        foreach (var part in parts)
+        {
+            OutOfRaceEvent(evt, racer, part);
+        }
     }
 }

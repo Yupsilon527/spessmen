@@ -19,7 +19,14 @@ public class PlayerShopController : PlayerComponent
         }
         else
         {
-            numRerolls++;
+            if (player.econ.freerolls.GetValue() > 0)
+            {
+                player.econ.freerolls.SubstractedValue(1);
+            }
+            else { 
+                numRerolls++;
+            }
+            player.TriggerEventOutOfRace(ShipDefines.PartEvent.ShopRerolled,false);
             player.score.GiveChaos(ItemDefines.chaosPerShopReset);
         }
         RegenerateShopItems(8);

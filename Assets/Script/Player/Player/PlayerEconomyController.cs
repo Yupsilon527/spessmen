@@ -4,11 +4,13 @@ public class PlayerEconomyController : PlayerComponent
 {
     public Resource gold;
     public Resource bank;
+    public Resource freerolls;
     public override void Setup()
     {
         base.Setup();
         gold = new ResourceInt(0, "gold", false, false);
         bank = new ResourceInt(0, "bank", false, false);
+        freerolls = new ResourceInt(0, "rerolls", false, false);
     }
 
     public void GiveGold(float amount)

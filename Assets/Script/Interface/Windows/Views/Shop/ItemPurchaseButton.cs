@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -109,6 +110,7 @@ public class ItemPurchaseButton : PartButtonBase, IPointerEnterHandler
         {
             var newToken = shop.dragdrop.GenerateToken(purchaseData);
             newToken.AttachToSlot(dropSlot, true);
+            purchasingPlayaer.TriggerEventOutOfRace(ShipDefines.PartEvent.OnPurchased, newToken.mPart.scriptable);
             newToken.justPurchase = true;
             Clear(true);
         }

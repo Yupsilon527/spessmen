@@ -60,6 +60,10 @@ public static class ShipDefines
         OnFastAbilityActivate = 10,
         OnBigAbilityActivate = 11,
         OnFuelSpent = 12,
+        ShopRerolled = 13,
+        OnPurchased = 14,
+        OnSold = 15,
+        OnDestroyed = 16,
     }
     public enum PartCondition
     {
