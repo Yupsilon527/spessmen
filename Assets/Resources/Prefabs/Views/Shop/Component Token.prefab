@@ -191,6 +191,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   justPurchase: 0
   eventTrigger: {fileID: 1628595322529547726}
+  gridUpdateTime: 0.12
 --- !u!114 &1628595322529547726
 MonoBehaviour:
   m_ObjectHideFlags: 0

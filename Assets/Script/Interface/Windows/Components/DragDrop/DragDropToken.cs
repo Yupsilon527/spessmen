@@ -11,6 +11,8 @@ public class DragDropToken : PartButtonScaleable
     bool dragDropMode = false;
     public bool justPurchase = false;
     public EventTrigger eventTrigger;
+    float nextUpdate = 0;
+    public float gridUpdateTime = .2f;
 
     #region Rotate
     private void Update()
@@ -73,8 +75,9 @@ public class DragDropToken : PartButtonScaleable
             // InfoOverlayController.main.Close();
             if (slot.slot == DragDropSlot.TokenSlot.build)
                 DataItemPlayer.main.car.RemovePart(mPart);
+            nextUpdate = 0;
 
-            ViewManager.Instance.shop.playership.UpdateVisual();
+            ViewManager.Instance.shop.playership.UpdatePlacementCondition(mPart,rotation);
         }
     }
     public void OnDrag(PointerEventData eventData)
@@ -82,6 +85,12 @@ public class DragDropToken : PartButtonScaleable
         if (dragDropMode)
         {
             recttransform.position = Input.mousePosition;
+            if (nextUpdate < Time.time)
+            {
+                ViewManager.Instance.shop.playership.UpdatePlacementCondition(mPart, rotation);
+                ViewManager.Instance.shop.playership.UpdatePartPosition(mPart, transform.position + Delta(), rotation);
+                nextUpdate = Time.time + gridUpdateTime;
+            }
         }
     }
     public void OnEndDrag(PointerEventData eventData)
@@ -175,11 +184,15 @@ public class DragDropToken : PartButtonScaleable
         if (slot.slot == DragDropSlot.TokenSlot.stash)
             return true;
 
-        Vector2Int slotCoords = slot.grid.GetGridPosition(transform.position + Delta());
+        return CanPlaceOnGrid(slot.grid);
+    }
+    public bool CanPlaceOnGrid(GridPreview grid)
+    {
+        Vector2Int slotCoords = grid.GetGridPosition(transform.position + Delta());
 
         foreach (var d in ShipDefines.deltaPos)
         {
-            if (DataItemPlayer.main.car.CanPlace(mPart, slotCoords.x+d.x, slotCoords.y + d.y, rotation))
+            if (DataItemPlayer.main.car.CanPlace(mPart, slotCoords.x + d.x, slotCoords.y + d.y, rotation))
                 return true;
         }
         return false;
@@ -328,5 +341,10 @@ public class DragDropToken : PartButtonScaleable
         {
             parent.tooltip.Clear();
         }
+    }
+    public override void AdjustRotation(int rotation)
+    {
+        base.AdjustRotation(rotation);
+        nextUpdate = 0;
     }
 }
