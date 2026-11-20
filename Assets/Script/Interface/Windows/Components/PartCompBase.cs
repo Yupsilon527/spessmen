@@ -1,5 +1,6 @@
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
 
 public class PartCompBase : Initializable
@@ -44,6 +45,36 @@ public class PartCompBase : Initializable
             description.text += "<br>" + mergeLabel + " " + string.Join(", ", names);
         }
         if (toggleActive && !skipRebuild) gameObject.SetActive(true);
+    }
+    public virtual void ShowCarData(DataItemShip ship)
+    {
+        if (title != null)
+        {
+            title.text = LanguageController.main.Translate("Racers", ship.scriptable.InternalName);
+        }
+        if (partIcon != null)
+        {
+            partIcon.enabled = ship.scriptable.blueprint != null;
+            partIcon.sprite = ship.scriptable.blueprint;
+        }
+        if (subtitle != null)
+        {
+            subtitle.text = "";
+        }
+        if (description != null)
+        {
+            description.text = ship.scriptable.GetEffectDescription();
+        }
+        if (grid != null)
+        {
+            grid.Clear();
+        }
+        if (rarityColors != null)
+        {
+            foreach (var g in rarityColors)
+                g.color = ship.scriptable.baseColor;
+        }
+        if (toggleActive) gameObject.SetActive(true);
     }
     public virtual void Clear()
     {

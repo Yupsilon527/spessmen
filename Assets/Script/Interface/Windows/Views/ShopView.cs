@@ -12,6 +12,7 @@ public partial class ShopView : ViewBase
     public RaceTooltip raceTooltip;
     public Button undoButton;
     public AbilityDragDropInterface dragdrop;
+    public RaceResultsWindow raceResutlts;
     public ItemPurchaseButton[] itemButtonSelection;
 
     public void PresentMultipleItems(PurchaseData[] items)
@@ -71,7 +72,7 @@ public partial class ShopView : ViewBase
         {
             itemButtonSelection[i].UpdateEnableState(DataItemPlayer.main, true);
         }
-
+        raceResutlts?.UpdatePlayerPosition();
         undoButton?.gameObject?.SetActive(DataItemPlayer.main.car.CanUndoExpansion());
     }
     public void ResetButtonFunction()
